@@ -1,0 +1,5254 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+      
+      
+      
+        <link rel="canonical" href="https://brianhabana.github.io/xenocore-dist/concepts/enemies-and-ai/">
+      
+      
+        <link rel="prev" href="../reactions-and-statuses/">
+      
+      
+        <link rel="next" href="../items-and-inventory/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Enemies and AI - XenoCore Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#enemies-and-ai" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="XenoCore Manual" class="md-header__button md-logo" aria-label="XenoCore Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XenoCore Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Enemies and AI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="XenoCore Manual" class="md-nav__button md-logo" aria-label="XenoCore Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    XenoCore Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install and first launch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/play-the-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Play the sample
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/project-tour/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tour of the project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-enemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first enemy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/where-next/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Where next
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/controls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Controls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../recipes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How-to recipes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How-to recipes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-party-member/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a party member
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a VRoid party member
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/starting-party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set the starting party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/character-statline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Author a character statline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/bake-portrait/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bake a HUD portrait
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/animation-style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose an animation style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/character-combat-animations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a character its own combat animations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-progression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune progression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-revive-and-defeat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune revive and defeat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/attack-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create an attack art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/support-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a healing or support art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/talent-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a Talent Art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/palette-slots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Palette slots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/art-reactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make an art inflict reactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/status-effect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a status effect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-auto-attack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune auto-attack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-targeting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune targeting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/hit-feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add hit feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/damage-formula-stat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a stat to the damage formula
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-weapon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a weapon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-armour/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an armour piece
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/equipment-stat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an equipment stat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/consumable-item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a consumable item
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/drop-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Author a drop table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/item-rarity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set and style item rarity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-a-gem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a gem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/sort-a-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add Y-to-sort to an item list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-enemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an enemy type
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-companion-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune companion AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/companion-personality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a character its own idle breaks and faces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/enemy-arts-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give an enemy arts and AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/enemy-statline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Author an enemy statline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/place-enemies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Place enemies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/npc-conversation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Write an NPC conversation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/branch-conversation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Branch a conversation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/collection-quest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a collection quest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/kill-talk-quest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a kill, talk or location quest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/open-shop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open a shop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/recruit-npc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recruit a party member by talking to them
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/trade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set up a trade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-interactable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an interactable object
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/restyle-menus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Restyle the menus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-menu-screen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a menu screen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/confirm-popup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a confirmation popup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/input-action-prompt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an input action with a prompt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-hud-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a HUD element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tutorial-cards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a tutorial card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/save-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make a system save
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/world-partition-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build a world-partition map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/footstep-surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footsteps by surface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/area-music/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a map its music
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/area-weather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a map its time of day and weather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/minimap-new-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a map its minimap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/minimap-marker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Show something on the minimap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/megascans-assets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Megascans at shipping size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/camera-feel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swap the camera feel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/nvidia-dlss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Turn on NVIDIA DLSS and Frame Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/replace-sample-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replace the sample content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/package-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package a build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/subclass-mechanic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a mechanic by subclassing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-skill/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a skill or a skill tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../characters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Characters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../companion-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Companion AI and aggro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../party-tactics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party tactics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../party-gauge-and-revive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Gauge, downed and revive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../battle-voices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle voices and banter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stats-and-damage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stats and damage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../progression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The combat loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../targeting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targeting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arts and Talent Arts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reactions-and-statuses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reactions and statuses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enemies and AI
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enemies and AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-fits-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it fits together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What you can change">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-the-enemy-blueprint-class-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the enemy Blueprint (Class Defaults)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-ai-controller-bp_aic_xenocore_enemy-class-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the AI controller (BP_AIC_XenoCore_Enemy, Class Defaults)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-the-statetree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In the StateTree
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-sample-enemy-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The sample enemy types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-its-built-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why it's built this way
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../items-and-inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items and inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../equipment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equipment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interaction-npcs-dialogue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interaction, NPCs and dialogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shops-and-trade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shops and trade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../save-and-front-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Save and front end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui-shell-and-hud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI shell and HUD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minimap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../day-night-weather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time of day and weather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../input-and-camera/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input and camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loading and ticking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events you can listen to
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/cpp-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/data-assets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data assets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/blueprint-nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blueprint nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/curve-tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Curve tables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gameplay-tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gameplay tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/gameplay-messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gameplay messages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/console-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/asset-naming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asset naming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/folder-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Folder map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/editor-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../troubleshooting/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/characters-and-party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Characters and party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/combat-and-arts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Combat and arts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/enemies-and-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enemies and AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/items-and-equipment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items and equipment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/ui-and-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI and input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/world-and-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    World and maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/build-and-editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnostics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/reporting-bugs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reporting bugs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-fits-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it fits together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="What you can change">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-the-enemy-blueprint-class-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the enemy Blueprint (Class Defaults)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-the-ai-controller-bp_aic_xenocore_enemy-class-defaults" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        On the AI controller (BP_AIC_XenoCore_Enemy, Class Defaults)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-the-statetree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In the StateTree
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-sample-enemy-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The sample enemy types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extending-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extending it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-its-built-this-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why it's built this way
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="enemies-and-ai">Enemies and AI<a class="headerlink" href="#enemies-and-ai" title="Permanent link">&para;</a></h1>
+<p><em>All · 15 min read · Last tested: never</em></p>
+<p>An enemy is a pawn that owns its own Ability System Component (ASC), has no PlayerState, and is
+possessed by a small AI controller that runs a shared <strong>StateTree</strong>. Everything that makes one enemy
+different from another (mesh, level, stats, abilities, loot) is data on its Blueprint and the assets
+it points at. The AI is shared by every enemy and names abilities by <strong>gameplay tag</strong>, never by
+asset, so a new enemy needs no AI of its own. The one idea: <strong>the enemy's data decides what it can
+do (its ability set and its Arts list), and the shared AI decides when.</strong> An enemy fights with the
+same AI tasks as a <a href="../companion-ai/">companion</a>; only where its target comes from differs.</p>
+<p>See the <a href="../../getting-started/glossary/">Glossary</a> for <strong>Engage</strong>, <strong>disengage</strong> and <strong>Aggro</strong>.</p>
+<h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Class / sample asset</th>
+<th>Job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enemy pawn</td>
+<td><code>AXenoCoreEnemyCharacter</code> → <code>Characters/Enemies/Core/B_XenoCore_Enemy_Base</code> → <code>Characters/Enemies/Minion/B_XenoCore_Minion_Melee</code></td>
+<td>Level, name, stats, rewards, loot, death, overhead widgets</td>
+</tr>
+<tr>
+<td>Pawn data</td>
+<td><code>PawnData_XenoCore_Minion_Melee</code></td>
+<td>Ability sets (and tag relationships) the enemy is initialised with</td>
+</tr>
+<tr>
+<td>Ability sets</td>
+<td><code>AbilitySet_XenoCore_Enemy_Common</code>, <code>AbilitySet_XenoCore_Minion_Melee</code></td>
+<td>Death (common); auto-attack, hit react, Topple and Daze knock-downs, guard, recoil and dodge (minion)</td>
+</tr>
+<tr>
+<td>Arts</td>
+<td><code>Characters/Enemies/Minion/Arts/DA_XenoCore_Minion_Rend</code>, <code>DA_XenoCore_Minion_Sweep</code></td>
+<td>Ordinary Art definitions on the enemy's <strong>Arts</strong> list. See <a href="../../recipes/enemy-arts-ai/">Give an enemy Arts</a></td>
+</tr>
+<tr>
+<td>Aggro</td>
+<td><strong>Threat</strong> and <strong>Aggro Indicator</strong> components, built into every enemy</td>
+<td>Who the enemy attacks, and the red ring under that character. See <a href="../companion-ai/#aggro">Aggro</a></td>
+</tr>
+<tr>
+<td>Anim Blueprint</td>
+<td><code>Characters/Enemies/Minion/ABP_XenoCore_Minion_Melee</code></td>
+<td>Locomotion on the 2D blend space <code>Minion/Animations/BS_XenoCore_Minion_Locomotion2D</code></td>
+</tr>
+<tr>
+<td>Stats effect</td>
+<td><code>Battle/Attributes/GE_XenoCore_BaseStats_Minion_Melee</code></td>
+<td>Statline read from <code>CT_XenoCore_EnemyStats</code> at the enemy's level</td>
+</tr>
+<tr>
+<td>AI controller</td>
+<td><code>AXenoCoreEnemyController</code> → <code>Characters/Enemies/Core/BP_AIC_XenoCore_Enemy</code></td>
+<td>Team, aggro target, leash, level rule; hosts the StateTree component</td>
+</tr>
+<tr>
+<td>StateTree</td>
+<td><code>Characters/Enemies/Core/AI/ST_XenoCore_EnemyFreeroam</code></td>
+<td>Patrol, chase, auto-attack, choose and use Arts</td>
+</tr>
+<tr>
+<td>Overhead widgets</td>
+<td><code>Characters/Enemies/Core/W_XenoCore_EnemyLabel</code>, <code>W_XenoCore_OverheadHealth</code></td>
+<td><code>lvl.N</code> label and chevron over every enemy; HP bar while engaged</td>
+</tr>
+<tr>
+<td>Spawner</td>
+<td><code>AXenoCoreEnemySpawner</code> (<strong>XenoCore Enemy Spawner</strong> in Place Actors)</td>
+<td>Keeps one squad alive, links its aggro, respawns it out of sight. See <a href="../../recipes/place-enemies/">Place enemies</a></td>
+</tr>
+<tr>
+<td>Enemy types</td>
+<td><code>Characters/Enemies/Minion/Variants/</code></td>
+<td>Seven sample types, each a child of <code>B_XenoCore_Minion_Melee</code>. See <a href="#the-sample-enemy-types">The sample enemy types</a></td>
+</tr>
+<tr>
+<td>Drop table and chest</td>
+<td><code>Inventory/Loot/DA_XenoCore_Drops_Minion</code> (the base minion), one table per family for the sample types (<code>DA_XenoCore_Drops_Grunt</code>, <code>_Skirmisher</code>, <code>_Bulwark</code>, <code>_Brute</code>), and <code>BP_XenoCore_TreasureChest</code></td>
+<td>Entries can be limited to a band of the dying enemy's level. See <a href="../loot/">Loot</a></td>
+</tr>
+<tr>
+<td>Training dummy</td>
+<td><code>Characters/Enemies/Dummy/B_XenoCore_Dummy</code></td>
+<td>A target with no AI of note</td>
+</tr>
+</tbody>
+</table>
+<p>Ability sets on the sample minion:</p>
+<table>
+<thead>
+<tr>
+<th>Ability</th>
+<th>Tag the AI uses</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GA_XenoCore_Minion_Attack</code></td>
+<td><code>Ability.XenoCore.AutoAttack</code></td>
+<td>Auto-attack. An Art pauses it; the fight task restarts it afterwards</td>
+</tr>
+<tr>
+<td><code>GA_XenoCore_Minion_HitReact</code></td>
+<td>none</td>
+<td>Directional flinch</td>
+</tr>
+<tr>
+<td><code>GA_XenoCore_Minion_Topple</code>, <code>GA_XenoCore_Minion_Daze</code></td>
+<td>none</td>
+<td>Knock-downs, triggered by the reaction tag arriving and held for as long as it lasts. See <a href="../reactions-and-statuses/">Reactions and statuses</a></td>
+</tr>
+<tr>
+<td><code>GA_XenoCore_Minion_Guard</code>, <code>_Recoil</code>, <code>_Evade</code></td>
+<td>none</td>
+<td>Plays when the minion blocks, is blocked, or dodges. Clips retargeted onto the minion's skeleton. See <a href="../combat-loop/#blocks-and-dodges">Blocks and dodges</a></td>
+</tr>
+<tr>
+<td><code>GA_Hero_Death</code> (Lyra)</td>
+<td>none</td>
+<td>Death. Without it the enemy cannot die</td>
+</tr>
+</tbody>
+</table>
+<p>The minion's two Arts are not in the ability set. They are Art definitions on the enemy
+Blueprint's <strong>Arts</strong> list, granted at level 1 when it spawns: the same kind of Art the party
+uses. Like a party Art, an enemy Art roots the enemy for the length of its animation.</p>
+<h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
+<p><strong>Spawn.</strong> The pawn builds its own ASC. In <code>PostInitializeComponents</code> it sets its pawn data,
+initialises the ability system (the one call a Blueprint cannot make), grants the pawn data's
+ability sets, and applies <strong>Stats Effect</strong> at <strong>Enemy Level</strong>. The controller records the pawn's
+start position as <strong>home</strong> and gives the pawn its team (<code>2</code> by default). An enemy made by a
+<a href="../../recipes/place-enemies/">spawner</a> rolls its level from the spawner's range, and its home is
+where it spawned.</p>
+<p><strong>Waiting.</strong> Until it is <em>provoked</em> its aggro target is empty and the StateTree keeps it in
+<strong>Freeroam</strong>: it walks its <strong>Patrol Points</strong> back and forth at <strong>Patrol Speed</strong> (<code>105</code> cm/s, its
+walk), pausing <strong>Patrol Wait</strong> (<code>2</code> s) at each point; with no points it wanders within <strong>Wander
+Radius</strong> of home, or stands still if that is <code>0</code>. A spawner sets the wander radius for its squad.</p>
+<p><strong>Noticing.</strong> An enemy is provoked by taking damage, or by its <strong>Detection</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>Provoked when…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>None (passive)</strong></td>
+<td>never; only damage provokes it</td>
+</tr>
+<tr>
+<td><strong>Sight</strong></td>
+<td>the party leader is inside <strong>Sight Radius</strong> (<code>1400</code>) and the view cone (<strong>Sight Half Angle</strong>, <code>55</code>°; <code>180</code> sees all round)</td>
+</tr>
+<tr>
+<td><strong>Sound</strong></td>
+<td>the leader <strong>runs</strong> (faster than the controller's <strong>Running Speed</strong>, <code>280</code> cm/s) inside <strong>Sound Radius</strong> (<code>1000</code>). Walking past is safe</td>
+</tr>
+<tr>
+<td><strong>Ether</strong></td>
+<td>the party uses an ether art inside <strong>Ether Radius</strong> (<code>1500</code>), even a harmless one</td>
+</tr>
+</tbody>
+</table>
+<p>Detection obeys the <strong>level rule</strong>: an enemy <strong>Ignore When Levels Below</strong> (<code>6</code>) or more levels under
+the party leader does not notice the party at all. The rule never applies to being attacked: hit
+an under-levelled enemy and it fights back. A <strong>Unique Monster</strong>, or a controller with <strong>Always
+Aggro</strong>, skips the rule.</p>
+<p><strong>Link aggro.</strong> An enemy made by a spawner belongs to a squad. When one member is provoked, every
+living member within the spawner's <strong>Link Radius</strong> is provoked too. This is XC2/XC3's documented
+behaviour, chosen for XenoCore; XC1's own rule for groups is not sourced. Untick <strong>Link Aggro</strong> on a
+spawner for a loose group whose members fight only when each one is provoked.</p>
+<p><strong>Engaging.</strong> Once provoked, the controller's aggro target is the party member holding the most
+<strong>aggro</strong> on it (see <a href="../companion-ai/#aggro">Aggro</a>), so a companion who hits harder than you can
+draw the enemy off. It engages while that pawn is within <strong>Engage Radius</strong> (<code>1600</code>). Once engaged,
+the radius grows by <strong>Disengage Radius Scale</strong> (<code>2.5</code> ×) so the enemy does not flicker in and out
+at the edge. Each of these, and <strong>Leash Radius</strong>, is the controller's default unless the enemy sets
+its own override (below).</p>
+<p><strong>Fighting.</strong> The tree's <strong>Fight</strong> state chases the target, keeps the auto-attack swinging at it,
+and every <strong>Decision Interval</strong> scores the Arts on the enemy's <strong>Arts</strong> list, using the best one
+that is ready. Scoring is the companions' (see
+<a href="../companion-ai/#how-a-companion-chooses-an-art">How a companion chooses an art</a>): a Topple Art is
+held until the target is Broken, so the minion opens with Rend (Break) and follows with Sweep
+(Topple). Its <strong>AI Profile</strong> paces it; <strong>Post-Art Cooldown</strong> is the brake. When aggro moves to
+another party member, the enemy turns on them.</p>
+<p><strong>Moving.</strong> The minion's anim Blueprint plays a 2D blend space over <strong>Direction</strong> and <strong>Ground
+Speed</strong>, so it walks on patrol, jogs in a chase, and strafes or backs off with side and back clips
+while it shuffles round its attackers. A hit's knockback is <em>not</em> treated as movement: while the
+shove lasts the legs hold their pose and the body slides underneath, with the flinch on the torso.</p>
+<p><strong>Knocked down.</strong> While the enemy is Toppled or Dazed it plays its knock-down, stops chasing, does
+not auto-attack, and uses no Arts. It picks up where it left off when the reaction ends. A Dazed
+enemy gains no aggro.</p>
+<p><strong>Giving up.</strong> If the enemy strays more than <strong>Leash Radius</strong> (<code>7000</code>) from <strong>home</strong>, or the party
+outruns it (the target leaves the disengage radius), it disengages, forgets it was provoked and its
+aggro, recovers to full health (<strong>Heal On Give Up</strong>), and walks home at the chase task's return
+speed. It then resumes its patrol or wander. A <a href="../party/">party wipe</a> does the same to every enemy at once, through the
+controller's <code>ResetAggro</code> (Blueprint-callable, <strong>XenoCore › AI</strong>).</p>
+<p><strong>Dying.</strong> On death the enemy broadcasts <code>XenoCore.Enemy.Message.Defeated</code> (its class, name and
+level), awards the party EXP, Art Points and Skill Points through the progression component
+(<strong>Experience Reward</strong>, <strong>Art Point Reward</strong> and <strong>Skill Point Multiplier</strong>, scaled by level difference), rolls a chest tier and spawns the chest hidden for <strong>Chest Drop Delay</strong>,
+plays one of its <strong>Death Montages</strong>, ragdolls after a random <strong>Ragdoll Delay Min</strong>–<strong>Max</strong>, then
+vanishes after <strong>Death Vanish Delay</strong> with its <strong>Death Effect</strong>. The effect is a soft reference: it
+starts loading when the enemy is first provoked, so idle enemies on a map do not hold it in memory. In a squad, only the last member
+killed drops a chest, upgraded to at least silver. A spawner brings fallen members back after its
+<strong>Respawn Delay</strong>, only while the party is out of sight of the spot and not fighting that squad.</p>
+<p><strong>Widgets.</strong> Every enemy wears a <code>lvl.N</code> label with a chevron, coloured by how its level compares
+with the party leader's. It fades out with distance and is always shown in battle. A Unique
+Monster's label is gold, carries its name and shows from further away. The text, the colour bands
+and the distances are in <strong>Project Settings › Game › XenoCore Enemies › Level Label</strong>. The HP bar is hidden until the
+controller reports the enemy engaged, and is polled rather than event-driven because leashing
+broadcasts nothing. Neither widget ticks while it has nothing to do: the bar only while shown, the
+label only while the camera is within its show and fade distance or the enemy is engaged. The enemy
+re-checks that every <strong>Label Tick Check Interval</strong> (<code>0.4</code> s). While the enemy fights, a red ring lies under whoever it is after. No line is
+drawn between the enemy and its target. See
+<a href="../companion-ai/#seeing-who-an-enemy-is-after">Seeing who an enemy is after</a>.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h3 id="on-the-enemy-blueprint-class-defaults">On the enemy Blueprint (Class Defaults)<a class="headerlink" href="#on-the-enemy-blueprint-class-defaults" title="Permanent link">&para;</a></h3>
+<p>Settings marked <em>per placement</em> can also be changed on a placed enemy in the level.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Category</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Enemy Pawn Data</strong></td>
+<td>XenoCore › Enemy</td>
+<td>Ability sets. Required: empty logs an error and the enemy cannot die</td>
+</tr>
+<tr>
+<td><strong>Enemy Level</strong></td>
+<td>XenoCore › Enemy</td>
+<td>Level for every stat curve and the level-difference rules. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Display Name</strong></td>
+<td>XenoCore › Enemy</td>
+<td>Name on the target badge. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Unique Monster</strong></td>
+<td>XenoCore › Enemy</td>
+<td>Skips the level rule; gold, named label. Tick <strong>Always Gold Chest</strong> too. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Detection</strong>, <strong>Sight Radius</strong>, <strong>Sight Half Angle</strong>, <strong>Sound Radius</strong>, <strong>Ether Radius</strong></td>
+<td>XenoCore › AI › Detection</td>
+<td>How it notices the party before being hit (table above). <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Wander Radius</strong></td>
+<td>XenoCore › AI › Patrol</td>
+<td>With no <strong>Patrol Points</strong>: wander this far from home. <code>0</code> = stand still. A spawner overrides it. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Experience Reward</strong></td>
+<td>XenoCore › Enemy</td>
+<td>Base EXP before level-difference scaling. The C++ default is <code>24</code>; the sample minions pay <code>15</code> (a basic Grunt, XC1's first field enemy) up to <code>50</code> (Violet Brute). <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Experience Level Scale</strong></td>
+<td>XenoCore › Enemy</td>
+<td>Curve row multiplying <strong>Experience Reward</strong> at <strong>Enemy Level</strong>. The minions use <code>Minion.ExperienceScale</code> (XC1's EXP-to-next ÷ 40: ×1 at Lv 1, ×3.75 at Lv 10). Empty = flat</td>
+</tr>
+<tr>
+<td><strong>Skill Point Multiplier</strong></td>
+<td>XenoCore › Enemy</td>
+<td>Scales the SP this kill pays. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Stats Effect</strong></td>
+<td>XenoCore › Enemy</td>
+<td>Statline effect applied at <strong>Enemy Level</strong></td>
+</tr>
+<tr>
+<td><strong>Chevron Widget Class</strong>, <strong>Chevron Height</strong></td>
+<td>XenoCore › Enemy</td>
+<td>The marker and its height (<code>132</code>)</td>
+</tr>
+<tr>
+<td><strong>Health Bar Widget Class</strong>, <strong>Health Bar Height</strong></td>
+<td>XenoCore › Enemy</td>
+<td>The engaged HP bar and its height (<code>100</code>)</td>
+</tr>
+<tr>
+<td><strong>Label Tick Check Interval</strong></td>
+<td>XenoCore › Enemy</td>
+<td>How often the enemy decides whether its label needs to tick. Default <code>0.4</code> s</td>
+</tr>
+<tr>
+<td><strong>Drop Table</strong>, <strong>Chest Class</strong>, <strong>Chest Spawn Height</strong></td>
+<td>XenoCore › Loot</td>
+<td>See <a href="../loot/">Loot</a>. Empty <strong>Drop Table</strong> = no chest</td>
+</tr>
+<tr>
+<td><strong>Always Gold Chest</strong></td>
+<td>XenoCore › Loot</td>
+<td>Always drop gold. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Chest Drop Delay</strong></td>
+<td>XenoCore › Enemy › Loot</td>
+<td>Seconds before the chest appears. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Death Montages</strong>, <strong>Ragdoll Delay Min/Max</strong>, <strong>Ragdoll Impulse Bone/Strength</strong>, <strong>Death Vanish Delay</strong>, <strong>Death Effect</strong>, <strong>Death Effect Scale</strong></td>
+<td>XenoCore › Death</td>
+<td>The death sequence. <strong>Death Effect</strong> loads when the enemy is provoked</td>
+</tr>
+<tr>
+<td><strong>Engage Radius Override</strong></td>
+<td>XenoCore › AI</td>
+<td>This enemy's engage radius, in cm. <code>-1</code> (default) uses the controller's. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Leash Radius Override</strong></td>
+<td>XenoCore › AI</td>
+<td>This enemy's leash radius. <code>-1</code> uses the controller's. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Disengage Radius Scale Override</strong></td>
+<td>XenoCore › AI</td>
+<td>This enemy's disengage scale. <code>-1</code> uses the controller's; 0 to 1 counts as 1. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Patrol Points</strong></td>
+<td>XenoCore › AI › Patrol</td>
+<td>Points to walk between while unprovoked, relative to where the enemy was placed. Drag them in the viewport. Empty = stand at home. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Patrol Speed</strong></td>
+<td>XenoCore › AI › Patrol</td>
+<td>Walking speed on patrol. Default <code>105</code> cm/s, matched to the minion's walk clip. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Patrol Wait</strong></td>
+<td>XenoCore › AI › Patrol</td>
+<td>Seconds it pauses at each point of the route, ends included. Default <code>2</code>. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Arts</strong></td>
+<td>XenoCore › Enemy › Arts</td>
+<td>Art definitions this enemy can use, granted at level 1. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>AI Profile</strong></td>
+<td>XenoCore › Enemy › Arts</td>
+<td>Decision interval, post-art cooldown, reliability. <strong>Seek Positional Bonus</strong> is off for enemies. <em>Per placement</em></td>
+</tr>
+<tr>
+<td><strong>Anim Profile</strong></td>
+<td>XenoCore › Animation</td>
+<td>This enemy's own reaction and death clips. See <a href="../../recipes/character-combat-animations/">Give a character its own combat animations</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="on-the-ai-controller-bp_aic_xenocore_enemy-class-defaults">On the AI controller (<code>BP_AIC_XenoCore_Enemy</code>, Class Defaults)<a class="headerlink" href="#on-the-ai-controller-bp_aic_xenocore_enemy-class-defaults" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Category</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Engage Radius</strong></td>
+<td>XenoCore › AI</td>
+<td>How close the target must be to fight. Default <code>1600</code></td>
+</tr>
+<tr>
+<td><strong>Leash Radius</strong></td>
+<td>XenoCore › AI</td>
+<td>Distance from <strong>home</strong> at which the enemy gives up. Default <code>7000</code></td>
+</tr>
+<tr>
+<td><strong>Disengage Radius Scale</strong></td>
+<td>XenoCore › AI</td>
+<td>Engage radius multiplier once fighting. Default <code>2.5</code></td>
+</tr>
+<tr>
+<td><strong>Ignore When Levels Below</strong></td>
+<td>XenoCore › AI</td>
+<td>Ignore a party this many levels higher. Default <code>6</code></td>
+</tr>
+<tr>
+<td><strong>Always Aggro</strong></td>
+<td>XenoCore › AI</td>
+<td>Skip the level rule. Noticing the party still needs a <strong>Detection</strong> other than None</td>
+</tr>
+<tr>
+<td><strong>Running Speed</strong></td>
+<td>XenoCore › AI › Detection</td>
+<td>Leader speed above which <strong>Sound</strong> detection hears it. Default <code>280</code></td>
+</tr>
+<tr>
+<td><strong>Heal On Give Up</strong></td>
+<td>XenoCore › AI</td>
+<td>Restore full health when the enemy gives up a fight. Default on</td>
+</tr>
+<tr>
+<td><strong>Team Id</strong></td>
+<td>XenoCore › Teams</td>
+<td>Team the pawn joins. Default <code>2</code></td>
+</tr>
+</tbody>
+</table>
+<p>The three radii here are the <strong>defaults</strong> for every enemy the controller possesses. One enemy
+type, or one placed enemy, can differ through its own <strong>… Override</strong> settings above, with no new
+controller. <code>-1</code> means "use the controller's"; <code>0</code> is a real value (an engage radius of 0 never
+engages, even when provoked). The controller reads the values in force through <strong>Get Effective
+Engage Radius</strong>, <strong>Get Effective Leash Radius</strong> and <strong>Get Effective Disengage Radius Scale</strong>, asking
+the pawn each time, so an override changed at runtime applies on the next check.</p>
+<h3 id="in-the-statetree">In the StateTree<a class="headerlink" href="#in-the-statetree" title="Permanent link">&para;</a></h3>
+<p>The tree <code>ST_XenoCore_EnemyFreeroam</code> has two states:</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Entered when</th>
+<th>Runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fight</strong></td>
+<td>The controller has an aggro target</td>
+<td><strong>XenoCore Chase Aggro Target</strong>, <strong>XenoCore Fight Target</strong>, <strong>XenoCore Use Best Art</strong></td>
+</tr>
+<tr>
+<td><strong>Freeroam</strong></td>
+<td>It has none</td>
+<td><strong>XenoCore Enemy Patrol</strong></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Parameters</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>XenoCore Has Aggro Target</strong> (condition)</td>
+<td><strong>Invert</strong></td>
+<td>The controller has a target</td>
+</tr>
+<tr>
+<td><strong>XenoCore Chase Aggro Target</strong> (task)</td>
+<td><strong>Acceptable Radius</strong> (<code>140</code>), <strong>Repath Interval</strong>, <strong>Chase Speed</strong> (<code>380</code>), <strong>Return Speed</strong> (<code>150</code>), <strong>Home Tolerance</strong></td>
+<td>Chases, then walks home when the target is gone</td>
+</tr>
+<tr>
+<td><strong>XenoCore Fight Target</strong> (task)</td>
+<td><strong>Retry Interval</strong></td>
+<td>Keeps the auto-attack swinging at the target; never restarts it under an Art</td>
+</tr>
+<tr>
+<td><strong>XenoCore Use Best Art</strong> (task)</td>
+<td>none</td>
+<td>Scores and uses the enemy's <strong>Arts</strong>, paced by its <strong>AI Profile</strong></td>
+</tr>
+<tr>
+<td><strong>XenoCore Enemy Patrol</strong> (task)</td>
+<td>none</td>
+<td>Walks the enemy's <strong>Patrol Points</strong> back and forth; hands over to Fight the moment the enemy is provoked</td>
+</tr>
+</tbody>
+</table>
+<p>The tree reads its numbers from the enemy (patrol route, Arts, AI Profile), so one tree serves every
+enemy type. The older nodes <strong>XenoCore In Attack Range</strong>, <strong>XenoCore Ability Ready</strong>, <strong>XenoCore
+Target Has Tag</strong> and <strong>XenoCore Activate Ability By Tag</strong> are still available for a tree of your own.</p>
+<!-- VERIFY: the two states and their tasks in the StateTree editor -->
+
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: an enemy Art that borrows the auto-attack's montage</p>
+<p>Using an Art stops the auto-attack's swing by montage. An Art playing the <strong>same montage asset</strong>
+is stopped on its first frame: no hit, nothing logged. Give every Art its own montage copy.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: a Stats Effect using Add</p>
+<p>Every modifier on a stats effect must use <strong>Override</strong>. Re-applying it on a level change would
+otherwise stack the numbers.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">The enemy won't fight</p>
+<p>Check, in order: its <strong>Detection</strong> (None waits to be hit; Sound only hears running); is it 6 or
+more levels below the party leader (then it notices nothing, but still fights back when hit); is
+it further than <strong>Engage Radius</strong>.</p>
+</div>
+<h2 id="the-sample-enemy-types">The sample enemy types<a class="headerlink" href="#the-sample-enemy-types" title="Permanent link">&para;</a></h2>
+<p>The seven types in <code>Characters/Enemies/Minion/Variants/</code> are <strong>empty child Blueprints</strong> of
+<code>B_XenoCore_Minion_Melee</code>. They change only class defaults (name, detection, mesh, material, stats
+effect, drop table, rewards), so every fix to the minion reaches all of them.</p>
+<table>
+<thead>
+<tr>
+<th>Blueprint</th>
+<th>Name</th>
+<th>Detection</th>
+<th>Body</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>B_XenoCore_Minion_Grunt</code></td>
+<td>Plains Grunt</td>
+<td>Sound</td>
+<td>Melee</td>
+</tr>
+<tr>
+<td><code>B_XenoCore_Minion_Grunt_Rust</code></td>
+<td>Rust Grunt</td>
+<td>Sight</td>
+<td>Melee, rust skin</td>
+</tr>
+<tr>
+<td><code>B_XenoCore_Minion_Skirmisher</code></td>
+<td>Skirmisher</td>
+<td>Sight</td>
+<td>Ranged</td>
+</tr>
+<tr>
+<td><code>B_XenoCore_Minion_Skirmisher_Jade</code></td>
+<td>Jade Skirmisher</td>
+<td>Ether</td>
+<td>Ranged, jade skin</td>
+</tr>
+<tr>
+<td><code>B_XenoCore_Minion_Bulwark</code></td>
+<td>Bulwark</td>
+<td>None (passive)</td>
+<td>Siege</td>
+</tr>
+<tr>
+<td><code>B_XenoCore_Minion_Brute</code></td>
+<td>Brute</td>
+<td>Sight</td>
+<td>Super</td>
+</tr>
+<tr>
+<td><code>B_XenoCore_Minion_Brute_Violet</code></td>
+<td>Violet Brute</td>
+<td>Sight, all round</td>
+<td>Super, violet skin</td>
+</tr>
+</tbody>
+</table>
+<p>Skins are material instances of the minion material, not new textures. The ranged, siege and super
+bodies are on skeletons that share the melee body's bone chain and are marked <strong>compatible</strong> with
+<code>SK_Minion_Core</code>, so they run the melee minion's anim Blueprint, montages, abilities and Arts
+unchanged. The tougher types use their own stats effects (<code>GE_XenoCore_BaseStats_Minion_Skirmisher</code>,
+<code>_Bulwark</code>, <code>_Brute</code>), which read the same <code>Minion_Melee.*</code> rows of <code>CT_XenoCore_EnemyStats</code> times a
+per-type multiplier on the effect (Skirmisher 0.9, Bulwark 1.15, Brute 1.45). The rows themselves are
+anchored on an early XC1 field enemy: a level 1 minion has 900 HP and 69 Strength, plus 100 HP and 10
+Strength a level.</p>
+<!-- VERIFY: the per-type Strength multipliers (from Tools/Data/combat_pacing.py) on each GE_XenoCore_BaseStats_Minion_* effect. -->
+
+<!-- VERIFY: the display names and detection types in each variant's Class Defaults -->
+
+<h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A new enemy type:</strong> right-click <code>B_XenoCore_Minion_Melee</code> and choose <strong>Create Child Blueprint
+  Class</strong>, in your own folder, as the seven sample types do. Duplicate its pawn data, ability set and
+  stats effect only if it needs different ones (those are data assets). See
+  <a href="../../getting-started/first-enemy/">Your first enemy</a>, <a href="../../recipes/add-enemy/">Add an enemy</a>,
+  <a href="../../recipes/enemy-statline/">Enemy statline</a> and <a href="../../recipes/place-enemies/">Place enemies</a>.</li>
+<li><strong>Different Arts:</strong> put different Art definitions on the enemy's <strong>Arts</strong> list, and steer them with
+  each Art's <strong>Companion AI</strong> settings. See <a href="../../recipes/enemy-arts-ai/">Give an enemy Arts</a>.</li>
+<li><strong>A squad:</strong> place a <strong>XenoCore Enemy Spawner</strong>. See <a href="../../recipes/place-enemies/">Place enemies</a>.</li>
+<li><strong>A patrol:</strong> set <strong>Patrol Points</strong> on a hand-placed enemy. See <a href="../../recipes/place-enemies/">Place enemies</a>.</li>
+<li><strong>A unique monster:</strong> tick <strong>Unique Monster</strong> on a spawner (with a <strong>Unique Name</strong>) or on a placed
+  enemy, and override <strong>Enemy Level</strong>, <strong>Experience Reward</strong> and <strong>Always Gold Chest</strong> as needed.</li>
+<li><strong>A C++ enemy:</strong> <code>AXenoCoreEnemyCharacter</code> and <code>AXenoCoreEnemyController</code> are exported, so your
+  own module can subclass them. Note that enemies do not derive from <code>AXenoCoreCombatantCharacter</code>
+  (the party's base); both derive from Lyra's <code>ALyraCharacterWithAbilities</code>.</li>
+<li>Never edit <code>B_XenoCore_Enemy_Base</code>, <code>BP_AIC_XenoCore_Enemy</code> or the shared StateTree in place.</li>
+</ul>
+<h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>No PlayerState.</strong> Lyra's PlayerState route would give every enemy the experience's default pawn
+  data (the player's kit), because the only per-pawn hook, <code>ALyraGameMode::GetPawnDataForController</code>,
+  is not virtual. Deriving from <code>ALyraCharacterWithAbilities</code> gives the pawn its own ASC. It is the
+  same shape as Lyra's own <code>B_ShootingTarget</code>, and it lets enemies simply be placed in a level.</li>
+<li><strong>Two small C++ classes.</strong> The pawn exists to call <code>InitializeAbilitySystem</code>, which is not a
+  <code>UFUNCTION</code>; without it the health component never initialises. The controller exists because
+  Lyra's team interface cannot be implemented in Blueprint, and a pawn's team must come from its
+  controller.</li>
+<li><strong>Level on the instance.</strong> Ability sets apply effects at a level fixed on the asset, so a
+  per-placement level needs its own stats effect path.</li>
+<li><strong>Data, not states, in the tree.</strong> One tree serves every enemy. What an enemy can do is on the
+  enemy (its Arts and AI Profile), and cooldowns are asked of GAS rather than duplicated in the tree.</li>
+<li><strong>One AI for both sides.</strong> Enemies and companions share the fight and art tasks, so an Art behaves
+  the same whoever uses it.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../reactions-and-statuses/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Reactions and statuses">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Reactions and statuses
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../items-and-inventory/" class="md-footer__link md-footer__link--next" aria-label="Next: Items and inventory">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Items and inventory
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "navigation.footer", "content.code.copy", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

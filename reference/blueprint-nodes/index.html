@@ -1,0 +1,6927 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+      
+      
+      
+        <link rel="canonical" href="https://brianhabana.github.io/xenocore-dist/reference/blueprint-nodes/">
+      
+      
+        <link rel="prev" href="../data-assets/">
+      
+      
+        <link rel="next" href="../curve-tables/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Blueprint nodes - XenoCore Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#blueprint-nodes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="XenoCore Manual" class="md-header__button md-logo" aria-label="XenoCore Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XenoCore Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Blueprint nodes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="XenoCore Manual" class="md-nav__button md-logo" aria-label="XenoCore Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    XenoCore Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install and first launch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/play-the-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Play the sample
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/project-tour/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tour of the project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-enemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first enemy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/where-next/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Where next
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/controls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Controls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../recipes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How-to recipes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How-to recipes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-party-member/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a party member
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a VRoid party member
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/starting-party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set the starting party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/character-statline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Author a character statline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/bake-portrait/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bake a HUD portrait
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/animation-style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose an animation style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/character-combat-animations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a character its own combat animations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-progression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune progression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-revive-and-defeat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune revive and defeat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/attack-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create an attack art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/support-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a healing or support art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/talent-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a Talent Art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/palette-slots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Palette slots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/art-reactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make an art inflict reactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/status-effect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a status effect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-auto-attack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune auto-attack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-targeting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune targeting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/hit-feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add hit feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/damage-formula-stat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a stat to the damage formula
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-weapon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a weapon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-armour/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an armour piece
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/equipment-stat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an equipment stat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/consumable-item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a consumable item
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/drop-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Author a drop table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/item-rarity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set and style item rarity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-a-gem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a gem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/sort-a-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add Y-to-sort to an item list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-enemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an enemy type
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-companion-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune companion AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/companion-personality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a character its own idle breaks and faces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/enemy-arts-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give an enemy arts and AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/enemy-statline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Author an enemy statline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/place-enemies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Place enemies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/npc-conversation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Write an NPC conversation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/branch-conversation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Branch a conversation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/collection-quest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a collection quest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/kill-talk-quest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a kill, talk or location quest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/open-shop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open a shop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/recruit-npc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recruit a party member by talking to them
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/trade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set up a trade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-interactable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an interactable object
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/restyle-menus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Restyle the menus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-menu-screen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a menu screen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/confirm-popup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a confirmation popup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/input-action-prompt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an input action with a prompt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-hud-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a HUD element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tutorial-cards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a tutorial card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/save-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make a system save
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/world-partition-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build a world-partition map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/footstep-surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footsteps by surface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/area-music/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a map its music
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/area-weather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a map its time of day and weather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/minimap-new-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a map its minimap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/minimap-marker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Show something on the minimap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/megascans-assets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Megascans at shipping size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/camera-feel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swap the camera feel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/nvidia-dlss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Turn on NVIDIA DLSS and Frame Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/replace-sample-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replace the sample content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/package-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package a build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/subclass-mechanic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a mechanic by subclassing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-skill/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a skill or a skill tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/characters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Characters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/companion-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Companion AI and aggro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/party-tactics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party tactics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/party-gauge-and-revive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Gauge, downed and revive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/battle-voices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle voices and banter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/stats-and-damage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stats and damage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/progression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The combat loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/targeting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targeting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/arts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arts and Talent Arts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/reactions-and-statuses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reactions and statuses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/enemies-and-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enemies and AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/items-and-inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items and inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/equipment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equipment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/loot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/interaction-npcs-dialogue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interaction, NPCs and dialogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/quests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/shops-and-trade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shops and trade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/save-and-front-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Save and front end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/ui-shell-and-hud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI shell and HUD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/minimap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/day-night-weather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time of day and weather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/input-and-camera/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input and camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loading and ticking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events you can listen to
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-assets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data assets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blueprint nodes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blueprint nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#latent-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latent nodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latent nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ask-confirm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ask Confirm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ask-confirm-existing-popup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ask Confirm (Existing Popup)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offer-quest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offer Quest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-shop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Shop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-trade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Trade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#play-dialogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Play Dialogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-dialogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show Dialogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function libraries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Function libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-animation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Animation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-arts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Arts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-cosmetics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Cosmetics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Enemy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-gems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Gems
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-item-rarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Item › Rarity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-locomotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Locomotion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-loot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Loot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Menu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-party" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Party
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-quest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Quest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Save
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-shop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Shop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-targeting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Targeting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-trade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Trade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../curve-tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Curve tables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gameplay-tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gameplay tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gameplay-messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gameplay messages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../console-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asset-naming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asset naming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../folder-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Folder map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../troubleshooting/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/characters-and-party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Characters and party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/combat-and-arts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Combat and arts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/enemies-and-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enemies and AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/items-and-equipment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items and equipment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/ui-and-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI and input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/world-and-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    World and maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/build-and-editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnostics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/reporting-bugs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reporting bugs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#latent-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latent nodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Latent nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ask-confirm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ask Confirm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ask-confirm-existing-popup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ask Confirm (Existing Popup)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offer-quest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Offer Quest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-shop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Shop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open-trade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Trade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#play-dialogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Play Dialogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-dialogue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Show Dialogue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#function-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Function libraries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Function libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-animation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Animation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-arts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Arts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-cosmetics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Cosmetics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Enemy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-gems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Gems
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-item-rarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Item › Rarity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-locomotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Locomotion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-loot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Loot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-menu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Menu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-party" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Party
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-quest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Quest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Save
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-shop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Shop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Skills
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-targeting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Targeting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-trade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Trade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xenocore-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="blueprint-nodes">Blueprint nodes<a class="headerlink" href="#blueprint-nodes" title="Permanent link">&para;</a></h1>
+<p><em>Designer · reference · No code · Last tested: never</em></p>
+<div class="admonition note">
+<p class="admonition-title">Generated from source — do not edit by hand.</p>
+<p>This page is written by <code>Docs/Manual/tools/gen_reference.py</code> from the plugin's headers.
+Edit the source comment and re-run the generator instead. See <code>Docs/Manual/tools/README.md</code>.</p>
+</div>
+<p>The Blueprint nodes XenoCore adds that are not member functions of a class: <strong>latent nodes</strong>
+(they wait for the player and continue from one of several output pins) and <strong>function
+libraries</strong> (nodes you can place in any graph). Search the node's name in the graph's
+right-click menu. Member functions of components, subsystems and widgets are listed with
+their class in <a href="../cpp-classes/">C++ classes</a>.</p>
+<h2 id="latent-nodes">Latent nodes<a class="headerlink" href="#latent-nodes" title="Permanent link">&para;</a></h2>
+<p>Each latent node fires <strong>exactly one</strong> of its output pins when it finishes. A graph waiting on
+one is suspended until then, so always wire every output pin you care about.</p>
+<!-- VERIFY: exactly-one-pin guarantee for every node below, in play -->
+
+<h3 id="ask-confirm">Ask Confirm<a class="headerlink" href="#ask-confirm" title="Permanent link">&para;</a></h3>
+<p><em>Latent node · <code>XenoCore › Confirm</code> · class <code>UXenoCoreAskConfirmAsync</code> · header <code>XenoCoreRuntime/Public/UI/XenoCoreAskConfirmAsync.h</code></em></p>
+<p>"Ask Confirm" - shows a yes/no popup over a screen and continues on the player's answer.</p>
+<table>
+<thead>
+<tr>
+<th>Input pin</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Stack</strong></td>
+<td><code>UCommonActivatableWidgetStack*</code></td>
+<td>The stack to show the popup in. Use the screen's own stack so the screen stays visible under it.</td>
+</tr>
+<tr>
+<td><strong>Popup Class</strong></td>
+<td><code>TSubclassOf&lt;UXenoCoreConfirmPopupBase&gt;</code></td>
+<td>The popup widget to show, for example <code>W_XenoCore_ConfirmPopup</code>.</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td><code>FText</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Question</strong></td>
+<td><code>FText</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Warning</strong></td>
+<td><code>FText</code></td>
+<td>Drawn under the question in the warning colour. Leave empty to hide it.</td>
+</tr>
+<tr>
+<td><strong>Focus Cancel</strong></td>
+<td><code>bool</code></td>
+<td>Start the cursor on No, for a question whose Yes cannot be undone.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Output pin</th>
+<th>Carries</th>
+<th>Fires when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>On Yes</strong></td>
+<td><code>UXenoCoreConfirmPopupBase</code>* Popup</td>
+<td>The player chose Yes. The popup has already closed.</td>
+</tr>
+<tr>
+<td><strong>On No</strong></td>
+<td><code>UXenoCoreConfirmPopupBase</code>* Popup</td>
+<td>The player chose No, backed out, the popup closed unanswered, or it could not be shown.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ask-confirm-existing-popup">Ask Confirm (Existing Popup)<a class="headerlink" href="#ask-confirm-existing-popup" title="Permanent link">&para;</a></h3>
+<p><em>Latent node · <code>XenoCore › Confirm</code> · class <code>UXenoCoreAskConfirmAsync</code> · header <code>XenoCoreRuntime/Public/UI/XenoCoreAskConfirmAsync.h</code></em></p>
+<p>"Ask Confirm" - shows a yes/no popup over a screen and continues on the player's answer.</p>
+<table>
+<thead>
+<tr>
+<th>Input pin</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Popup</strong></td>
+<td><code>UXenoCoreConfirmPopupBase*</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td><code>FText</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Question</strong></td>
+<td><code>FText</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Warning</strong></td>
+<td><code>FText</code></td>
+<td>Drawn under the question in the warning colour. Leave empty to hide it.</td>
+</tr>
+<tr>
+<td><strong>Focus Cancel</strong></td>
+<td><code>bool</code></td>
+<td>Start the cursor on No, for a question whose Yes cannot be undone.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Output pin</th>
+<th>Carries</th>
+<th>Fires when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>On Yes</strong></td>
+<td><code>UXenoCoreConfirmPopupBase</code>* Popup</td>
+<td>The player chose Yes. The popup has already closed.</td>
+</tr>
+<tr>
+<td><strong>On No</strong></td>
+<td><code>UXenoCoreConfirmPopupBase</code>* Popup</td>
+<td>The player chose No, backed out, the popup closed unanswered, or it could not be shown.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="offer-quest">Offer Quest<a class="headerlink" href="#offer-quest" title="Permanent link">&para;</a></h3>
+<p><em>Latent node · <code>XenoCore › Quest</code> · class <code>UXenoCoreOfferQuest</code> · header <code>XenoCoreRuntime/Public/Quest/XenoCoreQuestNodes.h</code></em></p>
+<p>"Offer Quest" - puts the quest panel on screen and continues on the player's answer.</p>
+<table>
+<thead>
+<tr>
+<th>Input pin</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quest</strong></td>
+<td><code>UXenoCoreQuestDefinition*</code></td>
+<td>What to offer. Null completes on Declined immediately, with a warning.</td>
+</tr>
+<tr>
+<td><strong>Giver</strong></td>
+<td><code>AActor*</code></td>
+<td>Whoever is asking. Used only for the "Requested By" line when the quest names no requester of its own; safe to leave null.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Output pin</th>
+<th>Carries</th>
+<th>Fires when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Accepted</strong></td>
+<td>—</td>
+<td>The player took the quest on. It is Active by the time this fires.</td>
+</tr>
+<tr>
+<td><strong>Declined</strong></td>
+<td>—</td>
+<td>The player turned it down, backed out, or the panel could not be shown.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="open-shop">Open Shop<a class="headerlink" href="#open-shop" title="Permanent link">&para;</a></h3>
+<p><em>Latent node · <code>XenoCore › Shop</code> · class <code>UXenoCoreOpenShop</code> · header <code>XenoCoreRuntime/Public/Shop/XenoCoreShopNodes.h</code></em></p>
+<p>"Open Shop" - puts the shop on screen and continues when the player leaves it.</p>
+<table>
+<thead>
+<tr>
+<th>Input pin</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Table</strong></td>
+<td><code>UXenoCoreShopTable*</code></td>
+<td>What the shop sells. Null still opens the shop for selling, with a warning.</td>
+</tr>
+<tr>
+<td><strong>Shopkeeper</strong></td>
+<td><code>AActor*</code></td>
+<td>Whoever is behind the counter. Safe to leave null.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Output pin</th>
+<th>Carries</th>
+<th>Fires when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Transacted</strong></td>
+<td>—</td>
+<td>The player bought or sold at least once.</td>
+</tr>
+<tr>
+<td><strong>Nothing Changed</strong></td>
+<td>—</td>
+<td>The player left without buying or selling, or the shop could not be shown.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="open-trade">Open Trade<a class="headerlink" href="#open-trade" title="Permanent link">&para;</a></h3>
+<p><em>Latent node · <code>XenoCore › Trade</code> · class <code>UXenoCoreOpenTrade</code> · header <code>XenoCoreRuntime/Public/Trade/XenoCoreTradeNodes.h</code></em></p>
+<p>"Open Trade" - puts the barter screen on screen and continues when the player is done.</p>
+<table>
+<thead>
+<tr>
+<th>Input pin</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Table</strong></td>
+<td><code>UXenoCoreTradeTable*</code></td>
+<td>What they will part with. Null completes on Cancelled immediately, with a warning - the same "authoring mistake, not a crash" contract Offer Quest keeps.</td>
+</tr>
+<tr>
+<td><strong>Trader</strong></td>
+<td><code>AActor*</code></td>
+<td>Whoever is trading, for the screen's title. Safe to leave null.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Output pin</th>
+<th>Carries</th>
+<th>Fires when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Traded</strong></td>
+<td>—</td>
+<td>At least one exchange happened.</td>
+</tr>
+<tr>
+<td><strong>Cancelled</strong></td>
+<td>—</td>
+<td>The player backed out, or the screen could not be shown.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="play-dialogue">Play Dialogue<a class="headerlink" href="#play-dialogue" title="Permanent link">&para;</a></h3>
+<p><em>Latent node · <code>XenoCore › Dialogue</code> · class <code>UXenoCorePlayDialogue</code> · header <code>XenoCoreRuntime/Public/Dialogue/XenoCoreDialogueNodes.h</code></em></p>
+<p>"Play Dialogue" - a whole run of lines from an array, then closes the box.</p>
+<table>
+<thead>
+<tr>
+<th>Input pin</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lines</strong></td>
+<td><code>const TArray&lt;FXenoCoreDialogueLine&gt;&amp;</code></td>
+<td>Played in order. An empty array completes immediately and logs a warning.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Output pin</th>
+<th>Carries</th>
+<th>Fires when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Completed</strong></td>
+<td>—</td>
+<td>Fires once the last line has been advanced past and the box has closed.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="show-dialogue">Show Dialogue<a class="headerlink" href="#show-dialogue" title="Permanent link">&para;</a></h3>
+<p><em>Latent node · <code>XenoCore › Dialogue</code> · class <code>UXenoCoreShowDialogue</code> · header <code>XenoCoreRuntime/Public/Dialogue/XenoCoreDialogueNodes.h</code></em></p>
+<p>"Show Dialogue" - one sentence, one node, an exec pin that fires when the player presses A. Does not close the box: end the chain with Close Dialogue.</p>
+<table>
+<thead>
+<tr>
+<th>Input pin</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Speaker</strong></td>
+<td><code>FText</code></td>
+<td>The name on the plate. Leave empty to keep the previous speaker.</td>
+</tr>
+<tr>
+<td><strong>Line</strong></td>
+<td><code>FText</code></td>
+<td>One sentence.</td>
+</tr>
+<tr>
+<td><strong>Source</strong></td>
+<td><code>EXenoCoreDialogueSpeaker</code></td>
+<td>Whose head the box floats over. Npc means the actor that was interacted with - the subsystem already knows which, so there is no actor pin to wire.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Output pin</th>
+<th>Carries</th>
+<th>Fires when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Advanced</strong></td>
+<td>—</td>
+<td>Fires when the player advances past this line.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="function-libraries">Function libraries<a class="headerlink" href="#function-libraries" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#xenocore-animation">XenoCore › Animation</a></td>
+<td>4</td>
+</tr>
+<tr>
+<td><a href="#xenocore-arts">XenoCore › Arts</a></td>
+<td>8</td>
+</tr>
+<tr>
+<td><a href="#xenocore-cosmetics">XenoCore › Cosmetics</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="#xenocore-enemy">XenoCore › Enemy</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="#xenocore-gems">XenoCore › Gems</a></td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="#xenocore-inventory">XenoCore › Inventory</a></td>
+<td>35</td>
+</tr>
+<tr>
+<td><a href="#xenocore-item-rarity">XenoCore › Item › Rarity</a></td>
+<td>16</td>
+</tr>
+<tr>
+<td><a href="#xenocore-locomotion">XenoCore › Locomotion</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="#xenocore-loot">XenoCore › Loot</a></td>
+<td>3</td>
+</tr>
+<tr>
+<td><a href="#xenocore-menu">XenoCore › Menu</a></td>
+<td>6</td>
+</tr>
+<tr>
+<td><a href="#xenocore-party">XenoCore › Party</a></td>
+<td>15</td>
+</tr>
+<tr>
+<td><a href="#xenocore-quest">XenoCore › Quest</a></td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="#xenocore-save">XenoCore › Save</a></td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="#xenocore-shop">XenoCore › Shop</a></td>
+<td>9</td>
+</tr>
+<tr>
+<td><a href="#xenocore-skills">XenoCore › Skills</a></td>
+<td>5</td>
+</tr>
+<tr>
+<td><a href="#xenocore-stats">XenoCore › Stats</a></td>
+<td>2</td>
+</tr>
+<tr>
+<td><a href="#xenocore-targeting">XenoCore › Targeting</a></td>
+<td>11</td>
+</tr>
+<tr>
+<td><a href="#xenocore-trade">XenoCore › Trade</a></td>
+<td>7</td>
+</tr>
+<tr>
+<td><a href="#xenocore-ui">XenoCore › UI</a></td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-animation">XenoCore › Animation<a class="headerlink" href="#xenocore-animation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Describe Resolution</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreAnimProfileStatics</code></td>
+<td><code>FString DescribeResolution(const AActor* Actor)</code></td>
+<td>Every combat clip this actor resolves to, and where each came from - profile or default. The inheritance report a designer reads; also what <code>XenoCore.Anim.Describe</code> prints.</td>
+</tr>
+<tr>
+<td><strong>Get Anim Profile</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreAnimProfileStatics</code></td>
+<td><code>const UXenoCoreCharacterAnimProfile* GetAnimProfile(const AActor* Actor)</code></td>
+<td>The profile this actor wears, or null - no provider, or a provider with none set.</td>
+</tr>
+<tr>
+<td><strong>Pick Death Montage</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreAnimProfileStatics</code></td>
+<td><code>UAnimMontage* K2_PickDeathMontage(const AActor* Actor, const TArray&lt;UAnimMontage*&gt;&amp; DefaultMontages)</code></td>
+<td>PickDeathMontage for a Blueprint death graph - <code>B_XenoCore_Player</code> draws its own.</td>
+</tr>
+<tr>
+<td><strong>Pick Victory Montage</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreAnimProfileStatics</code></td>
+<td><code>UAnimMontage* PickVictoryMontage(const AActor* Actor)</code></td>
+<td>The battle-won emote: random from the profile's VictoryMontages, null when there are none. There is no default tier - a character without a profile entry simply does not celebrate.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-arts">XenoCore › Arts<a class="headerlink" href="#xenocore-arts" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Category Colour</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreArtsUIStatics</code></td>
+<td><code>FLinearColor GetCategoryColour(EXenoCoreArtCategory Category)</code></td>
+<td>XC1's colour language, sourced: pink Break, green Topple, yellow Daze, red physical, blue ether, orange Aura.</td>
+</tr>
+<tr>
+<td><strong>Get Category Label</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreArtsUIStatics</code></td>
+<td><code>FText GetCategoryLabel(EXenoCoreArtCategory Category)</code></td>
+<td>"Physical", "Break", "Heal".</td>
+</tr>
+<tr>
+<td><strong>Get Palette Views</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreArtsUIStatics</code></td>
+<td><code>TArray&lt;FXenoCoreArtView&gt; GetPaletteViews(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>Feeds the slot strip.</td>
+</tr>
+<tr>
+<td><strong>Get Selectable Art Views</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreArtsUIStatics</code></td>
+<td><code>TArray&lt;FXenoCoreArtView&gt; GetSelectableArtViews(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>Everything this character could put in a slot. Feeds the pick list.</td>
+</tr>
+<tr>
+<td><strong>Make Art Slot View</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreArtsUIStatics</code></td>
+<td><code>FXenoCoreArtView MakeArtSlotView(UXenoCorePartyMemberDefinition* Member, int32 SlotIndex)</code></td>
+<td>One row for a palette position - the art in it, or an empty row that names the slot.</td>
+</tr>
+<tr>
+<td><strong>Make Art View</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreArtsUIStatics</code></td>
+<td><code>FXenoCoreArtView MakeArtView(UXenoCorePartyMemberDefinition* Member, UXenoCoreArtDefinition* Art)</code></td>
+<td>One row for an art, as it should appear in the pick list for this character.</td>
+</tr>
+<tr>
+<td><strong>Make Talent Art View</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreArtsUIStatics</code></td>
+<td><code>FXenoCoreArtView MakeTalentArtView(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>The member's Talent Art, read off their live pawn. bIsEmpty when they have no body (benched) or no talent - the strip then simply draws no centre cell.</td>
+</tr>
+<tr>
+<td><strong>Open Arts Screen</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreArtsUIStatics</code></td>
+<td><code>void OpenArtsScreen()</code></td>
+<td>Push the Arts screen onto the menu layer. What the menu shell's Arts button calls.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-cosmetics">XenoCore › Cosmetics<a class="headerlink" href="#xenocore-cosmetics" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ensure Body Mesh Fallback</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreCosmeticStatics</code></td>
+<td><code>bool EnsureBodyMeshFallback(ACharacter* Character)</code></td>
+<td>If the character's body-mesh rules have no default mesh, uses the mesh it currently has, so a cosmetic part matching no rule cannot make it invisible. Returns true if a fallback was set.</td>
+</tr>
+<tr>
+<td><strong>Get Body Mesh For Part</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreCosmeticStatics</code></td>
+<td><code>USkeletalMesh* GetBodyMeshForPart(const AActor* Pawn, TSubclassOf&lt;AActor&gt; PartClass)</code></td>
+<td>The body mesh a cosmetic part of this class would select on this pawn. None means adding the part would leave the pawn with no visible body.</td>
+</tr>
+<tr>
+<td><strong>Get Cosmetic Part Tags</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreCosmeticStatics</code></td>
+<td><code>FGameplayTagContainer GetCosmeticPartTags(TSubclassOf&lt;AActor&gt; PartClass)</code></td>
+<td>The gameplay tags a cosmetic part of this class contributes.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-enemy">XenoCore › Enemy<a class="headerlink" href="#xenocore-enemy" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Enemy Level Text</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreEnemyStatics</code></td>
+<td><code>FText GetEnemyLevelText(const AXenoCoreEnemyCharacter* Enemy)</code></td>
+<td>"lvl.N" (or "Name lvl.N" for a Unique Monster), per XenoCore Enemies settings.</td>
+</tr>
+<tr>
+<td><strong>Get Level Colour</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreEnemyStatics</code></td>
+<td><code>FLinearColor GetLevelColour(int32 EnemyLevel)</code></td>
+<td>The colour this level reads in, from the XenoCore Enemies level colour ladder.</td>
+</tr>
+<tr>
+<td><strong>Get Party Leader Level</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreEnemyStatics</code></td>
+<td><code>int32 GetPartyLeaderLevel()</code></td>
+<td>The party leader's level, which every enemy level is measured against. 1 if there is no party yet.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-gems">XenoCore › Gems<a class="headerlink" href="#xenocore-gems" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Can Unsocket</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>bool CanUnsocket(const ULyraInventoryItemInstance* Host, int32 SocketIndex)</code></td>
+<td>True if this socket holds a gem that can be taken out.</td>
+</tr>
+<tr>
+<td><strong>Describe Gem Effect</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>FText DescribeGemEffect(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
+<td>"Strength +8" - what a gem of this strength does. Empty for something that is not a gem.</td>
+</tr>
+<tr>
+<td><strong>Get Gem Colour</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>FLinearColor GetGemColour(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef)</code></td>
+<td>The gem's colour - its display fragment's Symbol Colour, set to its XC1 element. What its socket icon is tinted.</td>
+</tr>
+<tr>
+<td><strong>Get Gem Name</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>FText GetGemName(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef)</code></td>
+<td>"Strength Up I", the gem's name.</td>
+</tr>
+<tr>
+<td><strong>Get Gem Names Text</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>FText GetGemNamesText(const ULyraInventoryItemInstance* Item)</code></td>
+<td>The item's socketed gems by name, "Empty Slot" for an empty one. Empty for no sockets.</td>
+</tr>
+<tr>
+<td><strong>Get Gem Row Text</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>FText GetGemRowText(const ULyraInventoryItemInstance* Item)</code></td>
+<td>One loadout row's sockets on one line: an O per gem, a dash per empty socket. Empty text for a piece with no sockets, so the cell draws nothing.</td>
+</tr>
+<tr>
+<td><strong>Get Gem Slot Count</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>int32 GetGemSlotCount(const ULyraInventoryItemInstance* Item)</code></td>
+<td>How many sockets this piece of equipment has. 0 for anything that is not equipment.</td>
+</tr>
+<tr>
+<td><strong>Get Gem Strength</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>int32 GetGemStrength(const ULyraInventoryItemInstance* GemItem)</code></td>
+<td>A loose gem's strength.</td>
+</tr>
+<tr>
+<td><strong>Get Gem Value Text</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>FText GetGemValueText(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
+<td>"+5", or "+2%" for a percent stat - a gem's value without its stat name, for a row that is short of room.</td>
+</tr>
+<tr>
+<td><strong>Get Loose Gems</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; GetLooseGems()</code></td>
+<td>Every gem in the party bag, strongest first within a name.</td>
+</tr>
+<tr>
+<td><strong>Get Sockets</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>TArray&lt;FXenoCoreSocketedGem&gt; GetSockets(const ULyraInventoryItemInstance* Item)</code></td>
+<td>Every socket on this piece, empty ones included, in order.</td>
+</tr>
+<tr>
+<td><strong>Is Gem</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>bool IsGem(const ULyraInventoryItemInstance* Item)</code></td>
+<td>True if this item is a gem.</td>
+</tr>
+<tr>
+<td><strong>Preview Socket Change</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>TMap&lt;FGameplayTag, float&gt; PreviewSocketChange(const UXenoCoreEquipmentComponent* Wearer, const ULyraInventoryItemInstance* Host, int32 SocketIndex, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; NewGem, int32 NewValue)</code></td>
+<td>Stat changes on the wearer if Host's socket SocketIndex held NewGem at NewValue (null = emptied).</td>
+</tr>
+<tr>
+<td><strong>Socket Gem</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>bool SocketGem(ULyraInventoryItemInstance* Host, int32 SocketIndex, ULyraInventoryItemInstance* GemItem)</code></td>
+<td>Put a loose gem from the bag into a socket. A gem already there goes back into the bag with its own strength.</td>
+</tr>
+<tr>
+<td><strong>Unsocket Gem</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreGemStatics</code></td>
+<td><code>bool UnsocketGem(ULyraInventoryItemInstance* Host, int32 SocketIndex)</code></td>
+<td>Take a gem out of a socket and back into the bag. Refuses an empty or fixed socket.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-inventory">XenoCore › Inventory<a class="headerlink" href="#xenocore-inventory" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Add Item To Party</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>int32 AddItemToParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
+<td>Adds Count of ItemDef to the party bag, honouring the item's MaxCarried cap. Returns how many were actually added - short of Count when the cap was hit.</td>
+</tr>
+<tr>
+<td><strong>Add One Item To Party</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>ULyraInventoryItemInstance* AddOneItemToParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>Adds exactly one and returns the instance, which the equip path needs and a count cannot give. Same cap and same broadcast as AddItemToParty; null when the cap left no room.</td>
+</tr>
+<tr>
+<td><strong>Build Item Stat Lines</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLines(ULyraInventoryItemInstance* Item)</code></td>
+<td>One item's own stats, with no character and no comparison - the Items menu's details pane.</td>
+</tr>
+<tr>
+<td><strong>Build Item Stat Lines For Def</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLinesForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>The same block, priced off a definition - for an item nobody owns yet.</td>
+</tr>
+<tr>
+<td><strong>Build Stat Comparison</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparison(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Candidate)</code></td>
+<td>What Candidate would give, and how it differs from what is equipped in Slot right now.</td>
+</tr>
+<tr>
+<td><strong>Build Stat Comparison For Def</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparisonForDef(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; CandidateDef)</code></td>
+<td>BuildStatComparison for an item nobody owns yet - a shop's stock.</td>
+</tr>
+<tr>
+<td><strong>Build Stat Totals</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatTotals(AActor* Character)</code></td>
+<td>The character's actual current stats, read through the ability system.</td>
+</tr>
+<tr>
+<td><strong>Build Stat Totals With Candidate</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatTotalsWithCandidate(AActor* Character, UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Candidate)</code></td>
+<td>The character sheet's totals, with a second column showing what each stat becomes if Candidate is equipped into Slot.</td>
+</tr>
+<tr>
+<td><strong>Can Unequip Slot</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>bool CanUnequipSlot(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot)</code></td>
+<td>Whether the loadout's unequip action should be offered for this slot.</td>
+</tr>
+<tr>
+<td><strong>Consume Items From Party</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>bool ConsumeItemsFromParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
+<td>Spends exactly Count of ItemDef, or nothing at all. Returns false, removing nothing, when the party holds fewer than Count unequipped.</td>
+</tr>
+<tr>
+<td><strong>Find Equipment Holding</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>UXenoCoreEquipmentComponent* FindEquipmentHolding(const ULyraInventoryItemInstance* Item)</code></td>
+<td>Whose loadout holds this item, or null if nobody is wearing it.</td>
+</tr>
+<tr>
+<td><strong>Find Free Item By Definition</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>ULyraInventoryItemInstance* FindFreeItemByDefinition(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>An instance of this definition that the party owns and nobody is wearing, or null.</td>
+</tr>
+<tr>
+<td><strong>Get Category Symbol</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>FText GetCategorySymbol(EXenoCoreItemCategory Category, FLinearColor&amp; OutColour)</code></td>
+<td>The category's default glyph and colour, with no item to ask.</td>
+</tr>
+<tr>
+<td><strong>Get Equip Type Label</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>FText GetEquipTypeLabel(EXenoCoreEquipType EquipType)</code></td>
+<td>Display label for an armour class - "Medium". An em dash for None.</td>
+</tr>
+<tr>
+<td><strong>Get Free Party Item Count</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>int32 GetFreePartyItemCount(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>How many of ItemDef the party holds that nobody is wearing - what can be spent or sold.</td>
+</tr>
+<tr>
+<td><strong>Get Item Category</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>EXenoCoreItemCategory GetItemCategory(ULyraInventoryItemInstance* Item)</code></td>
+<td>Which tab an item belongs to. Equipment if it carries slots; Items if it declares nothing.</td>
+</tr>
+<tr>
+<td><strong>Get Item Display Name</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>FText GetItemDisplayName(ULyraInventoryItemInstance* Item)</code></td>
+<td>The item's display name off its definition. Empty text for a null item.</td>
+</tr>
+<tr>
+<td><strong>Get Item Stat</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>float GetItemStat(ULyraInventoryItemInstance* Item, FGameplayTag StatTag)</code></td>
+<td>One stat off an item, 0 when absent. Percent stats are whole percent, as authored.</td>
+</tr>
+<tr>
+<td><strong>Get Item Stat For Def</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>float GetItemStatForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FGameplayTag StatTag)</code></td>
+<td>One authored stat off a definition's CDO. Zero when the definition grants nothing.</td>
+</tr>
+<tr>
+<td><strong>Get Item Symbol</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>FText GetItemSymbol(ULyraInventoryItemInstance* Item, FLinearColor&amp; OutColour)</code></td>
+<td>The glyph shown beside an item's name, and its colour.</td>
+</tr>
+<tr>
+<td><strong>Get Item Views For Category</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreItemView&gt; GetItemViewsForCategory(EXenoCoreItemCategory Category)</code></td>
+<td>No description.</td>
+</tr>
+<tr>
+<td><strong>Get Item Views For Slot</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreItemView&gt; GetItemViewsForSlot(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot)</code></td>
+<td>The selection list for one slot: every bag item that fits it, already resolved.</td>
+</tr>
+<tr>
+<td><strong>Get Items For Category</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; GetItemsForCategory(EXenoCoreItemCategory Category)</code></td>
+<td>Every item instance in the party bag whose category matches.</td>
+</tr>
+<tr>
+<td><strong>Get Items For Slot</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; GetItemsForSlot(EXenoCoreEquipSlot Slot, const UXenoCoreEquipmentComponent* ForCharacter = nullptr)</code></td>
+<td>Every item in the party bag that may go in Slot, in bag order. With ForCharacter set, weapons they cannot wield are left out.</td>
+</tr>
+<tr>
+<td><strong>Get Loadout Slot Text</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>FText GetLoadoutSlotText(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot)</code></td>
+<td>What a loadout row draws: the worn item's name, or the slot's own label when it is empty.</td>
+</tr>
+<tr>
+<td><strong>Get Loadout Views</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreItemView&gt; GetLoadoutViews(UXenoCoreEquipmentComponent* Equipment)</code></td>
+<td>The six loadout rows, in slot order, empties included.</td>
+</tr>
+<tr>
+<td><strong>Get Max Carried</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>int32 GetMaxCarried(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>The carry cap for a definition, or 0 when uncapped.</td>
+</tr>
+<tr>
+<td><strong>Get Party Inventory</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>ULyraInventoryManagerComponent* GetPartyInventory()</code></td>
+<td>The party bag. There is exactly one, and this is the only thing that decides where it lives.</td>
+</tr>
+<tr>
+<td><strong>Get Party Item Count</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>int32 GetPartyItemCount(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>How many of ItemDef the party holds.</td>
+</tr>
+<tr>
+<td><strong>Get Slot Label</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>FText GetSlotLabel(EXenoCoreEquipSlot Slot)</code></td>
+<td>Display label for a slot - "Weapon", "Torso".</td>
+</tr>
+<tr>
+<td><strong>Is Item Equipped By Anyone</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>bool IsItemEquippedByAnyone(const ULyraInventoryItemInstance* Item)</code></td>
+<td>True if any character in the world has this exact instance equipped.</td>
+</tr>
+<tr>
+<td><strong>Make Item View</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>FXenoCoreItemView MakeItemView(ULyraInventoryItemInstance* Item, UXenoCoreEquipmentComponent* Equipment)</code></td>
+<td>One selection row: an item, priced and flagged against a character's current loadout.</td>
+</tr>
+<tr>
+<td><strong>Make Slot View</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>FXenoCoreItemView MakeSlotView(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot)</code></td>
+<td>One loadout row: a named slot and whatever is in it. Empty slots come back with bIsEmpty true and an em dash for a name, so the caller never has to special-case them.</td>
+</tr>
+<tr>
+<td><strong>Remove Item From Party</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>int32 RemoveItemFromParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
+<td>Removes up to Count of ItemDef. Returns how many actually went.</td>
+</tr>
+<tr>
+<td><strong>Remove Item Instance From Party</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>bool RemoveItemInstanceFromParty(ULyraInventoryItemInstance* Item)</code></td>
+<td>Removes this exact item from the party bag. Refuses (returns false) if a party member is wearing it or it is not in the bag.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-item-rarity">XenoCore › Item › Rarity<a class="headerlink" href="#xenocore-item-rarity" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Apply Item Definition Rarity To Button</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool ApplyItemDefinitionRarityToButton(UUserWidget* Button, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td>ApplyItemRarityToButton for an item definition - a gem in a socket has no bag instance.</td>
+</tr>
+<tr>
+<td><strong>Apply Item Instance Rarity</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool ApplyItemInstanceRarity(ULyraInventoryItemInstance* Item, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
+<td>ApplyItemRarity for an item in the bag.</td>
+</tr>
+<tr>
+<td><strong>Apply Item Instance Rarity Label</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool ApplyItemInstanceRarityLabel(ULyraInventoryItemInstance* Item, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td>ApplyItemRarityLabel for an item in the bag.</td>
+</tr>
+<tr>
+<td><strong>Apply Item Rarity</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool ApplyItemRarity(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
+<td>Colour an item's name by rarity and fill its diamonds. Any widget may be null.</td>
+</tr>
+<tr>
+<td><strong>Apply Item Rarity Label</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool ApplyItemRarityLabel(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td>Write the tier's name into a details row and colour it. An empty item clears the text.</td>
+</tr>
+<tr>
+<td><strong>Apply Item Rarity To Button</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool ApplyItemRarityToButton(UUserWidget* Button, ULyraInventoryItemInstance* Item, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td>Colour a button's label by an item's rarity. For buttons labelled with SetButtonText.</td>
+</tr>
+<tr>
+<td><strong>Apply Loadout Slot Rarity</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool ApplyLoadoutSlotRarity(UUserWidget* Button, UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td>ApplyItemRarityToButton for a loadout slot: whatever Equipment wears in Slot (an empty slot draws Fallback).</td>
+</tr>
+<tr>
+<td><strong>Get Default Rarity Info</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool GetDefaultRarityInfo(FXenoCoreItemRarityRow&amp; OutRow)</code></td>
+<td>The lowest-ranked row - what an item with no rarity set is. False with no table.</td>
+</tr>
+<tr>
+<td><strong>Get Item Name Colour</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>FLinearColor GetItemNameColour(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback)</code></td>
+<td>The colour this item's name should rest at, or Fallback when its tier does not tint names.</td>
+</tr>
+<tr>
+<td><strong>Get Item Rarity</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>FGameplayTag GetItemRarity(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>An item definition's tier: its authored tag, else the default row's.</td>
+</tr>
+<tr>
+<td><strong>Get Item Rarity Info</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool GetItemRarityInfo(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FXenoCoreItemRarityRow&amp; OutRow)</code></td>
+<td>An item definition's rarity row. False when no table is configured.</td>
+</tr>
+<tr>
+<td><strong>Get Item Rarity Name</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>FText GetItemRarityName(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>"Common", "Rare", "Legendary". Empty when nothing resolves.</td>
+</tr>
+<tr>
+<td><strong>Get Item Rarity Rank</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>int32 GetItemRarityRank(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>Higher is rarer. Zero when nothing resolves.</td>
+</tr>
+<tr>
+<td><strong>Get Rarity For Chest Tier</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool GetRarityForChestTier(EXenoCoreChestTier Tier, FXenoCoreItemRarityRow&amp; OutRow)</code></td>
+<td>The rarity a chest of this tier stands for - the highest rank whose Lowest Chest Tier fits.</td>
+</tr>
+<tr>
+<td><strong>Get Rarity Info</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>bool GetRarityInfo(FGameplayTag Rarity, FXenoCoreItemRarityRow&amp; OutRow)</code></td>
+<td>The row for a tier. False when the table or the row is missing.</td>
+</tr>
+<tr>
+<td><strong>Prefix With Item Rarity</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreItemRarityStatics</code></td>
+<td><code>FText PrefixWithItemInstanceRarity(ULyraInventoryItemInstance* Item, const FText&amp; Rest)</code></td>
+<td>"Rare · Weapon" - the tier in words in front of Rest. Rest alone when the item has no rarity.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-locomotion">XenoCore › Locomotion<a class="headerlink" href="#xenocore-locomotion" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Restore Self Rotation</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreLocomotionStatics</code></td>
+<td><code>void RestoreSelfRotation(ACharacter* Character)</code></td>
+<td>Puts the three facing flags back to what the pawn class was authored with.</td>
+</tr>
+<tr>
+<td><strong>Set Combat Stance</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreLocomotionStatics</code></td>
+<td><code>void SetCombatStance(ACharacter* Character, bool bInCombatStance)</code></td>
+<td>Puts the character into the combat stance (strafe) or the travel stance (free-run).</td>
+</tr>
+<tr>
+<td><strong>Suppress Self Rotation</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreLocomotionStatics</code></td>
+<td><code>bool SuppressSelfRotation(ACharacter* Character)</code></td>
+<td>Takes yaw ownership away from the pawn so an ability can aim it, and gives it back.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-loot">XenoCore › Loot<a class="headerlink" href="#xenocore-loot" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Find Nearest Chest</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreLootStatics</code></td>
+<td><code>AXenoCoreTreasureChest* FindNearestChest(AActor* Opener, float Range = 400.0f)</code></td>
+<td>The nearest unopened chest within Range, without opening it.</td>
+</tr>
+<tr>
+<td><strong>Get Chest Interact Range</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreLootStatics</code></td>
+<td><code>float GetChestInteractRange()</code></td>
+<td>One range, so the prompt and the press cannot disagree.</td>
+</tr>
+<tr>
+<td><strong>Open Nearest Chest</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreLootStatics</code></td>
+<td><code>AXenoCoreTreasureChest* OpenNearestChest(AActor* Opener, float Range = 400.0f)</code></td>
+<td>Opens the nearest unopened chest within Range of Opener.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-menu">XenoCore › Menu<a class="headerlink" href="#xenocore-menu" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Activate Menu Entry</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreMenuStatics</code></td>
+<td><code>void ActivateMenuEntry(UUserWidget* Menu, const FXenoCoreMenuEntry&amp; Entry)</code></td>
+<td>Do what pressing an entry does: run its Action, else push its Screen onto its layer.</td>
+</tr>
+<tr>
+<td><strong>Build Menu</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreMenuStatics</code></td>
+<td><code>int32 BuildMenu(UUserWidget* Menu, UPanelWidget* Container)</code></td>
+<td>Fill a menu panel with one button per visible menu entry (Project Settings &gt; XenoCore UI &gt; Menu Entries), in sort order. Safe to call again: the previous buttons are replaced.</td>
+</tr>
+<tr>
+<td><strong>Build Menu In Panel</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreMenuStatics</code></td>
+<td><code>int32 BuildMenuInPanel(UUserWidget* Menu, FName PanelName = "ButtonsBox")</code></td>
+<td>No description.</td>
+</tr>
+<tr>
+<td><strong>Get First Menu Button</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreMenuStatics</code></td>
+<td><code>UWidget* GetFirstMenuButton(UPanelWidget* Container)</code></td>
+<td>The first button in a menu panel - what a menu should focus when it opens. Null when there is none.</td>
+</tr>
+<tr>
+<td><strong>Get First Menu Button In Panel</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreMenuStatics</code></td>
+<td><code>UWidget* GetFirstMenuButtonInPanel(UUserWidget* Menu, FName PanelName = "ButtonsBox")</code></td>
+<td>No description.</td>
+</tr>
+<tr>
+<td><strong>Get Menu Entries</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreMenuStatics</code></td>
+<td><code>TArray&lt;FXenoCoreMenuEntry&gt; GetMenuEntries(APlayerController* Player)</code></td>
+<td>The menu entries a player should see now: every configured entry and entry set merged by Id, hidden and failed-condition entries dropped, sorted by Sort Order. For building a custom menu.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-party">XenoCore › Party<a class="headerlink" href="#xenocore-party" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Equip Or Confirm Take</strong></td>
+<td>Callable</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>bool EquipOrConfirmTake(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Item, UCommonActivatableWidget* ListToClose)</code></td>
+<td>Equip it, or ask first if it means stripping another character.</td>
+</tr>
+<tr>
+<td><strong>Get Adjacent Active Member</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>UXenoCorePartyMemberDefinition* GetAdjacentActiveMember(UXenoCorePartyMemberDefinition* Current, int32 Delta)</code></td>
+<td>The next active character along from Current, wrapping at both ends.</td>
+</tr>
+<tr>
+<td><strong>Get Item Holder Portrait</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>UTexture2D* GetItemHolderPortrait(const ULyraInventoryItemInstance* Item)</code></td>
+<td>The portrait of whoever is wearing this item, loaded, or null if nobody is.</td>
+</tr>
+<tr>
+<td><strong>Get Leader Member</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>UXenoCorePartyMemberDefinition* GetLeaderMember()</code></td>
+<td>The character the player is driving - what a character-scoped screen opens on.</td>
+</tr>
+<tr>
+<td><strong>Get Member Equipment</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>UXenoCoreEquipmentComponent* GetMemberEquipment(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>A character's equipment component, or null when they have no body.</td>
+</tr>
+<tr>
+<td><strong>Get Member In Slot</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>UXenoCorePartyMemberDefinition* GetMemberInSlot(int32 ActiveSlot)</code></td>
+<td>The character in an active slot, or null if the slot is empty or out of range.</td>
+</tr>
+<tr>
+<td><strong>Get Member Portrait Texture</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>UTexture2D* GetMemberPortraitTexture(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>This character's portrait, loaded, or null.</td>
+</tr>
+<tr>
+<td><strong>Get Party Name With Level</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>FText GetPartyNameWithLevel(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>"shulk Lv 24" - the name with the level beside it, for a stat block header.</td>
+</tr>
+<tr>
+<td><strong>Get Party Row Info</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>FXenoCorePartyRowInfo GetPartyRowInfo(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>Everything a row draws for one character.</td>
+</tr>
+<tr>
+<td><strong>Get Party Stat Lines</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; GetPartyStatLines(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>This character's statline as rows the equipment screen's stat block already knows how to draw.</td>
+</tr>
+<tr>
+<td><strong>Get Reserve Members</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>TArray&lt;UXenoCorePartyMemberDefinition*&gt; GetReserveMembers()</code></td>
+<td>Everyone recruited but not deployed - the right-hand pool the player chooses from.</td>
+</tr>
+<tr>
+<td><strong>Get Role Label</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>FText GetRoleLabel(EXenoCoreRole Role)</code></td>
+<td>The display name for a role. Empty for None, so an unset member draws nothing at all.</td>
+</tr>
+<tr>
+<td><strong>Get Screen Equipment</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>UXenoCoreEquipmentComponent* GetScreenEquipment(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>The loadout a character screen should edit.</td>
+</tr>
+<tr>
+<td><strong>Get Screen Pawn</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>APawn* GetScreenPawn(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>The pawn a character screen should read - the selected member's body, or the player's own when no member is selected.</td>
+</tr>
+<tr>
+<td><strong>Get Take Item Prompt</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>FText GetTakeItemPrompt(const ULyraInventoryItemInstance* Item)</code></td>
+<td>"Unequip Red Sword from Quinn?" - the whole prompt, built here.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-quest">XenoCore › Quest<a class="headerlink" href="#xenocore-quest" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Next Quest Sort</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreQuestUIStatics</code></td>
+<td><code>EXenoCoreQuestSort GetNextQuestSort(EXenoCoreQuestSort Sort)</code></td>
+<td>The next mode in the cycle, wrapping.</td>
+</tr>
+<tr>
+<td><strong>Get Quest Kind Label</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreQuestUIStatics</code></td>
+<td><code>FText GetQuestKindLabel(EXenoCoreQuestKind Kind)</code></td>
+<td>"Collection", "Monster", ... for a kind.</td>
+</tr>
+<tr>
+<td><strong>Get Quest Log Rows</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreQuestUIStatics</code></td>
+<td><code>TArray&lt;FXenoCoreQuestRowInfo&gt; GetQuestLogRows(EXenoCoreQuestSort Sort = EXenoCoreQuestSort::Status)</code></td>
+<td>Every accepted or completed quest, in the order the player met them.</td>
+</tr>
+<tr>
+<td><strong>Get Quest Requester Name</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreQuestUIStatics</code></td>
+<td><code>FText GetQuestRequesterName(const UXenoCoreQuestDefinition* Quest, AActor* Giver)</code></td>
+<td>Who to name as the requester of this quest.</td>
+</tr>
+<tr>
+<td><strong>Get Quest Row Info</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreQuestUIStatics</code></td>
+<td><code>FXenoCoreQuestRowInfo GetQuestRowInfo(UXenoCoreQuestDefinition* Quest)</code></td>
+<td>One row, for a screen that already knows which quest it wants.</td>
+</tr>
+<tr>
+<td><strong>Get Quest Sort Label</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreQuestUIStatics</code></td>
+<td><code>FText GetQuestSortLabel(EXenoCoreQuestSort Sort)</code></td>
+<td>"Status", "Name", "Area", "Type" - what the log prints beside the Y prompt.</td>
+</tr>
+<tr>
+<td><strong>Open Quest Log</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreQuestUIStatics</code></td>
+<td><code>void OpenQuestLog()</code></td>
+<td>Push the Quest Log onto the menu layer, and focus it.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-save">XenoCore › Save<a class="headerlink" href="#xenocore-save" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Can Save To Slot</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreSaveUIStatics</code></td>
+<td><code>bool CanSaveToSlot(int32 SlotIndex)</code></td>
+<td>Whether this row can be written to.</td>
+</tr>
+<tr>
+<td><strong>Get Delete Confirm Text</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreSaveUIStatics</code></td>
+<td><code>FText GetDeleteConfirmText(const FXenoCoreSaveRowInfo&amp; Row)</code></td>
+<td>The delete prompt's question, naming the file: "Delete Slot 2 (Lv 12 Shulk)?" or "Delete the Auto-save (Lv 12 Shulk)?".</td>
+</tr>
+<tr>
+<td><strong>Get Destructive Warning Text</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreSaveUIStatics</code></td>
+<td><code>FText GetDestructiveWarningText(bool bDelete)</code></td>
+<td>The line under a destructive confirm, drawn in the warning colour. "This cannot be undone." for a delete, "The existing save data will be lost." for an overwrite.</td>
+</tr>
+<tr>
+<td><strong>Get Save Confirm Text</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreSaveUIStatics</code></td>
+<td><code>FText GetSaveConfirmText(bool bSlotOccupied)</code></td>
+<td>The confirm line: "Overwrite save data?" or "Create new save data?".</td>
+</tr>
+<tr>
+<td><strong>Get Save Row</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreSaveUIStatics</code></td>
+<td><code>FXenoCoreSaveRowInfo GetSaveRow(int32 SlotIndex, bool bSaveMode)</code></td>
+<td>One row.</td>
+</tr>
+<tr>
+<td><strong>Get Save Rows</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreSaveUIStatics</code></td>
+<td><code>TArray&lt;FXenoCoreSaveRowInfo&gt; GetSaveRows(bool bSaveMode)</code></td>
+<td>Every row the screen draws, in the order XC1 lists them: the autosave first, then the manual slots.</td>
+</tr>
+<tr>
+<td><strong>Open Save Menu</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreSaveUIStatics</code></td>
+<td><code>void OpenSaveMenu(bool bSaveMode)</code></td>
+<td>Push the slot list onto the menu layer, in Save or Load mode.</td>
+</tr>
+<tr>
+<td><strong>Quit Game</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreSaveUIStatics</code></td>
+<td><code>void QuitGame()</code></td>
+<td>Quit to desktop - asking first only if there is unsaved progress.</td>
+</tr>
+<tr>
+<td><strong>Return To Title</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreSaveUIStatics</code></td>
+<td><code>void ReturnToTitle()</code></td>
+<td>Ask, then leave the game for the title screen.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-shop">XenoCore › Shop<a class="headerlink" href="#xenocore-shop" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Buy Items</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreShopStatics</code></td>
+<td><code>int32 BuyItems(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count, int32 UnitPrice)</code></td>
+<td>Buy Count at UnitPrice. Returns how many actually arrived.</td>
+</tr>
+<tr>
+<td><strong>Can Buy Def</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreShopStatics</code></td>
+<td><code>bool CanBuyDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>May a shop stock this? False for Materials and Key items, and for anything unpriced.</td>
+</tr>
+<tr>
+<td><strong>Can Sell Def</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreShopStatics</code></td>
+<td><code>bool CanSellDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>May the player sell this at all? False for Key items and anything with no category.</td>
+</tr>
+<tr>
+<td><strong>Get Buy Price For Def</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreShopStatics</code></td>
+<td><code>int32 GetBuyPriceForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>SellValue x 10. Zero for null or for an item with no category fragment.</td>
+</tr>
+<tr>
+<td><strong>Get Max Buyable</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreShopStatics</code></td>
+<td><code>int32 GetMaxBuyable(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 UnitPrice)</code></td>
+<td>The most the stepper may reach when buying: what the purse covers, the room left under the item's MaxCarried, and MaxPerTransaction - whichever is smallest.</td>
+</tr>
+<tr>
+<td><strong>Get Sell Price For Def</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreShopStatics</code></td>
+<td><code>int32 GetSellPriceForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>What a shop pays for one, skills included.</td>
+</tr>
+<tr>
+<td><strong>Get Sell Price Multiplier</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreShopStatics</code></td>
+<td><code>float GetSellPriceMultiplier()</code></td>
+<td>How much the party's skills raise what a shop pays. 1.0 means no bonus.</td>
+</tr>
+<tr>
+<td><strong>Get Sellable Count</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreShopStatics</code></td>
+<td><code>int32 GetSellableCount(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>How many of ItemDef the player could sell right now - the copies nobody is wearing.</td>
+</tr>
+<tr>
+<td><strong>Sell Items</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreShopStatics</code></td>
+<td><code>int32 SellItems(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count)</code></td>
+<td>Sell up to Count of ItemDef. Returns how many actually went; gold is paid for exactly those.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-skills">XenoCore › Skills<a class="headerlink" href="#xenocore-skills" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Format Skill Value</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreSkillsUIStatics</code></td>
+<td><code>FText FormatSkillValue(FGameplayTag Stat, EXenoCoreSkillOperation Operation, float Value)</code></td>
+<td>"15", "10 %" - a rate or a Scale value carries a percent sign.</td>
+</tr>
+<tr>
+<td><strong>Get Branch Reward Text</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreSkillsUIStatics</code></td>
+<td><code>FText GetBranchRewardText(const FXenoCoreSkillBranchUnlock&amp; Unlock)</code></td>
+<td>"Skill Branch: Reyn - Camaraderie" - a quest reward line, for the offer screen and the turn-in banner alike. The branch is a quest reward in XC1's data (the xsw quest infobox's skill_branch field, beside EXP, gold and items).</td>
+</tr>
+<tr>
+<td><strong>Get Skill Branch Views</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreSkillsUIStatics</code></td>
+<td><code>TArray&lt;FXenoCoreSkillBranchView&gt; GetSkillBranchViews(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>The character's unlocked branches, in table row order, each with its five skills.</td>
+</tr>
+<tr>
+<td><strong>Get Stat Label</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreSkillsUIStatics</code></td>
+<td><code>FText GetStatLabel(FGameplayTag Stat, float Value)</code></td>
+<td>"Agility Up", "Weight Down" - a stat tag and the sign of its value, as XC1 labels them.</td>
+</tr>
+<tr>
+<td><strong>Open Skills Screen</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreSkillsUIStatics</code></td>
+<td><code>void OpenSkillsScreen()</code></td>
+<td>Push the Skills screen onto the menu layer. The menu shell's Skills button calls this.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-stats">XenoCore › Stats<a class="headerlink" href="#xenocore-stats" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Find Stat Definition</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>bool FindStatDefinition(FGameplayTag StatTag, FXenoCoreStatDefinition&amp; OutDefinition)</code></td>
+<td>One stat by tag. False when the tag names nothing in the vocabulary.</td>
+</tr>
+<tr>
+<td><strong>Get Stat Definitions</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>const TArray&lt;FXenoCoreStatDefinition&gt;&amp; GetStatDefinitions()</code></td>
+<td>Every stat XC1 knows about, in display order. The single definition.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-targeting">XenoCore › Targeting<a class="headerlink" href="#xenocore-targeting" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Find Best Target</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>AActor* FindBestTarget(AActor* Seeker, float MaxRange, bool bRequireLineOfSight, bool bRequireOnScreen = true)</code></td>
+<td>The candidate nearest the centre of the screen, which is what "the one I am looking at" means to a player. Falls back to nearest-by-distance when the seeker has no player controller - i.e. for an AI, though note enemies do not use this system.</td>
+</tr>
+<tr>
+<td><strong>Gather Candidates</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>void GatherCandidates(AActor* Seeker, float MaxRange, bool bRequireLineOfSight, bool bRequireOnScreen, TArray&lt;AActor*&gt;&amp; OutCandidates)</code></td>
+<td>Every actor Seeker could legally lock onto: within MaxRange, on an opposing team, alive, and - if bRequireLineOfSight - visible.</td>
+</tr>
+<tr>
+<td><strong>Get Current Ally</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>AActor* GetCurrentAlly()</code></td>
+<td>The party member an ally-targeted art is currently aimed at, or null when not choosing one.</td>
+</tr>
+<tr>
+<td><strong>Get Current Target</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>AActor* GetCurrentTarget(const AActor* Seeker)</code></td>
+<td>No description.</td>
+</tr>
+<tr>
+<td><strong>Get Party Members</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>TArray&lt;AActor*&gt; GetPartyMembers()</code></td>
+<td>Everyone an ally-targeted art may be aimed at, in selector order.</td>
+</tr>
+<tr>
+<td><strong>Get Target Mode Ability</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>UXenoCoreGameplayAbility_TargetMode* GetTargetModeAbility(const AActor* Seeker)</code></td>
+<td>The live target-mode ability on Seeker, or null when the mode is not running.</td>
+</tr>
+<tr>
+<td><strong>Is On Screen</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>bool IsOnScreen(const AActor* Seeker, const AActor* Candidate)</code></td>
+<td>Is Candidate currently within the viewport?</td>
+</tr>
+<tr>
+<td><strong>Is Target Still Valid</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>bool IsTargetStillValid(const AActor* Seeker, const AActor* Candidate, float MaxRange, bool bRequireLineOfSight)</code></td>
+<td>Is Candidate still a legal lock: alive, within MaxRange, and optionally still visible.</td>
+</tr>
+<tr>
+<td><strong>Sort For Cycling</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>TArray&lt;AActor*&gt; SortForCycling(AActor* Seeker, const TArray&lt;AActor*&gt;&amp; Candidates)</code></td>
+<td>Candidates ordered left-to-right as they appear on screen, so that "next" means "the one to the right" rather than an arbitrary overlap-query order.</td>
+</tr>
+<tr>
+<td><strong>Step Target</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>AActor* StepTarget(const TArray&lt;AActor*&gt;&amp; SortedCandidates, AActor* Current, bool bForward)</code></td>
+<td>The next or previous entry after Current, wrapping at both ends.</td>
+</tr>
+<tr>
+<td><strong>Step Target From</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreTargetingStatics</code></td>
+<td><code>AActor* StepTargetFrom(AActor* Seeker, AActor* Current, bool bForward, float MaxRange, bool bRequireLineOfSight, bool bRequireOnScreen = true)</code></td>
+<td>No description.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-trade">XenoCore › Trade<a class="headerlink" href="#xenocore-trade" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Can Offer Def</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTradeStatics</code></td>
+<td><code>bool CanOfferDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>Definition-side twin of CanOfferItem, for pricing a row before anything is picked.</td>
+</tr>
+<tr>
+<td><strong>Can Offer Item</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTradeStatics</code></td>
+<td><code>bool CanOfferItem(ULyraInventoryItemInstance* Item)</code></td>
+<td>May the player put this on the table?</td>
+</tr>
+<tr>
+<td><strong>Get Category For Def</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTradeStatics</code></td>
+<td><code>EXenoCoreItemCategory GetCategoryForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>Which tab an item belongs under.</td>
+</tr>
+<tr>
+<td><strong>Get Effective Offer Value</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTradeStatics</code></td>
+<td><code>int32 GetEffectiveOfferValue(ULyraInventoryItemInstance* Item)</code></td>
+<td>What the NPC reckons the offered item is worth, skills included. This is the number that gets compared against a price.</td>
+</tr>
+<tr>
+<td><strong>Get Offer Value Multiplier</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTradeStatics</code></td>
+<td><code>float GetOfferValueMultiplier()</code></td>
+<td>How much the party's skills inflate what they hand over. 1.0 means no bonus.</td>
+</tr>
+<tr>
+<td><strong>Get Trade Value</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTradeStatics</code></td>
+<td><code>int32 GetTradeValue(ULyraInventoryItemInstance* Item)</code></td>
+<td>The same number for something actually in the bag.</td>
+</tr>
+<tr>
+<td><strong>Get Trade Value For Def</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreTradeStatics</code></td>
+<td><code>int32 GetTradeValueForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>What one of these is worth on the trade table.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="xenocore-ui">XenoCore › UI<a class="headerlink" href="#xenocore-ui" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Play UI Effect</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreUIEffectStatics</code></td>
+<td><code>UWidget* PlayUIEffect(UPanelWidget* Host, UNiagaraSystem* System, FVector2D Size, float Scale = 1.0f)</code></td>
+<td>Start System centred in Host and return the widget drawing it, or null (logged) when it cannot.</td>
+</tr>
+<tr>
+<td><strong>Wrap List View</strong></td>
+<td>Callable</td>
+<td><code>UXenoCoreMenuStatics</code></td>
+<td><code>void WrapListView(UListView* List)</code></td>
+<td>Make a list view wrap: Down past the last item lands on the first, Up past the first on the last. Call once, from the screen's Construct.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../data-assets/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Data assets">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Data assets
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../curve-tables/" class="md-footer__link md-footer__link--next" aria-label="Next: Curve tables">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Curve tables
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "navigation.footer", "content.code.copy", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

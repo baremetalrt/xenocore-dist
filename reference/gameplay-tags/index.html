@@ -1,0 +1,6378 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+      
+      
+      
+        <link rel="canonical" href="https://brianhabana.github.io/xenocore-dist/reference/gameplay-tags/">
+      
+      
+        <link rel="prev" href="../curve-tables/">
+      
+      
+        <link rel="next" href="../gameplay-messages/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Gameplay tags - XenoCore Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gameplay-tags" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="XenoCore Manual" class="md-header__button md-logo" aria-label="XenoCore Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XenoCore Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gameplay tags
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="XenoCore Manual" class="md-nav__button md-logo" aria-label="XenoCore Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    XenoCore Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install and first launch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/play-the-sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Play the sample
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/project-tour/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tour of the project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-enemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your first enemy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/where-next/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Where next
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/controls/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Controls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../recipes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How-to recipes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    How-to recipes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-party-member/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a party member
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a VRoid party member
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/starting-party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set the starting party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/character-statline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Author a character statline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/bake-portrait/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bake a HUD portrait
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/animation-style/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Choose an animation style
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/character-combat-animations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a character its own combat animations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-progression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune progression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-revive-and-defeat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune revive and defeat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/attack-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create an attack art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/support-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a healing or support art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/talent-art/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a Talent Art
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/palette-slots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Palette slots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/art-reactions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make an art inflict reactions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/status-effect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a status effect
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-auto-attack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune auto-attack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-targeting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune targeting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/hit-feedback/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add hit feedback
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/damage-formula-stat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a stat to the damage formula
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-weapon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a weapon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-armour/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an armour piece
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/equipment-stat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an equipment stat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/consumable-item/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a consumable item
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/drop-table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Author a drop table
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/item-rarity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set and style item rarity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-a-gem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a gem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/sort-a-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add Y-to-sort to an item list
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-enemy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an enemy type
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tune-companion-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tune companion AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/companion-personality/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a character its own idle breaks and faces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/enemy-arts-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give an enemy arts and AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/enemy-statline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Author an enemy statline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/place-enemies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Place enemies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/npc-conversation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Write an NPC conversation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/branch-conversation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Branch a conversation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/collection-quest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a collection quest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/kill-talk-quest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Create a kill, talk or location quest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/open-shop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Open a shop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/recruit-npc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recruit a party member by talking to them
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/trade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set up a trade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-interactable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an interactable object
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/restyle-menus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Restyle the menus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-menu-screen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a menu screen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/confirm-popup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a confirmation popup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/input-action-prompt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add an input action with a prompt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-hud-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a HUD element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/tutorial-cards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a tutorial card
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/save-system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make a system save
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/world-partition-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build a world-partition map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/footstep-surface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Footsteps by surface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/area-music/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a map its music
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/area-weather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a map its time of day and weather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/minimap-new-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Give a map its minimap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/minimap-marker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Show something on the minimap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/megascans-assets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Megascans at shipping size
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/camera-feel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swap the camera feel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/nvidia-dlss/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Turn on NVIDIA DLSS and Frame Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/replace-sample-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Replace the sample content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/package-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package a build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/subclass-mechanic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a mechanic by subclassing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recipes/add-skill/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a skill or a skill tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/characters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Characters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/companion-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Companion AI and aggro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/party-tactics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party tactics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/party-gauge-and-revive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Party Gauge, downed and revive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/battle-voices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Battle voices and banter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/stats-and-damage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stats and damage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/progression/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progression
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The combat loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/targeting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targeting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/arts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arts and Talent Arts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/skills/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/reactions-and-statuses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reactions and statuses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/enemies-and-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enemies and AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/items-and-inventory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items and inventory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/equipment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equipment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/loot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/interaction-npcs-dialogue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interaction, NPCs and dialogue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/quests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/shops-and-trade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shops and trade
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/save-and-front-end/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Save and front end
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/ui-shell-and-hud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI shell and HUD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/minimap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/day-night-weather/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time of day and weather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/input-and-camera/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Input and camera
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loading and ticking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events you can listen to
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp-classes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-assets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data assets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blueprint-nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blueprint nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../curve-tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Curve tables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gameplay tags
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gameplay tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cooldown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cooldown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gameplaycue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GameplayCue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HUD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inputtag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InputTag
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xenocore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gameplay-messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gameplay messages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../console-commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asset-naming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asset naming
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../folder-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Folder map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../editor-tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Editor tools
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compatibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../troubleshooting/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/characters-and-party/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Characters and party
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/combat-and-arts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Combat and arts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/enemies-and-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enemies and AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/items-and-equipment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Items and equipment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/animation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/ui-and-input/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI and input
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/world-and-maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    World and maps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/build-and-editor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build and editor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnostics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/reporting-bugs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reporting bugs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anim
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cooldown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cooldown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gameplaycue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GameplayCue
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HUD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inputtag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InputTag
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xenocore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gameplay-tags">Gameplay tags<a class="headerlink" href="#gameplay-tags" title="Permanent link">&para;</a></h1>
+<p><em>Designer · reference · No code · Last tested: never</em></p>
+<div class="admonition note">
+<p class="admonition-title">Generated from source — do not edit by hand.</p>
+<p>This page is written by <code>Docs/Manual/tools/gen_reference.py</code> from the plugin's headers.
+Edit the source comment and re-run the generator instead. See <code>Docs/Manual/tools/README.md</code>.</p>
+</div>
+<p>Every gameplay tag XenoCore declares. There are two kinds:</p>
+<ul>
+<li><strong>Native</strong> tags are declared in C++ (<code>XenoCoreGameplayTags.h</code> / <code>.cpp</code>) because code
+  names them. C++ uses the symbol in the <em>C++ symbol</em> column, for example
+  <code>XenoCoreGameplayTags::Status_XenoCore_InBattle</code>.</li>
+<li><strong>Ini</strong> tags are declared in the plugin's <code>Config/Tags/XenoCoreTags.ini</code> because only data
+  (abilities, input data, state trees) picks them.</li>
+</ul>
+<p>Both kinds appear in the editor's tag picker. Matching is hierarchical: a check for
+<code>Status.XenoCore.Reaction</code> also matches <code>Status.XenoCore.Reaction.Break</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: a tag declared twice, or renamed</p>
+<p>Declare a new tag in one place only. If C++ looks a tag up by its string name and the tag
+is later renamed, the lookup returns an empty tag. Nothing is logged; the feature that
+depends on the tag simply stops. Add your own tags to your own tag <code>.ini</code> or native file,
+and never edit XenoCore's in place.</p>
+</div>
+<p>167 native tags, 100 ini tags.</p>
+<h2 id="ability">Ability<a class="headerlink" href="#ability" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ability.XenoCore.Arm</code></td>
+<td>native</td>
+<td><code>Ability_XenoCore_Arm</code></td>
+<td>Draw or sheathe the weapon - toggles <code>Status.XenoCore.InBattle</code>, so only activate it when the tag says you are not already armed.</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.Art</code></td>
+<td>native</td>
+<td><code>Ability_XenoCore_Art</code></td>
+<td>Namespace marker for Arts. The palette matches granted abilities against this to build its row, so adding an art needs no HUD edit - only an <code>Ability.XenoCore.Art</code>.* asset tag.</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.Art.BackSlash</code></td>
+<td>ini</td>
+<td></td>
+<td>Shulk's Back Slash - red physical, 20s. Large damage from behind; the positional rider lives on the art, not on a global back-attack multiplier.</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.Art.Break</code></td>
+<td>native</td>
+<td><code>Ability_XenoCore_Art_Break</code></td>
+<td>Inflicts Break. Pink, in XC1's art colour coding.</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.Art.Daze</code></td>
+<td>native</td>
+<td><code>Ability_XenoCore_Art_Daze</code></td>
+<td>Inflicts Daze. Yellow.</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.Art.LightHeal</code></td>
+<td>ini</td>
+<td></td>
+<td>Shulk's Light Heal - blue ether, 25s. Heals one party member; the non-damage art that proves the effect path is not damage-shaped.</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.Art.Talent</code></td>
+<td>ini</td>
+<td></td>
+<td>Marks the Talent Art - XC1 pays for it with the Talent Gauge rather than a cooldown, and the weapon grants it. This is the lookup handle: match this asset tag and take Spec.GetPrimaryInstance().</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.Art.Topple</code></td>
+<td>native</td>
+<td><code>Ability_XenoCore_Art_Topple</code></td>
+<td>Inflicts Topple. Green.</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.AutoAttack</code></td>
+<td>native</td>
+<td><code>Ability_XenoCore_AutoAttack</code></td>
+<td>The free auto-attack loop. Named in C++ by the palette's Cancel entry, which cancels abilities carrying this tag.</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.TargetMode</code></td>
+<td>native</td>
+<td><code>Ability_XenoCore_TargetMode</code></td>
+<td>The target-mode ability. Granted once and InstancedPerActor - it holds the selected target, so a second grant would mean a second target.</td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.ToggleMenu</code></td>
+<td>ini</td>
+<td></td>
+<td>The pause/items menu ability. Exists only so TagRelationships_XenoCore can reach it: an ability with empty AbilityTags cannot be matched by any row, so the menu could be opened mid-conversation - which left a dialogue box behind a screen and broke both.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="anim">Anim<a class="headerlink" href="#anim" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Anim.XenoCore.Reaction.Daze</code></td>
+<td>ini</td>
+<td></td>
+<td>Anim profile key: Daze (<code>GA_XenoCore_</code>*_Daze)</td>
+</tr>
+<tr>
+<td><code>Anim.XenoCore.Reaction.Evade</code></td>
+<td>ini</td>
+<td></td>
+<td>Anim profile key: a dodged hit (<code>GA_XenoCore_</code>*Evade)</td>
+</tr>
+<tr>
+<td><code>Anim.XenoCore.Reaction.Flinch</code></td>
+<td>ini</td>
+<td></td>
+<td>Anim profile key: the directional hit react (<code>GA_XenoCore_</code>*_HitReact)</td>
+</tr>
+<tr>
+<td><code>Anim.XenoCore.Reaction.Guard</code></td>
+<td>ini</td>
+<td></td>
+<td>Anim profile key: a blocked hit (<code>GA_XenoCore_</code>*Guard)</td>
+</tr>
+<tr>
+<td><code>Anim.XenoCore.Reaction.Recoil</code></td>
+<td>ini</td>
+<td></td>
+<td>Anim profile key: an attack bounced off a guard (<code>GA_XenoCore_</code>*Recoil)</td>
+</tr>
+<tr>
+<td><code>Anim.XenoCore.Reaction.Topple</code></td>
+<td>ini</td>
+<td></td>
+<td>Anim profile key: Topple and its get-up (<code>GA_XenoCore_</code>*_Topple)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="cooldown">Cooldown<a class="headerlink" href="#cooldown" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Cooldown.XenoCore.Art.AirSlash</code></td>
+<td>ini</td>
+<td></td>
+<td>Air Slash recharging. Named by <code>DA_XenoCore_AirSlash</code>.CooldownTag - every art needs its own, or two arts share one cooldown.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.BackSlash</code></td>
+<td>ini</td>
+<td></td>
+<td>Back Slash recharging. Granted by <code>GE_XenoCore_Cooldown_BackSlash</code> - the art's own cooldown effect, Lyra's pattern.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.Bellow</code></td>
+<td>ini</td>
+<td></td>
+<td>Bellow recharging. Named by <code>DA_XenoCore_Bellow</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.Bolster</code></td>
+<td>ini</td>
+<td></td>
+<td>Bolster recharging. Named by <code>DA_XenoCore_Bolster</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.Break</code></td>
+<td>ini</td>
+<td></td>
+<td>Break art recharging.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.Daze</code></td>
+<td>ini</td>
+<td></td>
+<td>Daze art recharging.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.EmberRing</code></td>
+<td>ini</td>
+<td></td>
+<td>Ember Ring recharging. Named by <code>DA_XenoCore_EmberRing</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.EtherWard</code></td>
+<td>ini</td>
+<td></td>
+<td>Ether Ward recharging. Named by <code>DA_XenoCore_EtherWard</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.FrostLance</code></td>
+<td>ini</td>
+<td></td>
+<td>Frost Lance recharging. Named by <code>DA_XenoCore_FrostLance</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.Hamstring</code></td>
+<td>ini</td>
+<td></td>
+<td>Hamstring recharging. Named by <code>DA_XenoCore_Hamstring</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.LightHeal</code></td>
+<td>ini</td>
+<td></td>
+<td>Light Heal recharging.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.MendingWave</code></td>
+<td>ini</td>
+<td></td>
+<td>Mending Wave recharging. Named by <code>DA_XenoCore_MendingWave</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.MindSap</code></td>
+<td>ini</td>
+<td></td>
+<td>Mind Sap recharging. Named by <code>DA_XenoCore_MindSap</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.MinionRend</code></td>
+<td>ini</td>
+<td></td>
+<td>The minion's Break art recharging. Named by <code>DA_XenoCore_Minion_Rend</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.MinionSweep</code></td>
+<td>ini</td>
+<td></td>
+<td>The minion's Topple art recharging. Named by <code>DA_XenoCore_Minion_Sweep</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.Renewal</code></td>
+<td>ini</td>
+<td></td>
+<td>Renewal recharging. Named by <code>DA_XenoCore_Renewal</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.ShieldBash</code></td>
+<td>ini</td>
+<td></td>
+<td>Shield Bash recharging. Named by <code>DA_XenoCore_ShieldBash</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.SlitEdge</code></td>
+<td>ini</td>
+<td></td>
+<td>Slit Edge recharging. Named by <code>DA_XenoCore_SlitEdge</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.StreamEdge</code></td>
+<td>ini</td>
+<td></td>
+<td>Stream Edge recharging. Named by <code>DA_XenoCore_StreamEdge</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.Topple</code></td>
+<td>ini</td>
+<td></td>
+<td>Topple art recharging.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.VenomEdge</code></td>
+<td>ini</td>
+<td></td>
+<td>Venom Edge recharging. Named by <code>DA_XenoCore_VenomEdge</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.WarSwing</code></td>
+<td>ini</td>
+<td></td>
+<td>War Swing recharging. Named by <code>DA_XenoCore_WarSwing</code>.CooldownTag.</td>
+</tr>
+<tr>
+<td><code>Cooldown.XenoCore.Art.WildDown</code></td>
+<td>ini</td>
+<td></td>
+<td>Wild Down recharging. Named by <code>DA_XenoCore_WildDown</code>.CooldownTag.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="gameplaycue">GameplayCue<a class="headerlink" href="#gameplaycue" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GameplayCue.XenoCore.DamageTaken</code></td>
+<td>ini</td>
+<td></td>
+<td>Our copy of Lyra's <code>GCNL_Character_DamageTaken</code> with host patches 01/09/11 (pawn instigator, ally hits, crit = weak spot). <code>GE_XenoCore_Damage</code> fires it; Lyra's own cue stays untouched for Lyra's weapons.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Heal</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_Heal</code></td>
+<td>The blue bloom on a heal. Executed on the ally - the effect belongs where the HP went, not on the caster - and the cue notify lives in Content/GameplayCues/ because that is the plugin's registered cue path.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Hit</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_Hit</code></td>
+<td>Cosmetic feedback for a landed hit - camera shake and force feedback. Invoked with explicit cue parameters so Instigator is populated, which the GE-driven cue path never does.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Hit.Blocked</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_Hit_Blocked</code></td>
+<td>Particles on a blocked hit, on the defender.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Hit.Critical</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_Hit_Critical</code></td>
+<td>Particles on a critical hit, on the defender. Fires beside the hit cue, never instead of it.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Hit.Evaded</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_Hit_Evaded</code></td>
+<td>Particles on an evaded hit, on the defender.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.LevelUp</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_LevelUp</code></td>
+<td>Burst on each body that gained a level. Executed by <code>UXenoCoreProgressionComponent</code>.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Reaction.Break</code></td>
+<td>ini</td>
+<td></td>
+<td>Pink burst while Break is applied. <code>GE_XenoCore_Reaction_Break</code>.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Reaction.Daze</code></td>
+<td>ini</td>
+<td></td>
+<td>Looping over the head while Dazed. <code>GE_XenoCore_Reaction_Daze</code>.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Reaction.Topple</code></td>
+<td>ini</td>
+<td></td>
+<td>Burst at the feet as Topple lands. <code>GE_XenoCore_Reaction_Topple</code>.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Revive</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_Revive</code></td>
+<td>Burst on a party member brought back to life.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Status.Buff</code></td>
+<td>ini</td>
+<td></td>
+<td>Looping aura while any buff status (bIsBuff) is active. Shared: removing one buff ends it.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Status.Debuff</code></td>
+<td>ini</td>
+<td></td>
+<td>Looping aura while any debuff status is active. Shared: removing one debuff ends it.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Swing</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_Swing</code></td>
+<td>The swing: whoosh and blade trail. A cue rather than montage notifies, because notify object references would not persist through scripted authoring and the cue path is already proven.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.Switch</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_Switch</code></td>
+<td>Burst on the body the player has just taken control of.</td>
+</tr>
+<tr>
+<td><code>GameplayCue.XenoCore.TalentReady</code></td>
+<td>native</td>
+<td><code>GameplayCue_XenoCore_TalentReady</code></td>
+<td>Looping weapon aura while the Talent Gauge is full. Added and removed beside the loose <code>Status.XenoCore.TalentReady</code> tag by <code>UXenoCoreStatSet</code>, its only writer.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hud">HUD<a class="headerlink" href="#hud" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HUD.Slot.XenoCore.BottomCenter</code></td>
+<td>native</td>
+<td><code>HUD_Slot_XenoCore_BottomCenter</code></td>
+<td>HUD extension point: bottom centre, stacking upwards. Check it against the battle palette before using it.</td>
+</tr>
+<tr>
+<td><code>HUD.Slot.XenoCore.Center</code></td>
+<td>native</td>
+<td><code>HUD_Slot_XenoCore_Center</code></td>
+<td>HUD extension point: the centre of the screen, entries overlaid.</td>
+</tr>
+<tr>
+<td><code>HUD.Slot.XenoCore.FullScreen</code></td>
+<td>native</td>
+<td><code>HUD_Slot_XenoCore_FullScreen</code></td>
+<td>HUD extension point: fills the screen behind the rest of the HUD, entries overlaid.</td>
+</tr>
+<tr>
+<td><code>HUD.Slot.XenoCore.TopCenter</code></td>
+<td>native</td>
+<td><code>HUD_Slot_XenoCore_TopCenter</code></td>
+<td>HUD extension point: top centre of the screen, stacking downwards.</td>
+</tr>
+<tr>
+<td><code>HUD.Slot.XenoCore.TopRight</code></td>
+<td>native</td>
+<td><code>HUD_Slot_XenoCore_TopRight</code></td>
+<td>HUD extension point: top right, below the autosave badge, stacking downwards.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inputtag">InputTag<a class="headerlink" href="#inputtag" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InputTag.XenoCore.CameraReset</code></td>
+<td>ini</td>
+<td></td>
+<td>R3 - recentre the camera behind the character. Bound via InputData_XenoCore to <code>GA_XenoCore_CameraReset</code>.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.Interact</code></td>
+<td>ini</td>
+<td></td>
+<td>Face button Right (Nintendo A / Xbox B) or E - open a treasure chest or any other <code>IInteractableTarget</code>.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.InteractSecondary</code></td>
+<td>ini</td>
+<td></td>
+<td>Face button Left (Nintendo Y / Xbox X) or F - the second verb an interactable offers, which for an NPC with a trade table is Trade. Granted with <code>GA_XenoCore_InteractPressSecondary</code> via AbilitySet_XenoCore_Interact.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.MinimapOverlay</code></td>
+<td>ini</td>
+<td></td>
+<td>L3 (or M) - open and close the full-screen minimap overlay, the L3 view from XC1's Definitive Edition. <code>UXenoCoreGameplayAbility_MinimapOverlay</code> via AbilitySet_XenoCore_Input; independent of the corner minimap.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PaletteConfirm</code></td>
+<td>ini</td>
+<td></td>
+<td>Gamepad_FaceButton_Bottom or SpaceBar - perform the selected palette entry.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PaletteDown</code></td>
+<td>ini</td>
+<td></td>
+<td>D-pad Down - move the palette carousel down. Not disengage; that stays on the face button.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PaletteLeft</code></td>
+<td>ini</td>
+<td></td>
+<td>D-pad Left - move along the arts row toward the left art. Selection only; confirm performs it.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PaletteRight</code></td>
+<td>ini</td>
+<td></td>
+<td>D-pad Right - move along the arts row toward the right art. Selection only; confirm performs it.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PaletteUp</code></td>
+<td>ini</td>
+<td></td>
+<td>D-pad Up - move the palette carousel up. Selection only; confirm performs it.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PartyCommand</code></td>
+<td>ini</td>
+<td></td>
+<td>X tap (or F), anywhere - toggles the Focus Attacks tactic for the whole party. Tap trigger on <code>IA_XenoCore_PartyCommand</code>; <code>GA_XenoCore_PartyTacticFocus</code> via the leader-only set.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PartySelect</code></td>
+<td>ini</td>
+<td></td>
+<td>LT or RT hold (or Z / C) - open the party cursor on the HUD rows; the D-pad moves it, releasing commits. Hold trigger on <code>IA_XenoCore_PartySelect</code>; <code>GA_XenoCore_PartySelect</code> via the leader-only set.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PartySwitch</code></td>
+<td>ini</td>
+<td></td>
+<td>RT tap (or C) - switch control to the next party member, rotating the column. Tap trigger on <code>IA_XenoCore_PartySwitch</code>; <code>GA_XenoCore_PartySwitch</code> via the leader-only set (AbilitySet_XenoCore_Interact)</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PartySwitchPrev</code></td>
+<td>ini</td>
+<td></td>
+<td>LT tap (or Z) - switch control to the previous party member. Tap trigger on <code>IA_XenoCore_PartySwitchPrev</code>; <code>GA_XenoCore_PartySwitchPrev</code> via the leader-only set.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.PartyTactics</code></td>
+<td>ini</td>
+<td></td>
+<td>X hold (or F), anywhere - holds the party tactics list open until released. Hold trigger (not one-shot) on <code>IA_XenoCore_PartyTactics</code>; <code>GA_XenoCore_PartyTacticsPanel</code> via the leader-only set.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.QuestTracker</code></td>
+<td>ini</td>
+<td></td>
+<td>A pure UI toggle, so the ability does nothing but call <code>UXenoCoreQuestTrackerBase::ToggleQuestTracker</code> and end; it is an ability at all only because that is how Lyra routes input.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.TacticsScopeNext</code></td>
+<td>ini</td>
+<td></td>
+<td>RB (or Tab) while the tactics list is held open - the orders are for the next member. <code>IA_XenoCore_TacticsScopeNext</code>; <code>GA_XenoCore_TacticsScopeNext</code>.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.TacticsScopePrev</code></td>
+<td>ini</td>
+<td></td>
+<td>LB (or Q) while the tactics list is held open - the orders are for the previous member. <code>IA_XenoCore_TacticsScopePrev</code>; <code>GA_XenoCore_TacticsScopePrev</code>.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.TargetModeExit</code></td>
+<td>ini</td>
+<td></td>
+<td>B - leave target mode.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.TargetNext</code></td>
+<td>ini</td>
+<td></td>
+<td>R bumper - acquire a target, or cycle to the next one. Granted to <code>GA_XenoCore_TargetNext</code>.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.TargetPrev</code></td>
+<td>ini</td>
+<td></td>
+<td>L bumper - cycle to the previous target. Granted to <code>GA_XenoCore_TargetPrev</code>.</td>
+</tr>
+<tr>
+<td><code>InputTag.XenoCore.ToggleMenu</code></td>
+<td>ini</td>
+<td></td>
+<td>Opens and closes the XenoCore menu. Bound in <code>IMC_XenoCore</code> and granted with <code>GA_XenoCore_ToggleMenu</code> via AbilitySet_XenoCore_Hero.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Status.XenoCore.Arming</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Arming</code></td>
+<td>The draw or sheathe montage is running on this character. Applied by ActivationOwnedTags on <code>GA_XenoCore_Arm_v2</code>, which waits on PlayMontageAndWait, so the tag's lifetime is the animation's and it clears on interruption too.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.ArtExecuting</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_ArtExecuting</code></td>
+<td>An Art's montage is running on this character. Applied by ActivationOwnedTags on <code>UXenoCoreGameplayAbility_Art</code>, so it clears on cancellation too.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.AutoAttacking</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_AutoAttacking</code></td>
+<td>Held by <code>GA_XenoCore_AutoAttack</code> while its loop runs. The arts palette highlights its Attack slot from this.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Buff.AgilityUp</code></td>
+<td>ini</td>
+<td></td>
+<td>Agility x1.3. <code>GE_XenoCore_Status_AgilityUp</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Buff.EtherDefUp</code></td>
+<td>ini</td>
+<td></td>
+<td>Ether Defence x1.3. <code>GE_XenoCore_Status_EtherDefUp</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Buff.EtherUp</code></td>
+<td>ini</td>
+<td></td>
+<td>Ether x1.3. <code>GE_XenoCore_Status_EtherUp</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Buff.Haste</code></td>
+<td>ini</td>
+<td></td>
+<td>Hasted - auto-attacks come round faster (AutoAttackSpeed x1.3). <code>GE_XenoCore_Status_Haste</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Buff.MaxHealthUp</code></td>
+<td>ini</td>
+<td></td>
+<td>HP Up - Max HP up by the applier's percent (XC1: Hero's Valour). <code>GE_XenoCore_Status_MaxHealthUp</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Buff.PhysicalDefUp</code></td>
+<td>ini</td>
+<td></td>
+<td>Physical Defence x1.3. <code>GE_XenoCore_Status_PhysicalDefUp</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Buff.Regenerate</code></td>
+<td>ini</td>
+<td></td>
+<td>Regenerating - heals every second; strength from the art's Magnitude. <code>GE_XenoCore_Status_Regenerate</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Buff.StrengthUp</code></td>
+<td>ini</td>
+<td></td>
+<td>Strength x1.3. <code>GE_XenoCore_Status_StrengthUp</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Celebrating</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Celebrating</code></td>
+<td>Loose, on a party body while its battle-won emote plays (<code>UXenoCoreBattleVictorySubsystem</code>).</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.AgilityDown</code></td>
+<td>ini</td>
+<td></td>
+<td>Agility x0.7. <code>GE_XenoCore_Status_AgilityDown</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.Bind</code></td>
+<td>ini</td>
+<td></td>
+<td>Bound - cannot move (also grants <code>Gameplay.MovementStopped</code>). <code>GE_XenoCore_Status_Bind</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.Blaze</code></td>
+<td>ini</td>
+<td></td>
+<td>Burning - damage every second; strength from the art's Magnitude. <code>GE_XenoCore_Status_Blaze</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.Bleed</code></td>
+<td>ini</td>
+<td></td>
+<td>Bleeding - damage every second; strength from the art's Magnitude. <code>GE_XenoCore_Status_Bleed</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.Chill</code></td>
+<td>ini</td>
+<td></td>
+<td>Chilled - damage every second; strength from the art's Magnitude. <code>GE_XenoCore_Status_Chill</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.EtherDefDown</code></td>
+<td>ini</td>
+<td></td>
+<td>Ether Defence x0.7. <code>GE_XenoCore_Status_EtherDefDown</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.EtherDown</code></td>
+<td>ini</td>
+<td></td>
+<td>Ether x0.7. <code>GE_XenoCore_Status_EtherDown</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.PhysicalDefDown</code></td>
+<td>ini</td>
+<td></td>
+<td>Physical Defence x0.7. <code>GE_XenoCore_Status_PhysicalDefDown</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.Poison</code></td>
+<td>ini</td>
+<td></td>
+<td>Poisoned - damage every second; strength from the art's Magnitude. <code>GE_XenoCore_Status_Poison</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.Slow</code></td>
+<td>ini</td>
+<td></td>
+<td>Slowed - auto-attacks come round slower (AutoAttackSpeed x0.7). Granted by <code>GE_XenoCore_Status_Slow</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Debuff.StrengthDown</code></td>
+<td>ini</td>
+<td></td>
+<td>Strength x0.7. <code>GE_XenoCore_Status_StrengthDown</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Defence.Evade</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Defence_Evade</code></td>
+<td>Owned by the evade reaction while the defender plays its dodge clip.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Defence.Guard</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Defence_Guard</code></td>
+<td>Owned by the guard reaction while the defender plays its block clip.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Defence.Recoil</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Defence_Recoil</code></td>
+<td>Owned by the recoil reaction while a blocked attacker staggers back (sourced 0.5-1.0s)</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Downed</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Downed</code></td>
+<td>A party member at 0 HP - kneeling, unable to act, waiting for a revive. Owned by <code>UXenoCoreGameplayAbility_Downed</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.FirstStrikeSpent</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_FirstStrikeSpent</code></td>
+<td>Loose: this body has landed its first hit of the current battle (First Strike Plus is spent)</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.InBattle</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_InBattle</code></td>
+<td>Pawn is engaged - drives combat stance, auto-attack timer and battle BGM.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.InteractAvailable</code></td>
+<td>ini</td>
+<td></td>
+<td>Held by <code>GA_XenoCore_Interact</code> while its scan has at least one interactable in range. <code>GA_XenoCore_PaletteConfirm</code> lists it in ActivationBlockedTags, which is what makes Nintendo A contextual: near a chest it opens, otherwise it performs the palette entry.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Looting</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Looting</code></td>
+<td>A loot panel is on screen waiting for the player to answer a chest. Applied as a loose tag by <code>UXenoCoreLootPopupBase</code> for its own lifetime plus a release delay.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Reaction</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Reaction</code></td>
+<td>Parent of Break/Topple/Daze. Tested hierarchically to ask whether a target is reacting at all - e.g. crit is x1.5 instead of x1.25 against one that is.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Reaction.Break</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Reaction_Break</code></td>
+<td>Susceptible to Topple. No CC of its own - Break does nothing to the target by itself, which is why it needs no animation, only a notification.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Reaction.Daze</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Reaction_Daze</code></td>
+<td>Stunned and stripped of auras. 2s on enemies.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.Reaction.Topple</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_Reaction_Topple</code></td>
+<td>Knocked down and unable to act. 3s standard, 4.5s on Mechon, 1.5s on some superbosses.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.ReviveOffered</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_ReviveOffered</code></td>
+<td>On the player while the interact prompt offers Revive - arts refuse, so the shared A button revives and does not also cast.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.TacticsOpen</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_TacticsOpen</code></td>
+<td>On the leader while the tactics panel is held open (hold X). Blocks the target-cycle bumpers, which step the panel's scope instead.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.TalentReady</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_TalentReady</code></td>
+<td>The Talent Gauge is full and the Talent Art can be used. Flipped by <code>UXenoCoreStatSet</code>.</td>
+</tr>
+<tr>
+<td><code>Status.XenoCore.TargetMode</code></td>
+<td>native</td>
+<td><code>Status_XenoCore_TargetMode</code></td>
+<td>Target mode is engaged - a target is selected, indicator and HUD are up. ActivationOwnedTags on <code>GA_XenoCore_TargetMode</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ui">UI<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UI.Layer.Menu</code></td>
+<td>native</td>
+<td><code>UI_Layer_Menu</code></td>
+<td>Lyra's menu UI layer. Ours only because two of our .cpp files name it - see the header.</td>
+</tr>
+<tr>
+<td><code>UI.Layer.Modal</code></td>
+<td>native</td>
+<td><code>UI_Layer_Modal</code></td>
+<td>Lyra's modal UI layer - confirmation dialogs and the settings screen's popups.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="xenocore">XenoCore<a class="headerlink" href="#xenocore" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>XenoCore.Art.Magnitude.Cooldown</code></td>
+<td>native</td>
+<td><code>XenoCore_Art_Magnitude_Cooldown</code></td>
+<td>SetByCaller carrying an art's cooldown seconds into <code>GE_XenoCore_ArtCooldown</code>. One effect serves every art: the duration comes through here and the granted tag through the spec's DynamicGrantedTags, so no per-art cooldown asset exists to inherit somebody else's tag.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Art.Magnitude.Damage</code></td>
+<td>native</td>
+<td><code>XenoCore_Art_Magnitude_Damage</code></td>
+<td>SetByCaller channel carrying an art's damage multiplier. <code>UXenoCoreDamageExecution</code> reads it and scales the hit by it (0 or unset = 1)</td>
+</tr>
+<tr>
+<td><code>XenoCore.Art.Magnitude.Heal</code></td>
+<td>native</td>
+<td><code>XenoCore_Art_Magnitude_Heal</code></td>
+<td>SetByCaller channel carrying a healing art's magnitude onto <code>ULyraHealthSet::Healing</code>. Same effect asset as damage - the art's EffectType picks the channel.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Art.School.Ether</code></td>
+<td>native</td>
+<td><code>XenoCore_Art_School_Ether</code></td>
+<td>Present on the spec when the attack is ether. Absent means physical.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Battle.Message.Notification</code></td>
+<td>native</td>
+<td><code>XenoCore_Battle_Message_Notification</code></td>
+<td>Battle text over an actor - miss, break, topple, daze, critical, a buff name. One channel for all of them, so a new notification is a caller, not a system.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Battle.Message.Won</code></td>
+<td>native</td>
+<td><code>XenoCore_Battle_Message_Won</code></td>
+<td>The fight is won: the last enemy engaged with the party died. Broadcast once per fight by <code>UXenoCoreBattleVictorySubsystem</code>, which also plays the fanfare and the party's victory emotes.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Collectable.Message.Collected</code></td>
+<td>native</td>
+<td><code>XenoCore_Collectable_Message_Collected</code></td>
+<td>An overworld blue orb was walked into and its item banked. Payload <code>FXenoCoreCollectableCollectedMessage</code>.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Damage.Critical</code></td>
+<td>native</td>
+<td><code>XenoCore_Damage_Critical</code></td>
+<td>Added to a damage spec's dynamic asset tags when it rolls a critical, so the spec's cues see it in AggregatedSourceTags. <code>GCNL_Character_DamageTaken</code> treats it like a weak-spot hit: crit number style and the weak-spot hit-confirm sound (Patches/11)</td>
+</tr>
+<tr>
+<td><code>XenoCore.Damage.Magnitude.Blocked</code></td>
+<td>native</td>
+<td><code>XenoCore_Damage_Magnitude_Blocked</code></td>
+<td>SetByCaller on a damage spec: 1 = blocked, so <code>UXenoCoreDamageExecution</code> applies BlockMultiplier. Set by the caller after RollAttack.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Enemy.Message.Defeated</code></td>
+<td>native</td>
+<td><code>XenoCore_Enemy_Message_Defeated</code></td>
+<td>An enemy died. Broadcast from <code>AXenoCoreEnemyCharacter::HandleDeathStarted</code>, which is already where the EXP and the drop chest go - OnDeathStarted is the moment the kill is real.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Equipment.Message.SlotChanged</code></td>
+<td>native</td>
+<td><code>XenoCore_Equipment_Message_SlotChanged</code></td>
+<td>An equipment slot was filled or emptied.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Equipment.Slot.Arms</code></td>
+<td>ini</td>
+<td></td>
+<td>Arm armour.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Equipment.Slot.Chest</code></td>
+<td>ini</td>
+<td></td>
+<td>Chest armour.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Equipment.Slot.Feet</code></td>
+<td>ini</td>
+<td></td>
+<td>Foot armour.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Equipment.Slot.Head</code></td>
+<td>ini</td>
+<td></td>
+<td>Head armour.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Equipment.Slot.Legs</code></td>
+<td>ini</td>
+<td></td>
+<td>Leg armour.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Equipment.Slot.Weapon</code></td>
+<td>ini</td>
+<td></td>
+<td>The character's weapon. Fixed per character in XC1 - Shulk is always the Monado.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.Combat.Block</code></td>
+<td>native</td>
+<td><code>XenoCore_Event_Combat_Block</code></td>
+<td>Gameplay event on the defender's ASC when it blocks a physical hit. Instigator = the attacker.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.Combat.Blocked</code></td>
+<td>native</td>
+<td><code>XenoCore_Event_Combat_Blocked</code></td>
+<td>Gameplay event on the attacker's ASC when its physical hit is blocked. Target = the blocker.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.Combat.Critical</code></td>
+<td>native</td>
+<td><code>XenoCore_Event_Combat_Critical</code></td>
+<td>Gameplay event on the attacker's ASC when a hit crits. Target = who was struck.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.Combat.Evade</code></td>
+<td>native</td>
+<td><code>XenoCore_Event_Combat_Evade</code></td>
+<td>Gameplay event on the defender's ASC when it evades an attack. Instigator = the attacker.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.Combat.Kill</code></td>
+<td>native</td>
+<td><code>XenoCore_Event_Combat_Kill</code></td>
+<td>Gameplay event on the killer's ASC as an enemy dies. Target = the victim.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.Combat.Miss</code></td>
+<td>native</td>
+<td><code>XenoCore_Event_Combat_Miss</code></td>
+<td>Gameplay event on the attacker's ASC when the agility roll misses. Target = who dodged.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.HitReact</code></td>
+<td>native</td>
+<td><code>XenoCore_Event_HitReact</code></td>
+<td>Sent to the victim when damage lands. <code>GA_XenoCore_HitReact</code> triggers on it and picks a direction from the payload.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.Interact</code></td>
+<td>ini</td>
+<td></td>
+<td>Sent by <code>GA_XenoCore_InteractPress</code> on the interact input and awaited by <code>GA_XenoCore_Interact</code>, which then calls TriggerInteraction.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.MeleeHit</code></td>
+<td>native</td>
+<td><code>XenoCore_Event_MeleeHit</code></td>
+<td>Fired by <code>UXenoCoreAnimNotify_GameplayEvent</code> on the swing's contact frame. The auto-attack applies damage on this, never on a timer.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Event.SwitchTarget</code></td>
+<td>ini</td>
+<td></td>
+<td>Sent by <code>GA_XenoCore_TargetNext</code>/Prev. Triggers <code>GA_XenoCore_TargetLock</code> when idle; caught by its WaitGameplayEvent when active.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Gem.Socket.0.Id</code></td>
+<td>native</td>
+<td><code>XenoCore_Gem_Socket_0_Id</code></td>
+<td>Socket 1 of an equipment instance: the socketed gem's registry id. 0 is empty.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Gem.Socket.0.Value</code></td>
+<td>native</td>
+<td><code>XenoCore_Gem_Socket_0_Value</code></td>
+<td>Socket 1 of an equipment instance: the socketed gem's strength.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Gem.Socket.1.Id</code></td>
+<td>native</td>
+<td><code>XenoCore_Gem_Socket_1_Id</code></td>
+<td>Socket 2 of an equipment instance: the socketed gem's registry id. 0 is empty.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Gem.Socket.1.Value</code></td>
+<td>native</td>
+<td><code>XenoCore_Gem_Socket_1_Value</code></td>
+<td>Socket 2 of an equipment instance: the socketed gem's strength.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Gem.Socket.2.Id</code></td>
+<td>native</td>
+<td><code>XenoCore_Gem_Socket_2_Id</code></td>
+<td>Socket 3 of an equipment instance (weapons only): the socketed gem's registry id. 0 is empty.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Gem.Socket.2.Value</code></td>
+<td>native</td>
+<td><code>XenoCore_Gem_Socket_2_Value</code></td>
+<td>Socket 3 of an equipment instance (weapons only): the socketed gem's strength.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Gem.Strength</code></td>
+<td>native</td>
+<td><code>XenoCore_Gem_Strength</code></td>
+<td>A loose gem's rolled value, on the gem item's own instance. Rolled once inside its rank's band when the instance is created (<code>UXenoCoreFragment_Gem::OnInstanceCreated</code>)</td>
+</tr>
+<tr>
+<td><code>XenoCore.Inventory.Message.Changed</code></td>
+<td>native</td>
+<td><code>XenoCore_Inventory_Message_Changed</code></td>
+<td>The party bag gained or lost items. Broadcast by <code>UXenoCoreInventoryStatics</code> and nothing else.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Item.Category.Collectables</code></td>
+<td>ini</td>
+<td></td>
+<td>Field pickups. Trade fodder at 10x value.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Item.Category.Equipment</code></td>
+<td>ini</td>
+<td></td>
+<td>Weapons and armour.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Item.Category.Items</code></td>
+<td>ini</td>
+<td></td>
+<td>Consumables, arts manuals, gems.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Item.Category.Key</code></td>
+<td>ini</td>
+<td></td>
+<td>Story items. Cannot be sold or discarded.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Item.Rarity</code></td>
+<td>ini</td>
+<td></td>
+<td>Item rarity tiers. Picked on the Item Category fragment.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Item.Rarity.Common</code></td>
+<td>ini</td>
+<td></td>
+<td>White name. Any chest.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Item.Rarity.Legendary</code></td>
+<td>ini</td>
+<td></td>
+<td>Purple name. Gold chests.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Item.Rarity.Rare</code></td>
+<td>ini</td>
+<td></td>
+<td>Gold name. Silver chests and better.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Loot.Message.ChestOpened</code></td>
+<td>native</td>
+<td><code>XenoCore_Loot_Message_ChestOpened</code></td>
+<td>A treasure chest was opened. Payload <code>FXenoCoreChestOpenedMessage</code> carries what went into the bag and what the carry cap refused - the seam the reward panel binds to.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Map.Marker.Monster</code></td>
+<td>native</td>
+<td><code>XenoCore_Map_Marker_Monster</code></td>
+<td>Minimap marker: a living enemy (XC1 manual p. 8, the red dot)</td>
+</tr>
+<tr>
+<td><code>XenoCore.Map.Marker.QuestGiver</code></td>
+<td>native</td>
+<td><code>XenoCore_Map_Marker_QuestGiver</code></td>
+<td>Minimap marker: an NPC with a quest to offer or to take back (XC1 manual p. 9)</td>
+</tr>
+<tr>
+<td><code>XenoCore.Map.Marker.QuestTarget</code></td>
+<td>native</td>
+<td><code>XenoCore_Map_Marker_QuestTarget</code></td>
+<td>Minimap marker: something the active quest wants - an enemy it counts, or its giver once it is ready to hand in. Derived by the minimap, never registered.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Map.Marker.Shop</code></td>
+<td>native</td>
+<td><code>XenoCore_Map_Marker_Shop</code></td>
+<td>Minimap marker: an NPC who runs a shop (XC1 manual p. 10)</td>
+</tr>
+<tr>
+<td><code>XenoCore.Map.Marker.UniqueMonster</code></td>
+<td>native</td>
+<td><code>XenoCore_Map_Marker_UniqueMonster</code></td>
+<td>Minimap marker: a living unique (named) enemy.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Palette.Action.Cancel</code></td>
+<td>native</td>
+<td><code>XenoCore_Palette_Action_Cancel</code></td>
+<td>Palette entry that leaves target mode. Not an ability - the target-mode ability cancels itself, since routing that through a second ability would be circular.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Party.Message.Changed</code></td>
+<td>native</td>
+<td><code>XenoCore_Party_Message_Changed</code></td>
+<td>The roster, the active party or the leader changed. Broadcast by <code>UXenoCorePartyComponent</code> and nothing else.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Party.Message.TacticChanged</code></td>
+<td>native</td>
+<td><code>XenoCore_Party_Message_TacticChanged</code></td>
+<td>A party tactic changed, for the whole party or one member. Broadcast by <code>UXenoCorePartyComponent</code> only.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Party.Message.Wiped</code></td>
+<td>native</td>
+<td><code>XenoCore_Party_Message_Wiped</code></td>
+<td>The whole active party fell (Phase Defeated), then stood again at the respawn point (Phase Respawned). Broadcast by <code>UXenoCorePartyComponent</code> only.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Message.Changed</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Message_Changed</code></td>
+<td>Broadcast by <code>UXenoCorePartyGaugeComponent</code> whenever the Party Gauge moves.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Message.Refused</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Message_Refused</code></td>
+<td>Broadcast by <code>UXenoCorePartyGaugeComponent::NotifyCannotAfford</code> - something asked for bars the gauge does not hold.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Reason.ArtBonus</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Reason_ArtBonus</code></td>
+<td>An art's positional bonus effect landed (side/back). XC1: +20.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Reason.BurstAffinity</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Reason_BurstAffinity</code></td>
+<td>A Burst Affinity prompt was answered. XC1: +50.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Reason.BurstAffinityPerfect</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Reason_BurstAffinityPerfect</code></td>
+<td>A Burst Affinity prompt was answered with perfect timing. XC1: +75.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Reason.ChainAttack</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Reason_ChainAttack</code></td>
+<td>Bars spent starting a Chain Attack. XC1: all 3.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Reason.ChainAttackKill</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Reason_ChainAttackKill</code></td>
+<td>An enemy was defeated during a Chain Attack. XC1: +100.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Reason.Critical</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Reason_Critical</code></td>
+<td>A party member landed a critical hit. XC1: +10.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Reason.Debug</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Reason_Debug</code></td>
+<td>Moved by a console command.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Reason.Revive</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Reason_Revive</code></td>
+<td>Bars spent reviving an incapacitated ally. XC1: 1 bar.</td>
+</tr>
+<tr>
+<td><code>XenoCore.PartyGauge.Reason.TensionAutoAttack</code></td>
+<td>native</td>
+<td><code>XenoCore_PartyGauge_Reason_TensionAutoAttack</code></td>
+<td>An auto-attack landed at Very High tension. XC1: +5.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Progression.Message.Changed</code></td>
+<td>native</td>
+<td><code>XenoCore_Progression_Message_Changed</code></td>
+<td>A party member banked EXP or levelled, or the purse changed. Broadcast by <code>UXenoCoreProgressionComponent</code> and nothing else.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Progression.Message.LevelUp</code></td>
+<td>native</td>
+<td><code>XenoCore_Progression_Message_LevelUp</code></td>
+<td>Broadcast once per award that raised at least one character's level, carrying every character it raised and the level each came from.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Quest.Message.Changed</code></td>
+<td>native</td>
+<td><code>XenoCore_Quest_Message_Changed</code></td>
+<td>A quest was offered, accepted, declined, progressed or turned in. Broadcast by <code>UXenoCoreQuestComponent</code> and nothing else.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Quest.Message.TurnedIn</code></td>
+<td>native</td>
+<td><code>XenoCore_Quest_Message_TurnedIn</code></td>
+<td>Broadcast once when a quest is handed in: <code>FXenoCoreQuestTurnedInMessage</code> names the quest and carries the payout, because a moment later the gold is a running total and the items are gone from the bag.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Skill.Value</code></td>
+<td>native</td>
+<td><code>XenoCore_Skill_Value</code></td>
+<td>SetByCaller: a behavioural skill's Effect Value, handed to its GameplayEffect by ApplySkillsToPawn.</td>
+</tr>
+<tr>
+<td><code>XenoCore.SkillBonus.ArtPoints</code></td>
+<td>native</td>
+<td><code>XenoCore_SkillBonus_ArtPoints</code></td>
+<td>Skill bonus: % more AP from defeated enemies (XC1 effect 141: Spoils of War)</td>
+</tr>
+<tr>
+<td><code>XenoCore.SkillBonus.BattleExperience</code></td>
+<td>native</td>
+<td><code>XenoCore_SkillBonus_BattleExperience</code></td>
+<td>Skill bonus: % more EXP from defeated enemies (XC1 effect 134)</td>
+</tr>
+<tr>
+<td><code>XenoCore.SkillBonus.CriticalDamage</code></td>
+<td>native</td>
+<td><code>XenoCore_SkillBonus_CriticalDamage</code></td>
+<td>Skill bonus: % more damage on a critical hit (XC1 effect 81: Ultimate Strike)</td>
+</tr>
+<tr>
+<td><code>XenoCore.SkillBonus.EtherDamageTaken</code></td>
+<td>native</td>
+<td><code>XenoCore_SkillBonus_EtherDamageTaken</code></td>
+<td>Skill bonus: % less ether damage taken (XC1 effect 80: Strength of Will)</td>
+</tr>
+<tr>
+<td><code>XenoCore.SkillBonus.FirstStrike</code></td>
+<td>native</td>
+<td><code>XenoCore_SkillBonus_FirstStrike</code></td>
+<td>Skill bonus: % more damage on the first hit of a battle (XC1 effect 82: Opening Blow)</td>
+</tr>
+<tr>
+<td><code>XenoCore.SkillBonus.HealingPower</code></td>
+<td>native</td>
+<td><code>XenoCore_SkillBonus_HealingPower</code></td>
+<td>Skill bonus: % more HP restored by the caster's healing arts (XC1: Healing Wisdom)</td>
+</tr>
+<tr>
+<td><code>XenoCore.SkillBonus.PhysicalDamageTaken</code></td>
+<td>native</td>
+<td><code>XenoCore_SkillBonus_PhysicalDamageTaken</code></td>
+<td>Skill bonus: % less physical damage taken (XC1 effect 79: Body of Steel)</td>
+</tr>
+<tr>
+<td><code>XenoCore.SkillBonus.QuestExperience</code></td>
+<td>native</td>
+<td><code>XenoCore_SkillBonus_QuestExperience</code></td>
+<td>Skill bonus: % more EXP from quest turn-ins (XC1: Rewarding Work)</td>
+</tr>
+<tr>
+<td><code>XenoCore.Skills.Message.SkillLearnt</code></td>
+<td>native</td>
+<td><code>XenoCore_Skills_Message_SkillLearnt</code></td>
+<td>A character learnt a skill. Carries the member, branch and index, because the record only holds a count.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Stat.Agility</code></td>
+<td>native</td>
+<td><code>XenoCore_Stat_Agility</code></td>
+<td>Adds to accuracy and evasion. Armour Weight subtracts from it.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Stat.Ether</code></td>
+<td>native</td>
+<td><code>XenoCore_Stat_Ether</code></td>
+<td>Adds to the ether damage stat.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Stat.EtherDefence</code></td>
+<td>native</td>
+<td><code>XenoCore_Stat_EtherDefence</code></td>
+<td>Equipment only - a character has none innately.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Stat.MaxHealth</code></td>
+<td>native</td>
+<td><code>XenoCore_Stat_MaxHealth</code></td>
+<td>No description.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Stat.MoveSpeed</code></td>
+<td>native</td>
+<td><code>XenoCore_Stat_MoveSpeed</code></td>
+<td>Field movement speed, as a percent bonus (XC1: Nimble Feet). <code>UXenoCoreStatSet::MoveSpeed</code>.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Stat.PhysicalDefence</code></td>
+<td>native</td>
+<td><code>XenoCore_Stat_PhysicalDefence</code></td>
+<td>Equipment only - a character has none innately.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Stat.Strength</code></td>
+<td>native</td>
+<td><code>XenoCore_Stat_Strength</code></td>
+<td>Adds to the physical damage stat.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Stat.WeaponAttackMax</code></td>
+<td>native</td>
+<td><code>XenoCore_Stat_WeaponAttackMax</code></td>
+<td>High end of the weapon damage roll. The game caps the spread at min+99.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Stat.WeaponAttackMin</code></td>
+<td>native</td>
+<td><code>XenoCore_Stat_WeaponAttackMin</code></td>
+<td>Low end of the weapon damage roll.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Status.Duration</code></td>
+<td>native</td>
+<td><code>XenoCore_Status_Duration</code></td>
+<td>SetByCaller: seconds a status lasts, sent from an art's Effects entry. A status effect whose duration is SetByCaller reads it here.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Status.Magnitude</code></td>
+<td>native</td>
+<td><code>XenoCore_Status_Magnitude</code></td>
+<td>SetByCaller: a status's strength, sent from an art's Effects entry. What it means is the status's own - see each <code>GE_XenoCore_Status_</code>*'s description.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Talent.Magnitude.Charge</code></td>
+<td>native</td>
+<td><code>XenoCore_Talent_Magnitude_Charge</code></td>
+<td>SetByCaller channel carrying one auto-attack's worth of Talent Gauge onto <code>GE_XenoCore_TalentCharge</code>.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Targeting.Direction.Next</code></td>
+<td>ini</td>
+<td></td>
+<td>Cycle forward. Carried on the SwitchTarget event payload as InstigatorTags.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Targeting.Direction.Prev</code></td>
+<td>ini</td>
+<td></td>
+<td>Cycle backward. Same payload slot.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Targeting.Message.TargetChanged</code></td>
+<td>native</td>
+<td><code>XenoCore_Targeting_Message_TargetChanged</code></td>
+<td>Broadcast only by <code>UXenoCoreGameplayAbility_TargetMode::SetCurrentTarget</code>.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Time.Message.HourBlockChanged</code></td>
+<td>native</td>
+<td><code>XenoCore_Time_Message_HourBlockChanged</code></td>
+<td>The clock entered a new three-hour block - XC1's NPC schedule granularity.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Time.Message.Jumped</code></td>
+<td>native</td>
+<td><code>XenoCore_Time_Message_Jumped</code></td>
+<td>The time was set rather than reached: lighting snaps, the weather re-rolls.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Time.Message.PhaseChanged</code></td>
+<td>native</td>
+<td><code>XenoCore_Time_Message_PhaseChanged</code></td>
+<td>The clock entered a new phase - Morning 05-06, Day 06-17, Evening 17-19, Night 19-05 (XC1)</td>
+</tr>
+<tr>
+<td><code>XenoCore.Tutorial.Trigger.BattleStarted</code></td>
+<td>native</td>
+<td><code>XenoCore_Tutorial_Trigger_BattleStarted</code></td>
+<td>Tutorial trigger: the party entered battle.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Tutorial.Trigger.EnemyNear</code></td>
+<td>native</td>
+<td><code>XenoCore_Tutorial_Trigger_EnemyNear</code></td>
+<td>Tutorial trigger: an enemy came within the Enemy Near Distance of the party leader.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Aid.Given</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Aid_Given</code></td>
+<td>Healing or buffing an ally.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Aid.Received</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Aid_Received</code></td>
+<td>Healed or buffed by an ally.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.BattleStart.Follower.Even</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_BattleStart_Follower_Even</code></td>
+<td>A follower draws on an even enemy.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.BattleStart.Follower.Strong</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_BattleStart_Follower_Strong</code></td>
+<td>A follower draws on a strong enemy.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.BattleStart.Follower.Weak</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_BattleStart_Follower_Weak</code></td>
+<td>A follower draws on a weak enemy.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.BattleStart.Leader.Even</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_BattleStart_Leader_Even</code></td>
+<td>Leader draws on an even enemy.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.BattleStart.Leader.Strong</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_BattleStart_Leader_Strong</code></td>
+<td>Leader draws on an enemy well above the party.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.BattleStart.Leader.Weak</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_BattleStart_Leader_Weak</code></td>
+<td>Leader draws on an enemy well below the party.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Critical</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Critical</code></td>
+<td>Landed a critical hit.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Downed</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Downed</code></td>
+<td>This character was downed.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Effort.Attack</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Effort_Attack</code></td>
+<td>Auto-attack grunt. Overlaps other lines.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Effort.Block</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Effort_Block</code></td>
+<td>Blocked a hit. Overlaps other lines.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Effort.Jump</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Effort_Jump</code></td>
+<td>A jump grunt. Overlaps other lines.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Enemy.Last</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Enemy_Last</code></td>
+<td>One enemy left.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Enemy.Low</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Enemy_Low</code></td>
+<td>The enemy is nearly beaten.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Enemy.Reinforcement</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Enemy_Reinforcement</code></td>
+<td>Another enemy joined the fight.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Evade</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Evade</code></td>
+<td>Evaded an attack.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Field</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Field</code></td>
+<td>Out-of-battle banter. Only after the party has been calm a while, with a long cooldown, never during dialogue.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Field.EnemySighted</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Field_EnemySighted</code></td>
+<td>An enemy has come into view and the party is not yet fighting.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Field.Exchange</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Field_Exchange</code></td>
+<td>Opens a two-person exchange: addressed to an ally, whose row names the Reply category.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Field.Idle</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Field_Idle</code></td>
+<td>A remark to nobody in particular while the party stands about.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Field.Scenery</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Field_Scenery</code></td>
+<td>A remark about where the party is.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Field.Talk</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Field_Talk</code></td>
+<td>The player talked to this ally out of battle: a short voiced line in the dialogue box.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Field.Travel</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Field_Travel</code></td>
+<td>A remark while the party is on the move (jogging behind the leader)</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Field.WaitUp</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Field_WaitUp</code></td>
+<td>The leader is pulling away from this companion.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Gauge.Bar</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Gauge_Bar</code></td>
+<td>The Party Gauge filled a bar.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Gauge.Full</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Gauge_Full</code></td>
+<td>The Party Gauge is full.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Hurt.Heavy</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Hurt_Heavy</code></td>
+<td>Toppled or dazed.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Hurt.Light</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Hurt_Light</code></td>
+<td>Took a hit. Overlaps other lines.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.LevelUp</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_LevelUp</code></td>
+<td>This character levelled up.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.LowHP</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_LowHP</code></td>
+<td>Own HP crossed below the low threshold.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Message.Spoke</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Message_Spoke</code></td>
+<td>Broadcast by <code>UXenoCoreBattleVoiceSubsystem</code> when a line starts: speaker, category, take, duration. Subtitles and the face listen.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Miss</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Miss</code></td>
+<td>Own attack missed.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Reaction.Break</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Reaction_Break</code></td>
+<td>Break landed on the target.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Reaction.Daze</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Reaction_Daze</code></td>
+<td>Daze landed on the target.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Reaction.Topple</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Reaction_Topple</code></td>
+<td>Topple landed on the target.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Revive.Given</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Revive_Given</code></td>
+<td>Reviving an ally. Rows set Addressee to name who.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Revive.Received</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Revive_Received</code></td>
+<td>Stood back up by an ally.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.TakeControl</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_TakeControl</code></td>
+<td>The player switched control to this character in battle.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.TalentReady</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_TalentReady</code></td>
+<td>The Talent Gauge is full.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Victory.Clean</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Victory_Clean</code></td>
+<td>Battle won comfortably.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Victory.Close</code></td>
+<td>native</td>
+<td><code>XenoCore_Voice_Victory_Close</code></td>
+<td>Battle won narrowly - someone was downed, or the leader is low.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Weather.Clear</code></td>
+<td>native</td>
+<td><code>XenoCore_Weather_Clear</code></td>
+<td>Clear skies - XC1's default everywhere, and what an area with no weather table always has.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Weather.Message.Changed</code></td>
+<td>native</td>
+<td><code>XenoCore_Weather_Message_Changed</code></td>
+<td>The weather changed.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Weather.Rain</code></td>
+<td>ini</td>
+<td></td>
+<td>Rain - XC1 Bionis Leg 5%, Tephra Cave 5%, Colony 6 5%. Lowers the music.</td>
+</tr>
+<tr>
+<td><code>XenoCore.Weather.Storm</code></td>
+<td>ini</td>
+<td></td>
+<td>Thunderstorm - XC1 Bionis Leg 2%, Tephra Cave 3%. Rain plus lightning; lowers the music.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../curve-tables/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Curve tables">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Curve tables
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../gameplay-messages/" class="md-footer__link md-footer__link--next" aria-label="Next: Gameplay messages">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Gameplay messages
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "navigation.footer", "content.code.copy", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
