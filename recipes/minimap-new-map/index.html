@@ -4563,7 +4563,7 @@ world it covers, <strong>Map World Min</strong> (the image's top-left corner) an
 bottom-right corner), in world centimetres.</p>
 <p>The image is read with <strong>+X to the right and +Y downwards</strong>, so north (up on the map) is −Y. The
 sample maps are built that way, and your image must be drawn in that orientation. The editor's
-<strong>Top</strong> viewport shows the world the same way round. <!-- VERIFY: the Top orthographic viewport shows +X right and +Y down, matching the minimap --></p>
+<strong>Top</strong> viewport shows the world the same way round. <!-- VERIFY(EDITOR): open the Top viewport and place one cube at (+5000,0,0) and one at (0,+5000,0); pass = the +X cube sits right of centre and the +Y cube below it. The 5.8 view matrix (EditorViewportClient.cpp:1343, LVT_OrthoXY) reads as +X down, +Y left, so expect this sentence to need rewriting or deleting. --></p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-the-area-definition">1. Create the Area Definition<a class="headerlink" href="#1-create-the-area-definition" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4602,7 +4602,10 @@ counts is not guaranteed.</p>
 <li>Set the bounds:<ul>
 <li>If the image covers exactly your Landscape: select the XenoCore Map Area in the level and click
   <strong>Map › Fit Bounds To Landscape</strong> in its Details panel. Then <strong>save the Area Definition</strong>: the
-  button changes it but does not save it.</li>
+  button changes it but does not save it. On a World Partition map it measures only the
+  Landscape pieces that are <strong>loaded</strong> in the editor, so load the whole map first (World
+  Partition window: drag a box over the whole map, right-click, <strong>Load Region From Selection</strong>), or the box
+  comes out too small.</li>
 <li>Otherwise type <strong>Map › Map World Min</strong> and <strong>Map World Max</strong> in the Area Definition yourself,
   then look down on the map in the viewport: the orange box shows the rectangle you typed.</li>
 </ul>
@@ -4634,8 +4637,6 @@ Landscape.</p>
 <li>Type <code>XenoCore.Minimap.Rotate 1</code> in the console and turn the camera. The map should turn so the
    wedge always points up.</li>
 </ol>
-<!-- VERIFY: Fit Bounds To Landscape on a World Partition map with streaming landscape proxies - does it see unloaded proxies? -->
-
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

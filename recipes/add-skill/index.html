@@ -4772,14 +4772,9 @@ duplicate inherits all of them.</p>
 <h3 id="1-create-the-tree">1. Create the tree<a class="headerlink" href="#1-create-the-tree" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In the Content Browser, create the folder <code>Content/MyGame/Skills</code>.</li>
-<li>
-<p>Right-click in it and choose <strong>Miscellaneous › Data Table</strong>. For the row structure pick
-   <code>XenoCoreSkillBranchRow</code>. Name it <code>DT_MyGame_SkillTree_Guardian</code>.
-   <!-- VERIFY: the row-structure picker lists it as "XenoCoreSkillBranchRow" --></p>
-</li>
-<li>
-<p>Open it and click <strong>Add</strong> to add a row. Rename the row <code>Guardian</code>.</p>
-</li>
+<li>Right-click in it and choose <strong>Data › Data Table</strong>. For the row structure pick
+   <code>XenoCoreSkillBranchRow</code>. Name it <code>DT_MyGame_SkillTree_Guardian</code>.</li>
+<li>Open it and click <strong>Add</strong> to add a row. Rename the row <code>Guardian</code>.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Choose the row name now and keep it</p>
@@ -4879,7 +4874,7 @@ only warns about it in the Data Validation log. Never ship one.</p>
 <ol>
 <li><strong>Save</strong> the table.</li>
 <li>Right-click it in the Content Browser and choose <strong>Asset Actions › Validate Assets</strong>. Fix every
-   error; read every warning. <!-- VERIFY: Asset Actions › Validate Assets is the 5.8 menu path --></li>
+   error; read every warning.</li>
 </ol>
 <p>Add more branches the same way. XC1 gives every character five, and five is what the Skills screen
 is laid out for; nothing stops a sixth, but each extra column makes the card wider. Row order is
@@ -4954,14 +4949,9 @@ skills, and do not rename rows (see the warning above).</p>
    game</strong> so their record is seeded from the new table.</li>
 <li>Open the console (the key left of <strong>1</strong>) and run <code>XenoSkills</code>. The Output Log lists <code>Guardian</code> as <strong>open</strong>, <code>0/5
    learnt</code>, and selected.</li>
-<li>
-<p>Run <code>XenoGiveSP 300</code>. <code>LogXenoSkills</code> reports <code>learnt 'Sturdy Frame'</code>, and "Skill Learnt" floats
-   over the character. Their max HP is 5 % higher on the Party screen's stats.
-   <!-- VERIFY: which screen shows the character's live Max HP --></p>
-</li>
-<li>
-<p>Run <code>XenoGiveSP 1700</code>. Skills 2 and 3 are learnt (700 + 1,000 SP).</p>
-</li>
+<li>Run <code>XenoGiveSP 300</code>. <code>LogXenoSkills</code> reports <code>learnt 'Sturdy Frame'</code>, and "Skill Learnt" floats
+   over the character. Their max HP is 5 % higher: the second HP figure on their Party screen row.</li>
+<li>Run <code>XenoGiveSP 1700</code>. Skills 2 and 3 are learnt (700 + 1,000 SP).</li>
 <li>Open the main menu and choose <strong>Skills</strong>. The <code>Guardian</code> column shows three lit icons and the
    fourth dark. Focus the header: the trait reads <strong>Physical Defence Up 30</strong> (the <code>StatMedium</code>
    ladder at three skills), <strong>Selected</strong>, and SP <code>0 / 2,000</code>.</li>

@@ -4650,21 +4650,17 @@ folders, and your work should survive them.</p>
 <ol>
 <li>In the Content Browser, go to <strong>Content</strong> and create a folder, for example <code>MyGame/Enemies</code>.</li>
 </ol>
-<!-- VERIFY: confirm the recommended location for buyer content once the upgrade policy is decided
-(DRAFTING-NOTES F5). -->
+<!-- VERIFY(DECISION): Brian to decide the upgrade policy (DRAFTING-NOTES F5): where a buyer's own
+content lives and what a template update replaces. Then confirm `Content/MyGame/...` is the
+recommended location, or change this step. -->
 
 <h3 id="2-make-a-child-of-the-minion">2. Make a child of the minion<a class="headerlink" href="#2-make-a-child-of-the-minion" title="Permanent link">&para;</a></h3>
 <ol>
-<li>
-<p>In the Content Browser, go to <strong>XenoCore Content › Characters › Enemies › Minion</strong>. (If
-   <strong>XenoCore Content</strong> is missing, turn on <strong>Show Plugin Content</strong>; see
-   <a href="../project-tour/#where-things-are">Tour of the project</a>.)
-   <!-- VERIFY: exact Content Browser path label for plugin content in 5.8 --></p>
-</li>
-<li>
-<p>Right-click <code>B_XenoCore_Minion_Melee</code> and choose <strong>Create Child Blueprint Class</strong>. Name it
-   <code>B_MyEnemy</code>.</p>
-</li>
+<li>In the Content Browser, go to <strong>XenoCore Content › Characters › Enemies › Minion</strong> (under
+   <strong>Plugins</strong>; the folder may read just <strong>XenoCore</strong>). If it is missing, tick <strong>Plugin Content</strong> in
+   the Content Browser's <strong>Settings</strong>; see <a href="../project-tour/#where-things-are">Tour of the project</a>.</li>
+<li>Right-click <code>B_XenoCore_Minion_Melee</code> and choose <strong>Create Child Blueprint Class</strong>. Name it
+   <code>B_MyEnemy</code>.</li>
 <li>Drag <code>B_MyEnemy</code> into <code>MyGame/Enemies</code> and choose <strong>Move Here</strong>.</li>
 </ol>
 <p>A child starts identical to its parent and keeps up with it: anything you do not change still comes

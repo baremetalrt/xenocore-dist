@@ -4689,13 +4689,11 @@ side the attacker is on. A profile <strong>Evade</strong> row still wins: a fill
   victory emote and idle breaks; its <strong>Reactions</strong> list is empty, so every reaction uses the shared
   clips until you add a row. The Mannequin colour samples have theirs in
   <code>Characters/Party/AnimProfiles</code>.</li>
-<li><strong>Anyone else:</strong> in your folder, right-click › <strong>Miscellaneous › Data Asset</strong>, pick
+<li><strong>Anyone else:</strong> in your folder, right-click › <strong>Data › Data Asset</strong>, pick
   <strong>Xeno Core Character Anim Profile</strong>, and name it <code>DA_MyGame_AnimProfile_&lt;Name&gt;</code>. Then open the
   character's pawn Blueprint, <strong>Class Defaults</strong>, and set <strong>XenoCore › Animation › Anim Profile</strong> to it.
   Enemies have the same field on their Blueprint (for example <code>B_XenoCore_Minion_Melee</code>).</li>
 </ul>
-<!-- VERIFY: the Data Asset class picker shows the class as "Xeno Core Character Anim Profile" -->
-
 <h3 id="2-override-a-reaction">2. Override a reaction<a class="headerlink" href="#2-override-a-reaction" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open the profile.</li>
@@ -4715,8 +4713,6 @@ side the attacker is on. A profile <strong>Evade</strong> row still wins: a fill
 slot if the character should keep both hands on its weapon while dodging armed: on that slot the
 body comes from your clip and the arms from the weapon stance. On <code>FullBody</code> your clip's arms play
 too, which suits a sheathed character but lets the hands drift off a two-handed grip.</p>
-<!-- VERIFY: open AM_XenoCore_Evade_Duck and confirm its slot reads Defence (DefaultGroup.Defence) in the montage editor -->
-
 <h3 id="3-override-the-death-optional">3. Override the death (optional)<a class="headerlink" href="#3-override-the-death-optional" title="Permanent link">&para;</a></h3>
 <p>Add clips to <strong>Death Montages</strong>. One is picked at random when the character dies. Any clip here
 replaces the pawn's own <strong>Death Montages</strong> list entirely, so a character with its own deaths never

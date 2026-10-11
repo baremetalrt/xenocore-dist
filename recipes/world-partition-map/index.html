@@ -4703,14 +4703,9 @@ loaded wherever the party is.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-the-map">1. Create the map<a class="headerlink" href="#1-create-the-map" title="Permanent link">&para;</a></h3>
 <ol>
-<li>
-<p><strong>File › New Level</strong>, choose the <strong>Open World</strong> template (or <strong>Empty Open World</strong>). It
-   creates a World Partition level.
-   <!-- VERIFY: 5.8 New Level template names --></p>
-</li>
-<li>
-<p>Save it as <code>MyGame/Maps/L_MyWorld</code>.</p>
-</li>
+<li><strong>File › New Level...</strong>, choose the <strong>Open World</strong> template (or <strong>Empty Open World</strong>). It
+   creates a World Partition level.</li>
+<li>Save it as <code>MyGame/Maps/L_MyWorld</code>.</li>
 </ol>
 <p>To convert an existing level instead, use <strong>Tools › Convert Level</strong>. It writes a partitioned
 copy beside the original and keeps its World Settings.</p>
@@ -4765,10 +4760,8 @@ must be built from tiles.</p>
 <li>With the Landscape actor selected, set <strong>Default Phys Material</strong> to your ground physical
    material (for example <code>Environment/PM_XenoCore_Grass</code>). See
    <a href="../footstep-surface/">Footsteps by surface</a>.</li>
-<li>Optionally enable <strong>Nanite</strong> on the landscape, then build it (<strong>Build › Build Nanite</strong> or the
-   landscape builder).
-   <!-- VERIFY: 5.8 menu entry that builds landscape Nanite data after World Partition conversion -->
-</li>
+<li>Optionally enable <strong>Nanite</strong> on the landscape, then build it with <strong>Build › Build Landscape</strong>,
+   which builds the landscape's Nanite data along with its grass maps and physical material.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a one-sided landscape leaves the valley sunlit</p>
@@ -4805,8 +4798,8 @@ download size.</p>
 <h3 id="6-add-navigation">6. Add navigation<a class="headerlink" href="#6-add-navigation" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Place a <strong>Nav Mesh Bounds Volume</strong> covering the playable ground.</li>
-<li>On the <code>RecastNavMesh</code> actor, turn on its World Partition support so navigation streams with
-   the cells. <!-- VERIFY: the RecastNavMesh setting name for partitioned navigation in 5.8 --></li>
+<li>On the <code>RecastNavMesh</code> actor, under <strong>Generation</strong>, tick <strong>IsWorldPartitionedNavMesh</strong> so
+   navigation streams with the cells. (It is greyed out on a map that is not World Partition.)</li>
 <li>Press <strong>P</strong> in the viewport to check the green coverage.</li>
 </ol>
 <h3 id="7-make-new-game-start-here">7. Make New Game start here<a class="headerlink" href="#7-make-new-game-start-here" title="Permanent link">&para;</a></h3>

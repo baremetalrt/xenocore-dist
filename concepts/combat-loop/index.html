@@ -4924,7 +4924,10 @@ it does <strong>not</strong> work with XenoCore's characters: a damage effect of
 <code>GameplayCue.Character.DamageTaken</code> shows sparks but no number and no hit sound. Duplicate
 <code>GE_XenoCore_Damage</code> for new damage effects, so they keep <code>GameplayCue.XenoCore.DamageTaken</code>.
 See <a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Hit numbers or hit sounds are missing</a>.
-<!-- VERIFY: the XenoCore cue copy in play on stock Lyra (commit 4d8691f0: not yet play-tested). --></p>
+<!-- VERIFY(PLAY): wiring is static-checked (GE_XenoCore_Damage names GameplayCue.XenoCore.DamageTaken,
+which GCNL_XenoCore_DamageTaken answers). On a STOCK Lyra 5.8 install with only the plugin added, in
+Gaur Plain: hit a minion (white number + hit sound over it), let an ally hit it (number + sound),
+land a crit (gold number + weak-spot sound). Pass = all three appear. --></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a hit with no location</p>
@@ -5081,8 +5084,6 @@ down. See <a href="../party-gauge-and-revive/">Party Gauge, downed and revive</a
 </tr>
 </tbody>
 </table>
-<!-- VERIFY: Directional Montages, Front Back Half Angle and Hold Until Montage Ends all show under XenoCore › Reaction (the category moved from XenoCore › HitReact on 2026-09-30). -->
-
 <p>See <a href="../../recipes/tune-auto-attack/">Tune the auto-attack</a> and
 <a href="../../recipes/hit-feedback/">Change the hit feedback</a>.</p>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>

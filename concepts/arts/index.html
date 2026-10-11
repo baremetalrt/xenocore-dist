@@ -4633,7 +4633,7 @@ the D-pad, it plays, lands its damage and effects, and greys out for its cooldow
 <tr>
 <td>Arts menu</td>
 <td><code>UXenoCoreArtsScreenBase</code> · <code>UserInterface/Arts/W_XenoCore_ArtsScreen</code></td>
-<td>Arrange the palette (Setting tab) and spend AP (Level Up tab) <!-- VERIFY: the Arts screen base was being reworked onto a shared character-menu base when this was written; confirm tab names and behaviour in the released build --></td>
+<td>Arrange the palette (Setting tab) and spend AP (Level Up tab), switched with ZL / ZR</td>
 </tr>
 </tbody>
 </table>
@@ -4720,8 +4720,6 @@ character is still levels away from cost nothing. See <a href="../performance/">
 </table>
 <p>Open a table to see each row's <strong>Default Slot</strong>. Which character learns what, and when, is your
 project's call; the shipped tables are a starting point.</p>
-<!-- VERIFY: levels are read from the row names (Lv01_, Lv02_...); confirm each row's Unlock Level in the editor. -->
-
 <p>When a level-up teaches an Art, the level-up banner (<code>W_XenoCore_LevelUp</code>) adds a line
 <em>New Art  <name></em> indented under the character who learned it, benched characters included. Arts
 get no floating text over heads: the whole party levels at once, so it would be noise. (A learnt
@@ -5103,7 +5101,7 @@ fine), then set that character's <strong>Art Learn Table</strong>.</p>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>A new standard Art:</strong> create it blank in your own folder (<code>Content/MyGame/Arts</code>): right-click ›
-  <strong>Miscellaneous › Data Asset</strong> › <code>XenoCoreArtDefinition</code>. Fill in the fields, give it its own
+  <strong>Data › Data Asset</strong> › <code>XenoCoreArtDefinition</code>. Fill in the fields, give it its own
   <strong>Cooldown Tag</strong>, and add a row for it to a character's learnset. Do not duplicate a concrete Art
   such as <code>DA_XenoCore_AirSlash</code>: the copy brings Air Slash's Break and side-Slow effects with it.
   <code>DA_XenoCore_SlitEdge</code>, <code>DA_XenoCore_StreamEdge</code> and <code>DA_XenoCore_WarSwing</code> are examples built

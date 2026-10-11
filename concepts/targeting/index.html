@@ -4611,7 +4611,7 @@ diamond, arrows and sound, and how far an enemy chases before it gives up. See
 <tr>
 <td>Exit</td>
 <td><code>Input/Abilities/GA_XenoCore_TargetModeExit</code></td>
-<td>Ends target mode on the B input. <!-- VERIFY: how it ends it (its package names only <code>Ability.XenoCore.TargetMode</code> and <code>Status.XenoCore.TargetMode</code>, so likely cancel-by-tag) --></td>
+<td>Ends target mode on the B input: it cancels the ability tagged <code>Ability.XenoCore.TargetMode</code> (<strong>Cancel Abilities With Tag</strong>), and can only run while <code>Status.XenoCore.TargetMode</code> is on.</td>
 </tr>
 <tr>
 <td>Off-screen arrows</td>
@@ -4667,8 +4667,10 @@ is logged. The reason is one of <code>dead</code>, <code>out of range (...)</cod
 <code>line of sight blocked by ...</code>, naming the blocking actor. A deliberate exit (B, a won fight, a
 switch) logs nothing. If the auto-attack seems to stop for no reason, look for this line first.</p>
 </div>
-<!-- VERIFY: Require Line Of Sight and Require On Screen values on the graph's Step Target From
-and Is Target Still Valid nodes. -->
+<!-- VERIFY(EDITOR): open GA_XenoCore_TargetMode, Ctrl+F each Step Target From node and the Is Target
+Still Valid node, and note whether Require Line Of Sight / Require On Screen are ticked. The lost-lock
+reason `line of sight blocked` above only appears if Is Target Still Valid's Require Line Of Sight is
+ticked; write the actual values into the settings table below. -->
 
 <h3 id="facing-while-locked">Facing while locked<a class="headerlink" href="#facing-while-locked" title="Permanent link">&para;</a></h3>
 <p>Out of battle a character turns to face where it runs. In battle, target mode switches facing to
@@ -4707,8 +4709,6 @@ Confirming it opens the <strong>party cursor</strong>, the same cursor the battl
 <p>Only one party cursor can be up at a time. While it is choosing an ally, the party switch is
 refused, and while the switch cursor is held, an ally Art cannot open it. The cursor's look is set
 on the party component; see <a href="../party/#what-you-can-change">Party</a>.</p>
-<!-- VERIFY: that a downed member can be chosen by the ally cursor in PIE (the component allows any member) -->
-
 <h3 id="camera">Camera<a class="headerlink" href="#camera" title="Permanent link">&para;</a></h3>
 <p>When the fight starts (the weapon is drawn), the camera eases towards the target once, over
 <strong>Camera Focus Duration</strong> (0.3 s), and then the player owns the camera again. Nothing re-aims it
@@ -4778,7 +4778,7 @@ character's own ability set. Do not add it to a second set that the same charact
 </tr>
 <tr>
 <td><strong>Require Line Of Sight</strong>, <strong>Require On Screen</strong></td>
-<td>Tick boxes on the <strong>Step Target From</strong> and <strong>Is Target Still Valid</strong> nodes inside <code>GA_XenoCore_TargetMode</code> (open it, press <strong>Ctrl+F</strong> to find each node, and tick or untick the pin; then <strong>Compile</strong> and <strong>Save</strong>)</td>
+<td>Tick boxes on the <strong>Step Target From</strong> node (both) and the <strong>Is Target Still Valid</strong> node (Require Line Of Sight only) inside <code>GA_XenoCore_TargetMode</code> (open it, press <strong>Ctrl+F</strong> to find each node, and tick or untick the pin; then <strong>Compile</strong> and <strong>Save</strong>)</td>
 <td>Which enemies can be acquired and cycled</td>
 </tr>
 <tr>

@@ -4665,8 +4665,8 @@ appears.</p>
 </ul>
 <p>The title screen keeps the world running behind it, so the scene animates.</p>
 <p><strong>Saving.</strong> From the in-game menu, <strong>Save</strong> opens the save screen in Save mode. The autosave row is
-listed but cannot be saved over. Saving is refused while any enemy is engaged in a fight. <!-- VERIFY: what the save screen shows when a
-save is refused --> Writes are asynchronous; the screen's "do not turn off the power" notice lasts
+listed but cannot be saved over. Saving is refused while any enemy is engaged in a fight: picking a
+slot then shows Lyra's message box, <em>Save</em> / <em>You cannot save right now.</em>, with an OK button. Writes are asynchronous; the screen's "do not turn off the power" notice lasts
 exactly as long as the write.</p>
 <p><strong>Autosave.</strong> A save point autosaves when <strong>the player</strong> (not a following party member) steps on
 it. If a fight refuses the save, it keeps retrying every <strong>Retry Interval</strong> while the player
@@ -4704,7 +4704,7 @@ project's default map.</p>
 written later uses that picture.</p>
 <p><strong>The slot's location and chapter.</strong> A save row names the map it was written on, from <strong>Location
 Names</strong> in <strong>Project Settings › Game › XenoCore Save</strong>, and prints <strong>Default Story Text</strong> as its
-chapter line. <!-- VERIFY: the settings page's category (Game) in the editor --> A map with no entry
+chapter line. A map with no entry
 prints no location, and the row draws cleanly without it. Calling <strong>Set Location Text</strong> on the save
 system overrides the name for the current map only (for a region inside a large map); the
 override lapses once the party is on another map. <strong>Set Story Text</strong> replaces the chapter line until

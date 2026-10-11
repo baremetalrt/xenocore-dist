@@ -4635,14 +4635,9 @@ is simply missing from the game.</p>
 <h3 id="2-create-the-shop-table">2. Create the shop table<a class="headerlink" href="#2-create-the-shop-table" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create a folder <code>MyGame/Shops</code> under <strong>Content</strong>.</li>
-<li>
-<p>Right-click in it and choose <strong>Miscellaneous › Data Asset</strong>. Pick <code>XenoCoreShopTable</code> as the
-   class. Name it <code>DA_Shop_Blacksmith</code>.
-   <!-- VERIFY: the class picker lists XenoCoreShopTable under this label --></p>
-</li>
-<li>
-<p>Open it. Under <strong>XenoCore › Shop</strong>, add one entry to <strong>Offers</strong> per item:</p>
-<ul>
+<li>Right-click in it and choose <strong>Data › Data Asset</strong>. In the class picker, pick
+   <strong>Xeno Core Shop Table</strong> (search <code>Shop Table</code>). Name it <code>DA_Shop_Blacksmith</code>.</li>
+<li>Open it. Under <strong>XenoCore › Shop</strong>, add one entry to <strong>Offers</strong> per item:<ul>
 <li><strong>Item</strong>: the item definition.</li>
 <li><strong>Price Override</strong>: leave at <code>0</code> to charge the item's own buy price. Type a number to charge
   that instead.</li>
@@ -4692,8 +4687,6 @@ reports:</p>
 </tbody>
 </table>
 <p>Fix every error before you go on.</p>
-<!-- VERIFY: Asset Actions › Validate Assets is the 5.8 menu path -->
-
 <h3 id="4-place-the-shopkeeper">4. Place the shopkeeper<a class="headerlink" href="#4-place-the-shopkeeper" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open the level you want the shop in. For a first try, use <code>Maps/L_XenoCore_Gym</code>.</li>

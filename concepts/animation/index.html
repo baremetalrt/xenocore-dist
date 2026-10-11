@@ -4613,8 +4613,6 @@ the Animation Blueprint's <strong>Variables</strong> list):</p>
 blend, and through jump states (Jump, Apex, Falling, Land) when airborne. Each state calls its layer
 function, such as <code>FullBody_Move</code>, which plays a <strong>2D blend space</strong>: direction on one axis, speed on
 the other, with walk clips at 200 and jog at 400, so both walking and running blend continuously.</p>
-<!-- VERIFY: the host state machine's states and transition rules in ABP_XenoCore_Base. -->
-
 <p><strong>Choosing the layer.</strong> The weapon instance Blueprint holds two sets, <strong>Equipped Anim Set</strong> and
 <strong>Uneuipped Anim Set</strong> (Lyra's spelling), each a list of layer classes with the tags that select
 them. When the weapon is drawn or stowed, the set for that state is searched for the layer whose
@@ -4645,8 +4643,9 @@ bare-handed clips in <code>Characters/Core/Animations/IdleBreaks</code> (Stretch
 others). Their <strong>Armed Idle Breaks</strong> are empty, so with the sword out they use the stance's own break.
 See <a href="../../recipes/companion-personality/">Give a character its own idle breaks and faces</a>.</p>
 <p><strong>Montages.</strong> Attacks, Arts, hit reactions and the draw and sheathe play as montages on top of the
-state machine. Attacks and Arts use the slots of the default slot group (<code>DefaultGroup</code>); the draw
-and sheathe use <code>UpperBody</code>. A <strong>flinch</strong> plays <strong>additively</strong> on the <code>AdditiveHitReact</code> slot, which
+state machine. Attacks and Arts use the slots of the default slot group (<code>DefaultGroup</code>): the
+party's play on <code>FullBody</code>, the minion's on <code>DefaultSlot</code>; Topple, Daze, guards, recoils and victory
+emotes also use <code>FullBody</code>; the draw and sheathe use <code>UpperBody</code>. A <strong>flinch</strong> plays <strong>additively</strong> on the <code>AdditiveHitReact</code> slot, which
 sits in its own group, <code>AdditiveGroup</code>: it is layered on top of whatever the body is doing, so a hit
 reads while the character walks or swings, and it never stops the swing. A character does not flinch
 while drawing or sheathing.</p>
@@ -4655,8 +4654,6 @@ while drawing or sheathing.</p>
 that slot, so the body ducks while the hands stay on the sword; unarmed, the clip's own arms play.</p>
 <p>While a hit's knockback is pushing the body, the anim instance reads its velocity as zero, so a
 character sliding backwards from a blow does not break into a forward jog.</p>
-<!-- VERIFY: the slot names on each shipped montage. -->
-
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a flinch that never shows, or that cancels the swing</p>
 <p>A flinch montage must be on the <code>AdditiveHitReact</code> slot, its clips must be <strong>Additive Anim Type</strong>
@@ -4808,7 +4805,9 @@ Part</strong> must not add a part at all. See <a href="../characters/">Character
 nothing is logged. A typo in a row name looks the same, because a name that is not a row is
 tried as a single curve. Rows built from the VRM presets listed above are known to work; check
 any row that uses a raw <code>Fcl_*</code> morph curve in Play before relying on it.
-<!-- VERIFY: whether raw Fcl_* morph curves reach the VRoid mesh through VRM4U's post ABP. --></p>
+<!-- VERIFY(PLAY): add a DT_XenoCore_FaceExpressions row whose curve mix is one raw morph (e.g.
+Fcl_MTH_A at 1.0), Play, and call Play Expression On Actor with it on Kael. Pass = the mouth
+visibly opens. If nothing moves, say here that raw Fcl_* curves do not reach the face. --></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: the idle break branches wired backwards</p>

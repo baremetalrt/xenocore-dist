@@ -4717,9 +4717,9 @@ clips that carry root motion.</p>
 <p><strong>Why:</strong> the idle break is set per anim layer, on the layer's <strong>Class Defaults</strong>: <strong>Idle Break
 Anim</strong>, <strong>Idle Break Delay</strong> and <strong>Idle Break Jitter</strong> (<strong>XenoCore › Idle Break</strong>). An empty <strong>Idle
 Break Anim</strong> means that stance never breaks. A layer child that does not set it inherits its
-parent's clip, so a new armed layer made from the unarmed one plays the unarmed fidget.</p>
-<!-- VERIFY: category label, and which layer asset holds the unarmed default -->
-
+parent's clip, so a new armed layer made from the unarmed one plays the unarmed fidget. The unarmed
+default, <code>MM_Unarmed_IdleBreak_Fidget</code>, is set on <code>ABP_XenoCore_UnarmedAnimLayers</code>; the layer base,
+<code>ABP_XenoCore_ItemLayersBase</code>, leaves it empty.</p>
 <p>A character with an <strong>Anim Profile</strong> overrides that clip with its own lists: <strong>Idle Breaks</strong> with the
 weapon away, <strong>Armed Idle Breaks</strong> with it drawn. If a character plays the wrong fidget, look there
 first: an unarmed clip in <strong>Armed Idle Breaks</strong> plays straight through the sword. The profile is read
@@ -4744,9 +4744,8 @@ VRoid members have a face at all: a Mannequin-bodied character never shows one.<
 <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>, <code>aa</code>, <code>ih</code>, <code>ou</code>, <code>ee</code>, <code>oh</code>, <code>blink</code>, <code>blinkLeft</code>,
 <code>blinkRight</code>), and check any raw <code>Fcl_*</code> curve in Play before relying on it. If the downed or victory
 face is missing on one character only, its retarget anim Blueprint has its own <strong>Expression Rules</strong>
-list; add the missing rule there, or reset the property to its default.</p>
-<!-- VERIFY: the shipped ABP_XenoCore_VRoidRetarget_* assets do not restate Expression Rules, so the Downed -> Pained and Celebrating -> Laugh defaults reach them. -->
-
+list; add the missing rule there, or reset the property to its default. The seven shipped retarget
+anim Blueprints keep the default list.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/companion-personality/">Give a character its own idle breaks and faces</a>.</p>
 <h3 id="a-feminine-or-armed-character-stands-in-the-masculine-unarmed-idle-but-moves-correctly">A feminine or armed character stands in the masculine unarmed idle, but moves correctly<a class="headerlink" href="#a-feminine-or-armed-character-stands-in-the-masculine-unarmed-idle-but-moves-correctly" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> a layer child swaps clips with <strong>asset overrides</strong>, and each override is tied to one node
@@ -4756,11 +4755,10 @@ when the child is next saved. Nothing warns you. The child then plays the base's
 <code>MM_Unarmed_Idle_Ready</code>. Locomotion keeps working because the blend-space override sits on a
 different node, so the fault only shows when the character stands still.</p>
 <p><strong>Fix:</strong> open the layer child, for example <code>ABP_XenoCore_UnarmedAnimLayers_Feminine</code>, and in the
-<strong>Asset Override Editor</strong> set the idle again: <code>MF_Unarmed_Idle_Ready</code> for the feminine layer,
+<strong>Asset Override Editor</strong> tab (it opens by itself for a layer child; if you closed it, reopen it
+from the <strong>Window</strong> menu) set the idle again: <code>MF_Unarmed_Idle_Ready</code> for the feminine layer,
 <code>AS_Kwang_Idle</code> for the greatsword layer. <strong>Compile</strong> and <strong>Save</strong>. Set it once only (see
 <a href="../../recipes/animation-style/">Choose an animation style</a>).</p>
-<!-- VERIFY: the Asset Override Editor's menu entry in 5.8 -->
-
 <p><strong>Avoid it next time:</strong> after any edit to the layer base's graph, open each layer child and
 check its overrides are still listed. Right-click the child in the Content Browser and choose
 <strong>Reference Viewer</strong>: its idle clip must appear among its references.</p>

@@ -4646,7 +4646,7 @@ ShooterExplorer, TopDownArena and others), and they cook unless you turn them of
 <code>XenoCore.uplugin</code> declares every plugin XenoCore's content needs (Niagara, Niagara UI Renderer,
 Water, DataRegistry, Metasound and VRM4U among them), so they stay on whatever you disable. See
 <a href="../../reference/compatibility/">Compatibility</a> for the list.</p>
-<!-- VERIFY: which Lyra sample game features can be disabled without breaking XenoCore (ShooterCore content is referenced by some host assets) -->
+<!-- VERIFY(PLAY): in a stock Lyra with XenoCore installed, disable ShooterCore, ShooterMaps, ShooterExplorer, ShooterTests and TopDownArena, restart, start a New Game and package; pass = editor starts, the game plays, and the cook log has no load errors for /XenoCore. Static check 2026-10-11: no shipped /XenoCore asset (Dev/ excluded) names a /ShooterCore, /ShooterMaps, /ShooterExplorer, /ShooterTests or /TopDownArena path; Patches/05 (2026-09-29, before the pure-plugin move) still says XenoCore used 157 ShooterCore packages. If it passes, list those five here as safe to disable. -->
 
 <ol>
 <li>Open <strong>Edit › Plugins</strong>, filter by <strong>Enabled</strong>.</li>
@@ -4668,9 +4668,8 @@ the build.</p>
 <details class="note">
 <summary>For programmers: the same from the command line</summary>
 <p>Unreal Automation Tool runs the whole package without the editor:</p>
-<div class="highlight"><pre><span></span><code>&quot;&lt;Engine&gt;\Engine\Build\BatchFiles\RunUAT.bat&quot; BuildCookRun -project=&quot;&lt;project folder&gt;\Lyra.uproject&quot; -target=LyraGame -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory=&quot;&lt;output folder&gt;&quot;
+<div class="highlight"><pre><span></span><code>&quot;&lt;Engine&gt;\Engine\Build\BatchFiles\RunUAT.bat&quot; BuildCookRun -project=&quot;&lt;project folder&gt;\Lyra.uproject&quot; -noP4 -target=LyraGame -platform=Win64 -clientconfig=Development -build -cook -stage -pak -iostore -archive -archivedirectory=&quot;&lt;output folder&gt;&quot; -unattended
 </code></pre></div>
-<!-- VERIFY: this BuildCookRun line against a successful 5.8 package of this project -->
 </details>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: the exit code can say success</p>
@@ -4689,10 +4688,9 @@ the exit code or a "finished" message. Read the end of the log for <strong>BUILD
 </ol>
 <p>Anything that works in the editor and not here is almost always a missing cooked asset.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
-<p>The packaged game completes step 5 with nothing missing, and its log (in the build's
-<code>Saved/Logs</code> folder) has no <code>LoadErrors</code> or "failed to load" lines for your assets.</p>
-<!-- VERIFY: packaged log location for LyraGame -->
-
+<p>The packaged game completes step 5 with nothing missing, and its log
+(<code>&lt;output folder&gt;/Windows/Lyra/Saved/Logs/Lyra.log</code>) has no <code>LoadErrors</code> or "failed to load" lines
+for your assets.</p>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">A menu or popup never opens in the build</p>
@@ -4707,9 +4705,8 @@ the exit code or a "finished" message. Read the end of the log for <strong>BUILD
 <div class="admonition warning">
 <p class="admonition-title">The package is far bigger than expected</p>
 <p>Sample content, pack assets or unused Lyra features are still being cooked. Right-click each
-of your maps in the Content Browser and choose <strong>Size Map</strong> to see what it pulls in, and see
-<a href="../megascans-assets/">Megascans at shipping size</a>.
-<!-- VERIFY: Size Map is on the asset right-click menu in 5.8 --></p>
+of your maps in the Content Browser and choose <strong>Size Map...</strong> to see what it pulls in, and see
+<a href="../megascans-assets/">Megascans at shipping size</a>.</p>
 </div>
 <p>More in <a href="../../troubleshooting/build-and-editor/">Build and editor troubleshooting</a>.</p>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>

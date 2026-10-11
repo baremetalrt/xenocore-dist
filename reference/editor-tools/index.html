@@ -4529,17 +4529,15 @@ from:</p>
   mode). Unreal exposes each library as <code>unreal.&lt;ClassName minus the U&gt;</code> with snake-case
   functions, for example:</li>
 </ul>
-<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">unreal</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">unreal</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">unreal</span><span class="o">.</span><span class="n">XenoCoreMapTools</span><span class="o">.</span><span class="n">get_default_gameplay_experience</span><span class="p">(</span>
     <span class="n">unreal</span><span class="o">.</span><span class="n">load_asset</span><span class="p">(</span><span class="s2">&quot;/XenoCore/Maps/L_XenoCore_Gym&quot;</span><span class="p">)))</span>
 </code></pre></div>
-  <!-- VERIFY: exact parameter list of GetDefaultGameplayExperience and that the call above runs -->
-</p>
 <div class="admonition warning">
 <p class="admonition-title">Never call these from gameplay Blueprints</p>
 <p>The module is editor-only. A gameplay Blueprint that calls one of these nodes compiles in the
 editor and then fails to cook or package. Use them only from Editor Utility assets and Python.
-<!-- VERIFY: cook behaviour when a runtime Blueprint references an Editor-module function --></p>
+<!-- VERIFY(EDITOR): statically, XenoCoreEditor is Type "Editor" in XenoCore.uplugin, so it is never in a game build, and no shipped asset references /Script/XenoCoreEditor. Not checked: what the cook actually does. Test: add a call to UXenoCoreMapTools::GetDefaultGameplayExperience in a throwaway gameplay Blueprint (e.g. a duplicate of B_XenoCore_Npc), compile, then cook the demo (memory demo-builds-only). Pass = the cook or the packaged game reports an error naming the node/class; if it cooks and runs silently, rewrite this box to say what happens instead. --></p>
 </div>
 <p>Every function's full signature is listed in
 <a href="../cpp-classes/#xenocoreeditor-root">C++ classes › XenoCoreEditor</a>.</p>
@@ -4709,13 +4707,13 @@ for its asset.</p>
 <p>The repository that XenoCore is developed in has a <code>Tools/</code> folder at its root, full of Python and
 shell scripts used to author the shipped assets. Those scripts are internal: they assume the
 developer's machine, a running editor bridge, and specific asset states. They are not supported,
-not documented, and not needed to use or extend the template.</p>
-<!-- VERIFY: Tools/ is excluded from the Fab package -->
-
+not documented, and not needed to use or extend the template. The package you receive holds only
+the plugin folder, so <code>Tools/</code> is not in it.</p>
 <h2 id="removing-the-module">Removing the module<a class="headerlink" href="#removing-the-module" title="Permanent link">&para;</a></h2>
 <p>If you do not want the editor tools, you can remove the <code>XenoCoreEditor</code> entry from
 <code>XenoCore.uplugin</code>'s <code>Modules</code> list and delete <code>Source/XenoCoreEditor</code>. Nothing in the runtime
-module depends on it. <!-- VERIFY: builds clean after removal --></p>
+module depends on it: its build file does not list <code>XenoCoreEditor</code>, and no shipped asset
+references it. You lose project setup (<strong>Tools › XenoCore</strong>) and the save-time checks with it.</p>
 
 
 

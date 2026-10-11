@@ -4792,8 +4792,8 @@ Process Anim Blueprint</strong> uses VRM4U nodes.</p>
 <h3 id="2-import">2. Import<a class="headerlink" href="#2-import" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create <code>Content/MyGame/VRoid/Rook</code>.</li>
-<li>Drag the <code>.vrm</code> file into it. In the VRM4U import dialog, make sure <strong>Optimize Vertex</strong> is
-   <strong>off</strong>.</li>
+<li>Drag the <code>.vrm</code> file into it. In the VRM4U import dialog keep the defaults; in its advanced
+   options, <strong>No MorphTarget</strong> and <strong>No physics asset</strong> must stay <strong>off</strong>.</li>
 <li>Check the import: open the skeletal mesh and look at <strong>Morph Targets</strong>. A VRoid Studio export
    has about 56. <strong>Zero means the face will never move: delete the import and try again.</strong></li>
 <li>Open the imported skeletal mesh and set its <strong>Physics Asset</strong> to the imported <code>PHYS_</code> asset.
@@ -4806,8 +4806,6 @@ whose materials are instances of <code>Characters/VRoid/M_XenoCore_VRoidLit</cod
 like the rest of the world and does not depend on VRM4U. To match them, duplicate your mesh
 and swap its materials for instances of that material.</p>
 </div>
-<!-- VERIFY: the exact VRM4U 5.8 import-dialog option labels -->
-
 <h3 id="3-build-the-ik-rig-and-retargeter">3. Build the IK rig and retargeter<a class="headerlink" href="#3-build-the-ik-rig-and-retargeter" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Duplicate <code>Characters/VRoid/Dorran/Animation/IK_AvatarSample_C</code> into your character's <code>Animation/</code> folder and set its
@@ -4819,7 +4817,7 @@ and swap its materials for instances of that material.</p>
 <li>In the retargeter, keep <strong>Run IK Rig</strong> off. With IK on, the ankles are pulled to the
    Mannequin's ankle height and the whole body sinks into the floor.</li>
 </ol>
-<!-- VERIFY: retargeter 5.8 labels, and that duplicating the sample IK rig re-resolves on a new skeleton -->
+<!-- VERIFY(EDITOR): "Run IK Rig" is the op name build_member.py:116 disables, so that label holds. Still to check by hand: duplicate IK_AvatarSample_C, set Preview Mesh to a freshly imported VRoid mesh; pass = every chain resolves (none red). Then in the duplicated retargeter, confirm the field that takes the target IK rig and how it is labelled. -->
 
 <h3 id="4-make-the-retarget-anim-blueprint">4. Make the retarget anim Blueprint<a class="headerlink" href="#4-make-the-retarget-anim-blueprint" title="Permanent link">&para;</a></h3>
 <ol>

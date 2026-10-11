@@ -4804,10 +4804,9 @@ empty slots the same music.</p>
    and the field track returns.</li>
 <li>In the options menu, lower <strong>Music</strong>. Both tracks get quieter.</li>
 </ol>
-<p>The Output Log prints one line when the map starts, naming both tracks and their volumes:
-<code>AreaMusic AreaMusic: field=... (x1.00), night=... (x1.00), battle=... (x1.00).</code></p>
-<!-- VERIFY: the log line shows the actor's internal name, which may not match the Outliner label -->
-
+<p>The Output Log prints one line when the map starts, naming each track and its volume:
+<code>AreaMusic &lt;name&gt;: field=... (x1.00), night=... (x1.00), battle=... (x1.00).</code>
+<code>&lt;name&gt;</code> is the actor's internal object name, not its Outliner label, so the two can differ.</p>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: no music at all</p>

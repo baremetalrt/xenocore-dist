@@ -4477,8 +4477,11 @@ everything RPG, and it all lives in one plugin.</p>
 then stay separate from both Lyra and XenoCore, and you can take template updates.</p>
 </div>
 <h2 id="where-things-are">Where things are<a class="headerlink" href="#where-things-are" title="Permanent link">&para;</a></h2>
-<p>In the Content Browser, click <strong>Settings</strong> (top right of the Content Browser) and tick <strong>Show
-Plugin Content</strong>. XenoCore then appears in the folder tree as <strong>XenoCore Content</strong>.</p>
+<p>In the Content Browser, click <strong>Settings</strong> (top right of the Content Browser) and tick <strong>Plugin
+Content</strong> (<strong>Show Plugin Content</strong> in the older Content Browser layout). XenoCore then appears in
+the folder tree under <strong>Plugins</strong>. With 5.8's default settings the folder reads <strong>XenoCore</strong>; this
+manual calls it <strong>XenoCore Content</strong>, which is what it reads if you turn on <strong>Display Content Folder
+Suffix</strong> in <strong>Editor Preferences › Content Editors › Content Browser</strong>.</p>
 <div class="admonition tip">
 <p class="admonition-title">How to read paths in this manual</p>
 <p>A path such as <code>Characters/Party/BP_XenoCore_Party</code> is inside <strong>XenoCore Content</strong>: open
@@ -4611,7 +4614,10 @@ the Content Browser's search box with <strong>XenoCore Content</strong> selected
 packaged build, nothing outside it depends on it, and you can ignore it. XenoCore ships <strong>no music</strong>: the title screen, Gaur Plain's field and
 battle slots and the fallback tracks in <strong>Project Settings › XenoCore Content</strong> are empty, so the
 game is silent until you add your own. See <a href="../../recipes/area-music/">Area music</a>.</p>
-<!-- VERIFY: DRAFTING-NOTES F10 for the backup pawn in Game -->
+<!-- VERIFY(DECISION): DRAFTING-NOTES F10. `Game/B_XenoCore_Player_XC1_Backup` is still in shipped
+content (checked 2026-10-11), and `Game/B_XenoCore_Player`'s name table mentions it. Brian to approve
+deleting it: check its referencers in the editor, delete it, and confirm `B_XenoCore_Player` still
+compiles; then remove this marker. -->
 
 <h2 id="the-maps">The maps<a class="headerlink" href="#the-maps" title="Permanent link">&para;</a></h2>
 <table>

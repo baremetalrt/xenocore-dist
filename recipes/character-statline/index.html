@@ -4615,15 +4615,10 @@ come entirely from equipment. That is intended. See <a href="../../concepts/equi
 <h3 id="1-write-the-rows">1. Write the rows<a class="headerlink" href="#1-write-the-rows" title="Permanent link">&para;</a></h3>
 <p>The simplest route is a spreadsheet.</p>
 <ol>
-<li>
-<p>In the Content Browser, right-click <code>Battle/Attributes/CT_XenoCore_PartyStatlines</code> and choose
-   <strong>Export as CSV</strong>. Save it into your own project folder.
-   <!-- VERIFY: the 5.8 context-menu label for exporting a curve table --></p>
-</li>
-<li>
-<p>Open the CSV. The first row is <code>---,1,2,3,...,99</code>: the levels. Each further row is a name then
-   99 values.</p>
-</li>
+<li>In the Content Browser, right-click <code>Battle/Attributes/CT_XenoCore_PartyStatlines</code> and choose
+   <strong>Export as CSV</strong>. Save it into your own project folder.</li>
+<li>Open the CSV. The first row is <code>---,1,2,3,...,99</code>: the levels. Each further row is a name then
+   99 values.</li>
 <li>Add four rows for your character, named with your own prefix:
    <code>Rook.MaxHealth</code>, <code>Rook.Strength</code>, <code>Rook.Ether</code>, <code>Rook.Agility</code>. Fill in a value for every
    level. A good start is to copy one character's rows (say <code>Kael.*</code>) and scale them.</li>
@@ -4637,9 +4632,8 @@ exist on your machine. A plain <strong>Reimport</strong> of a shipped table fail
 With New File</strong>, on your own duplicate.</p>
 </div>
 <p>You can also edit rows directly: open the table, switch to the table view, and edit a cell. The
-editor can add and rename rows too, but for 99 levels the CSV is quicker.</p>
-<!-- VERIFY: whether the 5.8 curve table editor can add or rename rows, and the button labels -->
-
+editor can add a row too (the <strong>+ Curve</strong> button) and rename one (double-click its name), but for
+99 levels the CSV is quicker.</p>
 <h3 id="2-point-the-stats-effect-at-your-rows">2. Point the stats effect at your rows<a class="headerlink" href="#2-point-the-stats-effect-at-your-rows" title="Permanent link">&para;</a></h3>
 <p>If your character does not yet have a stats effect of their own, duplicate
 <code>Battle/Attributes/GE_XenoCore_BaseStats_Kael</code> into <code>MyGame/Party</code> (for example as
@@ -4651,7 +4645,7 @@ editor can add and rename rows too, but for 99 levels the CSV is quicker.</p>
 <li>Do the same for <strong>Ether</strong>, <strong>Agility</strong> and <strong>MaxHealth</strong>.</li>
 <li>Point the <strong>Health</strong> modifier at the <strong>MaxHealth</strong> row too. That is what makes a level-up
    heal the character to full. (The sample table has no <code>Kael.Health</code> row, so the samples do the
-   same.) <!-- VERIFY: that the sample Health modifier reads the MaxHealth row --></li>
+   same.)</li>
 <li>Leave <strong>TalentChargePerHit</strong> and <strong>CharacterLevel</strong> as they are. Talent charge is a flat
    percentage of the gauge per landed <a href="../../getting-started/glossary/">auto-attack</a>; <code>0</code> means this
    character charges some other way. See <a href="../talent-art/">Make a Talent Art</a>.</li>
@@ -4700,8 +4694,8 @@ whatever the table says. Set it to <code>1.0</code>.</p>
 </thead>
 <tbody>
 <tr>
-<td>A stat reads 0 or its old value, and the Output Log names a row</td>
-<td>The <strong>Row Name</strong> does not match a row in the table. Check spelling and prefix. <!-- VERIFY: the exact log text for a missing curve row --></td>
+<td>A stat reads the modifier's bare <strong>Value</strong> (<code>1</code>), and the Output Log has <code>UCurveTable::FindCurve : Row '&lt;name&gt;' not found in CurveTable '&lt;table&gt;'</code></td>
+<td>The <strong>Row Name</strong> does not match a row in the table. Check spelling and prefix.</td>
 </tr>
 <tr>
 <td>The level changes but the stats do not</td>

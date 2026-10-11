@@ -4403,9 +4403,10 @@
 <h1 id="controls">Controls<a class="headerlink" href="#controls" title="Permanent link">&para;</a></h1>
 <p><em>All · reference · Last tested: never</em></p>
 <p>Default bindings. Every prompt in the game shows the glyph for whichever device you used last.</p>
-<!-- VERIFY: this whole page. The bindings were decoded from the saved input assets, not tested in
-play. Several keys are shared between actions (DRAFTING-NOTES F9), and the page must state what each
-does in each situation before release. -->
+<!-- VERIFY(PLAY): this whole page. The bindings were decoded from the saved input assets and the
+authoring scripts' reports, not tested in play. In a packaged demo, press every row on a pad and on
+keyboard; pass = each does what its row says, and each shared key (DRAFTING-NOTES F9) does the right
+thing in each situation listed. Fix any row that differs. -->
 
 <h2 id="exploring-and-fighting">Exploring and fighting<a class="headerlink" href="#exploring-and-fighting" title="Permanent link">&para;</a></h2>
 <table>
@@ -4556,14 +4557,24 @@ members instead of cycling targets. See <a href="../../concepts/party-tactics/">
 <td>Escape</td>
 </tr>
 <tr>
-<td>Switch tabs</td>
+<td>Switch tabs (Items menu, shop, trade)</td>
 <td>LB / RB</td>
-<td><!-- VERIFY --></td>
+<td>Click the tab (no key)</td>
+</tr>
+<tr>
+<td>Arts and Skills screens: switch tab</td>
+<td>LT / RT</td>
+<td>1 / 3</td>
+</tr>
+<tr>
+<td>Arts and Skills screens: switch character</td>
+<td>LB / RB</td>
+<td>Z / V</td>
 </tr>
 <tr>
 <td>Sort an item list (Items menu, equipment swap list, shops)</td>
 <td>Y</td>
-<td><!-- VERIFY: keyboard key on the MerchantSort row of DT_XenoCore_Actions --></td>
+<td>Y</td>
 </tr>
 <tr>
 <td>Tutorial card: next page / skip the rest</td>

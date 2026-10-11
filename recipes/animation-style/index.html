@@ -4655,7 +4655,7 @@ one that swaps two assets: the idle and the locomotion blend space. Nothing else
 <ol>
 <li>Open the character's pawn Blueprint, for example the Mannequin sample
    <code>Characters/Party/B_XenoCore_Party_Quinn</code>, and click <strong>Class Defaults</strong>.</li>
-<li>Set <strong>Cosmetic Part</strong> to <code>B_XenoCore_Cosmetic_Masculine</code> or <code>B_XenoCore_Cosmetic_Feminine</code>.
+<li>Under <strong>Default</strong>, set <strong>Cosmetic Part</strong> to <code>B_XenoCore_Cosmetic_Masculine</code> or <code>B_XenoCore_Cosmetic_Feminine</code>.
    A VRoid member's <strong>Cosmetic Part</strong> is its own VRoid part (for Mira,
    <code>Characters/VRoid/Mira/B_XenoCore_Cosmetic_VRoid_K</code>): change the tag in that part's <strong>Static
    Gameplay Tags</strong> instead, and its pawn's <strong>Body Meshes</strong> pick the matching invisible body.</li>
@@ -4663,8 +4663,6 @@ one that swaps two assets: the idle and the locomotion blend space. Nothing else
    it with this field alone: see <em>Make a new style</em> below.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
-<!-- VERIFY: Cosmetic Part's category in Class Defaults -->
-
 <div class="admonition warning">
 <p class="admonition-title">The character takes the wrong body</p>
 <p><strong>Cosmetic Part</strong> points at an actor with no <code>Cosmetic.AnimationStyle</code> tag, so the body-mesh
@@ -4709,16 +4707,15 @@ The layer's <strong>Idle Break Delay</strong> and <strong>Idle Break Jitter</str
    as <code>B_Cosmetic_Heavy</code>.</li>
 <li>Open it, click <strong>Class Defaults</strong>, and in <strong>Static Gameplay Tags</strong> replace
    <code>Cosmetic.AnimationStyle.Masculine</code> with <code>Cosmetic.AnimationStyle.Heavy</code>. It must carry only that
-   one tag. <strong>Compile</strong> and <strong>Save</strong>.</li>
+   one tag (it is under <strong>Actor</strong>). <strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
-<!-- VERIFY: label of the tag container on ALyraTaggedActor (Static Gameplay Tags) -->
-
 <h3 id="3-the-layer">3. The layer<a class="headerlink" href="#3-the-layer" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In <code>Characters/Player/AnimLayers</code>, find <code>ABP_XenoCore_UnarmedAnimLayers_Feminine</code>. Duplicate
    it into <code>MyGame/Characters</code> as <code>ABP_HeavyAnimLayers</code>. It is already a child of
    <code>ABP_XenoCore_UnarmedAnimLayers</code>, holding only asset overrides.</li>
-<li>Open it. In the <strong>Asset Override Editor</strong> (Window menu), replace the idle sequence and the
+<li>Open it. In the <strong>Asset Override Editor</strong> (it opens by itself for a child anim Blueprint; else
+   <strong>Window › Asset Override Editor</strong>), replace the idle sequence and the
    locomotion blend space with your own. To make a blend space, duplicate
    <code>Characters/Player/BlendSpaces/BS_XenoCore_Unarmed_Locomotion_Feminine</code> and swap its samples.</li>
 <li>Set its <strong>Idle Break Anim</strong> as above. <strong>Compile</strong> and <strong>Save</strong>.</li>
@@ -4733,8 +4730,6 @@ when nothing else is linked. Replacing or renaming it breaks every character sil
 <p>An asset override added twice on the same node keeps both entries, and which one wins cannot
 be seen in the asset. If you make a mistake, delete the layer and duplicate it again.</p>
 </div>
-<!-- VERIFY: the Asset Override Editor's menu entry in 5.8 -->
-
 <h3 id="4-teach-the-weapons-and-the-body">4. Teach the weapons and the body<a class="headerlink" href="#4-teach-the-weapons-and-the-body" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open <code>Weapons/GreatSword/B_WeaponInstance_GreatSword</code> (and any other weapon instance you use).</li>

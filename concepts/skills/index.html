@@ -4882,8 +4882,6 @@ because progress is keyed by the character, not by the table.</p>
 </tr>
 </tbody>
 </table>
-<!-- VERIFY: the Data Table editor's labels for bUnlockedAtStart and bFirstSkillPrelearned -->
-
 <h3 id="a-skill">A skill<a class="headerlink" href="#a-skill" title="Permanent link">&para;</a></h3>
 <p>Each of a branch's five <strong>Skills</strong> is one entry. A skill does its work in up to three ways, all
 optional and all driven by one number, <strong>Value</strong>:</p>
@@ -4963,9 +4961,7 @@ and progress on existing branches is never touched.</p>
    row whose range contains it wins.</li>
 <li>The band's SP × <strong>Skill Point Reward Scale</strong> × the enemy's <strong>Skill Point Multiplier</strong> is paid to
    <strong>every roster member</strong>. Benched members get <strong>Reserve Skill Point Rate</strong> of it, which the
-   sample sets to <code>0</code>, like the EXP rate, so a benched character earns nothing (XC1 pays 90%).
-   <!-- VERIFY: BP_XenoCore_Progression overrides Reserve Skill Point Rate to 0 (reserve-SP change on this branch). -->
-</li>
+   sample sets to <code>0</code>, like the EXP rate, so a benched character earns nothing (XC1 pays 90%).</li>
 </ol>
 <p>Quests do not pay SP. Anything else can, by calling <strong>Award Skill Points</strong> (see
 <a href="#extending-it">Extending it</a>). After a kill, each party member's HUD plate shows the EXP, AP and SP
@@ -5032,8 +5028,8 @@ twelve channels are the list of stats a skill can raise:</p>
   percentage (15 means +15 %). <strong>Move Speed</strong> is a percentage over the character's authored walk
   speed.</li>
 <li><strong>Scale</strong> adds <strong>Value</strong> percent of the stat as it stands without skills (statline plus
-  equipment), so it grows with gear. <!-- VERIFY: it also counts timed buffs active at the moment of
-  the refresh; see _flaws/skills.md --></li>
+  equipment), so it grows with gear. Timed buffs up at that moment, such as Strength Up, are left
+  out of the price.</li>
 <li>A negative <strong>Value</strong> lowers the stat (Weight −5). The screen labels it "Weight Down".</li>
 </ul>
 <p>A skill naming a stat the effect has no channel for does nothing and logs a warning naming the skill.</p>
@@ -5136,8 +5132,7 @@ a new skill; there is no graph.</p>
 20 into +20 %), its <strong>Duration</strong> as the buff's length, and its <strong>Chance</strong> is rolled each time the
 trigger fires. A battle-start trigger fires at most once per battle; a failed roll is that battle's
 answer. Because the buff is an ordinary status, it shows on the HUD and over the character like any
-art's buff. <!-- VERIFY: that every buff a shipped skill uses (Haste in particular) reads the sent
-strength; UXenoCoreStatusPercentCalc is on the "mult" statuses --></p>
+art's buff.</p>
 <p>The <strong>On Kill</strong>, <strong>On Miss</strong> and <strong>On Critical</strong> triggers listen for gameplay events on the
 character: <code>XenoCore.Event.Combat.Kill</code> (sent by a dying enemy to whoever damaged it last),
 <code>XenoCore.Event.Combat.Miss</code> and <code>XenoCore.Event.Combat.Critical</code> (sent by the damage formula).</p>
@@ -5804,8 +5799,6 @@ records by member definition, never from a pawn, because the shown character may
 </tr>
 </tbody>
 </table>
-<!-- VERIFY: the default of Skill Learnt Text on BP_XenoCore_Progression (expected "Skill Learnt") -->
-
 <p>Every table checks itself when saved or validated. You get a <strong>Data Validation</strong> error for a branch
 without exactly five skills, a branch with no <strong>Cost Curve</strong>, a trait stat with no <strong>Trait Ladder</strong>,
 a skill with no name or a <strong>Stats</strong> entry with no stat, a cost curve without five costs, a ladder

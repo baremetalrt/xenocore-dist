@@ -5073,8 +5073,6 @@ Disengage Radius Scale</strong> on the controller return the values in force.</p
 <p>The tree reads its numbers from the enemy (patrol route, Arts, AI Profile), so one tree serves every
 enemy type. The older nodes <strong>XenoCore In Attack Range</strong>, <strong>XenoCore Ability Ready</strong>, <strong>XenoCore
 Target Has Tag</strong> and <strong>XenoCore Activate Ability By Tag</strong> are still available for a tree of your own.</p>
-<!-- VERIFY: the two states and their tasks in the StateTree editor -->
-
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: an enemy Art that borrows the auto-attack's montage</p>
 <p>Using an Art stops the auto-attack's swing by montage. An Art playing the <strong>same montage asset</strong>
@@ -5153,14 +5151,11 @@ effect, drop table, rewards), so every fix to the minion reaches all of them.</p
 bodies are on skeletons that share the melee body's bone chain and are marked <strong>compatible</strong> with
 <code>SK_Minion_Core</code>, so they run the melee minion's anim Blueprint, montages, abilities and Arts
 unchanged. The tougher types use their own stats effects (<code>GE_XenoCore_BaseStats_Minion_Skirmisher</code>,
-<code>_Bulwark</code>, <code>_Brute</code>), which read the same <code>Minion_Melee.*</code> rows of <code>CT_XenoCore_EnemyStats</code> times a
-per-type multiplier on the effect (Skirmisher 0.9, Bulwark 1.15, Brute 1.45). The rows themselves are
+<code>_Bulwark</code>, <code>_Brute</code>), which read the same <code>Minion_Melee.*</code> rows of <code>CT_XenoCore_EnemyStats</code> times
+per-type multipliers on the effect: Strength ×0.9, ×1.15 and ×1.45, and HP ×0.8, ×1.9 and ×3.0, for
+Skirmisher, Bulwark and Brute (each also shifts Agility, and Ether or the defences). The rows themselves are
 anchored on an early XC1 field enemy: a level 1 minion has 900 HP and 69 Strength, plus 100 HP and 10
 Strength a level.</p>
-<!-- VERIFY: the per-type Strength multipliers on each GE_XenoCore_BaseStats_Minion_* effect. -->
-
-<!-- VERIFY: the display names and detection types in each variant's Class Defaults -->
-
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>A new enemy type:</strong> right-click <code>B_XenoCore_Minion_Melee</code> and choose <strong>Create Child Blueprint

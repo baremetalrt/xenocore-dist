@@ -4633,9 +4633,11 @@ Slash / Light Heal / Air Slash start; Isolde, Sabine and Tamsin have their own A
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Wider than eight</p>
-<p><strong>Default Slot</strong> accepts <code>0</code> to <code>7</code>, and the shipped palette widget is laid out for up to eight
-Arts. Keep the list to eight entries or fewer.
-<!-- VERIFY: palette widget behaviour with more than 8 slots --></p>
+<p><strong>Default Slot</strong> accepts <code>0</code> to <code>7</code>, so a ninth slot or later can only be filled from the Arts
+menu. The palette widget has no hard limit: it repeats its slot art outward from the centre for
+every entry. XC1's bar is eight wide; keep the list to eight entries or fewer unless you have
+checked a wider bar fits your screen.
+<!-- VERIFY(PLAY): set Art Slot Unlock Levels to ten 1s, start a new game, enter battle; pass = all ten slots draw, none overlaps the HUD or runs off a 1920x1080 screen. If it fails, say "eight at most" here. --></p>
 </div>
 <h3 id="2-choose-each-characters-arts">2. Choose each character's Arts<a class="headerlink" href="#2-choose-each-characters-arts" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4698,8 +4700,9 @@ Arts into open slots; its <strong>Level Up</strong> tab spends Art Points. What 
 what the battle palette shows, drawn from the centre out in both. The menu shows no slot numbers:
 a list row reads <strong>Equipped</strong> for an Art on the bar, an empty strip slot is <strong>Empty Slot</strong>, and a
 locked one is <strong>Locked Slot</strong>, whose detail line says <em>This slot opens at level N.</em></p>
-<!-- VERIFY: how to clear a slot, and the effect of the uncommitted Arts screen rework -->
-
+<p>The Arts menu cannot empty a slot yet: it can only put a different Art there, or move one. To
+empty a slot while testing, type <code>XenoSetArt &lt;slot&gt; none</code> in the console (it edits the character
+you are controlling), or call <strong>Set Art Slot</strong> with no Art from a Blueprint.</p>
 <h2 id="palette-order">Palette Order<a class="headerlink" href="#palette-order" title="Permanent link">&para;</a></h2>
 <p>Each Art definition also has <strong>Palette Order</strong> (<strong>Art › Palette</strong>). It only matters for an Art that
 is granted to a character but is not in that character's stored palette: such Arts are drawn after
@@ -4727,8 +4730,9 @@ slot decides and <strong>Palette Order</strong> is ignored.</p>
 <p>You edited <code>DT_XenoCore_ArtLearnset_Default</code> instead of the character's own table, or the
 character's <strong>Art Learn Table</strong> still points at the default. Every sample character has its
 own table, so a row added to the default does not reach them. The player's own pawn,
-<code>Game/B_XenoCore_Player</code>, has no learnset and gets its Arts from its ability set instead.
-<!-- VERIFY: rewrite once DRAFTING-NOTES F13 is resolved --></p>
+<code>Game/B_XenoCore_Player</code>, uses Kael's table (<code>DT_XenoCore_ArtLearnset_Kael</code>) and also gets Back
+Slash and Light Heal from its ability set, <code>Game/AbilitySet_XenoCore_Hero</code>.
+<!-- VERIFY(DECISION): DRAFTING-NOTES F13 is still open - AbilitySet_XenoCore_Hero still grants GA_XenoCore_BackSlash and GA_XenoCore_LightHeal beside the Kael learnset (set by Tools/Release/kit_transfer.py). Once Brian decides whether to drop them from the set, rewrite this sentence. --></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">An Art is on the bar twice, or not at all</p>

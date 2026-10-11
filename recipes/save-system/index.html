@@ -4664,20 +4664,15 @@ lost.</p>
 <ol>
 <li>Open your Blueprint (here <code>BP_MyGame_Lever</code>). Select the variable that holds the state, such as a
    boolean <code>bPulled</code>.</li>
-<li>
-<p>In its <strong>Details</strong>, open the advanced section under <strong>Variable</strong> and tick <strong>SaveGame</strong>.
-   <!-- VERIFY: the SaveGame checkbox sits under Variable's advanced (expander) section in 5.8 --></p>
-</li>
-<li>
-<p>Repeat for every variable that must survive a load.</p>
-</li>
+<li>In its <strong>Details</strong>, open the advanced section under <strong>Variable</strong> and tick <strong>SaveGame</strong>.</li>
+<li>Repeat for every variable that must survive a load.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a struct saves empty</p>
 <p>Only flagged properties are written, and that includes the fields <strong>inside</strong> a struct variable.
 Flag a struct variable but not the struct's own fields, and it saves as all defaults. For a
-Blueprint struct, tick <strong>SaveGame</strong> on each field in the struct asset too.
-<!-- VERIFY: where the SaveGame flag is set on a field of a Blueprint (user-defined) struct in 5.8 --></p>
+Blueprint struct, open the struct asset, expand each field with its arrow and tick
+<strong>Save Game</strong> there too.</p>
 </div>
 <h3 id="2-add-the-component">2. Add the component<a class="headerlink" href="#2-add-the-component" title="Permanent link">&para;</a></h3>
 <ol>

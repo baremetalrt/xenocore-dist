@@ -4881,7 +4881,9 @@ the cursor on the caster, the D-pad moves it, and confirming again casts. See
 Set</strong>, which moves to whichever body the player drives. Do not also grant them in a member's
 own ability set: the switch moves the leader-only set on the next frame, and a second copy on
 another body is never removed, so it answers the trigger from a body the player is not driving.
-<!-- VERIFY: the exact symptom of a duplicate grant on an AI body, in PIE --></p>
+<!-- VERIFY(PLAY): add GA_XenoCore_PartySwitch to one member's own ability set (e.g. Mira's), Play
+as Kael, tap RT once. Record what happens (double switch? switch from Mira's body? nothing?) and
+write that symptom into this box; then remove the test grant. --></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a party member that nothing can hurt</p>
@@ -4929,14 +4931,12 @@ without changing the shipped tree:</p>
    panel and change its numbers. <strong>Save</strong>.</li>
 <li>In <code>Characters/Party</code>, right-click <code>BP_AIC_XenoCore_PartyMember</code> and choose <strong>Create Child
    Blueprint Class</strong>. Move the child into your folder and open it.</li>
-<li>In its <strong>Components</strong> panel select <strong>State Tree AI</strong>, and in the <strong>Details</strong> panel set its
-   <strong>State Tree</strong> to your copy. <strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>In its <strong>Components</strong> panel select <strong>StateTreeAI</strong>, and in the <strong>Details</strong> panel set its
+   <strong>AI › State Tree</strong> to your copy. <strong>Compile</strong> and <strong>Save</strong>.</li>
 <li>Open <code>BP_XenoCore_Party</code>, click <strong>Class Defaults</strong>, and set <strong>XenoCore › Party › Default
    Controller Class</strong> to your child (or set <strong>Controller Class</strong> on one member definition, for one
    character only).</li>
 </ol>
-<!-- VERIFY: the component's label (State Tree AI) and its State Tree property label in 5.8. -->
-
 <h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

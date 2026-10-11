@@ -4649,8 +4649,10 @@ Shulk.Strength
 Shulk.Ether
 Shulk.Agility
 </code></pre></div>
-<p>One set of rows, read by every party member's stats effect. Party members differ only through
-their own stats effect. <!-- VERIFY: whether each GE_XenoCore_BaseStats_Party_* uses different coefficients on the same rows --></p>
+<p>One set of rows, read by every stock party member's stats effect (<code>GE_XenoCore_BaseStats_Shulk</code>
+and the eleven <code>_Party_*</code> effects). Members differ only through their own stats effect: each
+<code>_Party_*</code> effect multiplies the same rows by its own coefficient per stat (between <code>0.8</code> and <code>1.2</code>
+when last measured), so the number in the table is not the number that member gets.</p>
 <div class="admonition note">
 <p class="admonition-title">Scheduled for renaming</p>
 <p>These row names are placeholders and will be renamed before release. When that happens every
@@ -4670,7 +4672,7 @@ Minion.ExperienceScale
 enemy's line (Max HP <code>900 + 100 × (level − 1)</code>, Strength <code>69 + 10 × (level − 1)</code>). Only the
 <code>Minion_Melee.*</code> rows are read by a shipped stats effect: all seven sample enemy types read them,
 through their effect's multiplier. The <code>Minion_Ranged</code>, <code>Minion_Siege</code> and <code>Minion_Super</code> rows are
-not read by anything. <code>*.CharacterLevel</code> is not read by any effect. <!-- VERIFY: CharacterLevel rows unused --></p>
+not read by anything. <code>*.CharacterLevel</code> is not read by any effect.</p>
 <p><code>Minion.ExperienceScale</code> is read by the minion's <strong>Experience Level Scale</strong> (<strong>XenoCore › Enemy</strong>):
 the kill's <strong>Experience Reward</strong> is multiplied by this row at the enemy's level, so a same-level
 kill is worth about the same share of a level all the way up. An enemy with the property empty pays
@@ -4689,14 +4691,16 @@ clamps a fraction to <strong>Max Defence Fraction</strong> (default <code>0.9</c
 <div class="highlight"><pre><span></span><code><span class="k">[/Script/XenoCoreRuntime.XenoCoreStatSet]</span>
 <span class="na">MaxCharacterLevel</span><span class="o">=</span><span class="s">120</span>
 </code></pre></div>
-<p>Then extend the stats rows to the new cap, and lengthen every row of the Data Table
-<code>DT_XenoCore_ExperienceCurves</code>; past the last key each curve holds its final value. <!-- VERIFY: override takes effect from DefaultGame.ini --></p>
+<p>Then extend the stats rows to the new cap (past its last key a stats curve holds its final
+value), and lengthen every row of the Data Table <code>DT_XenoCore_ExperienceCurves</code>. A character whose
+EXP row is shorter than the cap <strong>stops levelling</strong> at the end of the list; validating the table warns
+about a row shorter than the cap.</p>
 <h3 id="ct_xenocore_rewardleveldiff">CT_XenoCore_RewardLevelDiff<a class="headerlink" href="#ct_xenocore_rewardleveldiff" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>Reward.LevelDiffMultiplier
 </code></pre></div>
 <p>X is party level minus enemy level. A positive X (you out-level the enemy) should give a
 multiplier below 1; a negative X above 1. Keys run from −20 to +20; outside that the curve's end
-values hold. <!-- VERIFY: key range and extrapolation in the asset --></p>
+values hold.</p>
 <h3 id="ct_xenocore_damageleveldiff">CT_XenoCore_DamageLevelDiff<a class="headerlink" href="#ct_xenocore_damageleveldiff" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>Damage.LevelDiff.Physical
 Damage.LevelDiff.Ether
@@ -4717,10 +4721,10 @@ the Physical row otherwise, and multiplies damage by the result.</p>
 <code>Damage.LevelDiff.Physical</code>, <code>Damage.LevelDiff.Ether</code>). A duplicate with renamed rows falls back
 to the defaults above, with only a warning in the log.</p>
 </div>
-<p>The shipped tables were imported from CSV files that are not part of the template, so <strong>Reimport</strong>
-will not find a source. Edit them in the editor, or export to CSV and reimport from your own file.</p>
-<!-- VERIFY: Reimport behaviour when the recorded source path is missing -->
-
+<p>The shipped tables were imported from CSV files that are not part of the template, so
+<strong>Reimport</strong> will not find a source. Unreal then asks whether to specify a new source file: <strong>Yes</strong>
+lets you pick your own CSV, <strong>No</strong> skips the reimport. Edit the tables in the editor, or export to
+CSV and reimport from your own file.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../concepts/stats-and-damage/">Stats and damage</a></li>

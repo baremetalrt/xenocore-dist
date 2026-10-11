@@ -4619,7 +4619,7 @@ pawn, <code>AbilitySet_XenoCore_PartyMember</code> for the others), which hold o
 <tr>
 <td>Lock on / next target</td>
 <td><code>InputTag.XenoCore.TargetNext</code></td>
-<td><code>GA_XenoCore_TargetNext</code> <!-- VERIFY: that TargetNext also enters target mode; GA_XenoCore_TargetMode has no input tag --></td>
+<td><code>GA_XenoCore_TargetNext</code> (its <code>XenoCore.Event.SwitchTarget</code> event also starts <code>GA_XenoCore_TargetMode</code>)</td>
 </tr>
 <tr>
 <td>Previous target</td>
@@ -4744,10 +4744,33 @@ a trigger, Enhanced Input fires every frame the key is held. An ability that end
 frame it starts (most input abilities do) would then run again on each of those frames, so one tap
 became several presses.</p>
 <p><strong>Blocking by state.</strong> <code>TagRelationships_XenoCore</code> blocks abilities while a state tag is on the
-player. For example jump is blocked while the interaction prompt holds the A button
-(<code>Status.XenoCore.Looting</code>) and in target mode (<code>Status.XenoCore.TargetMode</code>), and a conversation
-(<code>Status.XenoCore.Dialogue</code>) blocks Arts, auto-attack and target mode.</p>
-<!-- VERIFY: the exact rows in TagRelationships_XenoCore -->
+player. Its rows:</p>
+<table>
+<thead>
+<tr>
+<th>Ability tag</th>
+<th>Blocked while the body has</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ability.Type.Action.Jump</code> (Lyra's jump)</td>
+<td><code>Status.XenoCore.Looting</code> (the prompt holds A), <code>.TargetMode</code>, <code>.Dialogue</code>, <code>.Downed</code></td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.Art</code></td>
+<td><code>Status.XenoCore.Dialogue</code>, <code>.Defence</code></td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore.AutoAttack</code>, <code>Ability.XenoCore.TargetMode</code>, <code>Ability.XenoCore.ToggleMenu</code></td>
+<td><code>Status.XenoCore.Dialogue</code></td>
+</tr>
+<tr>
+<td><code>Ability.XenoCore</code> (every XenoCore ability)</td>
+<td><code>Status.XenoCore.Downed</code></td>
+</tr>
+</tbody>
+</table>
 <p>A row keyed on a parent tag such as
 <code>Ability.XenoCore.Art</code> covers every Art, including ones you add later. An ability with no ability
 tags cannot be reached by any row.</p>
@@ -4769,9 +4792,8 @@ the game world can react to a key behind a menu. That is set project-wide in
 <code>Config/DefaultInput.ini</code> (the default mapping-context query asks for <code>InputMode.Game</code>), and needs no
 setting on each mapping context.</p>
 <p><strong>Enter and Space click.</strong> <code>Config/DefaultGame.ini</code> sets CommonUI's <strong>Common Button Accept Key
-Handling</strong> to <code>TriggerClick</code>, so Enter and Space press the focused menu button, as the pad's A does.</p>
-<!-- VERIFY: Project Settings shows Common Button Accept Key Handling = Trigger Click (Plugins › Common UI). -->
-
+Handling</strong> to <code>TriggerClick</code> (<strong>Project Settings › Plugins › Common UI Framework › Button</strong>), so
+Enter and Space press the focused menu button, as the pad's A does.</p>
 <p><strong>X is shared with Trade.</strong> While the interaction prompt offers a second verb (Trade, at a trader
 NPC), tap X is Trade and does not change the tactic.</p>
 <p><strong>The camera</strong> runs on every playable character all the time, but only the character the player is
@@ -4863,7 +4885,10 @@ then turns onto the locked enemy; out of battle it turns to face the new leader'
 <p>Pad A is Jump, Interact <strong>and</strong> Palette Confirm; Space is Jump and Palette Confirm; pad B is
 Crouch and Leave Target Mode. Each trigger carries a tap action and a hold action on purpose. Which one wins depends on state and on the blocking rules above.
 <code>InputData_XenoCore</code> also maps Lyra's Crouch.
-<!-- VERIFY: DRAFTING-NOTES F9. Re-check every shared key in play before release. --></p>
+<!-- VERIFY(PLAY): DRAFTING-NOTES F9. In Gaur Plain, on pad and keyboard: press A / Space out of
+battle (jumps), beside an NPC (talks, no jump), in target mode (fires the selected Art, no jump);
+press B out of battle (crouch?) and in target mode (leaves target mode, no crouch). Pass = each
+press does exactly one thing, matching this box. --></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a new one-shot action with no trigger</p>

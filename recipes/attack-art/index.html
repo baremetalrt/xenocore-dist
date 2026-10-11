@@ -4693,7 +4693,7 @@ and grows stronger and faster to recharge as the player trains it.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-start-from-a-blank-art">1. Start from a blank Art<a class="headerlink" href="#1-start-from-a-blank-art" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In <code>MyGame/Arts</code>, right-click › <strong>Miscellaneous › Data Asset</strong>, pick <code>XenoCoreArtDefinition</code>
+<li>In <code>MyGame/Arts</code>, right-click › <strong>Data › Data Asset</strong>, pick <code>XenoCoreArtDefinition</code>
    and name it <code>DA_FrostFan</code>. Do not duplicate <code>DA_XenoCore_AirSlash</code>: the copy would bring Air
    Slash's Break and side-Slow effects with it.</li>
 <li>Open it. Under <strong>Art</strong>, set <strong>Display Name</strong> <code>Frost Fan</code> and <strong>Description</strong>
@@ -4801,7 +4801,7 @@ status is <a href="../status-effect/">Make a status effect</a>.</p>
 Art's level.</p>
 <ol>
 <li>Create a <a href="../../getting-started/glossary/">curve table</a> <code>CT_MyGame_ArtLevels</code> (right-click ›
-   <strong>Miscellaneous › Curve Table</strong>, pick <strong>Linear</strong>) with two rows:<ul>
+   <strong>Data › Curve Table</strong>, pick <strong>Linear</strong>) with two rows:<ul>
 <li><code>FrostFan.Power</code>: keys <code>1 = 1.0</code>, <code>12 = 2.0</code></li>
 <li><code>FrostFan.Cooldown</code>: keys <code>1 = 1.0</code>, <code>12 = 0.6</code></li>
 </ul>
@@ -4817,8 +4817,7 @@ Art's level.</p>
 <div class="admonition note">
 <p class="admonition-title">The shipped Arts do not scale with level yet</p>
 <p>The sample Arts' <strong>Power</strong> and <strong>Cooldown Duration</strong> have no curve, so training them on the
-Level Up tab does not change their numbers. Give them curves as above if you use them.
-<!-- VERIFY: the shipped arts' scalable floats reference no curve table --></p>
+Level Up tab does not change their numbers. Give them curves as above if you use them.</p>
 </div>
 <h3 id="7-animation">7. Animation<a class="headerlink" href="#7-animation" title="Permanent link">&para;</a></h3>
 <p>Keep the borrowed <strong>Montage</strong> to start. To use your own:</p>

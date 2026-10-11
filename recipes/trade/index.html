@@ -4690,13 +4690,11 @@ button, it calls <strong>Open Trade</strong>, which has two exits:</p>
 <li><strong>Traded</strong>: at least one exchange happened.</li>
 <li><strong>Cancelled</strong>: the player backed out, or the screen could not open.</li>
 </ul>
-<p>The stock graph says a closing line on each. To change those lines, open
-<code>Characters/NPC/B_XenoCore_Npc</code>, find <strong>Open Trade</strong> in the event graph, and edit the
-<strong>Show Dialogue</strong> nodes after it. Better: make a child Blueprint of <code>B_XenoCore_Npc</code> in
-<code>MyGame/NPCs</code> and override its <strong>On Interact</strong> there, so a template update does not overwrite your
-lines.</p>
-<!-- VERIFY: the stock graph's exact lines after Traded and Cancelled -->
-
+<p>The stock graph does nothing on either exit: the trade screen closes and the NPC says no more.
+To give the NPC a closing line, make a child Blueprint of <code>B_XenoCore_Npc</code> in <code>MyGame/NPCs</code>,
+override its <strong>On Interact</strong>, and after <strong>Open Trade</strong> add a <strong>Play Dialogue</strong> on <strong>Traded</strong> (for
+example "Pleasure doing business.") and another on <strong>Cancelled</strong> ("Come back any time."). Working in
+a child means a template update does not overwrite your lines.</p>
 <div class="admonition warning">
 <p class="admonition-title">Branch on Is Trade Verb, never on the verb number</p>
 <p><strong>On Interact</strong> receives a <strong>Verb Index</strong>. Trade is index <code>1</code> today, but adding an entry to

@@ -4640,10 +4640,8 @@ material has a physical material output per layer, the landscape's <strong>only<
 <li>Select the landscape in your map and set <strong>Default Phys Material</strong> to
    <code>Environment/PM_XenoCore_Grass</code>, or your own physical material.</li>
 <li>For a new surface: add it under <strong>Project Settings › Physics › Physical Surface</strong>, map it to a
-   <code>SurfaceType.*</code> tag in the context effects settings (the project's <code>SurfaceTypeToContextMap</code>),
-   create a physical material that uses it, and add rows for that tag to <code>CFX_XenoCore</code>.
-   <!-- VERIFY: the Project Settings page that shows SurfaceTypeToContextMap -->
-</li>
+   <code>SurfaceType.*</code> tag in <strong>Project Settings › Game › LyraContextEffects › Surface Type to Context
+   Map</strong>, create a physical material that uses it, and add rows for that tag to <code>CFX_XenoCore</code>.</li>
 </ol>
 <p>Every new map's landscape needs step 1, or it sounds like concrete again.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/footstep-surface/">Footsteps per surface</a>.</p>

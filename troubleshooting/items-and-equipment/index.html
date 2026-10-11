@@ -4631,11 +4631,11 @@ a weapon.</p>
 </div>
 <p><strong>Why:</strong> drawing and sheathing are driven by <code>GA_XenoCore_WeaponDrawSync</code>, granted through the
 weapon's equipment definition's <strong>Ability Sets to Grant</strong> (the sword base,
-<code>Weapons/ED_XenoCore_Sword_Base</code>, grants <code>AbilitySet_XenoCore_SwordCommon</code>, which carries it). That
-grant is also what lets the ability find its weapon. Emptying the list, for example while tidying up
-stat effects, breaks draw and sheathe.</p>
-<!-- VERIFY: AbilitySet_XenoCore_JunkSword's name table still lists GA_XenoCore_EquipmentStats and GA_XenoCore_WeaponDrawSync beside TurnStrike; check in the editor whether swords using it are granted both twice (once from SwordCommon). -->
-
+<code>Weapons/ED_XenoCore_Sword_Base</code>, grants <code>AbilitySet_XenoCore_SwordCommon</code>, which carries it). The
+Junk, Blue, Gold, Green and Red Swords replace that list with <code>AbilitySet_XenoCore_JunkSword</code>
+alone, which carries it too, so nothing is granted twice. That grant is also what lets the ability
+find its weapon. Emptying the list, for example while tidying up stat effects, breaks draw and
+sheathe.</p>
 <p><strong>Fix:</strong> keep an ability set that grants <code>GA_XenoCore_WeaponDrawSync</code> on every weapon's equipment
 definition.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-weapon/">Add a weapon</a>.</p>

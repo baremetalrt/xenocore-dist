@@ -4598,7 +4598,7 @@ something is added.</p>
 </tbody>
 </table>
 <p>All five tags come with XenoCore, so they appear in every tag picker.</p>
-<!-- VERIFY: that a widget in BottomCenter does not overlap the battle Arts palette in play -->
+<!-- VERIFY(PLAY): add a 400x80 test widget to HUD.Slot.XenoCore.BottomCenter, start a fight at 1920x1080 so the Arts palette shows; pass = the widget and the palette do not overlap. If they do, say so in the table row. -->
 
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-make-the-widget">1. Make the widget<a class="headerlink" href="#1-make-the-widget" title="Permanent link">&para;</a></h3>
@@ -4618,7 +4618,7 @@ collapsing it: a collapsed widget stops ticking and cannot notice when to come b
 <h3 id="2-add-it-with-an-action-set">2. Add it with an action set<a class="headerlink" href="#2-add-it-with-an-action-set" title="Permanent link">&para;</a></h3>
 <p>Keep the addition in your own asset, so a template update cannot remove it.</p>
 <ol>
-<li>In <code>Content/MyGame/Experiences</code>, right-click and choose <strong>Miscellaneous › Data Asset</strong>, class
+<li>In <code>Content/MyGame/Experiences</code>, right-click and choose <strong>Data › Data Asset</strong>, class
    <code>LyraExperienceActionSet</code>. Name it <code>LAS_MyGame_HUD</code>.</li>
 <li>Open it. Under <strong>Actions to Perform</strong>, add an entry and choose <strong>Add Widgets</strong>.</li>
 <li>Under <strong>Widgets</strong>, add a row:<ul>
@@ -4642,8 +4642,9 @@ collapsing it: a collapsed widget stops ticking and cannot notice when to come b
 <p class="admonition-title">From your own Game Feature plugin instead</p>
 <p>If your content lives in its own Game Feature plugin, you can put the same <strong>Add Widgets</strong>
 action in that plugin's Game Feature Data (<strong>Actions</strong>). It applies whenever that feature is
-active. <!-- VERIFY: an Add Widgets row in a buyer plugin's Game Feature Data reaches the
-XenoCore HUD's extension points in PIE --></p>
+active. <!-- VERIFY(PLAY): in a separate Game Feature plugin whose Game Feature Data has an
+Add Widgets row targeting HUD.Slot.XenoCore.TopCenter, activate the feature and press Play;
+pass = the widget draws in the XenoCore HUD's top-centre point. --></p>
 </div>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>

@@ -4743,15 +4743,12 @@ the world at all. A member whose definition has no <strong>Member Class</strong>
 <p><strong>Fix:</strong></p>
 <ol>
 <li>Right-click your party member definition in the Content Browser and choose <strong>Asset Actions ›
-   Validate Assets</strong>.
-   <!-- VERIFY: exact menu label in 5.8 --></li>
+   Validate Assets</strong>. A missing <strong>Member Class</strong>, <strong>Controller Class</strong>, <strong>Display Name</strong> or
+   <strong>Portrait</strong>, or a pawn with no <strong>Combatant Pawn Data</strong>, is reported in red.</li>
+<li>Open <code>BP_XenoCore_Party</code> and check where your member sits in <strong>Starting Roster</strong>. Move it higher,
+   or raise <strong>Max Active Members</strong> (<code>Characters/Party/BP_XenoCore_Party</code>).</li>
+<li>Or swap the member in from the <strong>Party</strong> screen in play.</li>
 </ol>
-<p>A missing
-   <strong>Member Class</strong>, <strong>Controller Class</strong>, <strong>Display Name</strong> or <strong>Portrait</strong>, or a pawn with no
-   <strong>Combatant Pawn Data</strong>, is reported in red.
-2. Open <code>BP_XenoCore_Party</code> and check where your member sits in <strong>Starting Roster</strong>. Move it higher,
-   or raise <strong>Max Active Members</strong> (<code>Characters/Party/BP_XenoCore_Party</code>).
-3. Or swap the member in from the <strong>Party</strong> screen in play.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/starting-party/">Set the starting party</a>.</p>
 <h3 id="a-character-cant-attack-cant-use-arts-and-cant-die">A character can't attack, can't use Arts, and can't die<a class="headerlink" href="#a-character-cant-attack-cant-use-arts-and-cant-die" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the character's abilities, including death, come from the ability sets in its pawn data.

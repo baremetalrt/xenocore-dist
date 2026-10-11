@@ -4650,7 +4650,7 @@ while the feature is active and holds three actions:</p>
 <tbody>
 <tr>
 <td><strong>Add Components</strong></td>
-<td>On every <code>LyraPlayerController</code>: <code>BP_XenoCore_Party</code> (the party), <code>BP_XenoCore_Progression</code> (levels, EXP, gold), <code>XenoCoreQuestComponent</code> (quests), <code>XenoCorePartyGaugeComponent</code> (the Party Gauge), <code>LyraInventoryManagerComponent</code> (the shared bag) and <code>LyraIndicatorManagerComponent</code> (world indicators).</td>
+<td>On every <code>LyraPlayerController</code>: <code>BP_XenoCore_Party</code> (the party), <code>XenoCoreQuestComponent</code> (quests) and <code>XenoCorePartyGaugeComponent</code> (the Party Gauge). On every <code>Controller</code>: <code>BP_XenoCore_Progression</code> (levels, EXP, gold) and <code>LyraInventoryManagerComponent</code> (the shared bag). On every <code>PlayerController</code>, client side only: <code>LyraIndicatorManagerComponent</code> (world indicators).</td>
 </tr>
 <tr>
 <td><strong>Add Input Context Mapping</strong></td>
@@ -4658,17 +4658,13 @@ while the feature is active and holds three actions:</p>
 </tr>
 <tr>
 <td><strong>Add Gameplay Cue Path</strong></td>
-<td>Registers the plugin's <code>GameplayCues</code> folder, so <code>GCN_XenoCore_Hit</code>, <code>GCN_XenoCore_Swing</code> and <code>GCN_XenoCore_HealNumber</code> can be found.</td>
+<td>Registers the plugin's <code>GameplayCues</code> folder (the action's default path, <code>/GameplayCues</code>, relative to the plugin), so <code>GCN_XenoCore_Hit</code>, <code>GCN_XenoCore_Swing</code> and <code>GCN_XenoCore_HealNumber</code> can be found.</td>
 </tr>
 </tbody>
 </table>
 <p>It also tells the Asset Manager to scan <code>/XenoCore/Experiences</code>, <code>/XenoCore/Maps</code> and
 <code>/XenoCore/System/Playlists</code>, which is how the plugin's Experiences become discoverable without you
 editing the host project's config.</p>
-<!-- VERIFY: open Content/XenoCore in the editor and confirm the Add Components entries, their
-Actor Class (the name table shows both LyraPlayerController and Controller) and the Client/Server
-flags. The cue-path action serializes no path, so it uses Lyra's default /GameplayCues. -->
-
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a new cue folder is never searched</p>
 <p>Only the plugin's <code>GameplayCues</code> folder is registered. A Gameplay Cue Notify you save anywhere
@@ -4689,7 +4685,7 @@ the action.</p>
 <tr>
 <td><code>Experiences/B_XenoCore_Experience</code></td>
 <td>The sample world and <code>L_XenoCore_Gym</code></td>
-<td>Sets <strong>Default Pawn Data</strong> to <code>Game/PawnData_XenoCore_Player</code>; adds the <code>LAS_XenoCore_HUD</code> action set (the HUD layout <code>W_XenoCore_HUDLayout</code> and the number-pop component); grants <code>AbilitySet_XenoCore_Interact</code>; adds <code>B_XenoCore_TeamSetup</code>; enables the XenoCore Game Feature.</td>
+<td>Sets <strong>Default Pawn Data</strong> to <code>Game/PawnData_XenoCore_Player</code>; adds the <code>LAS_XenoCore_HUD</code> action set (the HUD layout <code>W_XenoCore_HUDLayout</code> and the number-pop component); grants <code>AbilitySet_XenoCore_Interact</code> to <code>LyraPlayerState</code> (whose ability system XenoCore does not use, so this grant does nothing; the party's <strong>Leader Only Ability Set</strong> is the grant that works); adds <code>B_XenoCore_TeamSetup</code> (a team creation component) to <code>LyraGameState</code>; enables the XenoCore Game Feature.</td>
 </tr>
 <tr>
 <td><code>Experiences/B_XenoCore_FrontEnd_Experience</code></td>
@@ -4698,9 +4694,6 @@ the action.</p>
 </tr>
 </tbody>
 </table>
-<!-- VERIFY: the actor classes the interact ability set and the team setup are added to in
-B_XenoCore_Experience; the name table shows LyraGameState and LyraPlayerState. -->
-
 <h2 id="the-ownership-map">The ownership map<a class="headerlink" href="#the-ownership-map" title="Permanent link">&para;</a></h2>
 <p>This is the table to come back to. When you want to know where something is stored, who changes it and
 who is told about it, find its row.</p>
@@ -5108,8 +5101,10 @@ changing Lyra's: the damage-number cue is <code>GameplayCues/GCNL_XenoCore_Damag
 <code>GE_XenoCore_Damage</code>; Lyra's <code>GCNL_Character_DamageTaken</code> is untouched), and keyboard key
 icons are added at startup from <strong>Project Settings › Game › XenoCore UI › HUD › Keyboard Key Icons</strong>.
 A fresh download of Lyra therefore needs nothing re-applied.
-<!-- VERIFY: play-test the XenoCore damage cue copy on a stock Lyra 5.8 install: dealt numbers,
-ally hit numbers, critical gold number and sounds (commit 4d8691f0 says "not yet play-tested"). --></p>
+<!-- VERIFY(PLAY): wiring is static-checked (GE_XenoCore_Damage names GameplayCue.XenoCore.DamageTaken,
+which GCNL_XenoCore_DamageTaken answers). On a STOCK Lyra 5.8 install with only the plugin added, in
+Gaur Plain: hit a minion (white number + hit sound over it), let an ally hit it (number + sound),
+land a crit (gold number + weak-spot sound). Pass = all three appear. --></p>
 </div>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
 <ul>

@@ -4778,8 +4778,6 @@ logged.</p>
 </li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
-<!-- VERIFY: the exact fragment labels as the Fragments array shows them -->
-
 <h3 id="4-set-its-stats">4. Set its stats<a class="headerlink" href="#4-set-its-stats" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In <code>ID_MyGame_StoneBlade</code>, open the <strong>Inventory Fragment Set Stats</strong> fragment.</li>
@@ -4858,7 +4856,7 @@ weapon in both, or the party gets two.</p>
 it prints each character's allowed weapon types, held weapon and how many bag weapons their swap list
 shows.</p>
 <h2 id="a-new-kind-of-weapon">A new kind of weapon<a class="headerlink" href="#a-new-kind-of-weapon" title="Permanent link">&para;</a></h2>
-<p><strong>Make the type first.</strong> Right-click in the Content Browser › <strong>Miscellaneous</strong> › <strong>Data Asset</strong> ›
+<p><strong>Make the type first.</strong> Right-click in the Content Browser › <strong>Data</strong> › <strong>Data Asset</strong> ›
 <code>XenoCoreWeaponTypeDefinition</code>, name it <code>DA_MyGame_WeaponType_Spear</code>, and set its <strong>Display Name</strong>.
 Point your weapon's <strong>Weapon Type</strong> at it (step 4b), then give every character who may use spears the
 type: open their pawn Blueprint, select the equipment component, and add it to <strong>XenoCore › Equipment ›
@@ -4950,8 +4948,7 @@ keep all three of its entries:</p>
 <p>Without <code>GA_XenoCore_EquipmentStats</code> the weapon equips, draws and shows its name, and adds
 <strong>no stats</strong>. Without <code>GA_XenoCore_WeaponDrawSync</code> it never leaves the back. Without
 <code>GA_XenoCore_TurnStrike</code> the character has no Talent Art while wearing it. None of these log
-anything.
-<!-- VERIFY: that the Talent Art is granted only through the weapon's ability set --></p>
+anything.</p>
 </div>
 <h2 id="size-position-and-materials">Size, position and materials<a class="headerlink" href="#size-position-and-materials" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4976,10 +4973,8 @@ anything.
 - <strong>Materials from a pack</strong> (Paragon, Megascans) must be moved into XenoCore with the weapon. The
   packs are not part of the project, so on any other machine the material slot is empty and the
   weapon renders grey. Use the editor's <strong>Move</strong> on the material, its textures and functions, never
-  <strong>Copy</strong>, so the mesh is repointed; then cap the textures at 1K (right-click › <strong>Asset Actions ›
-  Resize Texture Source</strong>). The Gold Sword's <code>Materials/</code> folder is the worked example.
-  <!-- VERIFY: the Resize Texture Source context-menu entry and its location in 5.8 -->
-</p>
+  <strong>Copy</strong>, so the mesh is repointed; then cap the textures at 1K (right-click › <strong>Texture Source
+  Actions › Reduce Size</strong>). The Gold Sword's <code>Materials/</code> folder is the worked example.</p>
 </li>
 </ul>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>

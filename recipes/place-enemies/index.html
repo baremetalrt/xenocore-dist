@@ -4840,9 +4840,7 @@ party and never fights. Always make a <strong>child</strong> of <code>BP_AIC_Xen
 </div>
 <h3 id="5-save">5. Save<a class="headerlink" href="#5-save" title="Permanent link">&para;</a></h3>
 <p>Save the level.</p>
-<!-- VERIFY: in a World Partition map, what happens to a hand-placed enemy (engaged or defeated) when
-its cell streams out and back in. Expected: it is unloaded and comes back fresh at its placed
-position. A spawner that streams out takes its squad with it and refills when it streams back in. -->
+<!-- VERIFY(PLAY): needs a World Partition map (the shipped Gaur Plain is not one). Hand-place one enemy and one spawner in a far cell; in Play, wound the enemy and kill the squad, run out past the loading range (or `wp.Runtime.ToggleDrawRuntimeHash2D` to watch the cell unload), then come back. Pass = the hand-placed enemy returns at its placed spot with full HP and not engaged; the spawner's squad is back at full count (CLAUDE.md: spawner enemies are destroyed when it streams out and refilled when it streams back). Then write the result here as a sentence. -->
 
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>

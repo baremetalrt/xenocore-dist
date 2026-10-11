@@ -4583,17 +4583,14 @@ and <code>NPC_MonsterQuestGiver</code> gives <code>DA_XenoCore_Quest_Monster01</
 also carries <code>Collection01</code>, as a ready-made example; the plain <code>B_XenoCore_Npc</code> gives no quest.</p>
 <h3 id="what-the-two-sample-quests-do">What the two sample quests do<a class="headerlink" href="#what-the-two-sample-quests-do" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p><strong>Collection01</strong> is a collect quest: one <strong>Collect Item</strong> objective on
-  <code>ID_XenoCore_EtherCrystal</code>, rewarding <code>ID_XenoCore_BlueChain</code> plus gold and experience.
-  <!-- VERIFY: counts and reward amounts in the editor --></p>
-</li>
-<li>
-<p><strong>Monster01</strong> is a kill quest: one <strong>Defeat Enemy</strong> objective on <code>B_XenoCore_Minion_Melee</code>,
-  locked behind a <strong>Party Level At Least</strong> gate, rewarding <code>ID_XenoCore_ScrapPlating</code> plus gold
-  and experience. Every minion killed while the quest is active counts, including any child
-  Blueprint of the minion. <!-- VERIFY: RequiredCount and the gate's level --></p>
-</li>
+<li><strong>Collection01</strong> is a collect quest: one <strong>Collect Item</strong> objective for 2
+  <code>ID_XenoCore_EtherCrystal</code>, taken from the bag on turn-in, rewarding <code>ID_XenoCore_BlueChain</code>,
+  500 gold and 200 experience.</li>
+<li><strong>Monster01</strong> is a kill quest: one <strong>Defeat Enemy</strong> objective for 2 <code>B_XenoCore_Minion_Melee</code>,
+  rewarding <code>ID_XenoCore_ScrapPlating</code>, 300 gold and 400 experience. Every
+  minion killed while the quest is active counts, including any child Blueprint of the minion. Its
+  <strong>Party Level At Least</strong> gate is set to 1, so it never blocks: it is there as a worked example.
+  Raise the level to see a gate work.</li>
 </ul>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p>A quest's status, shown on screen as the log's status column:</p>

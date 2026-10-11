@@ -4479,7 +4479,7 @@ you install the plugin, and stay out of sight when it isn't there.</p>
 project's C++, not the XenoCore plugin. A stock Lyra Starter Game project does not have it, so
 installing NVIDIA's plugin there adds nothing to <strong>Options › Video</strong>, and nothing warns. Adding
 the group to a stock Lyra needs a programmer and a C++ build; see the note at the end of this page.
-<!-- VERIFY: whether the buyer package ships the NVIDIA settings files for stock-Lyra installs, and where (Launch-Status: "Phase 2 rest (DLSS optional)"); then name the files here --></p>
+The XenoCore download is the plugin folder only, so it does not include those Lyra files.</p>
 </div>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4555,7 +4555,9 @@ Do not use NVIDIA logos in your store page without NVIDIA's approval.</p>
 <p>The settings call NVIDIA's own Blueprint libraries by name, so nothing in the project links to
 NVIDIA's code. They are a Lyra game-settings class, <code>LyraNvidiaSettings</code> (in the host project's
 <code>Source/LyraGame/Settings/</code>), registered on Lyra's Video settings page. In a stock Lyra project
-those files must be added to <code>LyraGame</code> and the project rebuilt.</p>
+those files must be added to <code>LyraGame</code> and the project rebuilt: the new
+<code>LyraNvidiaSettings.h/.cpp</code> and <code>LyraGameSettingRegistry_Video_NVIDIA.cpp</code>, plus small edits to
+<code>LyraGameSettingRegistry.h/.cpp</code> and <code>LyraSettingsLocal.h/.cpp</code>.</p>
 </details>
 
 

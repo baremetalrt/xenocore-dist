@@ -4639,7 +4639,11 @@ that level, so Data Validation rejects it on save, and warns about a row shorter
 <p class="admonition-title">Level-up does not revive</p>
 <p>A downed party member stays down until revived or the battle ends; a level-up records the new
 level but does not stand them up.
-<!-- VERIFY: a downed member levelling up in PIE - the statline overrides Health, so check it stays kneeling --></p>
+<!-- VERIFY(PLAY): code check: a level-up re-applies the statline (ProgressionComponent.cpp:322)
+with no downed check, so a downed member's Health goes to full. In a fight with a minion still
+engaged, type <code>XenoDownMember 1</code>, then <code>XenoAwardExp 5000</code>. Pass = it stays kneeling with
+Status.XenoCore.Downed, its HUD row stays grey, and a revive still costs a bar. If its HP bar
+reads full while kneeling, say so here. --></p>
 </div>
 <h2 id="gold">Gold<a class="headerlink" href="#gold" title="Permanent link">&para;</a></h2>
 <p>The purse is <strong>Gold</strong> on the same component, 3,000 at the start of a new game. <strong>Award Gold</strong> adds and

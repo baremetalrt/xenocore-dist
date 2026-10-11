@@ -4711,7 +4711,8 @@ Golem.EtherDefence,0.05,0.3
 <ol>
 <li>Save it as <code>CT_MyGame_EnemyStats.csv</code>.</li>
 <li>Drag it into <code>MyGame/Enemies</code> in the Content Browser.</li>
-<li>In the import dialog, choose <strong>Curve Table</strong>, with <strong>Linear</strong> interpolation.</li>
+<li>In the import dialog, set <strong>Import As</strong> to <code>CurveTable</code> (it opens on <code>DataTable</code>) and <strong>Choose
+   Curve Interpolation Type</strong> to <code>Linear</code>, then click <strong>Apply</strong>.</li>
 <li>Double-click the new asset and check the rows.</li>
 </ol>
 <p>You can also duplicate <code>Battle/Attributes/CT_XenoCore_EnemyStats</code> and edit its cells in the curve
@@ -4724,8 +4725,6 @@ deleting and re-creating it. It stays the same asset, so every stats effect poin
 working. On a duplicate of a shipped table, use <strong>Reimport With New File</strong> instead: the shipped
 tables remember a source file that is not on your machine.</p>
 </div>
-<!-- VERIFY: the CSV import dialog's options and wording in 5.8 -->
-
 <h3 id="2-point-your-stats-effect-at-it">2. Point your stats effect at it<a class="headerlink" href="#2-point-your-stats-effect-at-it" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In <strong>Plugins › XenoCore Content › Battle › Attributes</strong>, right-click

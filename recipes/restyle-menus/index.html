@@ -4709,12 +4709,17 @@ a set of class defaults rather than a style asset:</p>
   <strong>Text Colour</strong>, <strong>Dim Colour</strong>, <strong>Highlight Colour</strong> and <strong>Accent Colour</strong> under
   <strong>XenoCore › Look</strong>, and point <strong>Menu Button Class</strong> at your child. Any <code>CommonButtonBase</code>
   child works there, including <code>W_XenoCore_MenuButton</code>.</li>
-<li><strong>The party cards</strong> are <code>XenoCorePartyCardBase</code>. Make a Blueprint child, change its
+<li>
+<p><strong>The party cards</strong> are <code>XenoCorePartyCardBase</code>. Make a Blueprint child, change its
   <strong>XenoCore › Look</strong> settings, and set it as <strong>Card Class</strong> in <code>W_XenoCore_MenuShell</code>'s
-  <strong>Class Defaults</strong> (<strong>XenoCore › Menu</strong>).</li>
+  <strong>Class Defaults</strong> (<strong>XenoCore › Menu</strong>).</p>
+</li>
+<li>
+<p><strong>The main menu's own panel</strong> is not a class default. Open <code>W_XenoCore_MenuShell</code> in the
+  Designer: the entry panel is the Border <code>EntriesPanel</code> (change its <strong>Brush › Tint</strong> and the
+  outline colour), and the darkening over the world is the Border <code>ScreenDim</code> (<strong>Brush Color</strong>).</p>
+</li>
 </ul>
-<!-- VERIFY: the main menu's own panel colours are settable from W_XenoCore_MenuShell's Class Defaults -->
-
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-back-up-what-you-are-about-to-change">1. Back up what you are about to change<a class="headerlink" href="#1-back-up-what-you-are-about-to-change" title="Permanent link">&para;</a></h3>
 <p>Style assets are shared, so this recipe edits shipped XenoCore assets in place. Write down each
@@ -4724,16 +4729,15 @@ update.</p>
 <ol>
 <li>Open <code>UserInterface/Foundation/ButtonStyle_XenoCore_Menu</code>. It is a small Blueprint: open
    <strong>Class Defaults</strong>.</li>
-<li>Under <strong>Properties</strong>, each state has a brush: <strong>Normal Base</strong>, <strong>Normal Hovered</strong>,
-   <strong>Normal Pressed</strong>, <strong>Selected Base</strong>, <strong>Selected Hovered</strong>, <strong>Selected Pressed</strong>, and
-   <strong>Disabled</strong>. Each brush is a rounded box.</li>
+<li>Under <strong>Normal</strong>, <strong>Selected</strong> and <strong>Disabled</strong>, each state has a brush: <strong>Normal Base</strong>,
+   <strong>Normal Hovered</strong>, <strong>Normal Pressed</strong>, <strong>Selected Base</strong>, <strong>Selected Hovered</strong>,
+   <strong>Selected Pressed</strong>, and <strong>Disabled</strong>. Each brush is a rounded box. (They are greyed out while
+   <strong>Single Material</strong> is ticked; leave it off.)</li>
 <li>Change each brush's <strong>Tint</strong> to your colours. Keep <strong>Normal Base</strong> close to your panel
    colour so rows read as a list, and make <strong>Selected Base</strong> clearly different; that is where the
    cursor is.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
-<!-- VERIFY: CommonButtonStyle Details labels in 5.8 -->
-
 <p>Every row that uses this style changes at once: the Items list, Equipment rows, Arts rows, the
 Party screen's member buttons and the trade rows.</p>
 <h3 id="3-change-the-tab-strip">3. Change the tab strip<a class="headerlink" href="#3-change-the-tab-strip" title="Permanent link">&para;</a></h3>
@@ -4751,14 +4755,10 @@ Keep using <code>W_XenoCore_TabButton</code>.</p>
 </div>
 <h3 id="4-change-the-font">4. Change the font<a class="headerlink" href="#4-change-the-font" title="Permanent link">&para;</a></h3>
 <ol>
-<li>
-<p>Import your font file (<code>.ttf</code> or <code>.otf</code>) into <code>MyGame/UI/Fonts</code>. Unreal creates a
-   <strong>Font Face</strong>; right-click it and create a <strong>Font</strong> asset from it.
-   <!-- VERIFY: 5.8 font import creates Font Face, and the Font asset step --></p>
-</li>
-<li>
-<p>Open each style that names a font and set its <strong>Font Family</strong> to your new Font:</p>
-<ul>
+<li>Import your font file (<code>.ttf</code> or <code>.otf</code>) into <code>MyGame/UI/Fonts</code>. Unreal creates a
+   <strong>Font Face</strong> and asks whether to create a <strong>Font</strong> asset from it too: click <strong>Yes</strong>. The Font
+   is named after the face with <code>_Font</code> on the end.</li>
+<li>Open each style that names a font and set its <strong>Font Family</strong> to your new Font:<ul>
 <li><code>TextStyle_XenoCore_TitleEntry</code>, <code>TextStyle_XenoCore_TitleEntrySelected</code></li>
 <li><code>W_XenoCore_TabButton</code> and <code>W_XenoCore_MenuButton</code>, which set their font directly</li>
 </ul>

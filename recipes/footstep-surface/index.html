@@ -4722,8 +4722,8 @@ field.</p>
 <h3 id="6-add-the-effect-rows">6. Add the effect rows<a class="headerlink" href="#6-add-the-effect-rows" title="Permanent link">&para;</a></h3>
 <p>Rather than editing XenoCore's library, give the characters a library of your own:</p>
 <ol>
-<li>In the Content Browser, open <code>MyGame/Audio</code>, right-click, and choose <strong>Miscellaneous › Data
-   Asset</strong>. Pick the class <code>LyraContextEffectsLibrary</code> and name it <code>CFX_MyGame</code>.</li>
+<li>In the Content Browser, open <code>MyGame/Audio</code>, right-click, and choose <strong>Data › Data
+   Asset</strong>. Pick the class <strong>Lyra Context Effects Library</strong> and name it <code>CFX_MyGame</code>.</li>
 <li>
 <p>Add two entries to <strong>Context Effects</strong>:</p>
 <table>
@@ -4757,9 +4757,10 @@ field.</p>
 </ol>
 <p>Both pawn bases need it: the player's pawn and the party members are built on different bases.
 The VRoid party members (<code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code> and its children) are
-children of <code>B_XenoCore_PartyMember_Base</code>, so they inherit it.</p>
-<!-- VERIFY: B_XenoCore_PartyMember_Base's context effect component is its own, not inherited, and that libraries in the set merge rather than one winning -->
-
+children of <code>B_XenoCore_PartyMember_Base</code>, so they inherit it. (On the party base the
+<strong>LyraContextEffect</strong> component comes from its C++ parent, so it shows as inherited; the library
+list you set on the Blueprint is still what the members use.) Libraries add up rather than one
+winning: a step plays every matching row from every library in the list.</p>
 <div class="admonition note">
 <p class="admonition-title">Or add rows to CFX_XenoCore</p>
 <p>Adding the two rows to <code>ContextEffects/CFX_XenoCore</code> also works and touches one asset instead

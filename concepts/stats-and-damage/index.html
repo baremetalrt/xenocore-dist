@@ -4832,14 +4832,62 @@ once under <code>LogXenoDamage</code>.</p>
 <td>same</td>
 <td>Block-chance change per level of gap: 5%, 0 and 100%.</td>
 </tr>
+<tr>
+<td><strong>Miss Colour</strong>, <strong>Critical Colour</strong>, <strong>Blocked Colour</strong></td>
+<td>same › XenoCore › Damage › Notifications</td>
+<td>Battle-text colours.</td>
+</tr>
+<tr>
+<td><strong>Critical Hit Text</strong>, <strong>Critical Hit Scale</strong>, <strong>Critical Hit Punch</strong>, <strong>Critical Hit Stop Seconds</strong>, <strong>Critical Hit Stop Dilation</strong></td>
+<td>Project Settings › Game › XenoCore Content › Critical Hit</td>
+<td>The critical line's wording, size and punch, and an optional hit-stop (0 s, off, by default).</td>
+</tr>
+<tr>
+<td><strong>Max Character Level</strong></td>
+<td><code>DefaultGame.ini</code>, section above</td>
+<td>Level cap.</td>
+</tr>
 </tbody>
 </table>
-<!-- VERIFY: the Level Difference rows appear under XenoCore › Damage › Level Difference on BP_XenoCoreDamageExecution, labelled as written. -->
-<p>| <strong>Miss Colour</strong>, <strong>Critical Colour</strong>, <strong>Blocked Colour</strong> | same › XenoCore › Damage › Notifications | Battle-text colours. |
-| <strong>Critical Hit Text</strong>, <strong>Critical Hit Scale</strong>, <strong>Critical Hit Punch</strong>, <strong>Critical Hit Stop Seconds</strong>, <strong>Critical Hit Stop Dilation</strong> | Project Settings › Game › XenoCore Content › Critical Hit | The critical line's wording, size and punch, and an optional hit-stop (0 s, off, by default). |
-| <strong>Max Character Level</strong> | <code>DefaultGame.ini</code>, section above | Level cap. |</p>
-<!-- VERIFY: the numbers in CT_XenoCore_DamageLevelDiff, and which of these the Blueprint overrides. -->
-
+<p>The shipped <code>BP_XenoCoreDamageExecution</code> changes only <strong>Level Difference Curve</strong>; every other value
+above is the class default. <code>CT_XenoCore_DamageLevelDiff</code> multiplies damage by the gap (attacker level
+− target level):</p>
+<table>
+<thead>
+<tr>
+<th>Gap</th>
+<th>−6 or less</th>
+<th>−5 to −3</th>
+<th>−2</th>
+<th>−1 to +2</th>
+<th>+3</th>
+<th>+4 to +9</th>
+<th>+10 or more</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Damage.LevelDiff.Physical</code></td>
+<td>0.5</td>
+<td>0.75</td>
+<td>0.875</td>
+<td>1.0</td>
+<td>1.125</td>
+<td>1.25</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td><code>Damage.LevelDiff.Ether</code></td>
+<td>0.625</td>
+<td>0.875</td>
+<td>0.9375</td>
+<td>1.0</td>
+<td>1.125</td>
+<td>1.25</td>
+<td>1.5</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition warning">
 <p class="admonition-title">Every statline modifier must be Override</p>
 <p>A statline is re-applied on every level-up. A modifier using <strong>Add</strong> stacks on the previous

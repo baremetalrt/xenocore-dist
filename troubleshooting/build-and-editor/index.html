@@ -4770,10 +4770,10 @@ the editor offers to rebuild modules.</p>
 Play-in-Editor. It is saved in your per-user settings under <code>Saved/Config</code>, which is not in source
 control, so it survives across sessions and differs between machines. A small toast, "Developer
 Settings Override", appears for two seconds when Play starts.</p>
-<p><strong>Fix:</strong> open <strong>Project Settings › Lyra › Lyra Developer Settings</strong> and clear <strong>Experience
-Override</strong>. The Output Log confirms the result: <code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</code>.</p>
-<!-- VERIFY: exact Project Settings location of Lyra Developer Settings -->
-
+<p><strong>Fix:</strong> open <strong>Edit › Editor Preferences</strong>, find the category named after your project (<strong>Lyra</strong>
+for a project named Lyra), open <strong>Lyra Developer Settings</strong> and clear <strong>Experience Override</strong>. It is
+an Editor Preference, not a Project Setting, because it is saved per user. The Output Log confirms
+the result: <code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</code>.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../getting-started/project-tour/">Tour of the project</a>.</p>
 <h3 id="the-experience-in-my-own-game-feature-plugin-cant-be-found">The experience in my own Game Feature plugin can't be found<a class="headerlink" href="#the-experience-in-my-own-game-feature-plugin-cant-be-found" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> Lyra finds experiences through the Asset Manager, and a plugin's experience folder is not

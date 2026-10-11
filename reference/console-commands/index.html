@@ -4549,6 +4549,11 @@ available in a Shipping build. Do not build gameplay on them.</p>
 <td><code>XenoCoreRuntime/Private/AI/XenoCoreCombatConditions.cpp</code></td>
 </tr>
 <tr>
+<td><code>XenoCore.Test.Run</code></td>
+<td>Runs the in-build smoke test: <code>XenoCore.Test.Run</code> [All|Combat|Inventory|Quest|Save] [quit]. Plays on the live session - use a throwaway one. Results in LogXenoTest and Saved/Logs/XenoTest.txt.</td>
+<td><code>XenoCoreRuntime/Private/Debug/XenoCoreTestRunner.cpp</code></td>
+</tr>
+<tr>
 <td><code>XenoCore.Time.Describe</code></td>
 <td><code>XenoCore.Time.Describe</code> - log the time, phase, hour block and weather.</td>
 <td><code>XenoCoreRuntime/Private/World/XenoCoreTimeOfDaySubsystem.cpp</code></td>
@@ -4626,6 +4631,8 @@ only routes console input to a fixed set of objects: the player controller, its 
 manager (and cheat-manager extensions), the possessed pawn, the HUD, the game mode and the
 game instance. An <code>Exec</code> function on a <strong>component</strong> or a <strong>subsystem</strong> is not on that list,
 so typing it is expected to print <em>Command not recognized</em>.</p>
+<!-- VERIFY(PLAY): every 'Yes' row below is a UFUNCTION(Exec) on a cheat-manager extension that registers itself on every new cheat manager (UCheatManager::RegisterForOnCheatManagerCreated). To finish: in PIE on Gaur Plain open the console and type each command, e.g. XenoArts, XenoAwardGold 500, XenoGaugeAdd 100, XenoSaveDump, XenoHurtParty 0.3. Pass = no 'Command not recognized' and the described effect or log output. -->
+
 <table>
 <thead>
 <tr>
@@ -4641,161 +4648,161 @@ so typing it is expected to print <em>Command not recognized</em>.</p>
 <td><code>XenoArts</code></td>
 <td></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoArts - the leader's learned arts and palette.</td>
 </tr>
 <tr>
 <td><code>XenoAwardExp</code></td>
 <td><code>&lt;Amount&gt;</code></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoAwardExp 5000 - bank EXP without finding something to kill.</td>
 </tr>
 <tr>
 <td><code>XenoAwardGold</code></td>
 <td><code>&lt;Amount&gt;</code></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoAwardGold 500 - bank gold without a quest to finish.</td>
 </tr>
 <tr>
 <td><code>XenoCastArt</code></td>
 <td><code>&lt;ArtName&gt;</code></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoCastArt AirSlash - cast an equipped art by spec handle, the palette's own dispatch.</td>
 </tr>
 <tr>
 <td><code>XenoCoreDumpInventory</code></td>
 <td></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoCoreDumpInventory - read-only dump of the bag, the leader's loadout and totals.</td>
 </tr>
 <tr>
 <td><code>XenoCoreTestInventoryEvents</code></td>
 <td></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoCoreTestInventoryEvents - mutates: adds and removes one item, reports both messages.</td>
 </tr>
 <tr>
 <td><code>XenoDownMember</code></td>
 <td><code>&lt;ActiveSlot&gt;</code></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoDownMember 0 - kill an active member through the real damage path.</td>
 </tr>
 <tr>
 <td><code>XenoGaugeAdd</code></td>
 <td><code>&lt;Amount&gt;</code></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoGaugeAdd 100 - add Party Gauge points (negative removes).</td>
 </tr>
 <tr>
 <td><code>XenoGaugeSpend</code></td>
 <td><code>&lt;Bars&gt;</code></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoGaugeSpend 1 - spend whole Party Gauge bars through the real path.</td>
 </tr>
 <tr>
 <td><code>XenoGiveAP</code></td>
 <td><code>&lt;Amount&gt;</code></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoGiveAP 1000 - Art Points for the leader.</td>
 </tr>
 <tr>
 <td><code>XenoGiveSP</code></td>
 <td><code>&lt;Amount&gt;</code></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoGiveSP 500 - pour SP into the leader's selected skill branch.</td>
 </tr>
 <tr>
 <td><code>XenoHurtParty</code></td>
 <td><code>&lt;Fraction&gt;=0.3f</code></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoHurtParty 0.3 - set every standing member to that fraction of max HP, to watch out-of-battle recovery.</td>
 </tr>
 <tr>
 <td><code>XenoLevelUpLeader</code></td>
 <td></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoLevelUpLeader - award exactly the EXP the leader needs for their next level.</td>
 </tr>
 <tr>
 <td><code>XenoLevelUpParty</code></td>
 <td></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoLevelUpParty - award enough EXP that every active member levels at least once.</td>
 </tr>
 <tr>
 <td><code>XenoLoad</code></td>
 <td><code>&lt;SlotIndex&gt;=1</code></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoLoad 1 - load a slot.</td>
 </tr>
 <tr>
 <td><code>XenoQuestStatus</code></td>
 <td></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoQuestStatus - print every quest this party has touched.</td>
 </tr>
 <tr>
 <td><code>XenoReviveMember</code></td>
 <td><code>&lt;ActiveSlot&gt;</code></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoReviveMember 0 - bring that member back at full health.</td>
 </tr>
 <tr>
 <td><code>XenoSave</code></td>
 <td><code>&lt;SlotIndex&gt;=1</code></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoSave 1 - save to a slot.</td>
 </tr>
 <tr>
 <td><code>XenoSaveDump</code></td>
 <td></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoSaveDump - print every slot without loading it.</td>
 </tr>
 <tr>
 <td><code>XenoSetArt</code></td>
 <td><code>&lt;SlotIndex&gt; &lt;ArtName&gt;</code></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoSetArt 2 AirSlash - put an art in a palette slot.</td>
 </tr>
 <tr>
 <td><code>XenoSetLeader</code></td>
 <td><code>&lt;ActiveSlot&gt;</code></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoSetLeader 0 - make an active slot the leader.</td>
 </tr>
 <tr>
 <td><code>XenoSkills</code></td>
 <td></td>
 <td><code>UXenoCoreProgressionCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoSkills - the leader's branches and progress.</td>
 </tr>
 <tr>
 <td><code>XenoWipeParty</code></td>
 <td></td>
 <td><code>UXenoCoreSystemCheats</code></td>
-<td>Yes, in development builds <!-- VERIFY: type it in PIE --></td>
+<td>Yes, in development builds</td>
 <td>XenoWipeParty - down every active member, which triggers the party-wipe flow.</td>
 </tr>
 </tbody>

@@ -4778,9 +4778,9 @@ any unavoidable patch small and written down.</p>
 <p>Every public class and struct in <code>XenoCoreRuntime</code> is exported with <code>XENOCORERUNTIME_API</code>, so a
 C++ class in your own module can derive from it and call its functions. The only exceptions are
 the module object and the two console-command cheat extensions (<code>UXenoCoreSystemCheats</code>,
-<code>UXenoCoreProgressionCheats</code>), which are not meant to be extended.</p>
-<!-- VERIFY: re-check the export list against the release build's headers -->
-
+<code>UXenoCoreProgressionCheats</code>), which are not meant to be extended. The three interfaces
+(<code>IXenoCoreAnimProfileProvider</code>, <code>IXenoCoreMapMarkerSource</code>, <code>IXenoCoreMenuButton</code>) are exported
+too; only their <code>U</code> halves are minimally exported, which is all implementing one needs.</p>
 <div class="admonition warning">
 <p class="admonition-title">Link error: \"unresolved external symbol\" on a Lyra class</p>
 <p>Some of <strong>Lyra's</strong> own classes are not exported from <code>LyraGame</code> (for example
@@ -4792,11 +4792,8 @@ classes. Derive a Blueprint from the Lyra class instead.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-your-plugin">1. Create your plugin<a class="headerlink" href="#1-create-your-plugin" title="Permanent link">&para;</a></h3>
 <ol>
-<li>
-<p><strong>Edit › Plugins › Add</strong>, choose <strong>Game Feature (with C++)</strong>. Name it <code>MyGameCore</code>. It is
-   created under <code>Plugins/GameFeatures/MyGameCore</code>.
-   <!-- VERIFY: 5.8 plugin template name for a C++ game feature --></p>
-</li>
+<li><strong>Edit › Plugins › Add</strong>, choose <strong>Game Feature (with C++)</strong>. Name it <code>MyGameCore</code>. It is
+   created under <code>Plugins/GameFeatures/MyGameCore</code>.</li>
 <li>
 <p>Open <code>MyGameCore.uplugin</code> and add XenoCore to its <strong>Plugins</strong> list:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&quot;Plugins&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>

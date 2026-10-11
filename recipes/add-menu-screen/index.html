@@ -4890,7 +4890,7 @@ The game layer holds the HUD, and a screen there never takes Menu input mode.</p
 <p>The shipped thirteen entries, with their padding and the group gap, just fit a 1080-pixel-high
 screen without scrolling. Before adding a fourteenth, lower <strong>Menu Button Padding</strong> or
 <strong>Menu Group Gap</strong>, or hide an entry you do not need, and check the bottom entry is still on
-screen. <!-- VERIFY: a fourteenth entry at the default padding runs off a 1080p screen --></p>
+screen. <!-- VERIFY(PLAY): add a fourteenth test entry at the default Menu Button Padding (4), open the main menu in a 1920x1080 window; record whether the buttons box scrolls (main_menu_pie.py's "end offset" check reads it). The shipped 13 are measured to fit; the 14th is not. If it fits, soften this warning. --></p>
 </div>
 <h3 id="5-optional-keep-your-entries-in-your-own-asset">5. Optional: keep your entries in your own asset<a class="headerlink" href="#5-optional-keep-your-entries-in-your-own-asset" title="Permanent link">&para;</a></h3>
 <p>Editing <strong>Menu Entries</strong> changes the project's <code>DefaultGame.ini</code>. To keep your entries in your own

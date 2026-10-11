@@ -4649,28 +4649,26 @@ screen that the bag changed.</p>
    Never create an item definition from blank.</li>
 <li>Open it. In <strong>Class Defaults</strong>, set <strong>Display Name</strong> to <code>Mend Salve</code>.</li>
 <li>Expand <strong>Fragments</strong>. In the <strong>Xeno Core Fragment Item Category</strong> entry, under
-   <strong>XenoCore › Item</strong>, set <strong>Category</strong> to <code>Items</code>, <strong>Max Carried</strong> to <code>20</code> and <strong>Sell Value</strong>.
-   <strong>Max Carried</strong> is the most the party may hold; <code>0</code> means no limit.</li>
+   <strong>XenoCore › Item</strong>, leave <strong>Category</strong> on <code>Collectables</code> (the potato's), and set <strong>Max
+   Carried</strong> to <code>20</code> and <strong>Sell Value</strong>. <strong>Max Carried</strong> is the most the party may hold; <code>0</code> means
+   no limit. Do not pick <code>Items</code>: no Items-menu tab lists that category, so the salve would be
+   carried but never shown.</li>
 <li>In the <strong>Xeno Core Fragment Item Display</strong> entry, set <strong>Description</strong> and <strong>Icon</strong>.</li>
 <li>Make sure there is <strong>no</strong> <strong>Xeno Core Fragment Equip Slots</strong> entry, or the item becomes
    equipment.</li>
 <li>Click <strong>Compile</strong>, then <strong>Save</strong>.</li>
 </ol>
-<!-- VERIFY: which Category shows the item in the Items menu. The category enum has no consumable
-value; the Items menu tabs visibly include Collectables, Crystals, Materials, Key Item and Art
-Manual. Confirm whether "Items" has a tab. -->
-
 <h3 id="2-make-the-heal">2. Make the heal<a class="headerlink" href="#2-make-the-heal" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In the Content Browser, open <code>Content/Environments/Gameplay</code> (Lyra's own content), right-click
    <code>GE_GameplayEffectPad_Heal</code>, choose <strong>Duplicate</strong>, move the copy into <code>MyGame/Items</code> and name it
    <code>GE_MyGame_Mend</code>.</li>
-<li>Open it and set the heal amount on its execution. Keep its <strong>Gameplay Cues</strong> entry
+<li>Open it. The heal amount is on its execution, not a modifier: under <strong>Executions</strong>, in the
+   <strong>Lyra Heal Execution</strong> entry's <strong>Calculation Modifiers</strong>, set the <strong>BaseHeal</strong> modifier's
+   scalable float. Keep its <strong>Gameplay Cues</strong> entry
    (<code>GameplayCue.Character.Heal</code>): that is the heal effect you see.</li>
 <li>Click <strong>Save</strong>.</li>
 </ol>
-<!-- VERIFY: where GE_GameplayEffectPad_Heal sets its amount (execution modifier vs magnitude) -->
-
 <h3 id="3-make-the-ability">3. Make the ability<a class="headerlink" href="#3-make-the-ability" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In <code>MyGame/Items</code>, right-click and choose <strong>Blueprint Class</strong>. Under <strong>All Classes</strong>, pick
@@ -4746,12 +4744,10 @@ list is ignored with nothing logged. The shipped roster starts with Kael and Mir
 <li>Let a minion hit you so you are below full HP.</li>
 <li>Open the console and enter <code>AbilitySystem.Ability.Grant GA_MyGame_UseMendSalve</code>, then
    <code>AbilitySystem.Ability.Activate GA_MyGame_UseMendSalve</code>.</li>
-<li>The leader heals. Open the menu: the party now holds two Mend Salves.</li>
+<li>The leader heals. Open the menu's <strong>Collectables</strong> tab: the party now holds two Mend Salves.</li>
 <li>Activate it three more times. The fourth use does nothing: with the bag empty the cost check
    fails and the ability does not activate.</li>
 </ol>
-<!-- VERIFY: that the GAS debug console commands find the leader's pawn-owned ability system -->
-
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

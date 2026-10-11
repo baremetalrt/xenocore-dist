@@ -4840,11 +4840,9 @@ are characters and that allies' hits count). It plays only when the damage effec
 </tr>
 </tbody>
 </table>
-<p><strong>Fix:</strong> open the damage effect, and under <strong>Display › Gameplay Cues</strong> set the cue tag to
-<code>GameplayCue.XenoCore.DamageTaken</code>. Simplest is to duplicate <code>Battle/Attributes/GE_XenoCore_Damage</code>
+<p><strong>Fix:</strong> open the damage effect, and in its <strong>Gameplay Cues</strong> section add an entry to <strong>Gameplay
+Cues</strong> and set its <strong>Gameplay Cue Tags</strong> to <code>GameplayCue.XenoCore.DamageTaken</code>. Simplest is to duplicate <code>Battle/Attributes/GE_XenoCore_Damage</code>
 for every new damage effect. If the cue asset itself is missing, restore it from your XenoCore download.</p>
-<!-- VERIFY: the Details label of the cue list on a Gameplay Effect in 5.8 (Display > Gameplay Cues). -->
-
 <h3 id="my-new-gameplay-cue-never-plays">My new gameplay cue never plays<a class="headerlink" href="#my-new-gameplay-cue-never-plays" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently</p>
@@ -4857,8 +4855,6 @@ for every new damage effect. If the cue asset itself is missing, restore it from
 plugin of your own, open that plugin's Game Feature Data asset (the one named after the plugin, at
 its content root) and add an <strong>Add Gameplay Cue Path</strong> action. Paths are relative to the plugin's
 content root: <code>/GameplayCues</code>, not the full <code>/MyPlugin/...</code> path.</p>
-<!-- VERIFY: action label in the Game Feature Data's Actions list -->
-
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/hit-feedback/">Add hit feedback</a>.</p>
 <h3 id="my-code-cant-find-an-ability-the-character-definitely-has">My code can't find an ability the character definitely has<a class="headerlink" href="#my-code-cant-find-an-ability-the-character-definitely-has" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">

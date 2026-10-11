@@ -4987,10 +4987,16 @@ libraries</strong> (nodes you can place in any graph). Search the node's name in
 right-click menu. Member functions of components, subsystems and widgets are listed with
 their class in <a href="../cpp-classes/">C++ classes</a>.</p>
 <h2 id="latent-nodes">Latent nodes<a class="headerlink" href="#latent-nodes" title="Permanent link">&para;</a></h2>
-<p>Each latent node fires <strong>exactly one</strong> of its output pins when it finishes. A graph waiting on
-one is suspended until then, so always wire every output pin you care about.</p>
-<!-- VERIFY: exactly-one-pin guarantee for every node below, in play -->
-
+<p>Each latent node fires <strong>at most one</strong> of its output pins, once. A graph waiting on one is
+suspended until then, so always wire every output pin you care about.</p>
+<ul>
+<li><strong>Ask Confirm</strong>, <strong>Offer Quest</strong>, <strong>Open Shop</strong> and <strong>Open Trade</strong> always fire one: if their
+  screen cannot be shown, or closes without an answer (backed out of, or torn down with the
+  world), they take the No / Declined / Nothing Changed / Cancelled pin.</li>
+<li><strong>Show Dialogue</strong> and <strong>Play Dialogue</strong> fire nothing if the conversation is closed (by <strong>Close
+  Dialogue</strong> from another graph, or the world ending) before the line is advanced. The graph
+  waiting on them simply stops there.</li>
+</ul>
 <h3 id="ask-confirm">Ask Confirm<a class="headerlink" href="#ask-confirm" title="Permanent link">&para;</a></h3>
 <p><em>Latent node · <code>XenoCore › Confirm</code> · class <code>UXenoCoreAskConfirmAsync</code> · header <code>XenoCoreRuntime/Public/UI/XenoCoreAskConfirmAsync.h</code></em></p>
 <p>"Ask Confirm" - shows a yes/no popup over a screen and continues on the player's answer.</p>

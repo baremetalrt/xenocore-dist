@@ -4584,10 +4584,9 @@ rows.</p>
 </tr>
 </tbody>
 </table>
-<!-- VERIFY: the exact tag requirement on each reaction effect's Target Tag Requirements component,
-and Break's duration (believed to be 10 s). Topple lasts 3.5 s and Daze 2.0 s, per the hit-react
-header. -->
-
+<p>The requirement is the effect's <strong>Require Tags to Apply/Continue This Effect</strong> component
+(<strong>Application Tag Requirements</strong> › <strong>Must Have Tags</strong>), so a Topple on a target that is not Broken is refused and nothing is logged. Break lasts
+10 s (a number of ours; XC1's is not documented), Topple 3.5 s and Daze 2.0 s.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p><strong>Applying.</strong> An Art's <strong>Effects</strong> entry picks the effect, rolls its <strong>Chance</strong>, and applies it to
 each recipient. For a status, the entry's <strong>Duration</strong> and <strong>Magnitude</strong> are sent into the effect as

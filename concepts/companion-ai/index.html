@@ -5027,8 +5027,6 @@ decision to follow.</p>
 <p>All of it runs in <code>Characters/Party/AI/ST_XenoCore_PartyMember</code>. The numbers are parameters on the
 tasks in that tree. To change them, duplicate the tree and set it on your own child of
 <code>Characters/Party/BP_AIC_XenoCore_PartyMember</code>; <a href="../party/#party-ai">Party AI</a> has the steps.</p>
-<!-- VERIFY: the Gaze, Hold and Follow Leader tasks in ST_XenoCore_PartyMember keep the C++ default values quoted below (none overridden in the asset). -->
-
 <h3 id="where-they-look">Where they look<a class="headerlink" href="#where-they-look" title="Permanent link">&para;</a></h3>
 <p><strong>XenoCore Party Gaze</strong> runs on the <strong>Active</strong> state, beside the movement task, so it works in and out
 of battle. It turns only the <strong>head and neck</strong>; the body keeps doing whatever it was doing.</p>
@@ -5208,8 +5206,6 @@ formation. The settings are on <code>BP_XenoCore_Party</code> under <strong>Xeno
 </tr>
 </tbody>
 </table>
-<!-- VERIFY: BP_XenoCore_Party keeps the C++ defaults for the Spawn settings (not overridden). -->
-
 <h2 id="what-companions-do-not-do-yet">What companions do not do yet<a class="headerlink" href="#what-companions-do-not-do-yet" title="Permanent link">&para;</a></h2>
 <ul>
 <li>They do not revive you or each other, and do not help a toppled ally up. Reviving is the

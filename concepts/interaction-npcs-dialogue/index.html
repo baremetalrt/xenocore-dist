@@ -4562,10 +4562,17 @@ whatever the prompt last offered.</p>
 </table>
 <p>The treasure chest (see <a href="../loot/">Loot</a>) is found the same way. Lyra's own interaction ability,
 <code>Input/Abilities/GA_XenoCore_Interact</code>, is still granted by <code>Game/AbilitySet_XenoCore_Interact</code>, but
-it no longer decides what A does. <!-- VERIFY: what GA_XenoCore_Interact still contributes in play, now
-that the press goes through GA_XenoCore_InteractPress; it may be removable. --></p>
-<p>The interaction abilities reach the player through the <a href="../../getting-started/glossary/">Experience</a>,
-not through the pawn data: <code>Experiences/B_XenoCore_Experience</code> grants <code>AbilitySet_XenoCore_Interact</code>.</p>
+it no longer decides what A does. It still traces for Lyra interactables and, while it finds one,
+holds <code>Status.XenoCore.InteractAvailable</code>, which stops <strong>Palette Confirm</strong>; the gameplay event it
+waits on (<code>XenoCore.Event.Interact</code>) is sent by nothing.</p>
+<!-- VERIFY(DECISION): input audit F8 proposes removing GA_XenoCore_Interact from the set and
+clearing Palette Confirm's InteractAvailable block. Before deciding, PLAY: stand by an NPC and a
+chest in target mode and press A; note whether the Art fires (block not held) or not. -->
+
+<p>The interaction abilities reach the player through the party, not through the pawn data:
+<code>AbilitySet_XenoCore_Interact</code> is the party's <strong>Leader Only Ability Set</strong>, granted to whichever body
+the player drives. (<code>Experiences/B_XenoCore_Experience</code> also grants it to <code>LyraPlayerState</code>, where it
+does nothing.)</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p><strong>Registering.</strong> An NPC, a chest or a child of <code>XenoCoreInteractableActor</code> signs itself up when the
 level starts playing and signs off when it is removed. Nothing to set up.</p>

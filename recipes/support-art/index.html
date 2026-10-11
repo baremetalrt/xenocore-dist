@@ -4631,7 +4631,7 @@ reference for its settings, and give it a gesture montage with no notifies.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-mend-heal-one-ally">1. Mend: heal one ally<a class="headerlink" href="#1-mend-heal-one-ally" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In <code>MyGame/Arts</code>, right-click › <strong>Miscellaneous › Data Asset</strong>, pick <code>XenoCoreArtDefinition</code>
+<li>In <code>MyGame/Arts</code>, right-click › <strong>Data › Data Asset</strong>, pick <code>XenoCoreArtDefinition</code>
    and name it <code>DA_Mend</code>. Create it blank rather than duplicating <code>DA_XenoCore_LightHeal</code>: a copy
    carries whatever the original holds.</li>
 <li>Open it. Set <strong>Display Name</strong> <code>Mend</code>, <strong>Description</strong> <code>Restores HP to one party member.</code>, and
@@ -4647,8 +4647,13 @@ reference for its settings, and give it a gesture montage with no notifies.</p>
    gesture with no notifies. Set a
    <strong>Palette Glyph</strong> and <strong>Glyph Colour</strong>.</li>
 </ol>
-<!-- VERIFY: that a heal art leaves healing unscaled by Ether (GE_XenoCore_Heal has one SetByCaller modifier and no execution) -->
-
+<div class="admonition note">
+<p class="admonition-title">Ether does not change a heal</p>
+<p>A heal restores <strong>Power</strong>, scaled by the art's level and by any healing skill bonus (such as
+Healing Wisdom). The caster's Ether stat plays no part: unlike damage, a heal does not run
+through the damage formula. <strong>Attribute</strong> <strong>Ether</strong> marks it as an ether art, which wakes
+ether-sensing enemies nearby.</p>
+</div>
 <h3 id="2-rally-buff-the-whole-party">2. Rally: buff the whole party<a class="headerlink" href="#2-rally-buff-the-whole-party" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create another blank Art the same way, <code>DA_Rally</code>. Set <strong>Display Name</strong>, <strong>Description</strong>, its

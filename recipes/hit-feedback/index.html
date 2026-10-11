@@ -4665,12 +4665,12 @@ settings live in one struct, <strong>Burst Effects</strong>.</p>
    folder, not under Plugins). This is the shake the hit cue
    uses today.</li>
 <li>Duplicate it into <code>MyGame/Feedback</code> and name it <code>CS_MyGame_Hit</code>.</li>
-<li>Open <code>CS_MyGame_Hit</code> and adjust it. Start with the oscillation amplitude and duration; a short,
-   sharp shake reads as impact, a long one reads as an explosion.</li>
+<li>Open <code>CS_MyGame_Hit</code> and adjust it. It is a legacy (oscillation) camera shake: under
+   <strong>Oscillation</strong>, start with <strong>Oscillation Duration</strong> and <strong>Rot Oscillation</strong> (each axis's
+   <strong>Amplitude</strong> and <strong>Frequency</strong>). A short, sharp shake reads as impact, a long one reads as an
+   explosion.</li>
 <li><strong>Save</strong>.</li>
 </ol>
-<!-- VERIFY: CS_Character_DamageTaken's parent class and the names of its tuning fields in 5.8 -->
-
 <h3 id="2-make-your-own-rumble-optional">2. Make your own rumble (optional)<a class="headerlink" href="#2-make-your-own-rumble-optional" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Duplicate Lyra's <code>Feedback/Haptics/FFE_Character_Damage</code> (project <strong>Content</strong> folder) into <code>MyGame/Feedback</code>. Name it
@@ -4754,7 +4754,6 @@ Only one of them will play, and which one is not something you choose.</p>
 </li>
 </ol>
 <!-- SCREENSHOT: Project Settings, XenoCore Content, the Critical Hit category expanded -->
-<!-- VERIFY: the Critical Hit category shows under Project Settings › Game › XenoCore Content with these five labels -->
 
 <p>The hit-stop never fights other slow motion. It starts only when the world is running at normal
 speed, so it is skipped during an Art's slow motion, and it hands time back only if nothing else has
@@ -4777,11 +4776,10 @@ changed the world speed in the meantime.</p>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">No rumble at all</p>
-<p>Rumble plays only while the <strong>last input you used was the gamepad</strong>, and only while vibration
-is switched on in the game's settings. Touching the mouse or keyboard switches it off until you
-press a pad button again. Nothing is logged. Use <code>LyraPC.ShouldAlwaysPlayForceFeedback 1</code> to
-rule this out.
-<!-- VERIFY: the settings-screen label for vibration in Lyra's options menu --></p>
+<p>Rumble plays only while the <strong>last input you used was the gamepad</strong>, and only while
+<strong>Vibration</strong> is on in the game's settings (<strong>Gamepad › Hardware</strong>). Touching the mouse or
+keyboard switches it off until you press a pad button again. Nothing is logged. Use
+<code>LyraPC.ShouldAlwaysPlayForceFeedback 1</code> to rule this out.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a cue added to an effect never shakes the camera</p>

@@ -4556,7 +4556,7 @@ is later renamed, the lookup returns an empty tag. Nothing is logged; the featur
 depends on the tag simply stops. Add your own tags to your own tag <code>.ini</code> or native file,
 and never edit XenoCore's in place.</p>
 </div>
-<p>167 native tags, 100 ini tags.</p>
+<p>168 native tags, 99 ini tags.</p>
 <h2 id="ability">Ability<a class="headerlink" href="#ability" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5456,7 +5456,7 @@ and never edit XenoCore's in place.</p>
 <td><code>XenoCore.Damage.Critical</code></td>
 <td>native</td>
 <td><code>XenoCore_Damage_Critical</code></td>
-<td>Added to a damage spec's dynamic asset tags when it rolls a critical, so the spec's cues see it in AggregatedSourceTags. XenoCore's damage cue <code>GCNL_XenoCore_DamageTaken</code> treats it like a weak-spot hit: crit number style and the weak-spot hit-confirm sound</td>
+<td>Added to a damage spec's dynamic asset tags when it rolls a critical, so the spec's cues see it in AggregatedSourceTags. <code>GCNL_Character_DamageTaken</code> treats it like a weak-spot hit: crit number style and the weak-spot hit-confirm sound (Patches/11)</td>
 </tr>
 <tr>
 <td><code>XenoCore.Damage.Magnitude.Blocked</code></td>
@@ -6264,8 +6264,8 @@ and never edit XenoCore's in place.</p>
 </tr>
 <tr>
 <td><code>XenoCore.Weather.Rain</code></td>
-<td>ini</td>
-<td></td>
+<td>native</td>
+<td><code>XenoCore_Weather_Rain</code></td>
 <td>Rain - XC1 Bionis Leg 5%, Tephra Cave 5%, Colony 6 5%. Lowers the music.</td>
 </tr>
 <tr>

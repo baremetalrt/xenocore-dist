@@ -4620,7 +4620,7 @@ side-Slow effects along with it; start every new Art blank.</p>
 <ol>
 <li>In the Content Browser, right-click <strong>Content</strong> and choose <strong>New Folder</strong>. Name it <code>MyGame</code>, and
    inside it make a folder <code>Arts</code>.</li>
-<li>In <code>MyGame/Arts</code>, right-click empty space and choose <strong>Miscellaneous › Data Asset</strong>. In the
+<li>In <code>MyGame/Arts</code>, right-click empty space and choose <strong>Data › Data Asset</strong>. In the
    class picker, search for and pick <code>XenoCoreArtDefinition</code>, click <strong>Select</strong>, and name the new
    asset <code>DA_StoneCleave</code>.</li>
 </ol>
@@ -4631,14 +4631,13 @@ finished examples to compare against. No character learns them in the shipped ta
 <ol>
 <li>Double-click <code>DA_StoneCleave</code> to open it. Under <strong>Art</strong>, find <strong>Cooldown Tag</strong> and click its
    drop-down to open the tag picker.</li>
-<li>Choose <strong>Add New Gameplay Tag</strong>. Name it <code>Cooldown.MyGame.Art.StoneCleave</code>. For its <strong>Source</strong>,
-   pick a tag file of your own project (create one, such as <code>MyGameTags.ini</code>, if the list offers
-   only XenoCore's and Lyra's), rather than adding to XenoCore's: a template update replaces
-   XenoCore's tag file.</li>
+<li>Click the <strong>+</strong> button at the top of the picker (its tooltip reads <strong>Add New Gameplay Tag</strong>).
+   In <strong>Name</strong>, type <code>Cooldown.MyGame.Art.StoneCleave</code>. For <strong>Source</strong>, pick a tag file of your own
+   project rather than XenoCore's: a template update replaces XenoCore's tag file. If the list
+   offers only XenoCore's and Lyra's, first make one in <strong>Project Settings › GameplayTags</strong> with
+   <strong>Add new Gameplay Tag source...</strong> (for example <code>MyGameTags.ini</code>). Click <strong>Add New Tag</strong>.</li>
 <li>Tick the new tag so it is selected.</li>
 </ol>
-<!-- VERIFY: the 5.8 tag picker's "add new tag" flow and source-file dropdown labels -->
-
 <div class="admonition warning">
 <p class="admonition-title">Two Arts sharing a tag share a cooldown</p>
 <p>If Stone Cleave used Air Slash's tag, using either Art would put <strong>both</strong> on cooldown. Saving
@@ -4735,15 +4734,17 @@ them.</p>
 <li>Close the menu and engage a minion. Stone Cleave is on the palette in its colour.</li>
 <li>Use it. The minion shows <strong>Break</strong>, and Stone Cleave greys out for 12 seconds.</li>
 </ol>
-<!-- VERIFY: every menu label in this section, and that the Arts screen can slot an art for a
-non-leader member -->
+<!-- VERIFY(PLAY): in the Gym, open the menu with pad Y and with keyboard I; pass = the entry reads
+"Arts" and the screen lets you place Stone Cleave in an empty slot for the leader. Also cycle to
+another member with LB / RB (keyboard Z / V), slot it there, close the menu, switch to that member,
+and check it is on their palette. -->
 
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">The Art greys out and won't fire</p>
-<p>It is on cooldown, or it is blocked in the current situation. Range does not grey an Art: out
-of range, the character runs in to reach the target first. <!-- VERIFY: every other reason a
-palette entry reads unavailable --></p>
+<p>It is on cooldown. (A Talent Art also greys while the Talent Gauge is not full.) Range and
+position never grey an Art: out of range, the character runs in to reach the target first, and
+a side or back position only adds its bonus.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">It fires but does nothing</p>

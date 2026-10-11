@@ -4445,7 +4445,7 @@ it. A report that lets us reproduce the problem on the shipped sample is usually
 <tbody>
 <tr>
 <td><strong>XenoCore version</strong> and <strong>Unreal Engine version</strong> (for example 5.8.1)</td>
-<td>Fixes are per release. <!-- VERIFY: where the buyer reads the XenoCore version (build stamp, .uplugin VersionName) --></td>
+<td>Fixes are per release. The XenoCore version is shown on the XenoCore entry in <strong>Edit › Plugins</strong> (the <code>VersionName</code> in <code>XenoCore.uplugin</code>). The build number on the title screen is your project's own version, not XenoCore's.</td>
 </tr>
 <tr>
 <td><strong>What you did, step by step</strong></td>
@@ -4484,7 +4484,9 @@ it. A report that lets us reproduce the problem on the shipped sample is usually
 <p>Remove anything private from logs before you send them. Logs contain file paths, which can include
 your Windows user name.</p>
 <h2 id="where-to-report">Where to report<a class="headerlink" href="#where-to-report" title="Permanent link">&para;</a></h2>
-<!-- VERIFY: support channel -->
+<!-- VERIFY(DECISION): Brian to name the support channel. Candidate: XenoCore.uplugin's SupportURL is
+https://github.com/brianhabana/xenocore-dist/issues; confirm that (or the Fab listing's support link) is
+the channel buyers should use, then write it here. -->
 
 <h2 id="what-happens-next">What happens next<a class="headerlink" href="#what-happens-next" title="Permanent link">&para;</a></h2>
 <p>We reproduce the problem on the shipped sample. If it is a template bug, the fix goes into a

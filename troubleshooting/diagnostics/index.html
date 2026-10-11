@@ -4590,7 +4590,7 @@ in this section log nothing, so the first question is often <em>which</em> log l
 </tr>
 <tr>
 <td>Packaged build</td>
-<td><code>Saved/Logs/</code> beside the packaged game <!-- VERIFY: packaged log path for this project's game name --></td>
+<td><code>&lt;project name&gt;/Saved/Logs/&lt;project name&gt;.log</code> inside the packaged folder (<code>Windows/Lyra/Saved/Logs/Lyra.log</code> for a project named Lyra)</td>
 </tr>
 </tbody>
 </table>
@@ -4805,7 +4805,7 @@ where the choice came from: <code>Identified experience &lt;name&gt; (Source: &l
 </tbody>
 </table>
 <p>These are cheat-manager commands, so they work wherever cheats are allowed (Play-in-Editor and
-development builds). <!-- VERIFY: available in a Development packaged build --></p>
+Development packaged builds, not Shipping).</p>
 <h3 id="party-inventory-quest-and-save-commands">Party, inventory, quest and save commands<a class="headerlink" href="#party-inventory-quest-and-save-commands" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -4904,7 +4904,7 @@ development builds). <!-- VERIFY: available in a Development packaged build --><
 <tbody>
 <tr>
 <td><code>showdebug abilitysystem</code></td>
-<td>The viewed character's attributes, owned tags and active effects. Answers "is the cooldown tag on?", "is <code>Gameplay.MovementStopped</code> stuck?", "did the stats effect apply?" Press <strong>Page Up / Page Down</strong> to change the character viewed. <!-- VERIFY: target cycling keys in 5.8 --></td>
+<td>The viewed character's attributes, owned tags and active effects. Answers "is the cooldown tag on?", "is <code>Gameplay.MovementStopped</code> stuck?", "did the stats effect apply?" Press <strong>Page Up / Page Down</strong> to change the character viewed.</td>
 </tr>
 <tr>
 <td><code>stat fps</code>, <code>stat unit</code></td>
@@ -4924,8 +4924,9 @@ development builds). <!-- VERIFY: available in a Development packaged build --><
 </tr>
 </tbody>
 </table>
-<p>For the AI, open <strong>Tools › Debug › StateTree Debugger</strong> while playing to watch which state each
-enemy is in. <!-- VERIFY: menu path in 5.8 --></p>
+<p>For the AI, open the enemy's StateTree asset and use its <strong>Debugger</strong> tab, or <strong>Tools › Debug ›
+Rewind Debugger</strong>, while playing to watch which state each enemy is in. In 5.8 the StateTree's
+recordings are shown in the Rewind Debugger.</p>
 <h2 id="checking-a-blueprint-really-compiled">Checking a Blueprint really compiled<a class="headerlink" href="#checking-a-blueprint-really-compiled" title="Permanent link">&para;</a></h2>
 <p>An anim Blueprint can fail to compile with <strong>nothing</strong> in the Output Log or Message Log, and no
 node marked red. Play then refuses to start with "Blueprint failed to compile" and no more detail.
@@ -4939,7 +4940,8 @@ See <a href="../animation/">Animation</a>.</p>
 </ol>
 <h2 id="asset-validation">Asset validation<a class="headerlink" href="#asset-validation" title="Permanent link">&para;</a></h2>
 <p>Several XenoCore data assets check themselves. Right-click the asset and choose <strong>Asset Actions ›
-Validate Assets</strong> (or validate a whole folder) and read the <strong>Message Log</strong>. <!-- VERIFY: menu label --></p>
+Validate Assets</strong> (or right-click a folder and choose <strong>Validate Assets in Folder</strong>) and read the
+<strong>Message Log</strong>.</p>
 <table>
 <thead>
 <tr>

@@ -4750,8 +4750,10 @@ Set every link:</p>
 </ul>
 </li>
 </ol>
-<!-- VERIFY: whether Pawn Class on the pawn data is read at all for a party-spawned body; if not, members can share one pawn data asset -->
-
+<p><strong>Pawn Class</strong> on the pawn data is never read for a party member: the party spawns the definition's
+<strong>Member Class</strong>, and only the experience's own pawn data uses <strong>Pawn Class</strong>. Setting it keeps the
+asset honest. Members whose ability sets, input and tag mapping are the same can share one pawn data
+asset.</p>
 <h3 id="3-give-them-a-look">3. Give them a look<a class="headerlink" href="#3-give-them-a-look" title="Permanent link">&para;</a></h3>
 <p>In <code>B_Party_Rook</code>:</p>
 <ol>
@@ -4759,13 +4761,11 @@ Set every link:</p>
    and element 1. The coloured samples use pairs from <code>Characters/Party/Materials</code>, such as
    <code>MI_XenoCore_Quinn_01_Pink</code> and <code>MI_XenoCore_Quinn_02_Pink</code>. Duplicate a pair into
    <code>MyGame/Party</code> and change their colour parameters.</li>
-<li>In <strong>Class Defaults</strong>, find <strong>Cosmetic Part</strong> and set it to
+<li>In <strong>Class Defaults</strong>, under <strong>Default</strong>, find <strong>Cosmetic Part</strong> and set it to
    <code>Characters/Core/Cosmetics/B_XenoCore_Cosmetic_Feminine</code> or <code>B_XenoCore_Cosmetic_Masculine</code>.
    This picks both the body mesh and the animation set. See
    <a href="../animation-style/">Change a character's animation style</a>.</li>
 </ol>
-<!-- VERIFY: Details-panel category of the Cosmetic Part Blueprint variable -->
-
 <h3 id="4-give-them-their-own-stats">4. Give them their own stats<a class="headerlink" href="#4-give-them-their-own-stats" title="Permanent link">&para;</a></h3>
 <p>Open <code>GE_BaseStats_Rook</code>. It has one modifier per stat, each reading a
 <a href="../../getting-started/glossary/">curve table</a> row at the
@@ -4822,7 +4822,7 @@ reserve (<a href="../../getting-started/glossary/">active and reserve members</a
 <li>Back on the Party screen, make Rook the leader. You now control Rook, with Rook's Arts on the
    palette and Rook's weapon drawn in battle.</li>
 </ol>
-<!-- VERIFY: Party screen labels and the swap / set-leader flow; that swaps are refused in combat -->
+<!-- VERIFY(PLAY): in PIE, open the Party screen, swap Rook in from the bench, then make Rook leader, following steps 2-4 word for word; pass = every label named above matches. Then start a fight and try a bench swap: pass = it is refused (leader picks between two active members are allowed in battle). -->
 
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">

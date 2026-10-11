@@ -4635,12 +4635,10 @@ so you never need to check the order yourself.</p>
 <p>Each reaction lasts its own time, authored on the effect (Break lasts 10 seconds, Topple 3.5,
 Daze 2). While Toppled or Dazed, a target is knocked down, cannot auto-attack or use Arts, and takes
 bigger critical hits (×1.5 instead of ×1.25).</p>
-<!-- VERIFY: Break's 10 s in GE_XenoCore_Reaction_Break -->
-
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-the-break-art">1. The Break Art<a class="headerlink" href="#1-the-break-art" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Create a blank Art: in <code>MyGame/Arts</code>, right-click › <strong>Miscellaneous › Data Asset</strong> ›
+<li>Create a blank Art: in <code>MyGame/Arts</code>, right-click › <strong>Data › Data Asset</strong> ›
    <code>XenoCoreArtDefinition</code>, named <code>DA_Sunder</code>. Fill in its name, <strong>Power</strong>, <strong>Cooldown Duration</strong>, its own <strong>Cooldown Tag</strong>,
    <strong>Montage</strong> and <strong>Palette Glyph</strong> as in <a href="../../getting-started/first-art/">Your first art</a>. Do
    not duplicate <code>DA_XenoCore_AirSlash</code> or another finished Art: the copy brings its effects along.</li>
@@ -4713,8 +4711,6 @@ already Broken; it cannot chain off its own Break in one press.</p>
 </ol>
 <p>Slots fill from the centre out, so slots 0 and 1 sit either side of the <a href="../../getting-started/glossary/">Talent Art</a>.
 More in <a href="../palette-slots/">Set palette slots and unlocks</a>.</p>
-<!-- VERIFY: the learnset row column labels (Art, Unlock Level, Default Slot) in the Data Table editor -->
-
 <h2 id="chain-across-the-party">Chain across the party<a class="headerlink" href="#chain-across-the-party" title="Permanent link">&para;</a></h2>
 <p>A reaction is on the <strong>target</strong>, not the attacker. So one party member can Break and another
 Topple: the chain works across characters with no extra setup. Give the Break Art to one member

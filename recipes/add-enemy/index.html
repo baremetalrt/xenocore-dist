@@ -4751,8 +4751,7 @@ and nothing is logged. Give it side and back clips.</p>
 <p>Read <strong>Ground Speed</strong> and <strong>Direction</strong> from the parent class, never the pawn's own velocity.
 The parent class treats a hit's knockback as standing still, so a shove slides the body under a
 held pose. Velocity read directly turns every hit into a burst of forward running while the body
-moves backwards.
-<!-- VERIFY: ABP_XenoCore_Minion_Melee's states are Idle and Move, and its blend space player reads Direction and GroundSpeed --></p>
+moves backwards.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Anim Blueprints: parent to the C++ class, never to another ABP</p>
@@ -4777,13 +4776,13 @@ parent a new one to <code>XenoCoreAnimInstance</code>.</p>
 <li>Make a montage from each additive clip and set its slot to <strong><code>AdditiveHitReact</code></strong>.</li>
 <li>Register that slot on the Golem's skeleton in its <strong>own</strong> slot group. Open the skeleton,
   choose <strong>Window › Anim Slot Manager</strong>, click <strong>Add Group</strong> and name it <code>AdditiveGroup</code>, then
-  <strong>Add Slot</strong> <code>AdditiveHitReact</code> and right-click it › <strong>Set Slot Group to</strong> <code>AdditiveGroup</code>.
-  <!-- VERIFY: Anim Slot Manager menu labels in 5.8 --></li>
+  <strong>Add Slot</strong> <code>AdditiveHitReact</code> and right-click it › <strong>Set Slot AdditiveHitReact Group to</strong> ›
+  <code>AdditiveGroup</code>.</li>
 <li>Give the Golem's Animation Blueprint an additive branch just before <strong>Output Pose</strong>: open
-  <code>ABP_XenoCore_Minion_Melee</code>'s <strong>AnimGraph</strong>, select its last nodes (the <code>AdditiveHitReact</code>
-  <strong>Slot</strong> and <strong>Apply Additive</strong>), copy them into your AnimGraph and wire them the same way.
-  <strong>Apply Additive</strong>'s <strong>Alpha</strong> sets how hard the jolt reads.
-  <!-- VERIFY: which nodes make up the additive branch at the end of ABP_XenoCore_Minion_Melee's AnimGraph --></li>
+  <code>ABP_XenoCore_Minion_Melee</code>'s <strong>AnimGraph</strong> and copy its last three nodes into yours:
+  <strong>Additive Identity Pose</strong> feeds the <code>AdditiveHitReact</code> <strong>Slot</strong>'s <strong>Source</strong>, the Slot feeds
+  <strong>Apply Additive</strong>'s <strong>Additive</strong> pin, your existing pose goes into its <strong>Base</strong>, and Apply
+  Additive feeds <strong>Output Pose</strong>. <strong>Apply Additive</strong>'s <strong>Alpha</strong> sets how hard the jolt reads.</li>
 </ul>
 </li>
 </ol>

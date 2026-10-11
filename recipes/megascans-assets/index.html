@@ -4706,25 +4706,23 @@ check after <strong>every</strong> edit that places new pack content.</p>
 <ol>
 <li>In the Content Browser, open the pack folder and filter by <strong>Texture</strong>. Select the textures in
    the set (you can select many at once).</li>
-<li>Right-click and choose <strong>Texture Source Actions › Reduce Size</strong>. Set the target size to <code>1024</code>
-   and confirm.</li>
+<li>Right-click and choose <strong>Texture Source Actions › Reduce Size</strong>. In the dialog, set
+   <strong>Texture size threshold</strong> to <code>1024</code> and click <strong>OK</strong>. Textures already at or under 1024 are left
+   alone.</li>
 <li>Spot-check one: its <strong>Imported</strong> size in the texture editor now reads 1024 or less.</li>
 </ol>
 <p>Resizing the <strong>source</strong> is what shrinks the project and the package. <strong>Maximum Texture Size</strong> and
 <strong>LOD Bias</strong> in a texture's Details shrink only the cooked output, and the full-size source still
 sits in source control.</p>
-<!-- VERIFY: the Reduce Size dialog's size field in 5.8 (found in source: AssetDefinition_Texture.cpp, "Texture Source Actions" › "Reduce Size") -->
-
 <p>The sample went from 1.77 GB to 191 MB of textures with no visible change up against a cliff.</p>
 <h3 id="5-reduce-rock-meshes">5. Reduce rock meshes<a class="headerlink" href="#5-reduce-rock-meshes" title="Permanent link">&para;</a></h3>
 <p>For each large rock or cliff mesh:</p>
 <ol>
 <li>Open it in the Static Mesh editor. Under <strong>Nanite Settings</strong>, lower <strong>Keep Triangle Percent</strong>
    (the sample used 25 %), and click <strong>Apply Changes</strong>. This reduces what is cooked.</li>
-<li>Or, to reduce the source itself, use <strong>Modeling Mode › Simplify</strong> with UV seams preserved,
-   then accept.
-   <!-- VERIFY: 5.8 Modeling Mode Simplify tool name and its seam option -->
-</li>
+<li>Or, to reduce the source itself, use the <strong>Simplify</strong> tool in <strong>Modeling Mode</strong>. Leave
+   <strong>Preserve Sharp Edges</strong> on and <strong>Discard Attributes</strong> off, which keeps the UV seams, then click
+   <strong>Accept</strong>.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Leave foliage alone</p>

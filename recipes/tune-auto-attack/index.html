@@ -4668,7 +4668,7 @@ from the animation itself, so a longer clip spaces itself out rather than overla
 <tbody>
 <tr>
 <td><strong>Attack Range</strong></td>
-<td><code>420</code> in C++</td>
+<td><code>300</code> (the C++ default is <code>420</code>; the shipped ability overrides it)</td>
 <td>How far the swing reaches, centre to centre, in cm. A swing only starts inside it</td>
 </tr>
 <tr>
@@ -4753,8 +4753,6 @@ from the animation itself, so a longer clip spaces itself out rather than overla
 </tr>
 </tbody>
 </table>
-<!-- VERIFY: the saved Attack Range on GA_XenoCore_AutoAttack (the asset overrides the C++ 420) -->
-
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="make-swings-faster">Make swings faster<a class="headerlink" href="#make-swings-faster" title="Permanent link">&para;</a></h3>
 <p>Raise <strong>Montage Play Rate</strong> to <code>1.25</code> and lower <strong>Swing Recovery</strong> to <code>0.2</code>. Both speed up the

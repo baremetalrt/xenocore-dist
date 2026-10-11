@@ -4884,8 +4884,6 @@ it. This is how the HUD, menus and quests stay up to date. For the idea behind i
 to the tag and <strong>Payload Type</strong> to the struct below. From C++, use
 <code>UGameplayMessageSubsystem::Get(this).RegisterListener(...)</code> and keep the returned handle so you can
 unregister in <code>EndPlay</code> or <code>NativeDestruct</code>. Every payload struct is <code>BlueprintType</code>.</p>
-<!-- VERIFY: node title "Listen for Gameplay Messages" and pin names in UE 5.8 -->
-
 <h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5037,14 +5035,15 @@ unregister in <code>EndPlay</code> or <code>NativeDestruct</code>. Every payload
 </tr>
 </tbody>
 </table>
-<p>Sources: the <code>BroadcastMessage</code> calls in <code>XenoCoreInventoryStatics.cpp:827</code>,
-<code>XenoCoreEquipmentComponent.cpp:523</code>, <code>XenoCorePartyComponent.cpp:1112</code> and <code>:1638</code>,
-<code>XenoCoreProgressionComponent.cpp:398</code> and <code>:479</code>, <code>XenoCoreProgressionComponent_Skills.cpp:260</code>,
-<code>XenoCoreQuestComponent.cpp:508</code> and <code>:576</code>, <code>XenoCoreEnemyCharacter.cpp:326</code>,
-<code>XenoCoreTreasureChest.cpp:782</code>, <code>XenoCoreCollectableOrb.cpp:159</code>, <code>XenoCoreTargetModeAbility.cpp:129</code>
-and <code>XenoCoreBattleNotifySubsystem.cpp:85</code>; and <code>NotifyTacticChanged</code> in <code>XenoCorePartyComponent.cpp</code>,
+<p>Sources: the <code>BroadcastMessage</code> calls in these files under <code>Source/XenoCoreRuntime/Private/</code>
+(search the file for <code>BroadcastMessage</code>): <code>XenoCoreInventoryStatics.cpp</code>,
+<code>XenoCoreInventoryWatchSubsystem.cpp</code>, <code>XenoCoreEquipmentComponent.cpp</code>,
+<code>XenoCorePartyComponent.cpp</code>, <code>XenoCorePartyGaugeComponent.cpp</code>,
+<code>XenoCoreProgressionComponent.cpp</code>, <code>XenoCoreProgressionComponent_Skills.cpp</code>,
+<code>XenoCoreQuestComponent.cpp</code>, <code>XenoCoreEnemyCharacter.cpp</code>, <code>XenoCoreTreasureChest.cpp</code>,
+<code>XenoCoreCollectableOrb.cpp</code>, <code>XenoCoreTargetModeAbility.cpp</code>, <code>XenoCoreBattleNotifySubsystem.cpp</code>,
 <code>XenoCoreBattleVictorySubsystem.cpp</code>, <code>XenoCoreBattleVoiceSubsystem.cpp</code>,
-<code>XenoCoreTimeOfDaySubsystem.cpp</code> and <code>XenoCoreWeatherSubsystem.cpp</code>. <!-- VERIFY: line numbers drift; regenerate this list --></p>
+<code>XenoCoreTimeOfDaySubsystem.cpp</code> and <code>XenoCoreWeatherSubsystem.cpp</code>.</p>
 <h2 id="payloads">Payloads<a class="headerlink" href="#payloads" title="Permanent link">&para;</a></h2>
 <h3 id="fxenocoreinventorychangedmessage">FXenoCoreInventoryChangedMessage<a class="headerlink" href="#fxenocoreinventorychangedmessage" title="Permanent link">&para;</a></h3>
 <table>

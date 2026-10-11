@@ -4609,7 +4609,7 @@ playful (<code>Laugh</code>, <code>Happy</code>, <code>Wink</code>, <code>Giggle
 <p>A curve name the VRoid model's face does not have shows nothing and logs nothing, exactly like a
 typo. The VRM presets above are known to reach the face. Check any row that uses a raw <code>Fcl_*</code>
 morph curve in Play before you rely on it.
-<!-- VERIFY: whether raw Fcl_* morph curves reach the VRoid mesh through VRM4U's post ABP. --></p>
+<!-- VERIFY(PLAY): add a DT_XenoCore_FaceExpressions row whose mix is one raw curve (Fcl_ALL_Joy at 1.0), call Play Expression On Actor with it on Kael in PIE; pass = the face visibly changes. If it does not, say here that only the VRM preset names reach the face. --></p>
 </div>
 <h3 id="4-optional-play-a-face-from-a-blueprint">4. (Optional) Play a face from a Blueprint<a class="headerlink" href="#4-optional-play-a-face-from-a-blueprint" title="Permanent link">&para;</a></h3>
 <p>Call <strong>Play Expression On Actor</strong> with the character (its pawn or its cosmetic part), a row name, a
@@ -4629,10 +4629,9 @@ fails and nothing happens.</p>
    <strong>Social Expressions</strong>; the companion may answer with one of its own a moment later.</li>
 <li>Draw your weapon. With <strong>Armed Idle Breaks</strong> empty, its armed fidget is the stance's own.</li>
 </ol>
-<p>Profile edits are read when the body spawns: if you change a profile while playing, stop and press
-<strong>Play</strong> again.</p>
-<!-- VERIFY: a profile edit made during Play is not picked up until the body respawns (the anim instance copies the lists once). -->
-
+<p><strong>Idle Breaks</strong> and <strong>Armed Idle Breaks</strong> are copied once, when the body first animates: if you
+change them while playing, stop and press <strong>Play</strong> again. <strong>Social Expressions</strong> and <strong>Solo
+Expressions</strong> are read each time a face is chosen, so edits to those show without a restart.</p>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

@@ -4508,17 +4508,21 @@ licence) as a dependency: the project will not open without it. Get the release 
 <p>XenoCore ships <strong>prebuilt</strong> for Unreal Engine 5.8, so a stock Lyra project opens and runs without
 compiling anything. You need the compiler only if you change C++ - yours, Lyra's or XenoCore's - or
 if Unreal offers to rebuild modules when the project opens. Then install <strong>Visual Studio 2022</strong>
-with these workloads:</p>
+version 17.14 (or Visual Studio 2026) with these workloads:</p>
 <ul>
 <li><strong>Game development with C++</strong></li>
 <li><strong>Desktop development with C++</strong></li>
 </ul>
-<!-- VERIFY: exact VS version, MSVC toolset and Windows SDK that UE 5.8.1 requires; check Epic's
-"Setting up Visual Studio" page for 5.8 and link it here. -->
-
+<p>and the <strong>Windows 11 SDK (10.0.22621)</strong>. UE 5.8 refuses some older MSVC toolsets outright, so update
+Visual Studio rather than pinning an old one.</p>
 <h2 id="disk-space">Disk space<a class="headerlink" href="#disk-space" title="Permanent link">&para;</a></h2>
-<p>Lyra is about <strong>5 GB</strong> and the XenoCore plugin about <strong>2 GB</strong> <!-- VERIFY: measure the Fab zip; ~1.8 GB measured on disk 2026-10-11 (content without Dev/ plus binaries) -->. The first open's shader build adds a lot more on top.
-Allow at least <strong><!-- VERIFY --></strong> free, ideally on an SSD.</p>
+<p>Lyra is about <strong>5 GB</strong> and the XenoCore plugin about <strong>2 GB</strong> <!-- VERIFY(EDITOR): measure the Fab
+package once it is built (unzipped size of the plugin folder); ~1.8 GB measured on disk 2026-10-11
+(content without Dev/ plus binaries). Replace "about 2 GB" with the measured figure. -->. The first
+open's shader build adds a lot more on top.
+Allow at least <strong><!-- VERIFY(EDITOR): open a fresh stock Lyra 5.8 + XenoCore install with an empty
+DerivedDataCache, let the first shader build finish, play Gaur Plain once, and measure the project
+folder plus the local DDC; write that total here, rounded up. --></strong> free, ideally on an SSD.</p>
 <h2 id="a-gamepad">A gamepad<a class="headerlink" href="#a-gamepad" title="Permanent link">&para;</a></h2>
 <p>XenoCore is designed for a controller first, like the games it takes after. Keyboard and mouse work
 throughout, and every prompt shows the right glyph for whichever you last used. An Xbox-style pad
