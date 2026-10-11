@@ -4457,7 +4457,10 @@
 
 
 <h1 id="loading-and-ticking">Loading and ticking<a class="headerlink" href="#loading-and-ticking" title="Permanent link">&para;</a></h1>
-<p><em>All · 10 min read · No code · Last tested: never</em></p>
+<p><em>Designers and programmers · 10 min read · No code · Last tested: never</em></p>
+<p><strong>Who this is for:</strong> anyone adding content who wants it to stay cheap. The first half (which
+references to make soft, and when to tick) is for designers working in Blueprints and Details
+panels; the warning boxes marked <em>For programmers</em> are for whoever writes C++.</p>
 <p>Two things decide most of what XenoCore costs at run time: <strong>what an asset drags into memory when
 it loads</strong>, and <strong>what runs every frame</strong>. A property that points straight at another asset (a
 <strong>hard reference</strong>) loads that asset, and everything <em>it</em> points at, whenever its owner loads. A
@@ -4531,8 +4534,8 @@ as before.</p>
 <p class="admonition-title">Blueprint graphs that read these fields</p>
 <p>A graph reading one of the properties above now gets a soft reference. Load it with <strong>Load
 Class Asset Blocking</strong> / <strong>Load Asset Blocking</strong> at a pause (below), or <strong>Async Load Class
-Asset</strong> / <strong>Async Load Asset</strong> if it can wait. In C++, the shop and trade rows have
-<code>LoadItem()</code>.</p>
+Asset</strong> / <strong>Async Load Asset</strong> if it can wait. (For programmers: in C++, the shop and trade rows
+have <code>LoadItem()</code>.)</p>
 </div>
 <h3 id="where-to-load-a-soft-reference">Where to load a soft reference<a class="headerlink" href="#where-to-load-a-soft-reference" title="Permanent link">&para;</a></h3>
 <ul>
@@ -4574,41 +4577,12 @@ frame. Nothing warns. Delete the node; the parent's tick still runs without it. 
 <strong>Event Tick</strong> placed by default and left unconnected costs nothing.</p>
 </div>
 <h2 id="measuring">Measuring<a class="headerlink" href="#measuring" title="Permanent link">&para;</a></h2>
-<p><code>Tools/Audit</code> holds read-only commandlets that measure load cost and Blueprint ticks; its
-<code>README.md</code> has the command line. Reports go to <code>Tools/Audit/out/</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Script</th>
-<th>Answers</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>audit_union.py</code></td>
-<td><strong>The before-and-after number</strong>: everything a play session loads (the Gym, Gaur Plain, the demo)</td>
-</tr>
-<tr>
-<td><code>audit_deps.py</code></td>
-<td>The heaviest <code>/XenoCore</code> assets by what they drag in</td>
-</tr>
-<tr>
-<td><code>audit_paths.py</code></td>
-<td>Which reference on a heavy asset costs what</td>
-</tr>
-<tr>
-<td><code>audit_tick.py</code></td>
-<td>Which Blueprints have a live Tick override</td>
-</tr>
-<tr>
-<td><code>run_all.py</code></td>
-<td>All of the above</td>
-</tr>
-</tbody>
-</table>
-<p>Compare sessions with <code>audit_union.py</code>, not single assets: one asset's cost overstates the saving
-when the map or the party loads the same content anyway. Sizes are <strong>uncooked</strong> on-disk sizes,
-texture sources included. They rank problems; they are not memory.</p>
+<p><strong>What an asset drags in.</strong> Right-click an asset in the Content Browser and choose <strong>Size Map</strong>: it
+shows everything the asset loads with it, by size. <strong>Reference Viewer</strong> (same menu) shows which
+property holds each reference. Compare a whole play session rather than single assets: one asset's
+cost overstates the saving when the map or the party loads the same content anyway.</p>
+<p><strong>Which Blueprints tick.</strong> Open a Blueprint's Event Graph and look for a connected <strong>Event Tick</strong>;
+see the warning above.</p>
 <p>For real numbers, in Play In Editor or a packaged build, open the console:</p>
 <table>
 <thead>

@@ -4687,7 +4687,8 @@ and grows stronger and faster to recharge as the player trains it.</p>
 <ul>
 <li><a href="../../getting-started/first-art/">Your first art</a>. This recipe assumes you have made Stone
   Cleave, and goes further: area, attribute, positional bonuses, conditional effects and levels.</li>
-<li><a href="../../getting-started/glossary/">Glossary</a>: <strong>Art</strong>, <strong>Break</strong>, <strong>Status effect</strong>.</li>
+<li>In the glossary: <a href="../../getting-started/glossary/">Art</a>, <a href="../../getting-started/glossary/">Break</a>,
+  <a href="../../getting-started/glossary/">Status effect</a>.</li>
 </ul>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-start-from-a-blank-art">1. Start from a blank Art<a class="headerlink" href="#1-start-from-a-blank-art" title="Permanent link">&para;</a></h3>
@@ -4695,17 +4696,20 @@ and grows stronger and faster to recharge as the player trains it.</p>
 <li>In <code>MyGame/Arts</code>, right-click › <strong>Miscellaneous › Data Asset</strong>, pick <code>XenoCoreArtDefinition</code>
    and name it <code>DA_FrostFan</code>. Do not duplicate <code>DA_XenoCore_AirSlash</code>: the copy would bring Air
    Slash's Break and side-Slow effects with it.</li>
-<li>Open it. Set <strong>Display Name</strong> <code>Frost Fan</code> and <strong>Description</strong>
+<li>Open it. Under <strong>Art</strong>, set <strong>Display Name</strong> <code>Frost Fan</code> and <strong>Description</strong>
    <code>Ether damage in a cone. Slows from behind.</code></li>
-<li>Give it its own <strong>Cooldown Tag</strong>, <code>Cooldown.MyGame.Art.FrostFan</code>, in your own tag file. Until
+<li>Give it its own <strong>Cooldown Tag</strong>, <code>Cooldown.MyGame.Art.FrostFan</code>: add the tag in <strong>Project
+   Settings › Project › Gameplay Tags</strong> (in a tag source of your own), then pick it here. Until
    you do, saving reports an error, and Arts sharing a tag share one cooldown.</li>
-<li>Set <strong>Target Type</strong> to <strong>Enemy</strong>, <strong>Montage</strong> to an existing Art montage such as
-   <code>AM_XenoCore_BackSlash</code>, and <strong>Palette Glyph</strong> to the one Air Slash uses.</li>
+<li>Set <strong>Target Type</strong> to <strong>Enemy</strong>. Under <strong>Art › Animation</strong>, set <strong>Montage</strong> to an existing Art
+   montage such as <code>Characters/Player/Animations/Kwang/AM_XenoCore_BackSlash</code>. Under <strong>Art ›
+   Palette</strong>, set <strong>Palette Glyph</strong> to the one <code>Battle/Arts/DA_XenoCore_AirSlash</code> uses.</li>
 <li>Leave <strong>Ability Class</strong> empty. The Art then runs as the shared <code>GA_XenoCore_Art_Base</code>.</li>
 </ol>
 <p><code>DA_XenoCore_SlitEdge</code> (from the side, lowers Physical Defence) and <code>DA_XenoCore_StreamEdge</code> (a
 cone) in <code>Battle/Arts</code> were built this way and are worth comparing against.</p>
 <h3 id="2-make-it-an-ether-art">2. Make it an Ether art<a class="headerlink" href="#2-make-it-an-ether-art" title="Permanent link">&para;</a></h3>
+<p>All under <strong>Art</strong>:</p>
 <ol>
 <li><strong>Attribute</strong>: <strong>Ether</strong>. Damage now uses the attacker's Ether against the target's Ether
    Defence, instead of Strength against Physical Defence.</li>
@@ -4796,13 +4800,13 @@ status is <a href="../status-effect/">Make a status effect</a>.</p>
 <strong>Duration</strong> and <strong>Magnitude</strong> are <strong>scalable floats</strong>: a <strong>Value</strong> times a curve row keyed by the
 Art's level.</p>
 <ol>
-<li>Create a curve table <code>CT_MyGame_ArtLevels</code> (<strong>Miscellaneous › Curve Table</strong>, linear
-   interpolation) with two rows:<ul>
+<li>Create a <a href="../../getting-started/glossary/">curve table</a> <code>CT_MyGame_ArtLevels</code> (right-click ›
+   <strong>Miscellaneous › Curve Table</strong>, pick <strong>Linear</strong>) with two rows:<ul>
 <li><code>FrostFan.Power</code>: keys <code>1 = 1.0</code>, <code>12 = 2.0</code></li>
 <li><code>FrostFan.Cooldown</code>: keys <code>1 = 1.0</code>, <code>12 = 0.6</code></li>
 </ul>
 </li>
-<li>On <strong>Power</strong>: <strong>Value</strong> <code>150</code>, <strong>Curve Table</strong> <code>CT_MyGame_ArtLevels</code>, <strong>Row Name</strong>
+<li>Under <strong>Art</strong>, expand <strong>Power</strong> and set <strong>Value</strong> <code>150</code>, <strong>Curve Table</strong> <code>CT_MyGame_ArtLevels</code>, <strong>Row Name</strong>
    <code>FrostFan.Power</code>. At level I it is 150; at XII, 300.</li>
 <li>On <strong>Cooldown Duration</strong>: <strong>Value</strong> <code>14</code>, row <code>FrostFan.Cooldown</code>. 14 seconds untrained,
    8.4 fully trained.</li>
@@ -4837,21 +4841,22 @@ fractions of the montage; <strong>Time Dilation Keeps User Speed</strong> keeps 
 inside the slow motion. <code>1.0</code> is off.</p>
 <h3 id="9-optional-how-companions-use-it">9. Optional: how companions use it<a class="headerlink" href="#9-optional-how-companions-use-it" title="Permanent link">&para;</a></h3>
 <p>Under <strong>Art › Companion AI</strong>, <strong>Usable By AI</strong> and <strong>AI Priority</strong> decide whether and how much an
-AI-controlled member picks this Art; <strong>AI Conditions</strong> limit it to targets that meet them. See
+AI-controlled member picks this Art; <strong>AI Conditions</strong> limit it to targets that meet them, for example
+<strong>Target lacks tag</strong> with a status tag so it is not used twice on the same enemy. See
 <a href="../tune-companion-ai/">Tune companion AI</a>.</p>
 <h3 id="10-teach-it">10. Teach it<a class="headerlink" href="#10-teach-it" title="Permanent link">&para;</a></h3>
-<p>Add a row for <code>DA_FrostFan</code> to a character's learnset (the Data Table set as their
-<strong>Art Learn Table</strong>) as in
+<p>Add a row for <code>DA_FrostFan</code> to a character's learnset (the Data Table in their pawn's <strong>Class
+Defaults › XenoCore › Arts › Art Learn Table</strong>) as in
 <a href="../../getting-started/first-art/">Your first art</a>, or see <a href="../palette-slots/">Set palette slots and unlocks</a>.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Press <strong>Play</strong> in <code>Maps/L_XenoCore_Gym</code>, slot Frost Fan on a member's palette, and lead with
-   them.</li>
+<li>Press <strong>Play</strong> in <code>Maps/L_XenoCore_Gym</code>, slot Frost Fan on a member's <a href="../../getting-started/glossary/">palette</a>
+   from the <strong>Arts</strong> menu, and lead with them.</li>
 <li>Engage a group of minions and stand to one side of the one you are locked on. "Chance!" lights.</li>
 <li>Use Frost Fan. Every minion in the cone takes damage; the side one takes more.</li>
 <li>Walk behind one and use it again: about half the time it is Slowed, and its auto-attacks come
    round visibly slower.</li>
-<li>Type <code>XenoGiveAP 5000</code> in the console, level Frost Fan up on the Arts menu's Level Up tab, and
+<li>Open the console (<code>`</code>), type <code>XenoGiveAP 5000</code>, level Frost Fan up on the Arts menu's Level Up tab, and
    check that it hits harder and recharges faster.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
@@ -4887,7 +4892,7 @@ the moment it is used. A blank Art starts with none; set one as in step 1.</p>
 <li><a href="../../concepts/arts/">Arts</a>: the definition, the shared ability, dispatch by spec.</li>
 <li><a href="../art-reactions/">Chain Arts into Break, Topple and Daze</a></li>
 <li><a href="../support-art/">Make a support Art</a></li>
-<li><a href="../damage-formula-stat/">Add a stat to the damage formula</a> (C++)</li>
+<li><a href="../damage-formula-stat/">Add a stat to the damage formula</a> (needs a programmer)</li>
 </ul>
 
 

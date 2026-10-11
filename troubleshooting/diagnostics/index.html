@@ -4582,11 +4582,11 @@ in this section log nothing, so the first question is often <em>which</em> log l
 <tbody>
 <tr>
 <td>Editor and Play-in-Editor</td>
-<td><code>Saved/Logs/Lyra.log</code> in the project folder (beside <code>Lyra.uproject</code>)</td>
+<td><code>Saved/Logs/&lt;project name&gt;.log</code> in the project folder, beside the <code>.uproject</code> (<code>Lyra.log</code> for a project named Lyra)</td>
 </tr>
 <tr>
 <td>A second editor open on the same project</td>
-<td><code>Saved/Logs/Lyra_2.log</code> (the newest file is the live one)</td>
+<td><code>Saved/Logs/&lt;project name&gt;_2.log</code> (the newest file is the live one)</td>
 </tr>
 <tr>
 <td>Packaged build</td>
@@ -4599,8 +4599,8 @@ in this section log nothing, so the first question is often <em>which</em> log l
 <div class="admonition tip">
 <p class="admonition-title">Read the newest log</p>
 <p>Unreal renames old logs with a timestamp when it starts. If two editors are open on one
-project, each saves over the other's changes, and the second writes <code>Lyra_2.log</code> while
-<code>Lyra.log</code> keeps its old contents. Close every editor but one.</p>
+project, each saves over the other's changes, and the second writes <code>&lt;project name&gt;_2.log</code>
+while the first log keeps its old contents. Close every editor but one.</p>
 </div>
 <h2 id="xenocore-log-categories">XenoCore log categories<a class="headerlink" href="#xenocore-log-categories" title="Permanent link">&para;</a></h2>
 <p>Every category logs at <strong>Log</strong> level by default. To see a category's verbose lines, run
@@ -4709,7 +4709,7 @@ prefix, for example an enemy with no pawn data. Search for <code>[XenoCore]</cod
 <p>Lyra's own categories matter too. <code>LogLyraExperience</code> names the experience each map loaded and
 where the choice came from: <code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</code>.</p>
 <h2 id="xenocore-console-commands">XenoCore console commands<a class="headerlink" href="#xenocore-console-commands" title="Permanent link">&para;</a></h2>
-<p>Open the console with the <strong>`</strong> key in Play-in-Editor.</p>
+<p>Open the console with the backquote key (<code>`</code>, above Tab) in Play-in-Editor.</p>
 <h3 id="testing-combat">Testing combat<a class="headerlink" href="#testing-combat" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -4861,8 +4861,7 @@ development builds). <!-- VERIFY: available in a Development packaged build --><
 </tr>
 </tbody>
 </table>
-<p>These are cheat-manager commands too (<code>UXenoCoreSystemCheats</code>), each forwarding to the component
-or subsystem that does the work, so they run wherever the progression cheats do.</p>
+<p>These are cheat commands too, so they run wherever the progression cheats do.</p>
 <h3 id="other-console-variables">Other console variables<a class="headerlink" href="#other-console-variables" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -4935,7 +4934,8 @@ See <a href="../animation/">Animation</a>.</p>
 <li>Open the Blueprint and click <strong>Compile</strong>.</li>
 <li>Look at the icon on the <strong>Compile</strong> button itself: a green tick means it compiled, a red icon
    means it failed, whatever the logs say.</li>
-<li>If it failed with nothing logged, check the variables the graph reads from C++ are Blueprint-visible.</li>
+<li>If it failed with nothing logged, undo your last graph change and see
+   <a href="../animation/#play-refuses-to-start-with-blueprint-failed-to-compile-and-no-error-is-shown-anywhere">Animation</a>.</li>
 </ol>
 <h2 id="asset-validation">Asset validation<a class="headerlink" href="#asset-validation" title="Permanent link">&para;</a></h2>
 <p>Several XenoCore data assets check themselves. Right-click the asset and choose <strong>Asset Actions ›

@@ -4438,6 +4438,18 @@ the gauge covers its <strong>Gauge Cost</strong> (a full gauge, unless the Art s
 <dd>The basic attack a character repeats on its own while engaged. You don't press a button for it.</dd>
 <dt><strong>Palette</strong></dt>
 <dd>The row of Arts on the combat HUD. Move the selection with the D-pad and confirm to use one.</dd>
+<dt><strong>Learnset</strong></dt>
+<dd>A Data Table, named on a character's pawn Blueprint as <strong>Art Learn Table</strong>, listing which Arts
+the character learns and at what level. See <a href="../../concepts/arts/">Arts</a>.</dd>
+<dt><strong>Art Points</strong> (AP)</dt>
+<dd>What raising an Art's level costs. Each character earns them from kills and spends them in the
+Arts menu.</dd>
+<dt><strong>Cooldown tag</strong></dt>
+<dd>The gameplay tag an Art's cooldown is recorded under. Every Art needs its own; two Arts with
+the same tag share one cooldown.</dd>
+<dt><strong>Party cursor</strong></dt>
+<dd>The highlight on a party member's HUD row (and a white ring under their body) used to pick an
+ally: by an Art that targets one ally, or by holding a trigger to switch characters.</dd>
 <dt><strong>Break, Topple, Daze</strong></dt>
 <dd>A chain of reactions. <strong>Break</strong> staggers the enemy's guard. A Broken enemy can be <strong>Toppled</strong>,
 knocked down and unable to act. A Toppled enemy can be <strong>Dazed</strong>, which keeps it down longer.
@@ -4479,8 +4491,10 @@ battle). See <a href="../../concepts/skills/">Skills</a>.</dd>
 <dd>A character's skills, as up to five branches of five skills each. Skills in a branch are learnt
 top to bottom. One branch is <strong>selected</strong> at a time; SP goes only into that one.</dd>
 <dt><strong>SP</strong> (skill points)</dt>
-<dd>What skills cost. Every party member earns SP from each kill; benched members earn the reserve rate (<code>0</code> in the sample). SP
-earned after the selected branch is complete is lost.</dd>
+<dd>What skills cost. Every party member earns SP from each kill; benched members earn the
+<strong>Reserve Skill Point Rate</strong>, which the sample sets to <code>0</code> (XC1 uses 90%).
+<!-- VERIFY: BP_XenoCore_Progression's Reserve Skill Point Rate is 0 after the reserve-SP change on this branch. -->
+SP earned after the selected branch is complete is lost.</dd>
 <dt><strong>Trait</strong></dt>
 <dd>The stat bonus the selected branch gives, such as Agility +8. It grows as more of the branch's
 skills are learnt, and moves to another branch when you select it.</dd>
@@ -4512,6 +4526,12 @@ up to seven, so a member is benched only by your choice.</dd>
 of battle, or pick one in the Party menu.</dd>
 <dt><strong>Member definition</strong></dt>
 <dd>The data asset that says who a character is: name, portrait, role, and which pawn to use.</dd>
+<dt><strong>Pawn Blueprint</strong></dt>
+<dd>The character Blueprint a member definition spawns (its <strong>Member Class</strong>): the body, with its
+mesh, abilities, stats and starting level.</dd>
+<dt><strong>Anim profile</strong></dt>
+<dd>A data asset holding one character's own combat clips (reactions, death, victory emote) and
+idle personality. Any empty slot uses the shared default.</dd>
 </dl>
 <h2 id="stats">Stats<a class="headerlink" href="#stats" title="Permanent link">&para;</a></h2>
 <dl>
@@ -4523,6 +4543,10 @@ of battle, or pick one in the Party menu.</dd>
 <dd>Total weight of worn equipment. It is subtracted from Agility.</dd>
 <dt><strong>Physical defence</strong>, <strong>Ether defence</strong></dt>
 <dd>Damage reduction. On party members these are points from equipment; on enemies, a percentage.</dd>
+<dt><strong>Statline</strong>, <strong>stats effect</strong></dt>
+<dd>The gameplay effect (<code>GE_XenoCore_BaseStats_*</code>) that sets a character's base stats at its
+level, read from a curve table. It is named on the character Blueprint as <strong>Stats Effect</strong> and
+re-applied on every level-up.</dd>
 <dt><strong>Curve table</strong></dt>
 <dd>A table of values by level. Stats and level-difference modifiers are curve tables. Experience
 to the next level is a Data Table instead, <code>Game/DT_XenoCore_ExperienceCurves</code>, with one row per
@@ -4536,6 +4560,28 @@ character.</dd>
 <dd>A plugin that switches its content on only when an Experience asks for it. XenoCore is one.</dd>
 <dt><strong>Pawn data</strong></dt>
 <dd>The asset that says which abilities and input a pawn gets.</dd>
+<dt><strong>Ability set</strong></dt>
+<dd>A Lyra data asset listing abilities, effects and attribute sets to grant together. Pawn data
+names the ability sets a character gets; a weapon's ability set grants its Talent Art.</dd>
+<dt><strong>Class Defaults</strong></dt>
+<dd>The button in a Blueprint editor's toolbar that shows the Blueprint's own settings in the
+<strong>Details</strong> panel. Most XenoCore settings are there, grouped under <strong>XenoCore › ...</strong>.</dd>
+<dt><strong>Data Asset</strong>, <strong>Data Table</strong></dt>
+<dd>Unreal's two ways of holding plain data. A Data Asset is one record (an Art, a member
+definition); a Data Table is many rows of one shape (a learnset, a skill tree). Neither needs
+code.</dd>
+<dt><strong>StateTree</strong></dt>
+<dd>Unreal's state machine asset for AI. Companions and enemies each run one; the numbers on its
+tasks are what you tune.</dd>
+<dt><strong>EQS</strong> (Environment Query System)</dt>
+<dd>Unreal's tool for scoring places in the world. Companions use it to pick where to stand round
+an enemy.</dd>
+<dt><strong>Game Feature Data</strong></dt>
+<dd>The asset named after a Game Feature plugin (<code>XenoCore</code>, at the top of <strong>XenoCore Content</strong>).
+Its <strong>Actions</strong> add XenoCore's components and input to the game while the plugin is active.</dd>
+<dt><strong>Tag relationships</strong></dt>
+<dd><code>Game/TagRelationships_XenoCore</code>, a table of "while a character has this tag, these abilities
+cannot start". How XenoCore stops jumping in a menu or acting while downed, as data.</dd>
 <dt><strong>Gameplay tag</strong></dt>
 <dd>A hierarchical name such as <code>Status.XenoCore.Reaction.Break</code>, used to label states and
 abilities.</dd>

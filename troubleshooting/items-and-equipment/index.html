@@ -4563,8 +4563,8 @@
 no <strong>Equippable Item</strong> fragment naming an equipment definition, so the equip is refused. The list
 still draws the row and the click does nothing on screen. A warning is logged:
 <code>Refused to equip &lt;item&gt; into slot &lt;n&gt; - blocker 2</code>. Blocker <code>2</code> means <em>not equippable</em>.</p>
-<p>A second warning, <code>&lt;item&gt; has no UXenoCoreFragment_EquipSlots</code>, means the item names no slot it can
-go in.</p>
+<p>A second warning, <code>&lt;item&gt; has no UXenoCoreFragment_EquipSlots</code>, means the item has no
+<code>XenoCoreFragment_EquipSlots</code> fragment, so it names no slot it can go in.</p>
 <p><strong>Fix:</strong> delete the blank item and duplicate a working one of the same kind instead: a sword from
 <code>Weapons/</code>, an armour piece from <code>Inventory/Armour/</code>. Then change its name, stats and mesh.</p>
 <table>
@@ -4619,8 +4619,9 @@ stats.</p>
 equipment definition grants <code>AbilitySet_XenoCore_EquipmentStats</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Do not give armour a weapon's ability set</p>
-<p><code>AbilitySet_XenoCore_JunkSword</code> also grants <code>GA_XenoCore_WeaponDrawSync</code>. On armour, the
-character tries to draw its armour like a weapon.</p>
+<p>A weapon's ability sets (<code>Weapons/AbilitySet_XenoCore_SwordCommon</code> and the swords' Talent sets)
+also grant <code>GA_XenoCore_WeaponDrawSync</code>. On armour, the character tries to draw its armour like
+a weapon.</p>
 </div>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-armour/">Add an armour piece</a>.</p>
 <h3 id="my-weapon-no-longer-draws-or-sheathes">My weapon no longer draws or sheathes<a class="headerlink" href="#my-weapon-no-longer-draws-or-sheathes" title="Permanent link">&para;</a></h3>
@@ -4629,15 +4630,18 @@ character tries to draw its armour like a weapon.</p>
 <p>The weapon stays where it is. Nothing is logged.</p>
 </div>
 <p><strong>Why:</strong> drawing and sheathing are driven by <code>GA_XenoCore_WeaponDrawSync</code>, granted through the
-weapon's equipment definition's <strong>Ability Sets to Grant</strong> (all four sample swords use
-<code>AbilitySet_XenoCore_JunkSword</code>). That grant is also what lets the ability find its weapon. Emptying
-the list, for example while tidying up stat effects, breaks draw and sheathe.</p>
+weapon's equipment definition's <strong>Ability Sets to Grant</strong> (the sword base,
+<code>Weapons/ED_XenoCore_Sword_Base</code>, grants <code>AbilitySet_XenoCore_SwordCommon</code>, which carries it). That
+grant is also what lets the ability find its weapon. Emptying the list, for example while tidying up
+stat effects, breaks draw and sheathe.</p>
+<!-- VERIFY: AbilitySet_XenoCore_JunkSword's name table still lists GA_XenoCore_EquipmentStats and GA_XenoCore_WeaponDrawSync beside TurnStrike; check in the editor whether swords using it are granted both twice (once from SwordCommon). -->
+
 <p><strong>Fix:</strong> keep an ability set that grants <code>GA_XenoCore_WeaponDrawSync</code> on every weapon's equipment
 definition.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-weapon/">Add a weapon</a>.</p>
 <h3 id="menus-show-old-item-counts-after-my-script-adds-or-removes-items">Menus show old item counts after my script adds or removes items<a class="headerlink" href="#menus-show-old-item-counts-after-my-script-adds-or-removes-items" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> screens refresh when they hear <code>XenoCore.Inventory.Message.Changed</code>. The
-<code>XenoCoreInventoryStatics</code> functions send it at once. A change made with Lyra's own inventory nodes,
+<p><strong>Why:</strong> screens refresh when they hear <code>XenoCore.Inventory.Message.Changed</code>. The XenoCore
+inventory nodes (<strong>XenoCore › Inventory</strong>) send it at once. A change made with Lyra's own inventory nodes,
 such as <strong>Add Item Definition</strong>, is noticed by XenoCore's bag watcher and announced one frame later
 (the Output Log shows <code>LogXenoBagWatch: The party bag changed outside the XenoCore inventory
 functions ...</code>). So a stale count now means one of these:</p>
@@ -4659,7 +4663,7 @@ Inventory</strong>). They announce the change at once.</p>
 </ul>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/consumable-item/">Add a consumable item</a>.</p>
 <h3 id="an-equipped-item-vanished-from-the-bag-and-the-log-shows-an-error">An equipped item vanished from the bag, and the log shows an error<a class="headerlink" href="#an-equipped-item-vanished-from-the-bag-and-the-log-shows-an-error" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> Lyra's <strong>Remove Item Instance</strong> (or <code>ConsumeItemsByDefinition</code> in C++) removed an item a
+<p><strong>Why:</strong> Lyra's <strong>Remove Item Instance</strong> (or its <strong>Consume Items By Definition</strong>) removed an item a
 character was wearing. The character's slot still shows it, but the bag no longer holds it, so it is
 not saved and menus that list the bag do not show it. XenoCore cannot undo the removal; it logs an
 <strong>Error</strong> to <code>LogXenoBagWatch</code>: <em>"... was removed from the party bag while ... was wearing it, by
@@ -4669,8 +4673,8 @@ returns false (it logs a warning naming the wearer), or <strong>Consume Items Fr
 takes a worn item. To remove a worn item on purpose, unequip it first.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../concepts/items-and-inventory/">Items and inventory</a>.</p>
 <h3 id="the-editor-stops-when-my-graph-calls-add-item-instance">The editor stops when my graph calls Add Item Instance<a class="headerlink" href="#the-editor-stops-when-my-graph-calls-add-item-instance" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> Lyra's <strong>Add Item Instance</strong> is not implemented in stock Lyra: the list function it calls is
-an <code>unimplemented()</code> stub, which halts the editor or game.</p>
+<p><strong>Why:</strong> Lyra's <strong>Add Item Instance</strong> is not implemented in stock Lyra; calling it halts the editor
+or the game.</p>
 <p><strong>Fix:</strong> add items by definition with <strong>Add Item To Party</strong> or <strong>Add One Item To Party</strong>. There is
 no supported way to put an existing item instance back into the bag.</p>
 <h3 id="an-ability-with-an-item-cost-never-activates">An ability with an item cost never activates<a class="headerlink" href="#an-ability-with-an-item-cost-never-activates" title="Permanent link">&para;</a></h3>
@@ -4679,7 +4683,7 @@ no supported way to put an existing item instance back into the bag.</p>
 <p>Nothing is logged; the input simply does nothing.</p>
 </div>
 <p><strong>Why:</strong> the ability's <strong>Additional Costs</strong> uses Lyra's <strong>Inventory Item</strong> cost. In stock Lyra 5.8
-its code is compiled out and its check always fails, so the ability can never activate. The other
+it is switched off inside Lyra and its check always fails, so the ability can never activate. The other
 causes: the party has too few copies <strong>that nobody is wearing</strong>, or the cost names a different item
 definition from the one in the bag.</p>
 <p><strong>Fix:</strong> use <strong>Party Item (XenoCore)</strong> instead, with the right <strong>Item Definition</strong> and <strong>Quantity</strong>.
@@ -4689,9 +4693,9 @@ definition from the one in the bag.</p>
 <p><strong>Why:</strong> equipment stats must be applied during the equip itself. If your own stats ability waits
 a frame (for example with a <strong>Delay Until Next Tick</strong>) before applying, any screen that redraws on
 the equip reads the character before the stats arrive, and shows the item's name with zeros.</p>
-<p><strong>Fix:</strong> apply stats in the same frame. From inside an ability granted by the equipment, ask
-<strong>Get Item For Equipment</strong> on <code>XenoCoreEquipmentComponent</code> for the item being equipped; it answers
-during the equip. Test by opening a screen that refreshes on an equip.</p>
+<p><strong>Fix:</strong> apply stats in the same frame. From inside an ability granted by the equipment, get the
+character's equipment component and call <strong>Get Item For Equipment</strong> for the item being equipped;
+it answers during the equip. Test by opening a screen that refreshes on an equip.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/equipment-stat/">Add an equipment stat</a>.</p>
 <h3 id="a-character-spawns-without-its-starting-weapon">A character spawns without its starting weapon<a class="headerlink" href="#a-character-spawns-without-its-starting-weapon" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> a character's starting gear is created in the party's bag, which lives on the player
@@ -4708,9 +4712,9 @@ level. Check the map's <strong>World Settings</strong> use a XenoCore experience
 <p><strong>Symptom:</strong> a Rare or Legendary item is drawn white, or has no diamonds.</p>
 <p><strong>Check, in order:</strong></p>
 <ol>
-<li><strong>The item's Rarity.</strong> In its <strong>XenoCore Fragment Item Category</strong>, an empty <strong>Rarity</strong> means
+<li><strong>The item's Rarity.</strong> In its <code>XenoCoreFragment_ItemCategory</code> fragment, an empty <strong>Rarity</strong> means
    Common, which is white.</li>
-<li><strong>The table.</strong> <strong>Project Settings → XenoCore UI → Item Rarity Table</strong> must name
+<li><strong>The table.</strong> <strong>Project Settings › Game › XenoCore UI › Item Rarity Table</strong> must name
    <code>DT_XenoCore_ItemRarities</code> or your own table. A cleared setting turns rarity off.</li>
 <li><strong>The row.</strong> The table needs a row whose <strong>Rarity</strong> column is the item's tag. If it has none, the
    log warns once: <code>Rarity '...' has no row in ...</code>. Check <strong>Tint Name</strong> and <strong>Pips</strong> on that row too.</li>

@@ -1948,6 +1948,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#if-it-doesnt-work" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4472,6 +4483,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#if-it-doesnt-work" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4550,7 +4572,7 @@ for the quest you are tracking.</p>
 </tr>
 <tr>
 <td><strong>Reach Location</strong></td>
-<td>The leader walking into a placed <strong>XenoCore Quest Location</strong> whose <strong>Location Id</strong> matches</td>
+<td>The <a href="../../getting-started/glossary/">leader</a> walking into a placed <strong>XenoCore Quest Location</strong> whose <strong>Location Id</strong> matches</td>
 <td><strong>Target Id</strong></td>
 </tr>
 </tbody>
@@ -4562,10 +4584,11 @@ location. Names are not case-sensitive.</p>
 <p>The sample <code>Quests/DA_XenoCore_Quest_Monster01</code> is exactly this: defeat melee minions, with a party
 level gate.</p>
 <ol>
-<li>Duplicate <code>DA_XenoCore_Quest_Monster01</code> into <code>MyGame/Quests</code>. Name it
-   <code>DA_MyGame_Quest_Golems</code>.</li>
-<li>Set <strong>Title</strong>, <strong>Area</strong>, <strong>Summary</strong> and <strong>Kind</strong> (<code>Monster</code>, a label only).</li>
-<li>In <strong>Objectives</strong>, edit the entry:</li>
+<li>In the Content Browser, right-click <code>Quests/DA_XenoCore_Quest_Monster01</code> and choose
+   <strong>Duplicate</strong>. Move the copy to <code>MyGame/Quests</code> and name it <code>DA_MyGame_Quest_Golems</code>.</li>
+<li>Open it. Under <strong>XenoCore › Quest</strong>, set <strong>Title</strong>, <strong>Area</strong>, <strong>Summary</strong> and <strong>Kind</strong>
+   (<code>Monster</code>, a label only).</li>
+<li>In <strong>Objectives</strong>, expand entry 0 and set:</li>
 </ol>
 <table>
 <thead>
@@ -4665,8 +4688,10 @@ talk. While the quest is tracked, the ferryman shows as a quest target on the mi
 <ol>
 <li>Add an objective with <strong>Kind</strong> <code>Reach Location</code>, <strong>Target Id</strong> <code>OldGate</code>, <strong>Required Count</strong> <code>1</code>
    and a <strong>Counter Label</strong> such as <code>Old Gate</code>.</li>
-<li>Drag <strong>XenoCore Quest Location</strong> (Place Actors, search "Quest Location") into the level. Size and
-   move its blue box over the place. Set <strong>Location Id</strong> to <code>OldGate</code>.</li>
+<li>Open the <strong>Place Actors</strong> panel (<strong>Window › Place Actors</strong>), search for <code>Quest Location</code>, and
+   drag <strong>XenoCore Quest Location</strong> into the level.</li>
+<li>Move and scale its blue box over the place.</li>
+<li>In its Details, set <strong>XenoCore › Quest › Location Id</strong> to <code>OldGate</code>.</li>
 </ol>
 <p>When the <strong>leader</strong> walks into the box, the objective counts. Companions walking in first do not. If
 the quest is accepted while the leader is already standing inside, it counts at once. While the quest
@@ -4677,9 +4702,27 @@ is tracked, the box shows as a quest target on the minimap; the rest of the time
 <li><strong>"Any of these places":</strong> give several boxes the same <strong>Location Id</strong>.</li>
 </ul>
 <h2 id="part-4-count-a-step-from-any-blueprint">Part 4: count a step from any Blueprint<a class="headerlink" href="#part-4-count-a-step-from-any-blueprint" title="Permanent link">&para;</a></h2>
-<p>For a step that is neither a talk nor a place (a lever pulled, a cutscene watched), call <strong>Notify
-Objective</strong> on <strong>Get Party Quests</strong> with <strong>Kind</strong> <code>Reach Location</code> (or <code>Talk To NPC</code>) and the step's
-<strong>Target Id</strong>. It counts every active quest that wants that name, exactly as the box and the NPC do.</p>
+<p>For a step that is neither a talk nor a place (a lever pulled, a cutscene watched):</p>
+<ol>
+<li>Give the objective <strong>Kind</strong> <code>Reach Location</code> (or <code>Talk To NPC</code>) and a <strong>Target Id</strong>, for example
+   <code>GateLever</code>.</li>
+<li>In the Blueprint where the step happens (the lever's <strong>On Interact</strong>, say), right-click and add
+   <strong>Get Party Quests</strong>.</li>
+<li>Drag off its return value and add <strong>Notify Objective</strong>. Set <strong>Kind</strong> to <code>Reach Location</code> and
+   <strong>Target Id</strong> to <code>GateLever</code>.</li>
+</ol>
+<p>It counts every active quest that wants that name, exactly as the box and the NPC do.</p>
+<h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Put the quest on a placed NPC's <strong>Quest</strong>, as in <a href="../collection-quest/">Offer a collection quest</a>,
+   and place the ferryman and the Old Gate box in the same map.</li>
+<li>Press <strong>Play</strong>, walk to the giver, and accept the quest. The HUD tracker shows each step at 0.</li>
+<li>Defeat a golem: the tracker reads "Golem 1/5".</li>
+<li>Open the minimap view: the ferryman and the Old Gate box are marked as quest targets.</li>
+<li>Talk to the ferryman: "Speak to the ferryman" completes. Walk the leader into the box: "Old Gate"
+   completes.</li>
+<li>When every step is full, the giver's marker returns. Talk to them to hand the quest in.</li>
+</ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a Defeat Enemy objective that never counts</p>

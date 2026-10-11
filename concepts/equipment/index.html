@@ -3162,6 +3162,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3195,10 +3206,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4384,6 +4395,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4417,10 +4439,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4468,13 +4490,23 @@
 
 <h1 id="equipment">Equipment<a class="headerlink" href="#equipment" title="Permanent link">&para;</a></h1>
 <p><em>All · 15 min read · Last tested: never</em></p>
-<p>Each character wears gear in <strong>six slots</strong>: Weapon, Head, Chest, Arms, Legs and Feet. The slots are
-held by <code>UXenoCoreEquipmentComponent</code>, a subclass of Lyra's equipment manager that sits on every
-character pawn. The items themselves stay in the party bag (see
-<a href="../items-and-inventory/">Items and inventory</a>); a slot only points at one. The idea that makes the
-rest make sense: <strong>equipping is Lyra's equip, plus a name for the slot and one shared stats
-effect</strong>. Lyra still spawns the weapon actor and grants the equipment's ability sets, and one of
-those abilities is what puts the item's numbers onto the character.</p>
+<p><strong>What the player sees:</strong> each character wears gear in <strong>six slots</strong> (Weapon, Head, Chest, Arms,
+Legs and Feet), chosen on the Equipment screen from the party's shared bag. A weapon shows on the
+character's back, moves to the hand when a battle starts, and goes back when it ends. Each piece
+adds its numbers to the character sheet, and weapons and some armour carry <strong>gems</strong> in sockets.</p>
+<p>Equipping does not move an item out of the bag (see <a href="../items-and-inventory/">Items and inventory</a>);
+a slot only points at it. Every number an item adds is a setting on the item itself, so a new item
+is pure data: no effect asset or graph of its own.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A new weapon</strong>: <a href="../../recipes/add-weapon/">Add a weapon</a>.</li>
+<li><strong>New armour</strong>: <a href="../../recipes/add-armour/">Add armour</a>.</li>
+<li><strong>A gem</strong>: <a href="../../recipes/add-a-gem/">Add a gem</a>.</li>
+<li><strong>A new stat on equipment</strong> (for example a speed bonus): <a href="../../recipes/equipment-stat/">Add an equipment stat</a>.</li>
+<li><strong>What a character starts wearing and which weapon types it may wield</strong>: its equipment component
+  (see <a href="#settings">Settings</a>).</li>
+<li><strong>How a weapon looks drawn and sheathed</strong>: its weapon type and weapon instance; see <a href="../animation/">Animation</a>.</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4487,7 +4519,7 @@ those abilities is what puts the item's numbers onto the character.</p>
 <tbody>
 <tr>
 <td>Equipment component</td>
-<td><code>UXenoCoreEquipmentComponent</code> (subclass of <code>ULyraEquipmentManagerComponent</code>), on each character pawn</td>
+<td>The equipment component (class <code>XenoCoreEquipmentComponent</code>), in the Components panel of each character Blueprint</td>
 <td>Six named slots; starting gear; equip, unequip and swap; the capped gem effect</td>
 </tr>
 <tr>
@@ -4527,7 +4559,7 @@ those abilities is what puts the item's numbers onto the character.</p>
 </tr>
 <tr>
 <td>Stats ability</td>
-<td><code>Inventory/GA_XenoCore_EquipmentStats</code> (C++ parent <code>UXenoCoreGameplayAbility_EquipmentStats</code>)</td>
+<td><code>Inventory/GA_XenoCore_EquipmentStats</code></td>
 <td>Applies the stats effect when the item is equipped. Names no stat of its own</td>
 </tr>
 <tr>
@@ -4563,10 +4595,9 @@ Greatsword type, and differ only in their item, mesh or material, and the Talent
 set grants. Junk, Blue, Green, Red and Gold share <code>AbilitySet_XenoCore_JunkSword</code> (Turn Strike);
 Amber, Ivory and Violet grant their own. <code>Weapons/IronBlade</code> holds only a mesh and material. See
 <a href="../../recipes/add-weapon/">Add a weapon</a>.</p>
-<p><strong>Each character wields one weapon type.</strong> An item's type is on its
-<code>UXenoCoreFragment_EquipSlots</code> fragment (<strong>Weapon Type</strong>); a character's allowed types are its
-equipment component's <strong>Allowed Weapon Types</strong>. A weapon of the wrong type is refused
-(<code>WrongWeaponType</code>) and is hidden from that character's swap list. An empty value at either end
+<p><strong>Each character wields one weapon type.</strong> An item's type is <strong>Weapon Type</strong> on its
+<code>XenoCoreFragment_EquipSlots</code> fragment; a character's allowed types are its equipment component's
+<strong>Allowed Weapon Types</strong>. A weapon of the wrong type is refused (<strong>Wrong Weapon Type</strong>) and is hidden from that character's swap list. An empty value at either end
 allows anything. Every sample party member is a Greatsword user today.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p><strong>Starting gear.</strong> When a character's ability system is ready, its equipment component first adds
@@ -4613,38 +4644,31 @@ would fail:</p>
 </tr>
 </tbody>
 </table>
-<p>If allowed, whatever was in the slot is unequipped, and Lyra's equip runs: it creates the
-equipment instance, spawns any actors, and grants the equipment definition's ability sets.
-<code>GA_XenoCore_EquipmentStats</code> is one of those, and activates immediately. It asks the component
-<strong>Get Item For Equipment</strong>, then reads <strong>the Set By Caller tags on <code>GE_XenoCore_EquipmentStats</code>'s own
-modifiers</strong>: each modifier names an attribute and a tag, so the effect's rows are the list of
-equipment stats. It fills every one of those tags from the item's stat tags (written by
-<code>InventoryFragment_SetStats</code>), 0 where the item has none, dividing percent stats by 100, and applies
-the effect. If the item carries a <code>XenoCore.Stat.*</code> tag the effect has no row for, it logs a warning
-(<code>LogXenoCoreEquipmentStats</code>). The stats are
-on the character before the equip call returns, so a screen that refreshes on the equip sees the
-right numbers. The component then broadcasts <code>XenoCore.Equipment.Message.SlotChanged</code>.</p>
-<p><strong>Which body holds it.</strong> Lyra attaches a spawned weapon to the pawn's own mesh. A VRoid member's
-own mesh is the invisible Mannequin, so <strong>Get Weapon Attach Parent</strong> sends the weapon to the visible
-cosmetic body instead whenever that body's skeleton has the socket being used (<code>XC_WeaponGrip_R</code>,
-<code>XC_WeaponStow_Back</code>). The equipment component moves weapons across after every equip and when the
-pawn begins play; <code>SetDrawn</code> asks the same function on every draw and sheathe. A character whose
-cosmetic body has no such sockets keeps the weapon on its own mesh, exactly as before.</p>
-<p><strong>What a weapon type changes.</strong> A weapon's type (<code>UXenoCoreWeaponTypeDefinition</code>, set on its Equip
-Slots fragment) decides who may wield it, and can also bring its own stance, draw and sheathe, swings
-and reach. <code>GA_XenoCore_Arm_v2</code> asks <strong>Get Weapon Arm Montage</strong>, <code>SetDrawn</code> asks <strong>Resolve Weapon Anim
-Layer</strong>, and the auto-attack reads the type's swings and range; each falls back to the greatsword when
-the type leaves the field empty. A weapon's <strong>Type</strong> row in the menus shows its type's Display Name
+<p>If allowed, whatever was in the slot is unequipped, the weapon actor (if any) spawns, and the
+equipment definition's ability sets are granted. One of those, <code>GA_XenoCore_EquipmentStats</code>, copies
+the item's stat numbers (its <code>InventoryFragment_SetStats</code> values) onto the character at once, so
+the character sheet is right the moment the item goes on. Which stats it copies is the list of
+<strong>Modifiers</strong> on <code>Inventory/GE_XenoCore_EquipmentStats</code>: one row per stat. An item stat with no row
+there is ignored, with a warning in the Output Log (<code>LogXenoCoreEquipmentStats</code>). Screens hear
+about the change through the <code>XenoCore.Equipment.Message.SlotChanged</code> message.</p>
+<p><strong>Which body holds it.</strong> A VRoid member's own mesh is an invisible Mannequin, so its weapon goes to
+the visible VRoid body instead, whenever that body's skeleton has the socket being used
+(<code>XC_WeaponGrip_R</code> in the hand, <code>XC_WeaponStow_Back</code> on the back). Move those sockets in the VRoid
+skeleton's editor to fit the weapon to each character. A body without them keeps the weapon on the
+Mannequin's own sockets.</p>
+<p><strong>What a weapon type changes.</strong> A weapon's type (a data asset such as
+<code>Weapons/Types/DA_XenoCore_WeaponType_Greatsword</code>, picked on the item's Equip Slots fragment)
+decides who may wield it, and can also bring its own stance, draw and sheathe montages, auto-attack
+swings and reach. Any of those left empty on the type falls back to the greatsword's. A weapon's <strong>Type</strong> row in the menus shows its type's Display Name
 (armour shows Light, Medium or Heavy there instead).</p>
-<p><strong>Unequipping.</strong> <strong>Unequip Slot</strong> removes the stats effect by handle and Lyra's unequip despawns the
-actors and removes the ability sets. The item stays in the bag.</p>
+<p><strong>Unequipping.</strong> <strong>Unequip Slot</strong> takes the item's stats off the character, despawns the weapon
+actor and removes the granted abilities. The item stays in the bag.</p>
 <p><strong>Leaving the field.</strong> When a character's pawn is destroyed (benched, or killed and cleared), every
 slot is unequipped, so its gear sits loose in the shared bag.</p>
-<p><strong>Drawing the weapon.</strong> <code>GA_XenoCore_WeaponDrawSync</code> runs for the whole time the weapon is equipped.
-When <code>Status.XenoCore.InBattle</code> changes it waits for any playing montage (the draw or sheathe) and
-calls the weapon instance's <code>SetDrawn</code>, which moves the weapon between its stowed and drawn sockets
-and relinks the animation layers (see <a href="../animation/">Animation</a>). <code>GA_XenoCore_Arm_v2</code> plays the
-draw or sheathe montage; the character cannot move while drawing, and neither direction can be
+<p><strong>Drawing the weapon.</strong> When a battle starts or ends, <code>GA_XenoCore_Arm_v2</code> plays the draw or
+sheathe montage, and <code>GA_XenoCore_WeaponDrawSync</code> moves the weapon between its back and hand
+sockets as the montage plays and swaps the character's stance animations (see
+<a href="../animation/">Animation</a>); the character cannot move while drawing, and neither direction can be
 interrupted by a flinch.</p>
 <h2 id="gems">Gems<a class="headerlink" href="#gems" title="Permanent link">&para;</a></h2>
 <p>A weapon or armour piece can carry <strong>gems</strong> in its sockets, XC1-style. A gem is an ordinary item
@@ -4659,8 +4683,8 @@ created</strong>, within its rank's range.</p>
   tick <strong>Override Gem Slots</strong> on the item's Equip Slots fragment to give one weapon a different
   count. Armour uses that fragment's <strong>Gem Slots</strong> (<code>0</code> or <code>1</code> on the shipped pieces).</li>
 <li><strong>Caps are per character.</strong> The gems a character wears are summed across every piece and capped
-  per gem type (Strength Up at <code>150</code>, as in XC1), then applied through the same
-  <code>GE_XenoCore_EquipmentStats</code>, refreshed on every equip, unequip and socket change. An item's own
+  per gem type (Strength Up at <code>150</code>, as in XC1), then added to the character's stats, refreshed on
+  every equip, unequip and socket change. An item's own
   stats, and the comparison in the swap list, never include its gems.</li>
 <li><strong>On screen.</strong> The equipment screen shows each piece's sockets as coloured icons and names them on
   a line under the piece; the gem popup sockets and removes gems, and previews the change on the
@@ -4670,7 +4694,7 @@ created</strong>, within its rank's range.</p>
 <a href="../../recipes/add-a-gem/">Add a gem</a>.</p>
 <!-- VERIFY: armour Gem Slots values on the shipped pieces. -->
 
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -4682,13 +4706,18 @@ created</strong>, within its rank's range.</p>
 <tbody>
 <tr>
 <td><strong>Starting Equipment</strong></td>
-<td>Character pawn › equipment component › XenoCore › Equipment</td>
+<td>Character Blueprint › Components › equipment component › Details › XenoCore › Equipment</td>
 <td>Slot and item definition pairs worn at start</td>
 </tr>
 <tr>
 <td><strong>Starting Inventory</strong></td>
 <td>Same</td>
 <td>Loose items (and <strong>Count</strong>) the party starts with</td>
+</tr>
+<tr>
+<td><strong>Allowed Weapon Types</strong></td>
+<td>Same</td>
+<td>Weapon types this character may wield. Empty allows any</td>
 </tr>
 <tr>
 <td><strong>Allowed Slots</strong>, <strong>Equip Type</strong></td>
@@ -4782,15 +4811,29 @@ as well gives the party two: one worn, one loose.</p>
   folder. See <a href="../../recipes/add-weapon/">Add a weapon</a>.</li>
 <li><strong>New armour:</strong> duplicate an <code>ID_XenoCore_*</code> armour item and keep <strong>Equipment Definition</strong> at
   <code>ED_XenoCore_Armour</code>. See <a href="../../recipes/add-armour/">Add armour</a>.</li>
-<li><strong>A new equipment stat:</strong> one Set By Caller modifier row on <code>GE_XenoCore_EquipmentStats</code> (plus a
-  <code>XenoCore.Stat.*</code> tag and, only if the attribute is new, a C++ attribute). No graph edit. The
-  menus draw a stat only once it has a row in the C++ table <code>UXenoCoreInventoryStatics::GetStatDefinitions</code>.
-  See <a href="../../recipes/equipment-stat/">Add an equipment stat</a>.</li>
-<li><strong>A new slot</strong> is a C++ change to <code>EXenoCoreEquipSlot</code>, plus every screen that lays out six slots.</li>
+<li><strong>A new equipment stat:</strong> one modifier row on <code>GE_XenoCore_EquipmentStats</code> plus a
+  <code>XenoCore.Stat.*</code> tag. No graph edit. Two parts need a programmer: a brand-new attribute, and
+  making the menus draw the stat at all (the list of stats the menus show is in C++). See
+  <a href="../../recipes/equipment-stat/">Add an equipment stat</a>.</li>
+<li><strong>A new slot needs a programmer</strong>, plus a change to every screen that lays out six slots.</li>
 <li>Do not add a separate stats effect per item: the one shared effect is filled from each item's own
   numbers, so an item is pure data.</li>
 </ul>
+<details class="note">
+<summary>For programmers: classes and extension points</summary>
+<p>The component is <code>UXenoCoreEquipmentComponent</code>, a subclass of <code>ULyraEquipmentManagerComponent</code>.
+The stats ability's C++ parent is <code>UXenoCoreGameplayAbility_EquipmentStats</code>: it calls <strong>Get Item
+For Equipment</strong>, then fills every Set By Caller tag named by the effect's own modifiers from the
+item instance's stat tags (0 where absent, percent stats divided by 100). Weapon attachment to a
+VRoid body goes through <strong>Get Weapon Attach Parent</strong>; the weapon instance's <code>SetDrawn</code> asks it on
+every draw and sheathe. Weapon types are <code>UXenoCoreWeaponTypeDefinition</code>; the arm ability asks
+<strong>Get Weapon Arm Montage</strong> and <code>SetDrawn</code> asks <strong>Resolve Weapon Anim Layer</strong>. The stats the menus
+draw are <code>UXenoCoreInventoryStatics::GetStatDefinitions</code> (<code>XenoCoreInventoryStatics.cpp</code>); slots
+are <code>EXenoCoreEquipSlot</code> (<code>XenoCoreEquipmentComponent.h</code>).</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>Subclass, not a sibling component.</strong> Lyra's own code finds the equipment manager with
   <code>FindComponentByClass&lt;ULyraEquipmentManagerComponent&gt;</code>, which finds ours. A second component beside
@@ -4806,6 +4849,7 @@ as well gives the party two: one worn, one loose.</p>
   once showed a new weapon's name with zero attack.</li>
 <li><strong>Weight in the roll only</strong>, so the sheet and the item that caused it never disagree.</li>
 </ul>
+</details>
 
 
 

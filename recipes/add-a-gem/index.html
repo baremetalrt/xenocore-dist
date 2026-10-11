@@ -1607,10 +1607,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-it" class="md-nav__link">
+  <a href="#look-and-feel" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Check it
+        Look and feel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If it doesn't work
       
     </span>
   </a>
@@ -4406,10 +4428,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-it" class="md-nav__link">
+  <a href="#look-and-feel" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Check it
+        Look and feel
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If it doesn't work
       
     </span>
   </a>
@@ -4445,9 +4489,10 @@
 
 
 <h1 id="add-a-gem">Add a gem<a class="headerlink" href="#add-a-gem" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 10 min · No code · Last tested: 2026-10-05</em></p>
-<p><strong>Result:</strong> a new gem the party can find, carry, and fit into weapons and armour from the Equipment
-screen. Its strength is rolled when it is found, and it raises one stat on whoever wears it.</p>
+<p><em>Designer · 15 min · No code · Last tested: 2026-10-05</em></p>
+<p><strong>Result:</strong> a new <a href="../../getting-started/glossary/">gem</a> the party can find, carry, and fit into
+weapons and armour from the Equipment screen. Its strength is rolled when it is found, and it raises
+one stat on whoever wears it.</p>
 <h2 id="how-gems-work">How gems work<a class="headerlink" href="#how-gems-work" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>A gem is an item</strong> in the Gems tab. One item per kind and rank: <em>Strength Up I</em>, <em>Strength Up II</em>.</li>
@@ -4460,49 +4505,133 @@ screen. Its strength is rolled when it is found, and it raises one stat on whoev
 </ul>
 <h2 id="make-a-new-gem">Make a new gem<a class="headerlink" href="#make-a-new-gem" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Duplicate an existing gem in <code>/XenoCore/Inventory/Gems</code>, e.g. <code>ID_XenoCore_Gem_StrengthUp_I</code>.
-   Never create an item Blueprint from blank - it would be missing its fragments.</li>
-<li>Open it and set <strong>Display Name</strong> (include the rank: <em>Ether Up IV</em>).</li>
-<li>In <strong>Fragments</strong>, find <strong>XenoCore Fragment Gem</strong> and set:</li>
+<li>
+<p>In the Content Browser, open <strong>Plugins › XenoCore Content › Inventory › Gems</strong>. Right-click
+   <code>ID_XenoCore_Gem_StrengthUp_I</code> and choose <strong>Duplicate</strong>. Move the copy into your own folder
+   (for example <code>Content/MyGame/Gems</code>) and name it, e.g. <code>ID_MyGame_Gem_EtherUp_IV</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: never create an item from blank</p>
+<p>A blank item definition has none of the fragments below. It appears in the bag and can never
+be socketed. Always duplicate a shipped gem.</p>
+</div>
+</li>
+<li>
+<p>Open it and click <strong>Class Defaults</strong>. Set <strong>Display Name</strong>, including the rank: <em>Ether Up IV</em>.</p>
+</li>
+<li>In <strong>Fragments</strong>, expand <strong>Xeno Core Fragment Gem</strong> (<strong>XenoCore › Gems</strong>) and set:<ul>
 <li><strong>Gem Id</strong> - a number no other gem uses. The shipped ones are kind x 10 + rank (Strength Up I is
-     101). <strong>Never change an id once players have socketed the gem</strong> - the socket stores the number.</li>
-<li><strong>Rank</strong>, <strong>Stat Tag</strong> (the <code>XenoCore.Stat.*</code> it raises), <strong>Min Value</strong> / <strong>Max Value</strong>, <strong>Cap</strong>.</li>
+  101). <strong>Never change an id once players have socketed the gem</strong> - the socket stores the number.</li>
+<li><strong>Rank</strong>, <strong>Stat Tag</strong> (the <code>XenoCore.Stat.*</code> <a href="../../getting-started/glossary/">gameplay tag</a> it
+  raises), <strong>Min Value</strong> / <strong>Max Value</strong>, and <strong>Cap</strong> (the most this kind can add to one
+  character).</li>
 <li>A percent stat (Critical Rate) is entered as whole percent: 4 means +4%.</li>
-<li>In <strong>XenoCore Fragment Item Category</strong> set <strong>Sell Value</strong> and <strong>Rarity</strong>; keep <strong>Category</strong> = Gems.
-   In <strong>XenoCore Fragment Item Display</strong>, <strong>Symbol Colour</strong> is the gem's colour on the Equipment
-   screen. The shipped gems use their XC1 element: Strength Up red, Ether Up yellow, Agility Up green,
-   Ether Def Up cyan, Muscle Up and Critical Up orange.</li>
-<li>Open <code>DA_XenoCore_GemRegistry</code> and add the gem to <strong>Gems</strong>. ⚠️ A gem missing from the registry can be
-   carried but <strong>not</strong> socketed - the game refuses and logs why.</li>
-<li>Put it somewhere the player can get it: a quest reward or a shop. The shipped game keeps gems out of
-   chests, as XC1 does; a chest pool in a <a href="../drop-table/">drop table</a> works if you want them there.</li>
+</ul>
+</li>
+<li>Expand <strong>Xeno Core Fragment Item Category</strong> (<strong>XenoCore › Item</strong>). Set <strong>Sell Value</strong> and
+   <strong>Rarity</strong> (<a href="../../getting-started/glossary/">rarity</a>); keep <strong>Category</strong> on <code>Gems</code>.</li>
+<li>Expand <strong>Xeno Core Fragment Item Display</strong> (<strong>XenoCore › Display</strong>). <strong>Symbol Colour</strong> is the gem's
+   colour on the Equipment screen. The shipped gems use their XC1 element: Strength Up red, Ether Up
+   yellow, Agility Up green, Ether Def Up cyan, Muscle Up and Critical Up orange.</li>
+<li><strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>
+<p>Open <code>Inventory/Gems/DA_XenoCore_GemRegistry</code>. Under <strong>XenoCore › Gems</strong>, add your gem to the
+   <strong>Gems</strong> array. <strong>Save</strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">A gem missing from the registry cannot be socketed</p>
+<p>It can be carried and sold, but the game refuses to put it in a socket and logs why. Every gem
+must be in <strong>Gems</strong>.</p>
+</div>
+</li>
+<li>
+<p>Put it where the player can get it: a quest reward (<a href="../collection-quest/">Create a collection
+   quest</a>) or a shop (<a href="../open-shop/">Open a shop</a>). The shipped game keeps gems
+   out of chests, as XC1 does; a chest pool in a <a href="../drop-table/">drop table</a> works if you want them
+   there.</p>
+</li>
 </ol>
 <h2 id="give-equipment-sockets">Give equipment sockets<a class="headerlink" href="#give-equipment-sockets" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Weapons get sockets from their weapon type.</strong> Every weapon type asset (e.g.
-  <code>DA_XenoCore_WeaponType_Greatsword</code>) has <strong>Default Gem Slots = 2</strong>, so a new weapon has two sockets
-  with nothing to set. Change it there to change every weapon of that type.</li>
-<li><strong>One weapon different?</strong> On the weapon item, in <strong>XenoCore Fragment Equip Slots</strong>, tick <strong>Override Gem
-  Slots</strong> and set <strong>Gem Slots</strong> (0-3).</li>
+<li><strong>Weapons get sockets from their <a href="../../getting-started/glossary/">weapon type</a>.</strong> Every weapon type
+  asset (e.g. <code>Weapons/Types/DA_XenoCore_WeaponType_Greatsword</code>) has <strong>Gems › Default Gem Slots</strong> = 2,
+  so a new weapon has two sockets with nothing to set. Change it there to change every weapon of that
+  type.</li>
+<li><strong>One weapon different?</strong> On the weapon item's <strong>Class Defaults</strong>, expand <strong>Xeno Core Fragment Equip
+  Slots</strong> (<strong>XenoCore › Equipment</strong>), tick <strong>Override Gem Slots</strong> and set <strong>Gem Slots</strong> (0-3).</li>
 <li><strong>Armour</strong> sets <strong>Gem Slots</strong> on its own Equip Slots fragment: 0 or 1.</li>
-<li><strong>Fixed Gems</strong> - permanent gems, filling sockets 1, 2, 3 in order. Each names a gem and its value.</li>
+<li><strong>Fixed Gems</strong> (same fragment) are permanent gems, filling sockets 1, 2, 3 in order. Each entry names
+  a <strong>Gem</strong> and its <strong>Value</strong>.</li>
 </ul>
-<h2 id="check-it">Check it<a class="headerlink" href="#check-it" title="Permanent link">&para;</a></h2>
+<h2 id="look-and-feel">Look and feel<a class="headerlink" href="#look-and-feel" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Data Validation</strong> on <code>DA_XenoCore_GemRegistry</code> flags a duplicate or zero id, a gem with no stat, and a
-  min above its max.</li>
-<li>In play, open <strong>Equipment</strong>, move right onto the <strong>Gems</strong> column, press <strong>A</strong>, pick a slot, pick a gem.
-  Highlighting a gem previews the change on the character's stats; picking it applies it. The column
-  draws one icon per gem in its colour and a dark icon per empty socket, and the gem names are on a
-  line under the piece, in the popup, and in the <strong>Item Details</strong> tab's GEMS section.</li>
-<li>The socket icons are set in Project Settings &gt; XenoCore UI &gt; Items (<strong>Gem Socket Filled Icon</strong>,
-  <strong>Gem Socket Empty Icon</strong>). Clear them and the column draws text instead.</li>
-<li>The popup's look is <code>W_XenoCore_GemPopup</code> (Project Settings &gt; XenoCore UI &gt; Gem Popup) - restyle it there.</li>
+<li>The socket icons are in <strong>Edit › Project Settings › Game › XenoCore UI › Items</strong> (<strong>Gem Socket
+  Filled Icon</strong>, <strong>Gem Socket Empty Icon</strong>). Clear them and the column draws text instead.</li>
+<li>The popup that lists gems is <code>UserInterface/W_XenoCore_GemPopup</code>, chosen in <strong>XenoCore UI ›
+  Screens › Gem Popup</strong>. Restyle that widget, or point the setting at your own.</li>
 </ul>
+<h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Validate the registry: right-click <code>DA_XenoCore_GemRegistry</code> in the Content Browser and choose
+   <strong>Asset Actions › Validate Assets</strong>. No errors. <!-- VERIFY: Asset Actions › Validate Assets is the 5.8 menu path --></li>
+<li>To carry the gem from the start, open <code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>, select
+   <strong>Equipment Component</strong> in <strong>Components</strong>, and add your gem to <strong>XenoCore › Equipment › Starting
+   Inventory</strong> (<strong>Item Definition</strong> your gem, <strong>Count</strong> <code>1</code>). <strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong> (not <strong>Continue</strong>: a save remembers the old bag).</li>
+<li>Open the menu (pad <strong>Y</strong>, keyboard <strong>I</strong>), go to <strong>Equipment</strong>, and move right onto the <strong>Gems</strong>
+   column beside the weapon. Press <strong>A</strong>, pick an empty socket, and highlight your gem: the character's
+   stats preview the change.</li>
+<li>Pick it. The column shows one icon in your gem's <strong>Symbol Colour</strong>, the gem's name appears on the
+   line under the weapon, and the stat rises by the rolled amount.</li>
+<li>Remove step 2's entry from Kael when you are done.</li>
+</ol>
+<h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Picking the gem does nothing; the Output Log (<code>LogXenoCoreGems</code>) says "Refused to socket ... the gem is not in the gem registry"</td>
+<td>Add it to <strong>Gems</strong> on <code>DA_XenoCore_GemRegistry</code> (step 7). If you made your own registry, check <strong>Project Settings › XenoCore Content › Items › Gem Registry</strong> points at it.</td>
+</tr>
+<tr>
+<td>A permanent gem is missing; the log says "it was not fitted"</td>
+<td><strong>Fixed Gems</strong> lists more gems than the item has sockets. Raise <strong>Gem Slots</strong>.</td>
+</tr>
+<tr>
+<td>Validation: "has Gem Id 0" or "share Gem Id"</td>
+<td>Give it a unique <strong>Gem Id</strong> above 0.</td>
+</tr>
+<tr>
+<td>Validation: "raises no stat"</td>
+<td>Set <strong>Stat Tag</strong>.</td>
+</tr>
+<tr>
+<td>Validation: "Max Value is below Min Value"</td>
+<td>Swap them.</td>
+</tr>
+<tr>
+<td>It sockets, but the stat does not move; the Output Log warns the gem adds nothing</td>
+<td>The <strong>Stat Tag</strong> is one the equipment stats effect has no channel for. That is a programmer job: <a href="../equipment-stat/">Add a stat to equipment</a>.</td>
+</tr>
+<tr>
+<td>The stat stops rising after a few gems</td>
+<td>That is the <strong>Cap</strong>: per character, across every socket.</td>
+</tr>
+<tr>
+<td>No socket to put it in</td>
+<td>The weapon's type has <strong>Default Gem Slots</strong> 0, or the item ticks <strong>Override Gem Slots</strong> with <strong>Gem Slots</strong> 0.</td>
+</tr>
+<tr>
+<td>It never appears in the bag</td>
+<td>It is not in any quest reward, shop or drop table; or you pressed <strong>Continue</strong> on an old save.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="limits">Limits<a class="headerlink" href="#limits" title="Permanent link">&para;</a></h2>
 <ul>
-<li>A gem's <strong>Stat Tag</strong> must be one <code>GE_XenoCore_EquipmentStats</code> has a modifier for; otherwise the game
-  warns that the gem adds nothing. Adding a stat there is a programmer job (<a href="../equipment-stat/">Equipment stat</a>).</li>
 <li>Gems that do something other than add to a stat (Aggro Up, HP Steal, EXP Up) are not supported yet.</li>
 </ul>
 

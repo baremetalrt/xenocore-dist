@@ -4652,11 +4652,10 @@ material has a physical material output per layer, the landscape's <strong>only<
 <p class="admonition-title">Fails silently</p>
 <p>Your own machine shows everything, because the files are on your disk.</p>
 </div>
-<p><strong>Why:</strong> the shipped <code>.gitignore</code> ignores the pack folders under <code>Content/</code> (<code>Megascans</code>, <code>Custom</code>,
-<code>FX</code>, <code>MSPresets</code>, <code>Meshes</code>, <code>PCG</code>, <code>PhysicalMaterials</code>, <code>SmartAssets</code>, <code>Landscape</code>), so a whole
-pack cannot be committed by accident. Only the assets the sample maps use were added explicitly.
-Anything <strong>you</strong> place from those folders stays on your disk only, and a teammate's clone shows a
-hole where it should be.</p>
+<p><strong>Why:</strong> pack folders under <code>Content/</code> (<code>Megascans</code>, <code>Custom</code>, <code>FX</code>, <code>MSPresets</code>, <code>Meshes</code>, <code>PCG</code>,
+<code>PhysicalMaterials</code>, <code>SmartAssets</code>, <code>Landscape</code>) are usually listed in the project's <code>.gitignore</code>,
+so a whole pack cannot be committed by accident. Anything <strong>you</strong> place from an ignored folder then
+stays on your disk only, and a teammate's clone shows a hole where it should be.</p>
 <p><strong>Fix:</strong> for each pack asset your maps use, add it and everything it depends on to source control
 explicitly. Right-click the map, open <strong>Reference Viewer</strong> or <strong>Size Map</strong> to see the dependency
 list, and add those files. Keep textures and meshes at the sizes your game needs before the first
@@ -4679,7 +4678,7 @@ fault you are testing. Set the value, restart, then look.</p>
 <p class="admonition-title">Fails silently</p>
 <p>Nothing is logged when a map has no music actor, and a streamed-out one simply goes quiet.</p>
 </div>
-<p><strong>Why:</strong> a map's music comes from one placed <strong>XenoCore Area Music</strong> actor (<code>AXenoCoreAreaMusic</code>).
+<p><strong>Why:</strong> a map's music comes from one placed <strong>XenoCore Area Music</strong> actor.
 Three things stop it:</p>
 <ul>
 <li>The map has no such actor, or its <strong>Field Music</strong> is empty and no fallback is set. An empty slot
@@ -4702,27 +4701,28 @@ the project's fallback tracks, and make sure <strong>Is Spatially Loaded</strong
 </div>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/area-music/">Give a map its music</a>.</p>
 <h3 id="my-new-actor-never-shows-an-interaction-prompt">My new actor never shows an interaction prompt<a class="headerlink" href="#my-new-actor-never-shows-an-interaction-prompt" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> the interaction prompt only knows about actors that implement XenoCore's interactable
-interface and register themselves with the interaction subsystem. Lyra's own interaction system
+<p><strong>Why:</strong> the interaction prompt only knows about XenoCore interactables: NPCs, chests, party
+members and children of <code>XenoCoreInteractableActor</code>. Lyra's own interaction system
 does not drive the prompt, so an actor set up only for Lyra's interaction is ignored. For an actor
 that does qualify, the usual causes are: <strong>Interact Enabled</strong> is off on that placed instance; its
 <strong>Can Interact</strong> returns false; the player is not within <strong>Interact Range</strong> of the actor's
 <strong>origin</strong> (range is measured from the root, not from the mesh); or a nearer interactable is
 taking the prompt.</p>
-<p><strong>Fix:</strong> make your actor a Blueprint child of <code>XenoCoreInteractableActor</code> (a door, lever or sign),
-<code>XenoCoreNpcCharacter</code> (a person) or <code>XenoCoreTreasureChest</code> (a chest). Each registers itself.
-Then check the four causes above.</p>
+<p><strong>Fix:</strong> make your actor a Blueprint whose parent class is <code>XenoCoreInteractableActor</code> (a door,
+lever or sign), or a child Blueprint of <code>Characters/NPC/B_XenoCore_Npc</code> (a person) or
+<code>Inventory/Loot/BP_XenoCore_TreasureChest</code> (a chest). Each signs itself up. Then check the four
+causes above.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-interactable/">Add an interactable object</a>.</p>
 <h3 id="an-npcs-third-action-never-appears-on-its-prompt">An NPC's third action never appears on its prompt<a class="headerlink" href="#an-npcs-third-action-never-appears-on-its-prompt" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> only A and X have interact inputs (<code>IA_XenoCore_Interact</code>, <code>IA_XenoCore_InteractSecondary</code>),
-so the interaction subsystem offers at most two verbs per actor: the <strong>Interact Verb</strong>, then the
+so XenoCore offers at most two verbs per actor: the <strong>Interact Verb</strong>, then the
 first extra one. Everything after that is dropped from the prompt and from the press alike. An NPC
 with <strong>Trade Offers</strong> already has Trade on X, so none of its <strong>Extra Interact Verbs</strong> shows. The
 Output Log says so once per actor (<code>LogXenoInteract</code>: "offers 3 verbs but only 2 interact inputs
 exist (A, X) - dropping ...").</p>
 <p><strong>Fix:</strong> offer at most two actions. Put a third choice inside the conversation instead (a branch
 after <strong>Show Dialogue</strong>). A real third button needs a new input action, a new interact-press
-ability, and a C++ change to the subsystem's <code>MaxPressableVerbs</code>.</p>
+ability, and a programmer (the two-verb limit, <code>MaxPressableVerbs</code>, is fixed in C++).</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/branch-conversation/">Branch a conversation</a>.</p>
 <h3 id="the-speech-box-height-cant-be-changed-or-a-warning-names-the-dialogue-anchor">The speech box height can't be changed, or a warning names the dialogue anchor<a class="headerlink" href="#the-speech-box-height-cant-be-changed-or-a-warning-names-the-dialogue-anchor" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the dialogue box is carried by an actor the game spawns, and its settings, such as the box
@@ -4735,7 +4735,7 @@ the box.</p>
 <h3 id="a-conversation-closes-on-its-own-after-2-seconds-with-a-warning">A conversation closes on its own after 2 seconds, with a warning<a class="headerlink" href="#a-conversation-closes-on-its-own-after-2-seconds-with-a-warning" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the NPC's <strong>On Interact</strong> graph shows lines with <strong>Show Dialogue</strong> and one of its branches
 ends without <strong>Close Dialogue</strong>. With no line waiting for A, nothing could ever move the
-conversation on, so the dialogue subsystem closes it after 2 seconds and logs a <code>LogXenoDialogue</code>
+conversation on, so XenoCore closes it after 2 seconds and logs a <code>LogXenoDialogue</code>
 warning naming the NPC: <em>"conversation with ... was left open with no line waiting - closing it."</em>
 The same happens if the graph waits more than 2 seconds between two lines (a long <strong>Delay</strong>): the
 box closes, and the next line opens it again.</p>
@@ -4795,7 +4795,8 @@ saved</code>.</p>
 <p><strong>Why:</strong> a save row's location comes from <strong>Location Names</strong> in <strong>Project Settings › Game ›
 XenoCore Save</strong>, one entry per map. A map with no entry prints nothing.</p>
 <p><strong>Fix:</strong> add an entry for your map with the name to show. For a region inside a large map, call
-<strong>Set Location Text</strong> on the save subsystem when the player enters it.</p>
+<strong>Set Location Text</strong> on the save subsystem (<strong>Get Game Instance Subsystem</strong> › <strong>Xeno Core Save
+Subsystem</strong>) when the player enters it.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../concepts/save-and-front-end/">Save and front end</a>.</p>
 
 

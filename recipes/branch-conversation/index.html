@@ -4607,7 +4607,8 @@ a list. A yes/no answer is available only through a quest offer (Accept or Decli
 your own widget between two lines.</p>
 </div>
 <h2 id="the-nodes">The nodes<a class="headerlink" href="#the-nodes" title="Permanent link">&para;</a></h2>
-<p>All under <strong>XenoCore › Dialogue</strong> and <strong>XenoCore › Quest</strong> in the graph's node menu.</p>
+<p>Right-click in the graph and search by name. They live under <strong>XenoCore › Dialogue</strong>, <strong>XenoCore ›
+Quest</strong> and <strong>XenoCore › NPC</strong> in the node menu.</p>
 <table>
 <thead>
 <tr>
@@ -4643,7 +4644,7 @@ your own widget between two lines.</p>
 <td>Use it to ask about quests</td>
 </tr>
 <tr>
-<td><strong>Get Lines For</strong></td>
+<td><strong>Get Lines For</strong> (XenoCore › NPC)</td>
 <td>One of this NPC's authored line lists</td>
 <td><strong>Which</strong>: Greeting, Accepted, Declined, In Progress, Turn In</td>
 </tr>
@@ -4660,7 +4661,7 @@ beside it.</p>
    <code>B_MyGame_Npc_Elder</code> and move it to <code>MyGame/NPCs</code>.</li>
 <li>Open it. In <strong>Class Defaults</strong>, set <strong>Display Name</strong>. <strong>Quest</strong> is empty and <strong>Has Quest</strong> is off
    already: the base Blueprint starts blank.</li>
-<li>In the Event Graph, right-click and add <strong>Event On Interact</strong>.</li>
+<li>In the Event Graph, right-click, search for <strong>On Interact</strong> (<strong>XenoCore › NPC</strong>) and add it.</li>
 </ol>
 <p>Adding the event in the child <strong>replaces</strong> the parent's default graph for this NPC. To keep the
 parent's behaviour for some cases, right-click the event and choose <strong>Add call to parent function</strong>.</p>
@@ -4672,7 +4673,7 @@ count without it: they are counted before the graph runs.</p>
 <p>This elder thanks the party once a quest is done. Use any quest asset, for example
 <code>Quests/DA_XenoCore_Quest_Monster01</code>.</p>
 <ol>
-<li>From <strong>Event On Interact</strong>, add <strong>Get Party Quests</strong>, then from its result <strong>Get Status</strong>, with
+<li>From <strong>On Interact</strong>, add <strong>Get Party Quests</strong>, then from its result <strong>Get Status</strong>, with
    <strong>Quest</strong> set to the quest asset.</li>
 <li>Add <strong>Switch on EXenoCoreQuestStatus</strong> on the result.</li>
 <li>From <strong>Complete</strong>: <strong>Show Dialogue</strong> (<code>You cleared the storehouse. Thank you.</code>), then from its
@@ -4711,8 +4712,6 @@ count without it: they are counted before the graph runs.</p>
 </tr>
 </tbody>
 </table>
-<!-- VERIFY: node title as the editor shows it (Get Status) -->
-
 <h3 id="3-branch-on-the-party">3. Branch on the party<a class="headerlink" href="#3-branch-on-the-party" title="Permanent link">&para;</a></h3>
 <p>Other things worth asking, all pure nodes:</p>
 <table>
@@ -4766,10 +4765,15 @@ A quest, trade or shop panel open between two lines does not count; the timer wa
 save is loaded. Branch on something the game saves: quest status, or what the party carries.</p>
 </div>
 <h3 id="5-place-it">5. Place it<a class="headerlink" href="#5-place-it" title="Permanent link">&para;</a></h3>
-<p>Drag <code>B_MyGame_Npc_Elder</code> into the map. <strong>Compile</strong> and <strong>Save</strong> the Blueprint, and save the level.</p>
+<ol>
+<li><strong>Compile</strong> and <strong>Save</strong> the Blueprint.</li>
+<li>Drag <code>B_MyGame_Npc_Elder</code> from the Content Browser into your map.</li>
+<li>Save the level.</li>
+</ol>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Press <strong>Play</strong> and talk to the elder. You get the "still overrun" branch.</li>
+<li>Press <strong>Play</strong>, walk up to the elder and press <strong>A</strong> (keyboard <strong>E</strong>) to talk. You get the "still
+   overrun" branch.</li>
 <li>Complete the quest your Switch reads (or, for a quick test, use a quest you can finish fast).</li>
 <li>Talk to the elder again. You get the thank-you branch.</li>
 </ol>
@@ -4790,6 +4794,11 @@ plain output fires immediately, before the player presses anything.</p>
 <div class="admonition warning">
 <p class="admonition-title">The parent's quest behaviour still runs</p>
 <p>You called the parent function, or the child has no <strong>On Interact</strong> of its own. Check the graph.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: the gift is handed over every time</p>
+<p>A variable on the NPC is not saved (see step 4). Branch on <strong>Get Party Item Count</strong> or a quest's
+status instead.</p>
 </div>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>

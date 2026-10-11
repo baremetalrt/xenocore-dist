@@ -2150,6 +2150,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#other-screen-helpers-you-can-call-from-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other screen helpers you can call from Blueprint
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#test-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2165,28 +2176,6 @@
     <span class="md-ellipsis">
       
         If it doesn't work
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-c-route" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The C++ route
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#other-screen-helpers-you-can-call-from-blueprint" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Other screen helpers you can call from Blueprint
       
     </span>
   </a>
@@ -4517,6 +4506,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#other-screen-helpers-you-can-call-from-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other screen helpers you can call from Blueprint
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#test-it" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4532,28 +4532,6 @@
     <span class="md-ellipsis">
       
         If it doesn't work
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-c-route" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The C++ route
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#other-screen-helpers-you-can-call-from-blueprint" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Other screen helpers you can call from Blueprint
       
     </span>
   </a>
@@ -4589,7 +4567,7 @@
 
 
 <h1 id="add-a-confirmation-popup">Add a confirmation popup<a class="headerlink" href="#add-a-confirmation-popup" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 20 min · No code (C++ optional) · Last tested: never</em></p>
+<p><em>Designer · 20 min · No code · Last tested: never</em></p>
 <p><strong>Result:</strong> a Yes/No question drawn over your own menu screen, with the screen still visible
 behind a dimmed scrim. <strong>Yes</strong> runs your work once. <strong>No</strong> or <strong>Back</strong> closes only the popup, and
 the cursor returns to the button you were on.</p>
@@ -4604,7 +4582,7 @@ the cursor returns to the button you were on.</p>
 <p>A XenoCore popup is <strong>not</strong> Lyra's full-screen dialog. It is a small activatable widget pushed
 into a stack <strong>inside the screen that asks</strong>, named <code>OverlayStack</code>. The screen stays drawn
 underneath, and the popup's scrim dims it.</p>
-<p>The shipped popup is <code>UserInterface/W_XenoCore_ConfirmPopup</code> (C++ parent
+<p>The shipped popup is <code>UserInterface/W_XenoCore_ConfirmPopup</code> (its parent class is
 <code>XenoCoreConfirmPopupBase</code>). It already does the parts that are easy to get wrong:</p>
 <ul>
 <li>It handles <strong>Back</strong>, and Back means No, so Back never falls through and closes your screen.</li>
@@ -4616,20 +4594,24 @@ underneath, and the popup's scrim dims it.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-give-your-screen-an-overlay-stack">1. Give your screen an overlay stack<a class="headerlink" href="#1-give-your-screen-an-overlay-stack" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <code>W_Bestiary</code>. In the <strong>Designer</strong>, wrap your root content in an <strong>Overlay</strong> if it isn't
-   one already.</li>
-<li>Add a <strong>Common Activatable Widget Stack</strong> as the <strong>last</strong> child of that overlay, so it draws on
-   top. Name it <code>OverlayStack</code>, tick <strong>Is Variable</strong>, and set it to fill the screen.</li>
-<li>Set the stack's <strong>Visibility</strong> to <strong>Self Hit Test Invisible</strong>, so it never blocks clicks when
-   it is empty.</li>
+<li>Open <code>W_Bestiary</code> and switch to the <strong>Designer</strong> tab.</li>
+<li>If your root content is not already an <strong>Overlay</strong>, right-click it in the <strong>Hierarchy</strong> and
+   choose <strong>Wrap With… › Overlay</strong>.</li>
+<li>From the <strong>Palette</strong>, drag a <strong>Common Activatable Widget Stack</strong> onto that overlay as its
+   <strong>last</strong> child, so it draws on top.</li>
+<li>Rename it <code>OverlayStack</code> and tick <strong>Is Variable</strong> at the top of the Details panel.</li>
+<li>In its <strong>Slot</strong> settings, set <strong>Horizontal Alignment</strong> and <strong>Vertical Alignment</strong> to <strong>Fill</strong>.</li>
+<li>Set its <strong>Visibility</strong> to <strong>Self Hit Test Invisible</strong>, so it never blocks clicks when it is
+   empty.</li>
 </ol>
 <h3 id="2-ask">2. Ask<a class="headerlink" href="#2-ask" title="Permanent link">&para;</a></h3>
 <p>In <code>W_Bestiary</code>'s <strong>Graph</strong>, where you want to ask (for example the click of a "Forget entry"
 button):</p>
 <ol>
-<li>Store the widget the cursor is on, such as the clicked button, in a variable <code>ReturnFocus</code>.</li>
+<li>Store the widget the cursor is on, such as the clicked button, in a variable <code>ReturnFocus</code>
+   (a <strong>Widget</strong> object reference).</li>
 <li>Add <strong>Ask Confirm</strong> (category <strong>XenoCore › Confirm</strong>) and set:<ul>
-<li><strong>Stack</strong>: <code>OverlayStack</code>.</li>
+<li><strong>Stack</strong>: drag in <strong>Get OverlayStack</strong>.</li>
 <li><strong>Popup Class</strong>: <code>W_XenoCore_ConfirmPopup</code>.</li>
 <li><strong>Title</strong>: <code>Forget entry</code>.</li>
 <li><strong>Question</strong>: <code>Remove this creature from the bestiary?</code></li>
@@ -4651,8 +4633,8 @@ Output Log says "Ask Confirm: no popup to ask with"). So a graph waiting on the 
 left hanging.</p>
 </div>
 <h3 id="3-optional-your-own-popup-look">3. Optional: your own popup look<a class="headerlink" href="#3-optional-your-own-popup-look" title="Permanent link">&para;</a></h3>
-<p>Duplicate <code>W_XenoCore_ConfirmPopup</code> into <code>Content/MyGame/UI</code> and restyle it. Keep its parent class
-and these widget names, which the C++ parent binds:</p>
+<p>Duplicate <code>W_XenoCore_ConfirmPopup</code> into <code>MyGame/UI</code> and restyle it. Keep its parent class
+and these widget names, which the parent class looks for:</p>
 <table>
 <thead>
 <tr>
@@ -4680,36 +4662,8 @@ and these widget names, which the C++ parent binds:</p>
 <p><strong>Ask Confirm (Existing Popup)</strong> asks with a popup that is already on screen instead of
 pushing a new one. A new question replaces an open one, and the old one answers No.</p>
 </div>
-<h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Play</strong>, open the menu, open Bestiary, and click the button that asks.</li>
-<li>The popup appears over the screen; the screen is dimmed but visible. With <strong>Focus Cancel</strong>
-   ticked, the cursor is on No.</li>
-<li>Press <strong>B</strong> (keyboard <strong>Escape</strong>). Only the popup closes, and the cursor is back on the button.</li>
-<li>Ask again and choose Yes. The work runs <strong>once</strong>.</li>
-<li>Ask a third time and choose No. Nothing runs.</li>
-</ol>
-<h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">The popup covers the whole screen and the screen behind vanishes</p>
-<p>You pushed it onto <code>UI.Layer.Menu</code> instead of <code>OverlayStack</code>. A layer shows only its top
-widget, so the popup replaced your screen. Give <strong>Ask Confirm</strong> the screen's own stack.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">On No fires immediately and no popup appears</p>
-<p><strong>Stack</strong> or <strong>Popup Class</strong> is empty. The Output Log says "Ask Confirm: no popup to ask with".</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Back closes my screen as well</p>
-<p>You are using a popup of your own that is not a child of <code>XenoCoreConfirmPopupBase</code>. Such a
-popup must tick <strong>Is Back Handler</strong> in its Class Defaults, or Back falls through to the screen
-under it, which closes and takes the popup with it.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">The cursor is lost after the popup closes</p>
-<p>Nothing hands focus back automatically. Call <strong>Set Focus</strong> on the stored widget from both pins.</p>
-</div>
-<h2 id="the-c-route">The C++ route<a class="headerlink" href="#the-c-route" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: asking from a C++ screen</summary>
 <p>A C++ screen uses the same popup:</p>
 <ul>
 <li>Give the screen a <code>UCommonActivatableWidgetStack</code> bound as <code>OverlayStack</code> and a
@@ -4728,9 +4682,9 @@ under it, which closes and takes the popup with it.</p>
 <li><code>UXenoCoreSaveScreenBase</code> is the worked example. See
   <a href="../subclass-mechanic/">Add a mechanic by subclassing</a> for setting up a C++ module.</li>
 </ul>
+</details>
 <h2 id="other-screen-helpers-you-can-call-from-blueprint">Other screen helpers you can call from Blueprint<a class="headerlink" href="#other-screen-helpers-you-can-call-from-blueprint" title="Permanent link">&para;</a></h2>
-<p>These were C++-only and are now Blueprint nodes, so a Blueprint screen or HUD widget built on the
-XenoCore bases can use them:</p>
+<p>A Blueprint screen or HUD widget built on the XenoCore bases can also call these nodes:</p>
 <table>
 <thead>
 <tr>
@@ -4779,6 +4733,47 @@ XenoCore bases can use them:</p>
 <td><strong>Get Slot Index</strong>, <strong>Is Selectable</strong></td>
 <td>Save row (<code>XenoCoreSaveRowBase</code>)</td>
 <td>Which slot the row stands for; false for the autosave row while saving, and for a file from a newer build while loading</td>
+</tr>
+</tbody>
+</table>
+<h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Play</strong>, open the menu, open Bestiary, and click the button that asks.</li>
+<li>The popup appears over the screen; the screen is dimmed but visible. With <strong>Focus Cancel</strong>
+   ticked, the cursor is on No.</li>
+<li>Press <strong>B</strong> (keyboard <strong>Escape</strong>). Only the popup closes, and the cursor is back on the button.</li>
+<li>Ask again and choose Yes. The work runs <strong>once</strong>.</li>
+<li>Ask a third time and choose No. Nothing runs.</li>
+</ol>
+<h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: the cursor is lost after the popup closes</p>
+<p>Nothing hands focus back automatically, and nothing is logged. Call <strong>Set Focus</strong> on the stored
+widget from both pins.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The popup covers the whole screen and the screen behind vanishes</td>
+<td>You pushed it onto <code>UI.Layer.Menu</code> instead of <code>OverlayStack</code>. A layer shows only its top widget, so the popup replaced your screen. Give <strong>Ask Confirm</strong> the screen's own stack.</td>
+</tr>
+<tr>
+<td><strong>On No</strong> fires immediately and no popup appears</td>
+<td><strong>Stack</strong> or <strong>Popup Class</strong> is empty. The Output Log says "Ask Confirm: no popup to ask with".</td>
+</tr>
+<tr>
+<td>Back closes my screen as well</td>
+<td>You are using a popup of your own that is not a child of <code>XenoCoreConfirmPopupBase</code>. Such a popup must tick <strong>Is Back Handler</strong> in its <strong>Class Defaults</strong>, or Back falls through to the screen under it, which closes and takes the popup with it.</td>
+</tr>
+<tr>
+<td>The popup asset will not compile</td>
+<td>It is missing <code>ConfirmButton</code> or <code>CancelButton</code>, or they are not CommonUI buttons. See step 3.</td>
 </tr>
 </tbody>
 </table>

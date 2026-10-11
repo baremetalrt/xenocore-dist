@@ -4475,6 +4475,19 @@ state. Enemies do the same wiring on a separate class, and NPCs deliberately hav
 idea: <strong>a character's identity is its Blueprint</strong> (mesh, pawn data, statline, starting level), and
 anything that must outlive the body, such as its level, is stored elsewhere and read back when the body
 spawns.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> every fighter has its own body, stats, level and Arts; a party member at 0 HP kneels
+(downed) instead of dying.</p>
+<p><strong>What you can change, no code:</strong></p>
+<ul>
+<li>A character's starting level, name and portrait: <a href="../../getting-started/first-change/">Your first change</a></li>
+<li>Their stats at each level: <a href="../../recipes/character-statline/">Give a character its own statline</a></li>
+<li>Body shape and movement style: <a href="../../recipes/animation-style/">Choose an animation style</a></li>
+<li>A whole new member: <a href="../../recipes/add-vroid-party-member/">Add a VRoid party member</a></li>
+<li>Every setting on this page: <a href="#what-you-can-change">What you can change</a></li>
+</ul>
+</div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <p>The class tree, from C++ to the Blueprints you open:</p>
 <ul>
@@ -4535,8 +4548,7 @@ seven sample VRoid members share <code>Characters/VRoid/PawnData_XenoCore_Party_
 <code>Game/TagRelationships_XenoCore</code>. The player's pawn uses <code>Game/PawnData_XenoCore_Player</code>, which grants
 <code>AbilitySet_XenoCore_Hero</code>.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
-<p><strong>Spawn.</strong> When the party component spawns a body, it tells the pawn to initialise itself before the
-pawn finishes spawning. In <code>PostInitializeComponents</code> the pawn then:</p>
+<p><strong>Spawn.</strong> When the party spawns a body, the body sets itself up as it spawns, in this order:</p>
 <ol>
 <li>Sets its <strong>Combatant Pawn Data</strong> on the pawn extension component.</li>
 <li>Initialises its ability system. Only now can it take damage and die.</li>
@@ -4726,11 +4738,16 @@ it the <strong>Default Mesh</strong> instead of the body you meant. Give every s
   <a href="../../recipes/add-party-member/">Add a party member</a>.</li>
 <li><strong>A new statline:</strong> duplicate a party stats effect and change its curve rows. See
   <a href="../../recipes/character-statline/">Give a character its own statline</a>.</li>
-<li><strong>A townsperson:</strong> place or duplicate <code>B_XenoCore_Npc</code>. It has no ability system and cannot fight.</li>
-<li>Never add components to <code>B_XenoCore_PartyMember_Base</code> from a script; add them in the editor or in
-  a C++ subclass. The equipment component is created in C++ on <code>AXenoCorePartyCharacter</code> for this
-  reason.</li>
+<li><strong>A townsperson:</strong> place <code>B_XenoCore_Npc</code>, or make a child Blueprint of it for a reusable type. It has no ability system and cannot fight.</li>
+<li>To add a component to every party member, open <code>B_XenoCore_PartyMember_Base</code>, click
+  <strong>Add</strong> in the <strong>Components</strong> panel, then <strong>Compile</strong> and <strong>Save</strong>: every child gets it.</li>
 </ul>
+<details class="note">
+<summary>For programmers: components on the party base</summary>
+<p>Never add components to <code>B_XenoCore_PartyMember_Base</code> from an editor script: a scripted
+component crashed play twice on a null owner. Add them in the editor or in a C++ subclass. The
+equipment component is created in C++ on <code>AXenoCorePartyCharacter</code> for this reason.</p>
+</details>
 <div class="admonition note">
 <p class="admonition-title">The player's pawn is on a different branch</p>
 <p><code>B_XenoCore_Player</code> derives from <code>B_XenoCore_PlayableCharacter_Base</code>, not from the party base, and
@@ -4740,6 +4757,8 @@ to downed. Its arts also come from
 <code>AbilitySet_XenoCore_Hero</code>; it has no <strong>Art Learn Table</strong>.</p>
 </div>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <p>Lyra's hero component only knows how to find an ability system on a player state. A party of
 characters that each keep their own stats would need a player state each. Instead XenoCore uses
 Lyra's <code>ALyraCharacterWithAbilities</code>, the same shape as Epic's damageable test dummy, and performs the
@@ -4748,6 +4767,7 @@ nothing else: no drop table, no ragdoll, no follow logic, so a subclass never in
 did not ask for.</p>
 <p>The statline is applied from C++ rather than granted by an ability set because an ability set
 applies its effects at one fixed level for every character that uses it.</p>
+</details>
 
 
 

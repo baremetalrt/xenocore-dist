@@ -2386,41 +2386,13 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-make-the-image-choose-a-or-b" class="md-nav__link">
+  <a href="#3-make-the-image-and-set-its-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Make the image: choose A or B
+        3. Make the image and set its bounds
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. Make the image: choose A or B">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-bake-it-from-the-map-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A. Bake it from the map (recommended)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#b-use-your-own-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        B. Use your own image
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -4507,41 +4479,13 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-make-the-image-choose-a-or-b" class="md-nav__link">
+  <a href="#3-make-the-image-and-set-its-bounds" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Make the image: choose A or B
+        3. Make the image and set its bounds
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. Make the image: choose A or B">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a-bake-it-from-the-map-recommended" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A. Bake it from the map (recommended)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#b-use-your-own-image" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        B. Use your own image
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -4610,17 +4554,16 @@ world, and the L3 overlay shows the same image large.</p>
 <ul>
 <li>A map that runs the XenoCore experience. See <a href="../world-partition-map/">Build a world-partition map</a>.</li>
 <li>Read <a href="../../concepts/minimap/">Minimap</a> for what the minimap shows and where its settings live.</li>
-<li><strong>For the baked image only:</strong> Git Bash and Python 3 with <code>numpy</code> and <code>Pillow</code>, as for the other
-  <code>Tools/World</code> scripts. The bake runs the editor itself, so no other editor may be open on this
-  project's folder (one on another copy of the project is fine). A hand-painted image needs none of that.</li>
+<li>An image of your map, top-down, painted in any paint program (step 3 shows how to start from a
+  screenshot of the map).</li>
 </ul>
 <h2 id="how-the-image-lines-up">How the image lines up<a class="headerlink" href="#how-the-image-lines-up" title="Permanent link">&para;</a></h2>
 <p>An <strong>Area Definition</strong> holds two things that must agree: the <strong>Map Texture</strong> and the rectangle of the
 world it covers, <strong>Map World Min</strong> (the image's top-left corner) and <strong>Map World Max</strong> (its
 bottom-right corner), in world centimetres.</p>
 <p>The image is read with <strong>+X to the right and +Y downwards</strong>, so north (up on the map) is −Y. The
-sample maps are built that way. If your map's "north" runs another way, the bake still lines up,
-because it captures in the same frame; a hand-painted image must be drawn in that orientation.</p>
+sample maps are built that way, and your image must be drawn in that orientation. The editor's
+<strong>Top</strong> viewport shows the world the same way round. <!-- VERIFY: the Top orthographic viewport shows +X right and +Y down, matching the minimap --></p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-the-area-definition">1. Create the Area Definition<a class="headerlink" href="#1-create-the-area-definition" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4645,62 +4588,33 @@ because it captures in the same frame; a hand-painted image must be drawn in tha
 <p>The minimap uses the first XenoCore Map Area it finds. A second one is ignored, and which one
 counts is not guaranteed.</p>
 </div>
-<h3 id="3-make-the-image-choose-a-or-b">3. Make the image: choose A or B<a class="headerlink" href="#3-make-the-image-choose-a-or-b" title="Permanent link">&para;</a></h3>
-<h4 id="a-bake-it-from-the-map-recommended">A. Bake it from the map (recommended)<a class="headerlink" href="#a-bake-it-from-the-map-recommended" title="Permanent link">&para;</a></h4>
-<p>The bake captures your map from straight above and turns it into a flat XC1-style plan: tan ground,
-darker raised ground, dark rock walls, blue water, outlines between levels. The rest of the template
-uses this look.</p>
+<h3 id="3-make-the-image-and-set-its-bounds">3. Make the image and set its bounds<a class="headerlink" href="#3-make-the-image-and-set-its-bounds" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Add a <code>minimap</code> block for your map to <code>Tools/World/worlds.json</code>, beside your map's entry. Copy
-   Gaur Plain's block and change:<ul>
-<li><strong>area</strong>: your Area Definition's path.</li>
-<li><strong>texture</strong>: where the image should go, e.g. <code>/XenoCore/Maps/Areas/T_XenoCore_Map_&lt;YourArea&gt;</code>.</li>
-<li><strong>half_extent_cm</strong> and <strong>centre_cm</strong>: half the width of the square to capture, and its centre.
-  Make the square cover all of your terrain.</li>
-<li><strong>height_cm</strong>: a little above your tallest terrain.</li>
-<li><strong>seed_cm</strong>: any point the party can walk on (the player start works). Everything walkable from
-  here is drawn as ground; everything else is drawn dark, like XC1's beyond-the-edge.</li>
-<li><strong>rim_height_m</strong>: roughly how tall your boundary walls are, in metres.</li>
-</ul>
-</li>
-<li>Close the editor.</li>
-<li>In Git Bash, from the project root:
-   <div class="highlight"><pre><span></span><code><span class="nv">XENO_WORLD</span><span class="o">=</span>&lt;your<span class="w"> </span>map<span class="w"> </span>key&gt;<span class="w"> </span>bash<span class="w"> </span>Tools/World/bake_minimap.sh
-</code></pre></div>
-   It opens the editor on your map, captures it, closes the editor, paints the image and imports it.
-   The texture and the bounds are written into your Area Definition together. It takes a few minutes;
-   the editor window closes by itself.</li>
-<li>Open <code>Tools/World/out/minimap/&lt;your map key&gt;_styled.png</code> and look at it before you go on.</li>
-</ol>
-<div class="admonition warning">
-<p class="admonition-title">Fails silently: a gap in your boundary walls</p>
-<p>The bake decides "walkable" by spreading out from <strong>seed_cm</strong> until it hits a wall. If your walls
-have a gap, or the edge is only an invisible blocking volume, it spreads outside and paints the
-outside as walkable ground. Nothing warns: the image just looks wrong. Close the gap, or lower
-the wall threshold (<code>WALL_ABOVE_M</code> in <code>Tools/World/minimap_stylize.py</code>), and bake again.</p>
-</div>
-<p>The colours, level thresholds and every effect (depth: <strong>CAST_SHADOW</strong>, <strong>CAST_REACH_PX</strong>,
-<strong>EDGE_LIGHT</strong>; ground colour: <strong>TERRAIN_VARIETY</strong>, <strong>GRASS</strong>, <strong>DIRT</strong>, <strong>SAND</strong>; contours:
-<strong>CONTOUR_STEP_M</strong>, <strong>CONTOUR_STRENGTH</strong>; paper: <strong>GRAIN</strong>, <strong>MOTTLE</strong>) are at the top of
-<code>Tools/World/minimap_stylize.py</code>. Change them there and re-run the
-bake, never by editing the PNG. To repaint without re-capturing, run
-<code>python Tools/World/minimap_stylize.py &lt;your map key&gt;</code> and then the import step,
-<code>bash Tools/Enemies/run_commandlet.sh Tools/World/minimap_bake_import.py</code>.</p>
-<h4 id="b-use-your-own-image">B. Use your own image<a class="headerlink" href="#b-use-your-own-image" title="Permanent link">&para;</a></h4>
-<ol>
-<li>Import your image (any size; square is easiest) into <code>Maps/Areas</code>.</li>
-<li>On the texture, set <strong>Texture Group</strong> to <code>UI</code> and <strong>X-axis Tiling Method</strong> and <strong>Y-axis Tiling
-   Method</strong> to <code>Clamp</code>. <strong>Save</strong>.</li>
-<li>Set your Area Definition's <strong>Map Texture</strong> to it.</li>
+<li>Paint the map image, square is easiest, with north at the top. XC1's look, which Gaur Plain's
+   <code>Maps/Areas/T_XenoCore_Map_GaurPlain</code> follows, is a flat plan: tan ground, darker raised ground,
+   dark rock walls, blue water, outlines between levels.
+   To start from the real layout, set a viewport to <strong>Top</strong>, frame the whole Landscape edge to edge,
+   and take a <strong>High Resolution Screenshot</strong> (viewport menu). Paint over it.</li>
+<li>Drag the image file into <code>Maps/Areas</code> (or your own folder) in the Content Browser.</li>
+<li>Open the texture. Set <strong>Level Of Detail › Texture Group</strong> to <code>UI</code>, and <strong>X-axis Tiling Method</strong>
+   and <strong>Y-axis Tiling Method</strong> to <code>Clamp</code>. <strong>Save</strong>.</li>
+<li>Open your Area Definition and set <strong>Map › Map Texture</strong> to it.</li>
 <li>Set the bounds:<ul>
-<li>If the image covers exactly your Landscape: select the XenoCore Map Area and click <strong>Fit Bounds
-  To Landscape</strong> in its Details panel. Then <strong>save the Area Definition</strong>: the button marks it
-  changed but does not save it.</li>
-<li>Otherwise type <strong>Map World Min</strong> and <strong>Map World Max</strong> yourself, then look down on the map
-  in the viewport: the orange box shows the rectangle you typed.</li>
+<li>If the image covers exactly your Landscape: select the XenoCore Map Area in the level and click
+  <strong>Map › Fit Bounds To Landscape</strong> in its Details panel. Then <strong>save the Area Definition</strong>: the
+  button changes it but does not save it.</li>
+<li>Otherwise type <strong>Map › Map World Min</strong> and <strong>Map World Max</strong> in the Area Definition yourself,
+  then look down on the map in the viewport: the orange box shows the rectangle you typed.</li>
 </ul>
 </li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">The sample's image was baked by an internal tool</p>
+<p><code>T_XenoCore_Map_GaurPlain</code> was made by a capture-and-paint tool that is not part of the plugin.
+There is no editor button that bakes a map image; a buyer paints one, as above. A programmer can
+write a capture with a <strong>Scene Capture 2D</strong> set to <strong>Orthographic</strong>, pointed straight down over the
+Landscape.</p>
+</div>
 <h3 id="4-check-it-in-the-editor">4. Check it in the editor<a class="headerlink" href="#4-check-it-in-the-editor" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Select the XenoCore Map Area. The orange box should cover the same ground as the image. If you
@@ -4711,7 +4625,7 @@ bake, never by editing the PNG. To repaint without re-capturing, run
 </ol>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Play your map.</li>
+<li>Open your map and press <strong>Play</strong>.</li>
 <li>Look at the minimap: the ground under the arrow should match where you are standing. Walk to a
    recognisable feature, such as a lake or a cliff edge, and check it sits under the arrow.</li>
 <li>Turn the camera. The pale wedge should follow it.</li>
@@ -4739,23 +4653,18 @@ bake, never by editing the PNG. To repaint without re-capturing, run
 </tr>
 <tr>
 <td>The map scrolls the wrong way, or is mirrored</td>
-<td>A hand-painted image drawn with north at another edge</td>
-<td>Redraw it with north up (−Y), or re-bake</td>
+<td>The image is drawn with north at another edge</td>
+<td>Redraw it with north up (−Y)</td>
 </tr>
 <tr>
 <td>Features drift away from the arrow as you walk</td>
 <td>The bounds do not match the image</td>
-<td>Re-bake (bounds and image are written together), or fix <strong>Map World Min/Max</strong></td>
-</tr>
-<tr>
-<td>The outside of the map draws as walkable ground</td>
-<td>A gap in the walls when baking</td>
-<td>See the warning in step 3A</td>
+<td>Click <strong>Fit Bounds To Landscape</strong> again (and save the Area), or fix <strong>Map World Min/Max</strong></td>
 </tr>
 <tr>
 <td>The image is blurry</td>
 <td><strong>World Radius</strong> shows too much area for the image's resolution</td>
-<td>Bake at a higher <strong>resolution</strong> in <code>worlds.json</code>, or lower <strong>World Radius</strong> on the HUD's <code>Minimap</code></td>
+<td>Paint the image larger, or lower <strong>Minimap › World Radius</strong> on the <code>Minimap</code> widget in <code>W_XenoCore_HUDLayout</code></td>
 </tr>
 </tbody>
 </table>

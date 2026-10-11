@@ -4271,6 +4271,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#most-common-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Most common tasks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#characters-and-party" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4326,10 +4337,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#menus-and-input" class="md-nav__link">
+  <a href="#menus-hud-and-input" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Menus and input
+        Menus, HUD and input
       
     </span>
   </a>
@@ -4337,10 +4348,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#world-and-camera" class="md-nav__link">
+  <a href="#maps-world-and-camera" class="md-nav__link">
     <span class="md-ellipsis">
       
-        World and camera
+        Maps, world and camera
       
     </span>
   </a>
@@ -4388,14 +4399,17 @@
 
 <h1 id="how-to-recipes">How-to recipes<a class="headerlink" href="#how-to-recipes" title="Permanent link">&para;</a></h1>
 <p><em>Designer and Programmer · Last tested: never</em></p>
-<p>Each recipe does one task end to end: concrete steps, a <strong>Test it</strong> section that says exactly
-what you should see in Play, and an <strong>If it doesn't work</strong> section for the failures that happen
-silently. 59 of the 61 need no code.</p>
+<p>Each recipe does one task from start to finish. It lists what you need, gives one action per step,
+and ends with <strong>Test it</strong> (what to press in Play and what you should see) and <strong>If it doesn't work</strong>
+(the symptom and the fix, including the failures that happen without any error).</p>
+<p>Find your task in the tables below. <strong>What you get</strong> is what you will see in Play when you finish.
+<strong>Code</strong> says whether you need anything beyond the editor: <em>No</em> means the Details panel, Data Assets,
+Data Tables and, at most, a few simple Blueprint nodes. <em>C++</em> means a programmer.</p>
 <p>New to the template? Do the Getting Started tutorials first:
 <a href="../getting-started/first-change/">Your first change</a>,
 <a href="../getting-started/first-art/">Your first art</a> and
 <a href="../getting-started/first-enemy/">Your first enemy</a>. They cover the most common tasks with more
-explanation than a recipe gives.</p>
+explanation than a recipe gives. Unfamiliar words are in the <a href="../getting-started/glossary/">Glossary</a>.</p>
 <div class="admonition tip">
 <p class="admonition-title">Work in your own folder</p>
 <p>Every recipe puts new assets under <code>Content/MyGame/…</code> and duplicates shipped assets rather than
@@ -4403,94 +4417,90 @@ editing them. Where a recipe has to edit a shipped asset, it says so; note those
 can reapply them after a template update.</p>
 </div>
 <p>Times are for a first attempt with the editor already open.</p>
+<h2 id="most-common-tasks">Most common tasks<a class="headerlink" href="#most-common-tasks" title="Permanent link">&para;</a></h2>
+<ul>
+<li>New character: <a href="add-party-member/">Add a party member</a>, then <a href="starting-party/">Set the starting party</a>.</li>
+<li>New attack: <a href="attack-art/">Create an attack art</a>.</li>
+<li>New enemy in the world: <a href="add-enemy/">Add an enemy type</a>, then <a href="place-enemies/">Place enemies</a>.</li>
+<li>New item: <a href="add-weapon/">Add a weapon</a>, <a href="add-armour/">Add an armour piece</a> or <a href="consumable-item/">Add a consumable item</a>.</li>
+<li>New NPC: <a href="npc-conversation/">Write an NPC conversation</a>, then <a href="collection-quest/">Create a collection quest</a>.</li>
+</ul>
 <h2 id="characters-and-party">Characters and party<a class="headerlink" href="#characters-and-party" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>#</th>
 <th>Recipe</th>
-<th>Reader</th>
+<th>What you get</th>
 <th>Code</th>
 <th>Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
 <td><a href="add-party-member/">Add a party member</a></td>
-<td>Designer</td>
+<td>A new character with their own name, portrait, look, stats, gear and Arts</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>2</td>
 <td><a href="add-vroid-party-member/">Add a VRoid party member</a></td>
-<td>Designer</td>
+<td>A character made in VRoid Studio, playable and fighting like the rest</td>
 <td>No</td>
 <td>2 h</td>
 </tr>
 <tr>
-<td>3</td>
 <td><a href="starting-party/">Set the starting party</a></td>
-<td>Designer</td>
+<td>A new game starts with the characters you choose</td>
 <td>No</td>
 <td>15 min</td>
 </tr>
 <tr>
-<td>4</td>
 <td><a href="character-statline/">Author a character statline</a></td>
-<td>Designer</td>
+<td>A character's own HP, Strength, Ether and Agility from level 1 to 99</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>5</td>
 <td><a href="bake-portrait/">Bake a HUD portrait</a></td>
-<td>Designer</td>
+<td>A cut-out portrait for the HUD and menus</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>6</td>
 <td><a href="animation-style/">Choose an animation style</a></td>
-<td>Designer</td>
+<td>A character moves with the masculine or feminine set, or your own</td>
 <td>No</td>
 <td>20 min–1 h</td>
 </tr>
 <tr>
-<td>48</td>
 <td><a href="character-combat-animations/">Give a character its own combat animations</a></td>
-<td>Designer</td>
+<td>Its own topple, flinch, block, dodge, death and victory clips</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>50</td>
 <td><a href="companion-personality/">Give a character its own idle breaks and faces</a></td>
-<td>Designer</td>
+<td>A companion that fidgets and pulls faces in its own way at rest</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>7</td>
-<td><a href="tune-progression/">Tune progression</a></td>
-<td>Designer</td>
-<td>No</td>
-<td>20 min</td>
-</tr>
-<tr>
-<td>54</td>
-<td><a href="tune-revive-and-defeat/">Tune revive and defeat</a></td>
-<td>Designer</td>
-<td>No</td>
-<td>15 min</td>
-</tr>
-<tr>
-<td>45</td>
 <td><a href="add-skill/">Add a skill or a skill tree</a></td>
-<td>Designer</td>
+<td>A skill tree whose branches the player learns with SP</td>
 <td>No</td>
 <td>45 min</td>
+</tr>
+<tr>
+<td><a href="tune-progression/">Tune progression</a></td>
+<td>The party levels at the pace you want</td>
+<td>No</td>
+<td>20 min</td>
+</tr>
+<tr>
+<td><a href="tune-revive-and-defeat/">Tune revive and defeat</a></td>
+<td>Revive cost and health, out-of-battle recovery, and how a lost battle looks</td>
+<td>No</td>
+<td>15 min</td>
 </tr>
 </tbody>
 </table>
@@ -4498,88 +4508,76 @@ can reapply them after a template update.</p>
 <table>
 <thead>
 <tr>
-<th>#</th>
 <th>Recipe</th>
-<th>Reader</th>
+<th>What you get</th>
 <th>Code</th>
 <th>Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>8</td>
 <td><a href="attack-art/">Create an attack art</a></td>
-<td>Designer</td>
+<td>A new attack on the palette, with its own animation, damage and cooldown</td>
 <td>No</td>
 <td>40 min</td>
 </tr>
 <tr>
-<td>9</td>
 <td><a href="support-art/">Create a healing or support art</a></td>
-<td>Designer</td>
+<td>A heal on one ally you pick, and a whole-party Strength buff with Regenerate</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>10</td>
 <td><a href="talent-art/">Create a Talent Art</a></td>
-<td>Designer</td>
+<td>A weapon-granted art paid for with the Talent Gauge</td>
 <td>No</td>
 <td>40 min</td>
 </tr>
 <tr>
-<td>11</td>
 <td><a href="palette-slots/">Palette slots</a></td>
-<td>Designer</td>
+<td>How many Art slots each level has, and which Arts each character learns</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>12</td>
 <td><a href="art-reactions/">Make an art inflict reactions</a></td>
-<td>Designer</td>
+<td>A Break → Topple → Daze combo across three Arts</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>13</td>
 <td><a href="status-effect/">Add a status effect</a></td>
-<td>Designer</td>
+<td>A debuff that lowers a stat and deals damage over time</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>14</td>
 <td><a href="tune-auto-attack/">Tune auto-attack</a></td>
-<td>Designer</td>
+<td>The auto-attack swings at the speed, reach and rhythm you want, with your own clips</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>15</td>
 <td><a href="tune-targeting/">Tune targeting</a></td>
-<td>Designer</td>
+<td>Lock-on reaches as far as you want and faces the target when close</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>55</td>
 <td><a href="tune-companion-ai/">Tune companion AI</a></td>
-<td>Designer</td>
+<td>A companion that heals early, saves an art for the Break, or acts less often</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>16</td>
 <td><a href="hit-feedback/">Add hit feedback</a></td>
-<td>Designer</td>
+<td>Camera shake and pad rumble on a landed hit, tuned your way</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>17</td>
 <td><a href="damage-formula-stat/">Add a stat to the damage formula</a></td>
-<td>Programmer</td>
+<td>A new character stat that changes damage</td>
 <td>C++</td>
 <td>1 h</td>
 </tr>
@@ -4589,67 +4587,58 @@ can reapply them after a template update.</p>
 <table>
 <thead>
 <tr>
-<th>#</th>
 <th>Recipe</th>
-<th>Reader</th>
+<th>What you get</th>
 <th>Code</th>
 <th>Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>18</td>
 <td><a href="add-weapon/">Add a weapon</a></td>
-<td>Designer</td>
+<td>A new weapon with its own look and stats, equippable from the menu</td>
 <td>No</td>
 <td>45 min</td>
 </tr>
 <tr>
-<td>19</td>
 <td><a href="add-armour/">Add an armour piece</a></td>
-<td>Designer</td>
+<td>A new armour piece with defence, weight and its own look</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>20</td>
 <td><a href="equipment-stat/">Add an equipment stat</a></td>
-<td>Designer</td>
+<td>A weapon or armour piece that grants a stat it did not before</td>
 <td>No</td>
 <td>15 min</td>
 </tr>
 <tr>
-<td>21</td>
 <td><a href="consumable-item/">Add a consumable item</a></td>
-<td>Designer</td>
+<td>An item the party uses from the bag, spending one each time</td>
 <td>No</td>
 <td>45 min</td>
 </tr>
 <tr>
-<td>22</td>
 <td><a href="drop-table/">Author a drop table</a></td>
-<td>Designer</td>
+<td>Enemies leave chests with the tier odds and contents you chose</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>22a</td>
 <td><a href="item-rarity/">Set and style item rarity</a></td>
-<td>Designer</td>
+<td>Item names in their rarity colour, with pips, in every menu</td>
 <td>No</td>
 <td>10 min</td>
 </tr>
 <tr>
-<td>22b</td>
 <td><a href="sort-a-list/">Add Y-to-sort to an item list</a></td>
-<td>Designer</td>
+<td>Pressing Y on your screen cycles how its item list is ordered</td>
 <td>No</td>
 <td>10 min</td>
 </tr>
 <tr>
-<td>22c</td>
 <td><a href="add-a-gem/">Add a gem</a></td>
-<td>Designer</td>
+<td>A new gem the party can socket into weapons and armour</td>
 <td>No</td>
 <td>10 min</td>
 </tr>
@@ -4659,39 +4648,34 @@ can reapply them after a template update.</p>
 <table>
 <thead>
 <tr>
-<th>#</th>
 <th>Recipe</th>
-<th>Reader</th>
+<th>What you get</th>
 <th>Code</th>
 <th>Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>23</td>
 <td><a href="add-enemy/">Add an enemy type</a></td>
-<td>Designer</td>
+<td>A new enemy with its own body, animations, abilities, stats and loot</td>
 <td>No</td>
 <td>90 min</td>
 </tr>
 <tr>
-<td>24</td>
 <td><a href="enemy-arts-ai/">Give an enemy arts and AI</a></td>
-<td>Designer</td>
+<td>Your enemy uses its own Arts and chains them</td>
 <td>No</td>
 <td>40 min</td>
 </tr>
 <tr>
-<td>25</td>
 <td><a href="enemy-statline/">Author an enemy statline</a></td>
-<td>Designer</td>
+<td>Your enemy's HP, Strength, Ether, Agility and defences at every level</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>26</td>
 <td><a href="place-enemies/">Place enemies</a></td>
-<td>Designer</td>
+<td>A squad that wanders, fights together and respawns; a patrolling enemy; a unique monster</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
@@ -4701,193 +4685,168 @@ can reapply them after a template update.</p>
 <table>
 <thead>
 <tr>
-<th>#</th>
 <th>Recipe</th>
-<th>Reader</th>
+<th>What you get</th>
 <th>Code</th>
 <th>Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>27</td>
 <td><a href="npc-conversation/">Write an NPC conversation</a></td>
-<td>Designer</td>
+<td>A townsperson with a name plate who talks when you press Talk</td>
 <td>No</td>
 <td>15 min</td>
 </tr>
 <tr>
-<td>28</td>
 <td><a href="branch-conversation/">Branch a conversation</a></td>
-<td>Designer</td>
+<td>An NPC who says different things depending on quest and party state</td>
 <td>No</td>
 <td>40 min</td>
 </tr>
 <tr>
-<td>29</td>
 <td><a href="collection-quest/">Create a collection quest</a></td>
-<td>Designer</td>
+<td>An NPC who asks for items and pays you when you hand them in</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>30</td>
 <td><a href="kill-talk-quest/">Create a kill, talk or location quest</a></td>
-<td>Designer</td>
+<td>Quests to defeat enemies, speak to someone or reach a place</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>31</td>
 <td><a href="open-shop/">Open a shop</a></td>
-<td>Designer</td>
+<td>An NPC who talks first, then sells your own stock</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>32</td>
 <td><a href="trade/">Set up a trade</a></td>
-<td>Designer</td>
+<td>An NPC who swaps your collectables for their goods</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>53</td>
 <td><a href="recruit-npc/">Recruit a party member by talking to them</a></td>
-<td>Designer</td>
+<td>A character who joins the party when you talk to them</td>
 <td>No</td>
 <td>10 min</td>
 </tr>
 <tr>
-<td>46</td>
 <td><a href="add-interactable/">Add an interactable object</a></td>
-<td>Designer</td>
+<td>A lever or other object with a button prompt that does something</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 </tbody>
 </table>
-<h2 id="menus-and-input">Menus and input<a class="headerlink" href="#menus-and-input" title="Permanent link">&para;</a></h2>
+<h2 id="menus-hud-and-input">Menus, HUD and input<a class="headerlink" href="#menus-hud-and-input" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>#</th>
 <th>Recipe</th>
-<th>Reader</th>
+<th>What you get</th>
 <th>Code</th>
 <th>Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>33</td>
 <td><a href="restyle-menus/">Restyle the menus</a></td>
-<td>Designer</td>
+<td>The menus in your own colours and font</td>
 <td>No</td>
 <td>45 min</td>
 </tr>
 <tr>
-<td>34</td>
 <td><a href="add-menu-screen/">Add a menu screen</a></td>
-<td>Designer</td>
+<td>A new main-menu entry that opens your own screen</td>
 <td>No</td>
 <td>45 min</td>
 </tr>
 <tr>
-<td>35</td>
 <td><a href="confirm-popup/">Add a confirmation popup</a></td>
-<td>Designer</td>
+<td>A Yes/No question drawn over your own screen</td>
 <td>No (C++ optional)</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>36</td>
 <td><a href="input-action-prompt/">Add an input action with a prompt</a></td>
-<td>Designer</td>
+<td>A new button that runs an ability, with its glyph on screen</td>
 <td>No</td>
 <td>40 min</td>
 </tr>
 <tr>
-<td>47</td>
 <td><a href="add-hud-element/">Add a HUD element</a></td>
-<td>Designer</td>
+<td>Your own widget on the in-game HUD</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>52</td>
 <td><a href="tutorial-cards/">Add a tutorial card</a></td>
-<td>Designer</td>
+<td>A card that pauses the game the first time the player meets something</td>
 <td>No</td>
 <td>15 min</td>
 </tr>
 </tbody>
 </table>
-<h2 id="world-and-camera">World and camera<a class="headerlink" href="#world-and-camera" title="Permanent link">&para;</a></h2>
+<h2 id="maps-world-and-camera">Maps, world and camera<a class="headerlink" href="#maps-world-and-camera" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>#</th>
 <th>Recipe</th>
-<th>Reader</th>
+<th>What you get</th>
 <th>Code</th>
 <th>Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>38</td>
 <td><a href="world-partition-map/">Build a world-partition map</a></td>
-<td>Level designer</td>
+<td>A large map that streams in pieces as the party travels</td>
 <td>No</td>
 <td>2 h</td>
 </tr>
 <tr>
-<td>39</td>
-<td><a href="footstep-surface/">Footsteps by surface</a></td>
-<td>Level designer</td>
-<td>No</td>
-<td>30 min</td>
-</tr>
-<tr>
-<td>49</td>
 <td><a href="area-music/">Give a map its music</a></td>
-<td>Level designer</td>
+<td>A field track that crossfades to a battle track and back</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>51</td>
 <td><a href="area-weather/">Give a map its time of day and weather</a></td>
-<td>Level designer</td>
+<td>A sun that follows the clock, a night sky, and weather rolled for your map</td>
 <td>No</td>
 <td>20 min</td>
 </tr>
 <tr>
-<td>56</td>
 <td><a href="minimap-new-map/">Give a map its minimap</a></td>
-<td>Level designer</td>
+<td>Your map's own image on the minimap, lined up with the world</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>57</td>
 <td><a href="minimap-marker/">Show something on the minimap</a></td>
-<td>Designer</td>
+<td>Your own actor drawn as a marker on the minimap</td>
 <td>No</td>
 <td>15 min</td>
 </tr>
 <tr>
-<td>40</td>
+<td><a href="footstep-surface/">Footsteps by surface</a></td>
+<td>A new ground type with its own step sound and effect</td>
+<td>No</td>
+<td>30 min</td>
+</tr>
+<tr>
 <td><a href="megascans-assets/">Megascans at shipping size</a></td>
-<td>Level designer</td>
+<td>Pack assets you placed, at a shipping size, with nothing missing on a fresh copy</td>
 <td>No</td>
 <td>1 h</td>
 </tr>
 <tr>
-<td>41</td>
 <td><a href="camera-feel/">Swap the camera feel</a></td>
-<td>Designer</td>
+<td>The exploration camera further, closer, higher or lower</td>
 <td>No</td>
 <td>30 min</td>
 </tr>
@@ -4897,53 +4856,45 @@ can reapply them after a template update.</p>
 <table>
 <thead>
 <tr>
-<th>#</th>
 <th>Recipe</th>
-<th>Reader</th>
+<th>What you get</th>
 <th>Code</th>
 <th>Time</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>37</td>
 <td><a href="save-system/">Make a system save</a></td>
-<td>Designer</td>
+<td>Your own state written into the save file and restored on load</td>
 <td>No (C++ optional)</td>
 <td>30 min</td>
 </tr>
 <tr>
-<td>44</td>
-<td><a href="subclass-mechanic/">Add a mechanic by subclassing</a></td>
-<td>Programmer</td>
-<td>C++</td>
-<td>1–2 h</td>
-</tr>
-<tr>
-<td>42</td>
 <td><a href="replace-sample-content/">Replace the sample content</a></td>
-<td>Designer</td>
+<td>Your own characters, gear, enemies and map; the samples removed</td>
 <td>No</td>
 <td>2–4 h</td>
 </tr>
 <tr>
-<td>43</td>
-<td><a href="package-build/">Package a build</a></td>
-<td>Programmer</td>
-<td>No</td>
-<td>1–2 h</td>
-</tr>
-<tr>
-<td>58</td>
 <td><a href="nvidia-dlss/">Turn on NVIDIA DLSS and Frame Generation</a></td>
-<td>Any</td>
+<td>DLSS options in the game's Video settings</td>
 <td>No</td>
 <td>15 min</td>
 </tr>
+<tr>
+<td><a href="package-build/">Package a build</a></td>
+<td>A Windows build that boots and plays</td>
+<td>No (programmer task)</td>
+<td>1–2 h</td>
+</tr>
+<tr>
+<td><a href="subclass-mechanic/">Add a mechanic by subclassing</a></td>
+<td>Your own C++ module building on XenoCore's classes</td>
+<td>C++</td>
+<td>1–2 h</td>
+</tr>
 </tbody>
 </table>
-<!-- VERIFY: reader and time for collection-quest and kill-talk-quest against the finished pages -->
-
 <h2 id="cant-find-your-task">Can't find your task?<a class="headerlink" href="#cant-find-your-task" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The <a href="../concepts/">Concepts</a> page for the system explains its settings and where to

@@ -4651,7 +4651,7 @@ files; use a mesh on the Mannequin skeleton instead
 </div>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../add-party-member/">Add a party member</a>. A VRoid member is the same four assets plus a
+<li><a href="../add-party-member/">Add a party member</a>. A VRoid member is the same assets plus a
   cosmetic part that carries the VRoid body.</li>
 <li>VRoid Studio (Stable), and the <strong>VRM4U</strong> plugin enabled in <strong>Edit › Plugins</strong>.</li>
 </ul>
@@ -4663,14 +4663,16 @@ parameters in VRoid Studio into an original, or build your own, before you sell 
 Do not build a character creator from VRoid data.</p>
 <p>The seven sample characters ship <strong>edited</strong>: each has its own tint on hair and clothing
 (<strong>Base Color Tint</strong> on its <code>MI_Lit_*</code> hair and cloth instances) and the XenoCore emblem
-painted into its outfit texture at the left chest. <code>Tools/VRoid/vroid_xenocore_edit.py</code> does
-both for every member in <code>Tools/VRoid/members.py</code>; give your own sample-based character an
-edit of its own the same way. The samples' <code>VL_</code>/<code>VM_</code> objects in each <code>VRM/</code> folder carry no
+painted into its outfit texture at the left chest. Give your own sample-based character an
+edit of its own: change <strong>Base Color Tint</strong> on its hair and cloth material instances, and paint
+your own mark into its outfit texture in an image editor, then re-import the texture (or make the
+edit in VRoid Studio before export). The samples' <code>VL_</code>/<code>VM_</code> objects in each <code>VRM/</code> folder carry no
 licence terms (the licence fields are empty; the meta holds bone mapping only). Your own
 import's <code>VL_</code> object carries whatever the VRoid export dialog was set to.</p>
 </div>
 <h2 id="how-a-vroid-member-works">How a VRoid member works<a class="headerlink" href="#how-a-vroid-member-works" title="Permanent link">&para;</a></h2>
-<p>The pawn still uses an <strong>invisible</strong> Mannequin body. That body runs XenoCore's animation, plays
+<p>The pawn still uses an <strong>invisible</strong> Mannequin body (<code>SKM_Manny_Invis</code> or <code>SKM_Quinn_Invis</code>, Lyra's
+own, under <strong>Content › Characters › Heroes › Mannequin › Meshes</strong>). That body runs XenoCore's animation, plays
 every montage and ragdolls on death. The VRoid mesh is a <strong>cosmetic part</strong> attached to it that
 copies its pose through an IK retargeter. Nothing in the abilities, AI or party code knows the
 difference.</p>
@@ -4830,6 +4832,8 @@ and swap its materials for instances of that material.</p>
 <li>Connect to <strong>Output Pose</strong>, compile and save. Compare against <code>ABP_XenoCore_VRoidRetarget_C</code>.</li>
 </ol>
 <h3 id="5-make-the-member">5. Make the member<a class="headerlink" href="#5-make-the-member" title="Permanent link">&para;</a></h3>
+<p>The pawn uses a <a href="../../getting-started/glossary/">member definition</a> and
+<a href="../../getting-started/glossary/">pawn data</a> like any other member.</p>
 <ol>
 <li>Right-click <code>Characters/VRoid/B_XenoCore_Cosmetic_VRoid_Base</code> and choose <strong>Create Child
    Blueprint Class</strong>. On its inherited <strong>MeshComponent</strong>, set the mesh to yours and <strong>Anim Class</strong>
@@ -4845,7 +4849,7 @@ and swap its materials for instances of that material.</p>
   <strong>Pawn Class</strong> is the VRoid base, so a member does not also load the Mannequin colour
   samples (<code>B_XenoCore_Party_Manny</code> / <code>_Quinn</code>) and their materials, as the
   <code>Characters/Party/PawnData_XenoCore_Party_*</code> assets would. Empty means the character cannot
-  be hurt or die. <code>Tools/VRoid/build_member.py</code> sets this for you.</li>
+  be hurt or die.</li>
 <li><strong>Stats Effect</strong> and <strong>Combatant Level</strong>, exactly as in <a href="../add-party-member/">Add a party member</a>.</li>
 <li>On the <strong>Mesh</strong> component, <strong>Skeletal Mesh Asset</strong>: <code>SKM_Quinn_Invis</code> for a feminine body.
   The base uses <code>SKM_Manny_Invis</code>, and the body-mesh rules switch it by tag either way.</li>
@@ -4880,14 +4884,14 @@ definition still carries the sample's role and AI profile. Set each one:</p>
 </thead>
 <tbody>
 <tr>
-<td>Arts</td>
+<td><a href="../../getting-started/glossary/">Arts</a></td>
 <td>Pawn <strong>Class Defaults › XenoCore › Arts › Art Learn Table</strong></td>
 <td>Duplicate a learnset into your folder and edit its rows. Three palette slots are open at level 1. See <a href="../palette-slots/">Set palette slots and unlocks</a>.</td>
 </tr>
 <tr>
 <td>Talent Art</td>
 <td>The <strong>weapon's</strong> ability set</td>
-<td>A Talent Art belongs to the sword, not the character. For a character-specific Talent Art, give them their own sword: a child of <code>B_XenoCore_Sword_Base</code> and of <code>ED_XenoCore_Sword_Base</code>, whose ED grants <code>AbilitySet_XenoCore_SwordCommon</code> plus a set holding only the Talent (a child of <code>GA_XenoCore_TalentArt_Base</code>). See <a href="../talent-art/">Make a Talent Art</a> and <a href="../add-weapon/">Add a weapon</a>. The samples are Isolde, Sabine and Tamsin's Violet, Amber and Ivory Swords.</td>
+<td>A <a href="../../getting-started/glossary/">Talent Art</a> belongs to the sword, not the character. For a character-specific Talent Art, give them their own sword: a child of <code>B_XenoCore_Sword_Base</code> and of <code>ED_XenoCore_Sword_Base</code>, whose ED grants <code>AbilitySet_XenoCore_SwordCommon</code> plus a set holding only the Talent (a child of <code>GA_XenoCore_TalentArt_Base</code>). See <a href="../talent-art/">Make a Talent Art</a> and <a href="../add-weapon/">Add a weapon</a>. The samples are Isolde, Sabine and Tamsin's Violet, Amber and Ivory Swords.</td>
 </tr>
 <tr>
 <td>Skills</td>
@@ -4942,10 +4946,10 @@ you can see.</p>
 <li>Right-click each socket › <strong>Add Preview Asset</strong> and pick a sword mesh, for example
    <code>Weapons/GreatSword/SM_GreatSword</code>.</li>
 <li>To see them in a pose: right-click a clip such as <code>Characters/Player/Animations/Kwang/AS_Kwang_Idle</code>
-   › <strong>Retarget Animations</strong>, pick your retargeter, and save the copy in your own folder under
-   <code>Content/Dev/</code>. In the skeleton editor's <strong>Preview Scene Settings › Animation</strong>, pick that copy.
-   The samples already have six each in <code>Dev/WeaponPreview/&lt;Name&gt;/</code>: idle, two swings, unarmed
-   idle, draw and sheathe.</li>
+   › <strong>Retarget Animations</strong>, pick your retargeter, and save the copy in a folder of your own that
+   you will delete before shipping (for example <code>Content/MyGame/Scratch</code>). In the skeleton editor's
+   <strong>Preview Scene Settings › Animation</strong>, pick that copy. An idle, a swing, and the draw and
+   sheathe clips cover every pose worth checking.</li>
 <li>Move and rotate each socket until the grip sits in the palm and the sheathed sword lies flat on
    the back. Leave each socket's <strong>Scale</strong> at <strong>1.0</strong>: a socket's scale multiplies every weapon the
    character holds. To change how big weapons are, see Size in <a href="../add-weapon/">Add a weapon</a>. A good start is to copy the values from a sample of the same body style
@@ -4969,13 +4973,16 @@ fix that weapon's mesh or its actor instead (see <a href="../add-weapon/">Add a 
 </div>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Open <code>Maps/L_XenoCore_Gym</code>, press <strong>Play</strong>, and field your member from the Party screen.</li>
+<li>Open <code>Maps/L_XenoCore_Gym</code>, press <strong>Play</strong> (not <strong>Continue</strong>), and field your member from the
+   Party screen (menu: pad <strong>Y</strong>, keyboard <strong>I</strong>).</li>
 <li>It follows you and runs with the same animation as the Mannequin members.</li>
 <li>Watch its face for ten seconds: it blinks at random intervals.</li>
 <li>Engage an enemy. The expression hardens when the battle starts and changes again when the
-   character is Toppled or Dazed.</li>
-<li>The sword sits on its back while exploring, and in its hand once drawn.</li>
-<li>Run <code>XenoCore.Weapon.Describe &lt;name&gt;</code> in the console to see what it may wield and is holding.</li>
+   character is <a href="../../getting-started/glossary/">Toppled or Dazed</a>.</li>
+<li>The sword sits on its back while exploring (<a href="../../getting-started/glossary/">sheathed</a>), and in
+   its hand once drawn.</li>
+<li>Open the console (the key left of <strong>1</strong>) and run <code>XenoCore.Weapon.Describe &lt;name&gt;</code> to see what it
+   may wield and is holding.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">

@@ -2464,10 +2464,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-it" class="md-nav__link">
+  <a href="#test-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Check it
+        Test it
       
     </span>
   </a>
@@ -2497,21 +2497,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#if-something-goes-wrong" class="md-nav__link">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If something goes wrong
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works
+        If it doesn't work
       
     </span>
   </a>
@@ -4417,10 +4406,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-it" class="md-nav__link">
+  <a href="#test-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Check it
+        Test it
       
     </span>
   </a>
@@ -4450,21 +4439,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#if-something-goes-wrong" class="md-nav__link">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If something goes wrong
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How it works
+        If it doesn't work
       
     </span>
   </a>
@@ -4489,20 +4467,19 @@
 
 
 <h1 id="turn-on-nvidia-dlss-and-frame-generation">Turn on NVIDIA DLSS and Frame Generation<a class="headerlink" href="#turn-on-nvidia-dlss-and-frame-generation" title="Permanent link">&para;</a></h1>
-<p><em>Any · 15 min · No code · Last tested: 2026-10-05 (RTX 4060 Laptop, plugin v8.8.0)</em></p>
+<p><em>Any · 15 min · No code if your Lyra project already has the DLSS settings (see the warning below) · Last tested: 2026-10-05 (RTX 4060 Laptop, plugin v8.8.0)</em></p>
 <p><strong>Result:</strong> the game's <strong>Video</strong> settings gain an <strong>NVIDIA DLSS</strong> group: Super Resolution (including
 DLAA), Frame Generation and NVIDIA Reflex Low Latency, on any GeForce RTX graphics card.</p>
 <p>XenoCore does not include NVIDIA's plugin, because NVIDIA's licence lets it ship inside a finished game but
 not inside a source project sold to developers. The settings are already built in. They appear the moment
 you install the plugin, and stay out of sight when it isn't there.</p>
 <div class="admonition warning">
-<p class="admonition-title">The settings are Lyra code, not XenoCore code</p>
-<p>The <strong>NVIDIA DLSS</strong> group is added to Lyra's own settings screen by a change to the host project's
-C++ (<code>Lyra-main/Source/LyraGame/Settings/LyraNvidiaSettings.h</code> and its neighbours; XenoCore's
-<code>Patches/13-nvidia-dlss-settings.md</code> lists every file). If you dropped the XenoCore plugin into your
-own stock Lyra, that change is not in your project, and installing NVIDIA's plugin adds no group
-to <strong>Options › Video</strong>. Nothing warns. Copy the files the patch lists into your Lyra source.
-<!-- VERIFY: whether the buyer package ships Patches/13 or the NVIDIA settings files for stock-Lyra installs (Launch-Status: "Phase 2 rest (DLSS optional)") --></p>
+<p class="admonition-title">Fails silently: a stock Lyra project has no DLSS group</p>
+<p>The <strong>NVIDIA DLSS</strong> group lives in Lyra's own settings screen, which is part of the host Lyra
+project's C++, not the XenoCore plugin. A stock Lyra Starter Game project does not have it, so
+installing NVIDIA's plugin there adds nothing to <strong>Options › Video</strong>, and nothing warns. Adding
+the group to a stock Lyra needs a programmer and a C++ build; see the note at the end of this page.
+<!-- VERIFY: whether the buyer package ships the NVIDIA settings files for stock-Lyra installs, and where (Launch-Status: "Phase 2 rest (DLSS optional)"); then name the files here --></p>
 </div>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4521,7 +4498,7 @@ to <strong>Options › Video</strong>. Nothing warns. Copy the files the patch l
 <li>Open the project. The plugins are enabled by being there; let it rebuild when it asks.</li>
 <li>Recommended: in <strong>Edit &gt; Plugins</strong>, disable the engine's own <strong>Reflex</strong> plugin (NVIDIA's replaces it).</li>
 </ol>
-<h2 id="check-it">Check it<a class="headerlink" href="#check-it" title="Permanent link">&para;</a></h2>
+<h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <p>Play, open <strong>Options &gt; Video</strong>, and find <strong>NVIDIA DLSS</strong>. The output log shows what was applied:</p>
 <div class="highlight"><pre><span></span><code>LogLyraNvidia: DLSS Super Resolution ON (Quality) at 66.7% of 1707x1067
 LogLyraNvidia: DLSS Frame Generation On2X
@@ -4564,7 +4541,7 @@ rule.</p>
 <p>Your game now redistributes NVIDIA's binaries, which carries NVIDIA's own obligations: notify NVIDIA before
 release, credit NVIDIA, and include their third-party notices. Read the NVIDIA RTX SDK EULA in the download.
 Do not use NVIDIA logos in your store page without NVIDIA's approval.</p>
-<h2 id="if-something-goes-wrong">If something goes wrong<a class="headerlink" href="#if-something-goes-wrong" title="Permanent link">&para;</a></h2>
+<h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>No NVIDIA DLSS group:</strong> the plugin is not enabled, the card is not an RTX card, or the driver is too old.
   Search the log for <code>LogDLSS</code> and <code>LogStreamline</code>.</li>
@@ -4573,9 +4550,13 @@ Do not use NVIDIA logos in your store page without NVIDIA's approval.</p>
 <li><strong>The editor crashes after resizing the window with Frame Generation on:</strong> a known NVIDIA plugin issue
   (release notes 8.8.0). Turn Frame Generation off while working in the editor.</li>
 </ul>
-<h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<p>The settings call NVIDIA's own Blueprint libraries by name, so nothing in the project links to NVIDIA's code.
-Details and the reasoning: <code>Lyra-main/Source/LyraGame/Settings/LyraNvidiaSettings.h</code>.</p>
+<details class="note">
+<summary>For programmers: how it works</summary>
+<p>The settings call NVIDIA's own Blueprint libraries by name, so nothing in the project links to
+NVIDIA's code. They are a Lyra game-settings class, <code>LyraNvidiaSettings</code> (in the host project's
+<code>Source/LyraGame/Settings/</code>), registered on Lyra's Video settings page. In a stock Lyra project
+those files must be added to <code>LyraGame</code> and the project rebuilt.</p>
+</details>
 
 
 

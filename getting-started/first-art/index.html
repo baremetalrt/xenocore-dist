@@ -4618,20 +4618,24 @@ side-Slow effects along with it; start every new Art blank.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-a-blank-art">1. Create a blank Art<a class="headerlink" href="#1-create-a-blank-art" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Create a folder <code>MyGame/Arts</code> under <strong>Content</strong>.</li>
-<li>In <code>MyGame/Arts</code>, right-click and choose <strong>Miscellaneous › Data Asset</strong>. Pick
-   <code>XenoCoreArtDefinition</code> and name it <code>DA_StoneCleave</code>.</li>
+<li>In the Content Browser, right-click <strong>Content</strong> and choose <strong>New Folder</strong>. Name it <code>MyGame</code>, and
+   inside it make a folder <code>Arts</code>.</li>
+<li>In <code>MyGame/Arts</code>, right-click empty space and choose <strong>Miscellaneous › Data Asset</strong>. In the
+   class picker, search for and pick <code>XenoCoreArtDefinition</code>, click <strong>Select</strong>, and name the new
+   asset <code>DA_StoneCleave</code>.</li>
 </ol>
 <p><code>DA_XenoCore_SlitEdge</code> and <code>DA_XenoCore_StreamEdge</code> in <code>Battle/Arts</code> were made this way, if you want
 finished examples to compare against. No character learns them in the shipped tables.</p>
 <h3 id="2-give-it-its-own-cooldown-tag">2. Give it its own cooldown tag<a class="headerlink" href="#2-give-it-its-own-cooldown-tag" title="Permanent link">&para;</a></h3>
 <p>Every Art needs a cooldown tag no other Art uses.</p>
 <ol>
-<li>Open <code>DA_StoneCleave</code>. Find <strong>Cooldown Tag</strong> and open its tag picker.</li>
-<li>Choose <strong>Add New Gameplay Tag</strong>. Name it <code>Cooldown.MyGame.Art.StoneCleave</code>. For its source,
-   create a new tag file for your project, such as <code>MyGameTags.ini</code>, rather than adding to
-   XenoCore's.</li>
-<li>Select the new tag.</li>
+<li>Double-click <code>DA_StoneCleave</code> to open it. Under <strong>Art</strong>, find <strong>Cooldown Tag</strong> and click its
+   drop-down to open the tag picker.</li>
+<li>Choose <strong>Add New Gameplay Tag</strong>. Name it <code>Cooldown.MyGame.Art.StoneCleave</code>. For its <strong>Source</strong>,
+   pick a tag file of your own project (create one, such as <code>MyGameTags.ini</code>, if the list offers
+   only XenoCore's and Lyra's), rather than adding to XenoCore's: a template update replaces
+   XenoCore's tag file.</li>
+<li>Tick the new tag so it is selected.</li>
 </ol>
 <!-- VERIFY: the 5.8 tag picker's "add new tag" flow and source-file dropdown labels -->
 
@@ -4647,13 +4651,16 @@ DA_XenoCore_AirSlash"</em>. Leaving the tag empty is an error too, because the A
 <li><strong>Display Name</strong>: <code>Stone Cleave</code>. <strong>Description</strong>: <code>A heavy blow that Breaks the target.</code>
    The palette shows <em>name: description</em>.</li>
 <li><strong>Category</strong>: Break. <strong>Attribute</strong>: Physical. <strong>Effect Type</strong>: Damage. <strong>Target Type</strong>: Enemy.</li>
-<li><strong>Power</strong>: set the value above Air Slash's, for example double it. Power multiplies a curve,
-   so it must never be <code>0</code>.</li>
+<li><strong>Power</strong>: expand it and set <strong>Value</strong>. Open <code>Battle/Arts/DA_XenoCore_AirSlash</code> beside yours to
+   see its <strong>Power › Value</strong>, and set yours to about double that. Leave <strong>Curve</strong> empty. <strong>Value</strong>
+   multiplies everything, so it must never be <code>0</code>.</li>
 <li><strong>Cooldown Duration</strong>: <code>12</code>. This is in seconds. <code>0</code> means no cooldown, which is only for Talent
    Arts.</li>
-<li><strong>Effects</strong>: this list is what the Art inflicts. Add one entry: <strong>Effect</strong>
-   <code>GE_XenoCore_Reaction_Break</code>, <strong>Chance</strong> <code>1</code>, <strong>Condition</strong> Always.</li>
-<li><strong>Montage</strong>: <code>AM_XenoCore_BackSlash</code>, to reuse an existing strike for now.</li>
+<li><strong>Effects</strong> (under <strong>Art › Effects</strong>): this list is what the Art inflicts. Click <strong>+</strong> to add
+   one entry, expand it, and set <strong>Effect</strong> <code>GE_XenoCore_Reaction_Break</code>, <strong>Chance</strong> <code>1</code>,
+   <strong>Condition</strong> Always. Leave <strong>Duration</strong> at <code>0</code>: a reaction carries its own duration.</li>
+<li><strong>Montage</strong> (under <strong>Art › Animation</strong>): <code>AM_XenoCore_BackSlash</code>, to reuse an existing strike
+   for now.</li>
 <li>Under <strong>Art › Palette</strong>, set <strong>Palette Glyph</strong> to the one Air Slash uses and <strong>Glyph Colour</strong> to
    something distinct.</li>
 <li>Leave <strong>Ability Class</strong> empty.</li>
@@ -4699,10 +4706,12 @@ DA_XenoCore_AirSlash"</em>. Leaving the tag empty is an error too, because the A
 names as its <strong>Art Learn Table</strong>.</p>
 <ol>
 <li>Open your leader's learnset, <code>Characters/Party/Learnsets/DT_XenoCore_ArtLearnset_Kael</code> for
-   Kael. (<code>DT_XenoCore_ArtLearnset_Default</code> is the table on <code>B_XenoCore_PartyMember_Base</code>, used by
+   Kael. (To find any character's table, open their pawn Blueprint, click <strong>Class Defaults</strong>, and
+   look at <strong>XenoCore › Arts › Art Learn Table</strong>.) (<code>DT_XenoCore_ArtLearnset_Default</code> is the table on <code>B_XenoCore_PartyMember_Base</code>, used by
    the colour-mannequin sample members, not by the VRoid party.)</li>
-<li>Click <strong>Add</strong> to add a row. Name it <code>Lv01_StoneCleave</code> (the name is free text; this form sorts
-   by level) and set:<ul>
+<li>Click <strong>Add</strong> in the Data Table editor's toolbar to add a row. Right-click the new row, choose
+   <strong>Rename</strong>, and name it <code>Lv01_StoneCleave</code> (the name is free text; this form sorts by level).
+   With the row selected, set in the <strong>Row Editor</strong> below:<ul>
 <li><strong>Art</strong>: <code>DA_StoneCleave</code></li>
 <li><strong>Unlock Level</strong>: <code>1</code></li>
 <li><strong>Default Slot</strong>: <code>-1</code>. This means learned but not placed on the palette; you'll place it
@@ -4716,7 +4725,7 @@ names as its <strong>Art Learn Table</strong>.</p>
 <p>Kael, Mira, Nia, Dorran, Isolde, Sabine and Tamsin each point at their own learnset in the same
 folder: <code>DT_XenoCore_ArtLearnset_Kael</code>, <code>_Mira</code>, <code>_Nia</code>, <code>_Dorran</code>, <code>_Isolde</code>, <code>_Sabine</code> and
 <code>_Tamsin</code>. Add the same row to each one you want to learn Stone Cleave, or it will not reach
-them. <!-- VERIFY: that each VRoid pawn's Art Learn Table names its own DT_XenoCore_ArtLearnset_<Name> --></p>
+them.</p>
 </div>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
@@ -4745,6 +4754,12 @@ healing".</p>
 <p class="admonition-title">Stone Cleave isn't in the Arts menu</p>
 <p>The row is in a learnset that character's pawn does not use as its <strong>Art Learn Table</strong> (the
 seven sample characters each have their own), or its <strong>Unlock Level</strong> is above the character's level.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Saving <code>DA_StoneCleave</code> reports an error</p>
+<p>The <strong>Message Log</strong> names the problem: an empty <strong>Display Name</strong>, an empty <strong>Cooldown Tag</strong>, or
+a <strong>Cooldown Tag</strong> another Art already uses. Fix it and save again. See
+<a href="../../concepts/arts/#on-the-art-definition">What saving an Art definition checks</a>.</p>
 </div>
 <h2 id="you-now-have">You now have<a class="headerlink" href="#you-now-have" title="Permanent link">&para;</a></h2>
 <p>Your own Art, used in combat, and the knowledge that an Art is data.</p>

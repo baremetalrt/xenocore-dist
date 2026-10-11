@@ -4725,7 +4725,8 @@ the skill's <strong>Value</strong> as the percentage (<a href="../../concepts/sk
 <ol>
 <li>Find the component that grants tags (<strong>Grant Tags to Target Actor</strong>, in the effect's
    <strong>Components</strong> list). Replace <code>Status.XenoCore.Debuff.Poison</code> with a new tag,
-   <code>Status.MyGame.Debuff.Frostbite</code>, from your own tag file.</li>
+   <code>Status.MyGame.Debuff.Frostbite</code>. Add the tag first in <strong>Project Settings › Project ›
+   GameplayTags</strong> (<strong>Add New Gameplay Tag</strong>), or pick it from the tag picker's <strong>Add New</strong> row.</li>
 <li>Keep your tag under a <code>Debuff</code> or <code>Buff</code> parent. Anything that asks "does this character have
    any debuff?" can then match the parent.</li>
 </ol>
@@ -4739,6 +4740,10 @@ status its own tag.</p>
 <li>In <strong>Modifiers</strong>, keep the periodic damage modifier.</li>
 <li>Add one: <strong>Attribute</strong> <code>XenoCoreStatSet.Agility</code>, <strong>Modifier Op</strong> <strong>Multiply Additive</strong>,
    <strong>Magnitude</strong> a scalable float of <code>-0.3</code> (Agility ×0.7).</li>
+<li>Leave the <strong>Duration Policy</strong> as <strong>Has Duration</strong> with its magnitude set to <strong>Set By Caller</strong>,
+   tag <code>XenoCore.Status.Duration</code>, exactly as Poison had it.</li>
+<li>Check <strong>Period</strong> under the effect's period settings: <code>1.0</code> second between damage ticks.</li>
+<li>Save.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: copying Agility Down's modifier</p>
@@ -4747,12 +4752,6 @@ through <code>XenoCoreStatusPercentCalc</code>. Frostbite already uses <strong>M
 so a copied modifier would take the same number: a Magnitude of <code>25</code> would also lower Agility by
 25 %. One status has one <strong>Magnitude</strong>; keep the second modifier a fixed scalable float.</p>
 </div>
-<ol>
-<li>Leave the <strong>Duration Policy</strong> as <strong>Has Duration</strong> with its magnitude set to <strong>Set By Caller</strong>,
-   tag <code>XenoCore.Status.Duration</code>, exactly as Poison had it.</li>
-<li>Check <strong>Period</strong> under the effect's period settings: <code>1.0</code> second between damage ticks.</li>
-<li>Save.</li>
-</ol>
 <!-- VERIFY: Poison's period value and the exact 5.8 GE editor labels for Period and Stacking -->
 
 <h3 id="5-apply-it-from-an-art">5. Apply it from an Art<a class="headerlink" href="#5-apply-it-from-an-art" title="Permanent link">&para;</a></h3>

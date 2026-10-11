@@ -4517,6 +4517,18 @@ all owned by one component on the player controller, <code>UXenoCoreProgressionC
 <code>Game/BP_XenoCore_Progression</code>. The one idea: <strong>progress is stored per character, keyed by the member
 definition, not by the pawn.</strong> A benched character has no body, but still has a level. When a body is
 spawned, it reads its level from here and applies its statline at that level.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> kills pay EXP, Art Points and SP; a level-up banner lists everyone who levelled;
+each level raises the character's stats and fully heals them.</p>
+<p><strong>What you can change, no code:</strong></p>
+<ul>
+<li>How much EXP each level needs, per character: <a href="../../recipes/tune-progression/">Tune progression</a></li>
+<li>What an enemy pays: <strong>Experience Reward</strong> and <strong>Art Point Reward</strong> on the enemy Blueprint</li>
+<li>Whether benched members earn, the starting gold, palette slot unlock levels: <code>Game/BP_XenoCore_Progression</code>
+  › <strong>Class Defaults</strong>. Listed under <a href="#what-you-can-change">What you can change</a>.</li>
+</ul>
+</div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4817,6 +4829,8 @@ immediately.</p>
   statline with a shared one: every character would then take the same numbers on their next level.</li>
 </ul>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>On the controller and keyed by definition</strong> because the party levels together, and half the roster
   has no body at any given time. A level stored on a pawn would not exist for a benched character.</li>
@@ -4827,6 +4841,7 @@ immediately.</p>
 <li><strong>Messages carry the amount awarded</strong> because afterwards the component only knows the running
   total; "you gained 200" cannot be reconstructed from "you have 1,400".</li>
 </ul>
+</details>
 
 
 

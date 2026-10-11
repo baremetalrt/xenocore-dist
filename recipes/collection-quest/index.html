@@ -4580,10 +4580,10 @@ pays gold, EXP and an item when handed in.</p>
 </ul>
 <h2 id="how-a-quest-is-put-together">How a quest is put together<a class="headerlink" href="#how-a-quest-is-put-together" title="Permanent link">&para;</a></h2>
 <p>A quest is <strong>one data asset</strong> of class <code>XenoCoreQuestDefinition</code>. The sample is
-<code>Quests/DA_XenoCore_Quest_Collection01</code>, which asks for two <code>ID_XenoCore_EtherCrystal</code>. In
-<code>L_XenoCore_Gym</code> it is given by the placed NPC <code>NPC_QuestGiver</code>; <code>Characters/NPC/B_XenoCore_Npc_Sample</code>
+<code>Quests/DA_XenoCore_Quest_Collection01</code>, which asks for two <code>Inventory/Items/ID_XenoCore_EtherCrystal</code>.
+In <code>Maps/L_XenoCore_Gym</code> it is given by the placed NPC <code>NPC_QuestGiver</code>; <code>Characters/NPC/B_XenoCore_Npc_Sample</code>
 carries it too, as a ready-made example.</p>
-<p>The NPC's default <strong>On Interact</strong> graph already runs the whole quest, so a collection quest needs
+<p><code>B_XenoCore_Npc</code>'s default <strong>On Interact</strong> graph already runs the whole quest, so a collection quest needs
 <strong>no graph</strong>: you set the NPC's <strong>Quest</strong> and fill in its line lists. What the default graph does:</p>
 <table>
 <thead>
@@ -4631,9 +4631,11 @@ hand in the moment it is accepted.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-the-quest">1. Create the quest<a class="headerlink" href="#1-create-the-quest" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Duplicate <code>Quests/DA_XenoCore_Quest_Collection01</code> into <code>MyGame/Quests</code>. Name it
+<li>In the Content Browser, open <strong>Plugins › XenoCore Content › Quests</strong>, right-click
+   <code>DA_XenoCore_Quest_Collection01</code> and choose <strong>Duplicate</strong>.</li>
+<li>Move the copy into your own folder, for example <code>MyGame/Quests</code>, and name it
    <code>DA_MyGame_Quest_LampOil</code>.</li>
-<li>Open it and set, under <strong>XenoCore › Quest</strong>:</li>
+<li>Double-click it and set, under <strong>XenoCore › Quest</strong>:</li>
 </ol>
 <table>
 <thead>
@@ -4682,7 +4684,7 @@ hand in the moment it is accepted.</p>
 </tbody>
 </table>
 <h3 id="2-set-the-objective">2. Set the objective<a class="headerlink" href="#2-set-the-objective" title="Permanent link">&para;</a></h3>
-<p>In <strong>Objectives</strong>, edit the one entry:</p>
+<p>In <strong>Objectives</strong>, expand entry <strong>0</strong> (the duplicate already has one) and set:</p>
 <table>
 <thead>
 <tr>
@@ -4701,7 +4703,7 @@ hand in the moment it is accepted.</p>
 </tr>
 <tr>
 <td><strong>Item Target</strong></td>
-<td><code>ID_XenoCore_ScrapPlating</code></td>
+<td><code>ID_XenoCore_ScrapPlating</code> (in <code>Inventory/Items</code>)</td>
 </tr>
 <tr>
 <td><strong>Required Count</strong></td>
@@ -4721,30 +4723,33 @@ hand in the moment it is accepted.</p>
 </tr>
 </tbody>
 </table>
-<p>A quest can have several objectives; all must be met.</p>
+<p>A quest can have several objectives (click <strong>+</strong> beside <strong>Objectives</strong> to add one); all must be met.</p>
 <h3 id="3-set-the-reward-and-gates">3. Set the reward and gates<a class="headerlink" href="#3-set-the-reward-and-gates" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Reward</strong>: <strong>Gold</strong> <code>300</code>, <strong>Experience</strong> <code>150</code>, <strong>Items</strong>: add <code>ID_XenoCore_BlueSword</code> once.
-   Each entry in <strong>Items</strong> is one item; add an entry twice for two. <strong>Skill Branches</strong> can also open
-   a character's skill branch, as XC1's later branches arrive.</li>
-<li><strong>Gates</strong> (optional): add <strong>Party Level At Least</strong> with <strong>Required Level</strong>, or <strong>Quest
-   Completed</strong> with a <strong>Required Quest</strong>. A gated quest shows no marker and cannot be offered until
-   every gate holds. Gates are checked only when offering.</li>
-<li><strong>Save</strong>. If the editor reports a validation error on save, read it: a missing <strong>Item Target</strong>
+<li>Expand <strong>Reward</strong> and set <strong>Gold</strong> <code>300</code> and <strong>Experience</strong> <code>150</code>.</li>
+<li>Under <strong>Reward › Items</strong>, click <strong>+</strong> and pick <code>ID_XenoCore_BlueSword</code> (in <code>Weapons/BlueSword</code>).
+   Each entry is one item; add the same item twice to give two.</li>
+<li>(Optional) <strong>Reward › Skill Branches</strong> opens a character's <a href="../../getting-started/glossary/">skill</a>
+   branch when the quest is handed in, the way XC1's later branches arrive.</li>
+<li>(Optional) Under <strong>Gates</strong>, click <strong>+</strong> and set the gate's <strong>Kind</strong>: <strong>Party Level At Least</strong>
+   shows <strong>Required Level</strong>; <strong>Quest Completed</strong> shows <strong>Required Quest</strong>. A gated quest shows no
+   marker and cannot be offered until every gate holds. Gates are checked only when offering.</li>
+<li>Click <strong>Save</strong>. If the editor reports a validation error, read it: a missing <strong>Item Target</strong>
    or a <strong>Required Count</strong> of 0 means the quest can never finish.</li>
 </ol>
-<p>EXP goes to the party, and gold to the party's purse. Benched members earn none by default
-(<strong>Reserve Experience Rate</strong> <code>0</code> on <code>Game/BP_XenoCore_Progression</code>).</p>
+<p>EXP goes to the <a href="../../getting-started/glossary/">party</a>, and gold to the party's purse. Reserve
+(benched) members earn none by default: <strong>Reserve Experience Rate</strong> is <code>0</code> on
+<code>Game/BP_XenoCore_Progression</code>.</p>
 <h3 id="4-give-it-to-an-npc">4. Give it to an NPC<a class="headerlink" href="#4-give-it-to-an-npc" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Place a <code>Characters/NPC/B_XenoCore_Npc</code>, or select one you placed.</li>
-<li>Under <strong>XenoCore › NPC</strong>, set <strong>Display Name</strong> and set <strong>Quest</strong> to <code>DA_MyGame_Quest_LampOil</code>.
-   Leave <strong>Has Quest</strong> off: with <strong>Quest</strong> set it is ignored, and the quest decides the marker.</li>
-<li>Under <strong>XenoCore › NPC › Dialogue</strong>, fill in:<ul>
-<li><strong>Dialogue</strong>: the greeting before the offer.</li>
-<li><strong>Accepted Dialogue</strong>, <strong>Declined Dialogue</strong>, <strong>In Progress Dialogue</strong>, <strong>Turn In Dialogue</strong>.</li>
-</ul>
-</li>
+<li>Drag <code>Characters/NPC/B_XenoCore_Npc</code> into your level, or select one you placed.</li>
+<li>In the Details panel, under <strong>XenoCore › NPC</strong>, set <strong>Display Name</strong>.</li>
+<li>In the same category, set <strong>Quest</strong> to <code>DA_MyGame_Quest_LampOil</code>. Leave <strong>Has Quest</strong> off:
+   with <strong>Quest</strong> set it is ignored, and the quest decides the marker.</li>
+<li>Under <strong>XenoCore › NPC › Dialogue</strong>, fill in <strong>Dialogue</strong> (the greeting before the offer).</li>
+<li>In the same category, fill in <strong>Accepted Dialogue</strong>, <strong>Declined Dialogue</strong>, <strong>In Progress
+   Dialogue</strong> and <strong>Turn In Dialogue</strong>. See <a href="../npc-conversation/">Give an NPC a conversation</a> for
+   how to write a line.</li>
 <li>Save the level.</li>
 </ol>
 <p>With <strong>Quest</strong> set, the marker over the NPC follows the quest by itself: it shows while the quest can
@@ -4764,19 +4769,30 @@ be offered or is ready to hand in, and disappears while the quest is in progress
 <p class="admonition-title">Fails silently: the count sticks at 0</p>
 <p><strong>Item Target</strong> is a different item from the one being picked up. Check that it is the exact
 item definition (not a duplicate with the same display name). Every change to the party's bag
-refreshes the count, including changes made with Lyra's own inventory nodes, which XenoCore
-notices and announces on their behalf.</p>
+refreshes the count, including changes made with Lyra's own inventory nodes.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">The marker never appears</p>
-<p>A gate is not met (the level is too low, or the required quest is not handed in), or the quest was
-already completed in this save. Quest progress is saved, so an old save remembers it.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">The item was spent before handing in</p>
-<p>Selling or trading away the items drops the quest back to in progress, because the count is read
-from the bag each time. Only <strong>Consume On Turn In</strong> takes them.</p>
-</div>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The marker never appears</td>
+<td>A gate is not met (the party level is too low, or the required quest is not handed in), or the quest was already completed in this save. Quest progress is saved, so test with <strong>New Game</strong> or <strong>Play</strong> in the editor.</td>
+</tr>
+<tr>
+<td>The quest was ready, then went back to in progress</td>
+<td>The items were sold or traded away. The count is read from the bag each time; only <strong>Consume On Turn In</strong> takes them.</td>
+</tr>
+<tr>
+<td>Talking plays only the greeting, never the offer</td>
+<td><strong>Quest</strong> is empty on the placed NPC. Check the instance in the level, not the Blueprint.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../kill-talk-quest/">Give a quest to defeat enemies or talk to someone</a>.</li>

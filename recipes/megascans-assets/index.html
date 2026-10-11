@@ -4703,23 +4703,24 @@ project somewhere else, or ask a teammate to, and open the map. Any hole is an a
 check after <strong>every</strong> edit that places new pack content.</p>
 </div>
 <h3 id="4-cap-texture-sources-at-1k">4. Cap texture sources at 1K<a class="headerlink" href="#4-cap-texture-sources-at-1k" title="Permanent link">&para;</a></h3>
-<p>For each texture in the set (filter the Content Browser by <strong>Texture</strong> inside the pack folders):</p>
 <ol>
-<li>
-<p>Open it and set <strong>Maximum Texture Size</strong> to <code>1024</code>, or resize its source.
-   <!-- VERIFY: the 5.8 editor action that resizes a texture's source (the "Resize Source" asset action) --></p>
-</li>
-<li>
-<p>Resizing the <strong>source</strong> is what shrinks the project and the package. <strong>Maximum Texture Size</strong>
-   and <strong>LOD Bias</strong> shrink only the cooked output.</p>
-</li>
+<li>In the Content Browser, open the pack folder and filter by <strong>Texture</strong>. Select the textures in
+   the set (you can select many at once).</li>
+<li>Right-click and choose <strong>Texture Source Actions › Reduce Size</strong>. Set the target size to <code>1024</code>
+   and confirm.</li>
+<li>Spot-check one: its <strong>Imported</strong> size in the texture editor now reads 1024 or less.</li>
 </ol>
+<p>Resizing the <strong>source</strong> is what shrinks the project and the package. <strong>Maximum Texture Size</strong> and
+<strong>LOD Bias</strong> in a texture's Details shrink only the cooked output, and the full-size source still
+sits in source control.</p>
+<!-- VERIFY: the Reduce Size dialog's size field in 5.8 (found in source: AssetDefinition_Texture.cpp, "Texture Source Actions" › "Reduce Size") -->
+
 <p>The sample went from 1.77 GB to 191 MB of textures with no visible change up against a cliff.</p>
 <h3 id="5-reduce-rock-meshes">5. Reduce rock meshes<a class="headerlink" href="#5-reduce-rock-meshes" title="Permanent link">&para;</a></h3>
 <p>For each large rock or cliff mesh:</p>
 <ol>
-<li>Open it. Under <strong>Nanite Settings</strong>, lower <strong>Keep Triangle Percent</strong> (the sample used 25 %),
-   and apply. This reduces what is cooked.</li>
+<li>Open it in the Static Mesh editor. Under <strong>Nanite Settings</strong>, lower <strong>Keep Triangle Percent</strong>
+   (the sample used 25 %), and click <strong>Apply Changes</strong>. This reduces what is cooked.</li>
 <li>Or, to reduce the source itself, use <strong>Modeling Mode › Simplify</strong> with UV seams preserved,
    then accept.
    <!-- VERIFY: 5.8 Modeling Mode Simplify tool name and its seam option -->

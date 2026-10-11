@@ -4629,7 +4629,7 @@ cannot move or jump while it is open.</p>
 <li>A screen is an <strong>activatable widget</strong>: a widget that knows when it is on top, where focus goes,
   and whether it handles <strong>Back</strong>. Blueprint screens derive from Lyra's <code>LyraActivatableWidget</code>.</li>
 <li>Screens are pushed onto a <strong>layer</strong>, a stack of screens. Menus go on the layer tagged
-  <code>UI.Layer.Menu</code>. Only the top screen of a layer is shown, and <strong>Back</strong> pops it off to reveal the
+  <code>UI.Layer.Menu</code> (a <a href="../../getting-started/glossary/">gameplay tag</a>). Only the top screen of a layer is shown, and <strong>Back</strong> pops it off to reveal the
   one underneath.</li>
 <li>The menu (<code>UserInterface/W_XenoCore_MenuShell</code>) is itself a screen on that layer.
   <code>Input/Abilities/GA_XenoCore_ToggleMenu</code> pushes it when the player presses the menu button.</li>
@@ -4661,7 +4661,7 @@ button receives the click instead, and the button never fires. The mouse works i
 beside the text, so it looks intermittent. Make every overlay <strong>Hit Test Invisible</strong>.</p>
 </div>
 <h3 id="2-set-its-class-defaults">2. Set its class defaults<a class="headerlink" href="#2-set-its-class-defaults" title="Permanent link">&para;</a></h3>
-<p>Click <strong>Class Defaults</strong> and set:</p>
+<p>Click <strong>Class Defaults</strong> and set (the categories are Lyra's and CommonUI's):</p>
 <table>
 <thead>
 <tr>
@@ -4978,8 +4978,8 @@ folder that is always cooked, or add its folder to <strong>Additional Asset Dire
 <li><a href="../confirm-popup/">Add a confirmation popup</a> to ask Yes/No inside your screen.</li>
 <li><a href="../input-action-prompt/">Add an input action with a prompt</a> to show a footer glyph for a
   screen action.</li>
-<li><a href="../subclass-mechanic/">Add a mechanic by subclassing</a>: the C++ screen bases, if your screen
-  needs logic a Blueprint graph struggles with.</li>
+<li><a href="../subclass-mechanic/">Add a mechanic by subclassing</a>: the C++ screen bases, for a programmer, if
+  your screen needs logic a Blueprint graph struggles with.</li>
 </ul>
 
 

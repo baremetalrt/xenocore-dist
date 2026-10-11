@@ -604,6 +604,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#child-or-duplicate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Child or duplicate?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#you-now-have" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4517,6 +4528,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#child-or-duplicate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Child or duplicate?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#you-now-have" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4583,30 +4605,42 @@ there.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-find-your-leader">1. Find your leader<a class="headerlink" href="#1-find-your-leader" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <code>Characters/Party/BP_XenoCore_Party</code>. It is the party component: it holds the roster.</li>
-<li>In <strong>Class Defaults</strong>, under <strong>XenoCore › Party</strong>, look at <strong>Starting Roster</strong>. The members are
-   fielded in this order until <strong>Max Active Members</strong> is reached; the rest start in reserve.
-   <strong>Leader Slot</strong> says which of the active members you control, <code>0</code> being the first.</li>
-<li>Note the leader's entry and open it. In the sample, the roster is two VRoid characters, Kael
-   (<code>PartyMember_VRoid_L</code>, the leader) and Mira (<code>PartyMember_VRoid_K</code>). The other five sample
-   characters join later, recruited from NPCs on Gaur Plain.</li>
+<li>In the Content Browser, open <strong>XenoCore Content › Characters › Party</strong> and double-click
+   <code>BP_XenoCore_Party</code>. It is the party component: it holds the roster.</li>
+<li>Click <strong>Class Defaults</strong> in the toolbar. In the <strong>Details</strong> panel, under <strong>XenoCore › Party</strong>,
+   look at <strong>Starting Roster</strong>. The members are fielded in this order until <strong>Max Active Members</strong>
+   is reached; the rest start in reserve. <strong>Leader Slot</strong> says which of the active members you
+   control, <code>0</code> being the first.</li>
+<li>In the sample, the roster is two VRoid characters, Kael (<code>PartyMember_VRoid_L</code>, the leader) and
+   Mira (<code>PartyMember_VRoid_K</code>). The other five sample characters join later, recruited from NPCs
+   on Gaur Plain. Click the <strong>Browse</strong> arrow (the magnifying glass) beside Kael's entry: the Content
+   Browser jumps to <code>Characters/VRoid/Kael/PartyMember_VRoid_L</code>. Double-click it to open it.</li>
 </ol>
-<!-- VERIFY: the Details-panel view of the roster. Measured 2026-10-09 by Tools/World/slice_content_build.py
-and Tools/World/slice_pie.py: Max Active Members = 7, roster L K, two bodies at New Game. -->
+<!-- VERIFY: the Details-panel view of the roster. Measured in PIE 2026-10-09: Max Active Members = 7,
+roster L K, two bodies at New Game. -->
 
 <h3 id="2-rename-them-and-change-their-portrait">2. Rename them and change their portrait<a class="headerlink" href="#2-rename-them-and-change-their-portrait" title="Permanent link">&para;</a></h3>
 <p>In the member definition, under <strong>XenoCore › Party</strong>:</p>
 <ol>
 <li>Set <strong>Display Name</strong> to a name of your own.</li>
 <li>Set <strong>Portrait</strong> to a different texture from <code>Characters/Party/Portraits</code>, for example
-   <code>T_XenoCore_Portrait_Orange</code>.</li>
+   <code>T_XenoCore_Portrait_Orange</code>. <strong>Portrait</strong> is the head-and-shoulders picture on the HUD and in
+   most menus.</li>
 <li><strong>Save</strong>.</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">The main menu uses a second picture</p>
+<p>The main menu's character cards draw <strong>Menu Portrait</strong>, a full-body picture, from the same
+asset. Kael has one, so his main-menu card keeps showing him until you change <strong>Menu Portrait</strong>
+too, or clear it (an empty <strong>Menu Portrait</strong> falls back to <strong>Portrait</strong>).</p>
+</div>
 <h3 id="3-start-them-at-a-higher-level">3. Start them at a higher level<a class="headerlink" href="#3-start-them-at-a-higher-level" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In the same definition, find <strong>Member Class</strong> and open the Blueprint it names (the magnifying
-   glass beside the field jumps to it).</li>
-<li>Click <strong>Class Defaults</strong>. Under <strong>XenoCore › Combatant</strong>, set <strong>Combatant Level</strong> to <code>20</code>.</li>
+<li>In the same definition, find <strong>Member Class</strong> (under <strong>XenoCore › Party</strong>). Click the
+   magnifying glass beside it to find the Blueprint it names (<code>B_XenoCore_Party_VRoid_L</code> for Kael)
+   in the Content Browser, and double-click it.</li>
+<li>Click <strong>Class Defaults</strong>. In the <strong>Details</strong> panel, under <strong>XenoCore › Combatant</strong>, set
+   <strong>Combatant Level</strong> to <code>20</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
 <p><strong>Combatant Level</strong> is the level a character <em>starts</em> at. After that the progression system owns
@@ -4627,14 +4661,60 @@ Play, as above.</p>
 </div>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">The member definition shows a red error in the Content Browser</p>
+<p class="admonition-title">The character never appears</p>
 <p><strong>Member Class</strong> is empty, or its pawn has no <strong>Combatant Pawn Data</strong>. The party cannot spawn
-that character. Set both.</p>
+that character. To check, right-click the member definition and choose <strong>Asset Actions ›
+Validate Assets</strong>: the <strong>Message Log</strong> names the missing setting. Set both.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">The old name or level still shows</p>
+<p>You started from <strong>Continue</strong> on the title screen, which loads a save, or you edited a different
+character than the leader. Start from the gym as above, and check that the <strong>Starting Roster</strong>
+entry at <strong>Leader Slot</strong> is the definition you edited.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">The level changed but the stats did not</p>
 <p>The pawn's <strong>Stats Effect</strong> is empty. The character then runs on default stats, and an error
 naming the pawn is logged on every Play. Set it back to the stats effect it had.</p>
+</div>
+<h2 id="child-or-duplicate">Child or duplicate?<a class="headerlink" href="#child-or-duplicate" title="Permanent link">&para;</a></h2>
+<p>Every new thing you make starts from something XenoCore ships. Which way you start depends on what
+kind of asset it is:</p>
+<table>
+<thead>
+<tr>
+<th>You are making</th>
+<th>Do this</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A <strong>Blueprint</strong>: a party member, enemy, weapon actor, Art ability, NPC, AI controller</td>
+<td>Right-click the base and choose <strong>Create Child Blueprint Class</strong> (for example from <code>B_XenoCore_Party_VRoid_Base</code>, <code>B_XenoCore_Enemy_Base</code>, <code>B_XenoCore_Sword_Base</code>, <code>GA_XenoCore_Art_Base</code>, <code>GA_XenoCore_TalentArt_Base</code>)</td>
+<td>The child keeps everything the base does, and picks up fixes when XenoCore updates. A duplicate is frozen at the day you copied it, and carries the sample's own settings with it.</td>
+</tr>
+<tr>
+<td>A <strong>data asset or table row</strong>: an Art definition, drop table, quest, member definition, stats effect, curve row</td>
+<td>Right-click a sample and choose <strong>Duplicate</strong>, then change it</td>
+<td>These hold only numbers and references, so there is nothing to inherit.</td>
+</tr>
+<tr>
+<td>An <strong>item definition</strong>: a weapon, armour piece or gem item</td>
+<td><strong>Duplicate</strong> an item of the same kind. Never create one blank</td>
+<td>An item definition cannot have a Blueprint parent, and a blank one has no equipment settings, so it cannot be equipped.</td>
+</tr>
+<tr>
+<td>A <strong>menu or HUD widget</strong> you want to restyle</td>
+<td><strong>Duplicate</strong> the shipped widget into your own folder</td>
+<td>A child widget cannot change the layout it inherits; the duplicate keeps the same C++ parent, so its behaviour is unchanged.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Not sure which kind it is?</p>
+<p>Open the asset. If the editor shows a <strong>Graph</strong> or <strong>Viewport</strong> tab, it is a Blueprint: make a
+child. If it opens straight to a Details panel or a table, it is data: duplicate it.</p>
 </div>
 <h2 id="you-now-have">You now have<a class="headerlink" href="#you-now-have" title="Permanent link">&para;</a></h2>
 <p>A character changed by you, and the two-asset shape every party member shares.</p>

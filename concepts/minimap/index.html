@@ -3386,6 +3386,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-it-shows" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3408,15 +3419,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What you can change">
+    <nav class="md-nav" aria-label="Settings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4390,6 +4401,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#what-it-shows" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4412,15 +4434,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What you can change">
+    <nav class="md-nav" aria-label="Settings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4487,6 +4509,13 @@ the map with the camera as an option. Pressing <strong>L3</strong> (keyboard <st
 whole screen, see-through and fading out toward the edges, as in XC1's Definitive Edition.</p>
 <p>Everything you change is <strong>data</strong>: a placed actor, a data asset, a Data Table and properties on the
 HUD. No Blueprint graph is involved.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A minimap for a new map</strong>: <a href="../../recipes/minimap-new-map/">Give a map its minimap</a>.</li>
+<li><strong>A new kind of marker, or a marker on your own Blueprint</strong>: <a href="../../recipes/minimap-marker/">Show something on the minimap</a>.</li>
+<li><strong>The legend's words and each marker's look</strong>: rows of <code>UserInterface/HUD/Minimap/DT_XenoCore_MapMarkers</code>.</li>
+<li><strong>Size, range, north-up or rotating, colours, fonts</strong>: the <code>Minimap</code> widget's Details panel (<a href="#settings">Settings</a>).</li>
+</ul>
 <!-- SCREENSHOT: Gaur Plain in PIE - the minimap top right with the leader arrow, camera wedge and an enemy dot -->
 
 <h2 id="what-it-shows">What it shows<a class="headerlink" href="#what-it-shows" title="Permanent link">&para;</a></h2>
@@ -4559,7 +4588,7 @@ one, see <a href="../../recipes/minimap-marker/">Show something on the minimap</
   XenoCore bakes it from the map into an XC1-style plan: tan ground tinted olive where it is grassy
   and pale where it is sandy, dark rock, blue water, outlines between levels, faint contour lines every
   3 m of height, higher ground casting a soft shadow to the south-east and lit along its north-west
-  edges, all on a light paper texture. You can also paint your own.</li>
+  edges, all on a light paper texture. You can also paint your own in any image editor.</li>
 <li><strong>One XenoCore Map Area actor per map</strong> says which Area Definition the map uses. In the editor it
   draws that rectangle as an orange box, so you can see exactly where the image lands. Its <strong>Fit Bounds
   To Landscape</strong> button sizes the rectangle to the map's landscape (for a hand-painted image), and
@@ -4571,7 +4600,7 @@ one, see <a href="../../recipes/minimap-marker/">Show something on the minimap</
 <li><strong>The minimap itself</strong> is the <code>Minimap</code> widget in <code>UserInterface/HUD/W_XenoCore_HUDLayout</code>. The
   full-screen view is a second one there, <code>MinimapOverlay</code>.</li>
 </ul>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <p>Select <code>Minimap</code> (or <code>MinimapOverlay</code>) in <code>W_XenoCore_HUDLayout</code>'s hierarchy. Everything below is in
 its Details panel.</p>
 <table>
@@ -4712,14 +4741,13 @@ its Details panel.</p>
 The shipped lines are <strong>Enemy</strong>, <strong>Unique Enemy</strong>, <strong>Shop</strong>, <strong>Quest</strong> and <strong>Objective</strong>. Clear a
 Label to leave that kind out of the legend. Row names and marker tags (<code>Monster</code>,
 <code>XenoCore.Map.Marker.Monster</code>) are internal and never shown to the player, so they do not need
-renaming. Re-running <code>Tools/UIAuthoring/minimap_build.py</code> keeps your edits: it only adds missing
-rows, unless run with <code>XENO_RESET_MARKERS=1</code>.</p>
+renaming.</p>
 </div>
 <p>Under the minimap, <code>MinimapPrompt</code> shows the overlay button and <strong>Map</strong>: the left-stick-click glyph on a
 gamepad. It draws the <code>MinimapOverlay</code> row of
 <code>UserInterface/Foundation/DT_XenoCore_Actions</code>.</p>
-<p>Both prompts have icons on every device: XenoCore adds keycap icons for the keyboard to Lyra's
-keyboard icon set (<code>Patches/12-keyboard-keycap-icons.md</code>).</p>
+<p>Both prompts have icons on every device: XenoCore ships its own keyboard keycap icons, set by
+<strong>Keyboard Key Icons</strong> in <strong>Project Settings › Game › XenoCore UI</strong>.</p>
 <p>To change the overlay button:</p>
 <ol>
 <li>Edit <code>IA_XenoCore_MinimapOverlay</code>'s keys in <code>Input/Mappings/IMC_XenoCore</code>.</li>
@@ -4728,8 +4756,8 @@ keyboard icon set (<code>Patches/12-keyboard-keycap-icons.md</code>).</p>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: the prompt shows the old button</p>
 <p>The prompt only draws what the table row says; it never reads the input mapping. Change one
-without the other and the HUD tells players to press a button that does nothing. Nothing warns.
-<code>Tools/UIAuthoring/minimap_prompt_build.py</code> with <code>XENO_VERIFY_ONLY=1</code> checks that they match.</p>
+without the other and the HUD tells players to press a button that does nothing. Nothing warns,
+so press the button in Play after every change.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">L3 was Lyra's Dash</p>
@@ -4763,7 +4791,8 @@ without the other and the HUD tells players to press a button that does nothing.
   Blueprint actor.</li>
 </ul>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
-<p>For programmers:</p>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>One native widget.</strong> <code>UXenoCoreMinimap</code> is a UMG widget like <code>UImage</code>, with no Blueprint. It
   paints the disc, every marker and the leader in one <code>OnPaint</code>, so nothing re-lays out, and a
@@ -4776,8 +4805,8 @@ without the other and the HUD tells players to press a button that does nothing.
   frame, which is how a dead enemy or a taken quest disappears with nothing to unregister.</li>
 <li><strong>One actor per map, not World Settings</strong>, because Lyra's World Settings is host code. It is not
   spatially loaded, so it is never streamed out.</li>
-<li>Decisions and the sourced XC1 behaviour: <code>Docs/Design/Minimap-Spike.md</code>.</li>
 </ul>
+</details>
 
 
 

@@ -3358,6 +3358,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3408,10 +3419,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4429,6 +4440,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4479,10 +4501,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4558,12 +4580,25 @@
 
 <h1 id="ui-shell-and-hud">UI shell and HUD<a class="headerlink" href="#ui-shell-and-hud" title="Permanent link">&para;</a></h1>
 <p><em>All · 15 min read · No code · Last tested: never</em></p>
+<p><strong>What the player sees:</strong> during play, a HUD with the party's health plates, the minimap, the
+quest tracker, pickup badges and banners; in battle, the target plate and the Arts palette. The
+menu button opens an XC1-style main menu (entries on the left, a full-height card per party member)
+from which every other screen opens. Menus pause the game.</p>
 <p>XenoCore's interface is built on Lyra's UI framework, CommonUI, and follows Lyra's look: clean,
 dark and restrained. Everything on screen falls into two groups. <strong>HUD plates</strong> sit over gameplay,
-take no input, and fade in and out. <strong>Screens</strong> are full menus pushed onto a CommonUI layer; while
-one is up the game pauses and gameplay input switches off. The idea that makes the rest make
-sense: <strong>a HUD plate hides by fading its opacity, never by collapsing</strong>, and <strong>a screen owns the
-input while it is on top</strong>. Nearly every UI trap in this project is one of those two rules broken.</p>
+take no input, and fade in and out. <strong>Screens</strong> are full menus; while one is up the game pauses and
+gameplay input switches off. The idea that makes the rest make sense: <strong>a HUD plate hides by fading
+its opacity, never by collapsing</strong>, and <strong>a screen owns the input while it is on top</strong>. Nearly every
+UI trap in this project is one of those two rules broken.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Restyle the menus</strong>: <a href="../../recipes/restyle-menus/">Restyle the menus</a>.</li>
+<li><strong>Add, reorder or hide a main-menu entry, or add a screen</strong>: <a href="../../recipes/add-menu-screen/">Add a menu screen</a>.</li>
+<li><strong>Add something to the HUD</strong>: <a href="../../recipes/add-hud-element/">Add a HUD element</a>.</li>
+<li><strong>A yes/no question in a menu</strong>: <a href="../../recipes/confirm-popup/">Add a confirm popup</a>.</li>
+<li><strong>A button prompt on a screen</strong>: <a href="../../recipes/input-action-prompt/">Add an input action with a button prompt</a>.</li>
+<li><strong>Replace any screen or HUD widget the game opens by itself</strong>: <a href="#the-two-settings-pages">The two settings pages</a>.</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <p>Lyra's root layout, <code>W_OverallUILayout</code>, holds a stack per layer tag. XenoCore uses three of them:</p>
 <table>
@@ -4661,7 +4696,7 @@ their widget class from <strong>Project Settings › Game › XenoCore UI</stron
 </tr>
 <tr>
 <td>"A Talk" prompt (<code>W_XenoCore_InteractPrompt</code>)</td>
-<td>The interaction subsystem, added to the viewport under the menu layers</td>
+<td>The interaction system, drawn under the menu layers</td>
 <td><strong>Interact Prompt</strong></td>
 </tr>
 <tr>
@@ -4676,17 +4711,17 @@ their widget class from <strong>Project Settings › Game › XenoCore UI</stron
 </tr>
 <tr>
 <td>Battle notifications (<code>W_XenoCore_BattleNotify</code>)</td>
-<td><code>UXenoCoreBattleNotifySubsystem</code></td>
+<td>The battle system</td>
 <td><strong>Battle Notify</strong></td>
 </tr>
 <tr>
 <td>Loot panel (<code>W_XenoCore_LootPopup</code>)</td>
-<td><code>UXenoCoreLootPopupSubsystem</code></td>
+<td>Opening a chest</td>
 <td><strong>Loot Popup</strong></td>
 </tr>
 <tr>
 <td>Damage-taken and heal numbers</td>
-<td><code>UXenoCoreDamageNumberSubsystem</code></td>
+<td>The damage system</td>
 <td><strong>Damage Taken Numbers</strong>, <strong>Heal Numbers</strong> (Niagara systems)</td>
 </tr>
 </tbody>
@@ -4792,13 +4827,12 @@ and focuses the first. It rebuilds every time the menu opens, which is what re-a
 </tbody>
 </table>
 <p>An entry either pushes its <strong>Screen</strong> onto its <strong>Layer</strong> (empty means <code>UI.Layer.Menu</code>) and focuses
-that screen's desired target, or runs its <strong>Action</strong>, a Blueprint-subclassable
-<code>UXenoCoreMenuAction</code>. Entries with an <strong>Id</strong> are merged: a later entry with the same Id replaces
+that screen's desired target, or runs its <strong>Action</strong> (a small Blueprint you make with
+<code>XenoCoreMenuAction</code> as its parent). Entries with an <strong>Id</strong> are merged: a later entry with the same Id replaces
 the earlier one. See <a href="../../recipes/add-menu-screen/">Add a menu screen</a>.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
-<p><strong>Opening a screen.</strong> A screen is a <code>UCommonActivatableWidget</code> pushed onto <code>UI.Layer.Menu</code>. When
-the menu layer shows anything, the player controller (<code>AXenoCorePlayerController</code>) pauses the
-game, and CommonUI switches to Menu input mode. The project's input config then filters every
+<p><strong>Opening a screen.</strong> A screen is a <strong>Common Activatable Widget</strong> pushed onto <code>UI.Layer.Menu</code>. When
+the menu layer shows anything, the game pauses and CommonUI switches to Menu input mode. The project's input config then filters every
 gameplay mapping context out, so A cannot also jump behind a menu. See
 <a href="../input-and-camera/">Input and camera</a>. The title screen opts out of the pause so its scene keeps
 moving.</p>
@@ -4809,22 +4843,22 @@ action and ignore it.</p>
 unpauses and gameplay input returns.</p>
 <p><strong>Pooling.</strong> CommonUI keeps a pushed screen and reuses the same instance next time. Anything that
 must be fresh per visit is reset every time the screen is shown, never once when it is built.</p>
-<p><strong>HUD plates</strong> (<code>UXenoCoreHudPlateBase</code> and children) are created once and stay. They slide and fade
+<p><strong>HUD plates</strong> (widgets whose parent class is <code>XenoCoreHudPlateBase</code>) are created once and stay. They slide and fade
 in when created, <strong>Set Shown</strong> fades them in or out without removing them, and <strong>Play Outro</strong> fades
 out and removes. A plate that must start hidden calls <strong>Begin Hidden</strong> from its own Construct.
 <strong>Set Shown Immediate</strong>, <strong>Set Show Delay</strong>, <strong>Collapse All Except</strong>, <strong>Begin Hidden</strong> and <strong>Skip
 Intro</strong> are all Blueprint-callable.</p>
-<p>Plates derived from <code>UXenoCoreHudPlateBase</code>: player plate, target plate, Arts palette, battle
+<p>Plates built on <code>XenoCoreHudPlateBase</code>: player plate, target plate, Arts palette, battle
 notification, quest tracker, quest reward banner, level-up banner, autosave badge.</p>
 <p><strong>Celebration bursts.</strong> The quest reward banner and the level-up banner each have a <strong>Celebration</strong>,
 and the party join banner a <strong>Joined Effect</strong>: a UI Niagara burst (<code>UserInterface/HUD/NS_XenoCore_QuestComplete</code>,
 <code>NS_XenoCore_LevelUp</code>, <code>NS_XenoCore_PartyJoin</code>) played behind the card, with its own <strong>System</strong>,
 <strong>Size</strong>, <strong>Scale</strong> and <strong>Duration</strong>. Clear <strong>System</strong> for no burst. A paused game does not freeze
-a burst, and Unreal's <code>shot</code> screenshot command does not capture UI Niagara at all: check it by eye
-or with a desktop capture.</p>
+a burst. Unreal's <code>shot</code> screenshot command does not capture these bursts at all, so check them by
+eye, or with a screenshot of the whole desktop.</p>
 <!-- VERIFY: the Details labels of FXenoCoreUIEffect's fields on the three banners -->
 
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -4919,7 +4953,7 @@ or with a desktop capture.</p>
 </tbody>
 </table>
 <p>The text styles use Lyra's Orbitron font (<code>/Game/UI/Foundation/Fonts/Orbitron</code>).</p>
-<p><strong>The stat block</strong> (<code>W_XenoCore_StatBlock</code>, class <code>UXenoCoreStatBlockBase</code>) draws a list of stat
+<p><strong>The stat block</strong> (<code>W_XenoCore_StatBlock</code>) draws a list of stat
 rows. <strong>Show Lines</strong> and <strong>Show Header</strong> draw what you pass; <strong>Show Character</strong> and <strong>Show Item</strong> make
 the block fill itself from a party member or an equipped slot and redraw when equipment changes.</p>
 <p><strong>Wrapping lists.</strong> Menu lists wrap from bottom to top. Ordinary panels wrap through their
@@ -4929,7 +4963,7 @@ navigation rules. A List View cannot, so call <strong>Wrap List View</strong> on
 own to hold a class reference) is named on one of two pages in <strong>Edit › Project Settings › Game</strong>.
 Both are saved to <code>Config/DefaultGame.ini</code>, and every entry starts at the shipped asset, so
 nothing changes until you edit one.</p>
-<p><strong>XenoCore UI</strong> (<code>UXenoCoreUISettings</code>)</p>
+<p><strong>XenoCore UI</strong></p>
 <table>
 <thead>
 <tr>
@@ -5050,7 +5084,7 @@ nothing changes until you edit one.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>XenoCore Content</strong> (<code>UXenoCoreContentSettings</code>)</p>
+<p><strong>XenoCore Content</strong></p>
 <table>
 <thead>
 <tr>
@@ -5134,24 +5168,35 @@ reaches the button.</p>
 <ul>
 <li><strong>Restyle:</strong> duplicate the styles you want into <code>Content/MyGame/UI/</code> and point widgets at them.
   See <a href="../../recipes/restyle-menus/">Restyle the menus</a>.</li>
-<li><strong>A new menu screen:</strong> make a widget derived from <code>CommonActivatableWidget</code> (or a XenoCore screen
-  base), set its input config to Menu, tick <strong>Is Back Handler</strong>, and add a <strong>Menu Entries</strong> row that
+<li><strong>A new menu screen:</strong> make a Widget Blueprint whose parent is <strong>Common Activatable Widget</strong> (or a
+  XenoCore screen base), set its input config to Menu, tick <strong>Is Back Handler</strong>, and add a <strong>Menu Entries</strong> row that
   names it. See <a href="../../recipes/add-menu-screen/">Add a menu screen</a>.</li>
 <li><strong>Replace a shipped screen or HUD widget:</strong> duplicate it, keep its parent class, and point the
   matching XenoCore UI setting at your copy. See <a href="../../recipes/restyle-menus/">Restyle the menus</a>.</li>
 <li><strong>A yes/no popup:</strong> push it into the asking screen's own <code>OverlayStack</code>, never onto the menu
   layer (that would replace the screen). From Blueprint, the <strong>Ask Confirm</strong> node does the whole
-  thing with <code>W_XenoCore_ConfirmPopup</code> and continues on <strong>On Yes</strong> or <strong>On No</strong>; from C++,
-  <code>UXenoCoreConfirmPopupBase::AskWithAnswer</code>. When a popup closes, give focus back to the row that
+  thing with <code>W_XenoCore_ConfirmPopup</code> and continues on <strong>On Yes</strong> or <strong>On No</strong>. When a popup closes, give focus back to the row that
   asked. See <a href="../../recipes/confirm-popup/">Add a confirm popup</a>.</li>
 <li><strong>A new HUD element over gameplay:</strong> add it to a <code>HUD.Slot.XenoCore.*</code> slot with an <strong>Add
-  Widgets</strong> action; derive it from <code>UXenoCoreHudPlateBase</code> if it should fade in and out. See
+  Widgets</strong> action; give it the parent class <code>XenoCoreHudPlateBase</code> if it should fade in and out. See
   <a href="../../recipes/add-hud-element/">Add a HUD element</a>.</li>
 <li><strong>A button prompt on a screen:</strong> add a row to your own action table and bind it; see
   <a href="../../recipes/input-action-prompt/">Add an input action with a button prompt</a>.</li>
 </ul>
 <p>Never edit Lyra's UI assets; copy what you need.</p>
+<details class="note">
+<summary>For programmers: classes</summary>
+<p>Plates derive from <code>UXenoCoreHudPlateBase</code>; the stat block is <code>UXenoCoreStatBlockBase</code>; menu
+actions <code>UXenoCoreMenuAction</code>; the settings pages are <code>UXenoCoreUISettings</code> and
+<code>UXenoCoreContentSettings</code>. The game pauses through <code>AXenoCorePlayerController</code> whenever
+<code>UI.Layer.Menu</code> is non-empty. Widgets opened by systems with no asset of their own come from
+<code>UXenoCoreBattleNotifySubsystem</code>, <code>UXenoCoreLootPopupSubsystem</code>,
+<code>UXenoCoreDamageNumberSubsystem</code> and <code>UXenoCoreInteractionSubsystem</code>. From C++, a confirm popup is
+<code>UXenoCoreConfirmPopupBase::AskWithAnswer</code>.</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>Lyra's look, not an imitation of a console RPG.</strong> XenoCore ships as a Lyra template, so a
   buyer expects an interface that belongs to Lyra. The layouts and information follow the genre;
@@ -5173,6 +5218,7 @@ reaches the button.</p>
 <li><strong>Rows built in C++.</strong> Lyra's list view drops null items without warning, so several XenoCore
   screens build their rows into a vertical box from C++, where what was built can be logged.</li>
 </ul>
+</details>
 <p><strong>Next:</strong> <a href="../input-and-camera/">Input and camera</a> · <a href="../events/">Events you can listen to</a></p>
 
 

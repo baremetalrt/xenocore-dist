@@ -3414,6 +3414,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3458,10 +3469,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4417,6 +4428,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4461,10 +4483,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4540,6 +4562,16 @@ time and the weather sit on the <a href="../minimap/">minimap</a>, and the menu'
 clock to any hour. The one idea: <strong>the clock and the weather are game-wide state; one placed actor
 per map turns them into light.</strong> A map with no director still has a clock and weather (anything that
 asks for them gets an answer); its sky just does not change.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Day and night and weather on a map of yours</strong>: <a href="../../recipes/area-weather/">Give a map its time of day and weather</a>.</li>
+<li><strong>How fast the clock runs, the phase hours, the start hour</strong>: <strong>Project Settings › Plugins ›
+  XenoCore Environment</strong> (<a href="#settings">Settings</a>).</li>
+<li><strong>Which weather an area gets, and how often</strong>: the area's weather table (<a href="#the-weather">The weather</a>).</li>
+<li><strong>What rain or a storm looks and sounds like</strong>: rows of <code>World/DT_XenoCore_WeatherTypes</code>.</li>
+<li><strong>How a day looks</strong> (sun arc, sky colour, fog, night brightness): a sky profile data asset.</li>
+<li><strong>Night music</strong>: <a href="../../recipes/area-music/">Give a map its music</a>.</li>
+</ul>
 <!-- SCREENSHOT: Gaur Plain at dusk in light rain, the minimap showing the sun on its rim and "Gaur Plain [rain icon] 18:20" -->
 
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
@@ -4554,12 +4586,12 @@ asks for them gets an answer); its sky just does not change.</p>
 <tbody>
 <tr>
 <td>Clock</td>
-<td><code>UXenoCoreTimeOfDaySubsystem</code> (on the game instance)</td>
+<td>Built in, game-wide</td>
 <td>The time, 00:00 to 23:59, and the phase. Survives map travel; saved with the game</td>
 </tr>
 <tr>
 <td>Weather</td>
-<td><code>UXenoCoreWeatherSubsystem</code> (on the game instance)</td>
+<td>Built in, game-wide</td>
 <td>The current weather, rolled from the area's weather table. Saved with the game</td>
 </tr>
 <tr>
@@ -4574,17 +4606,17 @@ asks for them gets an answer); its sky just does not change.</p>
 </tr>
 <tr>
 <td>Area weather odds</td>
-<td>A Data Table of <code>XenoCoreWeatherChanceRow</code> on the area's <strong>Area Definition</strong>, for example <code>Maps/Areas/DT_XenoCore_Weather_GaurPlain</code> on <code>DA_XenoCore_Area_GaurPlain</code></td>
+<td>A Data Table (row structure <code>XenoCoreWeatherChanceRow</code>) on the area's <strong>Area Definition</strong>, for example <code>Maps/Areas/DT_XenoCore_Weather_GaurPlain</code> on <code>DA_XenoCore_Area_GaurPlain</code></td>
 <td>The chance of each weather in this area</td>
 </tr>
 <tr>
 <td>Environment director</td>
-<td><strong>XenoCore Environment Director</strong> (<code>AXenoCoreEnvironmentDirector</code>), one placed per map</td>
+<td><strong>XenoCore Environment Director</strong> (in <strong>Place Actors</strong>), one placed per map</td>
 <td>Moves the map's own sun, sky light, fog and clouds with the clock, and adds rain, lightning, ambience and the night sky</td>
 </tr>
 <tr>
 <td>Sky profile</td>
-<td><code>World/DA_XenoCore_SkyProfile_Default</code> (<code>UXenoCoreSkyProfile</code>)</td>
+<td><code>World/DA_XenoCore_SkyProfile_Default</code> (data asset)</td>
 <td>How a day looks: sunrise and sunset hours, the sun's and moon's arcs, per-hour curves for sky light, exposure, fog colour and saturation, the night exposure floor</td>
 </tr>
 <tr>
@@ -4594,7 +4626,7 @@ asks for them gets an answer); its sky just does not change.</p>
 </tr>
 <tr>
 <td>Minimap</td>
-<td><code>UXenoCoreMinimap</code></td>
+<td>The HUD's <code>Minimap</code> widget</td>
 <td>The sun or moon on the rim (noon at the top, midnight at the bottom) and the time and weather icon beside the area name</td>
 </tr>
 </tbody>
@@ -4633,7 +4665,8 @@ asks for them gets an answer); its sky just does not change.</p>
 Night as <strong>nighttime</strong>, which is what the night music asks.</p>
 <p><strong>When it stops.</strong> The clock runs on game time, so it stops whenever the game pauses (every menu)
 and slows with slow motion. It also stops during conversations (<strong>Pause During Dialogue</strong>) and
-whenever code holds it (<strong>Add Clock Hold</strong>).</p>
+whenever a Blueprint holds it with <strong>Add Clock Hold</strong> (<strong>XenoCore › Time</strong>), naming a <strong>Reason</strong>;
+<strong>Remove Clock Hold</strong> with the same reason releases it.</p>
 <p><strong>Change Time.</strong> From the menu, pick an hour on the dial and confirm. The screen fades out, the clock
 jumps to the start of that hour, the weather re-rolls, and the screen fades back in. The fade timings
 are in <strong>Clock › Change Time</strong>.</p>
@@ -4670,7 +4703,7 @@ draws a moon disc and a starry sky with the Milky Way, and lifts the darkest exp
 pick (<strong>Night Exposure Floor EV100</strong> on the sky profile), so night reads as night rather than as a dim
 afternoon. Area music can switch to a night field track at nightfall: see
 <a href="../../recipes/area-music/">Give a map its music</a>.</p>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>

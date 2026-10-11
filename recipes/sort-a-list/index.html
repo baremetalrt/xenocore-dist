@@ -1602,6 +1602,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1621,13 +1632,52 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-place-the-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Place the control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-set-it-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Set it up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-make-the-list-open-sorted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Make the list open sorted
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-it-worked" class="md-nav__link">
+  <a href="#test-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Check it worked
+        Test it
       
     </span>
   </a>
@@ -1635,10 +1685,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#if-it-didnt-work" class="md-nav__link">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If it didn't work
+        If it doesn't work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#going-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Going further
       
     </span>
   </a>
@@ -4362,6 +4423,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-works" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4381,13 +4453,52 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-place-the-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Place the control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-set-it-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Set it up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-make-the-list-open-sorted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Make the list open sorted
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-it-worked" class="md-nav__link">
+  <a href="#test-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Check it worked
+        Test it
       
     </span>
   </a>
@@ -4395,10 +4506,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#if-it-didnt-work" class="md-nav__link">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If it didn't work
+        If it doesn't work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#going-further" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Going further
       
     </span>
   </a>
@@ -4423,15 +4545,22 @@
 
 
 <h1 id="add-y-to-sort-to-an-item-list">Add Y-to-sort to an item list<a class="headerlink" href="#add-y-to-sort-to-an-item-list" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 10 min · No code · Last tested: 2026-10-04</em></p>
-<p><strong>Result:</strong> pressing Y on your screen cycles how its item list is ordered, and the action bar shows
-<strong>Sort: Rarity</strong> (or whichever mode is current). The cursor stays on the same item when the order
-changes.</p>
-<p>The Items menu and the equipment swap list already have this. Use this recipe for a new screen, or
-to change which modes those two offer.</p>
+<p><em>Designer · 10 min · No code (a small Blueprint edit) · Last tested: 2026-10-04</em></p>
+<p><strong>Result:</strong> pressing <strong>Y</strong> on your screen cycles how its item list is ordered, and the action bar
+shows <strong>Sort: Rarity</strong> (or whichever mode is current). The cursor stays on the same item when the
+order changes.</p>
+<p>The Items menu (<code>UserInterface/W_XenoCore_ItemMenu</code>) and the equipment swap list
+(<code>UserInterface/W_XenoCore_ItemSwapList</code>) already have this. Use this recipe for a new screen of
+your own, or to change which modes those two offer. Open either of them to see a finished example.</p>
+<h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A menu screen of your own with a <strong>List View</strong> showing items. See
+  <a href="../add-menu-screen/">Add a menu screen</a>.</li>
+</ul>
 <h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<p><code>W_XenoCore_ItemSortControl</code> (<code>UserInterface/Foundation</code>) is a widget you <strong>place</strong>. It draws
-nothing. It registers the Y prompt while your screen is open, and on Y it re-sorts the list you name.</p>
+<p><code>UserInterface/Foundation/W_XenoCore_ItemSortControl</code> is a widget you <strong>place</strong> inside your
+screen. It draws nothing on its own. While your screen is open it puts the <strong>Y</strong> prompt on the
+action bar, and when Y is pressed it re-sorts the list you name.</p>
 <table>
 <thead>
 <tr>
@@ -4468,34 +4597,76 @@ nothing. It registers the Y prompt while your screen is open, and on Y it re-sor
 </table>
 <p>Ties always keep bag order, so equal items never swap places when you re-sort.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
+<h3 id="1-place-the-control">1. Place the control<a class="headerlink" href="#1-place-the-control" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open your screen's Widget Blueprint. From the Palette, drag <strong>W XenoCore Item Sort Control</strong> into
-   the root panel, and name it <code>SortControl</code>. Its size and position don't matter.</li>
-<li>In its Details, set:</li>
-<li><strong>Target List Name:</strong> the name of your <code>ListView</code>, for example <code>ItemList</code>.</li>
-<li><strong>Modes:</strong> which modes Y cycles through, in order. The first one is where the screen opens.</li>
-<li><strong>Sort Action:</strong> already set to <code>DT_XenoCore_Actions</code> › <code>MerchantSort</code> (Y), the same button as
-     the shop's sort.</li>
-<li><strong>Prompt Format:</strong> optional. The default is <code>Sort: {0}</code>.</li>
-<li>In the graph, find each <strong>Set List Items</strong> that takes its items from <strong>Get Items For Slot</strong> or
-   <strong>Get Items For Category</strong>. Drag <code>SortControl</code> in, call <strong>Sort Items</strong> on it, and put it on that
-   wire: Get Items → Sort Items → Set List Items. This makes the list open already sorted.</li>
-<li>Compile and save.</li>
+<li>Open your screen's Widget Blueprint and switch to the <strong>Designer</strong> tab.</li>
+<li>In the <strong>Palette</strong>, search for <code>W XenoCore Item Sort Control</code> and drag it into the screen's root
+   panel. Its size and position don't matter.</li>
+<li>In the <strong>Hierarchy</strong>, rename it <code>SortControl</code>.</li>
 </ol>
-<h2 id="check-it-worked">Check it worked<a class="headerlink" href="#check-it-worked" title="Permanent link">&para;</a></h2>
+<h3 id="2-set-it-up">2. Set it up<a class="headerlink" href="#2-set-it-up" title="Permanent link">&para;</a></h3>
+<p>Select <code>SortControl</code>. In <strong>Details › XenoCore › Sort</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Target List Name</strong></td>
+<td>The name of your <strong>List View</strong> in the Hierarchy, for example <code>ItemList</code> (the default). It must match exactly</td>
+</tr>
+<tr>
+<td><strong>Modes</strong></td>
+<td>Which modes Y cycles through, in order. The first is the order the screen opens in. Two or more entries</td>
+</tr>
+<tr>
+<td><strong>Sort Action</strong></td>
+<td>Already set to <code>DT_XenoCore_Actions</code> › <code>MerchantSort</code> (Y), the same button as the shop's sort. Leave it</td>
+</tr>
+<tr>
+<td><strong>Prompt Format</strong></td>
+<td>Optional. Empty gives <code>Sort: {0}</code>, where <code>{0}</code> is the mode's name</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-make-the-list-open-sorted">3. Make the list open sorted<a class="headerlink" href="#3-make-the-list-open-sorted" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Switch to the <strong>Graph</strong> tab.</li>
+<li>Find each <strong>Set List Items</strong> node that takes its items from <strong>Get Items For Slot</strong> or
+   <strong>Get Items For Category</strong>. There may be more than one; check every function and event.</li>
+<li>Drag <code>SortControl</code> from <strong>Variables</strong> into the graph and, from it, place a <strong>Sort Items</strong> node.</li>
+<li>Put it on the wire: <strong>Get Items For …</strong> → <strong>Sort Items</strong> → <strong>Set List Items</strong>.</li>
+<li><strong>Compile</strong> and <strong>Save</strong>.</li>
+</ol>
+<p>Without this step Y still works, but the list opens in bag order each time.</p>
+<h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Press <strong>Play</strong> and open your screen. The action bar shows <strong>Sort: Default</strong> (or your first mode).</li>
+<li>Press <strong>Y</strong> (pad) or the keyboard key shown in the prompt. The prompt names the next mode and
+   the list re-orders. The highlighted item stays highlighted.</li>
+<li>Press <strong>Y</strong> through every mode. On <strong>Rarity</strong>, Legendary items are at the top.</li>
+<li>Close the screen and reopen it. It opens in your first mode again.</li>
+</ol>
+<h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: no prompt on the action bar</p>
+<p><strong>Sort Action</strong> is empty, or <strong>Modes</strong> has fewer than two entries. Nothing is logged. Check both
+on <code>SortControl</code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: the prompt changes but the list doesn't</p>
+<p><strong>Target List Name</strong> doesn't match your <strong>List View</strong>'s name in the Hierarchy. Copy the name
+across exactly.</p>
+</div>
+<p><strong>The list reopens in an unsorted order.</strong> One <strong>Set List Items</strong> still reads straight from
+<strong>Get Items For …</strong> without going through <strong>Sort Items</strong>. Find it and route it through.</p>
+<h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Open the screen in Play: the action bar shows <strong>Sort: Default</strong>. Press Y and the prompt and the
-  order both change.</li>
-<li>Run <code>Tools/UIAuthoring/item_sort_pie.py</code>. It checks every mode on both shipped screens and writes
-  <code>item_sort_pie.txt</code>.</li>
-</ul>
-<h2 id="if-it-didnt-work">If it didn't work<a class="headerlink" href="#if-it-didnt-work" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>No prompt.</strong> <strong>Sort Action</strong> is empty, or <strong>Modes</strong> has fewer than two entries.</li>
-<li><strong>The prompt changes but the list doesn't.</strong> <strong>Target List Name</strong> doesn't match your <code>ListView</code>'s
-  widget name.</li>
-<li><strong>The list reopens in the old order.</strong> One <strong>Set List Items</strong> still reads straight from <strong>Get Items
-  For …</strong>, without going through <strong>Sort Items</strong>.</li>
+<li><a href="../item-rarity/">Set and style item rarity</a>: what the <strong>Rarity</strong> mode sorts by.</li>
+<li><a href="../add-menu-screen/">Add a menu screen</a>.</li>
 </ul>
 
 

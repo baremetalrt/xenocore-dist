@@ -4519,6 +4519,7 @@ stiller.</p>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Read <a href="../../concepts/companion-ai/">Companion AI and aggro</a>. It explains what each number below does.</li>
+<li><a href="../../getting-started/glossary/">Glossary</a>: <strong>Aggro</strong>, <strong>Party tactics</strong>, <strong>Break, Topple, Daze</strong>.</li>
 <li>Have the Gym map open and a party of at least two.</li>
 </ul>
 <h2 id="1-pace-a-character">1. Pace a character<a class="headerlink" href="#1-pace-a-character" title="Permanent link">&para;</a></h2>
@@ -4629,16 +4630,23 @@ and drains at 75 per second. A taunting art wants several hundred. A quiet suppo
 in the EQS editor to change the ring radius, the number of points, or the test weights. The
 behind/beside variants used for positional arts are <code>EQ_XenoCore_CompanionBackSpot</code> and
 <code>EQ_XenoCore_CompanionSideSpot</code>.</p>
+<p>To use your own copy instead of editing the shipped query, duplicate it into your folder, then
+on your child of <code>Characters/Party/BP_AIC_XenoCore_PartyMember</code> (<strong>Class Defaults ›
+XenoCore › AI</strong>) set <strong>Combat Spot Query</strong>, <strong>Back Spot Query</strong> or <strong>Side Spot Query</strong> to it.
+A template update then leaves your copy alone.</p>
 <div class="admonition warning">
-<p class="admonition-title">The generator script resets these queries</p>
-<p><code>Tools/AnimAuthoring/companion_spot_query.py</code> rebuilds all three from scratch and discards your
-edits. Run it only to restore the shipped versions.</p>
+<p class="admonition-title">Fails silently: an empty Combat Spot Query</p>
+<p>With <strong>Combat Spot Query</strong> cleared, companions walk straight at the enemy and bunch up. Nothing
+is logged. An empty <strong>Back</strong> or <strong>Side Spot Query</strong> falls back to the combat one.</p>
 </div>
 <h2 id="5-tune-the-party-between-fights">5. Tune the party between fights<a class="headerlink" href="#5-tune-the-party-between-fights" title="Permanent link">&para;</a></h2>
 <p>Out of battle each companion looks around, rests and wanders on its own timer. The settings are
 parameters on tasks in <code>Characters/Party/AI/ST_XenoCore_PartyMember</code>. Duplicate the tree into your
 folder, edit the copy, and set it as the StateTree on your own child of
-<code>Characters/Party/BP_AIC_XenoCore_PartyMember</code> (see <a href="../../concepts/party/">Party</a>).</p>
+<code>Characters/Party/BP_AIC_XenoCore_PartyMember</code> (see <a href="../../concepts/party/">Party</a>). Then point the
+party at that controller: <strong>Default Controller Class</strong> on <code>Characters/Party/BP_XenoCore_Party</code>
+(<strong>Class Defaults › XenoCore › Party</strong>) for everyone, or <strong>Controller Class</strong> on one member
+definition for that character only.</p>
 <table>
 <thead>
 <tr>
@@ -4721,17 +4729,12 @@ and avoidance is always on in battle, where they need it.</p>
 <li>Watch the Output Log. Each companion prints a <strong>decision</strong> line listing every usable art with its
    score, then <strong>USED</strong> with the art it chose. Back Slash prints <strong>HOLDING</strong> while the companion walks
    behind, then <strong>REACHED</strong>.</li>
-<li>
-<p>Let a companion take damage. One with Light Heal slotted heals once someone drops below its
-   <strong>Heal Threshold</strong>.</p>
-</li>
-<li>
-<p>After the fight, stop walking. Within a few seconds the companions look about on their own
+<li>Let a companion take damage. One with Light Heal slotted heals once someone drops below its
+   <strong>Heal Threshold</strong>.</li>
+<li>After the fight, stop walking. Within a few seconds the companions look about on their own
    timers, and one walks up to another and the two look at each other. Walk off: they set off one by
-   one rather than together, and follow without wobbling.</p>
-</li>
+   one rather than together, and follow without wobbling.</li>
 </ol>
-<p>Automated check: <code>Tools/UIAuthoring/companion_arts_pie.py</code> runs this fight and checks every rule above.</p>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4767,7 +4770,7 @@ and avoidance is always on in battle, where they need it.</p>
 </tr>
 <tr>
 <td>Companions bunch up</td>
-<td>The spacing query was deleted or renamed. They then walk straight at the enemy. Restore it with <code>companion_spot_query.py</code></td>
+<td>The controller's <strong>Combat Spot Query</strong> is empty, or the query it names was deleted. They then walk straight at the enemy. Set it again, or restore <code>EQ_XenoCore_CompanionCombatSpot</code> from your backup</td>
 </tr>
 <tr>
 <td>A companion stands still in a fight</td>

@@ -4631,18 +4631,22 @@ behind them, read <a href="../../concepts/animation/">Animation</a>.</p>
 Only its compile status is wrong.</p>
 </div>
 <p><strong>Why:</strong> the anim Blueprint compiler checks some graph nodes in a silent pass and then discards the
-messages, but keeps the error count. The most common cause is a <strong>Get</strong> node for a C++ variable
-that is not Blueprint-visible: marked <code>EditDefaultsOnly</code> or <code>EditAnywhere</code> in C++ without
-<code>BlueprintReadOnly</code> or <code>BlueprintReadWrite</code>. In a normal Blueprint you would see that error; in an
-anim Blueprint you do not.</p>
+messages, but keeps the error count. The most common cause is a <strong>Get</strong> node for a variable that a
+programmer added to the C++ anim instance without making it readable from Blueprints.</p>
 <p><strong>Fix:</strong></p>
 <ol>
 <li>Compile each anim Blueprint you changed and look at the <strong>Compile</strong> button: a red icon means it
-   failed, even with an empty log.</li>
-<li>Check every variable the graph reads from your C++ anim instance. Add <code>BlueprintReadOnly</code> to its
-   <code>UPROPERTY</code>, rebuild C++ (a reflected change cannot go through Live Coding), and restart the
-   editor.</li>
+   failed, even with an empty log. The last one you edited is the likely culprit.</li>
+<li>Undo your last graph change, or delete <strong>Get</strong> nodes for variables added recently, until it
+   compiles. Then ask whoever added the variable to fix it (below).</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">For programmers</p>
+<p>The variable is a <code>UPROPERTY</code> marked <code>EditDefaultsOnly</code> or <code>EditAnywhere</code> without
+<code>BlueprintReadOnly</code> or <code>BlueprintReadWrite</code>. Add <code>BlueprintReadOnly</code>, rebuild C++ (a reflected
+change cannot go through Live Coding), and restart the editor. A normal Blueprint shows this
+error; an anim Blueprint swallows it.</p>
+</div>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/animation-style/">Choose an animation style</a>.</p>
 <h3 id="equipping-a-weapon-never-changes-the-characters-stance">Equipping a weapon never changes the character's stance<a class="headerlink" href="#equipping-a-weapon-never-changes-the-characters-stance" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the stance is an anim layer, chosen by the weapon when it is drawn or sheathed. The weapon
@@ -4656,8 +4660,9 @@ layer is used at all, right-click it and choose <strong>Reference Viewer</strong
 referencers.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-weapon/">Add a weapon</a>.</p>
 <h3 id="the-pose-pops-when-switching-between-armed-and-unarmed">The pose pops when switching between armed and unarmed<a class="headerlink" href="#the-pose-pops-when-switching-between-armed-and-unarmed" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> the switch is smoothed by an inertialization request made right after the layer is
-linked. It pops when:</p>
+<p><strong>Why:</strong> this happens only if you changed how the weapon instance Blueprint links its layer (its
+<strong>Set Drawn</strong> function). The switch is smoothed by an inertialization request made right after the
+layer is linked. It pops when:</p>
 <ul>
 <li>the layers are <strong>unlinked and then linked</strong>: unlinking drops every node to its fallback for a
   frame. <strong>Link Anim Class Layers</strong> replaces the old layer on its own.</li>
@@ -4680,8 +4685,9 @@ that setting on for the layer class.</p>
 <h3 id="i-reparented-an-anim-blueprint-to-another-one-and-its-graph-is-gone">I reparented an anim Blueprint to another one and its graph is gone<a class="headerlink" href="#i-reparented-an-anim-blueprint-to-another-one-and-its-graph-is-gone" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> an anim Blueprint whose parent is another anim Blueprint becomes a <em>child</em> anim Blueprint,
 which has no AnimGraph of its own. The graph is discarded on save.</p>
-<p><strong>Fix:</strong> restore the asset from source control. To share logic between anim Blueprints, parent
-each one to the C++ anim instance <code>XenoCoreAnimInstance</code> instead. Child anim Blueprints are only
+<p><strong>Fix:</strong> restore the asset from source control. To share logic between anim Blueprints, give each
+one the parent class <code>XenoCoreAnimInstance</code> instead (logic shared that way is C++, a programmer's
+job). Child anim Blueprints are only
 right for <em>override-only</em> layers, like the weapon layers, which replace assets but keep the
 parent's graph.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/animation-style/">Choose an animation style</a>.</p>
@@ -4730,7 +4736,7 @@ is the <strong>True</strong> pose; wired backwards, the fidget becomes the idle.
 <p>Nothing is logged for a missing curve or a misspelt expression name.</p>
 </div>
 <p><strong>Why:</strong> expressions are rows of the face's <strong>Expression Table</strong>
-(<code>Characters/VRoid/DT_XenoCore_FaceExpressions</code> by default). A name that is not a row is tried as a
+(<code>Characters/Core/Face/DT_XenoCore_FaceExpressions</code> by default). A name that is not a row is tried as a
 single face curve, and a curve the VRoid model does not have does nothing. So a typo in a profile's
 <strong>Social Expressions</strong>, a face rule or a <strong>Play Expression On Actor</strong> call shows a neutral face. Only
 VRoid members have a face at all: a Mannequin-bodied character never shows one.</p>

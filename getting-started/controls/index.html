@@ -4572,8 +4572,9 @@ members instead of cycling targets. See <a href="../../concepts/party-tactics/">
 </tr>
 </tbody>
 </table>
-<p>Enter works on menu buttons because XenoCore's <code>Config/DefaultGame.ini</code> sets CommonUI's
-<strong>Common Button Accept Key Handling</strong> to <code>TriggerClick</code>. If Enter does nothing, see
+<p>Enter works on menu buttons because <strong>Apply</strong> (see <a href="../install/#what-apply-changes">Install</a>) set
+CommonUI's <strong>Common Button Accept Key Handling</strong> to <code>TriggerClick</code> in your project's
+<code>Config/DefaultGame.ini</code>. If Enter does nothing, see
 <a href="../../troubleshooting/ui-and-input/#enter-doesnt-press-menu-buttons-on-keyboard">Enter doesn't press menu buttons</a>.</p>
 <h2 id="where-the-bindings-live">Where the bindings live<a class="headerlink" href="#where-the-bindings-live" title="Permanent link">&para;</a></h2>
 <table>
@@ -4598,8 +4599,16 @@ members instead of cycling targets. See <a href="../../concepts/party-tactics/">
 </tr>
 </tbody>
 </table>
-<p>To rebind a key, edit the mapping context. To add a new action with its own button prompt, see the
-recipe <em>Add an input action with a button prompt</em>.</p>
+<p>To rebind a key, open the mapping context, find the action's row and change its key. To add a new
+action with its own button prompt, see
+<a href="../../recipes/input-action-prompt/">Add an input action with a button prompt</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: a rebound key and its on-screen prompt</p>
+<p>Some prompts (the Party Tactics hint, the quest tracker toggle, tutorial cards) draw their glyph
+from a row of <code>UserInterface/Foundation/DT_XenoCore_Actions</code>, not from the mapping context.
+Rebinding the key in <code>IMC_XenoCore</code> alone leaves those prompts showing the old key. Change the
+matching row's keyboard and gamepad keys in <code>DT_XenoCore_Actions</code> as well.</p>
+</div>
 
 
 

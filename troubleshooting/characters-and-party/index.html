@@ -4737,13 +4737,13 @@ or swap. For the model behind them, read <a href="../../concepts/characters/">Ch
 <a href="../../concepts/party/">Party</a>.</p>
 <h3 id="a-new-party-member-never-appears-in-the-field">A new party member never appears in the field<a class="headerlink" href="#a-new-party-member-never-appears-in-the-field" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> only the first few members of the roster are fielded. The party component fields members
-in roster order until it reaches <strong>Max Active Members</strong> (a setting of the party component,
-<code>UXenoCorePartyComponent</code>, <code>3</code> by default in C++, <code>7</code> in the sample's <code>BP_XenoCore_Party</code>), and
-benches everyone after that. A benched member has no body in
+in roster order until it reaches <strong>Max Active Members</strong> (on <code>Characters/Party/BP_XenoCore_Party</code>,
+<code>7</code> in the sample), and benches everyone after that. A benched member has no body in
 the world at all. A member whose definition has no <strong>Member Class</strong> never spawns either.</p>
 <p><strong>Fix:</strong></p>
 <ol>
-<li>Right-click your party member definition and run <strong>Asset Actions › Validate Assets</strong>.
+<li>Right-click your party member definition in the Content Browser and choose <strong>Asset Actions ›
+   Validate Assets</strong>.
    <!-- VERIFY: exact menu label in 5.8 --></li>
 </ol>
 <p>A missing
@@ -4791,17 +4791,20 @@ For the same reason, never re-apply a statline for any reason other than a level
 every application is a free full heal.</p>
 </div>
 <h3 id="after-making-someone-else-the-leader-and-swapping-back-the-controls-do-nothing">After making someone else the leader and swapping back, the controls do nothing<a class="headerlink" href="#after-making-someone-else-the-leader-and-swapping-back-the-controls-do-nothing" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> when you hand a body back to its AI, Unreal destroys that body's input component. Lyra
-binds input only once, the first time a body is possessed. XenoCore rebinds it on every later
-possession from <code>AXenoCoreCombatantCharacter::SetupPlayerInputComponent</code>, through
-<code>UXenoCoreHeroComponent</code>. You lose that if:</p>
-<ul>
-<li>your pawn uses Lyra's stock <code>LyraHeroComponent</code> instead of <code>XenoCoreHeroComponent</code>, or</li>
-<li>your C++ pawn overrides <code>SetupPlayerInputComponent</code> without calling <code>Super</code>.</li>
-</ul>
-<p>Nothing is logged. The camera may also look fine; only input is dead.</p>
-<p><strong>Fix:</strong> use <code>XenoCoreHeroComponent</code> on every party pawn, and call
-<code>Super::SetupPlayerInputComponent</code> first in any override.</p>
+<p><strong>Why:</strong> when you hand a body back to its AI, Unreal throws away that body's input bindings, and
+Lyra only binds input the first time a body is possessed. XenoCore's own hero component binds it
+again on every later possession. A pawn whose Components panel has Lyra's stock hero component
+(class <code>LyraHeroComponent</code>) instead of XenoCore's (class <code>XenoCoreHeroComponent</code>) loses that. Nothing is logged. The camera may
+also look fine; only input is dead.</p>
+<p><strong>Fix:</strong> build party pawns as children of <code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code> or
+<code>Characters/Party/B_XenoCore_PartyMember_Base</code>, which carry the right component. On a pawn of your
+own, replace the hero component with <code>XenoCoreHeroComponent</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">For programmers</p>
+<p>The rebind runs from <code>AXenoCoreCombatantCharacter::SetupPlayerInputComponent</code> through
+<code>UXenoCoreHeroComponent::RebindPlayerInputOnRepossession</code>. A C++ pawn that overrides
+<code>SetupPlayerInputComponent</code> must call <code>Super</code> first.</p>
+</div>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-party-member/">Add a party member</a>.</p>
 <h3 id="a-character-turns-invisible-after-i-give-it-a-cosmetic-part">A character turns invisible after I give it a cosmetic part<a class="headerlink" href="#a-character-turns-invisible-after-i-give-it-a-cosmetic-part" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> when cosmetic parts change, Lyra's character-parts component always sets the body mesh
@@ -4843,8 +4846,8 @@ nothing is logged.</p>
 <p><strong>Why:</strong> a party member at 0 HP is <strong>downed</strong> by <code>GA_XenoCore_Downed</code>, which the party's ability
 sets grant in place of Lyra's <code>GA_Hero_Death</code>. A pawn whose ability sets grant <code>GA_Hero_Death</code>
 instead (for example a pawn data copied from Lyra's heroes) runs a real death: montage, ragdoll,
-weapon hidden, body gone. A party pawn that is not built on <code>AXenoCorePartyCharacter</code> (the class
-behind <code>B_XenoCore_PartyMember_Base</code> and <code>B_XenoCore_Party_VRoid_Base</code>) cannot kneel either.</p>
+weapon hidden, body gone. A party pawn that is not a child of <code>B_XenoCore_PartyMember_Base</code> or
+<code>B_XenoCore_Party_VRoid_Base</code> cannot kneel either.</p>
 <p><strong>Fix:</strong> grant <code>Battle/GA_XenoCore_Downed</code>, not <code>GA_Hero_Death</code>, in every party member's ability
 sets (<code>AbilitySet_XenoCore_PartyMember</code> already does), and build party pawns as children of
 <code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code> or <code>B_XenoCore_PartyMember_Base</code>.</p>
@@ -4888,11 +4891,11 @@ set <strong>Respawn Offset</strong> so its Z clears the pad's surface by that mu
 every frame, and each body turns to face its new heading, so the whole party wobbles. It happens at
 every <strong>Crowd Avoidance Quality</strong>, and the higher qualities make it worse. XenoCore turns avoidance
 off out of battle for exactly this reason; it is back on only if <strong>Crowd Avoidance While
-Travelling</strong> is ticked, or if your controller does not derive from
-<code>AXenoCorePartyMemberController</code>, which is what switches it.</p>
+Travelling</strong> is ticked, or if your companion's AI controller is not a child of
+<code>Characters/Party/BP_AIC_XenoCore_PartyMember</code>, which is what switches it.</p>
 <p><strong>Fix:</strong> open your party controller Blueprint and untick <strong>XenoCore › AI › Crowd › Crowd Avoidance
-While Travelling</strong>. If you made your own controller class, derive it from
-<code>Characters/Party/BP_AIC_XenoCore_PartyMember</code> (or <code>AXenoCorePartyMemberController</code> in C++).</p>
+While Travelling</strong>. If you made your own controller, make it a child of
+<code>Characters/Party/BP_AIC_XenoCore_PartyMember</code>.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/tune-companion-ai/">Tune companion AI</a>, step 5.</p>
 <h3 id="companions-walk-sprint-to-catch-up-then-drop-back-to-a-walk">Companions walk, sprint to catch up, then drop back to a walk<a class="headerlink" href="#companions-walk-sprint-to-catch-up-then-drop-back-to-a-walk" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> catch-up speed is capped relative to the leader: the leader's speed × <strong>Catch Up Ratio</strong>
@@ -4904,8 +4907,8 @@ of the tree.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../concepts/companion-ai/#how-they-move">Companion AI</a>.</p>
 <h3 id="companions-stare-straight-ahead-and-never-look-around">Companions stare straight ahead and never look around<a class="headerlink" href="#companions-stare-straight-ahead-and-never-look-around" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the head turn needs three things: the <strong>XenoCore Party Gaze</strong> task on the party StateTree's
-<strong>Active</strong> state, an AI controller derived from <code>AXenoCorePartyMemberController</code>, and an anim
-Blueprint derived from <code>ABP_XenoCore_Base</code> (which turns the neck and head). A copy of the tree made
+<strong>Active</strong> state, an AI controller that is a child of <code>BP_AIC_XenoCore_PartyMember</code>, and the
+<code>ABP_XenoCore_Base</code> Animation Blueprint (which turns the neck and head). A copy of the tree made
 before the gaze task existed, or a custom controller or anim Blueprint, loses it without a word. A
 <strong>player-controlled</strong> body never has a gaze, by design. The head also faces forward while the
 character is downed, celebrating, toppled or dazed (<strong>Look Blocked By Tags</strong>).</p>
@@ -4979,8 +4982,9 @@ only, and reorder skills only before release.</p>
 which is the member definition's <strong>Member Class</strong>. If the table is set but was made with the wrong
 row structure, <code>LogXenoSkills</code> logs an error instead. A tree whose branches are all locked also draws
 no columns.</p>
-<p><strong>Fix:</strong> set <strong>Skill Tree</strong> on the member's pawn class to a table of <code>XenoCoreSkillBranchRow</code>, with at
-least one row that has <strong>Unlocked At Start</strong> ticked.</p>
+<p><strong>Fix:</strong> set <strong>Skill Tree</strong> on the member's pawn class to a Data Table whose row structure is
+<code>XenoCoreSkillBranchRow</code> (duplicate a sample tree), with at least one row that has <strong>Unlocked At
+Start</strong> ticked.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-skill/">Add a skill or a skill tree</a>.</p>
 
 

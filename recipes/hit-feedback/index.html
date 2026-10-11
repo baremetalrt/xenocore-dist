@@ -4597,7 +4597,9 @@ hits and for hits the player takes, and a critical hit announces itself the way 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../getting-started/first-art/">Your first art</a>. You should know where the XenoCore content is.</li>
-<li>Glossary: <a href="../../getting-started/glossary/">Gameplay Cue</a>.</li>
+<li>A <strong>gameplay cue</strong> is a cosmetic (sound, particles, camera shake, rumble) played by a tag, here
+  <code>GameplayCue.XenoCore.*</code>. The asset that plays it is a cue <em>notify</em> in a cue folder. See also
+  <a href="../../getting-started/glossary/">gameplay effect</a>.</li>
 </ul>
 <h2 id="how-hit-feedback-is-put-together">How hit feedback is put together<a class="headerlink" href="#how-hit-feedback-is-put-together" title="Permanent link">&para;</a></h2>
 <p>A landed hit produces feedback from three places. Knowing which one owns what saves a lot of
@@ -4627,13 +4629,18 @@ guessing:</p>
 <td><code>Battle/Attributes/GE_XenoCore_Damage</code> → Lyra's <code>GCNL_Character_DamageTaken</code></td>
 </tr>
 <tr>
+<td>Particles on the target for a critical, a block or an evade</td>
+<td>Cues the damage calculation fires on the character that was hit</td>
+<td><code>GameplayCues/GCN_XenoCore_Hit_Critical</code>, <code>GCN_XenoCore_Hit_Blocked</code>, <code>GCN_XenoCore_Hit_Evaded</code></td>
+</tr>
+<tr>
 <td><strong>CRITICAL HIT!</strong> over the target, the gold critical number and the critical hit sound</td>
 <td>The damage calculation, plus Lyra's damage cue</td>
 <td><strong>Project Settings › Game › XenoCore Content › Critical Hit</strong></td>
 </tr>
 </tbody>
 </table>
-<p>The auto-attack and every damaging Art fire the hit cue themselves, after the hit has landed. A
+<p>The <a href="../../getting-started/glossary/">auto-attack</a> and every damaging <a href="../../getting-started/glossary/">Art</a> fire the hit cue themselves, after the hit has landed. A
 missed swing fires nothing. Heals never fire the hit cue.</p>
 <p>Lyra's damage cue draws the number and plays the hit-confirm and kill sounds for <strong>every party
 member's</strong> hits, not only the leader's: an AI-controlled ally's hit on an enemy sounds and reads the
@@ -4654,7 +4661,8 @@ settings live in one struct, <strong>Burst Effects</strong>.</p>
 <h3 id="1-make-your-own-camera-shake">1. Make your own camera shake<a class="headerlink" href="#1-make-your-own-camera-shake" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create a folder <code>MyGame/Feedback</code> under <strong>Content</strong>.</li>
-<li>Find Lyra's <code>/Game/Feedback/CameraShakes/CS_Character_DamageTaken</code>. This is the shake the hit cue
+<li>Find Lyra's <code>Feedback/CameraShakes/CS_Character_DamageTaken</code> (in the project's own <strong>Content</strong>
+   folder, not under Plugins). This is the shake the hit cue
    uses today.</li>
 <li>Duplicate it into <code>MyGame/Feedback</code> and name it <code>CS_MyGame_Hit</code>.</li>
 <li>Open <code>CS_MyGame_Hit</code> and adjust it. Start with the oscillation amplitude and duration; a short,
@@ -4665,7 +4673,7 @@ settings live in one struct, <strong>Burst Effects</strong>.</p>
 
 <h3 id="2-make-your-own-rumble-optional">2. Make your own rumble (optional)<a class="headerlink" href="#2-make-your-own-rumble-optional" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Duplicate Lyra's <code>/Game/Feedback/Haptics/FFE_Character_Damage</code> into <code>MyGame/Feedback</code>. Name it
+<li>Duplicate Lyra's <code>Feedback/Haptics/FFE_Character_Damage</code> (project <strong>Content</strong> folder) into <code>MyGame/Feedback</code>. Name it
    <code>FFE_MyGame_Hit</code>.</li>
 <li>Open it and edit the curves. Keep it short: a rumble that outlasts the hit feels like lag.</li>
 <li><strong>Save</strong>.</li>
@@ -4699,7 +4707,7 @@ Only one of them will play, and which one is not something you choose.</p>
 </ol>
 <h3 id="5-tune-the-critical-hit-optional">5. Tune the critical hit (optional)<a class="headerlink" href="#5-tune-the-critical-hit-optional" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <strong>Edit › Project Settings › Game › XenoCore Content</strong> and find <strong>Critical Hit</strong>.</li>
+<li>Open <strong>Edit › Project Settings › Game › XenoCore Content</strong> and find the <strong>Critical Hit</strong> category.</li>
 <li>
 <p>Set what you want:</p>
 <table>
@@ -4793,16 +4801,16 @@ error, and never plays.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Numbers or hit sounds on hit are gone</p>
-<p>Those come from Lyra's <code>GCNL_Character_DamageTaken</code>, which XenoCore patches in three places: so it
-works for characters that own their own ability system, so allies' hits draw numbers and sounds,
-and so a critical hit uses the gold number and critical sound. Re-downloading Lyra content undoes
-all three, and nothing is logged. See
+<p>Those come from XenoCore's own damage cue, <code>GameplayCues/GCNL_XenoCore_DamageTaken</code>, fired by
+the cue tag <code>GameplayCue.XenoCore.DamageTaken</code> on <code>GE_XenoCore_Damage</code>. A damage effect that fires
+Lyra's <code>GameplayCue.Character.DamageTaken</code> instead shows sparks but no number and no hit sound,
+and nothing is logged. Duplicate <code>GE_XenoCore_Damage</code> for new damage effects. See
 <a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Troubleshooting: combat and arts</a>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: CRITICAL HIT! shows but the number is the normal colour</p>
-<p>The battle line comes from XenoCore, the gold number from the patched Lyra cue. If you see the line
-and a normal number, the critical patch is missing from <code>GCNL_Character_DamageTaken</code>. See
+<p>The battle line and the gold number both come from XenoCore. If you see the line and a normal
+number, the damage effect is firing Lyra's cue rather than <code>GameplayCue.XenoCore.DamageTaken</code>. See
 <a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Troubleshooting: combat and arts</a>.</p>
 </div>
 <div class="admonition note">

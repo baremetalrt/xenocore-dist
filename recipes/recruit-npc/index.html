@@ -2005,10 +2005,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-test-it" class="md-nav__link">
+  <a href="#4-save-the-level" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Test it
+        4. Save the level
       
     </span>
   </a>
@@ -2021,10 +2021,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#things-to-know" class="md-nav__link">
     <span class="md-ellipsis">
       
         Things to know
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If it doesn't work
       
     </span>
   </a>
@@ -4490,10 +4512,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-test-it" class="md-nav__link">
+  <a href="#4-save-the-level" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Test it
+        4. Save the level
       
     </span>
   </a>
@@ -4506,10 +4528,32 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#test-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#things-to-know" class="md-nav__link">
     <span class="md-ellipsis">
       
         Things to know
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If it doesn't work
       
     </span>
   </a>
@@ -4576,11 +4620,14 @@ moves their body to where the NPC stood. Then the NPC leaves.</p>
 To make the hand-over read, give the NPC the member's own body: the NPC plays one clip, <strong>Idle
 Animation</strong>, straight on its mesh, so the clip must be on that mesh's skeleton.</p>
 <ul>
-<li><strong>A VRoid member:</strong> set the mesh component's <strong>Skeletal Mesh Asset</strong> to the member's
-  <code>Mesh/SK_AvatarSample_&lt;X&gt;_Lit</code> and <strong>Idle Animation</strong> to <code>Animation/AS_XenoCore_NpcIdle_&lt;X&gt;</code> (a
-  standing idle retargeted to that skeleton; <code>Tools/VRoid/npc_idles.py</code> makes one per member). Set
-  <strong>Portrait</strong> to the member's <code>T_XenoCore_Portrait_VRoid_&lt;X&gt;</code>. This is how the five Gaur Plain
-  recruits are set up.</li>
+<li><strong>A VRoid member:</strong> select the NPC's inherited mesh component and set <strong>Skeletal Mesh Asset</strong> to
+  the member's <code>Characters/VRoid/&lt;Name&gt;/Mesh/SK_AvatarSample_&lt;X&gt;_Lit</code> (<code>&lt;X&gt;</code> is the letter in the
+  member's asset names, for example <code>L</code> for Kael). On the actor, set <strong>Idle
+  Animation</strong> to <code>Characters/VRoid/&lt;Name&gt;/Animation/AS_XenoCore_NpcIdle_&lt;X&gt;</code>, a standing idle already
+  retargeted to that skeleton for each of the seven sample members. Set <strong>Portrait</strong> to the member's
+  <code>Characters/VRoid/&lt;Name&gt;/T_XenoCore_Portrait_VRoid_&lt;X&gt;</code>. This is how the five Gaur Plain recruits are set up. For a VRoid
+  character of your own, retarget a standing idle onto its skeleton (right-click the idle,
+  <strong>Retarget Animations</strong>, using that character's IK Retargeter).</li>
 <li><strong>A Mannequin member:</strong> its mesh and colour materials, with Lyra's <code>MM_Unarmed_Idle_Ready</code>.</li>
 </ul>
 <h3 id="2-pick-who-joins">2. Pick who joins<a class="headerlink" href="#2-pick-who-joins" title="Permanent link">&para;</a></h3>
@@ -4627,9 +4674,18 @@ same recruit.</p>
 <li>Set <strong>Recruit After Quest</strong> to that same quest.</li>
 </ol>
 <p>Talk once: they offer the quest. Hand it in: they say their <strong>Turn In Dialogue</strong> and join.</p>
-<h3 id="4-test-it">4. Test it<a class="headerlink" href="#4-test-it" title="Permanent link">&para;</a></h3>
-<p>Play, walk up and press <strong>Talk</strong>. When the conversation ends, the join banner plays and the member
-is standing where the NPC was. Open the Party menu: they are listed at the party's level.</p>
+<h3 id="4-save-the-level">4. Save the level<a class="headerlink" href="#4-save-the-level" title="Permanent link">&para;</a></h3>
+<h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Press <strong>Play</strong> and walk up to the NPC. Their name and a <strong>Talk</strong> prompt appear.</li>
+<li>Press <strong>A</strong> (keyboard <strong>E</strong>) and advance through the lines.</li>
+<li>When the conversation ends, the join banner plays, the NPC is gone, and the member is standing
+   where the NPC was.</li>
+<li>Open the menu (pad <strong>Y</strong>, keyboard <strong>I</strong>) and the <strong>Party</strong> screen: they are listed, at least at
+   the leader's level.</li>
+<li>With <strong>Recruit After Quest</strong> set: the first talk offers the quest and nobody joins. Hand the
+   quest in, and they join after their <strong>Turn In Dialogue</strong>.</li>
+</ol>
 <h2 id="things-to-know">Things to know<a class="headerlink" href="#things-to-know" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Saves.</strong> The roster is saved, so after loading, a recruit already in the party is not standing
@@ -4639,6 +4695,29 @@ is standing where the NPC was. Open the Party menu: they are listed at the party
   call <strong>Add To Roster</strong> on <strong>Get Party Component</strong> with <strong>Join At Party Level</strong> ticked. All three go
   through the same code.</li>
 </ul>
+<h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: the conversation ends and nobody joins</p>
+<p><strong>Member To Recruit</strong> is empty on this placed NPC (you may have set it on a different copy), or
+<strong>Recruit After Quest</strong> names a quest that has not been <strong>turned in</strong> yet. Only accepting the
+quest is not enough.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">The member is already in the party at the start</p>
+<p>They are listed in <code>Characters/Party/BP_XenoCore_Party</code> › <strong>Starting Roster</strong>, or in <strong>Project
+Settings › Game › XenoCore Content › Startup › Starting Roster Override</strong>. Remove them there.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">The NPC is gone when I load a save</p>
+<p>Intended: the member is already in the loaded roster, so the NPC removes itself.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">The NPC stands in a T-pose</p>
+<p><strong>Idle Animation</strong> is on a different skeleton from the NPC's mesh. Use an idle made for that
+mesh.</p>
+</div>
+<p><strong>The member joined but is not fighting.</strong> Every active slot was full, so they went to the
+reserve. Swap them in from the Party screen.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../concepts/party/">Party</a> · <a href="../../concepts/progression/">Progression</a></li>

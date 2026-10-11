@@ -4383,6 +4383,8 @@ why it happens, how to fix it, and which recipe prevents it.</p>
 <p>If your problem is not here, start with <a href="diagnostics/">Diagnostics</a>: where the logs are, the
 XenoCore log categories and console commands, and how to check a Blueprint really compiled. If
 that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
+<p>Entries marked <strong>(C++)</strong> only happen to someone compiling the project's C++; everything else can be
+fixed in the editor.</p>
 <h2 id="characters-and-party">Characters and party<a class="headerlink" href="#characters-and-party" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4427,6 +4429,22 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 <tr>
 <td>A recruit joins at level 1, or benched members never level</td>
 <td><a href="characters-and-party/#a-recruit-joins-at-level-1-or-benched-members-never-level">Characters and party</a></td>
+</tr>
+<tr>
+<td>Companions zig-zag or wobble while following the leader</td>
+<td><a href="characters-and-party/#companions-zig-zag-or-wobble-while-following-the-leader">Characters and party</a></td>
+</tr>
+<tr>
+<td>Companions walk, sprint to catch up, then drop back to a walk</td>
+<td><a href="characters-and-party/#companions-walk-sprint-to-catch-up-then-drop-back-to-a-walk">Characters and party</a></td>
+</tr>
+<tr>
+<td>Companions stare straight ahead and never look around</td>
+<td><a href="characters-and-party/#companions-stare-straight-ahead-and-never-look-around">Characters and party</a></td>
+</tr>
+<tr>
+<td>Companions stand still between fights and never chat or wander</td>
+<td><a href="characters-and-party/#companions-stand-still-between-fights-and-never-chat-or-wander">Characters and party</a></td>
 </tr>
 <tr>
 <td>A skill is learnt but nothing changes</td>
@@ -4496,6 +4514,10 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 <td><a href="combat-and-arts/#hits-land-but-theres-no-camera-shake-or-controller-rumble">Combat and Arts</a></td>
 </tr>
 <tr>
+<td>Hit numbers or hit sounds are missing</td>
+<td><a href="combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Combat and Arts</a></td>
+</tr>
+<tr>
 <td>My new gameplay cue never plays</td>
 <td><a href="combat-and-arts/#my-new-gameplay-cue-never-plays">Combat and Arts</a></td>
 </tr>
@@ -4543,6 +4565,10 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 <td><a href="enemies-and-ai/#an-enemy-ignores-the-party-and-walks-past">Enemies and AI</a></td>
 </tr>
 <tr>
+<td>An enemy never patrols</td>
+<td><a href="enemies-and-ai/#an-enemy-never-patrols">Enemies and AI</a></td>
+</tr>
+<tr>
 <td>An enemy never uses its Arts, or uses one and never the other</td>
 <td><a href="enemies-and-ai/#an-enemy-never-uses-its-arts-at-all">Enemies and AI</a></td>
 </tr>
@@ -4557,6 +4583,10 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 <tr>
 <td>A Toppled or Dazed enemy stands still instead of falling, or keeps attacking</td>
 <td><a href="enemies-and-ai/#a-toppled-or-dazed-enemy-stands-still-instead-of-falling-or-keeps-attacking">Enemies and AI</a></td>
+</tr>
+<tr>
+<td>An enemy slides sideways or backwards in an idle or forward-running pose</td>
+<td><a href="enemies-and-ai/#an-enemy-slides-sideways-or-backwards-in-an-idle-or-forward-running-pose">Enemies and AI</a></td>
 </tr>
 <tr>
 <td>A defeated enemy drops no chest, or the chest opens empty</td>
@@ -4609,6 +4639,10 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 <td>A character spawns without its starting weapon</td>
 <td><a href="items-and-equipment/#a-character-spawns-without-its-starting-weapon">Items and equipment</a></td>
 </tr>
+<tr>
+<td>An item's name is not in its rarity colour</td>
+<td><a href="items-and-equipment/#an-items-name-is-not-in-its-rarity-colour">Items and equipment</a></td>
+</tr>
 </tbody>
 </table>
 <h2 id="animation">Animation<a class="headerlink" href="#animation" title="Permanent link">&para;</a></h2>
@@ -4656,6 +4690,22 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 <td>The idle break never plays, or an armed stance plays the unarmed fidget</td>
 <td><a href="animation/#the-idle-break-never-plays-or-an-armed-stance-plays-the-unarmed-fidget">Animation</a></td>
 </tr>
+<tr>
+<td>A feminine or armed character stands in the masculine unarmed idle, but moves correctly</td>
+<td><a href="animation/#a-feminine-or-armed-character-stands-in-the-masculine-unarmed-idle-but-moves-correctly">Animation</a></td>
+</tr>
+<tr>
+<td>A character's own Topple (or flinch, block, dodge, death) never plays; the shared clip does</td>
+<td><a href="animation/#a-characters-own-topple-or-flinch-block-dodge-death-never-plays-the-shared-clip-does">Animation</a></td>
+</tr>
+<tr>
+<td>Hits knock a character back but its flinch barely shows, or a hit cuts its swing short</td>
+<td><a href="animation/#hits-knock-a-character-back-but-its-flinch-barely-shows-or-a-hit-cuts-its-swing-short">Animation</a></td>
+</tr>
+<tr>
+<td>A companion's face never changes expression, or one expression never shows</td>
+<td><a href="animation/#a-companions-face-never-changes-expression-or-one-expression-never-shows">Animation</a></td>
+</tr>
 </tbody>
 </table>
 <h2 id="ui-and-input">UI and input<a class="headerlink" href="#ui-and-input" title="Permanent link">&para;</a></h2>
@@ -4674,6 +4724,22 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 <tr>
 <td>A button does nothing, even though its input action is mapped</td>
 <td><a href="ui-and-input/#a-button-does-nothing-even-though-its-input-action-is-mapped">UI and input</a></td>
+</tr>
+<tr>
+<td>One press of a button also opens the menu</td>
+<td><a href="ui-and-input/#one-press-of-a-button-also-opens-the-menu">UI and input</a></td>
+</tr>
+<tr>
+<td>Holding a trigger switches at once instead of opening the party cursor</td>
+<td><a href="ui-and-input/#holding-a-trigger-switches-at-once-instead-of-opening-the-party-cursor">UI and input</a></td>
+</tr>
+<tr>
+<td>Tapping a trigger shows "Can't switch"</td>
+<td><a href="ui-and-input/#tapping-a-trigger-shows-cant-switch">UI and input</a></td>
+</tr>
+<tr>
+<td>The triggers do nothing at all</td>
+<td><a href="ui-and-input/#the-triggers-do-nothing-at-all">UI and input</a></td>
 </tr>
 <tr>
 <td>The character jumps or acts while a menu is open, or when it closes</td>
@@ -4759,6 +4825,10 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 <td><a href="world-and-maps/#footsteps-sound-like-concrete-on-grass">World and maps</a></td>
 </tr>
 <tr>
+<td>A map plays no music, or the music stops as you walk</td>
+<td><a href="world-and-maps/#a-map-plays-no-music-or-the-music-stops-as-you-walk">World and maps</a></td>
+</tr>
+<tr>
 <td>Pack assets are missing when the project is opened on another machine</td>
 <td><a href="world-and-maps/#pack-assets-are-missing-when-the-project-is-opened-on-another-machine">World and maps</a></td>
 </tr>
@@ -4814,42 +4884,6 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 </thead>
 <tbody>
 <tr>
-<td>The build says it succeeded, but my C++ change isn't in the game</td>
-<td><a href="build-and-editor/#the-build-says-it-succeeded-but-my-c-change-isnt-in-the-game">Build and editor</a></td>
-</tr>
-<tr>
-<td>The C++ build fails inside the VRM4U plugin</td>
-<td><a href="build-and-editor/#the-c-build-fails-inside-the-vrm4u-plugin">Build and editor</a></td>
-</tr>
-<tr>
-<td>Linker error "unresolved external symbol" for a Lyra class</td>
-<td><a href="build-and-editor/#linker-error-unresolved-external-symbol-for-a-lyra-class">Build and editor</a></td>
-</tr>
-<tr>
-<td>A compile error points into a <code>.gen.cpp</code> file I never wrote</td>
-<td><a href="build-and-editor/#a-compile-error-points-into-a-gencpp-file-i-never-wrote">Build and editor</a></td>
-</tr>
-<tr>
-<td>A gameplay tag lookup in C++ returns an empty tag</td>
-<td><a href="build-and-editor/#a-gameplay-tag-lookup-in-c-returns-an-empty-tag">Build and editor</a></td>
-</tr>
-<tr>
-<td>Everything works in Play-in-Editor but a standalone or packaged game crashes on launch</td>
-<td><a href="build-and-editor/#everything-works-in-play-in-editor-but-a-standalone-or-packaged-game-crashes-on-launch">Build and editor</a></td>
-</tr>
-<tr>
-<td>A packaged game halts on the title screen with "breaking Disregard for GC assumptions"</td>
-<td><a href="build-and-editor/#a-packaged-game-halts-on-the-title-screen-with-breaking-disregard-for-gc-assumptions">Build and editor</a></td>
-</tr>
-<tr>
-<td>The editor builds, but the packaged game fails to compile</td>
-<td><a href="build-and-editor/#the-editor-builds-but-the-packaged-game-fails-to-compile">Build and editor</a></td>
-</tr>
-<tr>
-<td>My replacement screen works in the editor, but the packaged game shows the shipped one</td>
-<td><a href="build-and-editor/#my-replacement-screen-works-in-the-editor-but-the-packaged-game-shows-the-shipped-one">Build and editor</a></td>
-</tr>
-<tr>
 <td>Play loads the wrong experience, whatever the map's World Settings say</td>
 <td><a href="build-and-editor/#play-loads-the-wrong-experience-whatever-the-maps-world-settings-say">Build and editor</a></td>
 </tr>
@@ -4864,6 +4898,42 @@ that does not explain it, see <a href="reporting-bugs/">Reporting a bug</a>.</p>
 <tr>
 <td>A base Blueprint I made by duplicating a character won't compile after reparenting</td>
 <td><a href="build-and-editor/#a-base-blueprint-i-made-by-duplicating-a-character-wont-compile-after-reparenting">Build and editor</a></td>
+</tr>
+<tr>
+<td>My replacement screen works in the editor, but the packaged game shows the shipped one</td>
+<td><a href="build-and-editor/#my-replacement-screen-works-in-the-editor-but-the-packaged-game-shows-the-shipped-one">Build and editor</a></td>
+</tr>
+<tr>
+<td>The build says it succeeded, but my C++ change isn't in the game (C++)</td>
+<td><a href="build-and-editor/#the-build-says-it-succeeded-but-my-c-change-isnt-in-the-game">Build and editor</a></td>
+</tr>
+<tr>
+<td>The C++ build fails inside the VRM4U plugin (C++)</td>
+<td><a href="build-and-editor/#the-c-build-fails-inside-the-vrm4u-plugin">Build and editor</a></td>
+</tr>
+<tr>
+<td>Linker error "unresolved external symbol" for a Lyra class (C++)</td>
+<td><a href="build-and-editor/#linker-error-unresolved-external-symbol-for-a-lyra-class">Build and editor</a></td>
+</tr>
+<tr>
+<td>A compile error points into a <code>.gen.cpp</code> file I never wrote (C++)</td>
+<td><a href="build-and-editor/#a-compile-error-points-into-a-gencpp-file-i-never-wrote">Build and editor</a></td>
+</tr>
+<tr>
+<td>A gameplay tag lookup in C++ returns an empty tag (C++)</td>
+<td><a href="build-and-editor/#a-gameplay-tag-lookup-in-c-returns-an-empty-tag">Build and editor</a></td>
+</tr>
+<tr>
+<td>Everything works in Play-in-Editor but a standalone or packaged game crashes on launch (C++)</td>
+<td><a href="build-and-editor/#everything-works-in-play-in-editor-but-a-standalone-or-packaged-game-crashes-on-launch">Build and editor</a></td>
+</tr>
+<tr>
+<td>A packaged game halts on the title screen with "breaking Disregard for GC assumptions" (C++)</td>
+<td><a href="build-and-editor/#a-packaged-game-halts-on-the-title-screen-with-breaking-disregard-for-gc-assumptions">Build and editor</a></td>
+</tr>
+<tr>
+<td>The editor builds, but the packaged game fails to compile (C++)</td>
+<td><a href="build-and-editor/#the-editor-builds-but-the-packaged-game-fails-to-compile">Build and editor</a></td>
 </tr>
 </tbody>
 </table>

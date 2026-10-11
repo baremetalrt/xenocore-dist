@@ -3190,6 +3190,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3229,10 +3240,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4390,6 +4401,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4429,10 +4451,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4480,13 +4502,24 @@
 
 <h1 id="animation">Animation<a class="headerlink" href="#animation" title="Permanent link">&para;</a></h1>
 <p><em>All · 15 min read · Last tested: never</em></p>
-<p>Every party character animates on the UE5 Mannequin skeleton through one host Animation Blueprint,
-<code>ABP_XenoCore_Base</code>. The host owns the <strong>state machine</strong>; which <strong>clips</strong> play in each state comes
-from a <strong>linked animation layer</strong> chosen by what the character is holding and by a masculine or
-feminine style tag. The C++ parent of all of them, <code>UXenoCoreAnimInstance</code>, works out speed,
-direction, battle stance and idle breaks once, off the game thread, so no Blueprint has to. The idea
-that makes the rest make sense: <strong>the host is shared and never edited per character; a new weapon
-or stance is a new layer child that only swaps clips.</strong></p>
+<p><strong>What the player sees:</strong> characters walk and run with smooth blending, turn their upper body
+toward a locked enemy while their legs keep running, switch to a sword stance when a battle starts,
+fidget when left standing, flinch without dropping their swing, and (on VRoid characters) blink,
+pull faces and turn their heads toward whoever they are looking at.</p>
+<p>Every party character shares one host Animation Blueprint, <code>Characters/Player/ABP_XenoCore_Base</code>,
+which holds the <strong>state machine</strong> (Idle, Move, the jump states). Which <strong>clips</strong> each state plays
+come from a <strong>linked animation layer</strong>: a small Animation Blueprint chosen by what the character
+holds and by its masculine or feminine style. <strong>The host is shared and never edited per character;
+a new weapon or stance is a new layer child that only swaps clips</strong>, set in its Asset Override
+editor with no graph editing.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Masculine or feminine movement for a character</strong>: <a href="../../recipes/animation-style/">Choose an animation style</a>.</li>
+<li><strong>A new weapon stance</strong>: <a href="../../recipes/add-weapon/">Add a weapon</a> (see <a href="#extending-it">Extending it</a>).</li>
+<li><strong>One character's own flinch, topple, dodge, death or victory pose</strong>: <a href="../../recipes/character-combat-animations/">Give a character its own combat animations</a>.</li>
+<li><strong>One character's idle fidgets and resting faces</strong>: <a href="../../recipes/companion-personality/">Give a character its own idle breaks and faces</a>.</li>
+<li><strong>Stride, turn and head-look limits</strong>: settings on the host Animation Blueprint (<a href="#settings">Settings</a>).</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4498,9 +4531,9 @@ or stance is a new layer child that only swaps clips.</strong></p>
 </thead>
 <tbody>
 <tr>
-<td>Anim instance (C++)</td>
-<td><code>UXenoCoreAnimInstance</code></td>
-<td>Ground speed, direction, stride scale, battle stance, target twist, head turn, idle-break timing and choice</td>
+<td>Anim instance (C++ parent of every XenoCore Animation Blueprint)</td>
+<td><code>XenoCoreAnimInstance</code></td>
+<td>Works out ground speed, direction, stride scale, battle stance, target twist, head turn and idle breaks, so no Blueprint graph has to</td>
 </tr>
 <tr>
 <td>Host ABP</td>
@@ -4539,7 +4572,7 @@ or stance is a new layer child that only swaps clips.</strong></p>
 </tr>
 <tr>
 <td>Face (VRoid only)</td>
-<td><code>UXenoCoreFaceAnimInstance</code> · <code>Characters/VRoid/&lt;Name&gt;/Animation/ABP_XenoCore_VRoidRetarget_*</code></td>
+<td><code>Characters/VRoid/&lt;Name&gt;/Animation/ABP_XenoCore_VRoidRetarget_*</code></td>
 <td>Blinks, expressions and mouth on a VRoid body</td>
 </tr>
 <tr>
@@ -4549,19 +4582,19 @@ or stance is a new layer child that only swaps clips.</strong></p>
 </tr>
 <tr>
 <td>Anim profile</td>
-<td><code>UXenoCoreCharacterAnimProfile</code> · <code>Characters/VRoid/&lt;Name&gt;/DA_XenoCore_AnimProfile_VRoid_*</code></td>
+<td><code>Characters/VRoid/&lt;Name&gt;/DA_XenoCore_AnimProfile_VRoid_*</code></td>
 <td>One character's own reaction, death and victory clips, idle breaks and resting faces</td>
 </tr>
 <tr>
 <td>Enemy ABP</td>
 <td><code>Characters/Enemies/Minion/ABP_XenoCore_Minion_Melee</code></td>
-<td>Built on <code>UXenoCoreAnimInstance</code>, not on the host ABP. Moves on a 2D blend space, <code>Minion/Animations/BS_XenoCore_Minion_Locomotion2D</code> (direction × speed), so a minion circling sideways in a fight plays side and back jogs</td>
+<td>Built on the same C++ parent, not on the host ABP. Moves on a 2D blend space, <code>Minion/Animations/BS_XenoCore_Minion_Locomotion2D</code> (direction × speed), so a minion circling sideways in a fight plays side and back jogs</td>
 </tr>
 </tbody>
 </table>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
-<p><strong>Every frame.</strong> <code>UXenoCoreAnimInstance</code> captures the pawn's velocity and rotation on the game
-thread, then on a worker thread computes:</p>
+<p><strong>Every frame.</strong> The C++ parent works out these values, which the graphs read (you can see them in
+the Animation Blueprint's <strong>Variables</strong> list):</p>
 <ul>
 <li><strong>Ground Speed</strong> (horizontal only) and a smoothed copy; <strong>Is Moving</strong> above <strong>Moving Speed
   Threshold</strong> (<code>20</code>).</li>
@@ -4582,17 +4615,12 @@ function, such as <code>FullBody_Move</code>, which plays a <strong>2D blend spa
 the other, with walk clips at 200 and jog at 400, so both walking and running blend continuously.</p>
 <!-- VERIFY: the host state machine's states and transition rules in ABP_XenoCore_Base. -->
 
-<p><strong>Choosing the layer.</strong> The weapon instance holds two sets, <strong>Equipped Anim Set</strong> and <strong>Uneuipped
-Anim Set</strong> (Lyra's spelling), each a list of layer classes with the tags that select them. When the
-weapon is drawn or stowed, <code>SetDrawn</code>:</p>
-<ol>
-<li>Collects the character's cosmetic tags (from its style part).</li>
-<li>Calls Lyra's <code>PickBestAnimLayer</code> on the right set with those tags, so a feminine character gets
-   the feminine unarmed layer.</li>
-<li>Calls <code>LinkAnimClassLayers</code> with the result.</li>
-<li>Requests an inertialization blend on the <code>DefaultGroup</code> slot group for <strong>Anim Layer Blend Time</strong>,
-   so the change of stance blends instead of popping.</li>
-</ol>
+<p><strong>Choosing the layer.</strong> The weapon instance Blueprint holds two sets, <strong>Equipped Anim Set</strong> and
+<strong>Uneuipped Anim Set</strong> (Lyra's spelling), each a list of layer classes with the tags that select
+them. When the weapon is drawn or stowed, the set for that state is searched for the layer whose
+tags best match the character's style tags (so a feminine character gets the feminine unarmed
+layer), that layer is linked, and the change of stance blends over <strong>Anim Layer Blend Time</strong>
+instead of popping.</p>
 <p>If nothing is linked, each layer node falls back to <code>ABP_XenoCore_UnarmedAnimLayers</code>.</p>
 <p><strong>Masculine and feminine.</strong> A party pawn's <strong>Cosmetic Part</strong> (on <code>B_XenoCore_PartyMember_Base</code>)
 adds a style part carrying <code>Cosmetic.AnimationStyle.Masculine</code> or <code>.Feminine</code>. The same tag picks
@@ -4621,7 +4649,7 @@ state machine. Attacks and Arts use the slots of the default slot group (<code>D
 and sheathe use <code>UpperBody</code>. A <strong>flinch</strong> plays <strong>additively</strong> on the <code>AdditiveHitReact</code> slot, which
 sits in its own group, <code>AdditiveGroup</code>: it is layered on top of whatever the body is doing, so a hit
 reads while the character walks or swings, and it never stops the swing. A character does not flinch
-while drawing because the flinch ability refuses while <code>Status.XenoCore.Arming</code> is held.</p>
+while drawing or sheathing.</p>
 <p>A <strong>miss</strong> plays a duck or a dodge, picked at random from the evade ability's <strong>Random Montages</strong>
 (<code>GA_XenoCore_Evade</code>), on the <code>Defence</code> slot. In battle the arms are taken back from the stance under
 that slot, so the body ducks while the hands stay on the sword; unarmed, the clip's own arms play.</p>
@@ -4639,8 +4667,8 @@ there cuts the attack short and the next swing cuts the flinch off. Check it in 
 <strong>Anim Slot Manager</strong>: <code>AdditiveHitReact</code> belongs under <code>AdditiveGroup</code>, as on <code>SK_Mannequin</code>.</p>
 </div>
 <p><strong>Per-character combat clips.</strong> Reaction and death montages come from the reaction ability and the
-pawn by default, shared by everyone who has them. A character's <strong>Anim Profile</strong>
-(<code>UXenoCoreCharacterAnimProfile</code>, on the pawn under <strong>XenoCore › Animation</strong>) overrides them for that
+pawn by default, shared by everyone who has them. A character's <strong>Anim Profile</strong> (a data asset, set
+on the pawn under <strong>XenoCore › Animation</strong>) overrides them for that
 character only, slot by slot: an empty slot keeps the shared clip. Each reaction ability names the
 profile row it reads with its <strong>Profile Key</strong> (<code>Anim.XenoCore.Reaction.Flinch</code>, <code>.Topple</code>, <code>.Daze</code>,
 <code>.Guard</code>, <code>.Evade</code>, <code>.Recoil</code>). Walking, running and idles are not in the profile; they come from
@@ -4648,7 +4676,8 @@ the style and the weapon, as above. See
 <a href="../../recipes/character-combat-animations/">Give a character its own combat animations</a>.</p>
 <p><strong>Stride warping</strong> happens once, in the host ABP, driven by <strong>Stride Scale</strong>.</p>
 <p><strong>VRoid faces.</strong> A VRoid party member runs the Mannequin animation on an invisible body; its VRoid
-mesh copies the pose, and <code>UXenoCoreFaceAnimInstance</code> writes face curves:</p>
+mesh copies the pose, and its retarget Animation Blueprint (<code>ABP_XenoCore_VRoidRetarget_*</code>) drives
+the face:</p>
 <ul>
 <li>a random blink, timed per character;</li>
 <li>an expression chosen from the character's gameplay tags by <strong>Expression Rules</strong>, first matching
@@ -4661,7 +4690,7 @@ mesh copies the pose, and <code>UXenoCoreFaceAnimInstance</code> writes face cur
 <p>An expression is named by a <strong>row</strong> of the face's <strong>Expression Table</strong>, which defaults to
 <code>Characters/Core/Face/DT_XenoCore_FaceExpressions</code>. It ships 19 rows: Happy, Smile, Laugh, Giggle, Wink,
 Smug, Annoyed, Angry, Determined, Sad, Worried, Surprised, Shocked, Relaxed, Bored, Sleepy, Yawn,
-Thinking and Pained. Each row (<code>XenoCoreFaceExpressionRow</code>) is a <strong>Curves</strong> map of face curve to
+Thinking and Pained. Each row is a <strong>Curves</strong> map of face curve to
 weight, built from the VRM presets (<code>happy</code>, <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>, <code>aa</code>, <code>ih</code>, <code>ou</code>,
 <code>ee</code>, <code>oh</code>, <code>blink</code>, <code>blinkLeft</code>, <code>blinkRight</code>). <strong>Suppress Blink</strong> stops the blink while it shows,
 and <strong>Pulse Curve</strong>, <strong>Pulse Weight</strong> and <strong>Pulse Rate</strong> add an oscillating curve on top, such as a
@@ -4681,7 +4710,7 @@ twisted toward a battle target, that twist is taken off first, so the head does 
 <p>The head returns forward while the character holds any of <strong>Look Blocked By Tags</strong> (downed,
 celebrating, toppled, dazed by default), because a clip is driving the head then. A
 player-controlled body has no gaze and always looks straight ahead.</p>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -4768,7 +4797,7 @@ pawn outside XenoCore's character classes still disappears. A party pawn that se
 Part</strong> must not add a part at all. See <a href="../characters/">Characters</a>.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently: an anim property without Blueprint Read Only</p>
+<p class="admonition-title">For programmers. Fails silently: an anim property without Blueprint Read Only</p>
 <p>If you add a C++ property to an anim instance and drive an anim graph pin from it, it must be
 <strong>Blueprint Read Only</strong> (or Read Write). Otherwise the Animation Blueprint fails to compile with
 <strong>no message anywhere</strong>, and Play in Editor just says a Blueprint failed to compile.</p>
@@ -4809,12 +4838,24 @@ when the stance changes, with no error.</p>
 <li><strong>Never recreate <code>ABP_XenoCore_UnarmedAnimLayers</code>.</strong> The host's layer nodes use it as their
   fallback class; a new asset under the same name orphans them. Duplicate it instead.</li>
 <li>Do not reparent an Animation Blueprint to another Animation Blueprint to share logic: a child
-  Animation Blueprint loses its own graph. Share logic through <code>UXenoCoreAnimInstance</code> in C++, or use
-  override-only layer children as above.</li>
-<li>Keep gameplay-tag-driven variables on the <strong>main</strong> anim instance; on a linked layer they stop
+  Animation Blueprint loses its own graph. Use override-only layer children as above; logic shared
+  by every Animation Blueprint belongs in the C++ parent, which is a programmer's job.</li>
+<li>Keep gameplay-tag-driven variables on the host Animation Blueprint; on a linked layer they stop
   updating after the layer is linked.</li>
 </ul>
+<details class="note">
+<summary>For programmers: classes and calls</summary>
+<p>The C++ parent is <code>UXenoCoreAnimInstance</code>: it captures velocity and rotation on the game thread
+and computes the values above in the thread-safe update. The face is <code>UXenoCoreFaceAnimInstance</code>,
+the profile <code>UXenoCoreCharacterAnimProfile</code>, an expression row <code>FXenoCoreFaceExpressionRow</code>. On a
+draw or stow, the weapon instance's <code>SetDrawn</code> collects the cosmetic tags, calls Lyra's
+<code>PickBestAnimLayer</code>, then <code>LinkAnimClassLayers</code>, then
+<code>RequestSlotGroupInertialization("DefaultGroup", AnimLayerBlendTime)</code>. The flinch ability refuses
+while <code>Status.XenoCore.Arming</code> is held.</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>Own host, not Lyra's.</strong> Lyra's locomotion enters Start/Stop states on input and commits to them
   for up to a second, which feels unresponsive for this style of game; its state machine lives in
@@ -4830,6 +4871,7 @@ when the stance changes, with no error.</p>
 <li><strong>Idle breaks in the anim stack</strong>, where Lyra keeps its own, because the graph already knows
   whether the Idle state is active; an ability polling for it was heavier and less exact.</li>
 </ul>
+</details>
 
 
 

@@ -4588,8 +4588,8 @@
   cannot die.</code></li>
 <li>Its pawn data's ability sets grant no death ability. Nothing is logged.</li>
 <li>It is possessed by the wrong AI controller. Lyra only lets a character damage another on a
-  different team, and an enemy gets its team from its controller. Only <code>AXenoCoreEnemyController</code>
-  (and Blueprints made from it, such as <code>BP_AIC_XenoCore_Enemy</code>) supplies one. A plain AI
+  different team, and an enemy gets its team from its controller. Only
+  <code>Characters/Enemies/Core/BP_AIC_XenoCore_Enemy</code> and its children supply one. A plain AI
   controller leaves the enemy on no team, and every hit on it is applied with zero effect.
   Nothing is logged.</li>
 </ul>
@@ -4623,7 +4623,7 @@ Ether Defence are flat points subtracted from the attacker's stat. On an <strong
 <strong>fractions</strong> from <code>0</code> to <code>0.9</code>: damage is multiplied by <code>1 - defence</code>. A value typed as points,
 such as <code>40</code>, is clamped to <code>0.9</code>, so the enemy shrugs off 90% of every hit.</p>
 <p><strong>Fix:</strong> set enemy defence rows in <code>CT_XenoCore_EnemyStats</code> as fractions, for example <code>0.15</code> for
-15%. The cap is <strong>Max Defence Fraction</strong> on the damage execution, <code>0.9</code> by default.</p>
+15%. The 90% cap is fixed in C++.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/enemy-statline/">Author an enemy statline</a>.</p>
 <h3 id="an-enemy-ignores-the-party-and-walks-past">An enemy ignores the party and walks past<a class="headerlink" href="#an-enemy-ignores-the-party-and-walks-past" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> one of three things.</p>
@@ -4655,7 +4655,8 @@ enemy Blueprint's <strong>Arts</strong> list (<strong>XenoCore › Enemy › Art
   Toppled). With no Break Art on the enemy, it is never used.</li>
 <li>Two Arts share one <strong>Cooldown Tag</strong>, so using one puts both on cooldown.</li>
 </ul>
-<p><strong>Fix:</strong> type <code>log LogXenoAI Verbose</code> in the console and fight the enemy. Each decision prints as
+<p><strong>Fix:</strong> press the backquote key (<code>`</code>) in Play to open the console, type
+<code>log LogXenoAI Verbose</code>, and fight the enemy. Each decision prints as
 <code>&lt;enemy&gt;: decision - &lt;Art&gt;=&lt;score&gt; ...</code>. An Art that never appears there is not on the body or not
 usable; an Art that appears but never wins needs a higher <strong>AI Priority</strong> or a condition bonus. Give
 every Art its own montage and its own <strong>Cooldown Tag</strong>.</p>
@@ -4691,8 +4692,8 @@ Keep <strong>Try Select Children In Order</strong> only on states that have chil
   still plays the minion's montage on a different skeleton. The rule that stops it acting is on the
   auto-attack, so it cannot act, but nothing plays the fall.</li>
 <li><strong>Keeps attacking:</strong> its auto-attack Blueprint sets its own <strong>Incapacitated Tags</strong>
-  (<strong>XenoCore › AutoAttack</strong>). A Blueprint list replaces the C++ default (Topple and Daze) rather
-  than adding to it, and an empty list turns the rule off.</li>
+  (<strong>XenoCore › AutoAttack</strong>). A list set on a Blueprint replaces the default (Topple and Daze)
+  rather than adding to it, and an empty list turns the rule off.</li>
 </ul>
 <p><strong>Fix:</strong> grant copies of <code>GA_XenoCore_Minion_Topple</code> and <code>GA_XenoCore_Minion_Daze</code> with your
 enemy's montages, with <strong>Hold Until Montage Ends</strong> and <strong>Hold While Trigger Tag Present</strong> on. Reset
@@ -4713,7 +4714,7 @@ clip, or half-blends into idle, while the body moves sideways. The minion's anim
 <li>Give the enemy a 2D blend space with <strong>Direction</strong> (-180 to 180) on the horizontal axis and
    speed on the vertical axis, with forward, left, right and back clips. Copy the layout of
    <code>Characters/Enemies/Minion/Animations/BS_XenoCore_Minion_Locomotion2D</code>.</li>
-<li>In its anim Blueprint (parented to <code>XenoCoreAnimInstance</code>), drive the blend space's two axes
+<li>In its Animation Blueprint (whose parent class is <code>XenoCoreAnimInstance</code>), drive the blend space's two axes
    from the <strong>Direction</strong> and <strong>Ground Speed</strong> variables.</li>
 <li>Drive the Idle and Move transitions from <strong>Ground Speed</strong> too, with a gap between them: enter
    Move above <code>20</code>, return to Idle below <code>8</code>. One threshold both ways makes the legs flicker between

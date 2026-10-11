@@ -4619,17 +4619,16 @@ uses a third animation style you create, with its own idle, locomotion and idle 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../add-party-member/">Add a party member</a></li>
-<li><a href="../../getting-started/glossary/">Glossary</a>: <strong>Gameplay tag</strong>.</li>
 </ul>
 <h2 id="how-the-style-is-chosen">How the style is chosen<a class="headerlink" href="#how-the-style-is-chosen" title="Permanent link">&para;</a></h2>
-<p>One gameplay tag decides both the body and the movement clips:</p>
+<p>One <a href="../../getting-started/glossary/">gameplay tag</a> decides both the body and the movement clips:</p>
 <ol>
 <li>The pawn Blueprint's <strong>Cosmetic Part</strong> names a small actor, <code>Characters/Core/Cosmetics/B_XenoCore_Cosmetic_Masculine</code>
    or <code>B_XenoCore_Cosmetic_Feminine</code>. It has no mesh; it only carries a tag,
    <code>Cosmetic.AnimationStyle.Masculine</code> or <code>.Feminine</code>.</li>
 <li>On <strong>Begin Play</strong> the pawn adds that part. The pawn's <strong>Body Meshes</strong> rules read the tag and
    pick the body: Masculine gives <code>SKM_Manny</code>, Feminine gives <code>SKM_Quinn</code>.</li>
-<li>When the weapon is drawn or sheathed, the weapon instance reads the same tag and picks an
+<li>When the weapon is <a href="../../getting-started/glossary/">drawn or sheathed</a>, the weapon instance reads the same tag and picks an
    <strong>animation layer</strong>: a small anim Blueprint holding the idle and locomotion clips.</li>
 </ol>
 <table>
@@ -4675,7 +4674,15 @@ field entirely (the pawn then keeps its own mesh). Saving the pawn Blueprint sho
 naming the part and its tags.</p>
 </div>
 <h2 id="change-a-styles-idle-break">Change a style's idle break<a class="headerlink" href="#change-a-styles-idle-break" title="Permanent link">&para;</a></h2>
-<p>A character standing still plays an occasional fidget. It is set on each layer.</p>
+<p>A character standing still plays an occasional fidget. Its default is set on each layer.</p>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: the character's anim profile wins</p>
+<p>If the character's anim profile lists <strong>Idle Breaks</strong> (sheathed) or <strong>Armed Idle Breaks</strong> (drawn),
+those clips play instead of the layer's <strong>Idle Break Anim</strong>, and editing the layer changes nothing.
+Every VRoid party member's profile ships with its own idle breaks. To change a VRoid member's
+fidgets, edit its profile: see <a href="../character-combat-animations/">Give a character its own combat animations</a>.
+The layer's <strong>Idle Break Delay</strong> and <strong>Idle Break Jitter</strong> still set the timing.</p>
+</div>
 <ol>
 <li>Open <code>ABP_XenoCore_UnarmedAnimLayers</code> (or the feminine or greatsword layer) and click
    <strong>Class Defaults</strong>.</li>
@@ -4691,13 +4698,18 @@ naming the part and its tags.</p>
 <h2 id="make-a-new-style">Make a new style<a class="headerlink" href="#make-a-new-style" title="Permanent link">&para;</a></h2>
 <p>This example adds a <code>Heavy</code> style with its own idle and walk.</p>
 <h3 id="1-the-tag">1. The tag<a class="headerlink" href="#1-the-tag" title="Permanent link">&para;</a></h3>
-<p>Add the gameplay tag <code>Cosmetic.AnimationStyle.Heavy</code> in <strong>Project Settings › Gameplay Tags</strong>,
-in a tag file of your own.</p>
+<ol>
+<li>Open <strong>Project Settings › Project › Gameplay Tags</strong>.</li>
+<li>Click <strong>Add New Gameplay Tag</strong>, enter <code>Cosmetic.AnimationStyle.Heavy</code>, and pick a tag source
+   (ini file) of your own, not one of XenoCore's.</li>
+</ol>
 <h3 id="2-the-cosmetic-part">2. The cosmetic part<a class="headerlink" href="#2-the-cosmetic-part" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Duplicate <code>B_XenoCore_Cosmetic_Masculine</code> into <code>MyGame/Characters</code> as <code>B_Cosmetic_Heavy</code>.</li>
-<li>In its <strong>Class Defaults</strong>, change its tag to <code>Cosmetic.AnimationStyle.Heavy</code>. It must carry
-   only that one tag.</li>
+<li>In <code>Characters/Core/Cosmetics</code>, duplicate <code>B_XenoCore_Cosmetic_Masculine</code> into <code>MyGame/Characters</code>
+   as <code>B_Cosmetic_Heavy</code>.</li>
+<li>Open it, click <strong>Class Defaults</strong>, and in <strong>Static Gameplay Tags</strong> replace
+   <code>Cosmetic.AnimationStyle.Masculine</code> with <code>Cosmetic.AnimationStyle.Heavy</code>. It must carry only that
+   one tag. <strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
 <!-- VERIFY: label of the tag container on ALyraTaggedActor (Static Gameplay Tags) -->
 
@@ -4730,13 +4742,15 @@ be seen in the asset. If you make a mistake, delete the layer and duplicate it a
    <code>Cosmetic.AnimationStyle.Heavy</code>, <strong>Layer</strong> <code>ABP_HeavyAnimLayers</code>.</li>
 <li>In <strong>Equipped Anim Set</strong>, add a Heavy rule only if you made a drawn-weapon layer too.
    Otherwise the default greatsword layer is used.</li>
+<li>Open the pawn Blueprint you want to use the style. In the <strong>Components</strong> panel select its
+   character parts component, and under <strong>Body Meshes › Mesh Rules</strong> add an entry: <strong>Required Tags</strong>
+   <code>Cosmetic.AnimationStyle.Heavy</code>, <strong>Mesh</strong> the body you want. <strong>Compile</strong>.</li>
 <li>
-<p>Open the pawn Blueprint you want to use the style. In its character parts component, add a
-   <strong>Body Meshes</strong> rule for <code>Cosmetic.AnimationStyle.Heavy</code>, and set <strong>Cosmetic Part</strong> to
-   <code>B_Cosmetic_Heavy</code>.</p>
+<p>In the same Blueprint's <strong>Class Defaults</strong>, set <strong>Cosmetic Part</strong> to <code>B_Cosmetic_Heavy</code>.
+   <strong>Compile</strong> and <strong>Save</strong>.</p>
 </li>
 <li>
-<p>If a weapon's <strong>type</strong> (<code>Weapons/Types/DA_XenoCore_WeaponType_*</code>) sets <strong>Armed Layers</strong> or
+<p>If a weapon's <a href="../../getting-started/glossary/">type</a> (<code>Weapons/Types/DA_XenoCore_WeaponType_*</code>) sets <strong>Armed Layers</strong> or
    <strong>Sheathed Layers</strong>, those win over the weapon instance's anim sets: add the Heavy rule there too.
    The shipped Greatsword type leaves both empty.</p>
 </li>
@@ -4768,6 +4782,28 @@ guard and turns invisible. Saving a pawn with no <strong>Default Mesh</strong> s
 <li>Engage an enemy. The drawn-weapon layer takes over, and blends back when you sheathe.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The fidget you set never plays</td>
+<td>The character's anim profile has its own <strong>Idle Breaks</strong>, which win. See the warning under <em>Change a style's idle break</em>.</td>
+</tr>
+<tr>
+<td>The style's walk never appears</td>
+<td>A weapon instance (or weapon type) has no layer rule for the tag. See step 4.</td>
+</tr>
+<tr>
+<td>The character turns invisible or takes the wrong body</td>
+<td>The tag has no <strong>Body Meshes</strong> rule on that pawn, or <strong>Default Mesh</strong> is empty.</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition warning">
 <p class="admonition-title">The layer swaps with a visible pop</p>
 <p>The swap is blended by an inertialization request on the <code>DefaultGroup</code> slot group. A layer

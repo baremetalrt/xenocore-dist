@@ -4575,6 +4575,14 @@ battle facing. There is no targeting component. The one idea: <strong>the lock a
 object.</strong> The ability is instanced once per pawn, so when the ability ends the target is gone, and
 anything that wants "what am I fighting?" asks the ability through one function,
 <strong>Get Current Target</strong>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> RB (Tab) locks on to the enemy nearest the centre of the screen and steps through
+the others; a diamond marks the target and arrows point to it off screen.</p>
+<p><strong>What you can change, no code:</strong> lock range, when the character faces the target, the
+diamond, arrows and sound, and how far an enemy chases before it gives up. See
+<a href="../../recipes/tune-targeting/">Tune targeting</a> and <a href="#what-you-can-change">What you can change</a>.</p>
+</div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4770,7 +4778,7 @@ character's own ability set. Do not add it to a second set that the same charact
 </tr>
 <tr>
 <td><strong>Require Line Of Sight</strong>, <strong>Require On Screen</strong></td>
-<td>Pins on the graph's <strong>Step Target From</strong> and <strong>Is Target Still Valid</strong> nodes</td>
+<td>Tick boxes on the <strong>Step Target From</strong> and <strong>Is Target Still Valid</strong> nodes inside <code>GA_XenoCore_TargetMode</code> (open it, press <strong>Ctrl+F</strong> to find each node, and tick or untick the pin; then <strong>Compile</strong> and <strong>Save</strong>)</td>
 <td>Which enemies can be acquired and cycled</td>
 </tr>
 <tr>
@@ -4841,6 +4849,8 @@ character's own ability set. Do not add it to a second set that the same charact
   <a href="../party/">Party</a>.</li>
 </ul>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>An ability, not a component.</strong> The lock has a start and an end, input, a HUD and a per-tick poll.
   A gameplay ability already has all of those, and instancing it per pawn makes "one target per
@@ -4855,6 +4865,7 @@ character's own ability set. Do not add it to a second set that the same charact
 <li><strong>Keep off-screen targets, cycle only on-screen ones.</strong> Dropping a lock when the enemy leaves the
   frame would make the arrows useless; cycling to an enemy you cannot see would be confusing.</li>
 </ul>
+</details>
 
 
 

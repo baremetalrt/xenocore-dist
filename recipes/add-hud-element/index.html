@@ -4558,7 +4558,7 @@ named slots, without editing <code>W_XenoCore_HUDLayout</code> or any other Xeno
 </ul>
 <h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
 <p>The HUD layout, <code>UserInterface/HUD/W_XenoCore_HUDLayout</code>, carries five empty <strong>extension points</strong>:
-Lyra's <code>UIExtensionPointWidget</code>, each named by a gameplay tag. Lyra's <strong>Add Widgets</strong> action puts a
+Lyra's <code>UIExtensionPointWidget</code>, each named by a <a href="../../getting-started/glossary/">gameplay tag</a>. Lyra's <strong>Add Widgets</strong> action puts a
 widget into the point whose tag matches. The points are empty and do not take clicks until
 something is added.</p>
 <table>
@@ -4597,14 +4597,14 @@ something is added.</p>
 </tr>
 </tbody>
 </table>
-<p>The tags are declared in XenoCore's C++, so they appear in every tag picker.</p>
+<p>All five tags come with XenoCore, so they appear in every tag picker.</p>
 <!-- VERIFY: that a widget in BottomCenter does not overlap the battle Arts palette in play -->
 
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-make-the-widget">1. Make the widget<a class="headerlink" href="#1-make-the-widget" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In <code>Content/MyGame/UI</code>, create a <strong>Widget Blueprint</strong> named <code>W_MyGame_Clock</code>. Any User Widget
-   works.</li>
+<li>In <code>Content/MyGame/UI</code>, right-click and choose <strong>User Interface › Widget Blueprint</strong>, parent
+   <strong>User Widget</strong>. Name it <code>W_MyGame_Clock</code>.</li>
 <li>Lay it out small: the slot sizes itself to your widget (except <strong>FullScreen</strong>).</li>
 <li>Set anything that must not catch clicks to <strong>Hit Test Invisible</strong>.</li>
 </ol>
@@ -4618,7 +4618,7 @@ collapsing it: a collapsed widget stops ticking and cannot notice when to come b
 <h3 id="2-add-it-with-an-action-set">2. Add it with an action set<a class="headerlink" href="#2-add-it-with-an-action-set" title="Permanent link">&para;</a></h3>
 <p>Keep the addition in your own asset, so a template update cannot remove it.</p>
 <ol>
-<li>In <code>Content/MyGame/Experiences</code>, right-click and create a <strong>Data Asset</strong> of class
+<li>In <code>Content/MyGame/Experiences</code>, right-click and choose <strong>Miscellaneous › Data Asset</strong>, class
    <code>LyraExperienceActionSet</code>. Name it <code>LAS_MyGame_HUD</code>.</li>
 <li>Open it. Under <strong>Actions to Perform</strong>, add an entry and choose <strong>Add Widgets</strong>.</li>
 <li>Under <strong>Widgets</strong>, add a row:<ul>
@@ -4631,10 +4631,11 @@ collapsing it: a collapsed widget stops ticking and cannot notice when to come b
 <li><strong>Save</strong>.</li>
 </ol>
 <h3 id="3-use-the-action-set-in-your-experience">3. Use the action set in your experience<a class="headerlink" href="#3-use-the-action-set-in-your-experience" title="Permanent link">&para;</a></h3>
+<p>An <a href="../../getting-started/glossary/">Experience</a> decides what a map loads, HUD included.</p>
 <ol>
-<li>Duplicate <code>Experiences/B_XenoCore_Experience</code> into <code>Content/MyGame/Experiences</code> if you have not
+<li>In <strong>Plugins › XenoCore Content › Experiences</strong>, duplicate <code>B_XenoCore_Experience</code> into <code>Content/MyGame/Experiences</code> if you have not
    already, and point your maps' <strong>World Settings › Default Gameplay Experience</strong> at the copy.</li>
-<li>In the copy, add <code>LAS_MyGame_HUD</code> to <strong>Action Sets</strong>, beside <code>LAS_XenoCore_HUD</code>.</li>
+<li>Open the copy, click <strong>Class Defaults</strong>, and add <code>LAS_MyGame_HUD</code> to <strong>Action Sets</strong>, beside <code>LAS_XenoCore_HUD</code>.</li>
 <li><strong>Save</strong>.</li>
 </ol>
 <div class="admonition note">
@@ -4657,8 +4658,9 @@ XenoCore HUD's extension points in PIE --></p>
 <p class="admonition-title">Fails silently: the widget never appears</p>
 <p>Nothing is logged when a widget goes to a slot tag no extension point carries. Check, in order:
 the <strong>Slot ID</strong> is one of the five <code>HUD.Slot.XenoCore.*</code> tags exactly; the action set is in the
-<strong>Action Sets</strong> of the experience the map actually uses (World Settings, and no
-<code>ExperienceOverride</code> in <code>Saved/Config</code>); <strong>Widget Class</strong> is set.</p>
+<strong>Action Sets</strong> of the experience the map actually uses (<strong>Window › World Settings ›
+Default Gameplay Experience</strong>); <strong>Widget Class</strong> is set. An <code>ExperienceOverride</code> line in your
+project's <code>Saved/Config</code> files also outranks World Settings; delete it if you find one.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">The widget appears behind everything</p>

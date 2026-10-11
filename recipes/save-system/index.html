@@ -2279,17 +2279,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-c-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. C++ (optional)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rules-that-keep-old-saves-loading" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4556,17 +4545,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-c-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. C++ (optional)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#rules-that-keep-old-saves-loading" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4633,7 +4611,7 @@
 
 
 <h1 id="make-a-system-save">Make a system save<a class="headerlink" href="#make-a-system-save" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 30 min · No code (C++ optional) · Last tested: never</em></p>
+<p><em>Designer · 30 min · No code · Last tested: never</em></p>
 <p><strong>Result:</strong> your own state is written into XenoCore's save file and comes back on <strong>Continue</strong> or
 <strong>Load</strong>, with old save files still loading. The worked example is a lever that stays pulled; the
 same steps save a bestiary, a crafting bench or anything else, without editing XenoCore.</p>
@@ -4747,9 +4725,9 @@ variable, change what a number means), return <code>2</code>, and in <strong>On 
 that arrived with <strong>Saved Version</strong> <code>1</code>.</p>
 <p>Adding a new flagged variable does <strong>not</strong> need a new version: an older record simply has no value
 for it, and the variable keeps its default.</p>
-<p>Your version is your own. XenoCore's file version (<code>EXenoCoreSaveVersion</code>, now <code>Gems = 5</code>) is
-separate, and you never change it. Participant records arrived in version 3
-(<code>ParticipantData</code>); a file written before that loads as "no participant has saved anything yet".</p>
+<p>Your version is your own. XenoCore's save file has its own version, which you never change. A
+save made with a XenoCore release older than save participants loads as "no participant has saved
+anything yet".</p>
 <h3 id="5-other-kinds-of-participant">5. Other kinds of participant<a class="headerlink" href="#5-other-kinds-of-participant" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -4761,7 +4739,7 @@ separate, and you never change it. Participant records arrived in version 3
 <tbody>
 <tr>
 <td>A component on the player controller, player state or game state (a party-wide system)</td>
-<td>Implement the interface on the component. It is found automatically; no component, no registration</td>
+<td>Implement the interface on the component. It is found automatically; no save participant component, no registration</td>
 </tr>
 <tr>
 <td>An actor that is not placed and not spawned by you, or a plain object</td>
@@ -4778,13 +4756,17 @@ either way. The interface only adds the key, the version and the hooks.</p>
 <p>If a record already exists when something registers (it was loaded, or it streamed out earlier),
 it is applied at once, unless a load is still being applied, in which case it waits and is applied
 with everything else.</p>
-<h3 id="6-c-optional">6. C++ (optional)<a class="headerlink" href="#6-c-optional" title="Permanent link">&para;</a></h3>
-<p>A C++ class implementing <code>IXenoCoreSaveParticipant</code> may override <code>CaptureSaveData(FArchive&amp;)</code> and
-<code>RestoreSaveData(FArchive&amp;, int32 SavedVersion)</code> to write whatever it likes instead of its
+<details class="note">
+<summary>For programmers: C++ participants</summary>
+<p>A C++ class implementing <code>IXenoCoreSaveParticipant</code> may override <code>CaptureSaveData(FArchive&amp;)</code>
+and <code>RestoreSaveData(FArchive&amp;, int32 SavedVersion)</code> to write whatever it likes instead of its
 <code>UPROPERTY(SaveGame)</code> fields. The archive stores object pointers as paths. The defaults
 (<code>GetSaveParticipantKey</code>, <code>GetSaveDataVersion</code>, <code>OnPreSaveCapture</code>, <code>OnSaveDataRestored</code>) are
 <code>BlueprintNativeEvent</code>s: override the <code>_Implementation</code> versions. All of it is exported, so this
-works from your own module; see <a href="../subclass-mechanic/">Add a mechanic by subclassing</a>.</p>
+works from your own module; see <a href="../subclass-mechanic/">Add a mechanic by subclassing</a>.
+XenoCore's own file version is <code>EXenoCoreSaveVersion</code> (currently <code>Gems = 5</code>; participant
+records arrived in <code>ParticipantData = 3</code>).</p>
+</details>
 <h3 id="rules-that-keep-old-saves-loading">Rules that keep old saves loading<a class="headerlink" href="#rules-that-keep-old-saves-loading" title="Permanent link">&para;</a></h3>
 <p>These are the rules XenoCore's own saved data follows. Follow them in your records too.</p>
 <ul>

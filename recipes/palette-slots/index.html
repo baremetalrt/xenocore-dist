@@ -4576,6 +4576,7 @@ menu.</p>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../getting-started/first-art/">Your first art</a></li>
+<li><a href="../../getting-started/glossary/">Glossary</a>: <strong>Art</strong>, <strong>Palette</strong>, <strong>Talent Art</strong>.</li>
 </ul>
 <h2 id="the-three-settings">The three settings<a class="headerlink" href="#the-three-settings" title="Permanent link">&para;</a></h2>
 <table>
@@ -4642,8 +4643,8 @@ Arts. Keep the list to eight entries or fewer.
    into your own folder as <code>DT_Rook_ArtLearnset</code> (it is a table, not a concrete Art, so
    duplicating it is fine), or create a new Data Table with row structure <code>XenoCoreArtUnlock</code>.
    Learnsets can also be CSV-imported like any Data Table.</li>
-<li>Open it and build the rows:</li>
-</ol>
+<li>
+<p>Open it. Click <strong>Add</strong> for each row, rename it, and fill in the columns in the <strong>Row Editor</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -4674,8 +4675,10 @@ Arts. Keep the list to eight entries or fewer.
 </tr>
 </tbody>
 </table>
-<ol>
-<li><strong>Save</strong>.</li>
+</li>
+<li>
+<p><strong>Save</strong>.</p>
+</li>
 <li>Open the character's pawn Blueprint, for example <code>B_Party_Rook</code>, and click <strong>Class Defaults</strong>.
    Under <strong>XenoCore › Arts</strong>, set <strong>Art Learn Table</strong> to <code>DT_Rook_ArtLearnset</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>

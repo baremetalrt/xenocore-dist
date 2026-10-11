@@ -4569,7 +4569,7 @@
 <h1 id="swap-the-camera-feel">Swap the camera feel<a class="headerlink" href="#swap-the-camera-feel" title="Permanent link">&para;</a></h1>
 <p><em>Designer · 30 min · No code · Last tested: never</em></p>
 <p><strong>Result:</strong> the exploration camera sits where you want it: further back or closer, higher or
-lower, wider or narrower, and smoother or snappier as it follows the party leader. You can switch
+lower, wider or narrower, and smoother or snappier as it follows the party <a href="../../getting-started/glossary/">leader</a>. You can switch
 back to the shipped camera in one field.</p>
 <!-- SCREENSHOT: the same spot in PIE with the shipped camera and with the new one -->
 
@@ -4651,17 +4651,19 @@ takes over, so both must point at the same camera asset.</p>
 <h3 id="1-make-your-own-copies">1. Make your own copies<a class="headerlink" href="#1-make-your-own-copies" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create <code>MyGame/Cameras</code>.</li>
-<li>Duplicate <code>Cameras/CameraRig_XenoCore_Explore</code> as <code>CameraRig_MyGame_Explore</code>.</li>
-<li>Duplicate <code>Cameras/CA_XenoCore_Player</code> as <code>CA_MyGame_Player</code>.</li>
+<li>In <code>Plugins › XenoCore Content › Cameras</code>, right-click <code>CameraRig_XenoCore_Explore</code> › <strong>Duplicate</strong>,
+   name it <code>CameraRig_MyGame_Explore</code> and move it to <code>MyGame/Cameras</code>.</li>
+<li>Duplicate <code>Cameras/CA_XenoCore_Player</code> the same way, as <code>CA_MyGame_Player</code>.</li>
 <li>Open <code>CA_MyGame_Player</code>. In its <strong>Camera Director</strong> (a single-rig director), set the rig to
    <code>CameraRig_MyGame_Explore</code>. <strong>Save</strong>.</li>
 </ol>
 <p>Working on copies keeps the shipped camera intact, so switching back is one field.</p>
 <h3 id="2-point-the-characters-at-your-camera">2. Point the characters at your camera<a class="headerlink" href="#2-point-the-characters-at-your-camera" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <code>Game/B_XenoCore_Player</code>. Select the <strong>GameplayCamera</strong> component. Set its
+<li>Open <code>Game/B_XenoCore_Player</code>. In the <strong>Components</strong> panel, select the <strong>GameplayCamera</strong> component. Set its
    <strong>Camera Asset</strong> to <code>CA_MyGame_Player</code>. <strong>Compile</strong> and <strong>Save</strong>.</li>
-<li>Do the same in <code>Characters/Party/B_XenoCore_PartyMember_Base</code>.</li>
+<li>Do the same in <code>Characters/Party/B_XenoCore_PartyMember_Base</code>. Every party member, the VRoid ones
+   included, inherits its camera from this base, so this one change covers them all.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: only one of the two</p>
@@ -4716,8 +4718,14 @@ whoever you are driving. Under <strong>XenoCore › Camera</strong> on its <stro
 </tr>
 </tbody>
 </table>
-<p>To recentre on something else (the locked target, say), override <strong>Get Recentre Rotation</strong> on your
-own child of it and point the camera-reset row of the ability sets at your child.</p>
+<p>To recentre on something else (the locked target, say):</p>
+<ol>
+<li>Right-click <code>GA_XenoCore_CameraReset</code> › <strong>Create Child Blueprint Class</strong>, save it in <code>MyGame/Cameras</code>.</li>
+<li>In the child, under <strong>Functions › Override</strong>, choose <strong>Get Recentre Rotation</strong> and return the
+   rotation you want.</li>
+<li>Open <code>Game/AbilitySet_XenoCore_Input</code>, find the <strong>Granted Gameplay Abilities</strong> entry whose
+   <strong>Ability</strong> is <code>GA_XenoCore_CameraReset</code>, and set it to your child. Keep its <strong>Input Tag</strong>. <strong>Save</strong>.</li>
+</ol>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>.</li>
@@ -4725,7 +4733,7 @@ own child of it and point the camera-reset row of the ability sets at your child
 <li>Back into a wall. The camera slides in rather than clipping through.</li>
 <li>Open the menu, make another member leader on the Party screen, close the menu. The camera
    feels the same.</li>
-<li>Press the camera-reset button (right stick click) to recentre behind the character.</li>
+<li>Click the right stick on a gamepad (it has no keyboard key) to recentre behind the character.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">

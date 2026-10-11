@@ -4678,7 +4678,7 @@
 
 <h1 id="add-an-input-action-with-a-prompt">Add an input action with a prompt<a class="headerlink" href="#add-an-input-action-with-a-prompt" title="Permanent link">&para;</a></h1>
 <p><em>Designer · 40 min · No code · Last tested: never</em></p>
-<p><strong>Result:</strong> a new button, <strong>Whistle</strong>, that runs a gameplay ability once per press, plus a glyph
+<p><strong>Result:</strong> a new button, <strong>Whistle</strong>, that runs a <a href="../../getting-started/glossary/">gameplay ability</a> once per press, plus a glyph
 on the HUD that shows the right key for keyboard or gamepad.</p>
 <!-- SCREENSHOT: the HUD with the Whistle glyph, keyboard and pad variants -->
 
@@ -4713,7 +4713,7 @@ on the HUD that shows the right key for keyboard or gamepad.</p>
 </tr>
 <tr>
 <td>3</td>
-<td><strong>Input tag</strong></td>
+<td><strong>Input tag</strong> (<a href="../../getting-started/glossary/">gameplay tag</a>)</td>
 <td><code>InputTag.XenoCore.QuestTracker</code></td>
 <td>The name that links the action to an ability</td>
 </tr>
@@ -4741,13 +4741,18 @@ When two contexts map the same key, the higher priority wins only if its action 
 key; otherwise both fire. Its contexts only apply in <strong>Game</strong> input mode, so a menu switches them all off.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-the-tag">1. Create the tag<a class="headerlink" href="#1-create-the-tag" title="Permanent link">&para;</a></h3>
-<p>In <strong>Project Settings › Gameplay Tags</strong>, add <code>InputTag.MyGame.Whistle</code>. Store it in your own tag
-source (for example <code>MyGameTags.ini</code>), not XenoCore's.</p>
+<ol>
+<li>Open <strong>Project Settings › Project › Gameplay Tags</strong> and click <strong>Add New Gameplay Tag</strong>.</li>
+<li>Name it <code>InputTag.MyGame.Whistle</code>. Set <strong>Source</strong> to your own tag source (for example
+   <code>MyGameTags.ini</code>; create it with <strong>Add New Tag Source</strong> if you have none), not XenoCore's.</li>
+<li>Click <strong>Add New Tag</strong>.</li>
+</ol>
 <h3 id="2-create-the-input-action">2. Create the Input Action<a class="headerlink" href="#2-create-the-input-action" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In <code>MyGame/Input</code>, create an <strong>Input Action</strong> (<strong>Input › Input Action</strong>). Name it
-   <code>IA_MyGame_Whistle</code>. <strong>Value Type</strong>: <strong>Digital (bool)</strong>.</li>
-<li>Under <strong>Triggers</strong>, add <strong>Pressed</strong>.</li>
+<li>In the Content Browser, open <code>MyGame/Input</code>, right-click, and choose <strong>Input › Input Action</strong>.
+   Name it <code>IA_MyGame_Whistle</code>.</li>
+<li>Open it. Set <strong>Value Type</strong> to <strong>Digital (bool)</strong>.</li>
+<li>Under <strong>Triggers</strong>, click <strong>+</strong> and choose <strong>Pressed</strong>. <strong>Save</strong>.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a one-shot action with no trigger fires every frame</p>
@@ -4758,7 +4763,7 @@ which is why some Lyra actions get away without one.</p>
 </div>
 <h3 id="3-map-the-keys">3. Map the keys<a class="headerlink" href="#3-map-the-keys" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <code>Input/Mappings/IMC_XenoCore</code>. Add a mapping for <code>IA_MyGame_Whistle</code>.</li>
+<li>Open <code>Input/Mappings/IMC_XenoCore</code>. Click <strong>+</strong> beside <strong>Mappings</strong> and pick <code>IA_MyGame_Whistle</code>.</li>
 <li>Add a keyboard key (for example <strong>G</strong>) and a gamepad button. Check
    <a href="../../getting-started/controls/">Controls</a> first; pick keys nothing else uses.</li>
 <li><strong>Save</strong>. This edits a shipped asset; note it for template updates.</li>
@@ -4774,11 +4779,11 @@ gets it. The other action simply stops working. Nothing warns.</p>
 <p>Every party pawn data points at this one input config, so this covers all characters.</p>
 <h3 id="5-create-the-ability">5. Create the ability<a class="headerlink" href="#5-create-the-ability" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In <code>MyGame/Abilities</code>, create a <strong>Blueprint Class</strong> with parent <code>LyraGameplayAbility</code>. Name it
-   <code>GA_MyGame_Whistle</code>.</li>
-<li><strong>Class Defaults</strong>:<ul>
-<li><strong>Activation Policy</strong>: <strong>On Input Triggered</strong>.</li>
-<li><strong>Ability Tags</strong>: add a tag such as <code>Ability.MyGame.Whistle</code>. Tag relationship rows (for
+<li>In <code>MyGame/Abilities</code>, right-click and choose <strong>Blueprint Class</strong>. Under <strong>All Classes</strong>, pick
+   <code>LyraGameplayAbility</code>. Name it <code>GA_MyGame_Whistle</code>.</li>
+<li>Open it and click <strong>Class Defaults</strong>:<ul>
+<li><strong>Lyra › Ability Activation › Activation Policy</strong>: <strong>On Input Triggered</strong>.</li>
+<li><strong>Tags › AssetTags (Default AbilityTags)</strong>: add a tag such as <code>Ability.MyGame.Whistle</code>. Tag relationship rows (for
   example "no whistling during dialogue") can only reach an ability that has an ability tag.</li>
 </ul>
 </li>
@@ -4833,9 +4838,11 @@ key, and nothing is logged. To add one, add a texture and a row to that data ass
 </div>
 <h3 id="8-put-the-glyph-on-the-hud">8. Put the glyph on the HUD<a class="headerlink" href="#8-put-the-glyph-on-the-hud" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Create a small Widget Blueprint <code>W_MyGame_WhistlePrompt</code> in <code>MyGame/UI</code>.</li>
-<li>Add Lyra's <code>InputActionWidget</code> (from <code>Content/UI/Foundation/Widgets</code>) with a text label beside
-   it.</li>
+<li>In <code>MyGame/UI</code>, right-click and choose <strong>User Interface › Widget Blueprint</strong> (parent
+   <strong>User Widget</strong>). Name it <code>W_MyGame_WhistlePrompt</code>.</li>
+<li>In the <strong>Palette</strong>, find Lyra's <code>InputActionWidget</code> (it lives in the project's
+   <code>Content/UI/Foundation/Widgets</code>) and drag it into a <strong>Horizontal Box</strong>, with a <strong>Text</strong> label
+   beside it.</li>
 <li>In its <strong>Details</strong>, set <strong>Input Actions</strong> to one entry: table <code>DT_XenoCore_Actions</code>, row
    <code>Whistle</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>

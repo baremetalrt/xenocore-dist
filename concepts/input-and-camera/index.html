@@ -3442,6 +3442,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3492,10 +3503,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4401,6 +4412,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4451,10 +4473,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4502,14 +4524,25 @@
 
 <h1 id="input-and-camera">Input and camera<a class="headerlink" href="#input-and-camera" title="Permanent link">&para;</a></h1>
 <p><em>All · 12 min read · No code · Last tested: never</em></p>
+<p><strong>What the player sees:</strong> every button does one thing at a time, depending on the moment: A jumps,
+talks to an NPC, or uses the selected Art; the triggers switch the party leader; buttons go quiet
+behind a menu. The camera follows the leader on a boom, recentres on a button, blends to a new
+leader on a switch, and frames both speakers in a conversation.</p>
 <p>XenoCore uses Lyra's input chain unchanged: a key is mapped to an <strong>input action</strong> by a mapping
-context, the action is turned into an <strong>input tag</strong> by the pawn's input config, and the tag
-activates whichever ability was granted with it. So almost every button in XenoCore is a small
+context, the action raises an <strong>input tag</strong> (a <a href="../../getting-started/glossary/">gameplay tag</a>), and
+the tag starts whichever ability was granted with it. So almost every button in XenoCore is a small
 input ability named <code>GA_XenoCore_*</code>. The camera is built with Unreal's Gameplay Cameras plugin: a
 camera component on each playable character runs a camera asset, which runs a rig. The idea that
 makes the rest make sense: <strong>the input you press never talks to a system directly</strong>. It raises a
 tag, and the ability system decides whether anything may happen right now. That is also why a
 menu, a conversation or target mode can switch buttons off without touching the bindings.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Which key does what</strong>: the rows of <code>Input/Mappings/IMC_XenoCore</code> (<a href="#settings">Settings</a>).</li>
+<li><strong>A new button with an on-screen prompt</strong>: <a href="../../recipes/input-action-prompt/">Add an input action with a button prompt</a>.</li>
+<li><strong>The exploration and conversation camera</strong>: <a href="../../recipes/camera-feel/">Tune the camera</a>.</li>
+<li><strong>When a button is blocked</strong> (in a menu, in a conversation): rows of <code>Game/TagRelationships_XenoCore</code>.</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <h3 id="input">Input<a class="headerlink" href="#input" title="Permanent link">&para;</a></h3>
 <table>
@@ -4661,7 +4694,7 @@ pawn, <code>AbilitySet_XenoCore_PartyMember</code> for the others), which hold o
 <tr>
 <td>Full-screen minimap (L3 / M)</td>
 <td><code>InputTag.XenoCore.MinimapOverlay</code></td>
-<td><code>UXenoCoreGameplayAbility_MinimapOverlay</code></td>
+<td>A built-in C++ ability (no asset to edit)</td>
 </tr>
 <tr>
 <td>Recentre the camera</td>
@@ -4721,9 +4754,8 @@ tags cannot be reached by any row.</p>
 <p><strong>Tap and hold on one key.</strong> The triggers carry two input actions each. <code>IA_XenoCore_PartySwitchPrev</code>
 (LT, Z) and <code>IA_XenoCore_PartySwitch</code> (RT, C) have a <strong>Tap</strong> trigger; <code>IA_XenoCore_PartySelect</code> (all
 four keys) has a <strong>Hold</strong> trigger. Both use 0.25 s, so a short press switches and a long one opens
-the party cursor. All three switch abilities are Blueprint children of
-<code>UXenoCoreGameplayAbility_PartySwitch</code> that differ only in <strong>Mode</strong> (Next, Previous, Select), and
-they live in the leader-only set, so only the body you drive holds them. While the cursor is open
+the party cursor. The three switch abilities differ only in <strong>Mode</strong> (Next, Previous, Select) in
+their Class Defaults, and they live in the leader-only set, so only the body you drive holds them. While the cursor is open
 the D-pad (arrow keys) moves it instead of the Arts palette; left, right and confirm do nothing, so
 a stray press cannot fire an Art.</p>
 <div class="admonition warning">
@@ -4732,11 +4764,10 @@ a stray press cannot fire an Art.</p>
 reports a release on the frame after it fires, so the cursor opens and commits at once and
 the hold looks like a tap. Keep it off on any hold-to-open input.</p>
 </div>
-<p><strong>Menus.</strong> When a CommonUI screen takes Menu input mode, the project's default mapping-context
-query (<code>InputMode.Game</code>, in <code>Config/DefaultInput.ini</code>) no longer matches, so <code>IMC_XenoCore</code> and
-<code>IMC_Default</code> stop evaluating. Nothing in the game world can react to a key behind a menu.
-<strong>Default Input Mode</strong> in the same file also carries <code>InputMode.Game</code>, so the player can move from
-the first frame.</p>
+<p><strong>Menus.</strong> While a menu screen is open, <code>IMC_XenoCore</code> and <code>IMC_Default</code> switch off, so nothing in
+the game world can react to a key behind a menu. That is set project-wide in
+<code>Config/DefaultInput.ini</code> (the default mapping-context query asks for <code>InputMode.Game</code>), and needs no
+setting on each mapping context.</p>
 <p><strong>Enter and Space click.</strong> <code>Config/DefaultGame.ini</code> sets CommonUI's <strong>Common Button Accept Key
 Handling</strong> to <code>TriggerClick</code>, so Enter and Space press the focused menu button, as the pad's A does.</p>
 <!-- VERIFY: Project Settings shows Common Button Accept Key Handling = Trigger Click (Plugins › Common UI). -->
@@ -4750,15 +4781,15 @@ then turns onto the locked enemy; out of battle it turns to face the new leader'
 <ul>
 <li><strong>Recentre:</strong> <code>GA_XenoCore_CameraReset</code> sweeps the view round behind whichever character you are
   driving: over <strong>Recentre Duration</strong> (0.35 s) it turns toward the character's facing at
-  <strong>Recentre Pitch</strong> (−10°). It is a Blueprint child of the C++ class
-  <code>UXenoCoreGameplayAbility_CameraRecentre</code>, so it works for every leader. Override <strong>Get Recentre
-  Rotation</strong> on your own child to recentre on something else, such as the locked target.</li>
-<li><strong>Conversations</strong> stop look input on the controller, so the camera cannot turn while a line is on
-  screen, and start <code>CameraRig_XenoCore_Dialogue</code> as a global camera modifier: over the player's
+  <strong>Recentre Pitch</strong> (−10°). It works for whichever character leads. To recentre on something
+  else, such as the locked target, make a child Blueprint of <code>GA_XenoCore_CameraReset</code> and override
+  its <strong>Get Recentre Rotation</strong> function.</li>
+<li><strong>Conversations</strong> stop look input, so the camera cannot turn while a line is on screen, and blend
+  in <code>CameraRig_XenoCore_Dialogue</code>: over the player's
   shoulder at the NPC, close enough to read, held still until the conversation ends. See
   <a href="../interaction-npcs-dialogue/">Interaction, NPCs and dialogue</a>.</li>
 </ul>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -4831,8 +4862,8 @@ then turns onto the locked enemy; out of battle it turns to face the new leader'
 <p class="admonition-title">Several keys are shared, and the bindings are under review</p>
 <p>Pad A is Jump, Interact <strong>and</strong> Palette Confirm; Space is Jump and Palette Confirm; pad B is
 Crouch and Leave Target Mode. Each trigger carries a tap action and a hold action on purpose. Which one wins depends on state and on the blocking rules above.
-<code>InputData_XenoCore</code> also maps Lyra's Crouch. <!-- VERIFY: DRAFTING-NOTES F9. Re-check every shared key in play before
-release. --></p>
+<code>InputData_XenoCore</code> also maps Lyra's Crouch.
+<!-- VERIFY: DRAFTING-NOTES F9. Re-check every shared key in play before release. --></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a new one-shot action with no trigger</p>
@@ -4871,7 +4902,19 @@ at runtime, so a mismatch is a prompt that lies.</p>
 <li><strong>An Art close-up for another Art:</strong> copy the start and stop camera-modifier nodes from
   <code>GA_XenoCore_TurnStrike</code>.</li>
 </ul>
+<details class="note">
+<summary>For programmers: classes</summary>
+<p>The full-screen minimap ability is <code>UXenoCoreGameplayAbility_MinimapOverlay</code>; the three switch
+abilities are Blueprint children of <code>UXenoCoreGameplayAbility_PartySwitch</code>; the recentre is a
+child of <code>UXenoCoreGameplayAbility_CameraRecentre</code>. Menus filter mapping contexts through
+Enhanced Input's mode filtering: <code>DefaultMappingContextInputModeQuery</code> and <code>DefaultInputMode</code>
+in <code>Config/DefaultInput.ini</code> both carry <code>InputMode.Game</code>, which CommonUI adds and removes. The
+conversation camera is started as a global camera modifier rig, and look input is held with
+<code>SetIgnoreLookInput</code>.</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>Lyra's chain, untouched.</strong> Input actions to tags to abilities is Lyra's own design, so every
   Lyra rule (blocking, relationships, cooldowns) applies to XenoCore buttons for free.</li>
@@ -4882,6 +4925,7 @@ at runtime, so a mismatch is a prompt that lies.</p>
 <li><strong>Gameplay Cameras.</strong> Rigs are data assets a designer tunes in the editor, and a camera modifier
   rig layers a close-up on top without replacing the exploration camera.</li>
 </ul>
+</details>
 <p><strong>Next:</strong> <a href="../events/">Events you can listen to</a> · <a href="../targeting/">Targeting</a></p>
 
 

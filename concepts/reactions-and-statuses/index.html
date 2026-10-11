@@ -4467,7 +4467,7 @@
 
 
 <h1 id="reactions-and-statuses">Reactions and statuses<a class="headerlink" href="#reactions-and-statuses" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · Last tested: never</em></p>
+<p><em>All · 15 min read · No code · Last tested: never</em></p>
 <p>A <strong>reaction</strong> is one step of the Break → Topple → Daze chain. A <strong>status</strong> is a timed buff or
 debuff such as Slow or Strength Up. Both are plain Gameplay Effects applied to the <strong>target's</strong>
 Ability System Component (ASC), and both are represented on that ASC by a gameplay tag. Nothing
@@ -4475,6 +4475,20 @@ tracks "this enemy is Toppled" anywhere else: every system that cares, from the 
 the popups to the player's knock-down animation, asks the target's ASC whether it holds the tag.
 The chain rule (Topple only works on a Broken target, Daze only on a Toppled one) is enforced by
 the effects themselves, not by the Arts that apply them.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> BREAK, TOPPLE and DAZE pop up over an enemy as the chain lands; a Toppled or Dazed
+character falls and cannot act. Buffs and debuffs pop up by name and show as icons on the party
+rows.</p>
+<p><strong>What you can change, no code:</strong></p>
+<ul>
+<li>Which Arts Break, Topple or Daze: <a href="../../recipes/art-reactions/">Make an art inflict reactions</a></li>
+<li>A new buff or debuff: <a href="../../recipes/status-effect/">Add a status effect</a></li>
+<li>The knock-down and flinch clips for one character: <a href="../../recipes/character-combat-animations/">Give a character its own combat animations</a></li>
+<li>How long each reaction lasts: the <strong>Duration</strong> of <code>Battle/Reactions/GE_XenoCore_Reaction_*</code></li>
+<li>Every setting: <a href="#what-you-can-change">What you can change</a></li>
+</ul>
+</div>
 <p>See the <a href="../../getting-started/glossary/">Glossary</a> for <strong>Break, Topple, Daze</strong> and <strong>Status effect</strong>.</p>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
@@ -4778,7 +4792,7 @@ the rule off for that ability.</p>
   clips. For an enemy, copy <code>GA_XenoCore_Minion_Topple</code> (and <code>_Daze</code>), swap its <strong>Directional
   Montages</strong>, and grant both in the enemy's ability set. Without them the enemy still cannot act
   while Toppled, but it stands still instead of falling.</li>
-<li><strong>A new kind of knock-down</strong> (for example XC1's Launch): a C++ child of
+<li><strong>A new kind of knock-down</strong> (for example XC1's Launch), programmers: a C++ child of
   <code>UXenoCoreGameplayAbility_KnockdownReact</code> whose constructor calls <strong>Set Trigger Tag</strong> with the new
   reaction tag. Never put that tag in <strong>Activation Blocked Tags</strong>: the tag is already present when
   the ability starts, so it would refuse itself.</li>
@@ -4798,6 +4812,8 @@ the rule off for that ability.</p>
   for the Art chain.</li>
 </ul>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>An effect, not a tag.</strong> A reaction applied as an effect gets a real duration and its
   prerequisite for free from the effect's tag-requirement component; a loose tag was permanent and
@@ -4810,6 +4826,7 @@ the rule off for that ability.</p>
 <li><strong>The victim decides the flinch.</strong> The attacker only sends an event; direction is computed from
   the victim's facing, and the victim's own blocked tags decide whether it reacts.</li>
 </ul>
+</details>
 
 
 

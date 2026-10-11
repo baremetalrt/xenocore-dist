@@ -4599,7 +4599,7 @@ the field track up again from where it was cut.</p>
 <ul>
 <li>Two looping tracks imported as Sound Waves (or Sound Cues or MetaSounds): one for exploring and
   one for battle. Either may be left out.</li>
-<li>A map that runs the XenoCore experience. See <a href="../world-partition-map/">Build a world-partition map</a>.</li>
+<li>A map that runs the XenoCore <a href="../../getting-started/glossary/">Experience</a>. See <a href="../world-partition-map/">Build a world-partition map</a>.</li>
 </ul>
 <h2 id="how-area-music-works">How area music works<a class="headerlink" href="#how-area-music-works" title="Permanent link">&para;</a></h2>
 <p>One actor per map, <strong>XenoCore Area Music</strong> (<code>AXenoCoreAreaMusic</code>), holds both tracks. The class
@@ -4643,7 +4643,7 @@ map's music lives and dies with that map, so it never carries into the next one.
 </tr>
 </tbody>
 </table>
-<p>"In battle" is the same rule the rest of the template uses: the leader has drawn, or an enemy
+<p>"In battle" is the same rule the rest of the template uses: the leader has <a href="../../getting-started/glossary/">drawn</a>, or an enemy
 nearby is fighting the party. See <a href="../../concepts/party/">Party</a>. The actor checks it every
 <strong>Poll Seconds</strong> (<code>0.2</code>), so a transition can start up to a fifth of a second late.</p>
 <p>Both tracks play as UI sounds: the music carries on under the pause and party menus, which pause
@@ -4651,7 +4651,7 @@ the world.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-put-the-tracks-on-lyras-music-sound-class">1. Put the tracks on Lyra's Music sound class<a class="headerlink" href="#1-put-the-tracks-on-lyras-music-sound-class" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open each Sound Wave.</li>
+<li>Open each Sound Wave in the Content Browser.</li>
 <li>Under <strong>Sound</strong>, set <strong>Class</strong> to Lyra's <code>Audio/Classes/Music</code>.</li>
 <li>Tick <strong>Looping</strong> if the track is not already set to loop.</li>
 <li><strong>Save</strong>.</li>
@@ -4687,7 +4687,7 @@ Area Music actor already has <strong>Is Spatially Loaded</strong> off. Leave it 
 <tr>
 <td><strong>Field Music</strong></td>
 <td>Music › Field</td>
-<td>Your exploring track. Empty = <strong>Fallback Field Music</strong> from Project Settings › XenoCore Content › Startup, or silence if that is empty too</td>
+<td>Your exploring track. Empty = <strong>Fallback Field Music</strong> from <strong>Project Settings › Game › XenoCore Content › Startup</strong>, or silence if that is empty too</td>
 </tr>
 <tr>
 <td><strong>Field Volume</strong></td>
@@ -4731,20 +4731,17 @@ MetaSound restarts from the top after each battle.</p>
 <p>Two tracks bought from different places are rarely mastered to the same loudness. Left at equal
 volumes, every fight jumps up or down in level.</p>
 <ol>
-<li>Measure each file's average loudness (RMS, in dB) in any audio tool. The template ships
-   <code>Tools/Audio/area_music.py</code>; run it with <code>--measure</code> to print the loudness of two files in your
-   Downloads folder, after changing the file names at its top (<code>FIELD_FILE</code>, <code>BATTLE_FILE</code>) to yours.</li>
+<li>Measure each file's average loudness (RMS, in dB) in any audio tool. In the free editor
+   Audacity, open the file, select all, and choose <strong>Analyze › Measure RMS</strong>.</li>
 <li>Pick a target loudness and set each volume to bring its track there. Every 6 dB louder than
    the target is roughly half the volume. For example, a battle track 7 dB louder than the field
    track needs a <strong>Battle Volume</strong> a little under half its <strong>Field Volume</strong>.</li>
 <li>Play, and adjust both volumes <strong>together</strong> by ear. Scaling both by the same amount keeps the
    match.</li>
 </ol>
-<!-- VERIFY: the --measure path on a buyer's machine (it reads the files from the user's Downloads folder and needs miniaudio and numpy installed) -->
-
 <p>The sample map <code>Maps/L_XenoCore_GaurPlain</code> has an <code>AreaMusic</code> actor with both track slots <strong>empty</strong>:
 the template ships no licensed music. Set your own tracks on it, or set <strong>Fallback Field Music</strong> and
-<strong>Fallback Battle Music</strong> in <strong>Project Settings › XenoCore Content › Startup</strong> to give every map with
+<strong>Fallback Battle Music</strong> in <strong>Project Settings › Game › XenoCore Content › Startup</strong> to give every map with
 empty slots the same music.</p>
 <h3 id="5-tune-the-fades-optional">5. Tune the fades (optional)<a class="headerlink" href="#5-tune-the-fades-optional" title="Permanent link">&para;</a></h3>
 <p>All under <strong>Music › Transitions</strong>, in seconds:</p>
@@ -4846,7 +4843,7 @@ is set, check that the party really enters battle: lock on and draw, or let an e
 <ul>
 <li><a href="../world-partition-map/">Build a world-partition map</a></li>
 <li><a href="../../concepts/party/">Party</a>: when the party counts as in battle.</li>
-<li>The victory fanfare itself is <strong>Project Settings › XenoCore Content › Battle › Victory Fanfare</strong>.</li>
+<li>The victory fanfare itself is <strong>Project Settings › Game › XenoCore Content › Battle › Victory Fanfare</strong>.</li>
 </ul>
 
 

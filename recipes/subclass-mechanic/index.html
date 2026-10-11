@@ -4612,6 +4612,14 @@
 
 <h1 id="add-a-mechanic-by-subclassing">Add a mechanic by subclassing<a class="headerlink" href="#add-a-mechanic-by-subclassing" title="Permanent link">&para;</a></h1>
 <p><em>Programmer · 1–2 h · C++ · Last tested: never</em></p>
+<div class="admonition info">
+<p class="admonition-title">This page is for programmers</p>
+<p>It needs Visual Studio and C++. If you are a designer wanting a variation on an existing
+mechanic, you almost never need it: right-click the XenoCore Blueprint closest to what you want
+(for example <code>Battle/Arts/GA_XenoCore_TalentArt_Base</code>) and choose <strong>Create Child Blueprint
+Class</strong>, then change its <strong>Class Defaults</strong>. The recipes show this for Arts, enemies, NPCs and
+screens. If a recipe cannot do what you need without C++, hand this page to a programmer.</p>
+</div>
 <p><strong>Result:</strong> your own C++ module, in its own plugin, that builds on XenoCore's classes (here, a
 new kind of Art ability) without a single edit to XenoCore's source. A template update then
 replaces XenoCore and leaves your code alone.</p>

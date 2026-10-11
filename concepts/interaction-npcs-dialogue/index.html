@@ -3246,6 +3246,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3268,10 +3279,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4373,6 +4384,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4395,10 +4417,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4446,14 +4468,26 @@
 
 <h1 id="interaction-npcs-and-dialogue">Interaction, NPCs and dialogue<a class="headerlink" href="#interaction-npcs-and-dialogue" title="Permanent link">&para;</a></h1>
 <p><em>All · 15 min read · No code · Last tested: never</em></p>
-<p>When the player walks up to something they can use, a prompt appears beside them ("A Talk",
-"A Open") and the button does that one thing. One object decides what the player is standing next
-to: the <strong>interaction subsystem</strong>, which lives in the world. Anything that wants a prompt implements
-a small C++ interface (people, chests, and the Blueprint base <code>AXenoCoreInteractableActor</code> for
-everything else), and the subsystem picks the nearest one that is in range. Talking to an
-NPC hands the press to that NPC's Blueprint, where a designer decides what happens: play some
-lines, offer a quest, open a shop. The idea that makes the rest make sense: <strong>what the prompt shows
-is exactly what the button does</strong>, because the press acts on whatever the prompt last offered.</p>
+<p><strong>What the player sees:</strong> walking up to something usable shows a prompt beside the character
+("A Talk", "A Open", sometimes "X Trade"), and the button does exactly that. Talking to someone
+frames the two speakers with the camera, shows each line in a box over the speaker's head, and
+waits for A between lines.</p>
+<p>Every interactable thing decides its own prompt word and range, and XenoCore picks the nearest one
+in range. An NPC's <strong>On Interact</strong> event (in its Blueprint graph) decides what talking does: play
+some lines, offer a quest, open a shop, recruit a party member. The idea that makes the rest make
+sense: <strong>what the prompt shows is exactly what the button does</strong>, because the press acts on
+whatever the prompt last offered.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A talking NPC</strong>: <a href="../../recipes/npc-conversation/">Make an NPC talk</a>.</li>
+<li><strong>A conversation with choices</strong>: <a href="../../recipes/branch-conversation/">Branch a conversation</a>.</li>
+<li><strong>An NPC who gives a quest, or is a quest's target</strong>: <a href="../quests/">Quests</a>,
+  <a href="../../recipes/kill-talk-quest/">Give a quest to defeat enemies, talk to someone, or go somewhere</a>.</li>
+<li><strong>An NPC who joins the party</strong>: <a href="../../recipes/recruit-npc/">Recruit a party member from an NPC</a>.</li>
+<li><strong>A shopkeeper or trader</strong>: <a href="../../recipes/open-shop/">Open a shop</a>, <a href="../../recipes/trade/">Set up a trade</a>.</li>
+<li><strong>A lever, door, sign or pickup</strong>: <a href="../../recipes/add-interactable/">Add an interactable object</a>.</li>
+<li><strong>How the prompt, name plate and dialogue box look</strong>: <a href="#extending-it">Extending it</a>.</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4465,23 +4499,18 @@ is exactly what the button does</strong>, because the press acts on whatever the
 </thead>
 <tbody>
 <tr>
-<td><code>UXenoCoreInteractionSubsystem</code></td>
-<td>C++ world subsystem</td>
-<td>Keeps the list of interactables, picks the nearest one every 0.2 s, draws the prompt, routes the button</td>
+<td>Interaction system</td>
+<td>Built in, nothing to place</td>
+<td>Picks the nearest interactable in range every 0.2 s, draws the prompt, routes the button</td>
 </tr>
 <tr>
-<td><code>IXenoCoreInteractable</code></td>
-<td>C++ interface</td>
-<td>What an actor answers: its verb, its range, whether it is available, extra verbs, what happens on a press, and when the prompt starts or stops offering it</td>
-</tr>
-<tr>
-<td><code>AXenoCoreInteractableActor</code></td>
-<td>C++ base for Blueprint children</td>
-<td>A door, lever, sign or pickup. Registers itself; two verb fields; <strong>Can Interact</strong>, <strong>On Interact</strong>, <strong>On Focused</strong>, <strong>On Unfocused</strong> events</td>
+<td><code>XenoCoreInteractableActor</code></td>
+<td>Parent class for your Blueprints</td>
+<td>A door, lever, sign or pickup. Two verb fields; <strong>Can Interact</strong>, <strong>On Interact</strong>, <strong>On Focused</strong>, <strong>On Unfocused</strong> events</td>
 </tr>
 <tr>
 <td><code>UserInterface/HUD/W_XenoCore_InteractPrompt</code></td>
-<td>Widget (<code>UXenoCoreInteractPromptBase</code>), set by <strong>Interact Prompt</strong> in XenoCore UI settings</td>
+<td>Widget, set by <strong>Interact Prompt</strong> in XenoCore UI settings</td>
 <td>The "button + verb" chips beside the player. It can draw four; the subsystem sends it at most two</td>
 </tr>
 <tr>
@@ -4491,7 +4520,7 @@ is exactly what the button does</strong>, because the press acts on whatever the
 </tr>
 <tr>
 <td><code>Characters/NPC/B_XenoCore_Npc</code></td>
-<td>NPC Blueprint (<code>AXenoCoreNpcCharacter</code>)</td>
+<td>NPC Blueprint</td>
 <td>A townsperson: name plate, quest marker, idle clip, the <strong>On Interact</strong> event. Starts blank: no lines, no quest, no marker</td>
 </tr>
 <tr>
@@ -4501,17 +4530,17 @@ is exactly what the button does</strong>, because the press acts on whatever the
 </tr>
 <tr>
 <td><code>UserInterface/HUD/W_XenoCore_NpcLabel</code></td>
-<td>Widget (<code>UXenoCoreWorldLabelBase</code>)</td>
+<td>Widget</td>
 <td>The name, chevron and quest bubble over an NPC's head, as one widget</td>
 </tr>
 <tr>
-<td><code>UXenoCoreDialogueSubsystem</code></td>
-<td>C++ world subsystem</td>
+<td>Dialogue system</td>
+<td>Built in, nothing to place</td>
 <td>Shows one line at a time over the speaker, waits for A, holds the player still</td>
 </tr>
 <tr>
 <td><code>Characters/NPC/BP_XenoCore_DialogueAnchor</code></td>
-<td>Actor Blueprint (<code>AXenoCoreDialogueAnchor</code>), set by <strong>XenoCore Content › Dialogue Anchor</strong></td>
+<td>Actor Blueprint, set by <strong>XenoCore Content › Dialogue Anchor</strong></td>
 <td>Carries the dialogue box and attaches it to whoever is speaking</td>
 </tr>
 <tr>
@@ -4531,26 +4560,22 @@ is exactly what the button does</strong>, because the press acts on whatever the
 </tr>
 </tbody>
 </table>
-<p>The treasure chest (<code>AXenoCoreTreasureChest</code>, see <a href="../loot/">Loot</a>) implements <strong>both</strong>
-<code>IXenoCoreInteractable</code> and Lyra's own <code>IInteractableTarget</code>. The prompt and the A button use the
-XenoCore interface. Lyra's interaction scan, <code>Input/Abilities/GA_XenoCore_Interact</code>, is still granted
-by <code>Game/AbilitySet_XenoCore_Interact</code> and still finds chests through Lyra's interface, but it no
-longer decides what A does. <!-- VERIFY: what GA_XenoCore_Interact still contributes in play, now
+<p>The treasure chest (see <a href="../loot/">Loot</a>) is found the same way. Lyra's own interaction ability,
+<code>Input/Abilities/GA_XenoCore_Interact</code>, is still granted by <code>Game/AbilitySet_XenoCore_Interact</code>, but
+it no longer decides what A does. <!-- VERIFY: what GA_XenoCore_Interact still contributes in play, now
 that the press goes through GA_XenoCore_InteractPress; it may be removable. --></p>
-<p>The interaction abilities reach the player through the Experience, not through the pawn data:
-<code>Experiences/B_XenoCore_Experience</code> grants <code>AbilitySet_XenoCore_Interact</code>.</p>
+<p>The interaction abilities reach the player through the <a href="../../getting-started/glossary/">Experience</a>,
+not through the pawn data: <code>Experiences/B_XenoCore_Experience</code> grants <code>AbilitySet_XenoCore_Interact</code>.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
-<p><strong>Registering.</strong> An NPC, a chest or an <code>AXenoCoreInteractableActor</code> registers itself with the
-interaction subsystem in <code>BeginPlay</code> and unregisters in <code>EndPlay</code>. The subsystem only works in game
-and PIE worlds.</p>
-<p><strong>Choosing.</strong> Every 0.2 seconds the subsystem looks at every registered actor, skips any that
+<p><strong>Registering.</strong> An NPC, a chest or a child of <code>XenoCoreInteractableActor</code> signs itself up when the
+level starts playing and signs off when it is removed. Nothing to set up.</p>
+<p><strong>Choosing.</strong> Every 0.2 seconds XenoCore looks at every interactable, skips any that
 say they are unavailable (an opened chest, for example), and takes the nearest one within <strong>that
 actor's own range</strong>, measured from the player character's location to the actor's origin. The
 prompt then shows the actor's verbs: the main verb on A and the first extra verb on X. Any further
 verbs are dropped (see below). When the chosen actor changes, the old one is told it lost focus and
-then the new one that it has it. While the prompt is up, the subsystem also puts
-<code>Status.XenoCore.Looting</code> on the player so A does not jump at the same time. That tag is released
-0.5 s after the prompt goes away, so a held button does not turn into a jump.</p>
+then the new one that it has it. While the prompt is up, A does not also jump, and that lasts 0.5 s
+after the prompt goes away, so a held button does not turn into a jump.</p>
 <p><strong>Hidden prompt.</strong> The prompt hides whenever the world is covered: a menu is open, a quest reward
 or level-up banner is showing, or a panel has suppressed it (the loot panel, a conversation).</p>
 <p><strong>Pressing.</strong> The press runs in a fixed order:</p>
@@ -4562,8 +4587,7 @@ or level-up banner is showing, or a panel has suppressed it (the loot panel, a c
 </ol>
 <p><strong>Talking.</strong> Before the graph runs, an NPC with a <strong>Quest Id</strong> counts as talked to for every active
 quest whose Talk To NPC objective names it (so a last step at the quest giver hands in during the
-same conversation). Its <code>Interact</code> then calls its Blueprint event <strong>On Interact</strong> with the pressed
-verb index. The shipped <code>B_XenoCore_Npc</code> graph branches on <strong>Is Trade Verb</strong>, plays dialogue, offers
+same conversation). Then its Blueprint event <strong>On Interact</strong> runs, with the pressed verb's index. The shipped <code>B_XenoCore_Npc</code> graph branches on <strong>Is Trade Verb</strong>, plays dialogue, offers
 or turns in its quest, recruits its <strong>Member To Recruit</strong> if it has one, and opens a shop at the end
 of the conversation if it has a <strong>Shop Table</strong> (see <a href="../quests/">Quests</a> and
 <a href="../shops-and-trade/">Shops and trade</a>).</p>
@@ -4577,15 +4601,13 @@ and the NPC leaves. On every other NPC this does nothing. See
 ally offers <strong>Revive</strong> (see <a href="../party-gauge-and-revive/">Party Gauge, downed and revive</a>).</p>
 <p><strong>A conversation.</strong> The first line puts the player on hold:</p>
 <ul>
-<li><code>Gameplay.MovementStopped</code> stops the pawn.</li>
-<li>The controller ignores look input, so the camera cannot swing the box around.</li>
+<li>The player cannot move or turn the camera, so the camera cannot swing the box around.</li>
 <li>The dialogue camera blends in (0.6 s) to frame the player and the NPC, and holds that shot for
   the whole conversation; replies move the box, never the camera. When the conversation closes it
   blends back (0.5 s) to exactly where the camera was.</li>
 <li>The player and the NPC turn to face each other (<strong>XenoCore Content › Dialogue Turn Seconds</strong>, 0.3 s).
   After the conversation the NPC turns back to how it was placed; the player stays facing it.</li>
-<li><code>Status.XenoCore.Dialogue</code> blocks Arts, auto-attack and target mode through
-  <code>Game/TagRelationships_XenoCore</code>.</li>
+<li>Arts, the auto-attack and target mode are blocked (by rows in <code>Game/TagRelationships_XenoCore</code>).</li>
 <li>The interaction prompt and the NPC's own name plate hide.</li>
 </ul>
 <p>Each line appears over the speaker's head. The first A press finishes the typing effect, the next
@@ -4593,12 +4615,12 @@ advances. <strong>Close Dialogue</strong> releases all of it. It does nothing wh
 it is safe to end every branch with it.</p>
 <p><strong>A conversation left open.</strong> A conversation that is open, has no line waiting for A, and has no
 quest, trade or shop panel covering the box can never move on: A has nothing to advance. The
-dialogue subsystem checks for exactly that state 2 seconds after each A press, after a panel
+dialogue system checks for exactly that state 2 seconds after each A press, after a panel
 closes, and after an NPC's <strong>On Interact</strong> returns. If it finds it, it logs a <code>LogXenoDialogue</code>
 warning naming the NPC and closes the conversation, so the player is never stuck. The check waits
 2 seconds because a graph may do other work between two lines; a pause longer than that closes the
 box and the next line reopens it.</p>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <p>On a <strong>placed</strong> NPC (select it in the level; all of these are per instance):</p>
 <table>
 <thead>
@@ -4767,9 +4789,8 @@ one. A graph comparing <strong>Verb Index</strong> to 1 opens the wrong thing wi
 <div class="admonition warning">
 <p class="admonition-title">Only two verbs: a third is dropped</p>
 <p>Only A (<code>IA_XenoCore_Interact</code>, verb 0) and X (<code>IA_XenoCore_InteractSecondary</code>, verb 1) have
-inputs. The subsystem cuts every interactable's list to two (<strong>Get Offered Verbs</strong>, capped by
-<code>MaxPressableVerbs</code>) before the prompt draws it, and the press checks the same list, so a
-third verb is neither drawn nor pressable. It logs one warning per actor (<code>LogXenoInteract</code>:
+inputs. Every interactable's list is cut to two before the prompt draws it, and the press
+checks the same list, so a third verb is neither drawn nor pressable. It logs one warning per actor (<code>LogXenoInteract</code>:
 "offers N verbs but only 2 interact inputs exist (A, X) - dropping ..."). An NPC with a
 <strong>Trade Offers</strong> table already uses X for Trade, so its <strong>Extra Interact Verbs</strong> are all
 dropped.</p>
@@ -4780,19 +4801,18 @@ dropped.</p>
   in the per-instance fields. It starts blank; copy settings from <code>B_XenoCore_Npc_Sample</code> if you
   want a worked example. A town is one class with many placed actors, not a Blueprint per
   person. See the recipe <a href="../../recipes/npc-conversation/">Make an NPC talk</a>.</li>
-<li><strong>A place a quest sends you to:</strong> place a <strong>XenoCore Quest Location</strong> (<code>AXenoCoreQuestLocation</code>)
+<li><strong>A place a quest sends you to:</strong> place a <strong>XenoCore Quest Location</strong> (in <strong>Place Actors</strong>)
   and give it a <strong>Location Id</strong> matching the objective's <strong>Target Id</strong>. It counts when the leader
   walks in; it has no prompt. See
   <a href="../../recipes/kill-talk-quest/">Give a quest to defeat enemies, talk to someone, or go somewhere</a>.</li>
 <li><strong>Branching conversations:</strong> replace the <strong>Play Dialogue</strong> node in <strong>On Interact</strong> with a chain
   of <strong>Show Dialogue</strong> nodes and ordinary Blueprint branches. See
   <a href="../../recipes/branch-conversation/">Branch a conversation</a>.</li>
-<li><strong>Anything else the player can use</strong> (a lever, a door, a sign): make a Blueprint child of
-  <code>AXenoCoreInteractableActor</code>, set <strong>Interact Verb</strong>, <strong>Secondary Interact Verb</strong> and <strong>Interact
+<li><strong>Anything else the player can use</strong> (a lever, a door, a sign): create a Blueprint Class with
+  <code>XenoCoreInteractableActor</code> as its parent, set <strong>Interact Verb</strong>, <strong>Secondary Interact Verb</strong> and <strong>Interact
   Range</strong>, and handle <strong>On Interact</strong>. It registers itself. <strong>Set Interact Enabled</strong> switches it
   off and makes the prompt re-decide at once; override <strong>Can Interact</strong> for conditions. See
-  <a href="../../recipes/add-interactable/">Add an interactable object</a>. A C++ class can still implement
-  <code>IXenoCoreInteractable</code> directly, and must then register itself as the base does.</li>
+  <a href="../../recipes/add-interactable/">Add an interactable object</a>.</li>
 <li><strong>Restyling:</strong> duplicate <code>W_XenoCore_InteractPrompt</code>, <code>W_XenoCore_DialogueBox</code> or
   <code>W_XenoCore_NpcLabel</code> into your own folder and change the look. Point <strong>Project Settings › Game
   › XenoCore UI › Interact Prompt</strong> or <strong>Dialogue Box</strong> at your copy (the name label is set on the
@@ -4802,7 +4822,24 @@ dropped.</p>
 </ul>
 <p>Never edit the chest's Lyra side or Lyra's interaction ability; the chest's behaviour lives in
 XenoCore.</p>
+<details class="note">
+<summary>For programmers: classes</summary>
+<p><code>UXenoCoreInteractionSubsystem</code> (world subsystem) keeps the registry, picks the nearest actor,
+draws the prompt and routes the press (<strong>Handle Interact Press</strong>, called by
+<code>GA_XenoCore_InteractPress</code> / <code>GA_XenoCore_InteractPressSecondary</code> with verb 0 or 1; the list is
+capped by <code>MaxPressableVerbs</code> in <strong>Get Offered Verbs</strong>). Anything with a prompt implements
+<code>IXenoCoreInteractable</code> and registers in <code>BeginPlay</code> / unregisters in <code>EndPlay</code>;
+<code>AXenoCoreInteractableActor</code> does that for Blueprint children, and a C++ class implementing the
+interface directly must do it itself. The NPC is <code>AXenoCoreNpcCharacter</code> (its <code>Interact</code> calls
+<strong>On Interact</strong>), the label <code>UXenoCoreWorldLabelBase</code>, the prompt <code>UXenoCoreInteractPromptBase</code>,
+dialogue <code>UXenoCoreDialogueSubsystem</code> with <code>AXenoCoreDialogueAnchor</code>. The chest implements both
+<code>IXenoCoreInteractable</code> and Lyra's <code>IInteractableTarget</code>. While the prompt is up the player holds
+<code>Status.XenoCore.Looting</code>; a conversation adds <code>Gameplay.MovementStopped</code>,
+<code>Status.XenoCore.Dialogue</code> and <code>SetIgnoreLookInput</code>.</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>Proximity, not aim.</strong> Lyra's interaction ability scans with a camera line trace, which answers
   "what am I looking at". Every prompt here means "what is near me", so XenoCore uses a registry
@@ -4828,6 +4865,7 @@ XenoCore.</p>
   movement component. Look input goes straight to the controller, so the dialogue subsystem also
   calls <code>SetIgnoreLookInput</code>. Both are counters, and the subsystem balances them.</li>
 </ul>
+</details>
 <p><strong>Next:</strong> <a href="../quests/">Quests</a> · <a href="../shops-and-trade/">Shops and trade</a> · <a href="../events/">Events you can listen to</a></p>
 
 

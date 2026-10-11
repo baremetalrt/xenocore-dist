@@ -4650,6 +4650,14 @@
 A character with 0.5 Critical Damage lands crits at ×1.75 instead of ×1.25.</p>
 <!-- SCREENSHOT: damage log line in the Output Log showing mods=1.75 on a critical hit -->
 
+<div class="admonition note">
+<p class="admonition-title">Designers: try a skill first</p>
+<p>Adding a <strong>new</strong> stat to the formula needs C++; there is no editor-only route. But crit damage
+itself needs none: a <a href="../../getting-started/glossary/">skill</a> whose <strong>Bonus</strong> is
+<code>XenoCore.SkillBonus.CriticalDamage</code> already adds that many percent to the crit multiplier. See
+<a href="../add-skill/">Add a skill</a>. Hand this page to a programmer only when equipment or effects must
+carry a stat that does not exist yet.</p>
+</div>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li>A working C++ build of the project. See <a href="../../troubleshooting/build-and-editor/">Troubleshooting: build and editor</a>.</li>
@@ -4670,7 +4678,7 @@ A character with 0.5 Critical Damage lands crits at ×1.75 instead of ×1.25.</p
 <tr>
 <td><code>UXenoCoreStatSet</code></td>
 <td><code>Public/AbilitySystem/Attributes/XenoCoreStatSet.h</code></td>
-<td>Holds every stat as a gameplay attribute: Strength, Ether, Agility, the defences, Critical Rate, Block Rate, Weight, weapon attack, level, Talent Gauge</td>
+<td>Holds every stat as a gameplay attribute (set by <a href="../../getting-started/glossary/">gameplay effects</a>): Strength, Ether, Agility, the defences, Critical Rate, Block Rate, Weight, weapon attack, level, Talent Gauge</td>
 </tr>
 <tr>
 <td><code>UXenoCoreDamageExecution</code></td>
@@ -4688,7 +4696,8 @@ A character with 0.5 Critical Damage lands crits at ×1.75 instead of ×1.25.</p
   defence as flat points.</li>
 </ul>
 <p><code>UXenoCoreDamageExecution::GetCombatSide</code> decides the side by what the attacker is (an
-<code>AXenoCoreEnemyCharacter</code>, a character with a member definition, then its team), never by whether a
+<code>AXenoCoreEnemyCharacter</code>, a character with a <a href="../../getting-started/glossary/">member definition</a>,
+then its team), never by whether a
 player is driving it. AI companions and the leader use the same formula.</p>
 <p><code>block</code> is <strong>Block Multiplier</strong> on a blocked hit, <code>0</code> by default, so a block negates the hit
 (<code>0.5</code> restores XC1's halving), and <code>1</code> otherwise.</p>
@@ -4755,12 +4764,6 @@ bonus). Read the new stat and add it after those lines, still inside the block:<
 <span class="w">    </span><span class="n">XenoCoreDamage</span><span class="o">::</span><span class="n">Statics</span><span class="p">().</span><span class="n">CriticalDamageDef</span><span class="p">,</span><span class="w"> </span><span class="n">Params</span><span class="p">,</span><span class="w"> </span><span class="n">CritBonus</span><span class="p">);</span>
 <span class="n">Modifiers</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">CritBonus</span><span class="p">;</span>
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">A skill may already be enough</p>
-<p>Skills can already raise crit damage with no code: a skill whose <strong>Bonus</strong> is
-<code>XenoCore.SkillBonus.CriticalDamage</code> adds that many percent inside this same block. Add an
-attribute only when equipment or effects must carry the stat.</p>
-</div>
 <p>Add it to the <code>UE_LOG(LogXenoDamage, Verbose, ...)</code> line as well, so you can see it.</p>
 <h3 id="4-build">4. Build<a class="headerlink" href="#4-build" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4771,10 +4774,12 @@ attribute only when equipment or effects must carry the stat.</p>
 <h3 id="5-give-a-character-some">5. Give a character some<a class="headerlink" href="#5-give-a-character-some" title="Permanent link">&para;</a></h3>
 <p>A stat that nothing sets is always 0. Give the player some with a test effect first:</p>
 <ol>
-<li>Create a Gameplay Effect <code>GE_MyGame_CritDamageTest</code> in <code>MyGame/Battle</code>. <strong>Duration Policy</strong>:
-   Infinite.</li>
-<li>Add a modifier: <strong>Attribute</strong> <code>XenoCoreStatSet.CriticalDamage</code>, <strong>Modifier Op</strong> Add, magnitude
-   <code>0.5</code>.</li>
+<li>In <code>MyGame/Battle</code>, right-click and choose <strong>Blueprint Class</strong>, pick <code>GameplayEffect</code>, and name
+   it <code>GE_MyGame_CritDamageTest</code>.</li>
+<li>Open it and set <strong>Duration Policy</strong> to <strong>Infinite</strong>.</li>
+<li>Click <strong>+</strong> beside <strong>Modifiers</strong>. Set <strong>Attribute</strong> to <code>XenoCoreStatSet.CriticalDamage</code>,
+   <strong>Modifier Op</strong> to <strong>Add</strong>, and the <strong>Scalable Float Magnitude</strong> <strong>Value</strong> to <code>0.5</code>.</li>
+<li>Click <strong>Compile</strong>, then <strong>Save</strong>.</li>
 </ol>
 <p>Then give it a permanent home:</p>
 <ul>
@@ -4807,11 +4812,32 @@ modifier too (Add <code>1.0</code> for a crit every hit).</p>
 <p>The character has no <code>UXenoCoreStatSet</code> at all, or nothing sets the new attribute. Stats arrive
 only through gameplay effects. Check the attribute with <code>showdebug abilitysystem</code>.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">The editor compiles but the stat is missing</p>
-<p>Live Coding patched the code but not the reflection data. Close the editor, confirm
-<code>UnrealEditor.exe</code> is no longer running, and do a full build.</p>
-</div>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The editor compiles but the stat is missing from the attribute list</td>
+<td>Live Coding patched the code but not the reflection data. Close the editor, confirm <code>UnrealEditor.exe</code> is no longer running, and do a full build.</td>
+</tr>
+<tr>
+<td>Crits read <code>mods=1.25</code> with the test effect applied</td>
+<td>The capture was added to <code>FStatics</code> but not registered in <code>RelevantAttributesToCapture</code>, or the read sits outside the critical-hit block.</td>
+</tr>
+<tr>
+<td>No crits at all</td>
+<td>The character has no Critical Rate. Add a Critical Rate modifier to the test effect.</td>
+</tr>
+<tr>
+<td>The stat does not show on the character sheet</td>
+<td>Step 6 needs a full rebuild and a fresh editor; the table is built once per process.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../concepts/stats-and-damage/">Stats and damage</a>.</li>

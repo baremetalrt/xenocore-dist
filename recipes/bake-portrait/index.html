@@ -4597,17 +4597,12 @@ second, full-body <strong>menu portrait</strong> fills their card on the main me
 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../add-party-member/">Add a party member</a>: you need a member definition to set the portrait on.</li>
+<li><a href="../add-party-member/">Add a party member</a>: you need a <a href="../../getting-started/glossary/">member definition</a>
+  to set the portrait on.</li>
 <li>An image editor that can crop and save PNG with transparency.</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">How the shipped portraits were made</p>
-<p>The sample portraits were rendered by a script from the repository's development tools, which
-drives the editor through a Python bridge that is not part of the product. You don't need it.
-Any image in the right shape works, and this page shows how to render one from the editor with
-built-in tools.
-<!-- VERIFY: whether Tools/AnimAuthoring ships; if it does, add the scripted route --></p>
-</div>
+<p>Any image in the right shape works. This page shows how to render one with the editor's built-in
+tools.</p>
 <h2 id="what-a-portrait-must-be">What a portrait must be<a class="headerlink" href="#what-a-portrait-must-be" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4645,7 +4640,8 @@ built-in tools.
 <p>Skip to step 2 if you already have artwork.</p>
 <ol>
 <li>Create an empty level (<strong>File › New Level › Empty Level</strong>) with one directional light and a
-   <strong>Sky Light</strong>. Save it in <code>MyGame/Dev</code>; it is a work level, not game content.</li>
+   <strong>Sky Light</strong>. Save it in a scratch folder of your own, such as <code>MyGame/WorkLevels</code>: it is a
+   work level, not game content.</li>
 <li>Drag your pawn Blueprint into the level, or for a VRoid member drag its skeletal mesh.</li>
 <li>Select its mesh component. Set <strong>Animation Mode</strong> to <strong>Use Animation Asset</strong> and pick an idle,
    for example <code>MM_Unarmed_Idle_Ready</code> from Lyra's Mannequin animations (or the <code>MF_</code> version for
@@ -4670,7 +4666,7 @@ built-in tools.
 </ol>
 <h3 id="3-import-it">3. Import it<a class="headerlink" href="#3-import-it" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Drag the PNG into <code>Content/MyGame/Party/Portraits</code>.</li>
+<li>Drag the PNG from your file browser into the Content Browser folder <code>MyGame/Party/Portraits</code>.</li>
 <li>Open the texture and set:<ul>
 <li><strong>Texture Group</strong>: <strong>UI</strong></li>
 <li><strong>Compression Settings</strong>: <strong>EditorIcon</strong>, as the samples (uncompressed, keeps a clean alpha edge)</li>
@@ -4683,7 +4679,7 @@ built-in tools.
 <h3 id="4-set-it-on-the-character">4. Set it on the character<a class="headerlink" href="#4-set-it-on-the-character" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open the character's member definition, for example <code>PartyMember_Rook</code>.</li>
-<li>Set <strong>Portrait</strong> (<strong>XenoCore › Party</strong>) to <code>T_Portrait_Rook</code>. Save.</li>
+<li>Under <strong>XenoCore › Party</strong>, set <strong>Portrait</strong> to <code>T_Portrait_Rook</code>. <strong>Save</strong>.</li>
 </ol>
 <h3 id="5-optional-a-menu-portrait">5. Optional: a menu portrait<a class="headerlink" href="#5-optional-a-menu-portrait" title="Permanent link">&para;</a></h3>
 <p>The main menu shows each active member as a full-height card. It uses <strong>Menu Portrait</strong> (on the same
@@ -4692,13 +4688,16 @@ member definition); left empty, the card falls back to <strong>Portrait</strong>
 <li>Render the <strong>whole body</strong> as in step 1, standing in an idle, facing the camera.</li>
 <li>Crop to <strong>600 × 1720</strong> pixels with the crown of the head near the top and the body centred on the
    head. The card shows only the top part of the image (<strong>Portrait Crop</strong> <code>0.55</code> on the card,
-   roughly crown to hips) and fills its height, so a head placed lower is cut off at the waist.</li>
+   roughly crown to hips) and fills its height, so a head placed lower is cut off at the waist.
+   <strong>Portrait Crop</strong> is a setting of the card itself, not of your texture; you never need to change it.</li>
 <li>Import it with <strong>Texture Group</strong> <strong>UI</strong>, <strong>Compression Settings</strong> <strong>BC7</strong> (it is much larger than a
    HUD portrait), <strong>Mip Gen Settings</strong> <strong>SimpleAverage</strong> and <strong>Filter</strong> <strong>Trilinear</strong>.</li>
-<li>Set <strong>Menu Portrait</strong> to it. The samples are <code>Characters/VRoid/&lt;Name&gt;/T_XenoCore_MenuPortrait_VRoid_*</code>.</li>
+<li>On the member definition, under <strong>XenoCore › Party</strong>, set <strong>Menu Portrait</strong> to it. <strong>Save</strong>. The
+   samples are <code>Characters/VRoid/&lt;Name&gt;/T_XenoCore_MenuPortrait_VRoid_*</code>, for example
+   <code>Characters/VRoid/Kael/T_XenoCore_MenuPortrait_VRoid_L</code>.</li>
 </ol>
-<!-- VERIFY: Portrait Crop's label and category on the party card (XenoCore › Look) -->
-
+<p>The HUD samples are in <code>Characters/Party/Portraits</code>, for example <code>T_XenoCore_Portrait_Blue</code>: open one
+to compare your import settings.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong> with the character in the active party.</li>

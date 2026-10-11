@@ -4588,6 +4588,20 @@ leader is an index into the active list, not a different kind of character.</str
 the same class, the same spawn path and an AI controller ready to take the body back; switching leader
 is only the player controller letting go of one body and possessing another. The player can do that
 at any time, in battle too, with the triggers (XC3-style).</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> up to seven characters fight together; you drive one and the rest follow and fight
+on their own. Tap a trigger to take control of another, in or out of battle.</p>
+<p><strong>What you can change, no code:</strong></p>
+<ul>
+<li>Who you start with, and how many fight at once: <a href="../../recipes/starting-party/">Set the starting party</a></li>
+<li>A new character: <a href="../../recipes/add-party-member/">Add a party member</a></li>
+<li>Recruiting someone by talking to them: <a href="../../recipes/recruit-npc/">Recruit a party member</a></li>
+<li>The defeat screen and where the party wakes: <a href="../../recipes/tune-revive-and-defeat/">Tune revive and defeat</a></li>
+<li>How companions follow and fight: <a href="../../recipes/tune-companion-ai/">Tune companion AI</a></li>
+<li>Every setting on this page: <a href="#what-you-can-change">What you can change</a></li>
+</ul>
+</div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4707,8 +4721,10 @@ is <code>3</code>.</p>
 The respawn point is, in order: the point last recorded by <strong>Set Party Respawn Point</strong>, else the
 map's player start, else where the party was standing. A save point records itself when the player
 steps on it (unless its <strong>Is Respawn Point</strong> is off), so in practice the party returns to the last
-save point visited this session. Override <strong>Get Wipe Respawn Transform</strong> on your copy of
-<code>BP_XenoCore_Party</code> to answer from anything else, such as a story checkpoint.</p>
+save point visited this session. To answer from anything else, such
+as a story checkpoint, override the <strong>Get Wipe Respawn Transform</strong> function in <code>BP_XenoCore_Party</code>
+(in the <strong>My Blueprint</strong> panel, <strong>Functions › Override</strong>), or call <strong>Set Party Respawn Point</strong> from
+your own Blueprint when the checkpoint is reached.</p>
 <p>For a battle the story means the player to lose, call <strong>Begin Party Wipe</strong> to run the same flow.
 <strong>Is Party Wiped</strong> and <strong>Is Wipe In Progress</strong> let other systems stay out of the way meanwhile.</p>
 <div class="admonition warning">
@@ -4904,8 +4920,23 @@ It has two branches, chosen by <strong>XenoCore Party In Battle</strong> (the le
 <p>The party counts as <strong>in battle</strong> when the leader has drawn its weapon, or when an enemy within 30 m
 is already fighting the party, so companions defend themselves even before the player locks on.</p>
 <p><strong>XenoCore Party Follow</strong> also teleports a member that falls more than <strong>Teleport Distance</strong> behind.</p>
-<p>All of the distances above are parameters on the task inside the StateTree asset. Duplicate the
-tree, tune it, and set it on your own child of <code>BP_AIC_XenoCore_PartyMember</code>.</p>
+<p>All of the distances above are parameters on the tasks inside the StateTree asset. To tune them
+without changing the shipped tree:</p>
+<ol>
+<li>In <code>Characters/Party/AI</code>, right-click <code>ST_XenoCore_PartyMember</code> and choose <strong>Duplicate</strong>. Move
+   the copy into your own folder, for example <code>MyGame/AI</code>.</li>
+<li>Open your copy, select a state (for example <strong>Travel</strong>), select the task in the <strong>Details</strong>
+   panel and change its numbers. <strong>Save</strong>.</li>
+<li>In <code>Characters/Party</code>, right-click <code>BP_AIC_XenoCore_PartyMember</code> and choose <strong>Create Child
+   Blueprint Class</strong>. Move the child into your folder and open it.</li>
+<li>In its <strong>Components</strong> panel select <strong>State Tree AI</strong>, and in the <strong>Details</strong> panel set its
+   <strong>State Tree</strong> to your copy. <strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>Open <code>BP_XenoCore_Party</code>, click <strong>Class Defaults</strong>, and set <strong>XenoCore › Party › Default
+   Controller Class</strong> to your child (or set <strong>Controller Class</strong> on one member definition, for one
+   character only).</li>
+</ol>
+<!-- VERIFY: the component's label (State Tree AI) and its State Tree property label in 5.8. -->
+
 <h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5065,8 +5096,9 @@ member's pawn data.</p>
 <li><strong>Recruit from a story event:</strong> call <strong>Add To Roster</strong> on <strong>Get Party Component</strong>, or place an
   <code>AXenoCorePartyRecruitTrigger</code> and call its <strong>Recruit</strong> node from a cutscene. A Blueprint child of
   the trigger can implement <strong>On Recruited</strong> for a sound or a line of dialogue.</li>
-<li><strong>Different AI:</strong> duplicate <code>ST_XenoCore_PartyMember</code> and <code>BP_AIC_XenoCore_PartyMember</code>. The team
-  must stay on a C++ controller, so always derive from <code>AXenoCorePartyMemberController</code>.</li>
+<li><strong>Different AI:</strong> duplicate the StateTree <code>ST_XenoCore_PartyMember</code> (it is data), and make a child
+  Blueprint of <code>BP_AIC_XenoCore_PartyMember</code> that uses your tree. A child keeps the C++ controller the
+  team depends on.</li>
 <li>Do not keep your own list of party pawns. Ask <strong>Get Active Member Pawns</strong> or <strong>Get Pawn For
   Member</strong>, and listen for <code>XenoCore.Party.Message.Changed</code>.</li>
 </ul>
@@ -5076,6 +5108,8 @@ member's pawn data.</p>
 run in development builds. See <a href="../../troubleshooting/diagnostics/">Diagnostics</a>.</p>
 </div>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>On the controller</strong> because the party must survive changing which body the player drives, and
   because Lyra's own party-wide systems (quick bar, item costs) look there.</li>
@@ -5091,6 +5125,7 @@ run in development builds. See <a href="../../troubleshooting/diagnostics/">Diag
   Lyra's game mode spawned. Nothing in the component names a character, so you can delete every
   shipped character without touching C++.</li>
 </ul>
+</details>
 
 
 

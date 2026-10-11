@@ -4590,8 +4590,9 @@
 
 <h1 id="add-an-enemy-type">Add an enemy type<a class="headerlink" href="#add-an-enemy-type" title="Permanent link">&para;</a></h1>
 <p><em>Designer · 90 min · No code · Last tested: never</em></p>
-<p><strong>Result:</strong> a new enemy <strong>type</strong> with its own body, animations, abilities, stats and loot, built from
-its own assets rather than borrowing the melee minion's. You can then place as many as you like.</p>
+<p><strong>Result:</strong> a new enemy <strong>type</strong> with its own body, animations, <a href="../../getting-started/glossary/">gameplay abilities</a>,
+stats and loot, built from its own assets rather than borrowing the melee minion's. You can then
+place as many as you like.</p>
 <!-- SCREENSHOT: the new enemy type in the gym, locked on, health bar showing -->
 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
@@ -4629,7 +4630,7 @@ parts in the last table.</p>
 <td>Idle, walk, jog, and side and back jogs, by direction and speed</td>
 </tr>
 <tr>
-<td>Pawn data</td>
+<td><a href="../../getting-started/glossary/">Pawn data</a></td>
 <td><code>PawnData_XenoCore_Minion_Melee</code></td>
 <td>Which ability sets the enemy is given</td>
 </tr>
@@ -4651,7 +4652,7 @@ parts in the last table.</p>
 <tr>
 <td>Knock-downs</td>
 <td><code>GA_XenoCore_Minion_Topple</code> / <code>_Daze</code></td>
-<td>The Topple and Daze montages, held while the reaction lasts</td>
+<td>The <a href="../../getting-started/glossary/">Topple and Daze</a> montages, held while the reaction lasts</td>
 </tr>
 <tr>
 <td>Guard, recoil, dodge</td>
@@ -4659,7 +4660,7 @@ parts in the last table.</p>
 <td>Clips for a block, being blocked, and a dodge</td>
 </tr>
 <tr>
-<td>Arts</td>
+<td><a href="../../getting-started/glossary/">Arts</a></td>
 <td><code>Minion/Arts/DA_XenoCore_Minion_Rend</code> / <code>_Sweep</code></td>
 <td>Art definitions on the Blueprint's <strong>Arts</strong> list. See <a href="../enemy-arts-ai/">Give an enemy Arts</a></td>
 </tr>
@@ -4767,31 +4768,33 @@ parent a new one to <code>XenoCoreAnimInstance</code>.</p>
   on <code>GE_XenoCore_Damage</code>.</li>
 </ul>
 </li>
-<li>
-<p>Open <code>GA_MyGame_Golem_HitReact</code>. Under <strong>XenoCore › Reaction</strong>, set <strong>Directional Montages</strong>
+<li>Open <code>GA_MyGame_Golem_HitReact</code>. Under <strong>XenoCore › Reaction</strong>, set <strong>Directional Montages</strong>
    to your flinch montages, in the order Front, Back, Left, Right. An empty entry means no flinch
-   from that side. A flinch must <strong>layer over</strong> the Golem's swing, not replace it, so:</p>
-<ul>
-<li>Make each flinch clip <strong>additive</strong>: duplicate it, set <strong>Additive Anim Type</strong> to <em>Local Space</em>
-  and <strong>Base Pose Type</strong> to <em>Selected animation frame</em>, with the original clip, frame 0.</li>
-<li>Put each montage on the <strong><code>AdditiveHitReact</code></strong> slot.</li>
-<li>Register that slot on the Golem's skeleton in its <strong>own</strong> slot group, <code>AdditiveGroup</code>. Use the
-  skeleton's <strong>Anim Slot Manager</strong>, or <code>XenoCoreAnimLayerTools.set_skeleton_slot_group(skeleton,
-  "AdditiveHitReact", "AdditiveGroup")</code>.</li>
-<li>Give the Golem's animation blueprint an additive branch before its output pose (copy the end
-  of <code>ABP_XenoCore_Minion_Melee</code>'s AnimGraph, or call
-  <code>XenoCoreAnimLayerTools.add_additive_slot_branch(abp, "AnimGraph", "AdditiveHitReact")</code>).
-  <strong>Apply Additive</strong>'s alpha sets how hard the jolt reads.
-   <code>Tools/AnimAuthoring/flinch_additive.py</code> does all four for the minion and is the worked example.
-   Under <strong>XenoCore › HitReact › Push</strong>, lower <strong>Push Distance</strong> for a heavy enemy, or set it to <code>0</code>
-   so it is never knocked back.</li>
+   from that side. A flinch must <strong>layer over</strong> the Golem's swing, not replace it, so:<ul>
+<li>Make each flinch clip <strong>additive</strong>: duplicate the animation sequence, open the copy, and in
+  its <strong>Asset Details</strong> set <strong>Additive Settings › Additive Anim Type</strong> to <em>Local Space</em> and
+  <strong>Base Pose Type</strong> to <em>Selected animation frame</em>, with the original clip and frame 0.</li>
+<li>Make a montage from each additive clip and set its slot to <strong><code>AdditiveHitReact</code></strong>.</li>
+<li>Register that slot on the Golem's skeleton in its <strong>own</strong> slot group. Open the skeleton,
+  choose <strong>Window › Anim Slot Manager</strong>, click <strong>Add Group</strong> and name it <code>AdditiveGroup</code>, then
+  <strong>Add Slot</strong> <code>AdditiveHitReact</code> and right-click it › <strong>Set Slot Group to</strong> <code>AdditiveGroup</code>.
+  <!-- VERIFY: Anim Slot Manager menu labels in 5.8 --></li>
+<li>Give the Golem's Animation Blueprint an additive branch just before <strong>Output Pose</strong>: open
+  <code>ABP_XenoCore_Minion_Melee</code>'s <strong>AnimGraph</strong>, select its last nodes (the <code>AdditiveHitReact</code>
+  <strong>Slot</strong> and <strong>Apply Additive</strong>), copy them into your AnimGraph and wire them the same way.
+  <strong>Apply Additive</strong>'s <strong>Alpha</strong> sets how hard the jolt reads.
+  <!-- VERIFY: which nodes make up the additive branch at the end of ABP_XenoCore_Minion_Melee's AnimGraph --></li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Fails silently: the flinch slot in DefaultGroup</p>
-<p>Compiling the anim Blueprint registers <code>AdditiveHitReact</code> in <code>DefaultGroup</code>, beside the
-attack slots. Montages in one group stop each other: every hit cuts the Golem's swing short
-and its next swing cuts the flinch off, so you rarely see a flinch at all. Nothing is logged.</p>
-</div>
+</li>
+</ol>
+<p>Under <strong>XenoCore › HitReact › Push</strong>, lower <strong>Push Distance</strong> for a heavy enemy, or set it to <code>0</code>
+   so it is never knocked back.</p>
+<pre><code>!!! warning "Fails silently: the flinch slot in DefaultGroup"
+    Compiling the anim Blueprint registers `AdditiveHitReact` in `DefaultGroup`, beside the
+    attack slots. Montages in one group stop each other: every hit cuts the Golem's swing short
+    and its next swing cuts the flinch off, so you rarely see a flinch at all. Nothing is logged. Check the slot's group in the **Anim Slot
+    Manager** after compiling, and move it back to `AdditiveGroup` if it changed.
+</code></pre>
 <ol>
 <li>Open <code>GA_MyGame_Golem_Topple</code> and <code>GA_MyGame_Golem_Daze</code>. Under <strong>XenoCore › Reaction</strong>, set
    <strong>Directional Montages</strong> to your knock-down montage (one entry is enough). Leave <strong>Hold While
@@ -4803,8 +4806,6 @@ and its next swing cuts the flinch off, so you rarely see a flinch at all. Nothi
    <a href="../../concepts/combat-loop/#blocks-and-dodges">Blocks and dodges</a> for which side each slot means.
    No clips for one of them? Leave it out of the ability set: the Golem still blocks, recoils and
    dodges in the rules, just without an animation.</li>
-</ol>
-</li>
 </ol>
 <p>!!! tip "Same skeleton as an existing enemy? Skip the copies"
        If the Golem shares a skeleton with an enemy you already have, keep that enemy's reaction
@@ -4846,8 +4847,8 @@ to be armed waits forever and never swings.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Place <code>B_MyGame_Golem</code> in <code>Maps/L_XenoCore_Gym</code>, on the navigation mesh, and press <strong>Play</strong>.
-   (In a real level, put it on an enemy spawner instead: <a href="../place-enemies/">Place enemies</a>.)</li>
-<li>Walk up to it. Whether it attacks first depends on its <strong>Detection</strong> (<strong>XenoCore › AI ›
+   (In a real level, put it on an enemy <a href="../../getting-started/glossary/">spawner</a> instead: <a href="../place-enemies/">Place enemies</a>.)</li>
+<li>Walk up to it. Whether it attacks first depends on its <a href="../../getting-started/glossary/"><strong>Detection</strong></a> (<strong>XenoCore › AI ›
    Detection</strong>): with <strong>None (passive)</strong> it waits to be hit. Set <strong>Sight</strong> to have it
    charge when it sees you.</li>
 <li>Hit it. It turns, chases you if you back off, and swings with your montages. Circle round it

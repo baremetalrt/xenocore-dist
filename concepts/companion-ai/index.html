@@ -4734,6 +4734,13 @@ unison. That half is covered in <a href="#out-of-battle-a-party-on-its-own-clock
 <p>This page explains how both work and which numbers you can change. To change them step by step, see
 <a href="../../recipes/tune-companion-ai/">Tune companion AI</a> and
 <a href="../../recipes/companion-personality/">Give a character its own idle breaks and faces</a>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Where the knobs are</p>
+<p>Nearly every number on this page lives in one of four places: an <strong>Art definition</strong> (when an
+art is used), a <strong>party member definition</strong> (<strong>AI Profile</strong>: pacing and target choice), the
+party StateTree <code>Characters/Party/AI/ST_XenoCore_PartyMember</code> (movement, gaze, rest), and
+<code>BP_XenoCore_Party</code> (tactics and spawn). The table below says which.</p>
+</div>
 <h2 id="the-short-version">The short version<a class="headerlink" href="#the-short-version" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4852,7 +4859,8 @@ battle, it runs two tasks side by side:</p>
 <p><strong>Draw first, then close in.</strong> A companion draws its weapon where it stands, <strong>Draw Delay
 Min</strong>–<strong>Max</strong> (0.15–0.6 s, rolled per member) after the party enters battle, and only then walks
 in. The follow task holds a sheathed member still for up to <strong>Max Hold For Draw</strong> (1.5 s) so it does
-not jog during the wait. Both are parameters on the Fight Target and Party Follow tasks.</p>
+not jog during the wait. The delays are parameters on the <strong>XenoCore Fight Target</strong> task and the
+hold on <strong>XenoCore Party Follow</strong>, both in <code>ST_XenoCore_PartyMember</code>.</p>
 <p>Meanwhile <strong>XenoCore Party Follow</strong> walks the companion to a <strong>combat spot</strong>. An EQS query picks a
 point on a ring round the enemy, away from the other party members and from the spots they have
 already claimed, so bodies do not pile onto one point. Only one member's spot query runs at a time,
@@ -5018,7 +5026,7 @@ together. So every timer below is rolled <strong>per member</strong>, and nothin
 decision to follow.</p>
 <p>All of it runs in <code>Characters/Party/AI/ST_XenoCore_PartyMember</code>. The numbers are parameters on the
 tasks in that tree. To change them, duplicate the tree and set it on your own child of
-<code>Characters/Party/BP_AIC_XenoCore_PartyMember</code>, as described in <a href="../party/">Party</a>.</p>
+<code>Characters/Party/BP_AIC_XenoCore_PartyMember</code>; <a href="../party/#party-ai">Party AI</a> has the steps.</p>
 <!-- VERIFY: the Gaze, Hold and Follow Leader tasks in ST_XenoCore_PartyMember keep the C++ default values quoted below (none overridden in the asset). -->
 
 <h3 id="where-they-look">Where they look<a class="headerlink" href="#where-they-look" title="Permanent link">&para;</a></h3>
@@ -5069,8 +5077,9 @@ target, with a quick glance at an ally <strong>Battle Glance Chance</strong> (20
 ahead, so the leader you drive is never turned by this.</p>
 <div class="admonition tip">
 <p class="admonition-title">Make a member look at something</p>
-<p>From any Blueprint, get the member's controller (<code>AXenoCorePartyMemberController</code>) and call
-<strong>Request Attention</strong> with an actor and a number of seconds. That beats whatever the gaze task
+<p>From any Blueprint, take the member's body, call <strong>Get Controller</strong>, <strong>Cast To
+BP_AIC_XenoCore_PartyMember</strong>, and call <strong>Request Attention</strong> with an actor and a number of
+seconds. That beats whatever the gaze task
 would pick, which makes it the call for a cutscene beat or a scripted line. <strong>Set Gaze Target</strong> and
 <strong>Clear Gaze Target</strong> point the head without a time limit.</p>
 </div>

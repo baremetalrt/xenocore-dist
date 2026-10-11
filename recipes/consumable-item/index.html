@@ -4590,8 +4590,8 @@
 
 <h1 id="make-a-consumable-item">Make a consumable item<a class="headerlink" href="#make-a-consumable-item" title="Permanent link">&para;</a></h1>
 <p><em>Designer · 45 min · No code · Last tested: never</em></p>
-<p><strong>Result:</strong> an item, <strong>Mend Salve</strong>, that the party carries in the bag. Using it spends one and
-restores the leader's HP.</p>
+<p><strong>Result:</strong> an item, <strong>Mend Salve</strong>, that the <a href="../../getting-started/glossary/">party</a> carries in
+the bag. Using it spends one and restores the <a href="../../getting-started/glossary/">leader</a>'s HP.</p>
 <!-- SCREENSHOT: the heal number over the leader, and the bag count dropping by one -->
 
 <div class="admonition warning">
@@ -4599,7 +4599,8 @@ restores the leader's HP.</p>
 <p>XenoCore has <strong>no "use item" command in the menu</strong> today. The Items menu lists, sorts and
 describes items, and nothing in it spends one. Items are spent by quests (turn-in), by shops and
 trades, and by your own abilities.</p>
-<p>This recipe therefore builds the item <strong>and an ability that uses it</strong>. You trigger the ability
+<p>This recipe therefore builds the item <strong>and a <a href="../../getting-started/glossary/">gameplay ability</a>
+that uses it</strong>. You trigger the ability
 with an input or from another graph. A menu entry that calls it is a UI job; see
 <a href="../add-menu-screen/">Add a menu screen</a>.</p>
 </div>
@@ -4642,19 +4643,18 @@ screen that the bag changed.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-make-the-item">1. Make the item<a class="headerlink" href="#1-make-the-item" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Create <code>MyGame/Items</code> under <strong>Content</strong>.</li>
-<li>Duplicate <code>Inventory/Items/ID_XenoCore_CoolPotato</code> into it. Name it <code>ID_MyGame_MendSalve</code>.
+<li>Create a <code>MyGame/Items</code> folder under <strong>Content</strong>.</li>
+<li>In <strong>Plugins › XenoCore Content › Inventory › Items</strong>, right-click <code>ID_XenoCore_CoolPotato</code>,
+   choose <strong>Duplicate</strong>, move the copy into <code>MyGame/Items</code> and name it <code>ID_MyGame_MendSalve</code>.
    Never create an item definition from blank.</li>
-<li>Open it (<strong>Class Defaults</strong>). Set <strong>Display Name</strong> to <code>Mend Salve</code>.</li>
-<li>In <strong>Fragments</strong>:<ul>
-<li><strong>Xeno Core Fragment Item Category</strong>: set <strong>Category</strong> to <code>Items</code>, <strong>Max Carried</strong> <code>20</code> and
-  <strong>Sell Value</strong>. <strong>Max Carried</strong> is the most the party may hold; <code>0</code> means no limit.</li>
-<li><strong>Xeno Core Fragment Item Display</strong>: <strong>Description</strong> and <strong>Icon</strong>.</li>
-<li>Make sure there is <strong>no</strong> <strong>Xeno Core Fragment Equip Slots</strong> fragment, or the item becomes
-  equipment.</li>
-</ul>
-</li>
-<li><strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>Open it. In <strong>Class Defaults</strong>, set <strong>Display Name</strong> to <code>Mend Salve</code>.</li>
+<li>Expand <strong>Fragments</strong>. In the <strong>Xeno Core Fragment Item Category</strong> entry, under
+   <strong>XenoCore › Item</strong>, set <strong>Category</strong> to <code>Items</code>, <strong>Max Carried</strong> to <code>20</code> and <strong>Sell Value</strong>.
+   <strong>Max Carried</strong> is the most the party may hold; <code>0</code> means no limit.</li>
+<li>In the <strong>Xeno Core Fragment Item Display</strong> entry, set <strong>Description</strong> and <strong>Icon</strong>.</li>
+<li>Make sure there is <strong>no</strong> <strong>Xeno Core Fragment Equip Slots</strong> entry, or the item becomes
+   equipment.</li>
+<li>Click <strong>Compile</strong>, then <strong>Save</strong>.</li>
 </ol>
 <!-- VERIFY: which Category shows the item in the Items menu. The category enum has no consumable
 value; the Items menu tabs visibly include Collectables, Crystals, Materials, Key Item and Art
@@ -4662,21 +4662,25 @@ Manual. Confirm whether "Items" has a tab. -->
 
 <h3 id="2-make-the-heal">2. Make the heal<a class="headerlink" href="#2-make-the-heal" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Duplicate <code>GE_GameplayEffectPad_Heal</code> into <code>MyGame/Items</code>. Name it <code>GE_MyGame_Mend</code>.</li>
+<li>In the Content Browser, open <code>Content/Environments/Gameplay</code> (Lyra's own content), right-click
+   <code>GE_GameplayEffectPad_Heal</code>, choose <strong>Duplicate</strong>, move the copy into <code>MyGame/Items</code> and name it
+   <code>GE_MyGame_Mend</code>.</li>
 <li>Open it and set the heal amount on its execution. Keep its <strong>Gameplay Cues</strong> entry
    (<code>GameplayCue.Character.Heal</code>): that is the heal effect you see.</li>
-<li><strong>Save</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
 </ol>
 <!-- VERIFY: where GE_GameplayEffectPad_Heal sets its amount (execution modifier vs magnitude) -->
 
 <h3 id="3-make-the-ability">3. Make the ability<a class="headerlink" href="#3-make-the-ability" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In <code>MyGame/Items</code>, create a Blueprint class with parent <code>LyraGameplayAbility</code>. Name it
-   <code>GA_MyGame_UseMendSalve</code>.</li>
-<li>In <strong>Class Defaults</strong>, set <strong>Instancing Policy</strong> to Instanced Per Actor and leave
-   <strong>Activation Policy</strong> on input.</li>
-<li>Under <strong>Costs › Additional Costs</strong>, add an entry and choose <strong>Party Item (XenoCore)</strong>. Set
-   <strong>Item Definition</strong> to <code>ID_MyGame_MendSalve</code> and <strong>Quantity</strong> to <code>1</code>.</li>
+<li>In <code>MyGame/Items</code>, right-click and choose <strong>Blueprint Class</strong>. Under <strong>All Classes</strong>, pick
+   <code>LyraGameplayAbility</code>. Name it <code>GA_MyGame_UseMendSalve</code>.</li>
+<li>Open it. In <strong>Class Defaults</strong>, set <strong>Instancing Policy</strong> to <strong>Instanced Per Actor</strong> and leave
+   <strong>Activation Policy</strong> on <strong>On Input Triggered</strong>.</li>
+<li>Under <strong>Costs</strong>, click <strong>+</strong> beside <strong>Additional Costs</strong> and choose <strong>Party Item (XenoCore)</strong>
+   from the entry's class dropdown.</li>
+<li>In that entry, under <strong>XenoCore › Cost</strong>, set <strong>Item Definition</strong> to <code>ID_MyGame_MendSalve</code> and
+   <strong>Quantity</strong> to <code>1</code>.</li>
 <li>In the event graph, build this chain from <strong>Event ActivateAbility</strong>:<ol>
 <li><strong>Commit Ability</strong>. This spends the Mend Salve. <strong>Branch</strong> on its return value; on
    <strong>False</strong>, <strong>End Ability</strong> and stop.</li>
@@ -4684,7 +4688,7 @@ Manual. Confirm whether "Items" has a tab. -->
 <li><strong>End Ability</strong>.</li>
 </ol>
 </li>
-<li><strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>Click <strong>Compile</strong>, then <strong>Save</strong>.</li>
 </ol>
 <p>With an empty bag the ability does not activate at all, because the cost is checked before
 activation.</p>
@@ -4702,19 +4706,20 @@ In stock Lyra 5.8 its code is compiled out: its check always fails, so an abilit
 <strong>can never activate</strong>, with nothing logged. Use <strong>Party Item (XenoCore)</strong>.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Spend items with the XenoCore nodes</p>
+<p class="admonition-title">Fails silently: spend items with the XenoCore nodes</p>
 <p>Lyra's own inventory functions also remove items. XenoCore notices and still updates open
 screens and quest counters, but Lyra's removal functions can take an item a character is
 wearing, which then vanishes from the save. Use <strong>Consume Items From Party</strong> or <strong>Remove Item
-Instance From Party</strong>.</p>
+Instance From Party</strong> (both under <strong>XenoCore › Inventory</strong>).</p>
 </div>
 <h3 id="4-give-the-party-some-to-use">4. Give the party some to use<a class="headerlink" href="#4-give-the-party-some-to-use" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open a pawn in the starting party, for example Kael,
    <code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>.</li>
-<li>On its equipment component, add to <strong>XenoCore › Equipment › Starting Inventory</strong>: <strong>Item
-   Definition</strong> <code>ID_MyGame_MendSalve</code>, <strong>Count</strong> <code>3</code>.</li>
-<li><strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>In the <strong>Components</strong> panel, select its equipment component.</li>
+<li>In the Details panel, under <strong>XenoCore › Equipment</strong>, click <strong>+</strong> beside <strong>Starting Inventory</strong>.</li>
+<li>In the new entry, set <strong>Item Definition</strong> to <code>ID_MyGame_MendSalve</code> and <strong>Count</strong> to <code>3</code>.</li>
+<li>Click <strong>Compile</strong>, then <strong>Save</strong>.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a pawn that never spawns</p>
@@ -4724,13 +4729,17 @@ mannequins in <code>Characters/Party</code>, or <code>B_XenoCore_Player</code>, 
 list is ignored with nothing logged. The shipped roster starts with Kael and Mira.</p>
 </div>
 <h3 id="5-grant-the-ability">5. Grant the ability<a class="headerlink" href="#5-grant-the-ability" title="Permanent link">&para;</a></h3>
-<p>For a first test, grant it from the console (step 3 of Test it). To keep it, add it to an ability
-set the leader uses, with an <strong>Input Tag</strong> your input config maps to a key. See
-<a href="../../concepts/input-and-camera/">Input and camera</a> and
-<a href="../input-action-prompt/">Add an input action prompt</a>.</p>
-<!-- VERIFY: which ability set each party pawn is granted (AbilitySet_XenoCore_PartyMember vs
-AbilitySet_XenoCore_Hero, see DRAFTING-NOTES F13) -->
-
+<p>For a first test, grant it from the console (step 3 of Test it). To keep it:</p>
+<ol>
+<li>Open <code>Characters/Party/AbilitySet_XenoCore_PartyMember</code>. Every VRoid member is granted it,
+   through <code>Characters/VRoid/PawnData_XenoCore_Party_VRoid</code>.</li>
+<li>Click <strong>+</strong> beside <strong>Granted Gameplay Abilities</strong>.</li>
+<li>In the new entry, set <strong>Ability</strong> to <code>GA_MyGame_UseMendSalve</code>.</li>
+<li>Set <strong>Input Tag</strong> to a <a href="../../getting-started/glossary/">gameplay tag</a> your input config maps to
+   a key. See <a href="../../concepts/input-and-camera/">Input and camera</a> and
+   <a href="../input-action-prompt/">Add an input action prompt</a>.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>.</li>
@@ -4744,21 +4753,32 @@ AbilitySet_XenoCore_Hero, see DRAFTING-NOTES F13) -->
 <!-- VERIFY: that the GAS debug console commands find the leader's pawn-owned ability system -->
 
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">The ability activates but nothing heals</p>
-<p>The heal effect has no amount, or its cue was removed. Test the effect alone with
-<code>AbilitySystem.Effect.Apply GE_MyGame_Mend</code>.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">The ability never activates</p>
-<p>The cost's <strong>Item Definition</strong> is a different item from the one added in <strong>Starting
-Inventory</strong>; both must be <code>ID_MyGame_MendSalve</code>. Also check that the cost is <strong>Party Item
-(XenoCore)</strong>, not Lyra's <strong>Inventory Item</strong>.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">The count never goes down</p>
-<p>The graph does not call <strong>Commit Ability</strong>. The cost is only paid on commit.</p>
-</div>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The ability activates but nothing heals</td>
+<td>The heal effect has no amount, or its cue was removed. Test the effect alone with <code>AbilitySystem.Effect.Apply GE_MyGame_Mend</code>.</td>
+</tr>
+<tr>
+<td>The ability never activates</td>
+<td>The cost's <strong>Item Definition</strong> is a different item from the one in <strong>Starting Inventory</strong>; both must be <code>ID_MyGame_MendSalve</code>. Also check that the cost is <strong>Party Item (XenoCore)</strong>, not Lyra's <strong>Inventory Item</strong> (see the warning above).</td>
+</tr>
+<tr>
+<td>The count never goes down</td>
+<td>The graph does not call <strong>Commit Ability</strong>. The cost is only paid on commit.</td>
+</tr>
+<tr>
+<td>The bag has no Mend Salves at New Game</td>
+<td>The pawn you gave <strong>Starting Inventory</strong> to never spawns (see the warning in step 4).</td>
+</tr>
+</tbody>
+</table>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../concepts/items-and-inventory/">Items and inventory</a>.</li>

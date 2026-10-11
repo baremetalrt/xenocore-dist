@@ -4511,6 +4511,20 @@ effect that adds the stats of what it wears. Damage is calculated by one executi
 <code>Battle/Attributes/GE_XenoCore_Damage</code>. The one idea: <strong>the formula is not symmetric.</strong> A party member
 hitting an enemy treats the enemy's defence as a <em>fraction</em>; an enemy hitting a party member
 <em>subtracts</em> the party member's defence as flat points.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> the numbers over every hit, MISS, BLOCKED and CRITICAL HIT!, and the stats on the
+Party and Equipment screens.</p>
+<p><strong>What you can change, no code:</strong></p>
+<ul>
+<li>A character's stats at each level: <a href="../../recipes/character-statline/">Give a character its own statline</a></li>
+<li>An enemy's: <a href="../../recipes/enemy-statline/">Author an enemy statline</a></li>
+<li>Hit, block and critical chances, and how much a level gap matters: the settings on
+  <code>Battle/Attributes/BP_XenoCoreDamageExecution</code> (open it, click <strong>Class Defaults</strong>, see
+  <strong>XenoCore › Damage</strong>). Listed under <a href="#what-you-can-change">What you can change</a>.</li>
+<li>A brand-new stat needs a programmer: <a href="../../recipes/damage-formula-stat/">Add a stat to the damage formula</a></li>
+</ul>
+</div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4642,8 +4656,8 @@ hitting an enemy treats the enemy's defence as a <em>fraction</em>; an enemy hit
 </table>
 <p>A party character has no defence, block or critical chance of its own: those come only from
 equipment. That is intended.</p>
-<p><strong>Max Character Level</strong> is a config value. To raise the cap, add this to the project's
-<code>Config/DefaultGame.ini</code>:</p>
+<p><strong>Max Character Level</strong> is a config value with no editor field. To raise the cap, close the
+editor, open your project's <code>Config/DefaultGame.ini</code> in a text editor, and add:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[/Script/XenoCoreRuntime.XenoCoreStatSet]</span>
 <span class="na">MaxCharacterLevel</span><span class="o">=</span><span class="s">120</span>
 </code></pre></div>
@@ -4854,10 +4868,12 @@ new character its own growth, add rows for it and point its effect at them. See
   execution subclass. See <a href="../../recipes/damage-formula-stat/">Add a stat to the damage formula</a>.</li>
 <li><strong>A different formula:</strong> subclass <code>UXenoCoreDamageExecution</code> in C++ and point a duplicate of
   <code>GE_XenoCore_Damage</code> at it. Keep the team check.</li>
-<li><strong>Tuning only:</strong> duplicate <code>BP_XenoCoreDamageExecution</code> into <code>Content/MyGame/</code> and point your damage
-  effect at the copy, rather than editing the shipped one.</li>
+<li><strong>Tuning only:</strong> make a child Blueprint of <code>BP_XenoCoreDamageExecution</code> in <code>Content/MyGame/</code> and
+  point your damage effect at the child, rather than editing the shipped one.</li>
 </ul>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>Curve tables, not per-level data assets.</strong> One row per stat covers every level, and a statline
   effect sampled at a level is plain GAS: nothing custom stores numbers.</li>
@@ -4869,6 +4885,7 @@ new character its own growth, add rows for it and point its effect at them. See
 <li><strong>Its own execution instead of Lyra's.</strong> Lyra's formula is a shooter's. Lyra's team check is
   kept, because without it arts would damage allies.</li>
 </ul>
+</details>
 
 
 

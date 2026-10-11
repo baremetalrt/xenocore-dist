@@ -4611,7 +4611,7 @@
 
 
 <h1 id="battle-voices-and-banter">Battle voices and banter<a class="headerlink" href="#battle-voices-and-banter" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 12 min read · Last tested: 2026-10-02</em></p>
+<p><em>Designer · 12 min read · No code · Last tested: 2026-10-02</em></p>
 <p>Party members speak. They shout their arts by name, call out when a fight starts, name the ally
 they are reviving, groan when hit, cheer a win and chat while the party travels. That is
 Xenoblade's pattern. With AI companions it is also a gameplay signal: you hear "Wild Down!" and
@@ -4619,6 +4619,16 @@ know a Topple is coming without looking.</p>
 <p><strong>Everything here is set in the editor.</strong> The lines are rows in a Data Table, the pacing is a
 second Data Table, and the global feel is one Data Asset. There is no C++ per line, per
 character or per category.</p>
+<div class="admonition abstract">
+<p class="admonition-title">What you can change, no code</p>
+<ul>
+<li>What a character says, and when: <a href="#writing-a-characters-lines">Writing a character's lines</a></li>
+<li>How often anyone speaks: <a href="#pacing-the-rules-table">Pacing: the rules table</a></li>
+<li>Talking to a companion out of battle: <a href="#talking-to-an-ally">Talking to an ally</a></li>
+<li>A line for your own moment (a boss phase, a quest beat): <a href="#adding-a-category-of-your-own">Adding a category of your own</a></li>
+<li>Your own recordings: <a href="#recording-lines">Recording lines</a></li>
+</ul>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Status, 2026-10-03</p>
 <p>All seven characters are voiced (470 lines, two takes each, with lip-sync keys and an
@@ -4818,15 +4828,15 @@ held: you keep walking, the camera stays yours, and the box closes itself.</p>
 <tbody>
 <tr>
 <td>The prompt's word, or empty to make a character untalkable</td>
-<td><strong>Talk Verb</strong> on the party member's Blueprint</td>
+<td><strong>Talk Verb</strong> on the party member's Blueprint (<strong>Class Defaults › XenoCore › Interaction</strong>)</td>
 </tr>
 <tr>
 <td>How close to stand</td>
-<td><strong>Interact Range</strong> on the party member (110 cm, the revive range), the same field an NPC has</td>
+<td><strong>Interact Range</strong>, same category (110 cm, the revive range), the same field an NPC has</td>
 </tr>
 <tr>
 <td>Only when still</td>
-<td><strong>Talk Max Leader Speed</strong> on the party member (50 cm/s): the party walks bunched, so Talk is offered only once you stop</td>
+<td><strong>Talk Max Leader Speed</strong>, same category (50 cm/s): the party walks bunched, so Talk is offered only once you stop</td>
 </tr>
 <tr>
 <td>What they say</td>
@@ -5053,7 +5063,9 @@ therefore follows these rules, all set in <code>DT_XenoCore_VoiceRules</code>:</
 <h2 id="adding-a-category-of-your-own">Adding a category of your own<a class="headerlink" href="#adding-a-category-of-your-own" title="Permanent link">&para;</a></h2>
 <p>A boss taunt or a quest beat needs no C++:</p>
 <ol>
-<li>Add the tag under <code>XenoCore.Voice</code> in <code>Config/Tags/XenoCoreTags.ini</code>, e.g. <code>XenoCore.Voice.Boss.PhaseTwo</code>.</li>
+<li>Add the tag under <code>XenoCore.Voice</code>, e.g. <code>XenoCore.Voice.Boss.PhaseTwo</code>: open <strong>Project
+   Settings › Project › GameplayTags</strong>, click <strong>Add New Gameplay Tag</strong>, and save it to a tag file of
+   your own project rather than XenoCore's (a template update replaces XenoCore's).</li>
 <li>Optionally add a rules row. Without one it uses <code>XenoCore.Voice</code>'s.</li>
 <li>Add rows with that category to the characters who should say it.</li>
 <li>Call <strong>Speak</strong> from the Blueprint where it happens: the boss's phase change, a trigger volume,
@@ -5062,13 +5074,23 @@ therefore follows these rules, all set in <code>DT_XenoCore_VoiceRules</code>:</
 <p><strong>Speak</strong> (<code>Xeno Core Battle Voice Subsystem</code>) takes a Speaker, a Category and, optionally, an Art
 and an Addressee. It returns whether a line started. Call it as often as you like; the rules decide.</p>
 <h2 id="recording-lines">Recording lines<a class="headerlink" href="#recording-lines" title="Permanent link">&para;</a></h2>
-<p>The shipped cast is generated with ElevenLabs from <code>Docs/Design/Battle-Voice-Script.md</code>. Each
-character's voice is in <code>Tools/Audio/Voice/cast.json</code>. <code>Tools/Audio/Voice/voice_test.py</code> records an
-audition (it needs your own <code>ELEVENLABS_API_KEY</code>). <code>generate_voice.py</code> records the whole script (cached, so only changed lines cost anything), trims
-silence and bakes lip sync; <code>import_voice.py</code> (a commandlet) imports the takes and rebuilds each
-table, keeping any <strong>Expression</strong> or <strong>Subtitle</strong> you edited. Every take is normalized to the same loudness (-16 dB active RMS, peaks under -1 dBFS); a hand recording should be levelled the same way. Any recording works by hand too: import the WAV as mono,
-give it the sound class <code>SC_XenoCore_Dialogue</code>, and add it to a row's Takes. Stereo files cannot
-pan.</p>
+<p>The shipped lines were generated with a text-to-speech service, then trimmed, levelled and given
+lip-sync keys. To add your own recording:</p>
+<ol>
+<li>Level it like the shipped takes: about -16 dB average loudness, peaks under -1 dBFS.</li>
+<li>Drag the WAV into the Content Browser, next to the character's voice table. Import it as
+   <strong>mono</strong>: a stereo file cannot pan with the speaker.</li>
+<li>Open the new sound wave and set its <strong>Sound Class</strong> to <code>SC_XenoCore_Dialogue</code>, so it follows
+   the player's <strong>Dialogue</strong> volume.</li>
+<li>In the character's voice table, add it to a row's <strong>Takes</strong>.</li>
+</ol>
+<p>A hand-imported take has no lip-sync keys, so the mouth uses the generic flap described in
+<a href="#the-face">The face</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Test it</p>
+<p>Start the gym, then type <code>XenoCore.Voice.Speak Kael &lt;Category&gt;</code> in the console with your row's
+category. <code>Log LogXenoVoice Verbose</code> explains a line that did not play.</p>
+</div>
 <h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
 <p><code>XenoCore.Voice.Message.Spoke</code> is sent the moment a line starts. Payload <code>XenoCoreVoiceSpokeMessage</code>:
 <strong>Speaker</strong>, <strong>Category</strong>, <strong>Take</strong> (with its lip-sync keys), <strong>Expression</strong>, <strong>Expression Weight</strong>,

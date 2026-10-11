@@ -3302,6 +3302,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3363,10 +3374,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4412,6 +4423,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4473,10 +4495,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4526,11 +4548,17 @@
 <p><em>All · 12 min read · No code · Last tested: never</em></p>
 <p>There are two ways to get items from an NPC. A <strong>shop</strong> sells for gold and buys almost anything
 back. A <strong>trade</strong> is a barter: the NPC hands over one item for one of yours that is worth at least
-as much. Both are driven by a data asset set on a placed NPC, a Blueprint node that opens the
-screen, and a screen built on one shared base, <code>UXenoCoreMerchantScreenBase</code>. Neither has any state
-of its own: stock never runs out, so the party bag and the party's gold are the only things that
+as much. Each is a data asset (a <strong>shop table</strong> or <strong>trade table</strong>) set on a placed NPC, opened by
+a node in that NPC's <strong>On Interact</strong> graph. Neither has any state of its own: stock never runs out, so the party bag and the party's gold are the only things that
 change. The idea that makes the rest make sense: <strong>every price comes from one number on the item,
 its Sell Value</strong>, and each system applies its own multiplier to it.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A shopkeeper and what they sell</strong>: <a href="../../recipes/open-shop/">Open a shop</a>.</li>
+<li><strong>A trader and what they offer</strong>: <a href="../../recipes/trade/">Set up a trade</a>.</li>
+<li><strong>An item's price</strong>: its <strong>Sell Value</strong> (on the item), or <strong>Price Override</strong> on one row of a table.</li>
+<li><strong>The screens' wording and look</strong>: their Blueprints' class defaults (see <a href="#settings">Settings</a>).</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4543,7 +4571,7 @@ its Sell Value</strong>, and each system applies its own multiplier to it.</p>
 <tbody>
 <tr>
 <td><code>Shop/DA_XenoCore_Shop_Colony9</code></td>
-<td>Shop table (<code>UXenoCoreShopTable</code>)</td>
+<td>Shop table (data asset)</td>
 <td>The Gym sample shop's stock: seven pieces of equipment</td>
 </tr>
 <tr>
@@ -4553,37 +4581,37 @@ its Sell Value</strong>, and each system applies its own multiplier to it.</p>
 </tr>
 <tr>
 <td><code>Trade/DA_XenoCore_Trade_Colony9</code></td>
-<td>Trade table (<code>UXenoCoreTradeTable</code>)</td>
+<td>Trade table (data asset)</td>
 <td>The sample trader's offers and overtrade bonus</td>
 </tr>
 <tr>
 <td><strong>Open Shop</strong></td>
-<td>Blueprint latent node (<code>UXenoCoreOpenShop</code>)</td>
+<td>Blueprint node</td>
 <td>Opens the shop, continues on <strong>Transacted</strong> or <strong>Nothing Changed</strong></td>
 </tr>
 <tr>
 <td><strong>Open Trade</strong></td>
-<td>Blueprint latent node (<code>UXenoCoreOpenTrade</code>)</td>
+<td>Blueprint node</td>
 <td>Opens the barter screen, continues on <strong>Traded</strong> or <strong>Cancelled</strong></td>
 </tr>
 <tr>
 <td><code>UserInterface/HUD/W_XenoCore_ShopScreen</code></td>
-<td>Screen (<code>UXenoCoreShopScreenBase</code>)</td>
+<td>Screen</td>
 <td>Buy / Sell / Quit, lists, quantity confirm, "equip now?"</td>
 </tr>
 <tr>
 <td><code>UserInterface/HUD/W_XenoCore_TradeScreen</code></td>
-<td>Screen (<code>UXenoCoreTradeScreenBase</code>)</td>
+<td>Screen</td>
 <td>Their item, your item, confirm</td>
 </tr>
 <tr>
 <td><code>UserInterface/W_XenoCore_TradeRow</code></td>
-<td>Row widget (<code>UXenoCoreTradeRowBase</code>)</td>
+<td>Row widget</td>
 <td>One list row on either screen</td>
 </tr>
 <tr>
-<td><code>UXenoCoreShopStatics</code>, <code>UXenoCoreTradeStatics</code></td>
-<td>Blueprint function libraries</td>
+<td>Shop and trade nodes</td>
+<td>Blueprint nodes (<strong>XenoCore › Shop</strong>, <strong>XenoCore › Trade</strong>)</td>
 <td>Prices, what may be bought, sold or offered, and the buy and sell actions</td>
 </tr>
 </tbody>
@@ -4663,14 +4691,19 @@ them afterwards. Neither closes the conversation: the graph usually has a line t
 </tr>
 </tbody>
 </table>
-<p><strong>Sell Value</strong> and <strong>Max Carried</strong> are on the item's <code>UXenoCoreFragment_ItemCategory</code> fragment
-(<strong>XenoCore › Item</strong>). See <a href="../items-and-inventory/">Items and inventory</a>.</p>
+<p><strong>Sell Value</strong> and <strong>Max Carried</strong> are on the item's <code>XenoCoreFragment_ItemCategory</code> fragment. See <a href="../items-and-inventory/">Items and inventory</a>.</p>
 <p>Materials cannot be bought from a shop, and Key items cannot be sold. The shop table's data
 validation refuses stocking either.</p>
 <p><strong>Rarity does not change any price.</strong> Xenoblade 3 makes value independent of rarity. The sort cycle (Y) adds <strong>Rarity</strong>, which lists the rarest first and then A–Z, beside Most Recent, Name and Value. Names are drawn in their rarity colour; see <a href="../../recipes/item-rarity/">Set and style item rarity</a>.</p>
 <p>Trading at ten times a collectable's sell value is deliberate: it makes items picked up while
 exploring worth more in barter than in the shop.</p>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">The multipliers are fixed</p>
+<p>The ×10 buy price, the ×1 and ×10 trade values and the 99-per-purchase limit are fixed in C++.
+To price one item differently, use <strong>Price Override</strong> on its row; to make a whole shop dearer
+or cheaper, a programmer has to change the multiplier.</p>
+</div>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -4749,9 +4782,10 @@ trader, including your quest givers. These are per-instance settings.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: an item with no category fragment</p>
-<p>An item without a <code>UXenoCoreFragment_ItemCategory</code>, or with <strong>Sell Value</strong> 0, has no price.
-In a shop it cannot be bought; in a trade table it is priced 0 and trades for anything. Run
-<strong>Validate</strong> on your tables: both report such rows as errors.</p>
+<p>An item without a <code>XenoCoreFragment_ItemCategory</code>, or with <strong>Sell Value</strong> 0, has no price.
+In a shop it cannot be bought; in a trade table it is priced 0 and trades for anything.
+Right-click your tables in the Content Browser and choose <strong>Asset Actions › Validate Assets</strong>:
+both report such rows as errors.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Price Override 0 means derive, never free</p>
@@ -4767,15 +4801,26 @@ reward.</p>
   pins in the NPC's graph.</li>
 <li><strong>Stock that changes over time</strong> is a different table swapped in by your own logic (for example
   on quest state, through <strong>Get Party Quests</strong>). Tables have no stock count or conditions.</li>
-<li><strong>Skill bonuses to prices:</strong> <code>GetSellPriceMultiplier</code> and <code>GetOfferValueMultiplier</code> in the two
-  statics libraries are the single place such a bonus would go. Both return 1.0 today.</li>
-<li><strong>A third screen of this kind</strong> (a crafting bench, say) derives from
-  <code>UXenoCoreMerchantScreenBase</code> in C++. It supplies the Menu input mode, back handling, the finish
-  callback, rows, tabs, focus restore and the details card.</li>
+<li><strong>Skill bonuses to prices</strong> and <strong>a third screen of this kind</strong> (a crafting bench, say) need a
+  programmer; see the note below.</li>
 </ul>
 <p>Never edit the sample tables in place if you want to keep them as reference; they are overwritten
 by template updates.</p>
+<details class="note">
+<summary>For programmers: classes and extension points</summary>
+<p>Tables are <code>UXenoCoreShopTable</code> and <code>UXenoCoreTradeTable</code>; the nodes are the latent actions
+<code>UXenoCoreOpenShop</code> and <code>UXenoCoreOpenTrade</code>; the screens derive from
+<code>UXenoCoreShopScreenBase</code> / <code>UXenoCoreTradeScreenBase</code>, both on <code>UXenoCoreMerchantScreenBase</code>,
+with rows on <code>UXenoCoreTradeRowBase</code>. Prices are in <code>UXenoCoreShopStatics</code> and
+<code>UXenoCoreTradeStatics</code> (<code>BuyMultiplier</code>, <code>MaterialMultiplier</code>, <code>StandardMultiplier</code>,
+<code>MaxPerTransaction</code>). <code>GetSellPriceMultiplier</code> and <code>GetOfferValueMultiplier</code> are the single
+place a skill bonus would go; both return 1.0 today. A third merchant-style screen derives from
+<code>UXenoCoreMerchantScreenBase</code>, which supplies the Menu input mode, back handling, the finish
+callback, rows, tabs, focus restore and the details card.</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>One base for the shared mechanics.</strong> The trade screen came first; the shop is the second
   screen of the kind, which is the point at which the shared parts moved into a base. Neither
@@ -4788,17 +4833,20 @@ by template updates.</p>
 <li><strong>Every bag change goes through <code>UXenoCoreInventoryStatics</code></strong>, and every gold change through
   the progression component, so the change messages fire and open screens stay current. See
   <a href="../events/">Events you can listen to</a>.</li>
-<li><strong>The finish pin always fires.</strong> The NPC graph is suspended on the node. If the screen were
+<li>
+<p><strong>The finish pin always fires.</strong> The NPC graph is suspended on the node. If the screen were
   torn down without answering, the conversation could never finish, so the answer is delivered
-  when the screen deactivates, however that happens.</li>
+  when the screen deactivates, however that happens.</p>
+</li>
+<li>
+<p><strong>CommonUI reuses screens.</strong> CommonUI's layer pools activatable widgets, so the same shop or
+  trade screen instance is shown again on the next visit. Anything that must be fresh per visit
+  is reset in <code>BeginShowing</code>, which a child's show function must call first. A latch set once at
+  construction survives into the next visit and, for example, stops the finish callback from
+  ever firing a second time.</p>
+</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">For programmers: CommonUI reuses screens</p>
-<p>CommonUI's layer pools activatable widgets, so the same shop or trade screen instance is shown
-again on the next visit. Anything that must be fresh per visit is reset in <code>BeginShowing</code>,
-which a child's show function must call first. A latch set once at construction survives into
-the next visit and, for example, stops the finish callback from ever firing a second time.</p>
-</div>
+</details>
 <p><strong>Next:</strong> <a href="../save-and-front-end/">Save and front end</a> · <a href="../quests/">Quests</a></p>
 
 

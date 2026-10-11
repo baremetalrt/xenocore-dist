@@ -4568,8 +4568,9 @@
 
 <h1 id="give-an-enemy-arts">Give an enemy Arts<a class="headerlink" href="#give-an-enemy-arts" title="Permanent link">&para;</a></h1>
 <p><em>Designer · 40 min · No code · Last tested: never</em></p>
-<p><strong>Result:</strong> your enemy uses its own Arts, with its own animations and cooldowns, and chains them on
-the party the way the minion does: a Break, then a Topple once its target is Broken.</p>
+<p><strong>Result:</strong> your enemy uses its own <a href="../../getting-started/glossary/">Arts</a>, with its own animations
+and cooldowns, and chains them on the party the way the minion does: a
+<a href="../../getting-started/glossary/">Break, then a Topple</a> once its target is Broken.</p>
 <!-- SCREENSHOT: a party member showing TOPPLE after an enemy Art -->
 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
@@ -4581,7 +4582,7 @@ the party the way the minion does: a Break, then a Topple once its target is Bro
 <h2 id="how-enemies-choose-arts">How enemies choose Arts<a class="headerlink" href="#how-enemies-choose-arts" title="Permanent link">&para;</a></h2>
 <p>An enemy fights with the same AI as a companion. Every enemy runs the shared StateTree
 <code>Characters/Enemies/Core/AI/ST_XenoCore_EnemyFreeroam</code> through the AI controller
-<code>BP_AIC_XenoCore_Enemy</code>. While it has someone to fight, the tree's <strong>Fight</strong> state runs three tasks:</p>
+<code>Characters/Enemies/Core/BP_AIC_XenoCore_Enemy</code>. While it has someone to fight, the tree's <strong>Fight</strong> state runs three tasks:</p>
 <table>
 <thead>
 <tr>
@@ -4596,7 +4597,7 @@ the party the way the minion does: a Break, then a Topple once its target is Bro
 </tr>
 <tr>
 <td><strong>XenoCore Fight Target</strong></td>
-<td>Keeps its auto-attack swinging at that target</td>
+<td>Keeps its <a href="../../getting-started/glossary/">auto-attack</a> swinging at that target</td>
 </tr>
 <tr>
 <td><strong>XenoCore Use Best Art</strong></td>
@@ -4636,14 +4637,19 @@ scores its <strong>AI Priority</strong> plus any condition bonuses. See
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-make-the-art">1. Make the Art<a class="headerlink" href="#1-make-the-art" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Duplicate <code>Characters/Enemies/Minion/Arts/DA_XenoCore_Minion_Rend</code> into <code>MyGame/Enemies/Golem</code>
-   and name it <code>DA_MyGame_Golem_Crush</code>. Or start blank, as in
-   <a href="../attack-art/">Create an attack art</a>.</li>
-<li>Open it and set the usual Art fields: <strong>Display Name</strong>, <strong>Power</strong>, <strong>Distance</strong> (its reach),
-   <strong>Cooldown Duration</strong> and <strong>Effects</strong> (for a Break, <code>GE_XenoCore_Reaction_Break</code>).</li>
-<li>Give it its own <strong>Cooldown Tag</strong>, for example <code>Cooldown.MyGame.Art.GolemCrush</code>, from your own tag
-   file.</li>
-<li>Set <strong>Montage</strong> to a montage on <strong>your enemy's skeleton</strong>, made for this Art.</li>
+<li>In <strong>Plugins › XenoCore Content › Characters › Enemies › Minion › Arts</strong>, right-click
+   <code>DA_XenoCore_Minion_Rend</code>, choose <strong>Duplicate</strong>, move the copy into <code>MyGame/Enemies/Golem</code> and
+   name it <code>DA_MyGame_Golem_Crush</code>. Or start blank, as in <a href="../attack-art/">Create an attack art</a>.</li>
+<li>Open it. Under <strong>Art</strong>, set <strong>Display Name</strong>, <strong>Power</strong>, <strong>Distance</strong> (its reach) and
+   <strong>Cooldown Duration</strong>.</li>
+<li>Under <strong>Art › Effects</strong>, set the <strong>Effects</strong> entry. For a Break, use
+   <code>Battle/Reactions/GE_XenoCore_Reaction_Break</code>.</li>
+<li>Create a <a href="../../getting-started/glossary/">gameplay tag</a> for its cooldown in <strong>Project Settings ›
+   Gameplay Tags</strong> (click <strong>Add New Gameplay Tag</strong>), for example <code>Cooldown.MyGame.Art.GolemCrush</code>.</li>
+<li>Under <strong>Art</strong>, set <strong>Cooldown Tag</strong> to that tag.</li>
+<li>Under <strong>Art › Animation</strong>, set <strong>Montage</strong> to a montage on <strong>your enemy's skeleton</strong>, made for
+   this Art.</li>
+<li>Click <strong>Save</strong>.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: an Art that borrows the auto-attack's montage</p>
@@ -4658,7 +4664,7 @@ the minion's <code>AM_XenoCore_Minion_Art_Rend</code> and <code>_Sweep</code> ar
 together: using either one makes both unavailable. Give every Art its own tag.</p>
 </div>
 <h3 id="2-teach-it-when-to-fire">2. Teach it when to fire<a class="headerlink" href="#2-teach-it-when-to-fire" title="Permanent link">&para;</a></h3>
-<p>In the Art's <strong>Art › Companion AI</strong> section:</p>
+<p>In the same Art, under <strong>Art › Companion AI</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -4677,7 +4683,7 @@ together: using either one makes both unavailable. Give every Art its own tag.</
 </tr>
 <tr>
 <td><strong>AI Conditions</strong></td>
-<td>Optional. For a Break opener, add <strong>Target lacks tag</strong> <code>Status.XenoCore.Reaction.Break</code>, not <strong>Required</strong>, <strong>Bonus</strong> <code>2</code></td>
+<td>Optional. For a Break opener, click <strong>+</strong>, set <strong>Check</strong> to <strong>Target lacks tag</strong>, <strong>Tag</strong> to <code>Status.XenoCore.Reaction.Break</code>, untick <strong>Required</strong> and set <strong>Bonus</strong> <code>2</code></td>
 </tr>
 <tr>
 <td><strong>AI Wait For Reaction</strong></td>
@@ -4696,16 +4702,17 @@ until the target is Broken (or Toppled). See
 for party Arts; you can leave it.</p>
 <h3 id="3-give-it-to-the-enemy">3. Give it to the enemy<a class="headerlink" href="#3-give-it-to-the-enemy" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <code>B_MyGame_Golem</code>, <strong>Class Defaults</strong>.</li>
-<li>Under <strong>XenoCore › Enemy › Arts</strong>, add your Art to <strong>Arts</strong>. Remove the minion's if your enemy
-   was duplicated from it.</li>
-<li><strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>Open your enemy Blueprint (here <code>B_MyGame_Golem</code>) and click <strong>Class Defaults</strong>.</li>
+<li>Under <strong>XenoCore › Enemy › Arts</strong>, click <strong>+</strong> beside <strong>Arts</strong> and pick your Art.</li>
+<li>If your enemy was duplicated from the minion, remove the minion's Arts from the same list (the
+   dropdown beside each entry › <strong>Delete</strong>).</li>
+<li>Click <strong>Compile</strong>, then <strong>Save</strong>.</li>
 </ol>
 <p>Arts on this list are granted at level 1 when the enemy spawns. Enemy Arts do not level: the
 enemy's own <strong>Enemy Level</strong> already scales its damage through its stats.</p>
 <p>Nothing goes in the ability set: the list is the whole job.</p>
 <h3 id="4-pace-it">4. Pace it<a class="headerlink" href="#4-pace-it" title="Permanent link">&para;</a></h3>
-<p>Under <strong>XenoCore › Enemy › Arts › AI Profile</strong>:</p>
+<p>In the same Class Defaults, expand <strong>AI Profile</strong> under <strong>XenoCore › Enemy › Arts</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -4726,7 +4733,7 @@ enemy's own <strong>Enemy Level</strong> already scales its damage through its s
 <td>Random spread on each interval, so a group of enemies does not act in unison</td>
 </tr>
 <tr>
-<td><strong>Post-Art Cooldown</strong></td>
+<td><strong>Post Art Cooldown</strong></td>
 <td><code>3</code> s</td>
 <td>After any Art, choose no other for this long, on top of the Art's own cooldown</td>
 </tr>
@@ -4742,7 +4749,7 @@ enemy's own <strong>Enemy Level</strong> already scales its damage through its s
 </tr>
 </tbody>
 </table>
-<p>A boss with a long <strong>Post-Art Cooldown</strong> and high-power Arts feels very different from a swarm
+<p>A boss with a long <strong>Post Art Cooldown</strong> and high-power Arts feels very different from a swarm
 enemy with short cooldowns and weak ones, with no AI changes at all.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
@@ -4750,29 +4757,38 @@ enemy with short cooldowns and weak ones, with no AI changes at all.</p>
 <li>Hit it once, then stand still and let it fight.</li>
 <li>It auto-attacks, then uses its Break: the struck character shows <strong>BREAK</strong>. If it has a Topple
    Art, it follows up within Break's window.</li>
-<li>Type <code>log LogXenoAI Verbose</code> in the console. Every decision the enemy makes prints as
+<li>Open the console (<strong>~</strong>) and type <code>log LogXenoAI Verbose</code>. Every decision the enemy makes prints as
    <code>&lt;enemy&gt;: decision - &lt;Art&gt;=&lt;score&gt; ...</code>, listing each usable Art and its score.</li>
 <li>To try the follow-up alone, Break yourself with <code>XenoCore.Reaction 1</code>; the enemy should use its
    Topple Art next.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">It only ever auto-attacks</p>
-<p>The Art is not on the enemy's <strong>Arts</strong> list, <strong>Usable By AI</strong> is off, its <strong>Distance</strong> is
-shorter than the distance the enemy fights from, or the Art's montage is the auto-attack's
-(see step 1). The decision log shows whether the Art is ever considered.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">It uses Break but never Topple</p>
-<p>Topple needs the target Broken <strong>when Topple lands</strong>. If Break's window is shorter than the
-time Topple takes to connect, the chain breaks. Use a faster Topple montage, or lengthen the
-Break on <code>GE_XenoCore_Reaction_Break</code>. That effect is shared, so check what else uses it first.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">It uses the same Art back to back</p>
-<p>The Art has no <strong>Cooldown Duration</strong>, or no <strong>Cooldown Tag</strong>. Raise <strong>Post-Art Cooldown</strong> on
-the enemy too.</p>
-</div>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>It only ever auto-attacks</td>
+<td>The Art is not on the enemy's <strong>Arts</strong> list, <strong>Usable By AI</strong> is off, its <strong>Distance</strong> is shorter than the distance the enemy fights from, or the Art's montage is the auto-attack's (see step 1). The decision log shows whether the Art is ever considered.</td>
+</tr>
+<tr>
+<td>It uses Break but never Topple</td>
+<td>Topple needs the target Broken <strong>when Topple lands</strong>. If Break's window is shorter than the time Topple takes to connect, the chain breaks. Use a faster Topple montage, or lengthen the Break on <code>GE_XenoCore_Reaction_Break</code>. That effect is shared, so check what else uses it first.</td>
+</tr>
+<tr>
+<td>It uses the same Art back to back</td>
+<td>The Art has no <strong>Cooldown Duration</strong>, or no <strong>Cooldown Tag</strong>. Raise <strong>Post Art Cooldown</strong> on the enemy too.</td>
+</tr>
+<tr>
+<td>Two Arts go on cooldown together</td>
+<td>They share a <strong>Cooldown Tag</strong> (see the warning in step 1).</td>
+</tr>
+</tbody>
+</table>
 <p>More in <a href="../../troubleshooting/enemies-and-ai/">Enemies and AI troubleshooting</a>.</p>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>

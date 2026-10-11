@@ -3846,6 +3846,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#where-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where is…?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#top-level" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3923,10 +3934,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dev" class="md-nav__link">
+  <a href="#not-in-your-copy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dev
+        Not in your copy
       
     </span>
   </a>
@@ -4417,6 +4428,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#where-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where is…?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#top-level" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4494,10 +4516,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#dev" class="md-nav__link">
+  <a href="#not-in-your-copy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dev
+        Not in your copy
       
     </span>
   </a>
@@ -4542,8 +4564,92 @@ Plugin Content</strong> first). On disk it is <code>Plugins/GameFeatures/XenoCor
 <li><strong>Framework</strong>: bases, shared effects and screens the systems need. Keep it. Duplicate from it.</li>
 <li><strong>Sample</strong>: example content that shows the framework working. Replace it with your own, then
   delete it once nothing of yours references it.</li>
-<li><strong>Dev</strong>: development-only test content. Not part of the product, and never cooked into a build.</li>
 </ul>
+<h2 id="where-is">Where is…?<a class="headerlink" href="#where-is" title="Permanent link">&para;</a></h2>
+<p>The settings designers reach for most, and the one asset each lives on. Paths are inside
+<strong>XenoCore Content</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>I want to change…</th>
+<th>Open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who is in the party at the start, how many fight, the leader</td>
+<td><code>Characters/Party/BP_XenoCore_Party</code> › <strong>Class Defaults</strong></td>
+</tr>
+<tr>
+<td>Revive cost, recovery between fights, the defeat beat</td>
+<td><code>Characters/Party/BP_XenoCore_Party</code> › <strong>Class Defaults</strong></td>
+</tr>
+<tr>
+<td>EXP per level</td>
+<td><code>Game/DT_XenoCore_ExperienceCurves</code></td>
+</tr>
+<tr>
+<td>Art slots, Art Points, starting gold, benched EXP</td>
+<td><code>Game/BP_XenoCore_Progression</code> › <strong>Class Defaults</strong></td>
+</tr>
+<tr>
+<td>One character's stats, Arts, AI pacing, portrait</td>
+<td>Its member definition, <code>Characters/VRoid/&lt;Name&gt;/PartyMember_VRoid_*</code></td>
+</tr>
+<tr>
+<td>A character's learnset</td>
+<td><code>Characters/Party/Learnsets/DT_XenoCore_ArtLearnset_&lt;Name&gt;</code></td>
+</tr>
+<tr>
+<td>An Art</td>
+<td><code>Battle/Arts/DA_XenoCore_&lt;Art&gt;</code></td>
+</tr>
+<tr>
+<td>Lock-on range, strafing, the target marker</td>
+<td><code>Battle/Targeting/GA_XenoCore_TargetMode</code> › <strong>Class Defaults</strong></td>
+</tr>
+<tr>
+<td>Auto-attack speed and reach</td>
+<td><code>Battle/GA_XenoCore_AutoAttack</code> › <strong>Class Defaults</strong></td>
+</tr>
+<tr>
+<td>When enemies notice, chase and give up</td>
+<td><code>Characters/Enemies/Core/BP_AIC_XenoCore_Enemy</code> › <strong>Class Defaults</strong></td>
+</tr>
+<tr>
+<td>Enemy stats by level</td>
+<td><code>Battle/Attributes/CT_XenoCore_EnemyStats</code></td>
+</tr>
+<tr>
+<td>What an enemy drops</td>
+<td><code>Inventory/Loot/DA_XenoCore_Drops_*</code></td>
+</tr>
+<tr>
+<td>What a shop sells</td>
+<td><code>Shop/DA_XenoCore_Shop_*</code></td>
+</tr>
+<tr>
+<td>Item rarity colours</td>
+<td><code>UserInterface/Items/DT_XenoCore_ItemRarities</code></td>
+</tr>
+<tr>
+<td>Tutorial cards</td>
+<td><code>UserInterface/Tutorials/DT_XenoCore_Tutorials</code></td>
+</tr>
+<tr>
+<td>Which screen opens for the shop, save, quests…</td>
+<td><strong>Project Settings › Game › XenoCore UI</strong></td>
+</tr>
+<tr>
+<td>The new-game map, starting roster override, music, sounds</td>
+<td><strong>Project Settings › Game › XenoCore Content</strong></td>
+</tr>
+<tr>
+<td>A map's music, minimap and weather</td>
+<td>Actors placed in that map: <strong>XenoCore Area Music</strong>, <strong>XenoCore Map Area</strong>, <strong>XenoCore Environment Director</strong></td>
+</tr>
+</tbody>
+</table>
 <div class="admonition danger">
 <p class="admonition-title">Delete with the reference viewer, not by eye</p>
 <p>A folder marked <strong>Sample</strong> can still be referenced by a framework asset (an ability set that
@@ -4595,11 +4701,6 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 <td><code>ContextEffects</code></td>
 <td>Footstep sounds and effects by surface (<code>CFX_XenoCore</code>)</td>
 <td>Framework</td>
-</tr>
-<tr>
-<td><code>Dev</code></td>
-<td>Test content, greybox map, raw imports, and the development music. Never cooked</td>
-<td>Dev</td>
 </tr>
 <tr>
 <td><code>Effects</code></td>
@@ -4854,6 +4955,10 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 <td>The player's pawn data</td>
 </tr>
 <tr>
+<td><code>DT_XenoCore_ExperienceCurves</code></td>
+<td>EXP to next level: one row per curve, one per sample character. See <a href="../../recipes/tune-progression/">Tune levelling</a></td>
+</tr>
+<tr>
 <td><code>AbilitySet_XenoCore_Hero</code>, <code>AbilitySet_XenoCore_Input</code>, <code>AbilitySet_XenoCore_Interact</code></td>
 <td>The player pawn's own abilities; the input abilities every playable body gets; interact, for the leader only</td>
 </tr>
@@ -5036,18 +5141,16 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 <p>The sample world also places assets from the Electric Dreams pack (Megascans cliffs, boulders and
 trees). Only the 179 it uses are shipped, reduced to 1K textures, under
 <code>ThirdParty/ElectricDreams</code>. See <a href="../../recipes/megascans-assets/">Use Megascans assets</a>.</p>
-<h2 id="dev">Dev<a class="headerlink" href="#dev" title="Permanent link">&para;</a></h2>
-<p><code>Dev</code> holds test content: a greybox map, raw animation imports, a test weapon, and the
-development project's music (title, field and battle tracks, which only that project's own
-<code>DefaultGame.ini</code> points at). It is not part of the product and you should not build on it. The project's
-packaging settings list <code>/XenoCore/Dev</code> under <strong>Directories to Never Cook</strong>, so none of it reaches
-a build, and nothing outside it references it.</p>
+<h2 id="not-in-your-copy">Not in your copy<a class="headerlink" href="#not-in-your-copy" title="Permanent link">&para;</a></h2>
+<p>The plugin is developed alongside a development-only test folder that is removed before release.
+If you see <code>/XenoCore/Dev</code> under <strong>Directories to Never Cook</strong> in your packaging settings, that
+line is harmless; leave it or delete it.</p>
 <div class="admonition note">
-<p class="admonition-title">Reimporting the retargeted clips needs Dev</p>
+<p class="admonition-title">Reimport is not available on some retargeted clips</p>
 <p>The retargeted clips in <code>Characters/Player/Animations/Mixamo</code> and two get-up clips in
-<code>Characters/Player/Animations/Reactions</code> record the raw imports in <code>Dev/Mixamo</code> as their import
-source. That is editor-only metadata: the clips load and cook without it. Only <strong>Reimport</strong> on
-those clips needs the <code>Dev</code> source, and the original files are not included anyway.</p>
+<code>Characters/Player/Animations/Reactions</code> record a development folder as their import source.
+That is editor-only metadata: the clips load and cook normally. Only <strong>Reimport</strong> on those
+clips fails, because the source files are not included.</p>
 </div>
 <h2 id="outside-the-plugin">Outside the plugin<a class="headerlink" href="#outside-the-plugin" title="Permanent link">&para;</a></h2>
 <table>

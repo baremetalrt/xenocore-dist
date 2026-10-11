@@ -4708,11 +4708,12 @@ the stat block.</p>
 <p>Every shipped sword's actor is a child of <code>B_XenoCore_Sword_Base</code> (the greatsword mesh) and its
 equipment definition a child of <code>ED_XenoCore_Sword_Base</code> (the instance type, the back socket, and
 <code>AbilitySet_XenoCore_SwordCommon</code>, which draws and sheathes the sword and applies its stats). A sword
-differs only in its item, its material, and the Talent Art its ability set grants. Junk, Blue, Green
+differs only in its item, its material, and the Talent Art its <strong>ability set</strong> (a list of abilities granted while the weapon is worn) grants. Junk, Blue, Green
 and Red share <code>AbilitySet_XenoCore_JunkSword</code> (Turn Strike); the Violet, Amber and Ivory Swords each
 grant their own Talent Art. <code>Weapons/IronBlade</code> holds only a mesh
 and material.</p>
-<p>A <strong>new sword</strong> is the short route below. A <strong>new kind of weapon</strong> that animates differently needs
+<p>A sword whose <a href="../../getting-started/glossary/">Talent Art</a> you want to change is covered in step 3.
+A <strong>new sword</strong> is the short route below. A <strong>new kind of weapon</strong> that animates differently needs
 the extra section at the end.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-make-the-chain">1. Make the chain<a class="headerlink" href="#1-make-the-chain" title="Permanent link">&para;</a></h3>
@@ -4762,14 +4763,17 @@ logged.</p>
 <li>Leave <strong>Instance Type</strong> as the base set it. <strong>Ability Sets To Grant</strong> inherits
    <code>AbilitySet_XenoCore_SwordCommon</code>, which gives no Talent Art. To give the sword one, set the list
    to <code>AbilitySet_XenoCore_SwordCommon</code> plus a set granting only the Talent Art (see
-   <a href="../talent-art/">Make a Talent Art</a>), or to <code>AbilitySet_XenoCore_JunkSword</code> for Turn Strike.</li>
+   <a href="../talent-art/">Make a Talent Art</a>), or replace it with <code>Weapons/GreatSword/AbilitySet_XenoCore_JunkSword</code>
+   alone for Turn Strike. Never list SwordCommon and JunkSword together: both grant the draw and stats
+   abilities, so the weapon would get them twice.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 <li>Open <code>ID_MyGame_StoneBlade</code> (<strong>Class Defaults</strong>). Set <strong>Display Name</strong> to <code>Stone Blade</code>.</li>
-<li>In <strong>Fragments</strong>, find each fragment and set:<ul>
+<li>In <strong>Fragments</strong>, expand each fragment and set:<ul>
 <li><strong>Inventory Fragment Equippable Item</strong> › <strong>Equipment Definition</strong>: <code>ED_MyGame_StoneBlade</code></li>
-<li><strong>Xeno Core Fragment Item Display</strong> › <strong>Description</strong> and <strong>Icon</strong></li>
-<li><strong>Xeno Core Fragment Item Category</strong> › <strong>Sell Value</strong> and <strong>Sort Order</strong></li>
-<li><strong>Xeno Core Fragment Equip Slots</strong> › <strong>Allowed Slots</strong>: keep <code>Weapon</code></li>
+<li><strong>Xeno Core Fragment Item Display</strong> › <strong>XenoCore › Display</strong> › <strong>Description</strong> and <strong>Icon</strong></li>
+<li><strong>Xeno Core Fragment Item Category</strong> › <strong>XenoCore › Item</strong> › <strong>Sell Value</strong> and <strong>Sort Order</strong>
+  (and <strong>Rarity</strong>, see <a href="../item-rarity/">Item rarity</a>)</li>
+<li><strong>Xeno Core Fragment Equip Slots</strong> › <strong>XenoCore › Equipment</strong> › <strong>Allowed Slots</strong>: keep <code>Weapon</code></li>
 </ul>
 </li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
@@ -4817,16 +4821,16 @@ logged.</p>
 </ol>
 <p><a href="../equipment-stat/">Add a stat to equipment</a> lists every tag and what it does.</p>
 <h3 id="4b-set-its-weapon-type">4b. Set its weapon type<a class="headerlink" href="#4b-set-its-weapon-type" title="Permanent link">&para;</a></h3>
-<p>Every character may only wield certain <strong>kinds</strong> of weapon, as in Xenoblade Chronicles: the swap
+<p>Every character may only wield certain <strong>kinds</strong> of weapon (its <a href="../../getting-started/glossary/">weapon type</a>), as in Xenoblade Chronicles: the swap
 list for a character never shows a weapon they cannot use.</p>
 <ol>
 <li>In <code>ID_MyGame_StoneBlade</code>, open the <strong>Xeno Core Fragment Equip Slots</strong> fragment.</li>
-<li>Set <strong>Weapon Type</strong> to <code>Weapons/Types/DA_XenoCore_WeaponType_Greatsword</code>.</li>
+<li>Under <strong>XenoCore › Equipment</strong>, set <strong>Weapon Type</strong> to <code>Weapons/Types/DA_XenoCore_WeaponType_Greatsword</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
 <p>Leaving <strong>Weapon Type</strong> empty lets anyone wield it. The pawn's save-time check warns when a typed
 character starts with an untyped weapon.</p>
-<p>The type also gives the weapon its gem sockets: the Greatsword's <strong>Default Gem Slots</strong> is <code>2</code>. For one
+<p>The type also gives the weapon its <a href="../../getting-started/glossary/">gem</a> sockets: the Greatsword's <strong>Default Gem Slots</strong> is <code>2</code>. For one
 weapon with a different count, tick <strong>Override Gem Slots</strong> on the same fragment and set <strong>Gem Slots</strong>.
 See <a href="../add-a-gem/">Add a gem</a>.</p>
 <h3 id="5-put-it-in-the-bag">5. Put it in the bag<a class="headerlink" href="#5-put-it-in-the-bag" title="Permanent link">&para;</a></h3>
@@ -4834,7 +4838,8 @@ See <a href="../add-a-gem/">Add a gem</a>.</p>
 <ol>
 <li>Open the leader's pawn Blueprint, for example Kael's,
    <code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>.</li>
-<li>Select its equipment component and find <strong>XenoCore › Equipment › Starting Inventory</strong>.</li>
+<li>In the <strong>Components</strong> panel, select its equipment component (the <code>XenoCoreEquipmentComponent</code>)
+   and find <strong>XenoCore › Equipment › Starting Inventory</strong>.</li>
 <li>Add an entry: <strong>Item Definition</strong> <code>ID_MyGame_StoneBlade</code>, <strong>Count</strong> <code>1</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
@@ -4849,11 +4854,15 @@ weapon in both, or the party gets two.</p>
    the back, in your material.</li>
 <li>Fight. Damage rises and falls with the attack range you set.</li>
 </ol>
+<p>If the weapon is missing from the list, open the console (<code>`</code>) and run <code>XenoCore.Weapon.Describe</code>:
+it prints each character's allowed weapon types, held weapon and how many bag weapons their swap list
+shows.</p>
 <h2 id="a-new-kind-of-weapon">A new kind of weapon<a class="headerlink" href="#a-new-kind-of-weapon" title="Permanent link">&para;</a></h2>
 <p><strong>Make the type first.</strong> Right-click in the Content Browser › <strong>Miscellaneous</strong> › <strong>Data Asset</strong> ›
 <code>XenoCoreWeaponTypeDefinition</code>, name it <code>DA_MyGame_WeaponType_Spear</code>, and set its <strong>Display Name</strong>.
 Point your weapon's <strong>Weapon Type</strong> at it (step 4b), then give every character who may use spears the
-type in <strong>Allowed Weapon Types</strong> on their pawn's equipment component.</p>
+type: open their pawn Blueprint, select the equipment component, and add it to <strong>XenoCore › Equipment ›
+Allowed Weapon Types</strong>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Fails at save: a starting weapon the character cannot wield</p>
 <p>If a pawn's <strong>Starting Equipment</strong> weapon is a type missing from its <strong>Allowed Weapon Types</strong>,
@@ -4864,6 +4873,7 @@ held weapon and how many bag weapons their swap list shows.</p>
 <p>Then give the type its own look and swings. <strong>Everything below is on the type asset, and every field
 is optional:</strong> left empty, a weapon of this type uses the Greatsword's stance, draw, sheathe and
 swings, exactly like the shipped swords.</p>
+<p>All of these are on the type asset's Details panel, under <strong>Animation</strong>, <strong>Attack</strong> and <strong>Gems</strong>.</p>
 <table>
 <thead>
 <tr>
@@ -4967,30 +4977,42 @@ anything.
   packs are not part of the project, so on any other machine the material slot is empty and the
   weapon renders grey. Use the editor's <strong>Move</strong> on the material, its textures and functions, never
   <strong>Copy</strong>, so the mesh is repointed; then cap the textures at 1K (right-click › <strong>Asset Actions ›
-  Resize Texture Source</strong>). The Gold Sword's <code>Materials/</code> folder is the worked example.</p>
+  Resize Texture Source</strong>). The Gold Sword's <code>Materials/</code> folder is the worked example.
+  <!-- VERIFY: the Resize Texture Source context-menu entry and its location in 5.8 -->
+</p>
 </li>
 </ul>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">The weapon is in the bag but not in a character's swap list</p>
-<p>Its <strong>Weapon Type</strong> is not in that character's <strong>Allowed Weapon Types</strong>. This is the weapon lock
-working. <code>XenoCore.Weapon.Describe</code> shows both.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">The item is in the list but will not equip</p>
-<p><strong>Equipment Definition</strong> is empty on the item, or <strong>Allowed Slots</strong> does not include <code>Weapon</code>.
-The log names the reason (<code>NotEquippable</code> or <code>WrongSlot</code>).</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">The weapon renders as a grey checker on someone else's machine</p>
-<p>Its material still lives in a pack folder that is not part of the project. Move it in, as
-described under Size, position and materials.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">The stat block shows the name but zeros</p>
-<p><strong>Initial Item Stats</strong> is empty or on the wrong fragment. See
-<a href="../../troubleshooting/items-and-equipment/">Troubleshooting: items and equipment</a>.</p>
-</div>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The weapon is in the bag but not in a character's swap list</td>
+<td>Its <strong>Weapon Type</strong> is not in that character's <strong>Allowed Weapon Types</strong>. This is the weapon lock working. <code>XenoCore.Weapon.Describe</code> shows both.</td>
+</tr>
+<tr>
+<td>The item is in the list but will not equip</td>
+<td><strong>Equipment Definition</strong> is empty on the item, or <strong>Allowed Slots</strong> does not include <code>Weapon</code>. The Output Log names the reason (<code>NotEquippable</code> or <code>WrongSlot</code>).</td>
+</tr>
+<tr>
+<td>The weapon renders as a grey checker on someone else's machine</td>
+<td>Its material still lives in a pack folder that is not part of the project. Move it in, as described under <em>Size, position and materials</em>.</td>
+</tr>
+<tr>
+<td>The stat block shows the name but zeros</td>
+<td><strong>Initial Item Stats</strong> is empty or on the wrong fragment. See <a href="../../troubleshooting/items-and-equipment/">Troubleshooting: items and equipment</a>.</td>
+</tr>
+<tr>
+<td>The sword stays on the back when drawn</td>
+<td>The equipment definition's ability set has no <code>GA_XenoCore_WeaponDrawSync</code>. Keep <code>AbilitySet_XenoCore_SwordCommon</code> in <strong>Ability Sets To Grant</strong>.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../concepts/equipment/">Equipment</a> and <a href="../../concepts/animation/">Animation</a>.</li>

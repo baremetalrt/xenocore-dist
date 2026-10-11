@@ -1684,10 +1684,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-it-worked" class="md-nav__link">
+  <a href="#test-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Check it worked
+        Test it
       
     </span>
   </a>
@@ -1695,10 +1695,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#if-it-didnt-work" class="md-nav__link">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If it didn't work
+        If it doesn't work
       
     </span>
   </a>
@@ -4616,10 +4616,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#check-it-worked" class="md-nav__link">
+  <a href="#test-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Check it worked
+        Test it
       
     </span>
   </a>
@@ -4627,10 +4627,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#if-it-didnt-work" class="md-nav__link">
+  <a href="#if-it-doesnt-work" class="md-nav__link">
     <span class="md-ellipsis">
       
-        If it didn't work
+        If it doesn't work
       
     </span>
   </a>
@@ -4666,14 +4666,13 @@ that shows it. You can also change what each rarity looks like, or add a new rar
 <li><a href="../../concepts/loot/">Loot</a>: chest tiers. A chest tier is not the same thing as an item's rarity.</li>
 </ul>
 <h2 id="how-rarity-works">How rarity works<a class="headerlink" href="#how-rarity-works" title="Permanent link">&para;</a></h2>
-<p>XenoCore uses Xenoblade 3's three rarities: <strong>Common</strong>, <strong>Rare</strong> and <strong>Legendary</strong>.</p>
+<p>XenoCore uses Xenoblade 3's three <a href="../../getting-started/glossary/">rarities</a>: <strong>Common</strong>, <strong>Rare</strong> and <strong>Legendary</strong>.</p>
 <ul>
 <li><strong>Rarity belongs to the item.</strong> Every copy of an item has the same rarity, and nothing is rolled
   when an item drops. To have a Common and a Rare version of the same thing, make two items.</li>
 <li><strong>Every shipped item states its rarity.</strong> If an item's rarity is left empty, it falls back to the
-  lowest-ranked row of the table below (Common), but don't rely on that. After adding items, run
-  <code>Tools/Data/rarity_explicit.py</code>: it sets any empty rarity to Common and checks every item's rarity
-  has a table row.</li>
+  lowest-ranked row of the table below (Common), but don't rely on that: set <strong>Rarity</strong> on every
+  item you add, Common included.</li>
 <li><strong>What each rarity looks like</strong> is one row of the data table
   <code>UserInterface/Items/DT_XenoCore_ItemRarities</code>: its name colour, diamond count, chest beam colour
   and optional pickup sound.</li>
@@ -4712,10 +4711,12 @@ that shows it. You can also change what each rarity looks like, or add a new rar
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="make-an-item-rare">Make an item rare<a class="headerlink" href="#make-an-item-rare" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open the item's Blueprint, for example <code>Inventory/Armour/ID_XenoCore_BattleArmour</code>.</li>
-<li>Under <strong>Fragments</strong>, expand <strong>XenoCore Fragment Item Category</strong>.</li>
-<li>Set <strong>Rarity</strong> to <code>XenoCore.Item.Rarity.Rare</code> or <code>XenoCore.Item.Rarity.Legendary</code>.</li>
-<li>Compile and save.</li>
+<li>Open the item's Blueprint, for example <code>Inventory/Armour/ID_XenoCore_BattleArmour</code>, and click
+   <strong>Class Defaults</strong>.</li>
+<li>Under <strong>Display › Fragments</strong>, expand the <strong>XenoCore Fragment Item Category</strong> entry.</li>
+<li>Set <strong>XenoCore › Item › Rarity</strong> to <code>XenoCore.Item.Rarity.Rare</code> or
+   <code>XenoCore.Item.Rarity.Legendary</code>.</li>
+<li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
 <h3 id="the-samples">The samples<a class="headerlink" href="#the-samples" title="Permanent link">&para;</a></h3>
 <p>New Game starts with one of each tier in the bag, so every look is on screen at once. They come from
@@ -4756,8 +4757,8 @@ Kael's (<code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>) <strong>Sta
 </tr>
 </tbody>
 </table>
-<p>They are sample content. Delete them, or take them out of that list, before you ship.
-<code>Tools/Data/rarity_samples.py</code> rebuilds them.</p>
+<p>They are sample content. Take them out of that list before you ship: open Kael's pawn, select its
+equipment component, and remove the rows from <strong>XenoCore › Equipment › Starting Inventory</strong>.</p>
 <h3 id="make-a-rarer-copy-of-an-item">Make a rarer copy of an item<a class="headerlink" href="#make-a-rarer-copy-of-an-item" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Right-click the item and choose <strong>Duplicate</strong>. Never create an item definition from scratch: a
@@ -4819,19 +4820,20 @@ Kael's (<code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>) <strong>Sta
 </table>
 <h3 id="add-a-rarity">Add a rarity<a class="headerlink" href="#add-a-rarity" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Project Settings → Gameplay Tags</strong>: add <code>XenoCore.Item.Rarity.Mythic</code>, or whatever name you want.</li>
+<li><strong>Project Settings › Project › Gameplay Tags</strong>: add the <a href="../../getting-started/glossary/">gameplay tag</a>
+   <code>XenoCore.Item.Rarity.Mythic</code>, or whatever name you want, in your own tag source.</li>
 <li>Add a row to <code>DT_XenoCore_ItemRarities</code> with that tag and a <strong>Rank</strong> above Legendary.</li>
 <li>Set items to the new tag.</li>
 </ol>
 <h3 id="turn-rarity-off">Turn rarity off<a class="headerlink" href="#turn-rarity-off" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Project Settings → Game → XenoCore UI → Item Rarity Table</strong>: clear it. Names then draw in each
+<li><strong>Project Settings › Game › XenoCore UI › Items › Item Rarity Table</strong>: clear it. Names then draw in each
   screen's own colour, with no diamonds and no rarity word.</li>
 <li>To keep the data but hide the look, turn off <strong>Tint Name</strong> and set <strong>Pips</strong> to 0 on every row.</li>
 </ul>
 <h3 id="change-the-diamond-size">Change the diamond size<a class="headerlink" href="#change-the-diamond-size" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Project Settings → Game → XenoCore UI → Rarity Pip Size</strong> (12) sizes the diamonds on every screen.</li>
+<li><strong>Project Settings › Game › XenoCore UI › Items › Rarity Pip Size</strong> (12) sizes the diamonds on every screen.</li>
 <li>A widget's own <strong>Pip Size</strong> pin on <strong>Apply Item Rarity</strong>, or the loot popup's <strong>Row Pip Size</strong>, overrides it
   when above 0. Leave them at 0 so one setting keeps every screen matching.</li>
 </ul>
@@ -4841,8 +4843,9 @@ Kael's (<code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>) <strong>Sta
 Three screens had this bug: the loot popup, the quest offer and the reward banner.</p>
 </div>
 <h3 id="make-a-chest-guarantee-a-rare-item">Make a chest guarantee a rare item<a class="headerlink" href="#make-a-chest-guarantee-a-rare-item" title="Permanent link">&para;</a></h3>
-<p>Xenoblade 1's silver and gold chests always hold one rare material. In your drop table, set that
-pool's <strong>Guarantee One Of Rarity</strong> to <code>XenoCore.Item.Rarity.Rare</code>.</p>
+<p>Xenoblade 1's silver and gold chests always hold one rare material. Open your drop table (for example
+<code>Inventory/Loot/DA_XenoCore_Drops_Grunt</code>), expand <strong>XenoCore › Loot › Pools</strong>, open the <strong>Silver</strong> or
+<strong>Gold</strong> entry, and set its <strong>Guarantee One Of Rarity</strong> to <code>XenoCore.Item.Rarity.Rare</code>.</p>
 <p>When the roll finds nothing that rare, its last pick is redrawn from that pool's qualifying entries,
 so the item count stays inside <strong>Min Items</strong> to <strong>Max Items</strong>.</p>
 <h2 id="where-rarity-shows">Where rarity shows<a class="headerlink" href="#where-rarity-shows" title="Permanent link">&para;</a></h2>
@@ -4852,9 +4855,13 @@ so the item count stays inside <strong>Min Items</strong> to <strong>Max Items</
 <li>the equipment screen's item pane and its swap list;</li>
 <li>the shop and trade screens, under <strong>Type</strong>.</li>
 </ul>
-<p>On the Items menu and the shop and trade screens it's a <code>DetailsRarityHB</code> row: a <code>DetailsRarityLabel</code>
-and a <code>DetailsRarityValue</code>. Shop and trade fill it from C++, and the Items menu fills it with <strong>Apply
-Item Instance Rarity Label</strong>. On the equipment screen the stat block adds it as its own first row.</p>
+<details class="note">
+<summary>For programmers: the widgets behind the Rarity row</summary>
+<p>On the Items menu and the shop and trade screens it's a <code>DetailsRarityHB</code> row: a
+<code>DetailsRarityLabel</code> and a <code>DetailsRarityValue</code>. Shop and trade fill it from C++, and the Items
+menu fills it with <strong>Apply Item Instance Rarity Label</strong>. On the equipment screen the stat block
+adds it as its own first row.</p>
+</details>
 <ul>
 <li><strong>Items menu:</strong> row name and diamonds, the details name, the labelled <strong>Rarity</strong> row, and a
   <strong>Rarity</strong> mode in its Y sort. The <strong>Type</strong> line is plain text (for example "Heavy"), with no rarity
@@ -4872,13 +4879,48 @@ Item Instance Rarity Label</strong>. On the equipment screen the stat block adds
 <li><strong>Chest beams</strong>, coloured by the rarity each chest tier stands for. Turn this off with <strong>Use Rarity
   Beam Colour</strong> on the chest Blueprint.</li>
 </ul>
-<h2 id="check-it-worked">Check it worked<a class="headerlink" href="#check-it-worked" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Open the Items menu: a Rare item's name is gold, with two diamonds.</li>
-<li>Run <code>Tools/UIAuthoring/rarity_pie.py</code>. It checks every surface above and writes <code>rarity_pie.txt</code>.</li>
-</ul>
-<h2 id="if-it-didnt-work">If it didn't work<a class="headerlink" href="#if-it-didnt-work" title="Permanent link">&para;</a></h2>
-<p>See <a href="../../troubleshooting/items-and-equipment/#an-items-name-is-not-in-its-rarity-colour">Items and equipment troubleshooting</a>.</p>
+<h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>. New Game's bag holds the samples above.</li>
+<li>Open the main menu, then <strong>Items</strong>. On the <strong>Materials</strong> tab, Fine Scrap Plating's name is gold
+   with two diamonds; on <strong>Collectables</strong>, Prism Chain is purple with three.</li>
+<li>Select a row: the details pane shows a <strong>Rarity</strong> row in the same colour.</li>
+<li>Press the sort button (<strong>Y</strong> on a pad) until the prompt reads <strong>Sort: Rarity</strong>: the rarest items rise to
+   the top.</li>
+<li>If you made your own item rare, add it to Kael's <strong>Starting Inventory</strong> and check it the same way.</li>
+</ol>
+<h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A Rare or Legendary item is drawn white, with one diamond</td>
+<td>Its <strong>Rarity</strong> is empty, which means Common. Set it on the item's <strong>XenoCore Fragment Item Category</strong>.</td>
+</tr>
+<tr>
+<td>Every item is drawn plain, with no diamonds</td>
+<td><strong>XenoCore UI › Items › Item Rarity Table</strong> is cleared. Point it back at <code>UserInterface/Items/DT_XenoCore_ItemRarities</code>.</td>
+</tr>
+<tr>
+<td>Your new rarity draws like Common</td>
+<td>The table has no row for its tag. The Output Log warns once: <code>Rarity '...' has no row in ...</code>. Add the row.</td>
+</tr>
+<tr>
+<td>A name in your own widget lost its dark outline</td>
+<td>A <strong>Set Font</strong> runs after <strong>Apply Item Rarity</strong>. Set the font first.</td>
+</tr>
+<tr>
+<td>Diamonds look like triangles</td>
+<td>The row's <strong>Pip Texture</strong> is empty. Set it to <code>UserInterface/Items/T_XenoCore_RarityPip</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>More checks: <a href="../../troubleshooting/items-and-equipment/#an-items-name-is-not-in-its-rarity-colour">Items and equipment troubleshooting</a>.</p>
 
 
 

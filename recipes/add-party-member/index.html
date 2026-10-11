@@ -908,10 +908,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-make-the-four-assets" class="md-nav__link">
+  <a href="#1-make-the-five-assets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Make the four assets
+        1. Make the five assets
       
     </span>
   </a>
@@ -4501,10 +4501,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-make-the-four-assets" class="md-nav__link">
+  <a href="#1-make-the-five-assets" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Make the four assets
+        1. Make the five assets
       
     </span>
   </a>
@@ -4634,15 +4634,15 @@
 
 <h1 id="add-a-party-member">Add a party member<a class="headerlink" href="#add-a-party-member" title="Permanent link">&para;</a></h1>
 <p><em>Designer · 30 min · No code · Last tested: never</em></p>
-<p><strong>Result:</strong> a new character with their own name, portrait, look, stats, starting gear and Arts
-joins the roster. You field them from the Party screen, lead with them, and they fight beside
+<p><strong>Result:</strong> a new character with their own name, portrait, look, stats, starting gear and
+<a href="../../getting-started/glossary/">Arts</a> joins the <a href="../../getting-started/glossary/">roster</a>. You field them from the Party screen, lead with them, and they fight beside
 the others.</p>
 <!-- SCREENSHOT: the Party screen with the new member in the roster -->
 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../getting-started/first-change/">Your first change</a>. It explains the two assets every
-  member is made of: the <strong>member definition</strong> and the <strong>pawn Blueprint</strong>.</li>
+  member is made of: the <a href="../../getting-started/glossary/">member definition</a> and the <strong>pawn Blueprint</strong>.</li>
 <li>To use a VRoid Studio model instead of the Mannequin body, see
   <a href="../add-vroid-party-member/">Add a VRoid party member</a> instead. The shipped party is the seven
   VRoid members (Kael, Mira, Nia, Dorran, Isolde, Sabine, Tamsin); the game starts with Kael and
@@ -4670,7 +4670,7 @@ the others.</p>
 <td>Body, materials, animation style, stats, starting level, starting gear, Arts</td>
 </tr>
 <tr>
-<td>Pawn data</td>
+<td><a href="../../getting-started/glossary/">Pawn data</a></td>
 <td><code>Characters/Party/PawnData_XenoCore_Party_Quinn</code></td>
 <td>Which abilities the body is granted, its input config and tag rules</td>
 </tr>
@@ -4687,8 +4687,8 @@ the others.</p>
 </tbody>
 </table>
 <p>The pawn is a <strong>child of the party base</strong>, not a copy of a sample: a copy brings the sample's
-gear, learnset and look with it, silently. The other three are data assets, which cannot have a
-base, so they are duplicated. Use the <code>_Manny</code> pawn data and stats effect for a masculine body.</p>
+gear, learnset and look with it, silently. The other four are
+duplicated: they hold only numbers and links, which step 2 repoints. Use the <code>_Manny</code> pawn data and stats effect for a masculine body.</p>
 <div class="admonition warning">
 <p class="admonition-title">Never create a member definition or pawn from scratch</p>
 <p>A blank member definition has no <strong>Member Class</strong>, and a blank pawn has no pawn data. Both
@@ -4697,15 +4697,18 @@ cannot die. Duplicating the member definition and setting the pawn's <strong>Com
 in step 2 avoids every one of these.</p>
 </div>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
-<h3 id="1-make-the-four-assets">1. Make the four assets<a class="headerlink" href="#1-make-the-four-assets" title="Permanent link">&para;</a></h3>
+<h3 id="1-make-the-five-assets">1. Make the five assets<a class="headerlink" href="#1-make-the-five-assets" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create a folder <code>Content/MyGame/Party</code>.</li>
 <li>In <strong>Plugins › XenoCore Content › Characters › Party</strong>, right-click
-   <code>B_XenoCore_PartyMember_Base</code> and choose <strong>Create Child Blueprint Class</strong>. Then duplicate
-   <code>PartyMember_Quinn</code> and <code>PawnData_XenoCore_Party_Quinn</code>, and in <strong>Battle › Attributes</strong>,
-   <code>GE_XenoCore_BaseStats_Party_Quinn</code>.</li>
-<li>Rename them <code>PartyMember_Rook</code>, <code>B_Party_Rook</code>, <code>PawnData_Party_Rook</code> and
-   <code>GE_BaseStats_Rook</code>, and move all four into <code>MyGame/Party</code>.</li>
+   <code>B_XenoCore_PartyMember_Base</code> and choose <strong>Create Child Blueprint Class</strong>.</li>
+<li>In the same folder, right-click and <strong>Duplicate</strong> <code>PartyMember_Quinn</code> and
+   <code>PawnData_XenoCore_Party_Quinn</code>.</li>
+<li>In <strong>Battle › Attributes</strong>, duplicate <code>GE_XenoCore_BaseStats_Party_Quinn</code>.</li>
+<li>In <strong>Characters › Party › AnimProfiles</strong>, duplicate a profile whose clips suit the body (see
+   step 2).</li>
+<li>Rename them <code>B_Party_Rook</code>, <code>PartyMember_Rook</code>, <code>PawnData_Party_Rook</code>, <code>GE_BaseStats_Rook</code> and
+   <code>DA_AnimProfile_Rook</code>, and move all five into <code>MyGame/Party</code>.</li>
 </ol>
 <h3 id="2-point-the-assets-at-each-other">2. Point the assets at each other<a class="headerlink" href="#2-point-the-assets-at-each-other" title="Permanent link">&para;</a></h3>
 <p>The duplicates still point at the sample they came from, and the new pawn points at nothing yet.
@@ -4723,7 +4726,7 @@ Set every link:</p>
 </ul>
 <p>Under <strong>XenoCore › Animation</strong>:</p>
 <ul>
-<li><strong>Anim Profile</strong>: <code>DA_AnimProfile_Rook</code> (duplicated from one of the shipped members' profiles).
+<li><strong>Anim Profile</strong>: <code>DA_AnimProfile_Rook</code>.
   Leave it empty and the character still fights, but <strong>never celebrates a win</strong> - the victory
   emote has no default. Pick a profile whose clips suit the body: the shipped feminine members
   (Maroon, Pink, Yellow, Cyan, Purple) use feminine idle breaks and emotes.</li>
@@ -4764,7 +4767,8 @@ Set every link:</p>
 <!-- VERIFY: Details-panel category of the Cosmetic Part Blueprint variable -->
 
 <h3 id="4-give-them-their-own-stats">4. Give them their own stats<a class="headerlink" href="#4-give-them-their-own-stats" title="Permanent link">&para;</a></h3>
-<p>Open <code>GE_BaseStats_Rook</code>. It has one modifier per stat, each reading a curve-table row at the
+<p>Open <code>GE_BaseStats_Rook</code>. It has one modifier per stat, each reading a
+<a href="../../getting-started/glossary/">curve table</a> row at the
 character's level and multiplying it by a value. Change the multipliers to make Rook sturdier or
 stronger than the sample. The whole model, and how to add rows of your own, is in
 <a href="../character-statline/">Author a character's statline</a>.</p>
@@ -4805,7 +4809,7 @@ is learned, and a <strong>Default Slot</strong> (<code>0</code> to <code>7</code
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
 <p>Members are fielded in roster order until <strong>Max Active Members</strong> is reached; the rest wait in
-reserve. To recruit Rook later in the story instead, leave the roster alone and see
+reserve (<a href="../../getting-started/glossary/">active and reserve members</a>). To recruit Rook later in the story instead, leave the roster alone and see
 <a href="../starting-party/">Choose the starting party</a>.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>

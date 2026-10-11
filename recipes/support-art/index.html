@@ -4643,7 +4643,8 @@ reference for its settings, and give it a gesture montage with no notifies.</p>
    <strong>Attribute</strong> <strong>Ether</strong>. <strong>Category</strong>: <strong>Heal</strong>.</li>
 <li><strong>Power</strong> is the amount healed, before the art-level curve. Try <code>300</code>.</li>
 <li><strong>Cooldown Duration</strong>: <code>10</code>.</li>
-<li>Set <strong>Montage</strong> to <code>AM_XenoCore_LightHeal</code>: a casting gesture with no notifies. Set a
+<li>Set <strong>Montage</strong> to <code>Characters/Player/Animations/Kwang/AM_XenoCore_LightHeal</code>: a casting
+   gesture with no notifies. Set a
    <strong>Palette Glyph</strong> and <strong>Glyph Colour</strong>.</li>
 </ol>
 <!-- VERIFY: that a heal art leaves healing unscaled by Ether (GE_XenoCore_Heal has one SetByCaller modifier and no execution) -->
@@ -4654,8 +4655,8 @@ reference for its settings, and give it a gesture montage with no notifies.</p>
    own <strong>Cooldown Tag</strong>, <strong>Montage</strong> (<code>AM_XenoCore_LightHeal</code> again) and <strong>Palette Glyph</strong>.</li>
 <li><strong>Effect Type</strong>: <strong>No damage or healing</strong>. <strong>Target Type</strong>: <strong>Whole party</strong>.</li>
 <li><strong>Power</strong>: leave it; nothing reads it for this effect type.</li>
-<li>Under <strong>Art › Effects</strong>, add two entries:</li>
-</ol>
+<li>
+<p>Under <strong>Art › Effects</strong>, add two entries:</p>
 <table>
 <thead>
 <tr>
@@ -4681,10 +4682,12 @@ reference for its settings, and give it a gesture montage with no notifies.</p>
 </tbody>
 </table>
 <p>Strength Up raises Strength by <strong>Magnitude</strong> percent; a <strong>Magnitude</strong> of <code>0</code> sends nothing and
-it falls back to its default of 30 % (×1.3). Regenerate heals <strong>Magnitude</strong> HP every second, so it
-needs one. Both need a <strong>Duration</strong>.</p>
-<ol>
-<li><strong>Cooldown Duration</strong>: <code>30</code>. Save.</li>
+it falls back to its default of 30 % (×1.3). Regenerate heals <strong>Magnitude</strong> HP every second, so
+it needs one. Both need a <strong>Duration</strong>.</p>
+</li>
+<li>
+<p><strong>Cooldown Duration</strong>: <code>30</code>. Save.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Recipient and Target Type are different things</p>

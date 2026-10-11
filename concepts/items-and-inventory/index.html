@@ -3134,6 +3134,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3195,10 +3206,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4412,6 +4423,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4473,10 +4495,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4524,14 +4546,27 @@
 
 <h1 id="items-and-inventory">Items and inventory<a class="headerlink" href="#items-and-inventory" title="Permanent link">&para;</a></h1>
 <p><em>All · 15 min read · Last tested: never</em></p>
-<p>XenoCore uses Lyra's own inventory: items are <code>ULyraInventoryItemDefinition</code> Blueprints extended with
-<strong>fragments</strong>, and the bag is a stock <code>ULyraInventoryManagerComponent</code>. There is exactly <strong>one bag,
-and it belongs to the party</strong>: it lives on the player's controller, every character equips from it,
-and a single function, <code>GetPartyInventory</code>, is the only thing that decides where it is. The idea
-that makes the rest make sense: <strong>every change to the bag goes through <code>UXenoCoreInventoryStatics</code></strong>.
-That library broadcasts the change message every menu and HUD element listens to, honours carry
-caps, and never takes an item someone is wearing. A change made any other way is noticed and
-announced a frame later, but gets none of those protections.</p>
+<p><strong>What the player sees:</strong> one bag shared by the whole party. The Items menu sorts it into tabs
+(Equipment, Items, Collectables, Key, Gems, Crystals, Materials, Art Manuals), every item name is
+coloured by its rarity, an "Obtained" badge appears when something is picked up, and any character
+can equip from the bag.</p>
+<p>An item is a small Blueprint (an <strong>item definition</strong>) whose Details panel holds a few <strong>fragments</strong>:
+blocks of settings for its menu tab, description, rarity, equipment slot and stats. Making an item
+is duplicating one that is close and changing those settings.</p>
+<p>The one rule for Blueprints that give or take items: <strong>use the XenoCore inventory nodes</strong>
+(<strong>XenoCore › Inventory</strong>, such as <strong>Add Item To Party</strong>), not Lyra's. They keep every menu current,
+honour carry limits and never take an item someone is wearing.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A new consumable, material or key item</strong>: <a href="../../recipes/consumable-item/">Consumable item</a>.</li>
+<li><strong>A new weapon or piece of armour</strong>: <a href="../../recipes/add-weapon/">Add a weapon</a>,
+  <a href="../../recipes/add-armour/">Add armour</a>.</li>
+<li><strong>A gem</strong>: <a href="../../recipes/add-a-gem/">Add a gem</a>.</li>
+<li><strong>Rarity tiers and how they look</strong>: <a href="../../recipes/item-rarity/">Set and style item rarity</a>.</li>
+<li><strong>Y-to-sort on a list</strong>: <a href="../../recipes/sort-a-list/">Add Y-to-sort to an item list</a>.</li>
+<li><strong>Category glyphs</strong>: <code>UserInterface/Foundation/DA_XenoCore_ItemIcons</code> (see <a href="#settings">Settings</a>).</li>
+<li><strong>What a new game starts with</strong>: <strong>Starting Inventory</strong> on a party member (see <a href="../equipment/">Equipment</a>).</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4548,9 +4583,9 @@ announced a frame later, but gets none of those protections.</p>
 <td>Holds item instances</td>
 </tr>
 <tr>
-<td>Resolver</td>
-<td><code>UXenoCoreInventoryStatics::GetPartyInventory</code> (node <strong>Get Party Inventory</strong>)</td>
-<td>The only way to find the bag</td>
+<td>Finding the bag</td>
+<td>Node <strong>Get Party Inventory</strong> (<strong>XenoCore › Inventory</strong>)</td>
+<td>The only way to find the bag from a Blueprint</td>
 </tr>
 <tr>
 <td>Item parent</td>
@@ -4564,7 +4599,7 @@ announced a frame later, but gets none of those protections.</p>
 </tr>
 <tr>
 <td>XenoCore fragments</td>
-<td><code>UXenoCoreFragment_EquipSlots</code>, <code>UXenoCoreFragment_ItemCategory</code>, <code>UXenoCoreFragment_ItemDisplay</code>, <code>UXenoCoreFragment_Gem</code></td>
+<td><code>XenoCoreFragment_EquipSlots</code>, <code>XenoCoreFragment_ItemCategory</code>, <code>XenoCoreFragment_ItemDisplay</code>, <code>XenoCoreFragment_Gem</code></td>
 <td>Slots, weapon type and sockets; menu tab, carry cap and rarity; description and icon; what a gem adds</td>
 </tr>
 <tr>
@@ -4574,7 +4609,7 @@ announced a frame later, but gets none of those protections.</p>
 </tr>
 <tr>
 <td>Category icons</td>
-<td><code>UXenoCoreItemIconSet</code> · <code>UserInterface/Foundation/DA_XenoCore_ItemIcons</code></td>
+<td><code>UserInterface/Foundation/DA_XenoCore_ItemIcons</code></td>
 <td>One glyph per category or slot for items with no icon of their own</td>
 </tr>
 <tr>
@@ -4645,7 +4680,7 @@ has a labelled <strong>Rarity</strong> row.</p>
   two items, as in Xenoblade 3.</li>
 <li><strong>What a rarity looks like</strong> is a row of <code>UserInterface/Items/DT_XenoCore_ItemRarities</code>, set in
   <strong>Project Settings → XenoCore UI → Item Rarity Table</strong>.</li>
-<li><strong>Every screen goes through <code>UXenoCoreItemRarityStatics</code></strong>, so no widget chooses a colour itself.</li>
+<li><strong>Every screen colours names through the same rarity nodes</strong> (below), so no widget chooses a colour itself.</li>
 <li><strong>Apply Item Rarity</strong> / <strong>Apply Item Instance Rarity</strong> colour a name and fill a pip box.</li>
 <li><strong>Apply Item Rarity To Button</strong> does the same for a button labelled with <strong>Set Button Text</strong>.</li>
 <li><strong>Prefix With Item Rarity</strong> gives "Rare · Heavy".</li>
@@ -4664,10 +4699,9 @@ Items</strong>, so each list opens already sorted.</p>
 <p>See <a href="../../recipes/sort-a-list/">Add Y-to-sort to an item list</a>. The shop and trade screens have
 their own sort, through the merchant base.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
-<p><strong>Where the bag comes from.</strong> The plugin's Game Feature adds a <code>ULyraInventoryManagerComponent</code> to
-the player controller. <code>GetPartyInventory</code> returns the first player controller's bag. It is never
-"the asking pawn's controller": an AI party member has a controller too, and that is not the party
-bag.</p>
+<p><strong>Where the bag comes from.</strong> The plugin adds Lyra's inventory component to the player's
+controller. <strong>Get Party Inventory</strong> always returns that bag, whichever character asks. Do not look
+for a bag on an AI party member's controller: it is not the party's.</p>
 <p><strong>Starting contents.</strong> Each character's equipment component adds its <strong>Starting Inventory</strong> (loose
 items) and then its <strong>Starting Equipment</strong> (items it immediately wears) to the party bag when the
 character's ability system is ready. See <a href="../equipment/">Equipment</a>.</p>
@@ -4725,21 +4759,20 @@ storage is one per item.</p>
 new count and the change (positive gained, negative spent). A change of zero broadcasts nothing.
 Open menus, the item badge and quest counters listen for it. Chests and collectable orbs add
 through the same functions, so they update everything too.</p>
-<p><strong>Changes made another way.</strong> A world subsystem, <code>UXenoCoreInventoryWatchSubsystem</code>, compares the
-bag with what it last saw every frame (paused menus included). When something other than the
-statics changed it (Lyra's own inventory nodes, or Lyra's pickup interface), it broadcasts the same
+<p><strong>Changes made another way.</strong> XenoCore compares the bag with what it last saw every frame (paused
+menus included). When something other than the XenoCore nodes changed it (Lyra's own inventory nodes, or Lyra's pickup interface), it broadcasts the same
 change message on that change's behalf and logs a line to <code>LogXenoBagWatch</code>: <em>"The party bag changed
 outside the XenoCore inventory functions (+1 ...); announcing it on their behalf."</em> So menus stay
 current. What it cannot do is undo a change: see the warnings below.</p>
 <p><strong>Items as an ability cost.</strong> An ability that spends items (a potion, an Art Manual) uses the
-<strong>Party Item (XenoCore)</strong> cost (<code>UXenoCoreAbilityCost_PartyItem</code>) in its <strong>Additional Costs</strong> list.
+<strong>Party Item (XenoCore)</strong> cost in its <strong>Additional Costs</strong> list.
 Set <strong>Item Definition</strong> and <strong>Quantity</strong> (a scalable float keyed on ability level; fractions round
 down). The ability cannot activate unless the party holds that many copies nobody is wearing, and it
 spends them through <strong>Consume Items From Party</strong>, so the change message fires. The cost looks up the
 party bag whoever casts, including an AI party member.</p>
 <p><strong>Equipped state.</strong> An item in the bag may be worn by one character in one slot. The bag does not
 move items when they are equipped; the equipment component only points at them.</p>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -4779,19 +4812,19 @@ icon you see in the sample comes from <code>DA_XenoCore_ItemIcons</code>.</p>
 The character keeps showing it in its slot, but the bag, and therefore the save, no longer holds
 it. The watcher cannot put it back; it logs an <strong>Error</strong> to <code>LogXenoBagWatch</code> naming the item and
 the wearer. Use <strong>Remove Item Instance From Party</strong>, which refuses. The same risk applies to
-Lyra's <code>ConsumeItemsByDefinition</code>, which takes the first entries it finds; use <strong>Consume Items
+Lyra's <strong>Consume Items By Definition</strong>, which takes the first entries it finds; use <strong>Consume Items
 From Party</strong>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Lyra's Add Item Instance crashes</p>
-<p>Lyra's <strong>Add Item Instance</strong> node is not implemented in stock Lyra: the list function it calls
-is an <code>unimplemented()</code> stub, which stops the editor or game. There is no way to put an existing
+<p>Lyra's <strong>Add Item Instance</strong> node is not implemented in stock Lyra and stops the editor or the
+game when it runs. There is no way to put an existing
 item instance back into the bag. Add by definition with <strong>Add Item To Party</strong> instead.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: Lyra's Inventory Item cost never lets the ability run</p>
-<p>Lyra's own <strong>Inventory Item</strong> ability cost (<code>ULyraAbilityCost_InventoryItem</code>) has its whole body
-compiled out in stock Lyra 5.8, so its check always fails and an ability carrying it can never
+<p>Lyra's own <strong>Inventory Item</strong> ability cost is switched off inside stock Lyra 5.8, so its check
+always fails and an ability carrying it can never
 activate. Nothing is logged. Use <strong>Party Item (XenoCore)</strong> instead.</p>
 </div>
 <div class="admonition warning">
@@ -4807,16 +4840,28 @@ icon set instead.</p>
   <a href="../../recipes/add-weapon/">Add a weapon</a> and <a href="../../recipes/add-armour/">Add armour</a>.</li>
 <li><strong>A new equipment item</strong> must be duplicated, never created blank: a blank definition has no
   equipment definition, so it lists but cannot be equipped, and nothing is logged.</li>
-<li><strong>A new category</strong> is a C++ change: <code>EXenoCoreItemCategory</code> is an enum the Items menu iterates.
-  Append new values at the end; never reorder or insert, because saved items store the number.</li>
+<li><strong>A new category (Items menu tab) needs a programmer</strong>: the list of tabs is fixed in C++. See the
+  note below.</li>
 <li><strong>Something that gives items</strong> (a quest reward, a shop, a script) should call <strong>Add Item To
   Party</strong> so the change message fires.</li>
-<li><strong>Listening for changes:</strong> in Blueprint, listen on the gameplay message channel
-  <code>XenoCore.Inventory.Message.Changed</code> (payload <code>FXenoCoreInventoryChangedMessage</code>). See
-  <a href="../events/">Events</a>.</li>
+<li><strong>Reacting when the bag changes:</strong> listen for the <code>XenoCore.Inventory.Message.Changed</code> message.
+  See <a href="../events/">Events</a>.</li>
 <li>Never rename or delete the fragments on shipped items in place; duplicate first.</li>
 </ul>
+<details class="note">
+<summary>For programmers: classes and adding a category</summary>
+<p>The bag is a stock <code>ULyraInventoryManagerComponent</code> on the player controller, found by
+<code>UXenoCoreInventoryStatics::GetPartyInventory</code>. Every bag change goes through
+<code>UXenoCoreInventoryStatics</code>; changes made elsewhere are caught by
+<code>UXenoCoreInventoryWatchSubsystem</code>. Rarity colouring is <code>UXenoCoreItemRarityStatics</code>, the item
+cost is <code>UXenoCoreAbilityCost_PartyItem</code>, and the message payload is
+<code>FXenoCoreInventoryChangedMessage</code>. A new category is a value appended to <code>EXenoCoreItemCategory</code>
+(<code>XenoCoreItemFragments.h</code>): append at the end, never reorder or insert, because saved items
+store the number.</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>One entry per item</strong> because Lyra counts entries. <code>GetTotalItemCountByDefinition</code> adds one per
   entry and never reads <code>StackCount</code>, and <code>ConsumeItemsByDefinition</code> removes one entry per unit.
@@ -4840,6 +4885,7 @@ icon set instead.</p>
 <li><strong>Fragments in C++</strong> because C++ cannot read variables defined on a Blueprint class, so data that
   both menus and gameplay code need has to live on a native fragment.</li>
 </ul>
+</details>
 
 
 

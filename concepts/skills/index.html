@@ -4700,6 +4700,18 @@ owned by the same component that owns levels, <code>Game/BP_XenoCore_Progression
 a save only ever stores counts.</strong> "Branch row X, 3 skills learnt, 240 SP into the fourth" is the
 whole record, so you can rewrite, rename or rebalance skills without breaking saves, and every stat a
 skill gives is re-derived from that record whenever anything changes.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> the Skills screen (main menu › <strong>Skills</strong>) shows each character's branches; pick
+one, and the SP from every kill fills its skills top to bottom.</p>
+<p><strong>What you can change, no code:</strong></p>
+<ul>
+<li>A character's tree, a new branch or a new skill: <a href="../../recipes/add-skill/">Add a skill or a skill tree</a></li>
+<li>SP costs, trait ladders and SP per kill: the three shared tables in <code>Battle/Skills</code></li>
+<li>How fast SP comes in overall: <strong>Skill Point Reward Scale</strong> on <code>Game/BP_XenoCore_Progression</code></li>
+<li>Every setting: <a href="#what-you-can-change">What you can change</a></li>
+</ul>
+</div>
 <div class="admonition note">
 <p class="admonition-title">63 shipped skills are stand-ins</p>
 <p>Every one of the 100 shipped skills, and every branch trait, does something. But 63 of the
@@ -4950,8 +4962,10 @@ and progress on existing branches is never touched.</p>
 <li>The level difference (party level − enemy level) picks a band in the reward table. The first
    row whose range contains it wins.</li>
 <li>The band's SP × <strong>Skill Point Reward Scale</strong> × the enemy's <strong>Skill Point Multiplier</strong> is paid to
-   <strong>every roster member</strong>. Benched members get <strong>Reserve Skill Point Rate</strong> of it (0.9; separate
-   from the EXP rate, which the sample sets to 0).</li>
+   <strong>every roster member</strong>. Benched members get <strong>Reserve Skill Point Rate</strong> of it, which the
+   sample sets to <code>0</code>, like the EXP rate, so a benched character earns nothing (XC1 pays 90%).
+   <!-- VERIFY: BP_XenoCore_Progression overrides Reserve Skill Point Rate to 0 (reserve-SP change on this branch). -->
+</li>
 </ol>
 <p>Quests do not pay SP. Anything else can, by calling <strong>Award Skill Points</strong> (see
 <a href="#extending-it">Extending it</a>). After a kill, each party member's HUD plate shows the EXP, AP and SP
@@ -5741,7 +5755,7 @@ records by member definition, never from a pawn, because the shown character may
 <tr>
 <td><strong>Reserve Skill Point Rate</strong></td>
 <td><code>BP_XenoCore_Progression</code> › XenoCore › Skills</td>
-<td>Benched members' share of kill SP. 0.9. Separate from the EXP rate on purpose.</td>
+<td>Benched members' share of kill SP: <code>0</code> in the sample (the C++ default is XC1's <code>0.9</code>). A separate setting from the EXP rate, so the two can differ.</td>
 </tr>
 <tr>
 <td><strong>Skill Point Level Basis</strong></td>
@@ -5812,6 +5826,12 @@ every save with three learnt now has the old skill 4 instead of skill 2. That is
 editable, so reorder only before release, or accept the change.</p>
 </div>
 <h2 id="save">Save<a class="headerlink" href="#save" title="Permanent link">&para;</a></h2>
+<p>On load, each record is re-seeded from the current table (additively), so new branches appear. If
+the saved selected branch no longer exists or is locked, the first unlocked row is selected instead.
+Skill effects are never saved; they are rebuilt when the bodies spawn. See
+<a href="../save-and-front-end/">Save and front end</a>.</p>
+<details class="note">
+<summary>For programmers: the saved fields</summary>
 <p>Each member's saved record carries:</p>
 <table>
 <thead>
@@ -5835,10 +5855,7 @@ editable, so reorder only before release, or accept the change.</p>
 </tr>
 </tbody>
 </table>
-<p>On load, each record is re-seeded from the current table (additively), so new branches appear. If
-the saved selected branch no longer exists or is locked, the first unlocked row is selected instead.
-Skill effects are never saved; they are rebuilt when the bodies spawn. See
-<a href="../save-and-front-end/">Save and front end</a>.</p>
+</details>
 <h2 id="console-commands">Console commands<a class="headerlink" href="#console-commands" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5892,12 +5909,15 @@ such a stat as a whole percentage, or ask a programmer to add it to the conversi
 <li><strong>React to a skill being learnt:</strong> listen for <code>XenoCore.Skills.Message.SkillLearnt</code>. Refresh
   anything that shows SP or skill counts on <code>XenoCore.Progression.Message.Changed</code>, which is sent on
   every SP award and branch change. See <a href="../events/">Events you can listen to</a>.</li>
-<li><strong>A new menu screen about one character:</strong> subclass <code>UXenoCoreCharacterMenuScreenBase</code> in C++ and
-  override <strong>On Member Shown</strong>, <strong>Reset For Show</strong> and, if the screen has tabs, the tab handlers.</li>
+<li><strong>A new menu screen about one character</strong> (programmers): subclass
+  <code>UXenoCoreCharacterMenuScreenBase</code> in C++ and override <strong>On Member Shown</strong>, <strong>Reset For Show</strong>
+  and, if the screen has tabs, the tab handlers.</li>
 <li><strong>Never edit</strong> <code>DT_XenoCore_SkillPointRewards</code>' bands to make a demo faster; change <strong>Skill Point
   Reward Scale</strong> instead, so the reference numbers stay intact.</li>
 </ul>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>Data Tables, not one data asset per skill,</strong> because a designer sees a whole character in one
   asset, tables round-trip CSV and JSON in the editor, and they can be filled from script. The trade
@@ -5921,6 +5941,7 @@ such a stat as a whole percentage, or ask a programmer to add it to the conversi
 <li><strong>The Skills screen and Arts screen share a base</strong> because they were the second and first screens
   of the kind; the base holds only what both need.</li>
 </ul>
+</details>
 
 
 

@@ -4494,6 +4494,14 @@
 sets them at any time, in the field, locked on or mid-fight. They stay set until changed, and they are
 saved with the game. Orders can be given to the <strong>whole party</strong> or to <strong>one member</strong>, as in
 <em>Xenoblade Chronicles X</em>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> tap X (F) to switch the party between fighting your target and picking their own;
+hold it for the full list of orders.</p>
+<p><strong>What you can change, no code:</strong> the starting orders, which tactics the list shows and their
+wording, and how a companion picks a target on <strong>At Will</strong>. See
+<a href="#what-you-can-change">What you can change</a> and <a href="../../recipes/tune-companion-ai/">Tune companion AI</a>.</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -4531,7 +4539,7 @@ saved with the game. Orders can be given to the <strong>whole party</strong> or 
 </tbody>
 </table>
 <p>While an NPC's prompt is offering <strong>Trade</strong>, X is Trade instead. The prompt on screen shows which.</p>
-<!-- SCREENSHOT: Tools/UIAuthoring/party_tactics_shots/2_tactics_list.png - the Party Tactics list, Mira selected -->
+<!-- SCREENSHOT: the Party Tactics list, Mira selected -->
 
 <div class="highlight"><pre><span></span><code>                                [M] Map
                       [X] Party Tactics     &lt;- always shown
@@ -4646,8 +4654,8 @@ choose differently:</p>
 </tbody>
 </table>
 <h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
-<p>Everything is on the party component, <strong>UXenoCorePartyComponent</strong> (the controller's component list in
-the experience), in <strong>Party › Tactics</strong>:</p>
+<p>Everything is on the party component: open <code>Characters/Party/BP_XenoCore_Party</code>, click <strong>Class
+Defaults</strong>, and look under <strong>XenoCore › Party › Tactics</strong>:</p>
 <table>
 <thead>
 <tr>
@@ -4699,8 +4707,15 @@ after every change to draw from.</p>
 <strong>TacticsScopePrev</strong> and <strong>TacticsScopeNext</strong> in <code>DT_XenoCore_Actions</code> (the panel's <strong>Action Table</strong>,
 drawn with its <strong>Glyph Class</strong>, Lyra's <code>InputActionWidget</code>). <strong>Glyph Class</strong>, <strong>Action Table</strong> and
 <strong>Font Family</strong> are soft defaults on the class: they load when the panel is first built, and a
-Blueprint child can point them elsewhere. <code>Tools/UIAuthoring/party_tactics_build.py</code>
-writes them from the keys those input actions are really bound to, so re-run it after remapping.</p>
+Blueprint child can point them elsewhere.</p>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: remapping the tactics button</p>
+<p>The glyph rows store their own keys; they are not read from the input mapping. If you rebind
+the tactics input in <code>Input/Mappings/IMC_XenoCore</code>, also open
+<code>UserInterface/Foundation/DT_XenoCore_Actions</code> and change the <strong>PartyTactics</strong>,
+<strong>TacticsScopePrev</strong> and <strong>TacticsScopeNext</strong> rows' keys to match, or the prompt keeps showing
+the old button.</p>
+</div>
 <p>The buttons are Blueprint children of <strong>XenoCoreGameplayAbility_PartyCommand</strong> in <code>/XenoCore/Input/Abilities</code>
 (<code>GA_XenoCore_PartyTacticFocus</code>, <code>..._PartyTacticsPanel</code>, <code>..._TacticsScopeNext/Prev</code>). The tap's
 <strong>Tactic</strong>, <strong>Value A</strong> and <strong>Value B</strong> say what it flips between; to put another tactic on its own button,
@@ -4716,9 +4731,11 @@ still works if a button or a Blueprint sets it (<strong>Set Tactic</strong> on t
 Orders are saved with the game, so a Regroup set once comes back with the save.</p>
 </div>
 <h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
-<p><code>Tools/UIAuthoring/companion_tactics_pie.py</code> sets every value in turn during a real fight and checks what the
-companions DO: who they target, whether they swing, how far from the leader they stand, which arts they use and
-whether a hurt ally is healed. Run it after changing tactics, the companion AI or an art's AI settings.</p>
+<p>After changing tactics, the companion AI or an art's AI settings, start a fight in
+<code>Maps/L_XenoCore_Gym</code> and set each value in turn from the list (hold X / F). Watch what the
+companions <strong>do</strong>: who they target, whether they swing, how far from you they stand, which arts they
+use and whether a hurt ally is healed. <code>log LogXenoAI Verbose</code> in the console prints every art
+decision (see <a href="../companion-ai/#how-a-companion-chooses-an-art">Companion AI</a>).</p>
 <h2 id="saving">Saving<a class="headerlink" href="#saving" title="Permanent link">&para;</a></h2>
 <p>Tactics are saved by <strong>name</strong> - "Attack: AtWill", never a number - so tactics and values can be reordered or
 added without breaking a save. Each member's record holds only the orders they do not take from the party.

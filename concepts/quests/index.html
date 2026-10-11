@@ -3274,6 +3274,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3313,10 +3324,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4390,6 +4401,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4429,10 +4451,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4480,13 +4502,23 @@
 
 <h1 id="quests">Quests<a class="headerlink" href="#quests" title="Permanent link">&para;</a></h1>
 <p><em>All · 15 min read · No code · Last tested: never</em></p>
-<p>A quest is a data asset: a title, some objectives, a reward, and optional conditions for when it
-may be offered. The party's progress on every quest is held by one <strong>quest component</strong> on the
-player controller, in a ledger keyed by the quest asset itself. An NPC offers the quest through a
-Blueprint node, the ledger counts progress on its own, and the NPC's graph turns it in. The one
-idea that makes the rest make sense: <strong>the quest asset is the quest's identity</strong>. The ledger never
-asks which NPC, map or pawn is involved, so a quest keeps working when its giver is unloaded, the
-leader changes, or the game is saved and loaded.</p>
+<p><strong>What the player sees:</strong> an NPC with a "!" bubble offers a quest on a screen with its title,
+who is asking, the objectives and the reward. Accepting it puts it in the Quest Log and on the HUD
+tracker; the minimap marks what it still wants; and talking to the giver when it is done pays the
+reward under a "quest complete" banner.</p>
+<p>A quest is a <strong>data asset</strong>: a title, some objectives, a reward, and optional conditions for when it
+may be offered. You make one by duplicating a sample quest and filling in its Details panel. The
+party's progress is remembered per quest asset, so <strong>the quest asset is the quest's identity</strong>: a
+quest keeps working when its giver is unloaded, the leader changes, or the game is saved and loaded.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A "bring me N of something" quest</strong>: <a href="../../recipes/collection-quest/">Make a collection quest</a>.</li>
+<li><strong>A defeat-enemies, talk-to-someone or go-somewhere quest</strong>: <a href="../../recipes/kill-talk-quest/">Give a quest to defeat enemies, talk to someone, or go somewhere</a>.</li>
+<li><strong>Which NPC gives it and what they say</strong>: the NPC's <strong>Quest</strong> and quest dialogue fields; see
+  <a href="../interaction-npcs-dialogue/#settings">Interaction, NPCs and dialogue</a>.</li>
+<li><strong>When it may be offered</strong>: its <strong>Gates</strong> (below).</li>
+<li><strong>How the quest screens look</strong>: their Blueprints' class defaults under <strong>XenoCore › Quest</strong>.</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4499,7 +4531,7 @@ leader changes, or the game is saved and loaded.</p>
 <tbody>
 <tr>
 <td><code>Quests/DA_XenoCore_Quest_Collection01</code>, <code>DA_XenoCore_Quest_Monster01</code></td>
-<td>Quest definitions (<code>UXenoCoreQuestDefinition</code>)</td>
+<td>Quest definitions (data assets)</td>
 <td>The two Gym sample quests</td>
 </tr>
 <tr>
@@ -4508,45 +4540,44 @@ leader changes, or the game is saved and loaded.</p>
 <td>The seven quests of the Gaur Plain slice, given by NPCs placed in <code>Maps/L_XenoCore_GaurPlain</code></td>
 </tr>
 <tr>
-<td><code>UXenoCoreQuestComponent</code></td>
-<td>Controller component</td>
-<td>The ledger: status, objective counts, who asked, which quest is tracked</td>
+<td>Quest ledger</td>
+<td>Built in (on the player controller)</td>
+<td>Status, objective counts, who asked, which quest is tracked. Reach it in a Blueprint with <strong>Get Party Quests</strong></td>
 </tr>
 <tr>
 <td><strong>Offer Quest</strong></td>
-<td>Blueprint latent node (<code>UXenoCoreOfferQuest</code>)</td>
+<td>Blueprint node with <strong>Accepted</strong> and <strong>Declined</strong> outputs</td>
 <td>Opens the offer screen, continues on <strong>Accepted</strong> or <strong>Declined</strong></td>
 </tr>
 <tr>
 <td><code>UserInterface/HUD/W_XenoCore_QuestOffer</code></td>
-<td>Screen (<code>UXenoCoreQuestOfferBase</code>)</td>
+<td>Screen</td>
 <td>Title, requester, summary, objectives, rewards, Accept/Decline</td>
 </tr>
 <tr>
 <td><code>UserInterface/W_XenoCore_QuestLog</code></td>
-<td>Screen (<code>UXenoCoreQuestLogBase</code>)</td>
+<td>Screen</td>
 <td>Every accepted and finished quest, from the menu</td>
 </tr>
 <tr>
 <td><code>UserInterface/HUD/W_XenoCore_QuestTracker</code></td>
-<td>HUD plate (<code>UXenoCoreQuestTrackerBase</code>)</td>
+<td>HUD plate</td>
 <td>The tracked quest and its outstanding objectives</td>
 </tr>
 <tr>
 <td><code>UserInterface/HUD/W_XenoCore_QuestReward</code></td>
-<td>HUD plate (<code>UXenoCoreQuestRewardBase</code>)</td>
+<td>HUD plate</td>
 <td>The "quest complete" banner with what was paid</td>
 </tr>
 <tr>
-<td><code>UXenoCoreQuestUIStatics</code></td>
-<td>Blueprint function library</td>
+<td>Quest UI nodes</td>
+<td>Blueprint nodes (<strong>XenoCore › Quest</strong>)</td>
 <td>Row info for the log, requester name, <strong>Open Quest Log</strong></td>
 </tr>
 </tbody>
 </table>
-<p>The quest component is added to the player controller by the plugin's own game feature data,
-<code>XenoCore</code> (the <code>XenoCore.uasset</code> at the plugin's content root), so every XenoCore Experience has one.
-Blueprints reach it with <strong>Get Party Quests</strong>.</p>
+<p>Every XenoCore <a href="../../getting-started/glossary/">Experience</a> has the quest ledger; there is nothing to
+add to a map.</p>
 <p>The sample NPCs are in <code>Maps/L_XenoCore_Gym</code>: <code>NPC_QuestGiver</code> gives <code>DA_XenoCore_Quest_Collection01</code>
 and <code>NPC_MonsterQuestGiver</code> gives <code>DA_XenoCore_Quest_Monster01</code>. <code>Characters/NPC/B_XenoCore_Npc_Sample</code>
 also carries <code>Collection01</code>, as a ready-made example; the plain <code>B_XenoCore_Npc</code> gives no quest.</p>
@@ -4627,7 +4658,7 @@ also carries <code>Collection01</code>, as a ready-made example; the plain <code
 <li>removes the collected items whose objective has <strong>Consume On Turn In</strong> ticked,</li>
 <li>pays the gold, and experience to the whole roster (reserve members at their reduced rate, see
   <a href="../progression/">Progression</a>),</li>
-<li>adds the reward items through the inventory statics,</li>
+<li>adds the reward items to the party bag,</li>
 <li>marks the quest Complete, moves tracking to another running quest, and shows the reward banner.</li>
 </ul>
 </li>
@@ -4648,7 +4679,7 @@ tracker button (see <a href="../../getting-started/controls/">Controls</a>).</p>
 <p><strong>Saving.</strong> Every quest's status (by name), its counts, its recorded requester and the tracked
 quest are saved. On load, collect counts are recomputed from the restored bag; kill counts come from
 the file. See <a href="../save-and-front-end/">Save and front end</a>.</p>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <p>On a quest definition:</p>
 <table>
 <thead>
@@ -4770,8 +4801,9 @@ See <a href="../../recipes/kill-talk-quest/">Create a kill, talk or location que
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a gate that can never pass</p>
 <p>A quest whose gate never holds is simply never offered. There is no marker to notice missing,
-and nothing is logged. <strong>Get Gate Requirement Text</strong> on the quest component returns the reason
-as player text, but no screen shows it yet.</p>
+and nothing is logged. To check, run <code>XenoQuestStatus</code> in the console, or call <strong>Get Gate
+Requirement Text</strong> on <strong>Get Party Quests</strong> from a Blueprint: it returns the reason as player
+text. No shipped screen shows it yet.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Reordering objectives breaks existing saves</p>
@@ -4790,14 +4822,27 @@ player's saved kill counts land on the wrong objective.</p>
   with Greeting, Accepted, Declined, In Progress or Turn In to pick the NPC's authored lines.</li>
 <li><strong>Accepting from script</strong> (a story quest with no screen): call <strong>Accept</strong> on <strong>Get Party
   Quests</strong>. Leave <strong>Giver</strong> empty; the tracker then says "Return to the quest giver".</li>
-<li><strong>A new objective kind</strong> needs C++ in <code>UXenoCoreQuestComponent</code>: a listener for whatever event
-  advances it, and the kind in <code>EXenoCoreObjectiveKind</code>. Append to the enum; never reorder it.</li>
+<li><strong>A custom step with no objective kind of its own</strong> (pull a lever, win a minigame): use a Talk To
+  NPC or Reach Location objective and advance it from any Blueprint with <strong>Notify Objective</strong> on
+  <strong>Get Party Quests</strong>, passing its <strong>Kind</strong> and the objective's <strong>Target Id</strong>.</li>
+<li><strong>A new objective kind needs a programmer</strong>: the list of kinds is fixed in C++.</li>
 <li><strong>Reacting to quests</strong> from your own Blueprints: listen for <code>XenoCore.Quest.Message.Changed</code>
   and re-read the component, or <code>XenoCore.Quest.Message.TurnedIn</code> for the payout. See
   <a href="../events/">Events you can listen to</a>.</li>
 </ul>
 <p>Console command for checking the ledger: <code>XenoQuestStatus</code> prints every quest the party has touched.</p>
+<details class="note">
+<summary>For programmers: classes</summary>
+<p>Definition <code>UXenoCoreQuestDefinition</code>; ledger <code>UXenoCoreQuestComponent</code> (a controller component
+added by the plugin's GameFeatureData, <code>XenoCore.uasset</code>); <strong>Offer Quest</strong> is the latent node
+<code>UXenoCoreOfferQuest</code>; screens derive from <code>UXenoCoreQuestOfferBase</code>, <code>UXenoCoreQuestLogBase</code>,
+<code>UXenoCoreQuestTrackerBase</code> and <code>UXenoCoreQuestRewardBase</code>; UI helpers are
+<code>UXenoCoreQuestUIStatics</code>. A new objective kind is a value appended to <code>EXenoCoreObjectiveKind</code>
+(never reorder it) plus a listener in <code>UXenoCoreQuestComponent</code> for whatever advances it.</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>On the controller, not a world subsystem.</strong> Quest state must outlive a map and be saved. The
   controller is also where Lyra and XenoCore keep other party-wide state, such as the bag.</li>
@@ -4812,6 +4857,7 @@ player's saved kill counts land on the wrong objective.</p>
   part of a running total and cannot be reconstructed by re-reading.</li>
 <li><strong>Kind is only a label.</strong> If code branched on it, adding a new kind would stop being data.</li>
 </ul>
+</details>
 <p><strong>Next:</strong> <a href="../shops-and-trade/">Shops and trade</a> · <a href="../interaction-npcs-dialogue/">Interaction, NPCs and dialogue</a></p>
 
 

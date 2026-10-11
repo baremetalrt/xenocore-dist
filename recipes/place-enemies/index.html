@@ -4620,6 +4620,7 @@ named unique monster.</p>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../getting-started/first-enemy/">Your first enemy</a>.</li>
+<li><a href="../../getting-started/glossary/">Glossary</a>: <strong>Squad</strong>, <strong>spawner</strong>, <strong>Detection</strong>, <strong>Aggro</strong>.</li>
 <li><a href="../../concepts/enemies-and-ai/">Enemies and AI</a>.</li>
 </ul>
 <h2 id="two-ways-to-put-enemies-in-a-map">Two ways to put enemies in a map<a class="headerlink" href="#two-ways-to-put-enemies-in-a-map" title="Permanent link">&para;</a></h2>
@@ -4741,7 +4742,8 @@ nowhere to put them.</p>
 <p>Each member rolls its own level in that range. Add more entries for a mixed squad.
 3. Set <strong>Wander Radius</strong> (default 1200 cm) to how far the squad strolls from the spawner while
    nobody is fighting. The viewport draws it as a sphere. <code>0</code> makes them stand where they spawn.
-4. Leave <strong>Link Aggro</strong>, <strong>Squad Loot Rule</strong> and <strong>Respawn</strong> ticked. Change <strong>Respawn Delay</strong> if
+4. Leave <strong>Link Aggro</strong> and <strong>Squad Loot Rule</strong> (<strong>XenoCore › Spawner › Squad</strong>) and <strong>Respawn</strong>
+   (<strong>XenoCore › Spawner › Respawn</strong>) ticked. Change <strong>Respawn Delay</strong> if
    90 s is too quick or too slow for your area.</p>
 </li>
 </ol>
@@ -4754,7 +4756,7 @@ different fight.</p>
 <li>Drag <code>Characters/Enemies/Minion/Variants/B_XenoCore_Minion_Grunt</code> (or your own enemy) into the
    map, on the green area. Under <strong>XenoCore › Enemy</strong>, set its <strong>Enemy Level</strong>.</li>
 <li>In its Details panel, under <strong>XenoCore › AI › Patrol</strong>, add two entries to <strong>Patrol Points</strong>.</li>
-<li>Each point appears in the viewport as a diamond handle. Drag them to where the enemy should
+<li>Each point appears in the viewport as a diamond handle (select the enemy to see them). Drag them to where the enemy should
    walk, on the green navigation area. They are relative to where the enemy stands, so moving the
    enemy moves its whole route.</li>
 <li>Leave <strong>Patrol Speed</strong> at <code>105</code> for the minion (its walk), and set <strong>Patrol Wait</strong> to how long it
@@ -4775,9 +4777,8 @@ enemy whose <strong>Wander Radius</strong> is above <code>0</code> mills about i
 <li>Under <strong>XenoCore › Spawner › Respawn</strong>, set <strong>Respawn Chance</strong> to <code>0.3</code>, so it only sometimes
    comes back.</li>
 </ol>
-<p>A unique monster ignores the six-level rule and wears a gold, named label.</p>
-<!-- VERIFY: whether a spawner's Unique Monster flag also forces a gold chest, or whether the enemy Blueprint (or a child) needs Always Gold Chest ticked -->
-
+<p>A unique monster ignores the six-level rule, wears a gold, named label, and always drops a gold
+chest. The spawner sets all three on the enemy it makes; nothing is needed on the enemy Blueprint.</p>
 <p>You can also make a hand-placed enemy unique. Set, on that placed actor only:</p>
 <table>
 <thead>

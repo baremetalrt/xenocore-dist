@@ -4966,9 +4966,10 @@ in <code>Input/InputActions/</code> has one; copy that.</p>
 </div>
 <p><strong>Why:</strong> two input mapping contexts map the same key at the same priority, and the other one's
 action <strong>consumes</strong> the input. Enhanced Input settles the conflict before any ability is asked,
-so blocking abilities with tags cannot fix it. XenoCore's own context is added at priority 1 so it
-wins ties against contexts added at the default 0, such as those from another Game Feature you add.</p>
-<!-- VERIFY: the priority value on the Game Feature Data's Add Input Mapping action -->
+so blocking abilities with tags cannot fix it. XenoCore adds its own context, <code>IMC_XenoCore</code>, at
+priority 2 and Lyra's <code>IMC_Default</code> at 1, so they win ties against contexts added at the default 0,
+such as those from another Game Feature you add.</p>
+<!-- VERIFY: the priority values on the XenoCore Game Feature Data's Add Input Mapping action -->
 
 <p><strong>Fix:</strong></p>
 <ol>
@@ -5092,11 +5093,11 @@ both.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/confirm-popup/">Add a confirm popup</a>.</p>
 <h3 id="pressing-back-on-a-loot-or-choice-panel-loses-what-it-offered">Pressing Back on a loot or choice panel loses what it offered<a class="headerlink" href="#pressing-back-on-a-loot-or-choice-panel-loses-what-it-offered" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> a panel that must be answered cannot let Back simply close it. Turning <strong>Is Back Handler</strong>
-off is not enough: Back then goes to whatever else is listening. XenoCore's loot panel and
-confirm popup bind Back and consume it, in C++, by overriding <code>NativeOnHandleBackAction</code> to return
-true.</p>
-<p><strong>Fix:</strong> for your own mandatory panel, derive from a C++ class that overrides
-<code>NativeOnHandleBackAction</code> and returns <code>true</code> without calling the parent.</p>
+off is not enough: Back then goes to whatever else is listening, such as the screen underneath.
+XenoCore's loot panel takes Back and ignores it.</p>
+<p><strong>Fix:</strong> for your own mandatory panel, keep <strong>Is Back Handler</strong> ticked, then in the widget's
+<strong>My Blueprint</strong> panel override the function <strong>On Handle Back Action</strong> and make it return <code>true</code>
+(ticked) without doing anything else. Back is then taken by the panel and goes nowhere.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-menu-screen/">Add a menu screen</a>.</p>
 <h3 id="a-screen-works-the-first-time-and-misbehaves-when-opened-again">A screen works the first time and misbehaves when opened again<a class="headerlink" href="#a-screen-works-the-first-time-and-misbehaves-when-opened-again" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> CommonUI layers reuse screen widgets instead of creating new ones. Anything a screen sets
@@ -5190,8 +5191,8 @@ screen or Change Time fade is up. A card whose row has no <strong>Triggers</stro
 <code>UserInterface/Tutorials/DT_XenoCore_Tutorials</code>.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/tutorial-cards/">Tutorial cards</a>.</p>
 <h3 id="the-dialogue-box-jumps-around-the-screen-during-a-conversation">The dialogue box jumps around the screen during a conversation<a class="headerlink" href="#the-dialogue-box-jumps-around-the-screen-during-a-conversation" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> the dialogue box is anchored in the world, above the speaker's head. <code>Gameplay.MovementStopped</code>
-stops the character moving, but not the <strong>camera</strong>, so looking around sweeps the box across the
+<p><strong>Why:</strong> the dialogue box is anchored in the world, above the speaker's head. Stopping the character
+(<code>Gameplay.MovementStopped</code>) does not stop the <strong>camera</strong>, so looking around sweeps the box across the
 screen. XenoCore's dialogue locks the look input for the conversation.</p>
 <p><strong>Fix:</strong> if you build your own world-anchored conversation or cutscene UI, call <strong>Set Ignore Look
 Input</strong> on the player controller as well as stopping movement. It is a counter, not a switch:

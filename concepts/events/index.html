@@ -4467,7 +4467,10 @@
 
 
 <h1 id="events-you-can-listen-to">Events you can listen to<a class="headerlink" href="#events-you-can-listen-to" title="Permanent link">&para;</a></h1>
-<p><em>All · 10 min read · No code · Last tested: never</em></p>
+<p><em>Designers and programmers · 10 min read · Simple Blueprints · Last tested: never</em></p>
+<p><strong>Who this is for:</strong> anyone making a Blueprint react to the game (a HUD element that updates when
+the party changes, a door that opens when a quest is turned in). The <strong>Sent by</strong> column and the
+notes marked <em>For programmers</em> are for C++ readers; a designer needs only the channel and payload.</p>
 <p>When something changes in the game (the bag, the party, a quest, the locked-on target), XenoCore
 announces it on a <strong>gameplay message channel</strong>, using Lyra's Gameplay Message Router. A channel is
 a gameplay tag; a message carries a small struct. Any Blueprint can listen without knowing who
@@ -4477,13 +4480,17 @@ changed, read it again", so a listener always re-reads the owning component rath
 a copy.</p>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Sender:</strong> a C++ system calls <code>UGameplayMessageSubsystem::BroadcastMessage</code> with a tag and a
-  struct. Each tag below is broadcast from one place only.</li>
-<li><strong>Listener:</strong> a Blueprint uses the <strong>Listen for Gameplay Messages</strong> node. C++ uses
-  <code>UGameplayMessageSubsystem::RegisterListener</code>.</li>
-<li><strong>Channels</strong> are native gameplay tags declared in
-  <code>Source/XenoCoreRuntime/Public/XenoCoreGameplayTags.h</code>, so they appear in the tag picker.</li>
+<li><strong>Sender:</strong> one XenoCore system per channel announces the change. Each tag below is broadcast
+  from one place only.</li>
+<li><strong>Listener:</strong> a Blueprint uses the <strong>Listen for Gameplay Messages</strong> node (below).</li>
+<li><strong>Channels</strong> are gameplay tags, so they appear in the tag picker.</li>
 </ul>
+<details class="note">
+<summary>For programmers</summary>
+<p>Senders call <code>UGameplayMessageSubsystem::BroadcastMessage</code>; C++ listeners use
+<code>UGameplayMessageSubsystem::RegisterListener</code>. The channel tags are native, declared in
+<code>Source/XenoCoreRuntime/Public/XenoCoreGameplayTags.h</code>.</p>
+</details>
 <h2 id="the-channels">The channels<a class="headerlink" href="#the-channels" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4650,7 +4657,7 @@ listener and the handler runs several times. Listen once, from <strong>Construct
 </div>
 <h2 id="the-rule-for-the-bag">The rule for the bag<a class="headerlink" href="#the-rule-for-the-bag" title="Permanent link">&para;</a></h2>
 <div class="admonition danger">
-<p class="admonition-title">Every change to the party bag goes through <code>UXenoCoreInventoryStatics</code></p>
+<p class="admonition-title">Every change to the party bag goes through the XenoCore inventory nodes</p>
 <p>Add and remove items with the <strong>XenoCore › Inventory</strong> nodes (<strong>Add Item to Party</strong>, <strong>Remove
 Item from Party</strong>, <strong>Consume Items From Party</strong> and the rest), never with the Lyra inventory
 component's own functions such as <strong>Add Item Definition</strong>. The statics broadcast
@@ -4665,23 +4672,26 @@ gets none of those protections.</p>
   XenoCore has its own channel.</li>
 <li><strong>Item costs go through the statics.</strong> The <strong>Party Item (XenoCore)</strong> ability cost spends items
   with <strong>Consume Items From Party</strong>, so an item spent as a cost sends the message too. (Lyra's own
-  <strong>Inventory Item</strong> cost is compiled out in stock Lyra and never lets an ability activate.)</li>
+  <strong>Inventory Item</strong> cost is switched off in stock Lyra and never lets an ability activate.)</li>
 </ul>
 <p>The same one-sender rule holds for gold (through the progression component), the party (the party
 component) and quests (the quest component).</p>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>A new channel for your own system:</strong> declare a native tag in C++ (or add one to your own tag
-  ini), make a <code>USTRUCT(BlueprintType)</code> payload with <code>BlueprintReadOnly</code> fields, and broadcast it
-  from exactly one place. Prefer "this changed, re-read me" messages; add details only when a
-  listener cannot reconstruct them, as the quest turn-in payout does.</li>
-<li><strong>Raising a battle notification</strong> from a Blueprint: call <strong>Notify</strong> on
-  <code>XenoCoreBattleNotifySubsystem</code> with a target actor, text and colour. The message and the popup
-  follow.</li>
+<li><strong>A new channel for your own system:</strong> add a tag in <strong>Project Settings › Project › GameplayTags</strong>
+  (for example <code>MyGame.Door.Message.Opened</code>), make a Blueprint <strong>Structure</strong> for the payload, and
+  send it with Lyra's <strong>Broadcast Message</strong> node from exactly one place. Listeners use <strong>Listen for
+  Gameplay Messages</strong> with that structure. Prefer "this changed, re-read me" messages; add details
+  only when a listener cannot reconstruct them, as the quest turn-in payout does. (In C++: a native
+  tag and a <code>USTRUCT(BlueprintType)</code> with <code>BlueprintReadOnly</code> fields.)</li>
+<li><strong>Raising a battle notification</strong> from a Blueprint: call the <strong>Notify</strong> node (<strong>XenoCore ›
+  Battle</strong>) with a target actor, text and colour. The message and the popup follow.</li>
 <li>The full list of tags is on <a href="../../reference/gameplay-tags/">Gameplay tags</a>, and the payload
   structs with every field on <a href="../../reference/gameplay-messages/">Gameplay messages</a>.</li>
 </ul>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>Lyra's router, not delegates.</strong> A message needs no reference between sender and listener, so a
   HUD widget can react to the party component without ever finding it, and a new screen needs no
@@ -4693,6 +4703,7 @@ component) and quests (the quest component).</p>
   saying "read again" cannot. The two exceptions (turn-in payout, level-up list) carry facts that
   cannot be re-read afterwards.</li>
 </ul>
+</details>
 <p><strong>Next:</strong> <a href="../../reference/gameplay-messages/">Reference: gameplay messages</a> · <a href="../quests/">Quests</a></p>
 
 

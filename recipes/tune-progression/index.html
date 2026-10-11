@@ -4803,17 +4803,18 @@ amount, set its <strong>Art Point Reward</strong> instead; the reward multiplier
 <h3 id="change-what-benched-characters-earn">Change what benched characters earn<a class="headerlink" href="#change-what-benched-characters-earn" title="Permanent link">&para;</a></h3>
 <p>Set <strong>Reserve Experience Rate</strong>: <code>1.0</code> means no penalty, <code>0</code> (the sample) means reserves never
 level, <code>0.9</code> is XC1. The same rate applies to a kill's AP. Skill Points use <strong>Reserve Skill Point
-Rate</strong> instead (<code>0.9</code>).</p>
+Rate</strong> instead (<code>0</code> in the sample, C++ default <code>0.9</code>).</p>
 <p>A character recruited mid-game is raised to the party's level when <strong>Join At Party Level</strong> is on
 for the NPC or trigger that recruits them (<a href="../recruit-npc/">Recruit a party member</a>), so a <code>0</code>
 rate does not leave late joiners behind.</p>
 <h3 id="change-the-level-cap">Change the level cap<a class="headerlink" href="#change-the-level-cap" title="Permanent link">&para;</a></h3>
-<p>The cap is not on this component. It is <code>MaxCharacterLevel</code> on the stat set, set in your project's
-<code>Config/DefaultGame.ini</code>:</p>
+<p>The cap is not on this component, and not in <strong>Project Settings</strong>. It is <code>MaxCharacterLevel</code> on the
+stat set, and the only way to change it is to add two lines to your project's
+<code>Config/DefaultGame.ini</code> with a text editor, with the editor closed:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[/Script/XenoCoreRuntime.XenoCoreStatSet]</span>
 <span class="na">MaxCharacterLevel</span><span class="o">=</span><span class="s">60</span>
 </code></pre></div>
-<p>A character at the cap stops earning experience. If you raise the cap above 99, lengthen every row
+<p>Reopen the editor. A character at the cap stops earning experience. If you raise the cap above 99, lengthen every row
 of <code>DT_XenoCore_ExperienceCurves</code> and extend every stat curve to the new level first, or the new
 levels cannot be reached and add nothing. Data Validation warns about a row shorter than the cap.</p>
 <h3 id="change-the-starting-gold">Change the starting gold<a class="headerlink" href="#change-the-starting-gold" title="Permanent link">&para;</a></h3>

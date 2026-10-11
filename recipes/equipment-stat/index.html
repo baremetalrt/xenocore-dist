@@ -1562,10 +1562,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#showing-it-on-the-menus-c" class="md-nav__link">
+  <a href="#showing-it-on-the-menus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Showing it on the menus (C++)
+        Showing it on the menus
       
     </span>
   </a>
@@ -4545,10 +4545,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#showing-it-on-the-menus-c" class="md-nav__link">
+  <a href="#showing-it-on-the-menus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Showing it on the menus (C++)
+        Showing it on the menus
       
     </span>
   </a>
@@ -4589,7 +4589,7 @@
 
 
 <h1 id="add-a-stat-to-equipment">Add a stat to equipment<a class="headerlink" href="#add-a-stat-to-equipment" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 15 min · No code · Last tested: never</em></p>
+<p><em>Designer · 15 min · No code (a brand-new attribute needs C++) · Last tested: never</em></p>
 <p><strong>Result:</strong> a weapon or armour piece that grants a stat it did not before, for example a ring of
 Agility on a pair of boots. The last section covers a stat that is not in the list yet: one row on
 an effect, plus C++ only if the attribute itself is new.</p>
@@ -4603,10 +4603,11 @@ an effect, plus C++ only if the attribute itself is new.</p>
 <h2 id="how-item-stats-reach-a-character">How item stats reach a character<a class="headerlink" href="#how-item-stats-reach-a-character" title="Permanent link">&para;</a></h2>
 <ol>
 <li>An item definition lists its stats in <strong>Inventory Fragment Set Stats</strong> › <strong>Initial Item Stats</strong>:
-   a <code>XenoCore.Stat.*</code> tag and a whole number per row.</li>
+   a <code>XenoCore.Stat.*</code> <a href="../../getting-started/glossary/">gameplay tag</a> and a whole number per row.</li>
 <li>When the item enters the bag, Lyra copies those numbers onto the item.</li>
-<li>When the item is equipped, its ability set grants <code>Inventory/GA_XenoCore_EquipmentStats</code>. That
-   ability applies <strong>one</strong> shared effect, <code>Inventory/GE_XenoCore_EquipmentStats</code>. The effect's
+<li>When the item is equipped, its ability set grants the <a href="../../getting-started/glossary/">gameplay ability</a>
+   <code>Inventory/GA_XenoCore_EquipmentStats</code>. That ability applies <strong>one</strong> shared
+   <a href="../../getting-started/glossary/">gameplay effect</a>, <code>Inventory/GE_XenoCore_EquipmentStats</code>. The effect's
    modifiers are the list of stats: each one names an attribute and a <strong>Set By Caller</strong> tag, and
    the ability fills every such tag from the item's number for it (0 if the item has none).</li>
 <li>When the item is unequipped, the ability ends and the effect is removed.</li>
@@ -4690,9 +4691,11 @@ modifier rows are the one list</strong> of what equipment can grant.</p>
 on the way in, because the attributes hold a 0 to 1 fraction.</p>
 <h2 id="steps-existing-stat">Steps (existing stat)<a class="headerlink" href="#steps-existing-stat" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Open the item, for example your <code>ID_MyGame_HideVest</code>, and click <strong>Class Defaults</strong>.</li>
-<li>In <strong>Fragments</strong>, open <strong>Inventory Fragment Set Stats</strong> › <strong>Initial Item Stats</strong>.</li>
-<li>Add an entry. Set the key to <code>XenoCore.Stat.Agility</code> and the value to <code>5</code>.</li>
+<li>Open the item definition, for example your <code>ID_MyGame_HideVest</code>, and click <strong>Class Defaults</strong>.</li>
+<li>In <strong>Display › Fragments</strong>, expand the <strong>Inventory Fragment Set Stats</strong> entry. If the item has
+   none, click <strong>+</strong> on <strong>Fragments</strong> and pick <strong>Inventory Fragment Set Stats</strong> for the new entry.</li>
+<li>Under <strong>Equipment › Initial Item Stats</strong>, click <strong>+</strong>. Set the key to <code>XenoCore.Stat.Agility</code>
+   and the value to <code>5</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
 <p>That is all. No effect, ability or table needs to change.</p>
@@ -4704,10 +4707,12 @@ comparison does not list it.</p>
 </div>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Give the party the item through <strong>Starting Inventory</strong> on the equipment component of a pawn in
-   the starting party, for example Kael's <code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>.</li>
-<li>Press <strong>Play</strong> in <code>Maps/L_XenoCore_Gym</code>. Open the menu and look at the character's stats.</li>
-<li>Equip the item. Agility on the character sheet rises by 5. Unequip it: it falls back.</li>
+<li>Open Kael's pawn, <code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>. In the <strong>Components</strong>
+   panel select the equipment component, then add your item to <strong>XenoCore › Equipment › Starting
+   Inventory</strong>. <strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>. Open the main menu and look at Kael's stats.</li>
+<li>Equip the item on the equipment screen. Agility on the character sheet rises by 5. Unequip it:
+   it falls back.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
@@ -4760,6 +4765,10 @@ filled from an item, and always reads 0. The ability logs a warning naming the e
 attribute.</p>
 </div>
 <h3 id="if-the-attribute-is-new">If the attribute is new<a class="headerlink" href="#if-the-attribute-is-new" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Needs a programmer</p>
+<p>Attribute sets are C++, so step 1 is a programmer's job. Steps 2 and 3 are editor work.</p>
+</div>
 <ol>
 <li><strong>The attribute</strong> (C++). Attribute sets are C++. Add it to <code>UXenoCoreStatSet</code>, or to your own
    set granted in your ability sets, and give the damage formula a use for it if it affects
@@ -4769,12 +4778,20 @@ attribute.</p>
    covers it.</li>
 <li>Then the three steps above.</li>
 </ol>
-<h3 id="showing-it-on-the-menus-c">Showing it on the menus (C++)<a class="headerlink" href="#showing-it-on-the-menus-c" title="Permanent link">&para;</a></h3>
-<p>The equipment screen, item card and character sheet draw their rows from
-<code>UXenoCoreInventoryStatics::GetStatDefinitions()</code>, a table in C++ (label, order, lower-is-better,
-which screens). A stat without a row there <strong>applies</strong> but does not appear on those screens. Add a
-row with its tag and label, and choose whether it shows on the comparison block and the character
-sheet. The table is built once per process, so this needs a full rebuild and a fresh editor.</p>
+<h3 id="showing-it-on-the-menus">Showing it on the menus<a class="headerlink" href="#showing-it-on-the-menus" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Needs a programmer</p>
+<p>The equipment screen, item card and character sheet list their stat rows from a table written
+in C++, not from an asset. A stat without a row there <strong>applies</strong> but does not appear on those
+screens, and only a programmer can add the row.</p>
+</div>
+<details class="note">
+<summary>For programmers</summary>
+<p>The table is <code>UXenoCoreInventoryStatics::GetStatDefinitions()</code> (label, order, lower-is-better,
+percent, which screens). Add a row with the tag and label, and choose whether it shows on the
+comparison block and the character sheet. It is built once per process, so this needs a full
+rebuild and a fresh editor.</p>
+</details>
 <p><code>GE_XenoCore_EquipmentStats</code> is a shipped asset. Note the rows you add for when you take a template
 update.</p>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>

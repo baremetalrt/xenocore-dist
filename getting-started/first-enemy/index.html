@@ -4656,7 +4656,9 @@ folders, and your work should survive them.</p>
 <h3 id="2-make-a-child-of-the-minion">2. Make a child of the minion<a class="headerlink" href="#2-make-a-child-of-the-minion" title="Permanent link">&para;</a></h3>
 <ol>
 <li>
-<p>Go to <strong>Plugins › XenoCore Content › Characters › Enemies › Minion</strong>.
+<p>In the Content Browser, go to <strong>XenoCore Content › Characters › Enemies › Minion</strong>. (If
+   <strong>XenoCore Content</strong> is missing, turn on <strong>Show Plugin Content</strong>; see
+   <a href="../project-tour/#where-things-are">Tour of the project</a>.)
    <!-- VERIFY: exact Content Browser path label for plugin content in 5.8 --></p>
 </li>
 <li>
@@ -4691,8 +4693,9 @@ sets, stats effects) when you need your own; make Blueprints as children.</p>
 <p class="admonition-title">Keep enemies within reach of the party's level</p>
 <p>An enemy far below the party's level never notices the party: it does not start a fight by
 sight, sound or ether, though it still fights back when attacked. That is the
-<strong>Ignore When Levels Below</strong> setting on the enemy's AI controller, 6 levels by default, and it
-is intended. If your enemy won't start a fight, check its level first.</p>
+<strong>Ignore When Levels Below</strong> setting (6 levels by default) on the AI controller every enemy
+shares, <code>Characters/Enemies/Core/BP_AIC_XenoCore_Enemy</code> › <strong>Class Defaults › XenoCore › AI</strong>,
+and it is intended. If your enemy won't start a fight, check its level first.</p>
 </div>
 <h3 id="4-make-it-drop-a-gold-chest">4. Make it drop a gold chest<a class="headerlink" href="#4-make-it-drop-a-gold-chest" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4711,9 +4714,10 @@ not when they drop. Designing your own drop table is covered in a recipe.</p>
    minions so you can fight it alone.</li>
 <li>Save the level.</li>
 </ol>
-<p>Anything marked "can be changed per placement" can also be set on the placed enemy's Details
-panel: <strong>Display Name</strong>, <strong>Enemy Level</strong>, <strong>Experience Reward</strong> and <strong>Always Gold Chest</strong> among
-them, and its <strong>Patrol Points</strong>. That is how one enemy Blueprint becomes many different monsters
+<p>Click the placed enemy in the viewport: its <strong>Details</strong> panel shows the same <strong>XenoCore</strong> settings,
+and a value changed there affects only that one placement. <strong>Display Name</strong>, <strong>Enemy Level</strong>,
+<strong>Experience Reward</strong> and <strong>Always Gold Chest</strong> are among them, and so are its <strong>Patrol Points</strong>
+(<strong>XenoCore › AI › Patrol</strong>), which you can drag in the viewport. That is how one enemy Blueprint becomes many different monsters
 in a map. For a squad that wanders, fights together and comes back after you defeat it, place a
 <strong>XenoCore Enemy Spawner</strong> instead: see <a href="../../recipes/place-enemies/">Place enemies</a>.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
@@ -4747,10 +4751,15 @@ Otherwise re-applying the effect stacks the numbers on top of the old ones.</p>
 roll needs its own pool. A warning is logged.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">It never uses its Arts</p>
+<p class="admonition-title">Fails silently: it never uses its Arts</p>
 <p>An enemy uses only the Arts on its Blueprint's <strong>Arts</strong> list (<strong>XenoCore › Enemy › Arts</strong>). A
 child of the minion keeps Rend and Sweep; if the list is empty, the enemy only
 auto-attacks and nothing is logged.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">It never starts a fight on its own</p>
+<p>Its <strong>Detection</strong> is <strong>None (passive)</strong>, or it is 6 or more levels below your party leader (see
+the tip in step 3). Hit it first, or change <strong>Detection</strong> on the placed enemy.</p>
 </div>
 <h2 id="you-now-have">You now have<a class="headerlink" href="#you-now-have" title="Permanent link">&para;</a></h2>
 <p>Your own enemy, placed in a map and fought. You also know which settings make one Blueprint into

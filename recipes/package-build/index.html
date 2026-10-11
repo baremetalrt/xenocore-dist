@@ -4589,7 +4589,7 @@
 
 
 <h1 id="package-a-build">Package a build<a class="headerlink" href="#package-a-build" title="Permanent link">&para;</a></h1>
-<p><em>Programmer · 1–2 h (mostly waiting) · No code · Last tested: never</em></p>
+<p><em>Programmer · 1–2 h (mostly waiting) · No code (editor menus; one optional command line) · Last tested: never</em></p>
 <p><strong>Result:</strong> a Windows build of your game that boots to the title screen, starts a new game in
 your map, and has every menu working, checked in the packaged build rather than only in the editor.</p>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
@@ -4665,11 +4665,13 @@ the bottom-right corner of every screen, including in packaged builds, so a bug 
 the build.</p>
 <h3 id="4-package">4. Package<a class="headerlink" href="#4-package" title="Permanent link">&para;</a></h3>
 <p>From the editor: <strong>Platforms › Windows › Package Project</strong>, and choose an output folder.</p>
-<p>From the command line, the same thing with Unreal Automation Tool:</p>
-<div class="highlight"><pre><span></span><code>&quot;&lt;Engine&gt;\Engine\Build\BatchFiles\RunUAT.bat&quot; BuildCookRun -project=&quot;&lt;repo&gt;\Lyra-main\Lyra.uproject&quot; -target=LyraGame -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory=&quot;&lt;output folder&gt;&quot;
+<details class="note">
+<summary>For programmers: the same from the command line</summary>
+<p>Unreal Automation Tool runs the whole package without the editor:</p>
+<div class="highlight"><pre><span></span><code>&quot;&lt;Engine&gt;\Engine\Build\BatchFiles\RunUAT.bat&quot; BuildCookRun -project=&quot;&lt;project folder&gt;\Lyra.uproject&quot; -target=LyraGame -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory=&quot;&lt;output folder&gt;&quot;
 </code></pre></div>
 <!-- VERIFY: this BuildCookRun line against a successful 5.8 package of this project -->
-
+</details>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: the exit code can say success</p>
 <p><code>Build.bat</code> and some automation steps can return exit code 0 after a failed step. Don't trust
@@ -4704,10 +4706,10 @@ the exit code or a "finished" message. Read the end of the log for <strong>BUILD
 </div>
 <div class="admonition warning">
 <p class="admonition-title">The package is far bigger than expected</p>
-<p>Sample content, pack assets or unused Lyra features are still being cooked. Use
-<strong>Tools › Audit › Size Map</strong> on your maps, and see
+<p>Sample content, pack assets or unused Lyra features are still being cooked. Right-click each
+of your maps in the Content Browser and choose <strong>Size Map</strong> to see what it pulls in, and see
 <a href="../megascans-assets/">Megascans at shipping size</a>.
-<!-- VERIFY: Size Map menu location in 5.8 --></p>
+<!-- VERIFY: Size Map is on the asset right-click menu in 5.8 --></p>
 </div>
 <p>More in <a href="../../troubleshooting/build-and-editor/">Build and editor troubleshooting</a>.</p>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>

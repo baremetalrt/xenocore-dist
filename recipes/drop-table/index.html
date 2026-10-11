@@ -4690,7 +4690,7 @@ form of its material in its silver and gold pools, so the Rare guarantee does no
 <tr>
 <td>Pool › <strong>Guarantee One Of Rarity</strong></td>
 <td>empty</td>
-<td>Every chest from this pool holds at least one item this rare. See <a href="../item-rarity/">Set and style item rarity</a></td>
+<td>Every chest from this pool holds at least one item of this <a href="../../getting-started/glossary/">rarity</a>. See <a href="../item-rarity/">Set and style item rarity</a></td>
 </tr>
 <tr>
 <td>Pool › <strong>No Duplicate Equipment</strong></td>
@@ -4699,7 +4699,11 @@ form of its material in its silver and gold pools, so the Rare guarantee does no
 </tr>
 </tbody>
 </table>
-<p>⚠️ Saving the table warns when an item sits below its rarity's <strong>Lowest Chest Tier</strong>, for example a Legendary in the Wooden pool. It is a warning, not an error, in case you meant it.</p>
+<div class="admonition note">
+<p class="admonition-title">A warning on save is not an error</p>
+<p>Saving the table warns when an item sits below its rarity's <strong>Lowest Chest Tier</strong>, for example
+a Legendary in the Wooden pool. It still saves, in case you meant it.</p>
+</div>
 <p>So with the defaults: 2% gold, then 25% of the remaining 98% silver (24.5% overall), and wooden the
 rest of the time.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
@@ -4707,8 +4711,9 @@ rest of the time.</p>
 <ol>
 <li>In <code>MyGame/Enemies</code>, right-click and choose <strong>Miscellaneous › Data Asset</strong>. Pick
    <code>XenoCoreDropTable</code>. Name it <code>DA_MyGame_Drops_Stonejaw</code>.
-   Or duplicate the family table closest to your enemy (<code>DA_XenoCore_Drops_Grunt</code> for a melee type) and change it.</li>
-<li>Open it.</li>
+   Or duplicate the family table closest to your enemy (<code>Inventory/Loot/DA_XenoCore_Drops_Grunt</code> for
+   a melee type) and change it.</li>
+<li>Double-click it to open it. Every setting below is under <strong>XenoCore › Loot</strong>.</li>
 </ol>
 <!-- VERIFY: the Data Asset creation menu path in 5.8 -->
 
@@ -4719,7 +4724,15 @@ rest of the time.</p>
 </ol>
 <p>Both are 0 to 1.</p>
 <h3 id="3-fill-a-pool-for-every-tier">3. Fill a pool for every tier<a class="headerlink" href="#3-fill-a-pool-for-every-tier" title="Permanent link">&para;</a></h3>
-<p>Add three entries to <strong>Pools</strong>, one for each key: <code>Wooden</code>, <code>Silver</code>, <code>Gold</code>.</p>
+<ol>
+<li>Click <strong>+</strong> beside <strong>Pools</strong> three times. Set the key dropdown of the three entries to
+   <code>Wooden</code>, <code>Silver</code> and <code>Gold</code>.</li>
+<li>In each pool, set <strong>Min Items</strong> and <strong>Max Items</strong> from the table below.</li>
+<li>In each pool, click <strong>+</strong> beside <strong>Entries</strong> once per item, and set each entry's <strong>Item Def</strong>
+   and <strong>Weight</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<p>The items are in <code>Inventory/Items</code>, <code>Inventory/Armour</code> and <code>Weapons/&lt;Name&gt;</code>.</p>
 <table>
 <thead>
 <tr>
@@ -4759,9 +4772,8 @@ stop the Battle set at level 8, start Veteran Gauntlets at 4, the Prototype piec
 Legendary Vanguard Plate at 10. If no entry fits the enemy's level, the chest opens empty and
 <code>LogXenoDrop</code> says so.</p>
 </div>
-<p><strong>Save</strong>.</p>
 <div class="admonition warning">
-<p class="admonition-title">The chest opens empty</p>
+<p class="admonition-title">Fails silently: the chest opens empty</p>
 <p>Every tier the enemy can roll needs a pool with at least one entry whose <strong>Weight</strong> is above 0.
 A missing pool gives an <strong>empty chest</strong>, not a fallback to another tier. A warning is logged
 under <code>LogXenoDrop</code>, and nothing shows in game.</p>
@@ -4772,9 +4784,9 @@ under <code>LogXenoDrop</code>, and nothing shows in game.</p>
 </div>
 <h3 id="4-give-it-to-your-enemy">4. Give it to your enemy<a class="headerlink" href="#4-give-it-to-your-enemy" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <code>B_MyEnemy</code>, <strong>Class Defaults</strong>.</li>
+<li>Open your enemy Blueprint (here <code>B_MyEnemy</code>) and click <strong>Class Defaults</strong>.</li>
 <li>Under <strong>XenoCore › Loot</strong>, set <strong>Drop Table</strong> to <code>DA_MyGame_Drops_Stonejaw</code>.</li>
-<li><strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>Click <strong>Compile</strong>, then <strong>Save</strong>.</li>
 </ol>
 <p>Other loot settings on the enemy:</p>
 <table>
@@ -4799,7 +4811,7 @@ under <code>LogXenoDrop</code>, and nothing shows in game.</p>
 <tr>
 <td><strong>Chest Class</strong></td>
 <td>XenoCore › Loot</td>
-<td>The chest Blueprint. Keep <code>BP_XenoCore_TreasureChest</code></td>
+<td>The chest Blueprint. Keep <code>Inventory/Loot/BP_XenoCore_TreasureChest</code></td>
 </tr>
 </tbody>
 </table>
@@ -4808,8 +4820,9 @@ it for bosses that should not drop anything.</p>
 <h3 id="5-place-a-chest-by-hand-optional">5. Place a chest by hand (optional)<a class="headerlink" href="#5-place-a-chest-by-hand-optional" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Drag <code>Inventory/Loot/BP_XenoCore_TreasureChest</code> into the level.</li>
-<li>On the placed chest, under <strong>XenoCore › Loot</strong>, set <strong>Drop Table</strong>, <strong>Tier</strong> and <strong>Source Level</strong>
-   (the level its level bands roll against).</li>
+<li>With the placed chest selected, under <strong>XenoCore › Loot</strong>, set <strong>Drop Table</strong>.</li>
+<li>In the same category, set <strong>Tier</strong> and <strong>Source Level</strong> (the level its level bands roll
+   against).</li>
 <li>To have it start closed and swing open on interact, untick <strong>Lid Open On Spawn</strong> (under
    <strong>XenoCore › Loot › Presentation</strong>).</li>
 </ol>
@@ -4827,19 +4840,35 @@ it for bosses that should not drop anything.</p>
 chest, tier by tier. Not in Shipping builds.</p>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">No chest at all</p>
-<p><strong>Drop Table</strong> is empty on the enemy, or <strong>Chest Class</strong> is empty.</p>
+<p class="admonition-title">Fails silently: no chest at all</p>
+<p><strong>Drop Table</strong> is empty on the enemy (allowed, so not logged), or <strong>Chest Class</strong> is empty.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Some rows say (no room)</p>
-<p>The party already holds as many as the item's <strong>Max Carried</strong> allows. <strong>Take All</strong> takes what
-fits; the rest stays in the chest, which can be opened again once there is room.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">The player cannot pick single items</p>
-<p>The chest panel offers <strong>Take All</strong> or taking nothing. Choosing individual items is not built
-yet. <!-- VERIFY: the label of the take-nothing button on W_XenoCore_LootPopup --> See <a href="../../troubleshooting/items-and-equipment/">Troubleshooting: items and equipment</a>.</p>
-</div>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The chest opens empty</td>
+<td>A tier has no pool, or no entry fits the enemy's level band. The Output Log says so under <code>LogXenoDrop</code>. Add a pool for every tier, or widen <strong>Min Level</strong> / <strong>Max Level</strong>.</td>
+</tr>
+<tr>
+<td>Some rows say (no room)</td>
+<td>The party already holds as many as the item's <strong>Max Carried</strong> allows. <strong>Take All</strong> takes what fits; the rest stays in the chest, which can be opened again once there is room.</td>
+</tr>
+<tr>
+<td>The player cannot pick single items</td>
+<td>Not a fault: the chest panel offers <strong>Take All</strong> or taking nothing. Choosing individual items is not built yet. <!-- VERIFY: the label of the take-nothing button on W_XenoCore_LootPopup --> See <a href="../../troubleshooting/items-and-equipment/">Troubleshooting: items and equipment</a>.</td>
+</tr>
+<tr>
+<td>Gear I expected never drops</td>
+<td>Its <strong>Weight</strong> is <code>0</code>, or the enemy's level is outside the entry's band. Check with <code>XenoCore.Loot.Simulate</code>.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../concepts/loot/">Loot</a>.</li>

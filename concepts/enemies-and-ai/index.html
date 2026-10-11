@@ -3106,6 +3106,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3128,7 +3139,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#what-you-can-change_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         What you can change
@@ -4423,6 +4434,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4445,7 +4467,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#what-you-can-change_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         What you can change
@@ -4546,27 +4568,42 @@
 
 <h1 id="enemies-and-ai">Enemies and AI<a class="headerlink" href="#enemies-and-ai" title="Permanent link">&para;</a></h1>
 <p><em>All · 15 min read · Last tested: never</em></p>
-<p>An enemy is a pawn that owns its own Ability System Component (ASC), has no PlayerState, and is
-possessed by a small AI controller that runs a shared <strong>StateTree</strong>. Everything that makes one enemy
-different from another (mesh, level, stats, abilities, loot) is data on its Blueprint and the assets
-it points at. The AI is shared by every enemy and names abilities by <strong>gameplay tag</strong>, never by
-asset, so a new enemy needs no AI of its own. The one idea: <strong>the enemy's data decides what it can
-do (its ability set and its Arts list), and the shared AI decides when.</strong> An enemy fights with the
-same AI tasks as a <a href="../companion-ai/">companion</a>; only where its target comes from differs.</p>
-<p>See the <a href="../../getting-started/glossary/">Glossary</a> for <strong>Engage</strong>, <strong>disengage</strong> and <strong>Aggro</strong>.</p>
+<p><strong>What the player sees:</strong> enemies patrol or wander, notice the party by sight, sound or ether, fight
+with an auto-attack and their own Arts, give up and walk home if you run far enough, and drop a
+chest when the last one of a group falls. A <code>lvl.N</code> label over each one is coloured by how
+dangerous it is compared with your party leader.</p>
+<p>Everything that makes one enemy different from another (mesh, level, stats, Arts, loot, how it
+notices you) is a setting on its Blueprint or a data asset it points at. The AI that drives every
+enemy is shared, so a new enemy type needs no AI of its own: <strong>the enemy's data decides what it can
+do, and the shared AI decides when.</strong> An enemy fights with the same AI as a
+<a href="../companion-ai/">companion</a>; only where its target comes from differs.</p>
+<p>See the <a href="../../getting-started/glossary/">Glossary</a> for <strong>Engage</strong>, <strong>disengage</strong>, <strong>Detection</strong>,
+<strong>Aggro</strong>, <strong>Squad</strong> and <strong>Pawn data</strong>.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>A new enemy type</strong>: a child Blueprint of the sample minion. See <a href="../../recipes/add-enemy/">Add an enemy</a>
+  and <a href="../../getting-started/first-enemy/">Your first enemy</a>.</li>
+<li><strong>Where enemies stand, patrol and respawn</strong>: <a href="../../recipes/place-enemies/">Place enemies</a>.</li>
+<li><strong>Its stats at each level</strong>: <a href="../../recipes/enemy-statline/">Enemy statline</a>.</li>
+<li><strong>Its Arts and how it chooses them</strong>: <a href="../../recipes/enemy-arts-ai/">Give an enemy Arts</a>.</li>
+<li><strong>What it drops</strong>: <a href="../../recipes/drop-table/">Build a drop table</a>.</li>
+<li><strong>Its hit, knock-down and death clips</strong>: <a href="../../recipes/character-combat-animations/">Give a character its own combat animations</a>.</li>
+<li><strong>How it notices you, how far it chases, its rewards</strong>: settings on the enemy Blueprint, in the
+  <a href="#on-the-enemy-blueprint-class-defaults">tables below</a>.</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Piece</th>
-<th>Class / sample asset</th>
+<th>Sample asset</th>
 <th>Job</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Enemy pawn</td>
-<td><code>AXenoCoreEnemyCharacter</code> → <code>Characters/Enemies/Core/B_XenoCore_Enemy_Base</code> → <code>Characters/Enemies/Minion/B_XenoCore_Minion_Melee</code></td>
+<td><code>Characters/Enemies/Core/B_XenoCore_Enemy_Base</code> → <code>Characters/Enemies/Minion/B_XenoCore_Minion_Melee</code></td>
 <td>Level, name, stats, rewards, loot, death, overhead widgets</td>
 </tr>
 <tr>
@@ -4601,7 +4638,7 @@ same AI tasks as a <a href="../companion-ai/">companion</a>; only where its targ
 </tr>
 <tr>
 <td>AI controller</td>
-<td><code>AXenoCoreEnemyController</code> → <code>Characters/Enemies/Core/BP_AIC_XenoCore_Enemy</code></td>
+<td><code>Characters/Enemies/Core/BP_AIC_XenoCore_Enemy</code></td>
 <td>Team, aggro target, leash, level rule; hosts the StateTree component</td>
 </tr>
 <tr>
@@ -4616,7 +4653,7 @@ same AI tasks as a <a href="../companion-ai/">companion</a>; only where its targ
 </tr>
 <tr>
 <td>Spawner</td>
-<td><code>AXenoCoreEnemySpawner</code> (<strong>XenoCore Enemy Spawner</strong> in Place Actors)</td>
+<td><strong>XenoCore Enemy Spawner</strong> in Place Actors</td>
 <td>Keeps one squad alive, links its aggro, respawns it out of sight. See <a href="../../recipes/place-enemies/">Place enemies</a></td>
 </tr>
 <tr>
@@ -4677,9 +4714,8 @@ same AI tasks as a <a href="../companion-ai/">companion</a>; only where its targ
 Blueprint's <strong>Arts</strong> list, granted at level 1 when it spawns: the same kind of Art the party
 uses. Like a party Art, an enemy Art roots the enemy for the length of its animation.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
-<p><strong>Spawn.</strong> The pawn builds its own ASC. In <code>PostInitializeComponents</code> it sets its pawn data,
-initialises the ability system (the one call a Blueprint cannot make), grants the pawn data's
-ability sets, and applies <strong>Stats Effect</strong> at <strong>Enemy Level</strong>. The controller records the pawn's
+<p><strong>Spawn.</strong> The enemy receives the abilities in its <strong>Enemy Pawn Data</strong> and applies its <strong>Stats
+Effect</strong> at its <strong>Enemy Level</strong>. The controller records the pawn's
 start position as <strong>home</strong> and gives the pawn its team (<code>2</code> by default). An enemy made by a
 <a href="../../recipes/place-enemies/">spawner</a> rolls its level from the spawner's range, and its home is
 where it spawned.</p>
@@ -4745,10 +4781,10 @@ enemy gains no aggro.</p>
 <p><strong>Giving up.</strong> If the enemy strays more than <strong>Leash Radius</strong> (<code>7000</code>) from <strong>home</strong>, or the party
 outruns it (the target leaves the disengage radius), it disengages, forgets it was provoked and its
 aggro, recovers to full health (<strong>Heal On Give Up</strong>), and walks home at the chase task's return
-speed. It then resumes its patrol or wander. A <a href="../party/">party wipe</a> does the same to every enemy at once, through the
-controller's <code>ResetAggro</code> (Blueprint-callable, <strong>XenoCore › AI</strong>).</p>
-<p><strong>Dying.</strong> On death the enemy broadcasts <code>XenoCore.Enemy.Message.Defeated</code> (its class, name and
-level), awards the party EXP, Art Points and Skill Points through the progression component
+speed. It then resumes its patrol or wander. A <a href="../party/">party wipe</a> does the same to every enemy
+at once. A Blueprint can do it to one enemy with the controller's <strong>Reset Aggro</strong> node
+(<strong>XenoCore › AI</strong>).</p>
+<p><strong>Dying.</strong> On death the enemy announces its defeat (see <a href="../events/">Events</a>), awards the party EXP, Art Points and Skill Points through the progression component
 (<strong>Experience Reward</strong>, <strong>Art Point Reward</strong> and <strong>Skill Point Multiplier</strong>, scaled by level difference), rolls a chest tier and spawns the chest hidden for <strong>Chest Drop Delay</strong>,
 plays one of its <strong>Death Montages</strong>, ragdolls after a random <strong>Ragdoll Delay Min</strong>–<strong>Max</strong>, then
 vanishes after <strong>Death Vanish Delay</strong> with its <strong>Death Effect</strong>. The effect is a soft reference: it
@@ -4759,13 +4795,11 @@ killed drops a chest, upgraded to at least silver. A spawner brings fallen membe
 with the party leader's. It fades out with distance and is always shown in battle. A Unique
 Monster's label is gold, carries its name and shows from further away. The text, the colour bands
 and the distances are in <strong>Project Settings › Game › XenoCore Enemies › Level Label</strong>. The HP bar is hidden until the
-controller reports the enemy engaged, and is polled rather than event-driven because leashing
-broadcasts nothing. Neither widget ticks while it has nothing to do: the bar only while shown, the
-label only while the camera is within its show and fade distance or the enemy is engaged. The enemy
-re-checks that every <strong>Label Tick Check Interval</strong> (<code>0.4</code> s). While the enemy fights, a red ring lies under whoever it is after. No line is
+enemy is engaged. Neither widget costs anything while it has nothing to show: the label switches
+itself off beyond its fade distance (re-checked every <strong>Label Tick Check Interval</strong>, <code>0.4</code> s). While the enemy fights, a red ring lies under whoever it is after. No line is
 drawn between the enemy and its target. See
 <a href="../companion-ai/#seeing-who-an-enemy-is-after">Seeing who an enemy is after</a>.</p>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="what-you-can-change_1">What you can change<a class="headerlink" href="#what-you-can-change_1" title="Permanent link">&para;</a></h2>
 <h3 id="on-the-enemy-blueprint-class-defaults">On the enemy Blueprint (Class Defaults)<a class="headerlink" href="#on-the-enemy-blueprint-class-defaults" title="Permanent link">&para;</a></h3>
 <p>Settings marked <em>per placement</em> can also be changed on a placed enemy in the level.</p>
 <table>
@@ -4810,7 +4844,7 @@ drawn between the enemy and its target. See
 <tr>
 <td><strong>Experience Reward</strong></td>
 <td>XenoCore › Enemy</td>
-<td>Base EXP before level-difference scaling. The C++ default is <code>24</code>; the sample minions pay <code>15</code> (a basic Grunt, XC1's first field enemy) up to <code>50</code> (Violet Brute). <em>Per placement</em></td>
+<td>Base EXP before level-difference scaling. A new enemy class starts at <code>24</code>; the sample minions pay <code>15</code> (a basic Grunt, XC1's first field enemy) up to <code>50</code> (Violet Brute). <em>Per placement</em></td>
 </tr>
 <tr>
 <td><strong>Experience Level Scale</strong></td>
@@ -4823,14 +4857,19 @@ drawn between the enemy and its target. See
 <td>Scales the SP this kill pays. <em>Per placement</em></td>
 </tr>
 <tr>
+<td><strong>Art Point Reward</strong></td>
+<td>XenoCore › Enemy</td>
+<td>Art Points this kill pays before level-difference scaling. <code>-1</code> (default) uses XC1's 2 × level + 2. Set it for a boss. <em>Per placement</em></td>
+</tr>
+<tr>
 <td><strong>Stats Effect</strong></td>
 <td>XenoCore › Enemy</td>
 <td>Statline effect applied at <strong>Enemy Level</strong></td>
 </tr>
 <tr>
-<td><strong>Chevron Widget Class</strong>, <strong>Chevron Height</strong></td>
+<td><strong>Chevron Widget Class</strong>, <strong>Chevron Height</strong>, <strong>Label Height</strong></td>
 <td>XenoCore › Enemy</td>
-<td>The marker and its height (<code>132</code>)</td>
+<td>The marker and its height (<code>132</code>), and the height of the bottom of the <code>lvl.N</code> label (<code>112</code>)</td>
 </tr>
 <tr>
 <td><strong>Health Bar Widget Class</strong>, <strong>Health Bar Height</strong></td>
@@ -4950,6 +4989,11 @@ drawn between the enemy and its target. See
 <td>Leader speed above which <strong>Sound</strong> detection hears it. Default <code>280</code></td>
 </tr>
 <tr>
+<td><strong>Detection Interval</strong></td>
+<td>XenoCore › AI › Detection</td>
+<td>How often, in seconds, the enemy checks whether it has noticed the party. Default <code>0.2</code></td>
+</tr>
+<tr>
 <td><strong>Heal On Give Up</strong></td>
 <td>XenoCore › AI</td>
 <td>Restore full health when the enemy gives up a fight. Default on</td>
@@ -4964,9 +5008,9 @@ drawn between the enemy and its target. See
 <p>The three radii here are the <strong>defaults</strong> for every enemy the controller possesses. One enemy
 type, or one placed enemy, can differ through its own <strong>… Override</strong> settings above, with no new
 controller. <code>-1</code> means "use the controller's"; <code>0</code> is a real value (an engage radius of 0 never
-engages, even when provoked). The controller reads the values in force through <strong>Get Effective
-Engage Radius</strong>, <strong>Get Effective Leash Radius</strong> and <strong>Get Effective Disengage Radius Scale</strong>, asking
-the pawn each time, so an override changed at runtime applies on the next check.</p>
+engages, even when provoked). An override changed while the game runs applies on the next check.
+In a Blueprint, <strong>Get Effective Engage Radius</strong>, <strong>Get Effective Leash Radius</strong> and <strong>Get Effective
+Disengage Radius Scale</strong> on the controller return the values in force.</p>
 <h3 id="in-the-statetree">In the StateTree<a class="headerlink" href="#in-the-statetree" title="Permanent link">&para;</a></h3>
 <p>The tree <code>ST_XenoCore_EnemyFreeroam</code> has two states:</p>
 <table>
@@ -5113,7 +5157,7 @@ unchanged. The tougher types use their own stats effects (<code>GE_XenoCore_Base
 per-type multiplier on the effect (Skirmisher 0.9, Bulwark 1.15, Brute 1.45). The rows themselves are
 anchored on an early XC1 field enemy: a level 1 minion has 900 HP and 69 Strength, plus 100 HP and 10
 Strength a level.</p>
-<!-- VERIFY: the per-type Strength multipliers (from Tools/Data/combat_pacing.py) on each GE_XenoCore_BaseStats_Minion_* effect. -->
+<!-- VERIFY: the per-type Strength multipliers on each GE_XenoCore_BaseStats_Minion_* effect. -->
 
 <!-- VERIFY: the display names and detection types in each variant's Class Defaults -->
 
@@ -5130,12 +5174,18 @@ Strength a level.</p>
 <li><strong>A patrol:</strong> set <strong>Patrol Points</strong> on a hand-placed enemy. See <a href="../../recipes/place-enemies/">Place enemies</a>.</li>
 <li><strong>A unique monster:</strong> tick <strong>Unique Monster</strong> on a spawner (with a <strong>Unique Name</strong>) or on a placed
   enemy, and override <strong>Enemy Level</strong>, <strong>Experience Reward</strong> and <strong>Always Gold Chest</strong> as needed.</li>
-<li><strong>A C++ enemy:</strong> <code>AXenoCoreEnemyCharacter</code> and <code>AXenoCoreEnemyController</code> are exported, so your
-  own module can subclass them. Note that enemies do not derive from <code>AXenoCoreCombatantCharacter</code>
-  (the party's base); both derive from Lyra's <code>ALyraCharacterWithAbilities</code>.</li>
 <li>Never edit <code>B_XenoCore_Enemy_Base</code>, <code>BP_AIC_XenoCore_Enemy</code> or the shared StateTree in place.</li>
 </ul>
+<details class="note">
+<summary>For programmers: a C++ enemy</summary>
+<p><code>AXenoCoreEnemyCharacter</code> and <code>AXenoCoreEnemyController</code> are exported, so your own module can
+subclass them. Enemies do not derive from <code>AXenoCoreCombatantCharacter</code> (the party's base);
+both derive from Lyra's <code>ALyraCharacterWithAbilities</code>. The pawn owns its own Ability System
+Component and has no PlayerState.</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>No PlayerState.</strong> Lyra's PlayerState route would give every enemy the experience's default pawn
   data (the player's kit), because the only per-pawn hook, <code>ALyraGameMode::GetPawnDataForController</code>,
@@ -5152,6 +5202,7 @@ Strength a level.</p>
 <li><strong>One AI for both sides.</strong> Enemies and companions share the fight and art tasks, so an Art behaves
   the same whoever uses it.</li>
 </ul>
+</details>
 
 
 

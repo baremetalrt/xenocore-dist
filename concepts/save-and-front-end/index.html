@@ -3330,6 +3330,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3363,10 +3374,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4384,6 +4395,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-you-can-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#how-it-fits-together" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4417,10 +4439,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
@@ -4468,14 +4490,25 @@
 
 <h1 id="save-and-front-end">Save and front end<a class="headerlink" href="#save-and-front-end" title="Permanent link">&para;</a></h1>
 <p><em>All · 15 min read · No code · Last tested: never</em></p>
-<p>The game keeps four save slots: an <strong>autosave</strong> and three manual slots. One object owns all of
-them: the <strong>save subsystem</strong>, a game-instance subsystem that exists from the moment the game starts,
-title screen included, until it quits. It captures the party, the bag, gold, quests and the
-leader's position into a file, along with every unopened treasure chest on every map visited and
-the records of any <strong>save participants</strong> (your own systems), and on load it travels to the saved map and rebuilds the party there. The front end (boot screens, then the title screen) is a small Experience of its own whose
-buttons all answer to that subsystem. The idea that makes the rest make sense: <strong>a load always
-starts a fresh world</strong>. The subsystem never undoes the current world in place; it opens the map
-again and restores the party into it.</p>
+<p><strong>What the player sees:</strong> boot cards, then a title screen with <strong>Continue</strong>, <strong>New Game</strong>, <strong>Load
+Game</strong>, <strong>Settings</strong> and <strong>Quit</strong>. In game, the menu's <strong>Save</strong> and <strong>Load</strong> open a list of four
+slots (an autosave and three manual slots), each with a thumbnail, the leader, the party's
+portraits, the place and the play time. Glowing save points autosave when the leader steps on them,
+and a load brings the party back exactly as it was, where it was.</p>
+<p>A save captures the party, the bag, gold, quests, the leader's position, every unopened treasure
+chest on every map visited, and the records of any <strong>save participants</strong> (your own systems that
+store their state). The idea that makes the rest make sense: <strong>a load always starts a fresh world</strong>.
+XenoCore never undoes the current world in place; it opens the map again and restores the party into
+it.</p>
+<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Make your own Blueprint remember something</strong> (a door that stays open): <a href="../../recipes/save-system/">Make a system save</a>.</li>
+<li><strong>Where New Game starts, and the boot cards</strong>: the title screen and <code>BP_XenoCore_TitleState</code> (see <a href="#settings">Settings</a>).</li>
+<li><strong>Where save points are</strong>: place <code>Game/BP_XenoCore_SavePoint</code> in a level.</li>
+<li><strong>The place name a save shows for your map</strong>: <strong>Location Names</strong> in <strong>Project Settings › Game ›
+  XenoCore Save</strong> (do this for every new map; see the warning below).</li>
+<li><strong>How the save screen looks</strong>: duplicate it and point <strong>XenoCore UI › Save Screen</strong> at your copy.</li>
+</ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4487,38 +4520,33 @@ again and restores the party into it.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>UXenoCoreSaveSubsystem</code></td>
-<td>C++ game-instance subsystem</td>
-<td>Slots, writing, loading, autosave, play time, the slot thumbnail</td>
-</tr>
-<tr>
-<td><code>UXenoCoreSaveGame</code></td>
-<td>Save file class (<code>ULocalPlayerSaveGame</code>)</td>
-<td>One file: a <strong>header</strong> for the slot row and a <strong>body</strong> for the world</td>
+<td>Save system</td>
+<td>Built in, alive from launch to quit (title screen included)</td>
+<td>Slots, writing, loading, autosave, play time, the slot thumbnail. Reach it in a Blueprint with <strong>Get Game Instance Subsystem</strong> › <strong>Xeno Core Save Subsystem</strong></td>
 </tr>
 <tr>
 <td><code>Game/BP_XenoCore_SavePoint</code></td>
-<td>Actor (<code>AXenoCoreSavePoint</code>)</td>
+<td>Actor</td>
 <td>A pad that autosaves when the player stands on it</td>
 </tr>
 <tr>
 <td><code>UserInterface/W_XenoCore_SaveScreen</code></td>
-<td>Screen (<code>UXenoCoreSaveScreenBase</code>), set by <strong>XenoCore UI › Save Screen</strong></td>
+<td>Screen, set by <strong>XenoCore UI › Save Screen</strong></td>
 <td>The slot list, in Save or Load mode</td>
 </tr>
 <tr>
-<td><code>IXenoCoreSaveParticipant</code>, <code>UXenoCoreSaveParticipantComponent</code></td>
-<td>Interface and actor component, both named <strong>XenoCore Save Participant</strong> in the editor</td>
+<td><strong>XenoCore Save Participant</strong></td>
+<td>Blueprint interface and actor component (same name in the editor)</td>
 <td>Let any actor, component or object store its own record in the save, under its own key</td>
 </tr>
 <tr>
 <td><code>UserInterface/W_XenoCore_SaveRow</code></td>
-<td>Row widget (<code>UXenoCoreSaveRowBase</code>)</td>
+<td>Row widget</td>
 <td>One slot: thumbnail, leader, portraits, location, play time, date</td>
 </tr>
 <tr>
 <td><code>UserInterface/HUD/W_XenoCore_AutosaveBadge</code></td>
-<td>HUD plate (<code>UXenoCoreAutosaveBadgeBase</code>)</td>
+<td>HUD plate</td>
 <td>"Autosaving..." while an autosave writes</td>
 </tr>
 <tr>
@@ -4528,28 +4556,28 @@ again and restores the party into it.</p>
 </tr>
 <tr>
 <td><code>Experiences/B_XenoCore_FrontEnd_Experience</code></td>
-<td>Experience</td>
+<td><a href="../../getting-started/glossary/">Experience</a></td>
 <td>Adds <code>BP_XenoCore_TitleState</code> to the game state</td>
 </tr>
 <tr>
 <td><code>UserInterface/BP_XenoCore_TitleState</code></td>
-<td>Game state component (<code>UXenoCoreTitleStateComponent</code>)</td>
+<td>Game state component</td>
 <td>Plays the boot screens, then pushes the title screen</td>
 </tr>
 <tr>
 <td><code>UserInterface/Boot/W_XenoCore_Boot_Studio</code>, <code>_Unreal</code>, <code>_Autosave</code>, <code>_Shaders</code></td>
-<td>Boot cards (<code>UXenoCoreBootScreenBase</code> and children)</td>
+<td>Boot cards</td>
 <td>The pre-title sequence</td>
 </tr>
 <tr>
 <td><code>UserInterface/W_XenoCore_TitleScreen</code></td>
-<td>Screen (<code>UXenoCoreTitleScreenBase</code>)</td>
+<td>Screen</td>
 <td>Continue, New Game, Load Game, Settings, Quit</td>
 </tr>
 <tr>
 <td><code>UserInterface/Boot/W_XenoCore_LoadingScreen</code></td>
-<td>Widget (<code>UXenoCoreLoadingScreenBase</code>)</td>
-<td>The loading screen, set in <code>Config/DefaultGame.ini</code></td>
+<td>Widget</td>
+<td>The loading screen, set in <strong>Project Settings › Common Loading Screen</strong></td>
 </tr>
 </tbody>
 </table>
@@ -4612,13 +4640,12 @@ again and restores the party into it.</p>
 after every load, because a load reopens the map. Chests are the one exception: they are respawned
 from the file when their map begins play. Per-item state is not saved, apart from gem sockets;
 items are rebuilt from their definitions, which is exact today because nothing else changes an item
-after it is created. See the warning under <a href="#what-you-can-change">What you can change</a>.</p>
+after it is created. See the warning under <a href="#settings">Settings</a>.</p>
 <p>Every reference in the file is a path, and every enum is stored by name, not by number. An asset
 that no longer exists is skipped with a warning rather than crashing the load.</p>
-<p>The file's format version is <code>EXenoCoreSaveVersion</code>: <code>InitialRelease = 1</code>, <code>WorldChests = 2</code>,
-<code>ParticipantData = 3</code>, <code>PartyTactics = 4</code>, <code>Gems = 5</code>. An older file simply lacks the newer data:
-no participant records reads as "nothing saved yet", no tactics loads the <strong>Default Tactics</strong>, and
-no gems leaves every socket empty.</p>
+<p>Older save files keep loading after a template update. A file written before a feature existed
+simply lacks its data: no participant records reads as "nothing saved yet", no tactics loads the
+<strong>Default Tactics</strong>, and no gems leaves every socket empty.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p><strong>Boot.</strong> The project opens <code>L_XenoCore_FrontEnd</code>. Its Experience adds <code>BP_XenoCore_TitleState</code>,
 which waits for Lyra's loading screen to lift, then shows each boot card in its <strong>Boot Screens</strong>
@@ -4645,7 +4672,7 @@ exactly as long as the write.</p>
 it. If a fight refuses the save, it keeps retrying every <strong>Retry Interval</strong> while the player
 stands there. The HUD's autosave badge shows while the write runs. Save points are the only
 autosave trigger in the template.</p>
-<p><strong>Loading.</strong> The subsystem keeps the file, travels to its map (even the current one), and restores
+<p><strong>Loading.</strong> The save system keeps the file, travels to its map (even the current one), and restores
 in a fixed order as the world comes up: levels and experience first (so members spawn at their
 saved level), then quests, then the bag, then the roster. Each character's equipment and health are
 restored as that character's body is created. While restoring, the usual new-game seeding (starting roster, starting items, starting
@@ -4656,9 +4683,9 @@ bodies exist and are posed, the save is restored, and the world has gone quiet (
 or grass still being built) for a few rendered frames. That is what stops T-posed characters and
 pop-in on the first frame. It holds the <strong>first</strong> reveal of a map only; after it lifts, nothing
 brings it back until the next map. If the world never goes quiet it gives up after a timeout and
-logs a warning. The timings are on <code>XenoCoreWorldReadySubsystem</code> in <code>Config/DefaultGame.ini</code>.</p>
+logs a warning. The timings have no Project Settings page; see the last rows of <a href="#settings">Settings</a>.</p>
 <p><strong>Save participants restore last</strong>, after all of the above, so a participant that reads the party
-or the bag sees the loaded state. The subsystem then broadcasts <strong>On Save Loaded</strong> with the slot
+or the bag sees the loaded state. The save system then fires <strong>On Save Loaded</strong> with the slot
 index (<strong>Get Loaded Slot Index</strong> returns it afterwards). A participant that registers later (an
 actor streaming in) gets its record the moment it registers, and one that unregisters (streams
 out, or its level is left) has its current state recorded first, so it comes back as it was.</p>
@@ -4679,13 +4706,13 @@ written later uses that picture.</p>
 Names</strong> in <strong>Project Settings › Game › XenoCore Save</strong>, and prints <strong>Default Story Text</strong> as its
 chapter line. <!-- VERIFY: the settings page's category (Game) in the editor --> A map with no entry
 prints no location, and the row draws cleanly without it. Calling <strong>Set Location Text</strong> on the save
-subsystem overrides the name for the current map only (for a region inside a large map); the
+system overrides the name for the current map only (for a region inside a large map); the
 override lapses once the party is on another map. <strong>Set Story Text</strong> replaces the chapter line until
 it is called again with an empty string.</p>
 <p><strong>Respawn after defeat.</strong> Stepping on a save point also records it as the party's respawn point,
 which a <a href="../party/">party wipe</a> returns to. This happens on every visit, even when the pad does not
 save again.</p>
-<h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -4772,13 +4799,13 @@ save again.</p>
 </tr>
 <tr>
 <td><strong>Loading Screen Widget</strong></td>
-<td><code>Config/DefaultGame.ini</code> › <code>CommonLoadingScreenSettings</code></td>
+<td>Project Settings › Common Loading Screen</td>
 <td>The loading screen</td>
 </tr>
 <tr>
 <td><code>TimeoutSeconds</code>, <code>SettleSeconds</code>, <code>SettleFrames</code>, <code>CompileTimeoutSeconds</code>, <code>TextureStreamingMaxSeconds</code></td>
-<td><code>Config/DefaultGame.ini</code> › <code>[/Script/XenoCoreRuntime.XenoCoreWorldReadySubsystem]</code></td>
-<td>How long the loading screen waits for a quiet world (defaults 20 s overall, 0.75 s and 10 quiet frames, 180 s of compiling, 4 s of texture streaming)</td>
+<td>Text only: your project's <code>Config/DefaultGame.ini</code>, section <code>[/Script/XenoCoreRuntime.XenoCoreWorldReadySubsystem]</code> (no Project Settings page)</td>
+<td>How long the loading screen waits for a quiet world (defaults 20 s overall, 0.75 s and 10 quiet frames, 180 s of compiling, 4 s of texture streaming). Close the editor before editing the file</td>
 </tr>
 <tr>
 <td><strong>Game Default Map</strong>, <strong>Editor Startup Map</strong></td>
@@ -4799,8 +4826,8 @@ is logged. Add the entry when you create the map.</p>
 <div class="admonition warning">
 <p class="admonition-title">Adding per-item state breaks saving</p>
 <p>If you give items state of their own (durability, charges), the save does not know about it
-and loaded items come back fresh. Items are not save participants: saving that state needs C++
-in the save types.</p>
+and loaded items come back fresh. Items are not save participants: saving that state needs a
+programmer to extend the save file.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: two participants on one key</p>
@@ -4815,8 +4842,9 @@ defaults.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Never renumber the save version</p>
-<p>Save format versions are appended, never renumbered. A shipped version number is sitting in a
-player's save file.</p>
+<p>This is for whoever extends the save file in C++. Save format versions
+(<code>EXenoCoreSaveVersion</code>) are appended, never renumbered: a shipped version number is sitting in
+a player's save file. A participant's own <strong>Get Save Data Version</strong> follows the same rule.</p>
 </div>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4829,16 +4857,30 @@ player's save file.</p>
 <li><strong>Saving your own data</strong> (for example a door that stays open): tick <strong>SaveGame</strong> on the
   variables and add a <strong>XenoCore Save Participant</strong> component, or implement the interface on a
   controller component. No C++, and no change to XenoCore's file version: each participant carries
-  its own <strong>Get Save Data Version</strong> and migrates in <strong>On Save Data Restored</strong>. C++ may override
-  <code>CaptureSaveData</code> / <code>RestoreSaveData</code> instead. See <a href="../../recipes/save-system/">Make a system save</a>.</li>
-<li><strong>React to any load:</strong> bind <strong>On Save Loaded</strong> on the save subsystem. It fires once the whole
+  its own <strong>Get Save Data Version</strong> and migrates in <strong>On Save Data Restored</strong>. See
+  <a href="../../recipes/save-system/">Make a system save</a>.</li>
+<li><strong>React to any load:</strong> bind <strong>On Save Loaded</strong> on the save system. It fires once the whole
   load, participants included, is applied.</li>
 <li><strong>A different save screen:</strong> duplicate <code>W_XenoCore_SaveScreen</code> and set <strong>XenoCore UI › Save
   Screen</strong>. The menu's Save and Load entries and the title screen open whatever it names.</li>
-<li><strong>Save from script:</strong> <strong>Save To Slot</strong> and <strong>Request Autosave</strong> are Blueprint-callable on the
-  save subsystem. Both return false when saving is refused.</li>
+<li><strong>Save from a Blueprint:</strong> call <strong>Save To Slot</strong> or <strong>Request Autosave</strong> on the save system. Both
+  return false when saving is refused.</li>
 </ul>
+<details class="note">
+<summary>For programmers: classes</summary>
+<p><code>UXenoCoreSaveSubsystem</code> (game-instance subsystem) owns slots, writes and loads. The file is
+<code>UXenoCoreSaveGame</code> (a <code>ULocalPlayerSaveGame</code>) with a header and a body; its format version is
+<code>EXenoCoreSaveVersion</code> (<code>InitialRelease = 1</code>, <code>WorldChests = 2</code>, <code>ParticipantData = 3</code>,
+<code>PartyTactics = 4</code>, <code>Gems = 5</code>). Participants implement <code>IXenoCoreSaveParticipant</code> or carry
+<code>UXenoCoreSaveParticipantComponent</code>; C++ may override <code>CaptureSaveData</code> / <code>RestoreSaveData</code>.
+Screens and widgets derive from <code>UXenoCoreSaveScreenBase</code>, <code>UXenoCoreSaveRowBase</code>,
+<code>UXenoCoreAutosaveBadgeBase</code>, <code>UXenoCoreTitleScreenBase</code>, <code>UXenoCoreBootScreenBase</code> and
+<code>UXenoCoreLoadingScreenBase</code>; the front end's state is <code>UXenoCoreTitleStateComponent</code>; save points
+are <code>AXenoCoreSavePoint</code>. The loading-screen hold is <code>UXenoCoreWorldReadySubsystem</code>.</p>
+</details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers</summary>
 <ul>
 <li><strong>A game-instance subsystem.</strong> Loading travels to a map, and a world subsystem would be
   destroyed halfway through its own job. It is also alive on the title screen, which is what lets
@@ -4862,6 +4904,7 @@ player's save file.</p>
   state through its Experience; XenoCore's does the same with its own component, so the title map
   itself stays empty.</li>
 </ul>
+</details>
 <p><strong>Next:</strong> <a href="../ui-shell-and-hud/">UI shell and HUD</a> · <a href="../events/">Events you can listen to</a></p>
 
 

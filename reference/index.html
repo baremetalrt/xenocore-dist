@@ -4271,6 +4271,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#quick-answers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick answers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#designers" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4286,17 +4297,6 @@
     <span class="md-ellipsis">
       
         Programmers
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#regenerating-the-generated-pages" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Regenerating the generated pages
       
     </span>
   </a>
@@ -4325,8 +4325,47 @@
 <p>Look-up pages: every class, setting, node, tag, message and command XenoCore adds. Use them with the
 editor open beside you. For <em>how</em> to do something, start with the <a href="../recipes/">recipes</a>;
 for <em>why</em> a system works the way it does, read the <a href="../concepts/">concepts</a>.</p>
-<p>Pages marked <strong>generated</strong> are written from the plugin's C++ headers by a script, so they match the
-code you have. The others are written by hand.</p>
+<p>Pages marked <strong>generated</strong> are listed straight from the plugin's source, so they match the
+version you have. The others are written by hand.</p>
+<h2 id="quick-answers">Quick answers<a class="headerlink" href="#quick-answers" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Go to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Where is the setting for X?</td>
+<td><a href="folder-map/#where-is">Folder map › Where is…?</a></td>
+</tr>
+<tr>
+<td>What kind of asset is <code>GE_…</code> / <code>DA_…</code> / <code>ID_…</code>?</td>
+<td><a href="asset-naming/#quick-lookup">Asset naming › Quick lookup</a></td>
+</tr>
+<tr>
+<td>What does this field on a data asset do?</td>
+<td><a href="data-assets/">Data assets</a></td>
+</tr>
+<tr>
+<td>What does this Blueprint node do?</td>
+<td><a href="blueprint-nodes/">Blueprint nodes</a></td>
+</tr>
+<tr>
+<td>What is this console command?</td>
+<td><a href="console-commands/">Console commands</a></td>
+</tr>
+<tr>
+<td>What does XenoCore add to the <strong>Tools</strong> menu?</td>
+<td>One entry: <a href="editor-tools/#project-setup">Apply XenoCore Project Settings</a></td>
+</tr>
+<tr>
+<td>Can I delete this folder?</td>
+<td><a href="folder-map/">Folder map</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="designers">Designers<a class="headerlink" href="#designers" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4393,15 +4432,18 @@ code you have. The others are written by hand.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="regenerating-the-generated-pages">Regenerating the generated pages<a class="headerlink" href="#regenerating-the-generated-pages" title="Permanent link">&para;</a></h2>
-<p>If you change XenoCore's C++, run <code>python Docs/Manual/tools/gen_reference.py</code> from the repository
-root to rebuild the generated pages. It needs only Python 3. See <code>Docs/Manual/tools/README.md</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Descriptions on generated pages are short on purpose</p>
-<p>The generator publishes only the first plain paragraph of each source comment and drops
-anything that reads as internal notes. Where nothing suitable remains, the page says
-<em>No description.</em> The concept page for that system explains it properly.</p>
+<p>Each entry shows only the first plain paragraph of its source comment. Where nothing suitable
+remains, the page says <em>No description.</em> The concept page for that system explains it properly.</p>
 </div>
+<details class="note">
+<summary>For programmers: regenerating the generated pages</summary>
+<p>The generated pages are produced by <code>Docs/Manual/tools/gen_reference.py</code> (Python 3 only) from
+the plugin's C++ headers, in the repository the manual is built from. If you change XenoCore's
+C++ in your own copy, the published pages no longer describe your changes; the headers are the
+source of truth.</p>
+</details>
 
 
 

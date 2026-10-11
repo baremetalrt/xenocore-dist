@@ -4477,8 +4477,15 @@ everything RPG, and it all lives in one plugin.</p>
 then stay separate from both Lyra and XenoCore, and you can take template updates.</p>
 </div>
 <h2 id="where-things-are">Where things are<a class="headerlink" href="#where-things-are" title="Permanent link">&para;</a></h2>
-<p>In the Content Browser, turn on <strong>Show Plugin Content</strong> (Settings menu of the Content Browser).
-XenoCore then appears as <strong>XenoCore Content</strong>.</p>
+<p>In the Content Browser, click <strong>Settings</strong> (top right of the Content Browser) and tick <strong>Show
+Plugin Content</strong>. XenoCore then appears in the folder tree as <strong>XenoCore Content</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">How to read paths in this manual</p>
+<p>A path such as <code>Characters/Party/BP_XenoCore_Party</code> is inside <strong>XenoCore Content</strong>: open
+<strong>XenoCore Content › Characters › Party</strong> and the asset is there. A path that starts with
+<code>/Game/</code> is Lyra's own content, under <strong>Content</strong>. To find any asset by name, type the name into
+the Content Browser's search box with <strong>XenoCore Content</strong> selected.</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -4600,8 +4607,8 @@ XenoCore then appears as <strong>XenoCore Content</strong>.</p>
 </tr>
 </tbody>
 </table>
-<p><code>Dev</code> holds development-only test content. It is never cooked into a packaged build, and nothing
-outside it depends on it. XenoCore ships <strong>no music</strong>: the title screen, Gaur Plain's field and
+<p>If you see a <code>Dev</code> folder, it holds development-only test content: it is never cooked into a
+packaged build, nothing outside it depends on it, and you can ignore it. XenoCore ships <strong>no music</strong>: the title screen, Gaur Plain's field and
 battle slots and the fallback tracks in <strong>Project Settings › XenoCore Content</strong> are empty, so the
 game is silent until you add your own. See <a href="../../recipes/area-music/">Area music</a>.</p>
 <!-- VERIFY: DRAFTING-NOTES F10 for the backup pawn in Game -->
@@ -4641,9 +4648,10 @@ game is silent until you add your own. See <a href="../../recipes/area-music/">A
 which is why none of Lyra's shooter rules apply in XenoCore's maps.</p>
 <h2 id="source-code">Source code<a class="headerlink" href="#source-code" title="Permanent link">&para;</a></h2>
 <p>XenoCore's C++ is in <code>Plugins/GameFeatures/XenoCore/Source</code>: <code>XenoCoreRuntime</code> for the game and
-<code>XenoCoreEditor</code> for editor-only tools. You don't need to open it to use the template. When you want
-to extend a system, the <a href="../../concepts/">Concepts</a> page for that system tells you which class
-to subclass.</p>
+<code>XenoCoreEditor</code> for editor-only tools. You don't need to open it to use the template: every
+setting this manual names is in the editor's <strong>Details</strong> panel, a Data Table or <strong>Project Settings</strong>.
+When a programmer wants to extend a system, the <a href="../../concepts/">Concepts</a> page for that
+system says which class to subclass.</p>
 <h2 id="you-now-have">You now have<a class="headerlink" href="#you-now-have" title="Permanent link">&para;</a></h2>
 <p>A map of the project, and the one rule that keeps your work safe through updates.</p>
 <p><strong>Next:</strong> <a href="../first-change/">Your first change</a></p>

@@ -4801,13 +4801,14 @@ lists nothing but other sample assets.</p>
 <ol>
 <li>Right-click the XenoCore content folder and run <strong>Validate Assets</strong>. Fix every error.</li>
 <li>Open <strong>Window › Output Log</strong> and <strong>Tools › Map Check</strong> on each map you keep.
-   <!-- VERIFY: Map Check menu location in 5.8 --></li>
+   <!-- VERIFY: Map Check menu location in 5.8 -->
+</li>
 </ol>
 <div class="admonition note">
-<p class="admonition-title">Retargeted clips name a Dev folder as their import source</p>
-<p>A few retargeted animations under <code>Characters/Player/Animations</code> record <code>Dev/Mixamo</code> in their
-import data. The plugin you received has no <code>Dev/</code> folder; that is editor-only metadata and
-does not stop the clips loading or cooking. Only <strong>Reimport</strong> on those clips needs it.</p>
+<p class="admonition-title">A Reimport warning on some retargeted clips is expected</p>
+<p>A few retargeted animations under <code>Characters/Player/Animations</code> record a development folder
+as their import source. The source files are not included. That is editor-only metadata: the
+clips load and cook normally, and only <strong>Reimport</strong> on those clips fails.</p>
 </div>
 <h3 id="4-remove-what-you-dont-ship-from-the-host">4. Remove what you don't ship from the host<a class="headerlink" href="#4-remove-what-you-dont-ship-from-the-host" title="Permanent link">&para;</a></h3>
 <p>Your Lyra project still has Lyra's own sample game features (ShooterCore, ShooterMaps,

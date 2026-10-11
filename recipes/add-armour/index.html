@@ -4590,8 +4590,9 @@
 
 <h1 id="add-armour">Add armour<a class="headerlink" href="#add-armour" title="Permanent link">&para;</a></h1>
 <p><em>Designer · 20 min · No code · Last tested: never</em></p>
-<p><strong>Result:</strong> a new chest piece, <strong>Hide Vest</strong>, that raises defence, costs some Agility through its
-weight, and shows as <strong>Light</strong> on the item details.</p>
+<p><strong>Result:</strong> a new chest piece, <strong>Hide Vest</strong>, that raises <a href="../../getting-started/glossary/">physical defence</a>,
+costs some <a href="../../getting-started/glossary/">Agility</a> through its <a href="../../getting-started/glossary/">weight</a>,
+and shows as <strong>Light</strong> on the item details.</p>
 <!-- SCREENSHOT: Equipment screen, Chest slot, Hide Vest's comparison block with Weight in red -->
 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
@@ -4640,7 +4641,8 @@ is worn. So a new piece of armour is <strong>one asset</strong>: its item defini
 <h3 id="1-duplicate-a-piece-for-the-same-slot">1. Duplicate a piece for the same slot<a class="headerlink" href="#1-duplicate-a-piece-for-the-same-slot" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create <code>MyGame/Armour</code> under <strong>Content</strong>.</li>
-<li>Duplicate <code>Inventory/Armour/ID_XenoCore_BattleArmour</code> into it. Name it <code>ID_MyGame_HideVest</code>.</li>
+<li>In <strong>Plugins › XenoCore Content › Inventory › Armour</strong>, right-click <code>ID_XenoCore_BattleArmour</code>,
+   choose <strong>Duplicate</strong>, and move the copy into <code>MyGame/Armour</code>. Name it <code>ID_MyGame_HideVest</code>.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: never create an item definition from blank</p>
@@ -4651,17 +4653,20 @@ does nothing when chosen. Duplicate a shipped piece every time.</p>
 <ol>
 <li>Open <code>ID_MyGame_HideVest</code> and click <strong>Class Defaults</strong>.</li>
 <li>Set <strong>Display Name</strong> to <code>Hide Vest</code>.</li>
-<li>In <strong>Fragments</strong>, open <strong>Xeno Core Fragment Item Display</strong> and set <strong>Description</strong> and <strong>Icon</strong>.</li>
-<li>Open <strong>Xeno Core Fragment Item Category</strong> and set <strong>Sell Value</strong>. Leave <strong>Category</strong> as
-   <code>Equipment</code>.</li>
+<li>In <strong>Fragments</strong>, open <strong>Xeno Core Fragment Item Display</strong> and, under <strong>XenoCore › Display</strong>, set
+   <strong>Description</strong> and <strong>Icon</strong>.</li>
+<li>Open <strong>Xeno Core Fragment Item Category</strong> and, under <strong>XenoCore › Item</strong>, set <strong>Sell Value</strong> and
+   <strong>Rarity</strong> (<a href="../../getting-started/glossary/">rarity</a>). Leave <strong>Category</strong> as <code>Equipment</code>.</li>
 </ol>
 <p>Leave <strong>Inventory Fragment Equippable Item</strong> › <strong>Equipment Definition</strong> on <code>ED_XenoCore_Armour</code>.</p>
 <h3 id="3-choose-the-slot-and-weight-class">3. Choose the slot and weight class<a class="headerlink" href="#3-choose-the-slot-and-weight-class" title="Permanent link">&para;</a></h3>
-<p>In <strong>Xeno Core Fragment Equip Slots</strong>:</p>
+<p>In <strong>Xeno Core Fragment Equip Slots</strong> (<strong>XenoCore › Equipment</strong>):</p>
 <ol>
 <li><strong>Allowed Slots</strong>: exactly one of <code>Head</code>, <code>Chest</code>, <code>Arms</code>, <code>Legs</code>, <code>Feet</code>. Keep <code>Chest</code>.</li>
 <li><strong>Equip Type</strong>: <code>Light</code>, <code>Medium</code> or <code>Heavy</code>. This is the "Type" line on the details pane. It is a
    label; the gameplay cost comes from Weight below. Set <code>Light</code>.</li>
+<li><strong>Gem Slots</strong>: <code>0</code> or <code>1</code>, the number of <a href="../../getting-started/glossary/">gem</a> sockets. See
+   <a href="../add-a-gem/">Add a gem</a>.</li>
 </ol>
 <h3 id="4-set-its-stats">4. Set its stats<a class="headerlink" href="#4-set-its-stats" title="Permanent link">&para;</a></h3>
 <p>In <strong>Inventory Fragment Set Stats</strong>, edit <strong>Initial Item Stats</strong>. Armour normally carries three:</p>
@@ -4712,14 +4717,15 @@ the comparison block, because for this one stat, more is worse.</p>
 <li>Open a starting party member's pawn, for example Kael,
    <code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>. A member's Starting Inventory reaches the party
    bag when its body first spawns, so a member who joins later brings it only then.</li>
-<li>On its equipment component, add to <strong>XenoCore › Equipment › Starting Inventory</strong>:
+<li>In <strong>Components</strong>, select <strong>Equipment Component</strong>. Add an entry to <strong>XenoCore › Equipment ›
+   Starting Inventory</strong>:
    <strong>Item Definition</strong> <code>ID_MyGame_HideVest</code>, <strong>Count</strong> <code>1</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>.</li>
-<li>Open the menu, go to <strong>Equipment</strong>, choose a character and the <strong>Chest</strong> slot.</li>
+<li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong> (not <strong>Continue</strong>: a save remembers the old bag).</li>
+<li>Open the menu (pad <strong>Y</strong>, keyboard <strong>I</strong>), go to <strong>Equipment</strong>, choose a character and the <strong>Chest</strong> slot.</li>
 <li>Hide Vest is listed. Its comparison block shows Physical Def +8, Ether Def +4, Weight +1.</li>
 <li>Equip it. The character's totals rise by those amounts.</li>
 <li>With the Chest row focused, the unequip prompt appears in the bottom bar. Use it: the totals drop
@@ -4733,6 +4739,17 @@ definition's ability set was changed. Armour's stats come only from
 <code>AbilitySet_XenoCore_EquipmentStats</code> on <code>ED_XenoCore_Armour</code>. If you make your own armour
 equipment definition, grant that set, and do <strong>not</strong> grant <code>GA_XenoCore_WeaponDrawSync</code>, or the
 armour tries to draw itself like a weapon.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Hide Vest is not in the list at all</p>
+<p>You pressed <strong>Continue</strong> on a save made before the change, or the <strong>Starting Inventory</strong> entry is
+on a member who is not in the starting party. Start with <strong>Play</strong> in the editor or <strong>New Game</strong>,
+and add it to Kael.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: the item is listed but choosing it does nothing</p>
+<p>The item definition was created blank instead of duplicated, so it has no <strong>Equipment
+Definition</strong> (step 1).</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">It appears under the wrong slot, or under several</p>

@@ -4633,7 +4633,7 @@
 
 
 <h1 id="party-gauge-downed-and-revive">Party Gauge, downed and revive<a class="headerlink" href="#party-gauge-downed-and-revive" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · Last tested: 2026-10-01</em></p>
+<p><em>All · 15 min read · No code · Last tested: 2026-10-01</em></p>
 <p>A party member who runs out of HP is <strong>downed</strong>, not killed. They kneel where they fell, and the
 leader can stand over them and press <strong>A - Revive</strong>, which spends one bar of the <strong>Party Gauge</strong>,
 the blue three-bar meter above the leader's HUD row. The party gauge is filled by playing well:
@@ -4642,6 +4642,17 @@ battle is over. Only when <strong>every</strong> active member is down is the ba
 wakes at the last respawn point and keeps everything it earned.</p>
 <p>That is XC1's revive, one bar and no healer, combined with XC3's rule that only a whole-party
 knockout loses the fight.</p>
+<div class="admonition abstract">
+<p class="admonition-title">What you can change, no code</p>
+<ul>
+<li>What a revive costs, how much HP it gives back and how close you stand:
+  <a href="../../recipes/tune-revive-and-defeat/">Tune revive and defeat</a></li>
+<li>The defeat beat, the fade and where the party wakes: the same recipe, and
+  <a href="../party/#party-wipe">Party wipe</a></li>
+<li>How fast HP recovers between fights: <a href="#recovering-hp-between-fights">Recovering HP between fights</a></li>
+<li>What fills the gauge and how big it is: <a href="#what-you-can-change">What you can change</a></li>
+</ul>
+</div>
 <!-- SCREENSHOT: a downed companion kneeling, "A Revive" on screen, two full gauge bars, the downed row greyed -->
 
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
@@ -4863,12 +4874,22 @@ Console: <code>XenoHurtParty 0.3</code> drops every standing member to 30% so yo
 </tbody>
 </table>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently: gauge settings have no Blueprint to edit</p>
-<p>The <code>XenoCore</code> GameFeatureData adds the C++ class <code>XenoCorePartyGaugeComponent</code> directly, so
-there is no asset holding <strong>Fill Points</strong> or <strong>Bar Count</strong>. Editing a placed instance in a
-running game does not stick. To retune it, create a Blueprint child of
-<code>XenoCorePartyGaugeComponent</code>, set the values there, and point the <strong>Add Components</strong> row in
-<code>XenoCore</code> (the plugin's GameFeatureData asset) at your Blueprint.</p>
+<p class="admonition-title">The gauge's settings have no Blueprint to edit</p>
+<p>The <code>XenoCore</code> Game Feature Data adds the C++ class <code>XenoCorePartyGaugeComponent</code> directly, so
+there is no asset holding <strong>Fill Points</strong> or <strong>Bar Count</strong>, and changing them on the running
+component in play is lost when play stops. To retune them:</p>
+<ol>
+<li>In your own folder, right-click and choose <strong>Blueprint Class</strong>. Under <strong>All Classes</strong>, search
+   for <code>XenoCorePartyGaugeComponent</code>, pick it, and name the Blueprint <code>BP_MyPartyGauge</code>.</li>
+<li>Open it, set <strong>XenoCore › PartyGauge › Bar Count</strong>, <strong>Points Per Bar</strong>, <strong>Fill Points</strong> and
+   <strong>Out Of Battle Drain Per Second</strong>, then <strong>Compile</strong> and <strong>Save</strong>.</li>
+<li>Open the <code>XenoCore</code> asset at the top of <strong>XenoCore Content</strong> (the Game Feature Data). Under
+   <strong>Actions</strong>, expand the <strong>Add Components</strong> action and find the entry whose <strong>Component
+   Class</strong> is <code>XenoCorePartyGaugeComponent</code>. Set it to <code>BP_MyPartyGauge</code>. <strong>Save</strong>.</li>
+</ol>
+<p>A template update replaces the <code>XenoCore</code> asset, so note this change to re-apply after
+updating.
+<!-- VERIFY: the Add Components entry labels (Component List, Component Class) in the 5.8 editor. --></p>
 </div>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4889,6 +4910,8 @@ running game does not stick. To retune it, create a Blueprint child of
 <p>Do not give the party back a death ability. Downed is what keeps the body in the world to be
 revived; a death ability ragdolls it and removes it.</p>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>Downed is Lyra's death, stopped halfway.</strong> <code>GA_XenoCore_Downed</code> triggers on
   <code>GameplayEvent.Death</code>, as Lyra's death ability does, and calls <code>StartDeath</code> but never
@@ -4902,6 +4925,7 @@ revived; a death ability ragdolls it and removes it.</p>
   the party, not to whichever character is leading.</li>
 <li><strong>The battle ends on "no enemy engaged",</strong> not on sheathing, so fleeing cannot buy a free revive.</li>
 </ul>
+</details>
 <h2 id="known-limits">Known limits<a class="headerlink" href="#known-limits" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Party AI does not revive anyone yet. Only the character the player controls can revive.</li>

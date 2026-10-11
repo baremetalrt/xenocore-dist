@@ -4672,10 +4672,10 @@ behind them, read <a href="../../concepts/arts/">Arts</a> and <a href="../../con
 <p><strong>Why:</strong> an Art's cooldown is identified by its <strong>Cooldown Tag</strong>. Two Arts with the same tag share
 one cooldown. This almost always happens because the new Art was made by duplicating another one
 and the tag came along with the copy.</p>
-<p>The editor catches this. Saving an Art definition, or running <strong>Validate Assets</strong> on it, fails with
-<em>"Cooldown Tag ... is also used by .... Arts sharing a tag share one cooldown"</em>, naming the other
-Arts. The check lives in the editor module, so it runs in the editor only; an asset that was never
-saved or validated there can still carry a shared tag.</p>
+<p>The editor catches this. Saving an Art definition, or right-clicking it and choosing <strong>Asset
+Actions › Validate Assets</strong>, fails with <em>"Cooldown Tag ... is also used by .... Arts sharing a tag
+share one cooldown"</em>, naming the other Arts. The check runs only when the asset is saved or
+validated, so an asset that never was can still carry a shared tag.</p>
 <p><strong>Fix:</strong></p>
 <ol>
 <li>Open each Art definition named in the error and check <strong>Cooldown Tag</strong>.</li>
@@ -4693,12 +4693,13 @@ saved or validated there can still carry a shared tag.</p>
   (<em>"CooldownDuration is set but CooldownTag is not"</em>) whenever the duration is above zero at any
   level, and at runtime it logs a warning:
   <code>&lt;art&gt; has a cooldown of &lt;n&gt;s but its art definition names NO CooldownTag</code>.</li>
-<li>It is your own ability class, and it never calls <strong>Commit Ability</strong>. A cooldown effect set on an
+<li>It is your own ability Blueprint, and its graph never calls <strong>Commit Ability</strong>. A cooldown effect set on an
   ability does nothing on its own: the commit is the only thing that applies it. The shared Art
   ability and the auto-attack both commit; an ability you write from scratch must too.</li>
 </ul>
-<p><strong>Fix:</strong> set a duration and a unique <strong>Cooldown Tag</strong> on the Art definition. In your own ability,
-call <strong>Commit Ability</strong> at activation and stop if it returns false.</p>
+<p><strong>Fix:</strong> set a duration and a unique <strong>Cooldown Tag</strong> on the Art definition. In your own ability's
+graph, call <strong>Commit Ability</strong> right after <strong>Event ActivateAbility</strong>, and end the ability if it
+returns false.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/attack-art/">Create an attack art</a>.</p>
 <h3 id="an-art-plays-no-animation-and-its-effect-lands-at-once">An Art plays no animation and its effect lands at once<a class="headerlink" href="#an-art-plays-no-animation-and-its-effect-lands-at-once" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the Art definition has no <strong>Montage</strong>. That is allowed: with no montage the Art applies its
@@ -4759,9 +4760,9 @@ whichever system restores last is still right. Restore on every exit path, inclu
 <p class="admonition-title">Fails silently</p>
 <p>The Blueprint shows exactly the tags you typed, which looks correct. The loss is invisible.</p>
 </div>
-<p><strong>Why:</strong> when a Blueprint overrides an array or tag container that a C++ constructor fills, the
-Blueprint's value <strong>replaces</strong> the constructor's. It does not merge. For example,
-<code>UXenoCoreGameplayAbility_HitReact</code> blocks itself while an Art is executing or a weapon is being
+<p><strong>Why:</strong> when a Blueprint sets a list (an array or a tag container) that its C++ parent class
+already fills, the Blueprint's list <strong>replaces</strong> the parent's. It does not merge. For example, the
+flinch ability's C++ parent blocks the flinch while an Art is executing or a weapon is being
 drawn. A hit-react Blueprint that sets its own <strong>Activation Blocked Tags</strong> drops both, and flinches
 start interrupting Arts and weapon draws.</p>
 <p>The same applies to <strong>Activation Owned Tags</strong>, <strong>Ability Tags</strong> and any other array a base class
@@ -4813,56 +4814,58 @@ ability, not through the damage effect.</p>
 <p>Sparks and blood decals still play, so the hit looks as if it landed normally. Nothing is
 logged.</p>
 </div>
-<p><strong>Why:</strong> the number, the hit-confirm sound and the kill sound are drawn by Lyra's
-<code>GCNL_Character_DamageTaken</code>, and XenoCore ships three changes to that asset. Each one leaves its own
-symptom when it is missing:</p>
+<p><strong>Why:</strong> the number, the hit-confirm sound and the kill sound are drawn by XenoCore's damage cue,
+<code>GameplayCues/GCNL_XenoCore_DamageTaken</code> (XenoCore's own copy of Lyra's, which knows XenoCore's attackers
+are characters and that allies' hits count). It plays only when the damage effect carries the cue tag
+<code>GameplayCue.XenoCore.DamageTaken</code>. Lyra's own <code>GCNL_Character_DamageTaken</code> cannot draw these hits.</p>
 <table>
 <thead>
 <tr>
 <th>What you see</th>
-<th>The missing change</th>
+<th>Likely cause</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>No number and no hit sound on <strong>any</strong> hit, yours included</td>
-<td>The cue looks for the attacker's player state, which XenoCore characters do not use</td>
+<td>No number and no hit sound on hits from <strong>your own</strong> damage effect, while the sample's hits work</td>
+<td>The effect fires <code>GameplayCue.Character.DamageTaken</code> (Lyra's), not <code>GameplayCue.XenoCore.DamageTaken</code></td>
 </tr>
 <tr>
-<td>Your hits are fine, but <strong>allies'</strong> hits have no number, no hit-confirm sound and no kill sound; enemy hits on you make no damage-taken sound</td>
-<td>The cue only draws for the locally controlled attacker</td>
+<td>No number on <strong>any</strong> hit</td>
+<td><code>GCNL_XenoCore_DamageTaken</code> was moved out of <code>XenoCore/Content/GameplayCues</code>, or deleted</td>
 </tr>
 <tr>
-<td><strong>CRITICAL HIT!</strong> shows, but the number is the normal colour and the hit sound is the normal one</td>
-<td>The cue does not hear about XenoCore's critical hits</td>
+<td><strong>CRITICAL HIT!</strong> shows, but the number is the normal colour</td>
+<td>Same as the first row: Lyra's cue does not hear about XenoCore's critical hits</td>
 </tr>
 </tbody>
 </table>
-<p>All three come undone when Lyra's content is re-downloaded or replaced.</p>
-<p><strong>Fix:</strong> re-apply the damage-cue patches listed in the repository's <code>Patches/</code> folder, in the order
-given there. Each is a script that edits the asset for you.</p>
-<!-- VERIFY: the buyer-facing name and location of the Patches folder and its re-apply scripts in the shipped product -->
+<p><strong>Fix:</strong> open the damage effect, and under <strong>Display › Gameplay Cues</strong> set the cue tag to
+<code>GameplayCue.XenoCore.DamageTaken</code>. Simplest is to duplicate <code>Battle/Attributes/GE_XenoCore_Damage</code>
+for every new damage effect. If the cue asset itself is missing, restore it from your XenoCore download.</p>
+<!-- VERIFY: the Details label of the cue list on a Gameplay Effect in 5.8 (Display > Gameplay Cues). -->
 
-<p><strong>Avoid it next time:</strong> do not overwrite <code>/Game/GameplayCueNotifies/GCNL_Character_DamageTaken</code> when
-updating Lyra content. See <a href="../../recipes/hit-feedback/">Tune hit feedback</a>.</p>
 <h3 id="my-new-gameplay-cue-never-plays">My new gameplay cue never plays<a class="headerlink" href="#my-new-gameplay-cue-never-plays" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently</p>
 <p>The cue asset looks correct and nothing is logged.</p>
 </div>
-<p><strong>Why:</strong> cues are only found in folders registered with the cue manager. XenoCore registers its
-own <code>GameplayCues</code> folder through an <strong>Add Gameplay Cue Path</strong> action on its Game Feature Data
-asset (<code>XenoCore</code>, at the plugin's content root). A cue saved anywhere else, or in your own plugin
-without the same action, is never loaded.</p>
-<p><strong>Fix:</strong> save cues under a registered folder, or add an <strong>Add Gameplay Cue Path</strong> action to your own
-Game Feature Data. Paths are relative to the plugin's content root: <code>/GameplayCues</code>, not the full
-<code>/MyPlugin/...</code> path. <!-- VERIFY: action label in the Game Feature Data's Actions list --></p>
+<p><strong>Why:</strong> cues are only found in folders registered with the cue manager. The registered folders are
+<code>XenoCore/Content/GameplayCues</code> and the project's own <code>Content/GameplayCues</code> and
+<code>Content/GameplayCueNotifies</code>. A cue saved anywhere else is never loaded.</p>
+<p><strong>Fix:</strong> save your cues under <code>Content/GameplayCues/MyGame/</code>. If you keep them in a Game Feature
+plugin of your own, open that plugin's Game Feature Data asset (the one named after the plugin, at
+its content root) and add an <strong>Add Gameplay Cue Path</strong> action. Paths are relative to the plugin's
+content root: <code>/GameplayCues</code>, not the full <code>/MyPlugin/...</code> path.</p>
+<!-- VERIFY: action label in the Game Feature Data's Actions list -->
+
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/hit-feedback/">Add hit feedback</a>.</p>
 <h3 id="my-code-cant-find-an-ability-the-character-definitely-has">My code can't find an ability the character definitely has<a class="headerlink" href="#my-code-cant-find-an-ability-the-character-definitely-has" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently</p>
 <p>The lookup returns nothing and logs nothing.</p>
 </div>
+<p><em>For programmers and advanced Blueprints.</em></p>
 <p><strong>Why:</strong> <strong>Find Ability Spec From Class</strong> compares classes for exact equality. Every granted
 ability in XenoCore is a Blueprint child, so asking for the C++ parent class matches nothing.</p>
 <p><strong>Fix:</strong> find abilities by tag instead. For the current target, use <strong>Get Current Target</strong> or
@@ -4891,9 +4894,10 @@ fraction, and the first point of a skill or trait maxes the stat out.</p>
 <p><strong>Why:</strong> skill data uses whole percentages (a trait of +2 means +2 %). The conversion to a 0–1
 fraction is applied only to <strong>Critical Rate</strong> and <strong>Block Rate</strong>, so on any other fractional
 attribute +2 lands as +2.0, which the attribute clamps to 100 %.</p>
-<p><strong>Fix:</strong> store your stat as a whole percentage and convert where it is read, or have a programmer add
-your attribute to the fraction check in <code>AddStat</code> in <code>XenoCoreProgressionComponent_Skills.cpp</code>. The
-Skills screen shows a "%" after any stat whose tag ends in <code>Rate</code>, so name the tag to match.</p>
+<p><strong>Fix:</strong> store your stat as a whole percentage and convert where it is read. The list of fraction
+stats is fixed in C++, so adding yours to it needs a programmer (<code>AddStat</code> in
+<code>XenoCoreProgressionComponent_Skills.cpp</code>). The Skills screen shows a "%" after any stat whose tag
+ends in <code>Rate</code>, so name the tag to match.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../concepts/skills/#extending-it">Skills</a>.</p>
 <h3 id="the-god-cheat-doesnt-stop-the-player-taking-damage">The <code>God</code> cheat doesn't stop the player taking damage<a class="headerlink" href="#the-god-cheat-doesnt-stop-the-player-taking-damage" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> Lyra's <code>God</code> command gives god mode to the player <strong>state</strong>'s ability system. XenoCore

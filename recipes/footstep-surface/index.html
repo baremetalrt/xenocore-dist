@@ -4654,7 +4654,7 @@ puff of snow, and the old grass and stone surfaces keep theirs.</p>
 </tr>
 <tr>
 <td>4</td>
-<td>The name becomes a tag</td>
+<td>The name becomes a <a href="../../getting-started/glossary/">gameplay tag</a></td>
 <td><strong>Project Settings › LyraContextEffects › Surface Type To Context Map</strong></td>
 <td><code>SurfaceType4</code> → <code>SurfaceType.Grass</code></td>
 </tr>
@@ -4681,9 +4681,9 @@ step.</p>
 </ol>
 <h3 id="2-add-the-tag">2. Add the tag<a class="headerlink" href="#2-add-the-tag" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Project Settings › Gameplay Tags</strong>. Add <code>SurfaceType.Snow</code>.</li>
-<li>Store it in the <strong>project's</strong> tag list (<code>DefaultGameplayTags.ini</code>), not in a plugin's tag
-   file.</li>
+<li><strong>Project Settings › Project › Gameplay Tags</strong>. Click <strong>Add New Gameplay Tag</strong>.</li>
+<li>Name it <code>SurfaceType.Snow</code> and set <strong>Source</strong> to <code>DefaultGameplayTags.ini</code> (the project's own
+   tag list), not a plugin's tag file. Click <strong>Add New Tag</strong>.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Keep surface tags in the project's own tag list</p>
@@ -4699,8 +4699,8 @@ and the surface falls back to the default step.</p>
 </ol>
 <h3 id="4-make-the-physical-material">4. Make the physical material<a class="headerlink" href="#4-make-the-physical-material" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In <code>MyGame/Environment</code>, create a <strong>Physical Material</strong> (<strong>Physics › Physical Material</strong>).
-   Name it <code>PM_Snow</code>.</li>
+<li>In the Content Browser, open <code>MyGame/Environment</code>, right-click, and choose <strong>Physics › Physical
+   Material</strong> (class <strong>PhysicalMaterial</strong>). Name it <code>PM_Snow</code>.</li>
 <li>Set its <strong>Surface Type</strong> to <strong>Snow</strong>.</li>
 </ol>
 <h3 id="5-put-it-on-the-ground">5. Put it on the ground<a class="headerlink" href="#5-put-it-on-the-ground" title="Permanent link">&para;</a></h3>
@@ -4710,7 +4710,8 @@ and the surface falls back to the default step.</p>
   That covers the whole landscape unless its material outputs a physical material per paint
   layer.</li>
 <li><strong>A material</strong> used by meshes: open the material and set <strong>Phys Material</strong> in its Details.</li>
-<li><strong>One static mesh:</strong> in the mesh editor, set the physical material override on its collision.</li>
+<li><strong>One static mesh:</strong> open it in the Static Mesh editor and set <strong>Collision › Simple Collision
+  Physical Material</strong>.</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a landscape with no physical material sounds like concrete</p>
@@ -4721,8 +4722,8 @@ field.</p>
 <h3 id="6-add-the-effect-rows">6. Add the effect rows<a class="headerlink" href="#6-add-the-effect-rows" title="Permanent link">&para;</a></h3>
 <p>Rather than editing XenoCore's library, give the characters a library of your own:</p>
 <ol>
-<li>In <code>MyGame/Audio</code>, create a <strong>Data Asset</strong> of class <code>LyraContextEffectsLibrary</code>. Name it
-   <code>CFX_MyGame</code>.</li>
+<li>In the Content Browser, open <code>MyGame/Audio</code>, right-click, and choose <strong>Miscellaneous › Data
+   Asset</strong>. Pick the class <code>LyraContextEffectsLibrary</code> and name it <code>CFX_MyGame</code>.</li>
 <li>
 <p>Add two entries to <strong>Context Effects</strong>:</p>
 <table>

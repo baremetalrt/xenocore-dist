@@ -4600,6 +4600,13 @@ state lives on the player controller, per-character state lives on each pawn, an
 in subsystems.</strong> Every system page in this section is one row of that split.</p>
 <p>If you are new to the Lyra vocabulary, read the <a href="../../getting-started/glossary/">Glossary</a> entries for
 <em>Experience</em>, <em>Game Feature plugin</em> and <em>Pawn data</em> first.</p>
+<div class="admonition tip">
+<p class="admonition-title">Designers: what you need from this page</p>
+<p>This page is written for programmers. As a designer you need three things from it: the
+<a href="#the-ownership-map">ownership map</a> (which asset holds which setting), the rule that
+<a href="#extending-it">your changes go in your own copies</a>, and the
+<a href="#extension-points">extension points</a>. Everything else is background.</p>
+</div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <p>The plugin is <code>Plugins/GameFeatures/XenoCore</code>. It has two C++ modules and one content root:</p>
 <table>
@@ -5023,8 +5030,8 @@ the host; if you change them, a Lyra update overwrites your work, and XenoCore's
 under you.</p>
 <ul>
 <li>To change a XenoCore system's <strong>numbers</strong>, edit the Blueprint subclass that holds them
-  (<code>BP_XenoCore_Party</code>, <code>BP_XenoCore_Progression</code>, <code>BP_XenoCoreDamageExecution</code>) or, better, duplicate
-  it into <code>Content/MyGame/</code> and point the Game Feature Data at your copy.</li>
+  (<code>BP_XenoCore_Party</code>, <code>BP_XenoCore_Progression</code>, <code>BP_XenoCoreDamageExecution</code>) or, better, make a
+  child Blueprint of it in <code>Content/MyGame/</code> and point the Game Feature Data at your child.</li>
 <li>To change <strong>behaviour</strong> in C++, subclass the XenoCore class and override its virtuals. See
   <a href="../../recipes/subclass-mechanic/">Subclass a mechanic</a>.</li>
 <li>To add a <strong>new system</strong>, give it the same shape: party-wide state on a controller component with a
@@ -5095,10 +5102,14 @@ file.</p>
 </tbody>
 </table>
 <div class="admonition note">
-<p class="admonition-title">Lyra is patched in a few places</p>
-<p>Where a change to Lyra could not be avoided, it is recorded in the repository's <code>Patches/</code>
-folder with the reason and a re-apply step. If you replace the Lyra host with a fresh download,
-re-apply every patch there, or hit feedback (damage numbers, hit sounds) stops with no error.</p>
+<p class="admonition-title">XenoCore needs no edits to Lyra</p>
+<p>Where XenoCore needs Lyra content to behave differently, it ships its own copy instead of
+changing Lyra's: the damage-number cue is <code>GameplayCues/GCNL_XenoCore_DamageTaken</code> (fired by
+<code>GE_XenoCore_Damage</code>; Lyra's <code>GCNL_Character_DamageTaken</code> is untouched), and keyboard key
+icons are added at startup from <strong>Project Settings › Game › XenoCore UI › HUD › Keyboard Key Icons</strong>.
+A fresh download of Lyra therefore needs nothing re-applied.
+<!-- VERIFY: play-test the XenoCore damage cue copy on a stock Lyra 5.8 install: dealt numbers,
+ally hit numbers, critical gold number and sounds (commit 4d8691f0 says "not yet play-tested"). --></p>
 </div>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
 <ul>

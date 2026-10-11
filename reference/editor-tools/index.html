@@ -4502,6 +4502,18 @@
 
 <h1 id="editor-tools">Editor tools<a class="headerlink" href="#editor-tools" title="Permanent link">&para;</a></h1>
 <p><em>Programmer · reference · C++ · Last tested: never</em></p>
+<div class="admonition tip">
+<p class="admonition-title">Designers: the two things on this page you will use</p>
+<ul>
+<li><strong>Tools › XenoCore › Apply XenoCore Project Settings</strong> writes the project settings XenoCore
+  needs. Run it once after installing, and again if a recipe tells you to. It never overwrites
+  a setting you changed yourself. See <a href="#project-setup">Project setup</a>.</li>
+<li><strong>Save-time checks</strong>: saving an Art definition or a pawn Blueprint can show an error or warning
+  in the <strong>Message Log</strong>. The messages are listed in <a href="#save-time-checks">Save-time checks</a>.</li>
+</ul>
+<p>That is the whole menu: XenoCore adds one entry to <strong>Tools</strong>. Everything else on this page is a
+Blueprint function library for programmers automating the editor.</p>
+</div>
 <p>XenoCore has a second C++ module, <strong>XenoCoreEditor</strong>, declared with type <code>Editor</code> in
 <code>XenoCore.uplugin</code>. It never loads in a packaged game. It holds Blueprint function libraries that
 automate editor tasks the engine's own scripting cannot reach: building anim-layer graphs, camera
@@ -4667,27 +4679,32 @@ a conflict in the Output Log under <code>LogXenoSetup</code>. Run it any of thre
 </ul>
 <p>The full list of settings is in <a href="../../getting-started/install/#what-apply-changes">Install › What Apply changes</a>.</p>
 <h2 id="save-time-checks">Save-time checks<a class="headerlink" href="#save-time-checks" title="Permanent link">&para;</a></h2>
-<p>Two validators run when you save an asset (and in <strong>Validate Assets</strong>):</p>
+<p>Two validators in this module run when you save an asset, and when you right-click an asset or
+folder and choose <strong>Validate Assets</strong>:</p>
 <table>
 <thead>
 <tr>
 <th>Check</th>
+<th>Runs on</th>
 <th>What it reports</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Art cooldown tags</td>
-<td>An error: an Art with a cooldown has no <strong>Cooldown Tag</strong>, or shares one with another Art</td>
+<td>Every Art definition</td>
+<td><strong>Error:</strong> <em>"Cooldown Tag … is also used by …. Arts sharing a tag share one cooldown"</em>. Give each Art its own tag. (An Art with a cooldown and no tag at all is reported by the Art definition's own check.)</td>
 </tr>
 <tr>
 <td>Body meshes</td>
-<td>A warning: a pawn's cosmetic body-mesh rules could leave it with no visible body</td>
+<td>Pawn Blueprints with cosmetic body-mesh rules</td>
+<td><strong>Warning:</strong> <em>"Body Meshes has no Default Mesh"</em>, <em>"Mesh Rules[n] has no Mesh"</em>, or a cosmetic part <em>"matches no Body Meshes rule"</em>. <strong>Error</strong> when that part would make the pawn <em>"INVISIBLE"</em>: add a rule for its tags, or set a <strong>Default Mesh</strong></td>
 </tr>
 </tbody>
 </table>
-<!-- VERIFY: the exact error text of each validator in the editor -->
-
+<p>Many runtime assets (shop and trade tables, drop tables, member definitions, experience curves,
+Art definitions) carry their own checks, which run the same way. Each recipe lists the messages
+for its asset.</p>
 <h2 id="development-scripts-are-not-part-of-the-template">Development scripts are not part of the template<a class="headerlink" href="#development-scripts-are-not-part-of-the-template" title="Permanent link">&para;</a></h2>
 <p>The repository that XenoCore is developed in has a <code>Tools/</code> folder at its root, full of Python and
 shell scripts used to author the shipped assets. Those scripts are internal: they assume the

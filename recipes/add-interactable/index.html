@@ -4625,8 +4625,8 @@ instead. No C++.</p>
   lever, a sign, a pickup, a switch.</li>
 </ul>
 <h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<p><code>AXenoCoreInteractableActor</code> is a C++ base built for Blueprint children. It already does the parts
-you would otherwise have to write:</p>
+<p><code>XenoCoreInteractableActor</code> is a parent class built for Blueprint children. It already does the
+parts you would otherwise have to write:</p>
 <table>
 <thead>
 <tr>
@@ -4636,8 +4636,8 @@ you would otherwise have to write:</p>
 </thead>
 <tbody>
 <tr>
-<td>Registers itself with the interaction subsystem at <strong>Begin Play</strong> and unregisters at <strong>End Play</strong></td>
-<td>Nothing. A Blueprint's own <strong>Event BeginPlay</strong> runs from inside the base's, so it cannot skip the registration</td>
+<td>Tells the prompt it exists at <strong>Begin Play</strong>, and stops at <strong>End Play</strong></td>
+<td>Nothing. Your own <strong>Event BeginPlay</strong> cannot skip it</td>
 </tr>
 <tr>
 <td>Offers its <strong>Interact Verb</strong> on A and its <strong>Secondary Interact Verb</strong> on X</td>
@@ -4753,8 +4753,8 @@ actor, and when it stops (out of range, disabled, or a menu covers the world).</
 <ol>
 <li>Place the lever in <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>.</li>
 <li>Walk up to it. At about 2 m the prompt beside the player shows <strong>A Pull</strong> and <strong>X Inspect</strong>.</li>
-<li>Press <strong>X</strong>: the message prints; the prompt stays.</li>
-<li>Press <strong>A</strong>: the lever acts, and the prompt disappears straight away.</li>
+<li>Press <strong>X</strong> (keyboard <strong>F</strong>): the message prints; the prompt stays.</li>
+<li>Press <strong>A</strong> (keyboard <strong>E</strong>): the lever acts, and the prompt disappears straight away.</li>
 <li>Walk away and back: no prompt, because it is disabled.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
@@ -4781,10 +4781,14 @@ verbs (A and X), drops the rest from the prompt, and logs a warning once per act
 <li><strong>Remember that it was pulled:</strong> add a <strong>XenoCore Save Participant</strong> component and tick
   <strong>SaveGame</strong> on the variable that holds the state. See <a href="../save-system/">Make a system save</a>.</li>
 <li><a href="../../concepts/interaction-npcs-dialogue/">Interaction, NPCs and dialogue</a></li>
-<li>A third button needs a new input action, a new interact-press ability and a C++ change to the
-  subsystem's cap (<code>UXenoCoreInteractionSubsystem::MaxPressableVerbs</code>). The prompt widget can draw
-  four.</li>
+<li>A third button is a programmer job.</li>
 </ul>
+<details class="note">
+<summary>For programmers</summary>
+<p>A third button needs a new input action, a new interact-press ability, and a raise of
+<code>UXenoCoreInteractionSubsystem::MaxPressableVerbs</code> (a <code>constexpr</code> 2). The prompt widget can
+draw four.</p>
+</details>
 
 
 

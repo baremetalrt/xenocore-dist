@@ -4640,6 +4640,19 @@ the party in battle, the auto-attack swings on its own while the target is in re
 hit sends the victim an event it reacts to. The one idea: <strong><code>Status.XenoCore.InBattle</code> on the leader
 means "the party is fighting"</strong>, and the party AI, the HUD, the animation layers and the Party screen
 all read that one tag.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> lock on, the party draws and auto-attacks; hits flinch and push the target; misses
+dodge, blocks guard; when the last enemy falls the party sheathes and celebrates.</p>
+<p><strong>What you can change, no code:</strong></p>
+<ul>
+<li>Swing reach, speed and clips: <a href="../../recipes/tune-auto-attack/">Tune auto-attack</a></li>
+<li>Shake, rumble, numbers and the critical line: <a href="../../recipes/hit-feedback/">Add hit feedback</a></li>
+<li>Knockback, flinch, guard and dodge clips: <a href="#what-you-can-change">What you can change</a> and
+  <a href="../../recipes/character-combat-animations/">Give a character its own combat animations</a></li>
+<li>Block and hit chances: <a href="../stats-and-damage/#what-you-can-change">Stats and damage</a></li>
+</ul>
+</div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4668,7 +4681,7 @@ all read that one tag.</p>
 <tr>
 <td>Damage</td>
 <td><code>Battle/Attributes/GE_XenoCore_Damage</code></td>
-<td>Fires the cue <code>GameplayCue.Character.DamageTaken</code></td>
+<td>Fires the cue <code>GameplayCue.XenoCore.DamageTaken</code></td>
 </tr>
 <tr>
 <td>Talent charge</td>
@@ -4849,7 +4862,7 @@ the character with root motion: the duck steps back and the sidestep moves to th
 after a swing made on the move.</p>
 <!-- SCREENSHOT: an armed party member mid-duck, both hands still on the greatsword -->
 
-<!-- SCREENSHOT: a minion in its guard pose beside BLOCKED text, from Tools/UIAuthoring/block_evade_pie.py -->
+<!-- SCREENSHOT: a minion in its guard pose beside BLOCKED text -->
 
 <p>The minion has its own copies (<code>Characters/Enemies/Minion/GA_XenoCore_Minion_Guard</code>, <code>_Recoil</code>,
 <code>_Evade</code>), because it is on its own skeleton (<code>SK_Minion_Core</code>) and its clips are retargeted from the
@@ -4881,7 +4894,7 @@ setting allows it. To test with a keyboard, use the console command
 <tbody>
 <tr>
 <td>Damage the party <strong>deals</strong> (yours and every ally's)</td>
-<td>Lyra's <code>GCNL_Character_DamageTaken</code> cue, through <code>B_XenoCore_NumberPopComponent</code>, <code>DamagePopStyle_XenoCore</code> and <code>NS_XenoCore_DamageNumbers</code>. A critical hit draws gold.</td>
+<td>XenoCore's damage cue <code>GameplayCues/GCNL_XenoCore_DamageTaken</code> (a copy of Lyra's), through <code>B_XenoCore_NumberPopComponent</code>, <code>DamagePopStyle_XenoCore</code> and <code>NS_XenoCore_DamageNumbers</code>. A critical hit draws gold.</td>
 </tr>
 <tr>
 <td>Damage you <strong>take</strong></td>
@@ -4903,17 +4916,19 @@ setting allows it. To test with a keyboard, use the console command
 <strong>Project Settings › Game › XenoCore Content › Critical Hit</strong>; see
 <a href="../../recipes/hit-feedback/#5-tune-the-critical-hit-optional">Tune hit feedback</a>.</p>
 <div class="admonition warning">
-<p class="admonition-title">Damage numbers depend on a patched Lyra asset</p>
-<p>The dealt-damage number comes from Lyra's own <code>GCNL_Character_DamageTaken</code>, which XenoCore has
-patched three ways: to find the attacking <strong>pawn</strong> (Lyra's version looks for a player state), to
-draw allies' hits as well as yours, and to show a critical hit in Lyra's critical style. If you
-replace the Lyra host content, re-apply the damage-cue patches listed in the repository's
-<code>Patches/</code> folder, or dealt numbers and hit sounds disappear while sparks still play. See
-<a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Hit numbers or hit sounds are missing</a>.</p>
+<p class="admonition-title">Fails silently: a damage effect that fires Lyra's cue</p>
+<p>The dealt-damage number, the hit-confirm sound and the kill sound come from XenoCore's own copy
+of Lyra's damage cue, <code>GCNL_XenoCore_DamageTaken</code>, which knows that XenoCore's attackers are
+pawns and that allies' hits count. Lyra's own <code>GCNL_Character_DamageTaken</code> is left untouched, and
+it does <strong>not</strong> work with XenoCore's characters: a damage effect of your own that fires
+<code>GameplayCue.Character.DamageTaken</code> shows sparks but no number and no hit sound. Duplicate
+<code>GE_XenoCore_Damage</code> for new damage effects, so they keep <code>GameplayCue.XenoCore.DamageTaken</code>.
+See <a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Hit numbers or hit sounds are missing</a>.
+<!-- VERIFY: the XenoCore cue copy in play on stock Lyra (commit 4d8691f0: not yet play-tested). --></p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a hit with no location</p>
-<p>Lyra's damage cue places its number and sparks at the effect's hit result, with no fallback. The
+<p>The damage cue places its number and sparks at the effect's hit result, with no fallback. The
 auto-attack builds a hit result at the target's surface. If you apply <code>GE_XenoCore_Damage</code> yourself
 without one, the number appears at the world origin, where nobody sees it.</p>
 </div>
@@ -5072,14 +5087,15 @@ down. See <a href="../party-gauge-and-revive/">Party Gauge, downed and revive</a
 <a href="../../recipes/hit-feedback/">Change the hit feedback</a>.</p>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>A different weapon feel:</strong> duplicate <code>GA_XenoCore_AutoAttack</code> into <code>Content/MyGame/</code>, change its
-  montages and ranges, and grant your copy in your character's ability set instead.</li>
+<li><strong>A different weapon feel:</strong> right-click <code>GA_XenoCore_AutoAttack</code>, choose <strong>Create Child Blueprint
+  Class</strong>, save the child in <code>Content/MyGame/</code>, change its montages and ranges, and grant the child in
+  your character's ability set instead.</li>
 <li><strong>Something that should not flinch:</strong> give its hit-react ability's blocked tags the state you want,
   or grant it no hit-react ability.</li>
-<li><strong>Guards and dodges for a new character:</strong> duplicate <code>GA_XenoCore_Guard</code>, <code>_Recoil</code> and <code>_Evade</code>
+<li><strong>Guards and dodges for a new character:</strong> make a child Blueprint of <code>GA_XenoCore_Guard</code>, <code>_Recoil</code> and <code>_Evade</code>
   (or the minion's, if your character is on the minion's skeleton), set your own montages in
   <strong>Directional Montages</strong> (or <strong>Random Montages</strong>, for a pick-one-at-random set), and grant the
-  copies beside the hit react in its ability set. On the party skeleton, put a dodge montage on the
+  children beside the hit react in its ability set. On the party skeleton, put a dodge montage on the
   <code>Defence</code> slot to keep the arms on the weapon while armed; on <code>FullBody</code> the clip's own arms play
   in both stances. The rules
   (trigger, held tags, cancelling an Art) come with the parent class; the copy only holds clips.</li>
@@ -5102,6 +5118,8 @@ Blueprint copy that sets <strong>Activation Blocked Tags</strong> or <strong>Act
 and the character can then move or swing while it guards.</p>
 </div>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>The animation decides when a hit lands.</strong> A timer beside a montage drifts, and the target takes
   damage while the blade is still winding up. Tying damage to a notify on the clip keeps them in step
@@ -5115,6 +5133,7 @@ and the character can then move or swing while it guards.</p>
 <li><strong>State tags block abilities as data.</strong> Lyra's tag relationship mapping turns "while this tag is
   present, this ability cannot start" into a table row, so no ability has to know about another.</li>
 </ul>
+</details>
 
 
 

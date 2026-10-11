@@ -4524,7 +4524,7 @@
 
 <h1 id="give-a-character-its-own-idle-breaks-and-faces">Give a character its own idle breaks and faces<a class="headerlink" href="#give-a-character-its-own-idle-breaks-and-faces" title="Permanent link">&para;</a></h1>
 <p><em>Designer · 20 min · No code · Last tested: never</em></p>
-<p><strong>Result:</strong> one companion fidgets with its own clips and has its own temperament at rest: a cheerful
+<p><strong>Result:</strong> one companion (an <a href="../../getting-started/glossary/">active member</a> the AI drives) fidgets with its own clips and has its own temperament at rest: a cheerful
 brawler laughs when it turns to a friend, a deadpan lookout looks bored. Every other character keeps
 its own. You edit one asset per character, and the face table if you want a new expression.</p>
 <!-- SCREENSHOT: DA_XenoCore_AnimProfile_VRoid_L open, Idle and Face categories expanded -->
@@ -4534,8 +4534,9 @@ its own. You edit one asset per character, and the face table if you want a new 
 <li><a href="../../concepts/companion-ai/#out-of-battle-a-party-on-its-own-clock">Companion AI and aggro</a>: when a
   resting companion strolls, turns to a friend or pulls a face. This recipe only changes <strong>which</strong>
   clip and <strong>which</strong> face.</li>
-<li>The character needs an <strong>anim profile</strong>. Every shipped VRoid member has one beside its pawn, for
-  example <code>Characters/VRoid/Kael/DA_XenoCore_AnimProfile_VRoid_L</code>. For anyone else,
+<li>The character needs an <strong>anim profile</strong>: the data asset set as <strong>Anim Profile</strong> in its pawn
+  Blueprint's <strong>Class Defaults</strong> (<strong>XenoCore › Animation</strong>). Every shipped VRoid member has one beside
+  its pawn, for example <code>Characters/VRoid/Kael/DA_XenoCore_AnimProfile_VRoid_L</code>. For anyone else,
   make one as in <a href="../character-combat-animations/">Give a character its own combat animations</a>, step 1.</li>
 <li>Faces work only on a character with a face: a VRoid member. A Mannequin-bodied member still gets
   its idle breaks, still turns to its friends and looks at them, but shows no expression.</li>
@@ -4548,12 +4549,14 @@ its own. You edit one asset per character, and the face table if you want a new 
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-give-the-character-its-own-idle-breaks">1. Give the character its own idle breaks<a class="headerlink" href="#1-give-the-character-its-own-idle-breaks" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open the character's anim profile.</li>
-<li>Under <strong>Idle</strong>, add clips to <strong>Idle Breaks</strong>. These play while the weapon is away. Four is a good
-   number: one is picked at random each time and never the same one twice running.</li>
+<li>In the Content Browser, double-click the character's anim profile (for Kael,
+   <code>Characters/VRoid/Kael/DA_XenoCore_AnimProfile_VRoid_L</code>).</li>
+<li>Under <strong>Idle</strong>, click <strong>+</strong> beside <strong>Idle Breaks</strong> and pick a clip. Repeat for each clip. These
+   play while the weapon is <a href="../../getting-started/glossary/">sheathed</a>. Four is a good number: one is
+   picked at random each time and never the same one twice running.</li>
 <li>Leave <strong>Armed Idle Breaks</strong> empty unless you have clips made for holding the weapon. Empty means
    the stance's own break plays with the weapon out (for the greatsword, Kwang's laugh).</li>
-<li><strong>Save</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: an unarmed fidget with the sword out</p>
@@ -4562,10 +4565,12 @@ arms straight through the sword, and nothing complains. Leave the list empty rat
 an unarmed clip.</p>
 </div>
 <p>How often the character fidgets is not in the profile: it is <strong>Idle Break Delay</strong> and <strong>Idle Break
-Jitter</strong> on the stance's layer child. See <a href="../../concepts/animation/">Animation</a>.</p>
+Jitter</strong> (<strong>XenoCore › Idle Break</strong>) in the <strong>Class Defaults</strong> of the stance's layer Blueprint in
+<code>Characters/Player/AnimLayers</code> (for example <code>ABP_XenoCore_UnarmedAnimLayers</code>). That setting is
+shared by everyone using the stance. See <a href="../../concepts/animation/">Animation</a>.</p>
 <h3 id="2-give-the-character-a-temperament">2. Give the character a temperament<a class="headerlink" href="#2-give-the-character-a-temperament" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In the same profile, under <strong>Face</strong>, add entries to <strong>Social Expressions</strong>. These are the faces it
+<li>In the same profile, under <strong>Face</strong>, click <strong>+</strong> beside <strong>Social Expressions</strong> to add an entry. These are the faces it
    pulls when it turns to a companion at rest, and when a companion turns to it.</li>
 <li>For each entry set:<ul>
 <li><strong>Expression</strong>: a row name from <code>Characters/Core/Face/DT_XenoCore_FaceExpressions</code>, for example
@@ -4577,24 +4582,27 @@ Jitter</strong> on the stance's layer child. See <a href="../../concepts/animati
 </li>
 <li>Add entries to <strong>Solo Expressions</strong> the same way. These are pulled now and then while the
    character stands alone.</li>
-<li><strong>Save</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
 </ol>
 <p>Both lists empty means a neutral face at rest. The faces for battle, a Topple, being downed or a
-victory come from the face's own rules and are not affected.</p>
+victory come from the face's own rules and are not affected. (See the glossary for
+<a href="../../getting-started/glossary/">Topple</a> and <a href="../../getting-started/glossary/">downed</a>.)</p>
 <p>The shipped members show the range: Kael is warm (<code>Smile</code>, <code>Happy</code>, <code>Laugh</code>, <code>Thinking</code>), Mira
 playful (<code>Laugh</code>, <code>Happy</code>, <code>Wink</code>, <code>Giggle</code>), Nia dry (<code>Smug</code>, <code>Smile</code>, <code>Annoyed</code>, <code>Bored</code>).</p>
 <h3 id="3-optional-add-an-expression-of-your-own">3. (Optional) Add an expression of your own<a class="headerlink" href="#3-optional-add-an-expression-of-your-own" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <code>Characters/Core/Face/DT_XenoCore_FaceExpressions</code> and add a row. Its name is what profiles,
+<li>Open <code>Characters/Core/Face/DT_XenoCore_FaceExpressions</code> and click <strong>Add</strong> in the Data Table
+   editor's toolbar. Rename the new row (right-click it &gt; <strong>Rename</strong>). Its name is what profiles,
    face rules and Blueprints ask for.</li>
-<li>In <strong>Curves</strong>, add one entry per face curve with its weight at full intensity. Use the VRM
+<li>In the row's <strong>Curves</strong>, click <strong>+</strong> once per face curve, type the curve name as the key and its
+   weight at full intensity as the value. Use the VRM
    presets: <code>happy</code>, <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>, <code>aa</code>, <code>ih</code>, <code>ou</code>, <code>ee</code>, <code>oh</code>, <code>blink</code>,
    <code>blinkLeft</code>, <code>blinkRight</code>. Most expressions are a mix: the shipped <code>Annoyed</code> is <code>angry</code> 0.45 with
    <code>blink</code> 0.3, for narrowed eyes under a half frown.</li>
 <li>Tick <strong>Suppress Blink</strong> for an expression whose eyes are already shut or squeezed.</li>
 <li>For movement on top of the mix, such as a laugh's mouth, set <strong>Pulse Curve</strong> (for example <code>aa</code>),
    <strong>Pulse Weight</strong> and <strong>Pulse Rate</strong> (cycles per second).</li>
-<li><strong>Save</strong>, then use the row name in a profile.</li>
+<li>Click <strong>Save</strong>, then use the row name in a profile.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a curve the face does not have</p>
@@ -4607,11 +4615,13 @@ morph curve in Play before you rely on it.
 <p>Call <strong>Play Expression On Actor</strong> with the character (its pawn or its cosmetic part), a row name, a
 weight and a duration: for a cutscene beat, a dialogue line or a quest reward. It returns false and
 does nothing on a character without a face, so it is safe to call on anyone.</p>
-<p>To make a companion look at something at the same time, call <strong>Request Attention</strong> on its controller
-(<code>AXenoCorePartyMemberController</code>) with the actor and a number of seconds.</p>
+<p>To make a companion look at something at the same time, take the companion's controller (<strong>Get
+Controller</strong>), <strong>Cast To XenoCorePartyMemberController</strong>, and call <strong>Request Attention</strong> on it with the
+actor and a number of seconds. A player-controlled character has no such controller, so the cast
+fails and nothing happens.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Open Gaur Plain with the character in the active party, and press <strong>Play</strong>.</li>
+<li>Open <code>Maps/L_XenoCore_GaurPlain</code> with the character in the active party, and press <strong>Play</strong>.</li>
 <li>Walk a few steps and stop. Stand still for half a minute.</li>
 <li>The character takes its own fidgets from your <strong>Idle Breaks</strong>, not in step with the others, and no
    clip twice running.</li>
@@ -4654,7 +4664,7 @@ does nothing on a character without a face, so it is safe to call on anyone.</p>
 </tr>
 <tr>
 <td>Companions never turn to each other</td>
-<td>They never rest: the leader keeps moving. No activity starts while the leader moves faster than <strong>Leader Moving Speed</strong> on <strong>XenoCore Party Hold</strong></td>
+<td>They never rest: the leader keeps moving. No activity starts while the leader moves faster than <strong>Leader Moving Speed</strong> (60 cm/s), a parameter of the <strong>XenoCore Party Hold</strong> task in <code>Characters/Party/AI/ST_XenoCore_PartyMember</code></td>
 </tr>
 </tbody>
 </table>

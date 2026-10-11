@@ -4545,7 +4545,7 @@
 
 
 <h1 id="arts">Arts<a class="headerlink" href="#arts" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · Last tested: never</em></p>
+<p><em>All · 15 min read · No code · Last tested: never</em></p>
 <p>An <strong>Art</strong> is a special move a character picks from the combat palette. Every Art is described by
 one data asset, an <strong>Art definition</strong> (<code>UXenoCoreArtDefinition</code>), and runs as a shared Gameplay
 Ability (<code>UXenoCoreGameplayAbility_Art</code>) that reads everything it needs from that asset. Which Arts
@@ -4555,6 +4555,21 @@ character on the party's progression component. The one idea that makes the rest
 Art needs behaviour the shared ability does not have.</p>
 <p>See the <a href="../../getting-started/glossary/">Glossary</a> for <strong>Art</strong>, <strong>Talent Art</strong>, <strong>palette</strong> and
 <strong>Break</strong>.</p>
+<div class="admonition abstract">
+<p class="admonition-title">At a glance</p>
+<p><strong>In play:</strong> each character has a bar of Arts beside the Talent Art in the centre; pick one with
+the D-pad, it plays, lands its damage and effects, and greys out for its cooldown.</p>
+<p><strong>What you can change, no code:</strong></p>
+<ul>
+<li>A new Art: <a href="../../getting-started/first-art/">Your first art</a>, <a href="../../recipes/attack-art/">Create an attack art</a>,
+  <a href="../../recipes/support-art/">Create a healing or support art</a></li>
+<li>What it inflicts: <a href="../../recipes/art-reactions/">Make an art inflict reactions</a></li>
+<li>Who learns it, when, and where it sits on the bar: <a href="../../recipes/palette-slots/">Palette slots</a></li>
+<li>A Talent Art: <a href="../../recipes/talent-art/">Create a Talent Art</a></li>
+<li>When companions and enemies use it: <a href="../../recipes/tune-companion-ai/">Tune companion AI</a></li>
+<li>Every setting: <a href="#what-you-can-change">What you can change</a></li>
+</ul>
+</div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4622,20 +4637,23 @@ Art needs behaviour the shared ability does not have.</p>
 </tr>
 </tbody>
 </table>
-<p>How a press becomes a hit:</p>
+<p>The player's palette and the <a href="../companion-ai/">companion AI</a> fire an Art the same way, so a
+companion's Art obeys exactly the player's range, cooldown and costs.</p>
+<details class="note">
+<summary>For programmers: how a press becomes a hit</summary>
 <ul>
-<li>The palette input abilities never activate an Art themselves. They move or confirm the selection,
-  and the target-mode ability turns the selected entry into an activation.</li>
-<li>The palette and the <a href="../companion-ai/">companion AI</a> both fire an Art through one function,
-  <strong>Fire Art</strong> (<code>UXenoCoreGameplayAbility_Art::FireArt</code>), so a companion's Art is held to exactly
-  the player's range, cooldown and costs.</li>
+<li>The palette input abilities never activate an Art themselves. They move or confirm the
+  selection, and the target-mode ability turns the selected entry into an activation.</li>
+<li>The palette and the companion AI both fire an Art through one function, <strong>Fire Art</strong>
+  (<code>UXenoCoreGameplayAbility_Art::FireArt</code>).</li>
 <li>The progression component grants each palette Art to the pawn as an ability <strong>spec</strong> whose
-  source object is the Art definition. That is how many Arts share one ability class and are still
-  told apart.</li>
-<li>The ability class used is, in order: the definition's <strong>Ability Class</strong>, else whatever class is
-  already granting that Art, else the progression component's <strong>Default Art Ability Class</strong>
+  source object is the Art definition. That is how many Arts share one ability class and are
+  still told apart.</li>
+<li>The ability class used is, in order: the definition's <strong>Ability Class</strong>, else whatever class
+  is already granting that Art, else the progression component's <strong>Default Art Ability Class</strong>
   (<code>GA_XenoCore_Art_Base</code>).</li>
 </ul>
+</details>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p><strong>Learning.</strong> Each character's pawn Blueprint points at a <strong>learnset</strong>: a DataTable whose rows are
 <code>FXenoCoreArtUnlock</code>, set as <strong>Art Learn Table</strong>. When a character's record is created, and again
@@ -4654,48 +4672,49 @@ character is still levels away from cost nothing. See <a href="../performance/">
 <tr>
 <th>Table</th>
 <th>Used by</th>
+<th>Arts (level learnt)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Table</td>
-<td>Used by</td>
-</tr>
-<tr>
-<td>---</td>
-<td>---</td>
-</tr>
-<tr>
 <td><code>DT_XenoCore_ArtLearnset_Default</code></td>
 <td><code>B_XenoCore_PartyMember_Base</code> and the colour variants that do not set their own</td>
+<td>Back Slash, Light Heal, Air Slash (1)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Kael</code></td>
 <td>Kael (<code>B_XenoCore_Party_VRoid_L</code>)</td>
+<td>Back Slash, Light Heal, Air Slash, Stream Edge (1); War Swing (2)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Mira</code></td>
 <td>Mira (<code>B_XenoCore_Party_VRoid_K</code>), <code>B_XenoCore_Party_Maroon</code></td>
+<td>Back Slash, Light Heal, Air Slash, Shield Bash, Wild Down (1)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Nia</code></td>
 <td>Nia (<code>B_XenoCore_Party_VRoid_S</code>), <code>B_XenoCore_Party_Cyan</code></td>
+<td>Back Slash, Light Heal, Air Slash (1)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Dorran</code></td>
 <td>Dorran (<code>B_XenoCore_Party_VRoid_C</code>), <code>B_XenoCore_Party_Lime</code></td>
+<td>Back Slash, Light Heal, Air Slash (1)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Isolde</code></td>
 <td>Isolde (<code>B_XenoCore_Party_VRoid_M</code>), <code>B_XenoCore_Party_Purple</code></td>
+<td>Ember Ring, Ether Ward, Frost Lance (1); Mind Sap (3)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Sabine</code></td>
 <td>Sabine (<code>B_XenoCore_Party_VRoid_Q</code>), <code>B_XenoCore_Party_Yellow</code></td>
+<td>Bellow, Hamstring, Venom Edge (1); Wild Down (2)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Tamsin</code></td>
 <td>Tamsin (<code>B_XenoCore_Party_VRoid_Y</code>), <code>B_XenoCore_Party_Pink</code></td>
+<td>Bolster, Light Heal, Mending Wave (1); Slit Edge (2); Renewal (3)</td>
 </tr>
 </tbody>
 </table>
@@ -4914,6 +4933,21 @@ curve reads the Art's level. Talent Arts cannot be levelled.</p>
 <td><strong>Position</strong>, <strong>Power Multiplier</strong>, <strong>Announce Chance</strong> per entry</td>
 </tr>
 <tr>
+<td><strong>Threat</strong></td>
+<td>Art definition › Art › Aggro</td>
+<td>Aggro this Art builds on the enemies it reaches (default <code>10</code>). See <a href="../companion-ai/#aggro">Aggro</a></td>
+</tr>
+<tr>
+<td><strong>Usable By AI</strong>, <strong>AI Priority</strong>, <strong>AI Chain Bonus</strong>, <strong>AI Wait For Reaction</strong>, <strong>AI Conditions</strong></td>
+<td>Art definition › Art › Companion AI</td>
+<td>Whether and when companions and enemies use it. See <a href="../companion-ai/#how-a-companion-chooses-an-art">How a companion chooses an art</a></td>
+</tr>
+<tr>
+<td><strong>Tint FX By Category</strong></td>
+<td>Art definition › Art › Cosmetics</td>
+<td>Tint the Art's effects with its type colour (on by default)</td>
+</tr>
+<tr>
 <td><strong>Gauge Cost</strong></td>
 <td>Talent Art definition › Talent Art</td>
 <td>Gauge spent, out of 100. Default <code>100</code></td>
@@ -5090,6 +5124,8 @@ fine), then set that character's <strong>Art Learn Table</strong>.</p>
   every Art in the game uses them.</li>
 </ul>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
+<details class="note">
+<summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>One asset per Art.</strong> Arts are granted as ability specs with the definition as source object, so
   any number share one ability class. A per-Art Blueprint and unique ability tag is no longer needed.</li>
@@ -5102,6 +5138,7 @@ fine), then set that character's <strong>Art Learn Table</strong>.</p>
 <li><strong>Levels on the progression component</strong>, keyed by the member definition, because a benched
   character has no pawn and the Arts menu still has to edit them.</li>
 </ul>
+</details>
 
 
 

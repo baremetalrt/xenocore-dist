@@ -4576,7 +4576,7 @@ shows the time and the weather icon.</p>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Read <a href="../../concepts/day-night-weather/">Time of day and weather</a>.</li>
-<li>A map that runs the XenoCore experience, with a <strong>XenoCore Map Area</strong> actor and an <strong>Area
+<li>A map that runs the XenoCore <a href="../../getting-started/glossary/">Experience</a>, with a <strong>XenoCore Map Area</strong> actor and an <strong>Area
   Definition</strong> (the minimap needs the same two). See <a href="../minimap-new-map/">Give a map its minimap</a>.</li>
 </ul>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
@@ -4613,6 +4613,7 @@ logged at Begin Play. Set the directional light to <strong>Movable</strong>.</p>
 <li>Add a row: <strong>Weather</strong> <code>XenoCore.Weather.Rain</code>, <strong>Percent</strong> <code>10</code>.</li>
 <li>Add a row: <strong>Weather</strong> <code>XenoCore.Weather.Storm</code>, <strong>Percent</strong> <code>3</code>.</li>
 <li>Leave <strong>Phases</strong> empty on both, so they can roll at any time of day.</li>
+<li><strong>Save</strong>.</li>
 </ol>
 <p>Whatever the rows leave under 100 (here 87%) is clear weather. Gaur Plain's table,
 <code>Maps/Areas/DT_XenoCore_Weather_GaurPlain</code>, is a working example.</p>
@@ -4628,8 +4629,8 @@ logged at Begin Play. Set the directional light to <strong>Movable</strong>.</p>
 and back out at dawn, never mid-battle. See <a href="../area-music/">Give a map its music</a>.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Press <strong>Play</strong>. The minimap shows the area name, a weather icon (none when clear) and the time.</li>
-<li>Open the console and run <code>XenoCore.Time.Scale 60</code>: an hour passes every second. Watch the sun set,
+<li>Press <strong>Play</strong> in your map. The minimap shows the area name, a weather icon (none when clear) and the time.</li>
+<li>Open the console (<code>`</code>) and run <code>XenoCore.Time.Scale 60</code>: an hour passes every second. Watch the sun set,
    the moon rise and the stars come out. Run <code>XenoCore.Time.Scale 1</code> to go back.</li>
 <li>Run <code>XenoCore.Weather.Set Rain lock snap</code>. Rain falls round the camera, the sky greys and the
    music drops. Stand under an arch or roof: no rain falls there.</li>
@@ -4641,7 +4642,7 @@ and back out at dawn, never mid-battle. See <a href="../area-music/">Give a map 
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">The weather never changes from clear</p>
+<p class="admonition-title">Fails silently: the weather never changes from clear</p>
 <p>The area's <strong>Weather Table</strong> is empty, the map has no <strong>XenoCore Map Area</strong> actor, or the Map
 Area points at a different Area Definition. Run <code>XenoCore.Time.Describe</code> to see what the clock and
 weather think.</p>
@@ -4662,12 +4663,12 @@ try values live with <code>XenoCore.Environment.NightFloor</code>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Rain falls indoors</p>
-<p>The overhead capture that stops rain is off (<strong>Environment › Weather › Height Map</strong>), or the roof
-is translucent, which the capture leaves out.</p>
+<p>The overhead capture that stops rain is off: tick <strong>Rain Height Map</strong> (<strong>Environment › Weather ›
+Height Map</strong>) on the director. Or the roof is translucent, which the capture leaves out.</p>
 </div>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Add a new kind of weather: a gameplay tag under <code>XenoCore.Weather</code>, a row in the weather types
+<li>Add a new kind of weather: a <a href="../../getting-started/glossary/">gameplay tag</a> under <code>XenoCore.Weather</code>, a row in the weather types
   table, and a row in an area's weather table.</li>
 <li>Change how fast time passes, or the phase hours: <strong>Project Settings › Plugins › XenoCore
   Environment › Clock</strong>.</li>

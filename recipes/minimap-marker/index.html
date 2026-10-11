@@ -4558,7 +4558,7 @@ with its own icon. Or one of the shipped markers looks different.</p>
 </ul>
 <h2 id="how-markers-work">How markers work<a class="headerlink" href="#how-markers-work" title="Permanent link">&para;</a></h2>
 <p>Every marker is an actor that has <strong>registered</strong> with the minimap as a <strong>kind</strong>, which is a
-<code>XenoCore.Map.Marker.*</code> gameplay tag. What a kind looks like is one row of
+<code>XenoCore.Map.Marker.*</code> <a href="../../getting-started/glossary/">gameplay tag</a>. What a kind looks like is one row of
 <code>UserInterface/HUD/Minimap/DT_XenoCore_MapMarkers</code>. XenoCore's enemies and NPCs register themselves.</p>
 <table>
 <thead>
@@ -4592,7 +4592,7 @@ with its own icon. Or one of the shipped markers looks different.</p>
 </table>
 <h2 id="change-how-a-shipped-marker-looks">Change how a shipped marker looks<a class="headerlink" href="#change-how-a-shipped-marker-looks" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Open <code>DT_XenoCore_MapMarkers</code>.</li>
+<li>Open <code>UserInterface/HUD/Minimap/DT_XenoCore_MapMarkers</code>.</li>
 <li>Select the row and change:</li>
 </ol>
 <table>
@@ -4651,17 +4651,20 @@ with its own icon. Or one of the shipped markers looks different.</p>
 <h2 id="add-a-new-kind-of-marker">Add a new kind of marker<a class="headerlink" href="#add-a-new-kind-of-marker" title="Permanent link">&para;</a></h2>
 <h3 id="1-add-the-tag">1. Add the tag<a class="headerlink" href="#1-add-the-tag" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <strong>Project Settings › Gameplay Tags</strong>.</li>
-<li>Add <code>XenoCore.Map.Marker.&lt;YourKind&gt;</code>, for example <code>XenoCore.Map.Marker.Chest</code>, to the XenoCore
-   tag list (<code>Config/Tags/XenoCoreTags.ini</code>), with a comment saying what it marks.</li>
+<li>Open <strong>Project Settings › Project › Gameplay Tags</strong> and click <strong>Add New Gameplay Tag</strong>.</li>
+<li>Name it <code>XenoCore.Map.Marker.&lt;YourKind&gt;</code>, for example <code>XenoCore.Map.Marker.Chest</code>, add a comment
+   saying what it marks, and set <strong>Source</strong> to your own tag source (for example
+   <code>MyGameTags.ini</code>), not XenoCore's, so a template update cannot remove it.</li>
+<li>Click <strong>Add New Tag</strong>.</li>
 </ol>
 <h3 id="2-add-its-row">2. Add its row<a class="headerlink" href="#2-add-its-row" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Import your icon into <code>UserInterface/HUD/Minimap</code>. Set its <strong>Texture Group</strong> to <code>UI</code> and
-   <strong>Mip Gen Settings</strong> to <code>NoMipmaps</code>.</li>
+<li>Drag your icon file into your own folder, for example <code>MyGame/UI/Minimap</code>. Open it and set
+   <strong>Level Of Detail › Texture Group</strong> to <code>UI</code> and <strong>Mip Gen Settings</strong> to <code>NoMipmaps</code>. <strong>Save</strong>.</li>
 <li>In <code>DT_XenoCore_MapMarkers</code>, click <strong>Add</strong>, and name the row after the kind (e.g. <code>Chest</code>).</li>
-<li>Set <strong>Kind</strong> to your tag, then <strong>Icon</strong>, <strong>Tint</strong>, <strong>Size</strong> and the rest as above.</li>
-<li><strong>Save</strong>.</li>
+<li>Set <strong>Kind</strong> to your tag. Expand <strong>Icon</strong> and set its <strong>Image</strong> to your texture. Then set
+   <strong>Tint</strong>, <strong>Size</strong> and the rest as above.</li>
+<li><strong>Save</strong>. <code>DT_XenoCore_MapMarkers</code> is a shipped asset: note your row for template updates.</li>
 </ol>
 <h3 id="3-make-your-actor-register">3. Make your actor register<a class="headerlink" href="#3-make-your-actor-register" title="Permanent link">&para;</a></h3>
 <p>In your actor's Blueprint, open the <strong>Event Graph</strong>:</p>
@@ -4679,18 +4682,20 @@ Marker</strong> again with the new kind.</p>
 Output Log says so once, naming the actor and the tag:
 <code>Minimap: &lt;actor&gt; is registered as &lt;tag&gt;, but DT_XenoCore_MapMarkers has no row for that kind</code>.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">A C++ actor can decide its own kind every frame</p>
+<details class="note">
+<summary>For programmers: a kind that changes every frame</summary>
 <p>XenoCore's enemies and NPCs implement <code>IXenoCoreMapMarkerSource</code> and answer <strong>which</strong> kind to show
 each frame, or none: a dead enemy, an NPC whose quest is taken. A Blueprint actor cannot implement
 that interface, so it registers a fixed kind and re-registers when that changes.</p>
-</div>
+</details>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Place your actor near the player start and play.</li>
-<li>Walk away until it is under 90 m off: it should appear on the minimap where it stands.</li>
-<li>Walk further: it should leave the edge (or stay pinned to the rim, if <strong>Clamp To Rim</strong> is on).</li>
-<li>Press <strong>L3</strong> (or <strong>M</strong>): it should appear on the overlay too.</li>
+<li>Place your actor a few metres from the player start in <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>.</li>
+<li>It appears on the minimap (top right) where it stands, with your icon, tint and size.</li>
+<li>Walk away from it: it slides to the edge and leaves the circle (or stays pinned to the rim, if
+   <strong>Clamp To Rim</strong> is on).</li>
+<li>Press <strong>L3</strong> (or <strong>M</strong>): it appears on the full-screen map too, and in the legend if the row has
+   a <strong>Label</strong>.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <table>
