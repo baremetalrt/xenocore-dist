@@ -4681,8 +4681,10 @@ named unique monster.</p>
 <li><strong>It is tied to its home.</strong> A spawned enemy's home is where it spawned; a hand-placed one's is
   where you put it. If a chase takes it farther than <strong>Leash Radius</strong> (70 m) from home, it gives up,
   heals and walks back.</li>
-<li><strong>A squad drops one chest.</strong> Only the last member killed drops a chest, upgraded to at least
-  silver (<strong>Squad Loot Rule</strong>).</li>
+<li><strong>A squad drops one chest.</strong> Only the last member killed drops a chest (<strong>Squad Loot Rule</strong>). It is
+  gold at three times the usual chance (<strong>Squad Gold Multiplier</strong>), otherwise silver, and holds the
+  <strong>leader's</strong> loot: the first enemy of the first <strong>Members</strong> entry. Put the type whose loot the squad
+  should give at the top of the list.</li>
 <li><strong>A spawner's squad comes back; a hand-placed enemy does not.</strong> A fallen squad member returns
   after <strong>Respawn Delay</strong> (90 s), and only out of sight: when the leader is beyond <strong>Hidden
   Distance</strong> (50 m), or behind the camera and beyond <strong>Behind Camera Min Distance</strong> (18 m). Nothing
@@ -4847,7 +4849,7 @@ party and never fights. Always make a <strong>child</strong> of <code>BP_AIC_Xen
 <li>Press <strong>Play</strong> and approach the squad. Grunts hear by sound: <strong>walk</strong> past and they keep
    wandering; <strong>run</strong> near them and they attack.</li>
 <li>Hit one squad member from a distance. The others nearby join the fight.</li>
-<li>Defeat the whole squad. Only the last one drops a chest, at least silver.</li>
+<li>Defeat the whole squad. Only the last one drops a chest, at least silver, with the leader's loot.</li>
 <li>Walk well away (beyond 50 m) and wait 90 seconds. The squad is back when you return.
    <code>XenoCore.Enemies.RespawnAll</code> in the console brings it back at once.</li>
 <li>The hand-placed enemy walks its route and pauses at each point. Run more than 70 m from its

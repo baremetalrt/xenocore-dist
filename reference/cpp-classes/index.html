@@ -21968,7 +21968,16 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>XenoCore › Spawner › Squad</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td><code>true</code></td>
-<td>Only the last member killed drops a chest, upgraded to at least silver.</td>
+<td>Only the last member killed drops a chest: gold at Squad Gold Multiplier x the odds, else silver, filled from the leader's (first member's) drop table.</td>
+</tr>
+<tr>
+<td><strong>Squad Gold Multiplier</strong></td>
+<td><code>SquadGoldMultiplier</code></td>
+<td><code>float</code></td>
+<td>XenoCore › Spawner › Squad</td>
+<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.0, EditCondition=bSquadLootRule</td>
+<td><code>3.0</code></td>
+<td>The squad chest's gold chance is the leader's table's Gold Chance times this. XC1: 3.</td>
 </tr>
 <tr>
 <td><strong>Unique Monster</strong></td>
@@ -26198,6 +26207,12 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>Callable</td>
 <td><code>EXenoCoreChestTier RollTier(bool bForceGold = false) const</code></td>
 <td>Which chest this enemy leaves behind.</td>
+</tr>
+<tr>
+<td><strong>Roll Squad Tier</strong></td>
+<td>Callable</td>
+<td><code>EXenoCoreChestTier RollSquadTier(float GoldMultiplier = 3.0f, bool bForceGold = false) const</code></td>
+<td>The tier of a squad's one chest: gold at GoldChance x GoldMultiplier (XC1: x3), otherwise silver if this table has a silver pool, else wooden.</td>
 </tr>
 <tr>
 <td><strong>Roll Contents</strong></td>

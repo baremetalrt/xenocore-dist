@@ -4636,9 +4636,18 @@ table. Rarity belongs to each item; see <a href="../../recipes/item-rarity/">Set
 ticked), spawns its <strong>Chest Class</strong> on the floor where it died, turned to face the player, and tells
 the chest its table, tier and the enemy's level. The chest hides itself for <strong>Chest Drop Delay</strong>
 (<code>2</code> s) so it does not appear in the middle of the death animation, and cannot be opened until then.
-No <strong>Drop Table</strong> means no chest. An enemy that belongs to an <a href="../../recipes/place-enemies/">enemy spawner</a>
-squad drops a chest only on the <strong>last</strong> kill, upgraded to at least silver (the spawner's <strong>Squad Loot
-Rule</strong>, on by default).</p>
+No <strong>Drop Table</strong> means no chest.</p>
+<p><strong>Squads.</strong> An enemy that belongs to an <a href="../../recipes/place-enemies/">enemy spawner</a> squad follows
+Xenoblade Chronicles' squad rule (the spawner's <strong>Squad Loot Rule</strong>, on by default):</p>
+<ul>
+<li>Only the <strong>last</strong> member killed drops a chest. The others drop nothing, and their loot is not added
+  to it: a squad is worth one chest, not one per member.</li>
+<li>The chest is gold at three times the usual chance (the spawner's <strong>Squad Gold Multiplier</strong>, <code>3</code>),
+  and otherwise silver, never wooden. A table with no silver pool falls back to wooden.</li>
+<li>Its contents come from the squad <strong>leader's</strong> drop table and level, whichever member died last.
+  The leader is the first enemy of the spawner's first <strong>Members</strong> entry, so put the type whose loot
+  the squad should give first.</li>
+</ul>
 <p><strong>Waiting.</strong> An unopened chest stays in the world. It has no timer and nothing despawns it, and it
 survives leaving the map and saving and loading. The save subsystem keeps a record for every map
 the party has visited:</p>

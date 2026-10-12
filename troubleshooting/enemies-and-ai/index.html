@@ -4733,8 +4733,10 @@ route is on the navigation mesh (press <strong>P</strong>).</p>
 <li><strong>No chest at all:</strong> the enemy has a <strong>Drop Table</strong> but no <strong>Chest Class</strong>. Logged as an error:
   <code>&lt;name&gt; has a DropTable but no ChestClass. Its loot is unreachable.</code></li>
 <li><strong>No chest from most of a group:</strong> the enemy came from a spawner with <strong>Squad Loot Rule</strong> on (the
-  default), so only the <strong>last</strong> member killed drops a chest, at least silver. Untick it on the
-  spawner for one chest per enemy.</li>
+  default), so only the <strong>last</strong> member killed drops a chest, at least silver, with the <strong>leader's</strong>
+  loot (the first enemy of the first <strong>Members</strong> entry). Untick it on the spawner for one chest per enemy.</li>
+<li><strong>A squad's chest holds the wrong enemy's loot:</strong> it is the leader's, not the last kill's. Reorder the
+  spawner's <strong>Members</strong> so the type you want is first.</li>
 <li><strong>Empty chest:</strong> the drop table has no pool, or no usable entries, for the tier the chest rolled
   (Wooden, Silver or Gold). Logged as a warning: <code>&lt;table&gt; has no pool for tier &lt;n&gt;. The chest will
   be empty.</code></li>
