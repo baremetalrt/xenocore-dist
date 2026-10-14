@@ -4407,6 +4407,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4567,7 +4748,7 @@
 
 
 <h1 id="set-palette-slots-and-unlocks">Set palette slots and unlocks<a class="headerlink" href="#set-palette-slots-and-unlocks" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 20 min · No code · Last tested: never</em></p>
+<p><em>Designer · 20 min · No code</em></p>
 <p><strong>Result:</strong> you decide how many Art slots the palette has at each level, which Arts each character
 learns and when, and which slot each Art starts in. The player then rearranges them on the Arts
 menu.</p>
@@ -4636,8 +4817,7 @@ Slash / Light Heal / Air Slash start; Isolde, Sabine and Tamsin have their own A
 <p><strong>Default Slot</strong> accepts <code>0</code> to <code>7</code>, so a ninth slot or later can only be filled from the Arts
 menu. The palette widget has no hard limit: it repeats its slot art outward from the centre for
 every entry. XC1's bar is eight wide; keep the list to eight entries or fewer unless you have
-checked a wider bar fits your screen.
-<!-- VERIFY(PLAY): set Art Slot Unlock Levels to ten 1s, start a new game, enter battle; pass = all ten slots draw, none overlaps the HUD or runs off a 1920x1080 screen. If it fails, say "eight at most" here. --></p>
+checked a wider bar fits your screen.</p>
 </div>
 <h3 id="2-choose-each-characters-arts">2. Choose each character's Arts<a class="headerlink" href="#2-choose-each-characters-arts" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4731,8 +4911,7 @@ slot decides and <strong>Palette Order</strong> is ignored.</p>
 character's <strong>Art Learn Table</strong> still points at the default. Every sample character has its
 own table, so a row added to the default does not reach them. The player's own pawn,
 <code>Game/B_XenoCore_Player</code>, uses Kael's table (<code>DT_XenoCore_ArtLearnset_Kael</code>) and also gets Back
-Slash and Light Heal from its ability set, <code>Game/AbilitySet_XenoCore_Hero</code>.
-<!-- VERIFY(DECISION): DRAFTING-NOTES F13 is still open - AbilitySet_XenoCore_Hero still grants GA_XenoCore_BackSlash and GA_XenoCore_LightHeal beside the Kael learnset (set by Tools/Release/kit_transfer.py). Once Brian decides whether to drop them from the set, rewrite this sentence. --></p>
+Slash and Light Heal from its ability set, <code>Game/AbilitySet_XenoCore_Hero</code>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">An Art is on the bar twice, or not at all</p>

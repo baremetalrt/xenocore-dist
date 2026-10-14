@@ -4379,6 +4379,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4511,7 +4692,7 @@
 
 
 <h1 id="progression">Progression<a class="headerlink" href="#progression" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · No code · Last tested: never</em></p>
+<p><em>All · 15 min read · No code</em></p>
 <p>Levels, experience, Art Points, learned arts, art palettes, skill progress and the party's gold are
 all owned by one component on the player controller, <code>UXenoCoreProgressionComponent</code>, set up as the Blueprint
 <code>Game/BP_XenoCore_Progression</code>. The one idea: <strong>progress is stored per character, keyed by the member
@@ -4638,12 +4819,7 @@ that level, so Data Validation rejects it on save, and warns about a row shorter
 <div class="admonition note">
 <p class="admonition-title">Level-up does not revive</p>
 <p>A downed party member stays down until revived or the battle ends; a level-up records the new
-level but does not stand them up.
-<!-- VERIFY(PLAY): code check: a level-up re-applies the statline (ProgressionComponent.cpp:322)
-with no downed check, so a downed member's Health goes to full. In a fight with a minion still
-engaged, type <code>XenoDownMember 1</code>, then <code>XenoAwardExp 5000</code>. Pass = it stays kneeling with
-Status.XenoCore.Downed, its HUD row stays grey, and a revive still costs a bar. If its HP bar
-reads full while kneeling, say so here. --></p>
+level but does not stand them up.</p>
 </div>
 <h2 id="gold">Gold<a class="headerlink" href="#gold" title="Permanent link">&para;</a></h2>
 <p>The purse is <strong>Gold</strong> on the same component, 3,000 at the start of a new game. <strong>Award Gold</strong> adds and

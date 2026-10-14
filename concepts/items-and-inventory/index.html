@@ -3168,6 +3168,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#checks-on-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checks on save
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#rarity" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4396,6 +4407,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4450,6 +4642,17 @@
     <span class="md-ellipsis">
       
         Fragments on an item
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checks-on-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checks on save
       
     </span>
   </a>
@@ -4545,7 +4748,7 @@
 
 
 <h1 id="items-and-inventory">Items and inventory<a class="headerlink" href="#items-and-inventory" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · Last tested: never</em></p>
+<p><em>All · 15 min read</em></p>
 <p><strong>What the player sees:</strong> one bag shared by the whole party. The Items menu sorts it into tabs
 (Equipment, Items, Collectables, Key, Gems, Crystals, Materials, Art Manuals), every item name is
 coloured by its rarity, an "Obtained" badge appears when something is picked up, and any character
@@ -4669,6 +4872,48 @@ honour carry limits and never take an item someone is wearing.</p>
 <p>An item with no category fragment falls back to <strong>Items</strong>. A non-equipment item such as
 <code>ID_XenoCore_EtherCrystal</code> carries only the category and display fragments; a piece of armour such
 as <code>ID_XenoCore_BattleArmour</code> carries all five.</p>
+<h3 id="checks-on-save">Checks on save<a class="headerlink" href="#checks-on-save" title="Permanent link">&para;</a></h3>
+<p>Saving an item definition (an <code>ID_</code> asset), or running <strong>Asset Actions › Validate Assets</strong> on it,
+checks its fragments for setups that otherwise fail silently in play:</p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>An empty entry in the fragment list</td>
+<td>Error</td>
+</tr>
+<tr>
+<td><strong>Equip Slots</strong> but no <strong>Equippable Item</strong> fragment, or no <strong>Equipment Definition</strong> on it</td>
+<td>Error: the item would list in the swap menu and the click would do nothing</td>
+</tr>
+<tr>
+<td>An <strong>Equippable Item</strong> fragment but no <strong>Equip Slots</strong> fragment, or no <strong>Allowed Slots</strong></td>
+<td>Error: the item could never be placed in a slot</td>
+</tr>
+<tr>
+<td>A weapon with no <strong>Weapon Type</strong></td>
+<td>Warning: any character could wield it</td>
+</tr>
+<tr>
+<td>Equipment whose <strong>Category</strong> is not Equipment</td>
+<td>Warning: it shows on the wrong Items menu tab</td>
+</tr>
+<tr>
+<td>No display name</td>
+<td>Warning</td>
+</tr>
+<tr>
+<td>A gem with no <strong>Stat Tag</strong>, a <strong>Gem Id</strong> of <code>0</code>, or <strong>Min Value</strong> above <strong>Max Value</strong></td>
+<td>Error</td>
+</tr>
+</tbody>
+</table>
+<p>The results appear in the <strong>Message Log</strong> window and the Output Log.</p>
 <h3 id="rarity">Rarity<a class="headerlink" href="#rarity" title="Permanent link">&para;</a></h3>
 <p>Xenoblade 3's model: <strong>Common</strong>, <strong>Rare</strong> and <strong>Legendary</strong>, drawn white, gold and purple with one to
 three pips (<code>UserInterface/Items/T_XenoCore_RarityPip</code>) in every menu that names an item. Names carry

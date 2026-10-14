@@ -4611,6 +4611,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4975,7 +5156,7 @@
 
 
 <h1 id="blueprint-nodes">Blueprint nodes<a class="headerlink" href="#blueprint-nodes" title="Permanent link">&para;</a></h1>
-<p><em>Designer · reference · No code · Last tested: never</em></p>
+<p><em>Designer · reference · No code</em></p>
 <div class="admonition note">
 <p class="admonition-title">Generated from source — do not edit by hand.</p>
 <p>This page is written by <code>Docs/Manual/tools/gen_reference.py</code> from the plugin's headers.
@@ -5490,7 +5671,7 @@ suspended until then, so always wire every output pin you care about.</p>
 <td>Pure</td>
 <td><code>UXenoCoreArtsUIStatics</code></td>
 <td><code>FText GetCategoryLabel(EXenoCoreArtCategory Category)</code></td>
-<td>"Physical", "Break", "Heal".</td>
+<td>The display label of an art category: "Physical", "Break", "Heal".</td>
 </tr>
 <tr>
 <td><strong>Get Palette Views</strong></td>
@@ -5882,7 +6063,7 @@ suspended until then, so always wire every output pin you care about.</p>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
 <td><code>TArray&lt;FXenoCoreItemView&gt; GetItemViewsForCategory(EXenoCoreItemCategory Category)</code></td>
-<td>No description.</td>
+<td>One row per item definition in a tab, with Quantity filled in - "Ether Crystal x12".</td>
 </tr>
 <tr>
 <td><strong>Get Item Views For Slot</strong></td>
@@ -6169,7 +6350,7 @@ suspended until then, so always wire every output pin you care about.</p>
 <td>Pure</td>
 <td><code>UXenoCoreLootStatics</code></td>
 <td><code>float GetChestInteractRange()</code></td>
-<td>One range, so the prompt and the press cannot disagree.</td>
+<td>The distance at which a chest can be prompted for and opened. Wire this rather than typing the number.</td>
 </tr>
 <tr>
 <td><strong>Open Nearest Chest</strong></td>
@@ -6302,7 +6483,7 @@ suspended until then, so always wire every output pin you care about.</p>
 <td>Pure</td>
 <td><code>UXenoCorePartyUIStatics</code></td>
 <td><code>FText GetPartyNameWithLevel(UXenoCorePartyMemberDefinition* Member)</code></td>
-<td>"shulk Lv 24" - the name with the level beside it, for a stat block header.</td>
+<td>"Shulk Lv 24" - the name with the level beside it, for a stat block header.</td>
 </tr>
 <tr>
 <td><strong>Get Party Row Info</strong></td>
@@ -6596,7 +6777,7 @@ suspended until then, so always wire every output pin you care about.</p>
 <td>Pure</td>
 <td><code>UXenoCoreSkillsUIStatics</code></td>
 <td><code>FText GetBranchRewardText(const FXenoCoreSkillBranchUnlock&amp; Unlock)</code></td>
-<td>"Skill Branch: Reyn - Camaraderie" - a quest reward line, for the offer screen and the turn-in banner alike. The branch is a quest reward in XC1's data (the xsw quest infobox's skill_branch field, beside EXP, gold and items).</td>
+<td>"Skill Branch: Reyn - Camaraderie" - a quest reward line, for the offer screen and the turn-in banner alike.</td>
 </tr>
 <tr>
 <td><strong>Get Skill Branch Views</strong></td>

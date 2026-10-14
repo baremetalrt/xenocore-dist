@@ -4407,6 +4407,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4567,7 +4748,7 @@
 
 
 <h1 id="targeting">Targeting<a class="headerlink" href="#targeting" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · No code · Last tested: never</em></p>
+<p><em>All · 15 min read · No code</em></p>
 <p>Target mode is a gameplay ability, <code>Battle/Targeting/GA_XenoCore_TargetMode</code>, built on the C++ class
 <code>UXenoCoreGameplayAbility_TargetMode</code>. While it is active it <strong>holds</strong> the selected enemy, shows the
 battle HUD (diamond over the target, target badge, player plate, arts palette), and drives the
@@ -4664,14 +4845,10 @@ diamond, arrows and sound, and how far an enemy chases before it gives up. See
 <p class="admonition-title">A lost lock is logged, with the reason</p>
 <p>When target mode ends because the target was lost, a warning <code>target lock LOST (was ...: reason)</code>
 is logged. The reason is one of <code>dead</code>, <code>out of range (...)</code>, <code>not on a different team</code> or
-<code>line of sight blocked by ...</code>, naming the blocking actor. A deliberate exit (B, a won fight, a
+<code>line of sight blocked by ...</code>, naming the blocking actor (that reason only occurs while the lock
+check requires line of sight; see <strong>Require Line Of Sight</strong> in the settings below). A deliberate exit (B, a won fight, a
 switch) logs nothing. If the auto-attack seems to stop for no reason, look for this line first.</p>
 </div>
-<!-- VERIFY(EDITOR): open GA_XenoCore_TargetMode, Ctrl+F each Step Target From node and the Is Target
-Still Valid node, and note whether Require Line Of Sight / Require On Screen are ticked. The lost-lock
-reason `line of sight blocked` above only appears if Is Target Still Valid's Require Line Of Sight is
-ticked; write the actual values into the settings table below. -->
-
 <h3 id="facing-while-locked">Facing while locked<a class="headerlink" href="#facing-while-locked" title="Permanent link">&para;</a></h3>
 <p>Out of battle a character turns to face where it runs. In battle, target mode switches facing to
 the target, but only when that is what the player means:</p>

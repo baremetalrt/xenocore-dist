@@ -4413,6 +4413,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4579,7 +4760,7 @@
 
 
 <h1 id="party">Party<a class="headerlink" href="#party" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · No code · Last tested: never</em></p>
+<p><em>All · 15 min read · No code</em></p>
 <p>The party is owned by one component on the player controller, <code>UXenoCorePartyComponent</code>, set up as
 the Blueprint <code>Characters/Party/BP_XenoCore_Party</code>. It holds three things: the <strong>roster</strong> (everyone
 recruited), the <strong>active members</strong> (everyone fielded) and the <strong>leader slot</strong> (which active member the
@@ -4880,10 +5061,7 @@ the cursor on the caster, the D-pad moves it, and confirming again casts. See
 <p>The three switch abilities live in <code>AbilitySet_XenoCore_Interact</code>, the <strong>Leader Only Ability
 Set</strong>, which moves to whichever body the player drives. Do not also grant them in a member's
 own ability set: the switch moves the leader-only set on the next frame, and a second copy on
-another body is never removed, so it answers the trigger from a body the player is not driving.
-<!-- VERIFY(PLAY): add GA_XenoCore_PartySwitch to one member's own ability set (e.g. Mira's), Play
-as Kael, tap RT once. Record what happens (double switch? switch from Mira's body? nothing?) and
-write that symptom into this box; then remove the test grant. --></p>
+another body is never removed, so it answers the trigger from a body the player is not driving.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a party member that nothing can hurt</p>

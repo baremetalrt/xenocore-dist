@@ -4374,6 +4374,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4501,7 +4682,7 @@
 
 
 <h1 id="animation">Animation<a class="headerlink" href="#animation" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · Last tested: never</em></p>
+<p><em>All · 15 min read</em></p>
 <p><strong>What the player sees:</strong> characters walk and run with smooth blending, turn their upper body
 toward a locked enemy while their legs keep running, switch to a sword stance when a battle starts,
 fidget when left standing, flinch without dropping their swing, and (on VRoid characters) blink,
@@ -4804,10 +4985,7 @@ Part</strong> must not add a part at all. See <a href="../characters/">Character
 <p>An expression row that names a curve the VRoid model's face does not have shows nothing, and
 nothing is logged. A typo in a row name looks the same, because a name that is not a row is
 tried as a single curve. Rows built from the VRM presets listed above are known to work; check
-any row that uses a raw <code>Fcl_*</code> morph curve in Play before relying on it.
-<!-- VERIFY(PLAY): add a DT_XenoCore_FaceExpressions row whose curve mix is one raw morph (e.g.
-Fcl_MTH_A at 1.0), Play, and call Play Expression On Actor with it on Kael. Pass = the mouth
-visibly opens. If nothing moves, say here that raw Fcl_* curves do not reach the face. --></p>
+any row that uses a raw <code>Fcl_*</code> morph curve in Play before relying on it.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: the idle break branches wired backwards</p>

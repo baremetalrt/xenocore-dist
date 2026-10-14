@@ -4440,6 +4440,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4633,7 +4814,7 @@
 
 
 <h1 id="add-a-vroid-party-member">Add a VRoid party member<a class="headerlink" href="#add-a-vroid-party-member" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 2 h · No code · Last tested: never</em></p>
+<p><em>Designer · 2 h · No code</em></p>
 <p><strong>Result:</strong> a character made in VRoid Studio is a playable party member. It runs, fights,
 blinks and changes expression in battle, using the same animations, abilities and weapon
 sockets as every other member.</p>
@@ -4817,8 +4998,6 @@ and swap its materials for instances of that material.</p>
 <li>In the retargeter, keep <strong>Run IK Rig</strong> off. With IK on, the ankles are pulled to the
    Mannequin's ankle height and the whole body sinks into the floor.</li>
 </ol>
-<!-- VERIFY(EDITOR): "Run IK Rig" is the op name build_member.py:116 disables, so that label holds. Still to check by hand: duplicate IK_AvatarSample_C, set Preview Mesh to a freshly imported VRoid mesh; pass = every chain resolves (none red). Then in the duplicated retargeter, confirm the field that takes the target IK rig and how it is labelled. -->
-
 <h3 id="4-make-the-retarget-anim-blueprint">4. Make the retarget anim Blueprint<a class="headerlink" href="#4-make-the-retarget-anim-blueprint" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create an <strong>Animation Blueprint</strong> for your VRoid skeleton. Parent class:

@@ -4502,6 +4502,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4757,13 +4938,13 @@
 
 
 <h1 id="build-and-editor">Build and editor<a class="headerlink" href="#build-and-editor" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min · Building C++ section needs C++ · Last tested: never</em></p>
+<p><em>All · 15 min · Building C++ section needs C++</em></p>
 <p>Problems loading the right experience, Blueprint changes that do not behave the way the graph
 suggests, packaging, and building the C++ code. For where things live, read
 <a href="../../concepts/architecture/">Architecture</a>.</p>
-<p>The first three sections are for everyone. <strong>Building C++</strong>, at the end, is for whoever compiles the
-project's C++; a designer who only opens the editor never sees those errors, except the VRM4U one if
-the editor offers to rebuild modules.</p>
+<p>The first three sections are for everyone. <strong>Building C++</strong>, at the end, covers compile errors.
+Everyone compiles once, because XenoCore is delivered as source and builds the first time the project
+opens; after that, only whoever changes C++ sees those errors.</p>
 <h2 id="loading-the-right-content">Loading the right content<a class="headerlink" href="#loading-the-right-content" title="Permanent link">&para;</a></h2>
 <h3 id="play-loads-the-wrong-experience-whatever-the-maps-world-settings-say">Play loads the wrong experience, whatever the map's World Settings say<a class="headerlink" href="#play-loads-the-wrong-experience-whatever-the-maps-world-settings-say" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> an <strong>Experience Override</strong> in Lyra's developer settings beats the map's World Settings in
@@ -4842,9 +5023,9 @@ sure a cooked asset references it.</p>
 </ol>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/subclass-mechanic/">Subclass a mechanic</a>.</p>
 <h3 id="the-c-build-fails-inside-the-vrm4u-plugin">The C++ build fails inside the VRM4U plugin<a class="headerlink" href="#the-c-build-fails-inside-the-vrm4u-plugin" title="Permanent link">&para;</a></h3>
-<p>You only see this if you <strong>build</strong> the project's C++ (in Visual Studio, with <code>Build.bat</code>, or by
-answering <strong>Yes</strong> to a rebuild prompt). Opening the editor normally uses VRM4U's prebuilt binaries
-and compiles nothing.</p>
+<p>You only see this if VRM4U's own C++ is compiled, in Visual Studio, with <code>Build.bat</code>, or as part of
+the rebuild Unreal offers when the project opens. VRM4U's release zip carries binaries for UE 5.8,
+so usually only XenoCore compiles; if VRM4U's modules are rebuilt as well, this is the error.</p>
 <p>The build stops with dozens of header-tool errors like:</p>
 <div class="highlight"><pre><span></span><code>VRM4U\Source\VRM4U\Public\VrmAnimInstance.h(74): Error: Native pointer usage in member
 declaration detected [[[UVrmMetaObject *]]]. This is disallowed for the target/module,

@@ -4396,6 +4396,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4545,7 +4726,7 @@
 
 
 <h1 id="add-a-hud-element">Add a HUD element<a class="headerlink" href="#add-a-hud-element" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 20 min · No code · Last tested: never</em></p>
+<p><em>Designer · 20 min · No code</em></p>
 <p><strong>Result:</strong> your own widget (here, an in-game clock) on the HUD in play, placed in one of the HUD's
 named slots, without editing <code>W_XenoCore_HUDLayout</code> or any other XenoCore asset.</p>
 <!-- SCREENSHOT: the HUD in play with a clock at the top centre -->
@@ -4598,8 +4779,6 @@ something is added.</p>
 </tbody>
 </table>
 <p>All five tags come with XenoCore, so they appear in every tag picker.</p>
-<!-- VERIFY(PLAY): add a 400x80 test widget to HUD.Slot.XenoCore.BottomCenter, start a fight at 1920x1080 so the Arts palette shows; pass = the widget and the palette do not overlap. If they do, say so in the table row. -->
-
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-make-the-widget">1. Make the widget<a class="headerlink" href="#1-make-the-widget" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4642,9 +4821,7 @@ collapsing it: a collapsed widget stops ticking and cannot notice when to come b
 <p class="admonition-title">From your own Game Feature plugin instead</p>
 <p>If your content lives in its own Game Feature plugin, you can put the same <strong>Add Widgets</strong>
 action in that plugin's Game Feature Data (<strong>Actions</strong>). It applies whenever that feature is
-active. <!-- VERIFY(PLAY): in a separate Game Feature plugin whose Game Feature Data has an
-Add Widgets row targeting HUD.Slot.XenoCore.TopCenter, activate the feature and press Play;
-pass = the widget draws in the XenoCore HUD's top-centre point. --></p>
+active.</p>
 </div>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>

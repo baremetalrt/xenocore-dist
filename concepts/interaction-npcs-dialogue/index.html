@@ -4357,6 +4357,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4467,7 +4648,7 @@
 
 
 <h1 id="interaction-npcs-and-dialogue">Interaction, NPCs and dialogue<a class="headerlink" href="#interaction-npcs-and-dialogue" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · No code · Last tested: never</em></p>
+<p><em>All · 15 min read · No code</em></p>
 <p><strong>What the player sees:</strong> walking up to something usable shows a prompt beside the character
 ("A Talk", "A Open", sometimes "X Trade"), and the button does exactly that. Talking to someone
 frames the two speakers with the camera, shows each line in a box over the speaker's head, and
@@ -4565,10 +4746,6 @@ whatever the prompt last offered.</p>
 it no longer decides what A does. It still traces for Lyra interactables and, while it finds one,
 holds <code>Status.XenoCore.InteractAvailable</code>, which stops <strong>Palette Confirm</strong>; the gameplay event it
 waits on (<code>XenoCore.Event.Interact</code>) is sent by nothing.</p>
-<!-- VERIFY(DECISION): input audit F8 proposes removing GA_XenoCore_Interact from the set and
-clearing Palette Confirm's InteractAvailable block. Before deciding, PLAY: stand by an NPC and a
-chest in target mode and press A; note whether the Art fires (block not held) or not. -->
-
 <p>The interaction abilities reach the player through the party, not through the pawn data:
 <code>AbilitySet_XenoCore_Interact</code> is the party's <strong>Leader Only Ability Set</strong>, granted to whichever body
 the player drives. (<code>Experiences/B_XenoCore_Experience</code> also grants it to <code>LyraPlayerState</code>, where it

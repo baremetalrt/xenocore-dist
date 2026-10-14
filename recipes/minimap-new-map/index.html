@@ -4396,6 +4396,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4545,7 +4726,7 @@
 
 
 <h1 id="give-a-map-its-minimap">Give a map its minimap<a class="headerlink" href="#give-a-map-its-minimap" title="Permanent link">&para;</a></h1>
-<p><em>Level designer · 30 min · No code · Last tested: never</em></p>
+<p><em>Level designer · 30 min · No code</em></p>
 <p><strong>Result:</strong> your map's minimap shows its own XC1-style image under the party, lined up with the
 world, and the L3 overlay shows the same image large.</p>
 <!-- SCREENSHOT: the XenoCore Map Area actor selected, its orange bounds box over the terrain, Details showing Area -->
@@ -4562,8 +4743,9 @@ world, and the L3 overlay shows the same image large.</p>
 world it covers, <strong>Map World Min</strong> (the image's top-left corner) and <strong>Map World Max</strong> (its
 bottom-right corner), in world centimetres.</p>
 <p>The image is read with <strong>+X to the right and +Y downwards</strong>, so north (up on the map) is −Y. The
-sample maps are built that way, and your image must be drawn in that orientation. The editor's
-<strong>Top</strong> viewport shows the world the same way round. <!-- VERIFY(EDITOR): open the Top viewport and place one cube at (+5000,0,0) and one at (0,+5000,0); pass = the +X cube sits right of centre and the +Y cube below it. The 5.8 view matrix (EditorViewportClient.cpp:1343, LVT_OrthoXY) reads as +X down, +Y left, so expect this sentence to need rewriting or deleting. --></p>
+sample maps are built that way, and your image must be drawn in that orientation. Do not assume the
+editor's <strong>Top</strong> viewport shows the world the same way round; check a known landmark against
+the world X and Y it sits at.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-the-area-definition">1. Create the Area Definition<a class="headerlink" href="#1-create-the-area-definition" title="Permanent link">&para;</a></h3>
 <ol>

@@ -4440,6 +4440,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4633,7 +4814,7 @@
 
 
 <h1 id="the-combat-loop">The combat loop<a class="headerlink" href="#the-combat-loop" title="Permanent link">&para;</a></h1>
-<p><em>All · 20 min read · No code · Last tested: never</em></p>
+<p><em>All · 20 min read · No code</em></p>
 <p>A fight is a chain of <strong>gameplay abilities</strong> talking through <strong>gameplay tags and events</strong>. Nothing is
 a central "battle manager". Target mode starts the fight on the player's side, drawing the weapon puts
 the party in battle, the auto-attack swings on its own while the target is in reach, and each landed
@@ -4923,11 +5104,7 @@ pawns and that allies' hits count. Lyra's own <code>GCNL_Character_DamageTaken</
 it does <strong>not</strong> work with XenoCore's characters: a damage effect of your own that fires
 <code>GameplayCue.Character.DamageTaken</code> shows sparks but no number and no hit sound. Duplicate
 <code>GE_XenoCore_Damage</code> for new damage effects, so they keep <code>GameplayCue.XenoCore.DamageTaken</code>.
-See <a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Hit numbers or hit sounds are missing</a>.
-<!-- VERIFY(PLAY): wiring is static-checked (GE_XenoCore_Damage names GameplayCue.XenoCore.DamageTaken,
-which GCNL_XenoCore_DamageTaken answers). On a STOCK Lyra 5.8 install with only the plugin added, in
-Gaur Plain: hit a minion (white number + hit sound over it), let an ally hit it (number + sound),
-land a crit (gold number + weak-spot sound). Pass = all three appear. --></p>
+See <a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Hit numbers or hit sounds are missing</a>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a hit with no location</p>

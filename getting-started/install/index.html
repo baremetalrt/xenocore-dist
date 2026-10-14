@@ -4385,6 +4385,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4524,9 +4705,11 @@
 
 <h1 id="install-and-first-launch">Install and first launch<a class="headerlink" href="#install-and-first-launch" title="Permanent link">&para;</a></h1>
 <p><em>All · 20 min · No code · Last tested: 2026-10-10 (stock Lyra 5.8, UE 5.8.1, VRM4U_5_8_20260912)</em></p>
-<p>XenoCore is a <strong>Game Feature plugin for Lyra</strong>. You add it to a Lyra project, open the project, and
-click <strong>Apply</strong> once. Nothing in Lyra is edited by hand, and nothing has to be compiled: the plugin
-ships prebuilt for Unreal Engine 5.8.</p>
+<p>XenoCore is a <strong>Game Feature plugin for Lyra</strong>, delivered as C++ source plus content. You add it and
+the free VRM4U plugin to a Lyra project, open the project (Unreal compiles XenoCore the first time),
+and click <strong>Apply</strong> once. Nothing in Lyra is edited by hand.</p>
+<p>Before you start, install <strong>Visual Studio 2022</strong> with the <em>Game development with C++</em> workload; see
+<a href="../requirements/">Requirements</a>. The first open cannot finish without it.</p>
 <h2 id="1-create-a-lyra-project">1. Create a Lyra project<a class="headerlink" href="#1-create-a-lyra-project" title="Permanent link">&para;</a></h2>
 <ol>
 <li>In the Epic Games Launcher, open <strong>Fab Library</strong>, find <strong>Lyra Starter Game</strong> (free), and create a
@@ -4575,7 +4758,14 @@ the project will not open without it.</p>
 </code></pre></div>
 <h2 id="3-open-the-project">3. Open the project<a class="headerlink" href="#3-open-the-project" title="Permanent link">&para;</a></h2>
 <p>Double-click <code>Lyra.uproject</code>. If Windows asks which engine to use, pick <strong>5.8</strong>.</p>
-<p>The first open compiles shaders and builds cached data, and can take a long time once (10 minutes
+<p>Unreal then says that modules are <strong>missing or built with a different engine version</strong> (it names
+<code>XenoCoreRuntime</code>, <code>XenoCoreEditor</code>, and possibly VRM4U's modules) and asks whether to rebuild them.
+Click <strong>Yes</strong>. This compiles XenoCore's C++ inside your project and takes several minutes the first
+time; it is expected, because the plugin is delivered as source. If the build fails, Unreal offers
+to open the log; see <a href="../../troubleshooting/build-and-editor/">Troubleshooting &gt; Build and editor</a>.
+If you would rather watch the build, right-click <code>Lyra.uproject</code>, choose <strong>Generate Visual Studio
+project files</strong>, open the solution and build the <strong>LyraEditor</strong> target in <strong>Development Editor</strong>.</p>
+<p>After the build, the first open compiles shaders and builds cached data, and can take a long time once (10 minutes
 or more); later opens take under a minute. Several things you may see on the way are Unreal's,
 Lyra's or Windows', not XenoCore's, and are harmless:</p>
 <ul>
@@ -4592,10 +4782,6 @@ Lyra's or Windows', not XenoCore's, and are harmless:</p>
   lists three platform plugins (PlayFabParty, XInputDevice, GameInputWindows) slightly differently
   from the engine. <strong>Update</strong> or <strong>Not Now</strong> are both fine.</li>
 </ul>
-<p>If Unreal instead says modules are <strong>missing or built with a different engine version</strong> and offers
-to rebuild them, choose <strong>Yes</strong>. That happens only if your Lyra's C++ differs from stock or your
-engine is not 5.8, and it needs Visual Studio (see <a href="../requirements/">Requirements</a>). If that build
-fails, see <a href="../../troubleshooting/build-and-editor/">Troubleshooting &gt; Build and editor</a>.</p>
 <h2 id="4-apply-the-project-settings">4. Apply the project settings<a class="headerlink" href="#4-apply-the-project-settings" title="Permanent link">&para;</a></h2>
 <p>A few seconds after the editor opens, a notification appears in the bottom-right:</p>
 <blockquote>

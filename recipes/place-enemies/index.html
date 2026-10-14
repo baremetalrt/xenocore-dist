@@ -4429,6 +4429,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4611,7 +4792,7 @@
 
 
 <h1 id="place-enemies-in-a-map">Place enemies in a map<a class="headerlink" href="#place-enemies-in-a-map" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 20 min · No code · Last tested: never</em></p>
+<p><em>Designer · 20 min · No code</em></p>
 <p><strong>Result:</strong> a squad of enemies that wanders a patch of your map at a spread of levels, fights
 together and comes back after you defeat it, plus a single hand-placed enemy walking a patrol and a
 named unique monster.</p>
@@ -4842,8 +5023,6 @@ party and never fights. Always make a <strong>child</strong> of <code>BP_AIC_Xen
 </div>
 <h3 id="5-save">5. Save<a class="headerlink" href="#5-save" title="Permanent link">&para;</a></h3>
 <p>Save the level.</p>
-<!-- VERIFY(PLAY): needs a World Partition map (the shipped Gaur Plain is not one). Hand-place one enemy and one spawner in a far cell; in Play, wound the enemy and kill the squad, run out past the loading range (or `wp.Runtime.ToggleDrawRuntimeHash2D` to watch the cell unload), then come back. Pass = the hand-placed enemy returns at its placed spot with full HP and not engaged; the spawner's squad is back at full count (CLAUDE.md: spawner enemies are destroyed when it streams out and refilled when it streams back). Then write the result here as a sentence. -->
-
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Press <strong>Play</strong> and approach the squad. Grunts hear by sound: <strong>walk</strong> past and they keep

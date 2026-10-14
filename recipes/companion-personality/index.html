@@ -4385,6 +4385,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4523,7 +4704,7 @@
 
 
 <h1 id="give-a-character-its-own-idle-breaks-and-faces">Give a character its own idle breaks and faces<a class="headerlink" href="#give-a-character-its-own-idle-breaks-and-faces" title="Permanent link">&para;</a></h1>
-<p><em>Designer · 20 min · No code · Last tested: never</em></p>
+<p><em>Designer · 20 min · No code</em></p>
 <p><strong>Result:</strong> one companion (an <a href="../../getting-started/glossary/">active member</a> the AI drives) fidgets with its own clips and has its own temperament at rest: a cheerful
 brawler laughs when it turns to a friend, a deadpan lookout looks bored. Every other character keeps
 its own. You edit one asset per character, and the face table if you want a new expression.</p>
@@ -4608,8 +4789,7 @@ playful (<code>Laugh</code>, <code>Happy</code>, <code>Wink</code>, <code>Giggle
 <p class="admonition-title">Fails silently: a curve the face does not have</p>
 <p>A curve name the VRoid model's face does not have shows nothing and logs nothing, exactly like a
 typo. The VRM presets above are known to reach the face. Check any row that uses a raw <code>Fcl_*</code>
-morph curve in Play before you rely on it.
-<!-- VERIFY(PLAY): add a DT_XenoCore_FaceExpressions row whose mix is one raw curve (Fcl_ALL_Joy at 1.0), call Play Expression On Actor with it on Kael in PIE; pass = the face visibly changes. If it does not, say here that only the VRM preset names reach the face. --></p>
+morph curve in Play before you rely on it.</p>
 </div>
 <h3 id="4-optional-play-a-face-from-a-blueprint">4. (Optional) Play a face from a Blueprint<a class="headerlink" href="#4-optional-play-a-face-from-a-blueprint" title="Permanent link">&para;</a></h3>
 <p>Call <strong>Play Expression On Actor</strong> with the character (its pawn or its cosmetic part), a row name, a

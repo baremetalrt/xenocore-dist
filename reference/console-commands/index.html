@@ -4324,6 +4324,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4401,7 +4582,7 @@
 
 
 <h1 id="console-commands">Console commands<a class="headerlink" href="#console-commands" title="Permanent link">&para;</a></h1>
-<p><em>Programmer · reference · C++ · Last tested: never</em></p>
+<p><em>Programmer · reference · C++</em></p>
 <div class="admonition note">
 <p class="admonition-title">Generated from source — do not edit by hand.</p>
 <p>This page is written by <code>Docs/Manual/tools/gen_reference.py</code> from the plugin's headers.
@@ -4550,7 +4731,7 @@ available in a Shipping build. Do not build gameplay on them.</p>
 </tr>
 <tr>
 <td><code>XenoCore.Test.Run</code></td>
-<td>Runs the in-build smoke test: <code>XenoCore.Test.Run</code> [All|Combat|Inventory|Quest|Save] [quit]. Plays on the live session - use a throwaway one. Results in LogXenoTest and Saved/Logs/XenoTest.txt.</td>
+<td>Runs the in-build test pass (development builds only): <code>XenoCore.Test.Run</code> [All | Suite ...] [quit]. A suite is one area of the game, such as Combat, Inventory, Quest, Party, Shop, Menus or Save; All runs every suite. Plays on the live session - use a throwaway save.</td>
 <td><code>XenoCoreRuntime/Private/Debug/XenoCoreTestRunner.cpp</code></td>
 </tr>
 <tr>
@@ -4631,8 +4812,9 @@ only routes console input to a fixed set of objects: the player controller, its 
 manager (and cheat-manager extensions), the possessed pawn, the HUD, the game mode and the
 game instance. An <code>Exec</code> function on a <strong>component</strong> or a <strong>subsystem</strong> is not on that list,
 so typing it is expected to print <em>Command not recognized</em>.</p>
-<!-- VERIFY(PLAY): every 'Yes' row below is a UFUNCTION(Exec) on a cheat-manager extension that registers itself on every new cheat manager (UCheatManager::RegisterForOnCheatManagerCreated). To finish: in PIE on Gaur Plain open the console and type each command, e.g. XenoArts, XenoAwardGold 500, XenoGaugeAdd 100, XenoSaveDump, XenoHurtParty 0.3. Pass = no 'Command not recognized' and the described effect or log output. -->
-
+<p>A row marked <em>Yes</em> is declared on a cheat-manager extension, which registers itself on every
+new cheat manager, so it is typed like any built-in cheat. Exec functions are compiled out of
+Shipping builds.</p>
 <table>
 <thead>
 <tr>

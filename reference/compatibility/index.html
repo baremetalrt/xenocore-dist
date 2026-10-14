@@ -4396,6 +4396,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4545,7 +4726,7 @@
 
 
 <h1 id="compatibility">Compatibility<a class="headerlink" href="#compatibility" title="Permanent link">&para;</a></h1>
-<p><em>Evaluator · reference · No code · Last tested: never</em></p>
+<p><em>Evaluator · reference · No code</em></p>
 <p>What XenoCore runs on, what it depends on, and what it does not support.</p>
 <h2 id="engine">Engine<a class="headerlink" href="#engine" title="Permanent link">&para;</a></h2>
 <table>
@@ -4570,11 +4751,11 @@
 </tr>
 <tr>
 <td><strong>Binaries</strong></td>
-<td>Shipped prebuilt for the Win64 editor, so a stock Lyra project does not compile anything. A Lyra whose C++ differs from stock rebuilds the plugin, which needs Visual Studio.</td>
+<td>None. XenoCore is delivered as C++ source and compiles inside your project the first time it opens, which needs Visual Studio 2022. Both modules are limited to Win64 (<code>PlatformAllowList</code>).</td>
 </tr>
 <tr>
 <td><strong>Earlier engines</strong></td>
-<td>Not supported. <code>XenoCore.uplugin</code> enables the <code>MeshPartition</code> and <code>PCGMeshPartitionInterop</code> plugins, which do not exist in 5.7, so the plugin will not load on 5.7 or earlier.</td>
+<td>Not supported. The content is saved with 5.8, and an older engine cannot load assets saved by a newer one.</td>
 </tr>
 </tbody>
 </table>
@@ -4590,15 +4771,15 @@
 <tbody>
 <tr>
 <td><strong>Windows 64-bit</strong></td>
-<td>Developed and tested here, editor and packaged game. The only platform the plugin ships binaries for.</td>
+<td>Developed and tested here, editor and packaged game. The only platform XenoCore's modules are built for (<code>PlatformAllowList: Win64</code>).</td>
 </tr>
 <tr>
 <td>macOS, Linux</td>
-<td>Not tested. Lyra supports them and XenoCore contains no Windows-only code in its runtime module, but the VRoid sample characters rely on the VRM4U plugin, whose <code>assimp</code> library ships for Windows x64 only (<code>Plugins/VRM4U/ThirdParty/assimp</code>; the other platform folders hold only placeholders).</td>
+<td>Not supported. Both modules are Win64-only, and the VRoid sample characters rely on the VRM4U plugin, whose <code>assimp</code> library is provided for Windows x64 only.</td>
 </tr>
 <tr>
 <td>Consoles, mobile</td>
-<td>Not tested and not supported.</td>
+<td>Not supported.</td>
 </tr>
 </tbody>
 </table>
@@ -4685,10 +4866,6 @@ save state. Treat it as a new project built on XenoCore's ideas, not an option.<
 <td>Procedural placement in the sample world</td>
 </tr>
 <tr>
-<td><code>MeshPartition</code>, <code>PCGMeshPartitionInterop</code></td>
-<td>Mesh terrain tools. <strong>Experimental in 5.8.</strong></td>
-</tr>
-<tr>
 <td><code>Niagara</code></td>
 <td>Effects: hit sparks, damage numbers, chest beams, footsteps</td>
 </tr>
@@ -4714,13 +4891,6 @@ save state. Treat it as a new project built on XenoCore's ideas, not an option.<
 </tr>
 </tbody>
 </table>
-<div class="admonition warning">
-<p class="admonition-title">An experimental plugin is a hard dependency</p>
-<p><code>MeshPartition</code> is marked Experimental by Epic in 5.8, and its API may change in an engine
-update. Only the editor module's mesh-terrain tools (<code>UXenoCoreMeshTerrainTools</code>) use it. No
-runtime code and no shipped asset references it or <code>PCGMeshPartitionInterop</code>; the sample maps
-use Landscape terrain.</p>
-</div>
 <h3 id="your-projects-plugin-list">Your project's plugin list<a class="headerlink" href="#your-projects-plugin-list" title="Permanent link">&para;</a></h3>
 <p>You do not edit <code>Lyra.uproject</code>: XenoCore switches itself on (<code>EnabledByDefault</code>) and enables the
 plugins above through its own <code>XenoCore.uplugin</code>. Lyra's own sample game features (ShooterCore and
@@ -4740,34 +4910,37 @@ its <code>assimp</code> library is included, and a packaged game links it.</p>
 <tbody>
 <tr>
 <td><strong>Current version</strong></td>
-<td><code>0.1.0</code> (<code>VersionName</code> in <code>XenoCore.uplugin</code>)</td>
+<td><code>1.0.0</code> (<code>VersionName</code> in <code>XenoCore.uplugin</code>, shown on the XenoCore entry in <strong>Edit › Plugins</strong>)</td>
 </tr>
 <tr>
 <td><strong>Scheme</strong></td>
-<td>Not yet decided. <!-- VERIFY(DECISION): Brian picks the versioning scheme (e.g. major.minor.patch, major = breaking content changes); then replace this row. --></td>
+<td><a href="https://semver.org">Semantic Versioning</a>: <strong>MAJOR.MINOR.PATCH</strong>. A <strong>major</strong> release may break your content, your saves or the C++ and Blueprint API, and its changelog says what to re-check. A <strong>minor</strong> release adds features without breaking them. A <strong>patch</strong> release only fixes bugs.</td>
 </tr>
 <tr>
 <td><strong>Changelog</strong></td>
-<td>Not yet published. It will list, per release, what changed and which assets or classes a buyer must re-check.</td>
+<td><a href="../../about/changelog/">Changelog</a> lists every release.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="upgrading">Upgrading<a class="headerlink" href="#upgrading" title="Permanent link">&para;</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Upgrade policy not yet decided</p>
-<p>There is no written policy yet for what a template update replaces, or how to take one
-without losing your changes. Until there is, protect yourself:</p>
-<ul>
-<li>Put everything you make in your own folder (<code>Content/MyGame/</code>) and your own C++ module.</li>
-<li><strong>Duplicate</strong> shipped assets before changing them, and point your content at the duplicate.</li>
-<li>Subclass XenoCore's C++ bases instead of editing them.</li>
-<li>Keep your project in source control, so an update is a diff you can review.</li>
-</ul>
-<!-- VERIFY(DECISION): Brian decides the upgrade policy (DRAFTING-NOTES F5); then replace this box with it. -->
-</div>
-<p><strong>Engine upgrades.</strong> Each XenoCore release targets one engine version. Moving to a new engine
-version before a matching release is at your own risk: Lyra itself changes between engine versions,
-and XenoCore depends on Lyra's C++.</p>
+<p><strong>Your own content.</strong> Keep everything you make in your own folder (for example <code>Content/MyGame/</code>)
+and your own C++ module, never inside <code>Plugins/GameFeatures/XenoCore</code>. An update replaces the
+plugin folder as a whole, so anything you changed inside it is lost. To change a shipped asset,
+<strong>duplicate</strong> it into your folder (or make a child of it) and point your content at the copy;
+subclass XenoCore's C++ bases instead of editing them. Keep the project in source control, so an
+update is a diff you can review.</p>
+<p><strong>Taking an update.</strong> Close the editor, replace the <code>XenoCore</code> folder with the new one, open the
+project and let it compile, then run <strong>Tools › XenoCore › Apply XenoCore Project Settings</strong> again
+(it adds any setting the new release needs and leaves yours alone). Read the changelog first.</p>
+<p><strong>Saves.</strong> Every save file records a save-data version. A save written by an older XenoCore loads
+in a newer one: each new version says how older files are brought forward, and so far every step
+has needed no conversion (the new fields simply start empty). A save written by a <strong>newer</strong>
+XenoCore cannot be loaded by an older one: on the Load screen that slot cannot be selected (it can
+still be deleted), rather than being read with fields the older code does not understand. Version 1.0.0 writes save-data version 5.</p>
+<p><strong>Engine versions.</strong> XenoCore 1.0.0 supports <strong>Unreal Engine 5.8</strong> only. When a new engine version
+comes out, XenoCore is re-tested against it and a new upload is published for that version; until
+then, moving your project to the new engine is at your own risk, because Lyra itself changes
+between engine versions and XenoCore depends on Lyra's C++.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../getting-started/requirements/">Requirements</a></li>

@@ -3789,6 +3789,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#inputmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InputMode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#inputtag" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4390,6 +4401,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4472,6 +4664,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#inputmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        InputMode
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#inputtag" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4533,7 +4736,7 @@
 
 
 <h1 id="gameplay-tags">Gameplay tags<a class="headerlink" href="#gameplay-tags" title="Permanent link">&para;</a></h1>
-<p><em>Designer · reference · No code · Last tested: never</em></p>
+<p><em>Designer · reference · No code</em></p>
 <div class="admonition note">
 <p class="admonition-title">Generated from source — do not edit by hand.</p>
 <p>This page is written by <code>Docs/Manual/tools/gen_reference.py</code> from the plugin's headers.
@@ -4556,7 +4759,7 @@ is later renamed, the lookup returns an empty tag. Nothing is logged; the featur
 depends on the tag simply stops. Add your own tags to your own tag <code>.ini</code> or native file,
 and never edit XenoCore's in place.</p>
 </div>
-<p>168 native tags, 99 ini tags.</p>
+<p>170 native tags, 99 ini tags.</p>
 <h2 id="ability">Ability<a class="headerlink" href="#ability" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4706,7 +4909,7 @@ and never edit XenoCore's in place.</p>
 <td><code>Cooldown.XenoCore.Art.BackSlash</code></td>
 <td>ini</td>
 <td></td>
-<td>Back Slash recharging. Granted by <code>GE_XenoCore_Cooldown_BackSlash</code> - the art's own cooldown effect, Lyra's pattern.</td>
+<td>Back Slash recharging. Granted by <code>GE_XenoCore_ArtCooldown</code>, the shared art cooldown effect, from the art definition's CooldownTag.</td>
 </tr>
 <tr>
 <td><code>Cooldown.XenoCore.Art.Bellow</code></td>
@@ -4851,7 +5054,7 @@ and never edit XenoCore's in place.</p>
 <td><code>GameplayCue.XenoCore.DamageTaken</code></td>
 <td>ini</td>
 <td></td>
-<td>Our copy of Lyra's <code>GCNL_Character_DamageTaken</code> with host patches 01/09/11 (pawn instigator, ally hits, crit = weak spot). <code>GE_XenoCore_Damage</code> fires it; Lyra's own cue stays untouched for Lyra's weapons.</td>
+<td>XenoCore's copy of Lyra's <code>GCNL_Character_DamageTaken</code>, adapted for pawn instigators, ally hits and crits shown as weak-spot hits. <code>GE_XenoCore_Damage</code> fires it; Lyra's own cue stays untouched for Lyra's weapons.</td>
 </tr>
 <tr>
 <td><code>GameplayCue.XenoCore.Heal</code></td>
@@ -4988,6 +5191,31 @@ and never edit XenoCore's in place.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="inputmode">InputMode<a class="headerlink" href="#inputmode" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Declared</th>
+<th>C++ symbol</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InputMode.Game</code></td>
+<td>native</td>
+<td><code>InputMode_Game</code></td>
+<td>CommonUI's game input mode. Gameplay mapping contexts match only while it is present (DefaultInput.ini).</td>
+</tr>
+<tr>
+<td><code>InputMode.Menu</code></td>
+<td>native</td>
+<td><code>InputMode_Menu</code></td>
+<td>CommonUI's menu input mode, set while a Menu-mode screen is active.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="inputtag">InputTag<a class="headerlink" href="#inputtag" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5027,7 +5255,7 @@ and never edit XenoCore's in place.</p>
 <td><code>InputTag.XenoCore.PaletteConfirm</code></td>
 <td>ini</td>
 <td></td>
-<td>Gamepad_FaceButton_Bottom or SpaceBar - perform the selected palette entry.</td>
+<td>Gamepad_FaceButton_Bottom or SpaceBar - perform the selected palette entry. Cycling does not perform, so this is the only way to start or stop a state.</td>
 </tr>
 <tr>
 <td><code>InputTag.XenoCore.PaletteDown</code></td>
@@ -5087,7 +5315,7 @@ and never edit XenoCore's in place.</p>
 <td><code>InputTag.XenoCore.QuestTracker</code></td>
 <td>ini</td>
 <td></td>
-<td>A pure UI toggle, so the ability does nothing but call <code>UXenoCoreQuestTrackerBase::ToggleQuestTracker</code> and end; it is an ability at all only because that is how Lyra routes input.</td>
+<td>View/Back (Gamepad_Special_Left) or J - hide and show the HUD quest tracker (the triggers cycle the party).</td>
 </tr>
 <tr>
 <td><code>InputTag.XenoCore.TacticsScopeNext</code></td>
@@ -5456,7 +5684,7 @@ and never edit XenoCore's in place.</p>
 <td><code>XenoCore.Damage.Critical</code></td>
 <td>native</td>
 <td><code>XenoCore_Damage_Critical</code></td>
-<td>Added to a damage spec's dynamic asset tags when it rolls a critical, so the spec's cues see it in AggregatedSourceTags. <code>GCNL_Character_DamageTaken</code> treats it like a weak-spot hit: crit number style and the weak-spot hit-confirm sound (Patches/11)</td>
+<td>Added to a damage spec's dynamic asset tags when it rolls a critical, so the spec's cues see it in AggregatedSourceTags. <code>GCNL_XenoCore_DamageTaken</code> treats it like a weak-spot hit: crit number style and the weak-spot hit-confirm sound.</td>
 </tr>
 <tr>
 <td><code>XenoCore.Damage.Magnitude.Blocked</code></td>
@@ -5570,7 +5798,7 @@ and never edit XenoCore's in place.</p>
 <td><code>XenoCore.Event.SwitchTarget</code></td>
 <td>ini</td>
 <td></td>
-<td>Sent by <code>GA_XenoCore_TargetNext</code>/Prev. Triggers <code>GA_XenoCore_TargetLock</code> when idle; caught by its WaitGameplayEvent when active.</td>
+<td>Sent by <code>GA_XenoCore_TargetNext</code>/Prev. Triggers <code>GA_XenoCore_TargetMode</code> when idle; caught by its WaitGameplayEvent when active.</td>
 </tr>
 <tr>
 <td><code>XenoCore.Gem.Socket.0.Id</code></td>

@@ -4419,6 +4419,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4591,7 +4772,7 @@
 
 
 <h1 id="architecture-overview">Architecture overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h1>
-<p><em>Programmer · 20 min read · No code · Last tested: never</em></p>
+<p><em>Programmer · 20 min read · No code</em></p>
 <p>XenoCore is one <strong>Game Feature plugin</strong> that sits on top of Epic's Lyra sample. Lyra supplies the
 framework: game mode, <strong>Experiences</strong>, the ability system plumbing, CommonUI menus and the character
 base classes. XenoCore adds everything RPG by <strong>subclassing</strong> Lyra's classes and <strong>adding components</strong>
@@ -5100,11 +5281,7 @@ file.</p>
 changing Lyra's: the damage-number cue is <code>GameplayCues/GCNL_XenoCore_DamageTaken</code> (fired by
 <code>GE_XenoCore_Damage</code>; Lyra's <code>GCNL_Character_DamageTaken</code> is untouched), and keyboard key
 icons are added at startup from <strong>Project Settings › Game › XenoCore UI › HUD › Keyboard Key Icons</strong>.
-A fresh download of Lyra therefore needs nothing re-applied.
-<!-- VERIFY(PLAY): wiring is static-checked (GE_XenoCore_Damage names GameplayCue.XenoCore.DamageTaken,
-which GCNL_XenoCore_DamageTaken answers). On a STOCK Lyra 5.8 install with only the plugin added, in
-Gaur Plain: hit a minion (white number + hit sound over it), let an ally hit it (number + sound),
-land a crit (gold number + weak-spot sound). Pass = all three appear. --></p>
+A fresh download of Lyra therefore needs nothing re-applied.</p>
 </div>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
 <ul>

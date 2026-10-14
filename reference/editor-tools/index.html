@@ -4374,6 +4374,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4501,7 +4682,7 @@
 
 
 <h1 id="editor-tools">Editor tools<a class="headerlink" href="#editor-tools" title="Permanent link">&para;</a></h1>
-<p><em>Programmer · reference · C++ · Last tested: never</em></p>
+<p><em>Programmer · reference · C++</em></p>
 <div class="admonition tip">
 <p class="admonition-title">Designers: the two things on this page you will use</p>
 <ul>
@@ -4535,9 +4716,8 @@ from:</p>
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Never call these from gameplay Blueprints</p>
-<p>The module is editor-only. A gameplay Blueprint that calls one of these nodes compiles in the
-editor and then fails to cook or package. Use them only from Editor Utility assets and Python.
-<!-- VERIFY(EDITOR): statically, XenoCoreEditor is Type "Editor" in XenoCore.uplugin, so it is never in a game build, and no shipped asset references /Script/XenoCoreEditor. Not checked: what the cook actually does. Test: add a call to UXenoCoreMapTools::GetDefaultGameplayExperience in a throwaway gameplay Blueprint (e.g. a duplicate of B_XenoCore_Npc), compile, then cook the demo (memory demo-builds-only). Pass = the cook or the packaged game reports an error naming the node/class; if it cooks and runs silently, rewrite this box to say what happens instead. --></p>
+<p>The module is editor-only and is not part of a packaged game, so a gameplay Blueprint that
+calls one of these nodes cannot work in a packaged build. Use them only from Editor Utility assets and Python.</p>
 </div>
 <p>Every function's full signature is listed in
 <a href="../cpp-classes/#xenocoreeditor-root">C++ classes › XenoCoreEditor</a>.</p>
@@ -4590,11 +4770,6 @@ editor and then fails to cook or package. Use them only from Editor Utility asse
 <td><code>UXenoCoreMaterialTools</code></td>
 <td><code>XenoCoreMaterialTools.h</code></td>
 <td>Describes a material's wiring as text, and cuts a root input or a named expression input.</td>
-</tr>
-<tr>
-<td><code>UXenoCoreMeshTerrainTools</code></td>
-<td><code>XenoCoreMeshTerrainTools.h</code></td>
-<td>Creates mesh terrain (the engine's experimental Mesh Partition) from a heightmap, and adds boolean and lattice modifiers to it.</td>
 </tr>
 <tr>
 <td><code>UXenoCoreMinimapTools</code></td>

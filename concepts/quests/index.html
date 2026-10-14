@@ -4374,6 +4374,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4501,7 +4682,7 @@
 
 
 <h1 id="quests">Quests<a class="headerlink" href="#quests" title="Permanent link">&para;</a></h1>
-<p><em>All · 15 min read · No code · Last tested: never</em></p>
+<p><em>All · 15 min read · No code</em></p>
 <p><strong>What the player sees:</strong> an NPC with a "!" bubble offers a quest on a screen with its title,
 who is asking, the objectives and the reward. Accepting it puts it in the Quest Log and on the HUD
 tracker; the minimap marks what it still wants; and talking to the giver when it is done pays the
@@ -4653,8 +4834,8 @@ also carries <code>Collection01</code>, as a ready-made example; the plain <code
 <li><strong>Turn in.</strong> The NPC's graph calls <strong>Turn In</strong>. It re-checks the bag first. If the quest is not
    really ready it returns false and stays Active. Otherwise it:<ul>
 <li>removes the collected items whose objective has <strong>Consume On Turn In</strong> ticked,</li>
-<li>pays the gold, and experience to the whole roster (reserve members at their reduced rate, see
-  <a href="../progression/">Progression</a>),</li>
+<li>pays the gold, and experience to the whole roster (reserve members at the <strong>Reserve Experience Rate</strong>, <code>0</code>
+  in the sample, see <a href="../progression/">Progression</a>),</li>
 <li>adds the reward items to the party bag,</li>
 <li>marks the quest Complete, moves tracking to another running quest, and shows the reward banner.</li>
 </ul>

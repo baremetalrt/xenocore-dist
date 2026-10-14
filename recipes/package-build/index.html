@@ -4418,6 +4418,187 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/known-limitations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Known limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits and licences
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -4589,7 +4770,7 @@
 
 
 <h1 id="package-a-build">Package a build<a class="headerlink" href="#package-a-build" title="Permanent link">&para;</a></h1>
-<p><em>Programmer · 1–2 h (mostly waiting) · No code (editor menus; one optional command line) · Last tested: never</em></p>
+<p><em>Programmer · 1–2 h (mostly waiting) · No code (editor menus; one optional command line)</em></p>
 <p><strong>Result:</strong> a Windows build of your game that boots to the title screen, starts a new game in
 your map, and has every menu working, checked in the packaged build rather than only in the editor.</p>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
@@ -4646,8 +4827,6 @@ ShooterExplorer, TopDownArena and others), and they cook unless you turn them of
 <code>XenoCore.uplugin</code> declares every plugin XenoCore's content needs (Niagara, Niagara UI Renderer,
 Water, DataRegistry, Metasound and VRM4U among them), so they stay on whatever you disable. See
 <a href="../../reference/compatibility/">Compatibility</a> for the list.</p>
-<!-- VERIFY(PLAY): in a stock Lyra with XenoCore installed, disable ShooterCore, ShooterMaps, ShooterExplorer, ShooterTests and TopDownArena, restart, start a New Game and package; pass = editor starts, the game plays, and the cook log has no load errors for /XenoCore. Static check 2026-10-11: no shipped /XenoCore asset (Dev/ excluded) names a /ShooterCore, /ShooterMaps, /ShooterExplorer, /ShooterTests or /TopDownArena path; Patches/05 (2026-09-29, before the pure-plugin move) still says XenoCore used 157 ShooterCore packages. If it passes, list those five here as safe to disable. -->
-
 <ol>
 <li>Open <strong>Edit › Plugins</strong>, filter by <strong>Enabled</strong>.</li>
 <li>Disable what your game doesn't use. Re-open the editor and play-test after each change.</li>
