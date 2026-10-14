@@ -459,6 +459,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#let-lyras-editor-build-compile-vrm4u" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Let Lyra's editor build compile VRM4U
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4626,6 +4637,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#let-lyras-editor-build-compile-vrm4u" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Let Lyra's editor build compile VRM4U
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4746,7 +4768,7 @@ the project will not open without it.</p>
 <ol>
 <li>Download the VRM4U release for <strong>Unreal Engine 5.8</strong> from its GitHub releases page
    (github.com/ruyo/VRM4U): the file named <code>VRM4U_5_8_&lt;date&gt;.zip</code>. XenoCore is tested with
-   <code>VRM4U_5_8_20260912.zip</code>.</li>
+   <code>VRM4U_5_8_20260912.zip</code> (last full install test: 2026-10-14, stock Lyra 5.8, UE 5.8.1).</li>
 <li>Unzip it into the <strong>project folder</strong> (where <code>Lyra.uproject</code> is). The zip already contains a
    <code>Plugins/VRM4U</code> folder, so it lands in the right place:</li>
 </ol>
@@ -4756,6 +4778,18 @@ the project will not open without it.</p>
     GameFeatures/
       XenoCore/
 </code></pre></div>
+<h3 id="let-lyras-editor-build-compile-vrm4u">Let Lyra's editor build compile VRM4U<a class="headerlink" href="#let-lyras-editor-build-compile-vrm4u" title="Permanent link">&para;</a></h3>
+<p>VRM4U is compiled from source with your project, and stock Lyra's editor target refuses the raw
+object pointers VRM4U's headers use, so the first build fails with dozens of <em>"Native pointer usage
+in member declaration"</em> errors unless you change one line first. Open <code>Source/LyraEditor.Target.cs</code>
+in your project folder (any text editor) and change</p>
+<div class="highlight"><pre><span></span><code><span class="n">NativePointerMemberBehaviorOverride</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PointerMemberBehavior</span><span class="p">.</span><span class="n">Disallow</span><span class="p">;</span>
+</code></pre></div>
+<p>to</p>
+<div class="highlight"><pre><span></span><code><span class="n">NativePointerMemberBehaviorOverride</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PointerMemberBehavior</span><span class="p">.</span><span class="n">AllowAndLog</span><span class="p">;</span>
+</code></pre></div>
+<p>This relaxes a code-style check for the editor build only; it changes no behaviour and no data, and
+packaged games are not affected. XenoCore's own C++ passes the strict setting.</p>
 <h2 id="3-open-the-project">3. Open the project<a class="headerlink" href="#3-open-the-project" title="Permanent link">&para;</a></h2>
 <p>Double-click <code>Lyra.uproject</code>. If Windows asks which engine to use, pick <strong>5.8</strong>.</p>
 <p>Unreal then says that modules are <strong>missing or built with a different engine version</strong> (it names
