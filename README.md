@@ -5,9 +5,9 @@ Lyra Game Feature plugin.
 
 This repository hosts what we hand out. The source lives elsewhere.
 
-- **Manual:** https://brianhabana.github.io/xenocore-dist/
-- **Latest demo build:** https://github.com/brianhabana/xenocore-dist/releases/latest
-- **All releases:** https://github.com/brianhabana/xenocore-dist/releases
+- **Manual:** https://baremetalrt.github.io/xenocore-dist/
+- **Latest demo build:** https://github.com/baremetalrt/xenocore-dist/releases/latest
+- **All releases:** https://github.com/baremetalrt/xenocore-dist/releases
 
 ## Reporting a problem
 
