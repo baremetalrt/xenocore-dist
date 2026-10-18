@@ -4968,7 +4968,7 @@ at once. A Blueprint can do it to one enemy with the controller's <strong>Reset 
 <p><strong>Dying.</strong> On death the enemy announces its defeat (see <a href="../events/">Events</a>), awards the party EXP, Art Points and Skill Points through the progression component
 (<strong>Experience Reward</strong>, <strong>Art Point Reward</strong> and <strong>Skill Point Multiplier</strong>, scaled by level difference), rolls a chest tier and spawns the chest hidden for <strong>Chest Drop Delay</strong>,
 plays one of its <strong>Death Montages</strong>, ragdolls after a random <strong>Ragdoll Delay Min</strong>–<strong>Max</strong>, then
-vanishes after <strong>Death Vanish Delay</strong> with its <strong>Death Effect</strong>. The effect is a soft reference: it
+vanishes after <strong>Death Vanish Delay</strong> with its <strong>Death Effect</strong>, if one is set (empty by default - the body simply disappears). The effect is a soft reference: it
 starts loading when the enemy is first provoked, so idle enemies on a map do not hold it in memory. In a squad, only the last member
 killed drops a chest, upgraded to at least silver. A spawner brings fallen members back after its
 <strong>Respawn Delay</strong>, only while the party is out of sight of the spot and not fighting that squad.</p>

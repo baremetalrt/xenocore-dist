@@ -5039,11 +5039,6 @@ curve reads the Art's level. Talent Arts cannot be levelled.</p>
 <td>The strike, its speed, and when in it the hit lands (default <code>0.45</code>)</td>
 </tr>
 <tr>
-<td><strong>Time Dilation</strong>, <strong>Time Dilation Keeps User Speed</strong>, <strong>Time Dilation Start</strong> / <strong>End</strong></td>
-<td>Art definition › Art › Time Dilation</td>
-<td>Slow motion while the Art plays. <code>1.0</code> = off (the default; Turn Strike uses <code>0.35</code>). Keeps User Speed holds the attacker at normal speed while the world slows. Start and End are a window in fractions of the montage; a narrow window around the hit is a hit-stop</td>
-</tr>
-<tr>
 <td><strong>Hits</strong>, <strong>Hit Spacing</strong></td>
 <td>Art definition › Art › Hits</td>
 <td>How many times the Art strikes, spaced in fractions of the montage from <strong>Impact Fraction</strong>. Every hit deals the full <strong>Power</strong></td>
@@ -5163,9 +5158,6 @@ never sent the event. Add an <code>XenoCore Gameplay Event</code> notify with th
 <p>Statuses (the <strong>Effects</strong> list), and User or Whole party entries, land on the <strong>first</strong> hit of a
 multi-hit Art only; damage, numbers and impact effects land on every hit. If an enemy blocks a hit,
 the attacker recoils and the Art ends there, so its remaining hits never land.</p>
-<p>For a montage that should always slow time wherever it plays, put the <code>XenoCore Time Dilation</code>
-notify state on it instead of setting <strong>Time Dilation</strong> on each Art. Arts often share a montage, so
-a notify there slows every Art that uses it.</p>
 <p>Each <strong>Effects</strong> entry has <strong>Effect</strong> (a <code>GE_XenoCore_Status_*</code> or <code>GE_XenoCore_Reaction_*</code>),
 <strong>Chance</strong> (0 to 1), <strong>Duration</strong> and <strong>Magnitude</strong> (curves keyed by Art level, sent to the status),
 <strong>Condition</strong> (Always, In the art's position, From the side, From behind, From the front, Target is
@@ -5279,8 +5271,8 @@ the convention because it sorts in the editor. Learnsets can be CSV-imported lik
 duplicate <code>DT_XenoCore_ArtLearnset_Default</code> (a table, not a concrete Art, so duplicating it is
 fine), then set that character's <strong>Art Learn Table</strong>.</p>
 <h3 id="on-the-talent-art-ability">On the Talent Art ability<a class="headerlink" href="#on-the-talent-art-ability" title="Permanent link">&para;</a></h3>
-<p><strong>Talent Gauge Effect</strong> (<strong>XenoCore › Talent</strong>). Slow motion is no longer set here: it is the
-<strong>Time Dilation</strong> group on the Art definition, so any Art can use it.</p>
+<p><strong>Talent Gauge Effect</strong> (<strong>XenoCore › Talent</strong>). Arts never slow the world: XC1 has no slow
+motion on Arts, and a companion's Art slowing the player's own character read as a frame drop.</p>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>A new standard Art:</strong> create it blank in your own folder (<code>Content/MyGame/Arts</code>): right-click ›

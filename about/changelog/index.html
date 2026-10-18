@@ -4440,6 +4440,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#110-2026-10-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.0 (2026-10-18)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#100-initial-release" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4532,6 +4543,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#110-2026-10-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1.0 (2026-10-18)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#100-initial-release" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4567,6 +4589,60 @@ re-check; a <strong>minor</strong> release adds features; a <strong>patch</stron
 <a href="../../reference/compatibility/#upgrading">Compatibility</a> for how to take an update.</p>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <p>Changes merged since the last release; they ship in the next version. Nothing yet.</p>
+<h2 id="110-2026-10-18">1.1.0 (2026-10-18)<a class="headerlink" href="#110-2026-10-18" title="Permanent link">&para;</a></h2>
+<p><strong>Engine:</strong> Unreal Engine 5.8. <strong>Save-data version:</strong> unchanged; 1.0.0 saves load.</p>
+<ul>
+<li><strong>Fixed:</strong> stepping the Party Tactics list onto one member no longer draws the party-switch selector box on the
+  HUD rows; that member is marked by the ring under their feet only.</li>
+<li><strong>Improved:</strong> the demo no longer stutters the first time something new is drawn - a recruit joining, the victory
+  effects, the first trade or time change. It ships a recorded pipeline cache that is compiled behind the boot screen, so
+  shader pipelines that used to compile mid-play (56 per full test pass) are ready before you take control (0).</li>
+<li><strong>Improved:</strong> far fewer stutters in play. Enemies far from the party now go dormant: AI paused, movement off, and
+  animation only while they are on screen. A provoked or fighting enemy never sleeps, and a hit from any range wakes it.
+  Tune or turn it off in <strong>Project Settings &gt; XenoCore Enemies &gt; Performance</strong>. With seven party members, the median
+  game-thread frame in a fight dropped from 14.4 to 12.1 ms, and frames over 50 ms dropped from 255 to 0 over a full test
+  pass.</li>
+<li><strong>Fixed:</strong> small tables, queries, icons and sounds (skill trees, art learnsets, companion positioning queries, the
+  tutorial table, rarity pips, the aggro ring) were freed between uses and reloaded from disk mid-fight. They are now loaded
+  once and kept. Every screen and popup, and the first conversation's camera, now load behind the loading screen instead
+  of on first open.</li>
+<li><strong>New (development builds):</strong> <code>XenoCore.Debug.LogSyncLoads</code> (on by default, never in Shipping) logs every synchronous
+  load during play, with the package and who asked for it.</li>
+<li><strong>Fixed:</strong> combat jerked on every landed hit. The hit knockback was a square pulse - full speed in one frame, a hard
+  stop 0.12 s later, the body's own movement thrown away, and the animation read as standing still. It now eases out over
+  0.25 s (same 60 cm), adds to the body's own movement instead of replacing it, and the animation keeps the body's own
+  speed. <strong>Push Strength Over Time</strong> still overrides the shape.</li>
+<li><strong>Removed:</strong> slow motion on Arts. The four Talent Arts slowed the whole world to x0.35, so a companion's Talent Art
+  slowed the player's own character. The <strong>Time Dilation</strong> settings on the Art definition and the <strong>XenoCore Time
+  Dilation</strong> notify state are gone; values saved in existing Arts are ignored.</li>
+<li><strong>Fixed:</strong> the hour after sunset was almost black. The moon now takes over as soon as the sun is down (Sky Profile
+  <strong>Twilight Degrees</strong> 9 -&gt; 2) and is already up when it does (new <strong>Moon Min Elevation</strong>, 25), the sky light is lifted
+  through the handover (new <strong>Twilight Sky Light Boost</strong>), and the night exposure floor arrives with the moonlight
+  instead of ahead of it. Late night is unchanged.</li>
+<li><strong>Fixed:</strong> a party member who joins mid-game (a recruit, a bench swap) no longer appears in T-pose for its
+  first few frames. Blueprints that add a cosmetic part later can call <strong>Prime Cosmetic Pose</strong> on the character.</li>
+<li><strong>Changed:</strong> the line under a character's name on the equipment sheet, Party screen, party stats, swap
+  confirm and join banner shows their Talent Art ("Talent: Turn Strike") instead of a role. Blueprints can read it
+  with <strong>Get Talent Label</strong> or <strong>Get Item Talent Art</strong>.</li>
+<li><strong>Fixed:</strong> a defeated enemy no longer leaves a round glowing bubble where its body was. The enemy base's
+  <strong>Death Effect</strong> is now empty by default, so the body simply disappears; set one per enemy if you want a burst.</li>
+<li><strong>Removed:</strong> the Talent Art "ready" aura (<code>GCNL_XenoCore_TalentReady</code>), which dripped particles off characters
+  and stayed on after battle. The arts palette still shows when the Talent Art is ready. The cue
+  <code>GameplayCue.XenoCore.TalentReady</code> still fires while the gauge is full in battle, so you can add your own
+  notify for it.</li>
+<li><strong>Fixed:</strong> the equipment screen's Stat Details pane cut off its last row (Weight); stat rows in every menu
+  now use a slightly smaller font so the full character sheet fits.</li>
+<li><strong>Changed:</strong> turning in a quest now autosaves once the reward has been collected (the quest-complete and
+  level-up banners shown and gone), not while the conversation and reward are still on screen.</li>
+<li><strong>Fixed:</strong> a crash when a companion answered another's field or battle line (the voice reply timer used its
+  own data after clearing itself).</li>
+<li><strong>Fixed:</strong> a quest giver with no Accepted or Declined lines replayed its whole offer after you answered it. Those
+  two now say nothing when empty; every other occasion still falls back to the NPC's Dialogue.</li>
+<li><strong>Fixed:</strong> the equipment screen's preview held the weapon at the wrong place on VRoid characters. It now sits on
+  the same hand socket the game uses.</li>
+<li><strong>Fixed:</strong> reopening the equipment screen could show no character in the preview (only the weapon), or show the
+  leader while the screen was on another member.</li>
+</ul>
 <h2 id="100-initial-release">1.0.0 (initial release)<a class="headerlink" href="#100-initial-release" title="Permanent link">&para;</a></h2>
 <p><strong>Engine:</strong> Unreal Engine 5.8, Win64, with Lyra Starter Game 5.8 and VRM4U for 5.8.
 <strong>Save-data version:</strong> 5.</p>

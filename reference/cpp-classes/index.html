@@ -4203,17 +4203,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#uxenocoreanimnotifystate_timedilation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        UXenoCoreAnimNotifyState_TimeDilation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#uxenocoreanimnotify_gameplayevent" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10401,17 +10390,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#uxenocoreanimnotifystate_timedilation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        UXenoCoreAnimNotifyState_TimeDilation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#uxenocoreanimnotify_gameplayevent" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -15177,7 +15155,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <li><a href="#xenocoreruntime-abilitysystemattributes">XenoCoreRuntime / AbilitySystem/Attributes</a> — UXenoCoreStatSet</li>
 <li><a href="#xenocoreruntime-abilitysystemcalculations">XenoCoreRuntime / AbilitySystem/Calculations</a> — UXenoCoreMMC_EffectLevel</li>
 <li><a href="#xenocoreruntime-abilitysystemexecutions">XenoCoreRuntime / AbilitySystem/Executions</a> — UXenoCoreDamageExecution</li>
-<li><a href="#xenocoreruntime-animation">XenoCoreRuntime / Animation</a> — FXenoCoreFaceExpressionRow, FXenoCoreFaceExpressionRule, FXenoCoreReactionMontages, FXenoCoreWeightedExpression, UXenoCoreAnimInstance, UXenoCoreAnimNotifyState_TimeDilation, UXenoCoreAnimNotify_GameplayEvent, UXenoCoreAnimProfileStatics, UXenoCoreCharacterAnimProfile, UXenoCoreFaceAnimInstance</li>
+<li><a href="#xenocoreruntime-animation">XenoCoreRuntime / Animation</a> — FXenoCoreFaceExpressionRow, FXenoCoreFaceExpressionRule, FXenoCoreReactionMontages, FXenoCoreWeightedExpression, UXenoCoreAnimInstance, UXenoCoreAnimNotify_GameplayEvent, UXenoCoreAnimProfileStatics, UXenoCoreCharacterAnimProfile, UXenoCoreFaceAnimInstance</li>
 <li><a href="#xenocoreruntime-arts">XenoCoreRuntime / Arts</a> — EXenoCoreArtAICheck, EXenoCoreArtArea, EXenoCoreArtAttribute, EXenoCoreArtCategory, EXenoCoreArtEffect, EXenoCoreArtEffectCondition, EXenoCoreArtEffectRecipient, EXenoCoreArtPositional, EXenoCoreArtTargetType, FXenoCoreArtAICondition, FXenoCoreArtEffectEntry, FXenoCoreArtPositionalBonus, FXenoCoreArtUnlock, UXenoCoreArtDefinition, UXenoCoreGameplayAbility_Art, UXenoCoreGameplayAbility_TalentArt, UXenoCoreTalentArtDefinition</li>
 <li><a href="#xenocoreruntime-audio">XenoCoreRuntime / Audio</a> — AXenoCoreAreaMusic</li>
 <li><a href="#xenocoreruntime-battle">XenoCoreRuntime / Battle</a> — EXenoCoreAttackTargetSource, FXenoCoreBattleWonMessage, FXenoCoreHitLunge, FXenoCoreThreatEntry, UXenoCoreAggroIndicatorComponent, UXenoCoreBattleVictorySubsystem, UXenoCoreGameplayAbility_AutoAttack, UXenoCoreGameplayAbility_DazeReact, UXenoCoreGameplayAbility_DefenceReact, UXenoCoreGameplayAbility_Downed, UXenoCoreGameplayAbility_EvadeReact, UXenoCoreGameplayAbility_GuardReact, UXenoCoreGameplayAbility_HitReact, UXenoCoreGameplayAbility_KnockdownReact, UXenoCoreGameplayAbility_Reaction, UXenoCoreGameplayAbility_RecoilReact, UXenoCoreGameplayAbility_ToppleReact, UXenoCoreStatusEffect, UXenoCoreStatusPercentCalc, UXenoCoreThreatComponent</li>
@@ -17757,43 +17735,6 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tr>
 </tbody>
 </table>
-<h3 id="uxenocoreanimnotifystate_timedilation">UXenoCoreAnimNotifyState_TimeDilation<a class="headerlink" href="#uxenocoreanimnotifystate_timedilation" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>UAnimNotifyState</code> · header <code>XenoCoreRuntime/Public/Animation/XenoCoreAnimNotifyState_TimeDilation.h</code></em></p>
-<p>Slows the world for the length of the notify window. Restores normal speed at its end.</p>
-<p><strong>Properties</strong></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>C++ name</th>
-<th>Type</th>
-<th>Category</th>
-<th>Specifiers</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Time Dilation</strong></td>
-<td><code>TimeDilation</code></td>
-<td><code>float</code></td>
-<td>Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.05, ClampMax=1.0</td>
-<td><code>0.3</code></td>
-<td>World speed inside the window. 0.3 is about a third of normal speed; 0.05 is near-frozen.</td>
-</tr>
-<tr>
-<td><strong>Keep Owner Speed</strong></td>
-<td><code>bKeepOwnerSpeed</code></td>
-<td><code>bool</code></td>
-<td>Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly</td>
-<td><code>false</code></td>
-<td>Keep the animating character at normal speed while everything else slows.</td>
-</tr>
-</tbody>
-</table>
 <h3 id="uxenocoreanimnotify_gameplayevent">UXenoCoreAnimNotify_GameplayEvent<a class="headerlink" href="#uxenocoreanimnotify_gameplayevent" title="Permanent link">&para;</a></h3>
 <p><em>Class · derives from <code>UAnimNotify</code> · header <code>XenoCoreRuntime/Public/Animation/XenoCoreAnimNotify_GameplayEvent.h</code></em></p>
 <p>Sends a gameplay event to the animating actor at the frame it is placed on.</p>
@@ -18839,42 +18780,6 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>EditAnywhere, BlueprintReadOnly, ClampMin=0.0, ClampMax=1.0</td>
 <td><code>0.45</code></td>
 <td>When in the montage the art lands, as a fraction of its play length.</td>
-</tr>
-<tr>
-<td><strong>Time Dilation</strong></td>
-<td><code>TimeDilation</code></td>
-<td><code>float</code></td>
-<td>Art › Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.05, ClampMax=1.0</td>
-<td><code>1.0</code></td>
-<td>World speed while this art plays. 1 = off (default); 0.35 is Turn Strike's slow motion.</td>
-</tr>
-<tr>
-<td><strong>Time Dilation Keeps User Speed</strong></td>
-<td><code>bTimeDilationKeepsUserSpeed</code></td>
-<td><code>bool</code></td>
-<td>Art › Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly, EditCondition=TimeDilation &lt; 1.0</td>
-<td><code>true</code></td>
-<td>Keep the user at normal speed while the world slows, so the swing does not drag.</td>
-</tr>
-<tr>
-<td><strong>Time Dilation Start</strong></td>
-<td><code>TimeDilationStart</code></td>
-<td><code>float</code></td>
-<td>Art › Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.0, ClampMax=1.0, EditCondition=TimeDilation &lt; 1.0</td>
-<td><code>0.0</code></td>
-<td>Where in the montage the slow-down starts, as a fraction of its length. 0 = from the start.</td>
-</tr>
-<tr>
-<td><strong>Time Dilation End</strong></td>
-<td><code>TimeDilationEnd</code></td>
-<td><code>float</code></td>
-<td>Art › Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.0, ClampMax=1.0, EditCondition=TimeDilation &lt; 1.0</td>
-<td><code>1.0</code></td>
-<td>Where it ends, as a fraction of the montage. 1 = until the art ends.</td>
 </tr>
 <tr>
 <td><strong>Icon</strong></td>

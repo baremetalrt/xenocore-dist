@@ -6230,42 +6230,6 @@ links the shipped ones carry, and several of those fail without an error.</p>
 <td>When in the montage the art lands, as a fraction of its play length.</td>
 </tr>
 <tr>
-<td><strong>Time Dilation</strong></td>
-<td><code>TimeDilation</code></td>
-<td><code>float</code></td>
-<td>Art › Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.05, ClampMax=1.0</td>
-<td><code>1.0</code></td>
-<td>World speed while this art plays. 1 = off (default); 0.35 is Turn Strike's slow motion.</td>
-</tr>
-<tr>
-<td><strong>Time Dilation Keeps User Speed</strong></td>
-<td><code>bTimeDilationKeepsUserSpeed</code></td>
-<td><code>bool</code></td>
-<td>Art › Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly, EditCondition=TimeDilation &lt; 1.0</td>
-<td><code>true</code></td>
-<td>Keep the user at normal speed while the world slows, so the swing does not drag.</td>
-</tr>
-<tr>
-<td><strong>Time Dilation Start</strong></td>
-<td><code>TimeDilationStart</code></td>
-<td><code>float</code></td>
-<td>Art › Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.0, ClampMax=1.0, EditCondition=TimeDilation &lt; 1.0</td>
-<td><code>0.0</code></td>
-<td>Where in the montage the slow-down starts, as a fraction of its length. 0 = from the start.</td>
-</tr>
-<tr>
-<td><strong>Time Dilation End</strong></td>
-<td><code>TimeDilationEnd</code></td>
-<td><code>float</code></td>
-<td>Art › Time Dilation</td>
-<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.0, ClampMax=1.0, EditCondition=TimeDilation &lt; 1.0</td>
-<td><code>1.0</code></td>
-<td>Where it ends, as a fraction of the montage. 1 = until the art ends.</td>
-</tr>
-<tr>
 <td><strong>Icon</strong></td>
 <td><code>Icon</code></td>
 <td><code>TObjectPtr&lt;UTexture2D&gt;</code></td>
@@ -7725,8 +7689,17 @@ links the shipped ones carry, and several of those fail without an error.</p>
 <td><code>float</code></td>
 <td>Sun</td>
 <td>EditAnywhere, BlueprintReadOnly, ClampMin=1, ClampMax=18, Units=deg</td>
-<td><code>9.0</code></td>
+<td><code>2.0</code></td>
 <td>How far below the horizon the sun keeps lighting the sky (twilight) before the moon takes over.</td>
+</tr>
+<tr>
+<td><strong>Twilight Sky Light Boost</strong> <em>(in development)</em></td>
+<td><code>TwilightSkyLightBoost</code></td>
+<td><code>float</code></td>
+<td>Sun</td>
+<td>EditAnywhere, BlueprintReadOnly, ClampMin=0, UIMax=10</td>
+<td><code>1.5</code></td>
+<td>Extra sky light through twilight, while the sun is down and the moon not yet up (1 = twice as bright).</td>
 </tr>
 <tr>
 <td><strong>Moon Max Elevation</strong></td>
@@ -7736,6 +7709,24 @@ links the shipped ones carry, and several of those fail without an error.</p>
 <td>EditAnywhere, BlueprintReadOnly, ClampMin=5, ClampMax=90, Units=deg</td>
 <td><code>48.0</code></td>
 <td>Highest the moon climbs, in the middle of the night.</td>
+</tr>
+<tr>
+<td><strong>Moon Min Elevation</strong> <em>(in development)</em></td>
+<td><code>MoonMinElevation</code></td>
+<td><code>float</code></td>
+<td>Moon</td>
+<td>EditAnywhere, BlueprintReadOnly, ClampMin=0, ClampMax=90, Units=deg</td>
+<td><code>25.0</code></td>
+<td>Lowest the moon's light sits, at the start and end of the night. 0 = it rises from the horizon.</td>
+</tr>
+<tr>
+<td><strong>Moon Fade In Degrees</strong> <em>(in development)</em></td>
+<td><code>MoonFadeInDegrees</code></td>
+<td><code>float</code></td>
+<td>Moon</td>
+<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.1, ClampMax=18, Units=deg</td>
+<td><code>1.0</code></td>
+<td>Once the sun is Twilight Degrees down, the moonlight reaches full over this many more degrees of sun depth (~3 in-game minutes a degree at dusk).</td>
 </tr>
 <tr>
 <td><strong>Moon Intensity Fraction</strong></td>
