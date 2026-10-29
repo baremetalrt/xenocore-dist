@@ -420,10 +420,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lyra-starter-game-58" class="md-nav__link">
+  <a href="#a-project-blank-or-lyra-starter-game" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lyra Starter Game 5.8
+        A project: Blank, or Lyra Starter Game
       
     </span>
   </a>
@@ -4609,10 +4609,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#lyra-starter-game-58" class="md-nav__link">
+  <a href="#a-project-blank-or-lyra-starter-game" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Lyra Starter Game 5.8
+        A project: Blank, or Lyra Starter Game
       
     </span>
   </a>
@@ -4693,8 +4693,8 @@
 
 <h1 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h1>
 <p><em>All · 5 min · No code</em></p>
-<p>XenoCore is a Game Feature plugin for Epic's <strong>Lyra Starter Game</strong> on Unreal Engine 5.8. You need
-the engine, Lyra, the free <strong>VRM4U</strong> plugin, Visual Studio 2022 and room on disk. A gamepad is strongly recommended.</p>
+<p>XenoCore is a Game Feature plugin for Unreal Engine 5.8. You need the engine, a project to add it
+to (a new Blank project is enough), the free <strong>VRM4U</strong> plugin, Visual Studio 2022 and room on disk. A gamepad is strongly recommended.</p>
 <h2 id="windows-64-bit">Windows 64-bit<a class="headerlink" href="#windows-64-bit" title="Permanent link">&para;</a></h2>
 <p>XenoCore supports <strong>Windows 10 or 11, 64-bit</strong>, with a DirectX 12 graphics card. Its modules are
 built for Win64 only; macOS, Linux, consoles and mobile are not supported.</p>
@@ -4702,18 +4702,18 @@ built for Win64 only; macOS, Linux, consoles and mobile are not supported.</p>
 <p>Install <strong>Unreal Engine 5.8</strong> from the Epic Games Launcher. The project is built and tested against
 <strong>5.8.1</strong>. Other versions are not supported: 5.7 will not open it, and a later version may need
 changes.</p>
-<h2 id="lyra-starter-game-58">Lyra Starter Game 5.8<a class="headerlink" href="#lyra-starter-game-58" title="Permanent link">&para;</a></h2>
-<p>XenoCore runs inside a Lyra project. <strong>Lyra Starter Game</strong> is free in the Epic Games Launcher's
-<strong>Fab Library</strong>; create a project from it for 5.8. An unmodified Lyra 5.8 is what XenoCore is tested
-against.</p>
+<h2 id="a-project-blank-or-lyra-starter-game">A project: Blank, or Lyra Starter Game<a class="headerlink" href="#a-project-blank-or-lyra-starter-game" title="Permanent link">&para;</a></h2>
+<p>XenoCore is built on Epic's <strong>Lyra Starter Game</strong>, and the parts of Lyra it uses ship inside the
+plugin, so you do not need Lyra. Add it to a new <strong>Blank</strong> 5.8 project, or to an existing project,
+including a Lyra Starter Game 5.8 project. Both are tested.</p>
 <h2 id="vrm4u">VRM4U<a class="headerlink" href="#vrm4u" title="Permanent link">&para;</a></h2>
 <p>The sample party are VRoid characters, and XenoCore lists the free <strong>VRM4U</strong> plugin (by ruyo, MIT
 licence) as a dependency: the project will not open without it. Get the release built for UE 5.8;
 <a href="../install/#add-vrm4u-the-vroid-party-needs-it">Install</a> has the steps and the tested version.</p>
 <h2 id="a-c-compiler-visual-studio-2022">A C++ compiler (Visual Studio 2022)<a class="headerlink" href="#a-c-compiler-visual-studio-2022" title="Permanent link">&para;</a></h2>
-<p>XenoCore is a <strong>code plugin delivered as source</strong>. It is built on Lyra's own C++ game module, so it
-compiles inside your project: the <strong>first time you open the project, Unreal compiles XenoCore's C++</strong>
-(Lyra itself is a C++ project too). You do not need to write any C++, but you do need the compiler.
+<p>XenoCore is a <strong>code plugin</strong>. If its modules were not built for your engine (a zip download, or a
+copy moved between engines), the <strong>first time you open the project, Unreal compiles XenoCore's C++</strong>.
+You do not need to write any C++, but you do need the compiler.
 Install <strong>Visual Studio 2022</strong> (version 17.14 or later) with these workloads:</p>
 <ul>
 <li><strong>Game development with C++</strong></li>
@@ -4732,8 +4732,8 @@ Visual Studio rather than pinning an old one. Install it <strong>before</strong>
 </thead>
 <tbody>
 <tr>
-<td>Stock Lyra Starter Game 5.8 (the Fab download)</td>
-<td>about <strong>5 GB</strong></td>
+<td>A Blank 5.8 project</td>
+<td>under <strong>0.1 GB</strong> (a Lyra Starter Game project instead: about 5 GB)</td>
 </tr>
 <tr>
 <td>The XenoCore plugin folder (content plus C++ source)</td>
@@ -4749,7 +4749,7 @@ Visual Studio rather than pinning an old one. Install it <strong>before</strong>
 </tr>
 </tbody>
 </table>
-<p>That adds up to roughly 25 to 30 GB. Allow at least <strong>40 GB</strong> free, ideally on an SSD. This is an
+<p>That adds up to roughly 20 to 30 GB. Allow at least <strong>40 GB</strong> free, ideally on an SSD. This is an
 estimate: the cache grows with every map and quality level you open, and a packaged build needs room
 of its own.</p>
 <h2 id="a-gamepad">A gamepad<a class="headerlink" href="#a-gamepad" title="Permanent link">&para;</a></h2>

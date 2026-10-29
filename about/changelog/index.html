@@ -4440,6 +4440,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#120-2026-10-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.0 (2026-10-29)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#112-2026-10-20" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4565,6 +4576,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#120-2026-10-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.0 (2026-10-29)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#112-2026-10-20" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4632,7 +4654,15 @@ a <strong>major</strong> release may break your content, saves or the C++ and Bl
 re-check; a <strong>minor</strong> release adds features; a <strong>patch</strong> release only fixes bugs. See
 <a href="../../reference/compatibility/#upgrading">Compatibility</a> for how to take an update.</p>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
-<p>Changes merged since the last release; they ship in the next version. Nothing yet.</p>
+<p>Changes merged since the last release; they ship in the next version.</p>
+<h2 id="120-2026-10-29">1.2.0 (2026-10-29)<a class="headerlink" href="#120-2026-10-29" title="Permanent link">&para;</a></h2>
+<p><strong>Engine:</strong> Unreal Engine 5.8. <strong>Save-data version:</strong> unchanged; earlier saves load. After updating, run
+<strong>Tools &gt; XenoCore &gt; Apply XenoCore Project Settings</strong> again: it adds the settings for the Lyra code XenoCore
+now carries.</p>
+<ul>
+<li>XenoCore no longer needs Lyra: the Lyra code and content it uses ship inside the plugin, so it installs and plays in a blank Unreal 5.8 project as well as in a Lyra one. Run <strong>Tools &gt; XenoCore &gt; Apply XenoCore Project Settings</strong> after installing. In a project made from the engine's Blank template, Apply now also replaces the template's Open World startup map with XenoCore's title screen.</li>
+<li>Smaller download: about 390 MB less content. 114 unused animation, blend space and effect assets are gone, and the Gaur Plain cliff and boulder meshes are lighter with no visible change.</li>
+</ul>
 <h2 id="112-2026-10-20">1.1.2 (2026-10-20)<a class="headerlink" href="#112-2026-10-20" title="Permanent link">&para;</a></h2>
 <p>A packaging change for Fab's code-plugin review. No gameplay changes; earlier saves load.</p>
 <ul>

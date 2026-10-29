@@ -4747,7 +4747,7 @@
 </tr>
 <tr>
 <td><strong>Host project</strong></td>
-<td>Your own <strong>Lyra Starter Game</strong> project for 5.8 (free on Fab). XenoCore is a Lyra Game Feature plugin built against Lyra's C++ (<code>LyraGame</code>); it is tested against unmodified Lyra 5.8. See <a href="../../getting-started/install/">Install</a>.</td>
+<td>Any 5.8 project: a new <strong>Blank</strong> project, or a <strong>Lyra Starter Game</strong> project. The Lyra code XenoCore is built on ships inside the plugin as the <code>XenoCoreBase</code> module, renamed so it never clashes with a Lyra project's own <code>LyraGame</code>. Both are tested. See <a href="../../getting-started/install/">Install</a>.</td>
 </tr>
 <tr>
 <td><strong>Binaries</strong></td>
@@ -4910,7 +4910,7 @@ its <code>assimp</code> library is included, and a packaged game links it.</p>
 <tbody>
 <tr>
 <td><strong>Current version</strong></td>
-<td><code>1.1.2</code> (<code>VersionName</code> in <code>XenoCore.uplugin</code>, shown on the XenoCore entry in <strong>Edit › Plugins</strong>)</td>
+<td><code>1.2.0</code> (<code>VersionName</code> in <code>XenoCore.uplugin</code>, shown on the XenoCore entry in <strong>Edit › Plugins</strong>)</td>
 </tr>
 <tr>
 <td><strong>Scheme</strong></td>
@@ -4936,11 +4936,10 @@ project and let it compile, then run <strong>Tools › XenoCore › Apply XenoCo
 in a newer one: each new version says how older files are brought forward, and so far every step
 has needed no conversion (the new fields simply start empty). A save written by a <strong>newer</strong>
 XenoCore cannot be loaded by an older one: on the Load screen that slot cannot be selected (it can
-still be deleted), rather than being read with fields the older code does not understand. Versions 1.0.0 to 1.1.2 write save-data version 5.</p>
-<p><strong>Engine versions.</strong> XenoCore 1.1.2 supports <strong>Unreal Engine 5.8</strong> only. When a new engine version
+still be deleted), rather than being read with fields the older code does not understand. Versions 1.0.0 to 1.2.0 write save-data version 5.</p>
+<p><strong>Engine versions.</strong> XenoCore 1.2.0 supports <strong>Unreal Engine 5.8</strong> only. When a new engine version
 comes out, XenoCore is re-tested against it and a new upload is published for that version; until
-then, moving your project to the new engine is at your own risk, because Lyra itself changes
-between engine versions and XenoCore depends on Lyra's C++.</p>
+then, moving your project to the new engine is at your own risk.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../getting-started/requirements/">Requirements</a></li>

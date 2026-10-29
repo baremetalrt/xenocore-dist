@@ -4765,9 +4765,10 @@ nothing is replicated. Adding multiplayer would mean replicating the party, targ
 inventory and saves: treat that as a new project built on XenoCore's ideas. See
 <a href="../../reference/compatibility/#game-type">Compatibility</a>.</p>
 <h2 id="can-i-add-it-to-a-project-that-is-not-based-on-lyra">Can I add it to a project that is not based on Lyra?<a class="headerlink" href="#can-i-add-it-to-a-project-that-is-not-based-on-lyra" title="Permanent link">&para;</a></h2>
-<p>No. XenoCore is a Lyra Game Feature plugin: its C++ is built on Lyra's game module, and its maps run
-a Lyra Experience. Start from a <strong>Lyra Starter Game 5.8</strong> project (free on Fab) and add XenoCore to
-it. See <a href="../../getting-started/install/">Install and first launch</a>.</p>
+<p>Yes. Since 1.2.0 the Lyra code and content XenoCore is built on ship inside the plugin (the
+<code>XenoCoreBase</code> module and <code>Content/Imported/Lyra</code>), so a new <strong>Blank</strong> 5.8 project works, and so does
+a Lyra Starter Game project; the two do not conflict. Run <strong>Apply</strong> once after installing. See
+<a href="../../getting-started/install/">Install and first launch</a>.</p>
 <h2 id="do-i-need-to-know-c">Do I need to know C++?<a class="headerlink" href="#do-i-need-to-know-c" title="Permanent link">&para;</a></h2>
 <p>No. Almost everything is data: Blueprints, data assets and Data Tables. You do need <strong>Visual Studio
 2022 installed</strong>, because XenoCore is delivered as source and compiles the first time the project

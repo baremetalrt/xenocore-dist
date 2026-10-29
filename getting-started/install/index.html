@@ -426,10 +426,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-create-a-lyra-project" class="md-nav__link">
+  <a href="#1-create-a-project" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Create a Lyra project
+        1. Create a project
       
     </span>
   </a>
@@ -460,10 +460,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#let-lyras-editor-build-compile-vrm4u" class="md-nav__link">
+  <a href="#in-a-lyra-project-only-let-lyras-editor-build-compile-vrm4u" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Let Lyra's editor build compile VRM4U
+        In a Lyra project only: let Lyra's editor build compile VRM4U
       
     </span>
   </a>
@@ -4604,10 +4604,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-create-a-lyra-project" class="md-nav__link">
+  <a href="#1-create-a-project" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Create a Lyra project
+        1. Create a project
       
     </span>
   </a>
@@ -4638,10 +4638,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#let-lyras-editor-build-compile-vrm4u" class="md-nav__link">
+  <a href="#in-a-lyra-project-only-let-lyras-editor-build-compile-vrm4u" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Let Lyra's editor build compile VRM4U
+        In a Lyra project only: let Lyra's editor build compile VRM4U
       
     </span>
   </a>
@@ -4726,50 +4726,49 @@
 
 
 <h1 id="install-and-first-launch">Install and first launch<a class="headerlink" href="#install-and-first-launch" title="Permanent link">&para;</a></h1>
-<p><em>All · 20 min · No code · Last tested: 2026-10-10 (stock Lyra 5.8, UE 5.8.1, VRM4U_5_8_20260912)</em></p>
-<p>XenoCore is a <strong>Game Feature plugin for Lyra</strong>, delivered as C++ source plus content. You add it and
-the free VRM4U plugin to a Lyra project, open the project (Unreal compiles XenoCore the first time),
-and click <strong>Apply</strong> once. Nothing in Lyra is edited by hand.</p>
+<p><em>All · 20 min · No code · Last tested: 2026-10-29 (Blank and Lyra 5.8 projects, UE 5.8.1, VRM4U_5_8_20260912)</em></p>
+<p>XenoCore is a <strong>Game Feature plugin</strong> for Unreal Engine 5.8, delivered as C++ source plus content.
+Everything it needs ships inside the plugin, including the parts of Epic's Lyra Starter Game it is
+built on, so it works in a <strong>new Blank project</strong> or in a <strong>Lyra project</strong> you already have. You add it
+and the free VRM4U plugin to the project, open the project, and click <strong>Apply</strong> once.</p>
 <p>Before you start, install <strong>Visual Studio 2022</strong> with the <em>Game development with C++</em> workload; see
-<a href="../requirements/">Requirements</a>. The first open cannot finish without it.</p>
-<h2 id="1-create-a-lyra-project">1. Create a Lyra project<a class="headerlink" href="#1-create-a-lyra-project" title="Permanent link">&para;</a></h2>
+<a href="../requirements/">Requirements</a>. If Unreal asks to compile XenoCore when the project opens, it needs it.</p>
+<h2 id="1-create-a-project">1. Create a project<a class="headerlink" href="#1-create-a-project" title="Permanent link">&para;</a></h2>
 <ol>
-<li>In the Epic Games Launcher, open <strong>Fab Library</strong>, find <strong>Lyra Starter Game</strong> (free), and create a
-   project from it for <strong>Unreal Engine 5.8</strong>.</li>
+<li>In the Epic Games Launcher, launch <strong>Unreal Engine 5.8</strong> and create a new project from
+   <strong>Games &gt; Blank</strong> (Blueprint or C++, either works; starter content is not needed).</li>
 <li>Put it on a <strong>short path</strong>, such as <code>C:\Projects\MyRPG</code>. Long paths can break the C++ build on
    Windows.</li>
 </ol>
-<p>You can also use a Lyra project you already have. XenoCore only adds settings; see
-<a href="#what-apply-changes">What Apply changes</a> for the list.</p>
+<p>You can also use a project you already have, including a <strong>Lyra Starter Game</strong> project. XenoCore only
+adds settings; see <a href="#what-apply-changes">What Apply changes</a> for the list.</p>
 <h2 id="2-add-the-plugin">2. Add the plugin<a class="headerlink" href="#2-add-the-plugin" title="Permanent link">&para;</a></h2>
 <p><strong>From Fab:</strong> in the Epic Games Launcher's <strong>Fab Library</strong>, click <strong>Install to Engine</strong> on XenoCore
 and choose 5.8. The launcher puts it in the engine's plugin folder,
 <code>C:\Program Files\Epic Games\UE_5.8\Engine\Plugins\Marketplace\XenoCore</code>. XenoCore cannot run
-from there, because it is built on Lyra's own game code, so <strong>move</strong> (cut, not copy) that <code>XenoCore</code>
-folder into your project as below. Leaving a second copy in the engine folder makes Unreal find the
-plugin twice.</p>
+from there, because Unreal only loads a Game Feature plugin from a project's <code>Plugins/GameFeatures</code>
+folder, so <strong>move</strong> (cut, not copy) that <code>XenoCore</code> folder into your project as below. Leaving a
+second copy in the engine folder makes Unreal find the plugin twice.</p>
 <p><strong>From a zip download:</strong> unzip it and copy its <code>XenoCore</code> folder into the project.</p>
-<p>Either way, it goes in the project's <strong><code>Plugins/GameFeatures</code></strong> folder, so you have:</p>
+<p>Either way, it goes in the project's <strong><code>Plugins/GameFeatures</code></strong> folder (create the folders if they do
+not exist), so you have:</p>
 <div class="highlight"><pre><span></span><code>MyRPG/
-  Lyra.uproject
+  MyRPG.uproject
   Plugins/
     GameFeatures/
-      ShooterCore/
       XenoCore/          &lt;- here
         XenoCore.uplugin
 </code></pre></div>
-<p>It must be in <code>Plugins/GameFeatures</code> of the <strong>project</strong>, not in the engine's plugin folder: XenoCore
-is C++ built on Lyra's own game module, so it compiles with the project.</p>
-<p>You do not need to edit <code>Lyra.uproject</code>; the plugin switches itself on.</p>
+<p>You do not need to edit the <code>.uproject</code>; the plugin switches itself on.</p>
 <h3 id="add-vrm4u-the-vroid-party-needs-it">Add VRM4U (the VRoid party needs it)<a class="headerlink" href="#add-vrm4u-the-vroid-party-needs-it" title="Permanent link">&para;</a></h3>
 <p>The sample party is seven VRoid characters, and their skeletons, faces, toon materials and hair
-physics run on <strong>VRM4U</strong>, a free plugin by ruyo (MIT licence). XenoCore lists it as a dependency, so
-the project will not open without it.</p>
+physics run on <strong>VRM4U</strong>, a free plugin by ruyo (MIT licence). Without it the sample party has no
+visible bodies.</p>
 <ol>
 <li>Download the VRM4U release for <strong>Unreal Engine 5.8</strong> from its GitHub releases page
    (github.com/ruyo/VRM4U): the file named <code>VRM4U_5_8_&lt;date&gt;.zip</code>. XenoCore is tested with
-   <code>VRM4U_5_8_20260912.zip</code> (last full install test: 2026-10-14, stock Lyra 5.8, UE 5.8.1).</li>
-<li>Unzip it into the <strong>project folder</strong> (where <code>Lyra.uproject</code> is). The zip already contains a
+   <code>VRM4U_5_8_20260912.zip</code>.</li>
+<li>Unzip it into the <strong>project folder</strong> (where the <code>.uproject</code> is). The zip already contains a
    <code>Plugins/VRM4U</code> folder, so it lands in the right place:</li>
 </ol>
 <div class="highlight"><pre><span></span><code>MyRPG/
@@ -4778,11 +4777,11 @@ the project will not open without it.</p>
     GameFeatures/
       XenoCore/
 </code></pre></div>
-<h3 id="let-lyras-editor-build-compile-vrm4u">Let Lyra's editor build compile VRM4U<a class="headerlink" href="#let-lyras-editor-build-compile-vrm4u" title="Permanent link">&para;</a></h3>
-<p>VRM4U is compiled from source with your project, and stock Lyra's editor target refuses the raw
-object pointers VRM4U's headers use, so the first build fails with dozens of <em>"Native pointer usage
-in member declaration"</em> errors unless you change one line first. Open <code>Source/LyraEditor.Target.cs</code>
-in your project folder (any text editor) and change</p>
+<h3 id="in-a-lyra-project-only-let-lyras-editor-build-compile-vrm4u">In a Lyra project only: let Lyra's editor build compile VRM4U<a class="headerlink" href="#in-a-lyra-project-only-let-lyras-editor-build-compile-vrm4u" title="Permanent link">&para;</a></h3>
+<p>Skip this in a Blank project. Stock Lyra's editor target refuses the raw object pointers VRM4U's
+headers use, so the first build fails with dozens of <em>"Native pointer usage in member declaration"</em>
+errors unless you change one line first. Open <code>Source/LyraEditor.Target.cs</code> in your project folder
+(any text editor) and change</p>
 <div class="highlight"><pre><span></span><code><span class="n">NativePointerMemberBehaviorOverride</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PointerMemberBehavior</span><span class="p">.</span><span class="n">Disallow</span><span class="p">;</span>
 </code></pre></div>
 <p>to</p>
@@ -4791,22 +4790,22 @@ in your project folder (any text editor) and change</p>
 <p>This relaxes a code-style check for the editor build only; it changes no behaviour and no data, and
 packaged games are not affected. XenoCore's own C++ passes the strict setting.</p>
 <h2 id="3-open-the-project">3. Open the project<a class="headerlink" href="#3-open-the-project" title="Permanent link">&para;</a></h2>
-<p>Double-click <code>Lyra.uproject</code>. If Windows asks which engine to use, pick <strong>5.8</strong>.</p>
-<p>Unreal then says that modules are <strong>missing or built with a different engine version</strong> (it names
-<code>XenoCoreRuntime</code>, <code>XenoCoreEditor</code>, and possibly VRM4U's modules) and asks whether to rebuild them.
-Click <strong>Yes</strong>. This compiles XenoCore's C++ inside your project and takes several minutes the first
-time; it is expected, because the plugin is delivered as source. If the build fails, Unreal offers
+<p>Double-click the <code>.uproject</code>. If Windows asks which engine to use, pick <strong>5.8</strong>.</p>
+<p>If Unreal says that modules are <strong>missing or built with a different engine version</strong> (it names
+<code>XenoCoreBase</code>, <code>XenoCoreRuntime</code>, <code>XenoCoreEditor</code>, and possibly VRM4U's modules) and asks whether
+to rebuild them, click <strong>Yes</strong>. This compiles XenoCore's C++ inside your project and takes several
+minutes the first time. If the build fails, Unreal offers
 to open the log; see <a href="../../troubleshooting/build-and-editor/">Troubleshooting &gt; Build and editor</a>.
-If you would rather watch the build, right-click <code>Lyra.uproject</code>, choose <strong>Generate Visual Studio
-project files</strong>, open the solution and build the <strong>LyraEditor</strong> target in <strong>Development Editor</strong>.</p>
+If you would rather watch the build, right-click the <code>.uproject</code>, choose <strong>Generate Visual Studio
+project files</strong>, open the solution and build the editor target in <strong>Development Editor</strong>.</p>
 <p>After the build, the first open compiles shaders and builds cached data, and can take a long time once (10 minutes
 or more); later opens take under a minute. Several things you may see on the way are Unreal's,
-Lyra's or Windows', not XenoCore's, and are harmless:</p>
+Lyra's or Windows', not XenoCore's, and are harmless (the last two appear in a Lyra project only):</p>
 <ul>
 <li><strong>"Wait for ZenServer?"</strong>: Unreal's shared cache is doing maintenance. Click <strong>Yes</strong>.</li>
 <li><strong>"New plugins are available"</strong>: Unreal noticing VRM4U and XenoCore. Click <strong>Dismiss</strong>; both are
   already enabled.</li>
-<li><strong>A Windows Firewall prompt for "Lyra"</strong>: Windows asking about a program it has not seen before.
+<li><strong>A Windows Firewall prompt for the editor</strong>: Windows asking about a program it has not seen before.
   XenoCore is single-player and needs no network; either answer is fine. While it is open, the
   editor behind it does not respond to clicks.</li>
 <li><strong>Red and yellow AutomationTool text over the viewport</strong> ending in <code>Build FAILED</code> and
@@ -4834,7 +4833,12 @@ Project Settings</strong>. It is safe to run any number of times.</p>
 Gaur Plain with Kael and Mira. See <a href="../play-the-sample/">Play the sample</a>.</p>
 <h2 id="what-apply-changes">What Apply changes<a class="headerlink" href="#what-apply-changes" title="Permanent link">&para;</a></h2>
 <p>Apply writes to the project's own <code>Config/Default*.ini</code> files, so every change is visible and
-yours to edit. A setting you have already changed yourself is <strong>left alone</strong> and listed in the
+yours to edit. Every project gets XenoCore's own configuration of the Lyra code it carries (its
+player controller, asset manager, UI and loading-screen settings, read only by XenoCore's classes).
+A project <strong>without Lyra</strong> also gets what Lyra's own project settings would have held: the engine
+classes (viewport client, asset manager, world settings, local player, user settings), collision
+profiles, CommonUI and CommonInput settings, gameplay-ability and game-feature settings, and the
+asset types the asset manager scans. A Lyra project keeps Lyra's own. A setting you have already changed yourself is <strong>left alone</strong> and listed in the
 Output Log under <code>LogXenoSetup</code>, with the value XenoCore expected.</p>
 <table>
 <thead>
@@ -4848,7 +4852,7 @@ Output Log under <code>LogXenoSetup</code>, with the value XenoCore expected.</p
 <tr>
 <td><code>DefaultEngine.ini</code></td>
 <td>Game default map and editor startup map: <code>L_XenoCore_FrontEnd</code></td>
-<td>Boot into XenoCore's title screen, not Lyra's. Changed only while they still name Lyra's maps</td>
+<td>Boot into XenoCore's title screen. Changed only while they are unset or still name a template's map (Lyra's, or the engine's Blank / Open World map)</td>
 </tr>
 <tr>
 <td><code>DefaultEngine.ini</code></td>
