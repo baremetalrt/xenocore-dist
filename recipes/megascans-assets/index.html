@@ -4838,10 +4838,12 @@ sliver of it. Three things go wrong if you just drag assets in:</p>
 <li><strong>You ship full-resolution sources.</strong> A cliff at 25 % of its triangles and 1K textures is
    usually indistinguishable at gameplay distance.</li>
 </ol>
-<p>The XenoCore sample map went from a 40 GB pack to about 180 assets and under 1 GB this way.</p>
-<p>The sample's pack assets live <strong>in the plugin</strong>, under <code>Imported/ElectricDreams/</code>, keeping the
-pack's own sub-folders (<code>Megascans</code>, <code>SmartAssets</code>, <code>PCG</code> and the rest), so they travel with
-XenoCore.</p>
+<div class="admonition warning">
+<p class="admonition-title">Fine in a game, not in a Fab product</p>
+<p>Fab does not allow Megascans to be redistributed inside a product sold as a project or plugin.
+Use this page for a game you ship. XenoCore itself contains no Megascans: its sample map uses
+CC0 scans from Poly Haven.</p>
+</div>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-place-what-you-want-then-list-what-it-needs">1. Place what you want, then list what it needs<a class="headerlink" href="#1-place-what-you-want-then-list-what-it-needs" title="Permanent link">&para;</a></h3>
 <ol>

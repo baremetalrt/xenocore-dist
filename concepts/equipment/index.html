@@ -4712,12 +4712,12 @@ is pure data: no effect asset or graph of its own.</p>
 </tr>
 <tr>
 <td>Equipment definition (weapon)</td>
-<td><code>Weapons/ED_XenoCore_Sword_Base</code> › <code>GreatSword/ED_XenoCore_JunkSword</code>, <code>BlueSword/ED_XenoCore_BlueSword</code> and one per sword</td>
+<td><code>Weapons/ED_XenoCore_Sword_Base</code> › <code>GreatSword/ED_XenoCore_JunkSword</code>, <code>AmberSword/ED_XenoCore_AmberSword</code> and one per sword</td>
 <td>Weapon actor to spawn, instance class, ability sets to grant</td>
 </tr>
 <tr>
 <td>Weapon actor</td>
-<td><code>Weapons/B_XenoCore_Sword_Base</code> › <code>B_GreatSword</code>, <code>B_BlueSword</code>…</td>
+<td><code>Weapons/B_XenoCore_Sword_Base</code> › <code>B_GreatSword</code>, <code>B_AmberSword</code>…</td>
 <td>The mesh you see</td>
 </tr>
 <tr>
@@ -4775,8 +4775,8 @@ is pure data: no effect asset or graph of its own.</p>
 <p>The sample swords (Junk, Blue, Green, Red, Amber, Gold, Ivory and Violet, one folder each under
 <code>Weapons/</code>) are all children of the two sword bases, share <code>B_WeaponInstance_GreatSword</code> and the
 Greatsword type, and differ only in their item, mesh or material, and the Talent Art their ability
-set grants. Junk, Blue, Green, Red and Gold share <code>AbilitySet_XenoCore_JunkSword</code> (Turn Strike);
-Amber, Ivory and Violet grant their own. <code>Weapons/IronBlade</code> holds only a mesh and material. See
+set grants. Junk, Green, Red and Gold share <code>AbilitySet_XenoCore_JunkSword</code> (Turn Strike);
+Amber, Ivory and Violet grant their own. See
 <a href="../../recipes/add-weapon/">Add a weapon</a>.</p>
 <p><strong>Each character wields one weapon type.</strong> An item's type is <strong>Weapon Type</strong> on its
 <code>XenoCoreFragment_EquipSlots</code> fragment; a character's allowed types are its equipment component's

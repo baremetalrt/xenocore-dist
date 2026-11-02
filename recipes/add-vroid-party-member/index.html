@@ -5023,10 +5023,7 @@ and swap its materials for instances of that material.</p>
    and the body-mesh rules that pick it, so leave those alone. In the child's <strong>Class Defaults</strong> set:<ul>
 <li><strong>Cosmetic Part</strong>: your cosmetic part.</li>
 <li><strong>Combatant Pawn Data</strong>: <code>Characters/VRoid/PawnData_XenoCore_Party_VRoid</code>, for any body. Its
-  <strong>Pawn Class</strong> is the VRoid base, so a member does not also load the Mannequin colour
-  samples (<code>B_XenoCore_Party_Manny</code> / <code>_Quinn</code>) and their materials, as the
-  <code>Characters/Party/PawnData_XenoCore_Party_*</code> assets would. Empty means the character cannot
-  be hurt or die.</li>
+  <strong>Pawn Class</strong> is the VRoid base. Empty means the character cannot be hurt or die.</li>
 <li><strong>Stats Effect</strong> and <strong>Combatant Level</strong>, exactly as in <a href="../add-party-member/">Add a party member</a>.</li>
 <li>On the <strong>Mesh</strong> component, <strong>Skeletal Mesh Asset</strong>: <code>SKM_Quinn_Invis</code> for a feminine body.
   The base uses <code>SKM_Manny_Invis</code>, and the body-mesh rules switch it by tag either way.</li>

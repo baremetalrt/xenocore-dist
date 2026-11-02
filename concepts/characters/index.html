@@ -4685,8 +4685,6 @@ spawns.</p>
   members (Kael, Mira, Nia, Dorran, Isolde, Sabine, Tamsin), one folder each</li>
 </ul>
 </li>
-<li><code>B_XenoCore_Party_Quinn</code>, <code>B_XenoCore_Party_Manny</code> and the other colour variants:
-  Mannequin-bodied examples kept on disk, <strong>not</strong> in the shipped roster</li>
 </ul>
 </li>
 </ul>
@@ -4711,9 +4709,7 @@ the same thing.</p>
 <p class="admonition-title">Who is in the party</p>
 <p>The sample cast is the seven VRoid members. A new game <strong>starts with two</strong>, Kael and Mira; the
 other five (Tamsin, Dorran, Sabine, Nia and Isolde) are <strong>recruited</strong> from NPCs on Gaur Plain,
-and every member who joins fights (<strong>Max Active Members</strong> is 7). The colour variants
-(<code>PartyMember_Quinn</code>, <code>PartyMember_Blue</code> and the rest) stay on disk as working examples of a
-Mannequin-bodied member; they are not in the cast. See
+and every member who joins fights (<strong>Max Active Members</strong> is 7). See
 <a href="../../recipes/starting-party/">Set the starting party</a> and
 <a href="../../recipes/recruit-npc/">Recruit a party member from an NPC</a>.</p>
 </div>
@@ -4724,8 +4720,8 @@ picked by the member definition's <strong>Experience Curve</strong>. See
 <a href="../../recipes/character-statline/">Give a character its own statline</a> and
 <a href="../../recipes/tune-progression/">Tune levelling</a>.</p>
 <p><strong>Pawn data</strong> (<code>ULyraPawnData</code>) is the list of ability sets and input config a character gets. Each
-party Blueprint points at one, for example <code>Characters/Party/PawnData_XenoCore_Party_Quinn</code> (the
-seven sample VRoid members share <code>Characters/VRoid/PawnData_XenoCore_Party_VRoid</code>), which grants <code>AbilitySet_XenoCore_PartyMember</code> and uses the tag relationships in
+party Blueprint points at one (the seven sample VRoid members share
+<code>Characters/VRoid/PawnData_XenoCore_Party_VRoid</code>), which grants <code>AbilitySet_XenoCore_PartyMember</code> and uses the tag relationships in
 <code>Game/TagRelationships_XenoCore</code>. The player's pawn uses <code>Game/PawnData_XenoCore_Player</code>, which grants
 <code>AbilitySet_XenoCore_Hero</code>.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>

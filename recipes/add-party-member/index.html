@@ -4827,8 +4827,7 @@ the others.</p>
 <li>To use a VRoid Studio model instead of the Mannequin body, see
   <a href="../add-vroid-party-member/">Add a VRoid party member</a> instead. The shipped party is the seven
   VRoid members (Kael, Mira, Nia, Dorran, Isolde, Sabine, Tamsin); the game starts with Kael and
-  Mira and the rest are recruited. The Mannequin colour members in <code>Characters/Party</code>, including the
-  <code>Quinn</code> assets this page copies, are kept on disk as samples and are not in the starting roster.</li>
+  Mira and the rest are recruited. This page copies Nia's data assets and gives them a Mannequin body.</li>
 </ul>
 <h2 id="what-you-will-make">What you will make<a class="headerlink" href="#what-you-will-make" title="Permanent link">&para;</a></h2>
 <table>
@@ -4842,7 +4841,7 @@ the others.</p>
 <tbody>
 <tr>
 <td>Member definition</td>
-<td>Duplicate <code>Characters/Party/PartyMember_Quinn</code></td>
+<td>Duplicate <code>Characters/VRoid/Nia/PartyMember_VRoid_S</code></td>
 <td>Name, role, portraits, which pawn to spawn, which AI drives it, its EXP curve</td>
 </tr>
 <tr>
@@ -4852,12 +4851,12 @@ the others.</p>
 </tr>
 <tr>
 <td><a href="../../getting-started/glossary/">Pawn data</a></td>
-<td><code>Characters/Party/PawnData_XenoCore_Party_Quinn</code></td>
+<td>Duplicate <code>Characters/VRoid/PawnData_XenoCore_Party_VRoid</code> and set its <strong>Pawn Class</strong> to your pawn</td>
 <td>Which abilities the body is granted, its input config and tag rules</td>
 </tr>
 <tr>
 <td>Stats effect</td>
-<td><code>Battle/Attributes/GE_XenoCore_BaseStats_Party_Quinn</code></td>
+<td><code>Battle/Attributes/GE_XenoCore_BaseStats_Nia</code></td>
 <td>HP, Strength, Ether, Agility and Talent charge at each level</td>
 </tr>
 <tr>
@@ -4883,9 +4882,9 @@ in step 2 avoids every one of these.</p>
 <li>Create a folder <code>Content/MyGame/Party</code>.</li>
 <li>In <strong>Plugins › XenoCore Content › Characters › Party</strong>, right-click
    <code>B_XenoCore_PartyMember_Base</code> and choose <strong>Create Child Blueprint Class</strong>.</li>
-<li>In the same folder, right-click and <strong>Duplicate</strong> <code>PartyMember_Quinn</code> and
-   <code>PawnData_XenoCore_Party_Quinn</code>.</li>
-<li>In <strong>Battle › Attributes</strong>, duplicate <code>GE_XenoCore_BaseStats_Party_Quinn</code>.</li>
+<li>Copy <code>Characters/VRoid/Nia/PartyMember_VRoid_S</code> and <code>Characters/VRoid/PawnData_XenoCore_Party_VRoid</code>
+   into your folder (drag them in and choose <strong>Copy Here</strong>).</li>
+<li>In <strong>Battle › Attributes</strong>, duplicate <code>GE_XenoCore_BaseStats_Nia</code>.</li>
 <li>In <strong>Characters › Party › AnimProfiles</strong>, duplicate a profile whose clips suit the body (see
    step 2).</li>
 <li>Rename them <code>B_Party_Rook</code>, <code>PartyMember_Rook</code>, <code>PawnData_Party_Rook</code>, <code>GE_BaseStats_Rook</code> and

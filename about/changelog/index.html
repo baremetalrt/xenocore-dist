@@ -4440,6 +4440,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#122-2026-11-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.2 (2026-11-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#121-2026-10-31" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4587,6 +4598,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#122-2026-11-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2.2 (2026-11-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#121-2026-10-31" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4677,6 +4699,20 @@ re-check; a <strong>minor</strong> release adds features; a <strong>patch</stron
 <a href="../../reference/compatibility/#upgrading">Compatibility</a> for how to take an update.</p>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <p>Changes merged since the last release; they ship in the next version.</p>
+<h2 id="122-2026-11-02">1.2.2 (2026-11-02)<a class="headerlink" href="#122-2026-11-02" title="Permanent link">&para;</a></h2>
+<p>A content release for Fab's review. Saves still load, but anything of yours that pointed at a removed asset must be
+repointed.</p>
+<ul>
+<li><strong>Changed:</strong> Gaur Plain no longer contains Megascans or Electric Dreams content, which Fab does not allow in a
+  product. Its cliffs, boulders, trees and ground now use CC0 Poly Haven scans and textures and generated trees, in
+  <code>Environment/Kit</code>. The map looks different.</li>
+<li><strong>Added:</strong> <code>M_XenoCore_TriplanarRock</code>, a tiled rock material mapped on world axes, so a rock of any size keeps the
+  same detail and needs no UVs.</li>
+<li><strong>Removed:</strong> <code>Imported/ElectricDreams</code>, the Granite rock, the twelve Mannequin colour party members with their pawn
+  data, stats, portraits and materials, the Blue Sword, the Iron Blade, and other assets nothing used. About 690 MB
+  smaller.</li>
+<li><strong>Fixed:</strong> <code>M_XenoCore_ScannedRock</code> never compiled, so every scanned rock drew the engine's default material.</li>
+</ul>
 <h2 id="121-2026-10-31">1.2.1 (2026-10-31)<a class="headerlink" href="#121-2026-10-31" title="Permanent link">&para;</a></h2>
 <p>A packaging release for Fab's code-plugin review. No gameplay changes; earlier saves load.</p>
 <ul>

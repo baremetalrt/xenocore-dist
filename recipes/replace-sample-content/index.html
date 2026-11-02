@@ -4900,12 +4900,8 @@ Keep <code>UserInterface</code> and <code>Characters/NPC</code> where they are.<
 <td><code>Characters/VRoid/&lt;Name&gt;/</code> (Kael, Mira, Nia, Dorran, Isolde, Sabine, Tamsin), their <code>Battle/Attributes/GE_XenoCore_BaseStats_&lt;Name&gt;</code> and their rows in <code>CT_XenoCore_PartyStatlines</code> and <code>Game/DT_XenoCore_ExperienceCurves</code>. Keep <code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code>, <code>B_XenoCore_Cosmetic_VRoid_Base</code> and <code>M_XenoCore_VRoidLit</code> if your characters are VRoid models</td>
 </tr>
 <tr>
-<td>The twelve Mannequin colour members (examples, not in the shipped roster)</td>
-<td><code>Characters/Party/PartyMember_*</code>, <code>B_XenoCore_Party_*</code>, <code>PawnData_XenoCore_Party_*</code>, <code>Portraits/</code>, <code>Materials/</code></td>
-</tr>
-<tr>
 <td>Sample weapons</td>
-<td><code>Weapons/AmberSword</code>, <code>BlueSword</code>, <code>GoldSword</code>, <code>GreatSword</code>, <code>GreenSword</code>, <code>IronBlade</code>, <code>IvorySword</code>, <code>RedSword</code>, <code>VioletSword</code>. Keep the sword bases (<code>Weapons/B_XenoCore_Sword_Base</code>, <code>ED_XenoCore_Sword_Base</code>, <code>AbilitySet_XenoCore_SwordCommon</code>) and <code>Weapons/Types</code> while any weapon of yours uses them</td>
+<td><code>Weapons/AmberSword</code>, <code>GoldSword</code>, <code>GreatSword</code>, <code>GreenSword</code>, <code>IvorySword</code>, <code>RedSword</code>, <code>VioletSword</code>. Keep the sword bases (<code>Weapons/B_XenoCore_Sword_Base</code>, <code>ED_XenoCore_Sword_Base</code>, <code>AbilitySet_XenoCore_SwordCommon</code>) and <code>Weapons/Types</code> while any weapon of yours uses them</td>
 </tr>
 <tr>
 <td>Sample armour and items</td>
@@ -4928,21 +4924,15 @@ Keep <code>UserInterface</code> and <code>Characters/NPC</code> where they are.<
 <td><code>Maps/L_XenoCore_GaurPlain</code>, <code>Maps/L_XenoCore_Gym</code>, <code>Environment/GaurPlain</code></td>
 </tr>
 <tr>
-<td>The sample map's pack assets</td>
-<td><code>Imported/ElectricDreams</code> (the cliffs, boulders, trees and their materials, reduced)</td>
-</tr>
-<tr>
-<td>A leftover backup pawn</td>
-<td><code>Game/B_XenoCore_Player_XC1_Backup</code></td>
+<td>The sample map's rocks and trees</td>
+<td><code>Environment/Kit</code></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Keep <code>B_XenoCore_Player</code></p>
-<p>The sample leader is Kael, a VRoid member. The colour member <code>PartyMember_Blue</code> uses
-<code>Game/B_XenoCore_Player</code> as its pawn, which is also the bootstrap pawn the game falls back on
-when the party has no starting roster. Keep <code>B_XenoCore_Player</code> even after you delete the colour
-members.</p>
+<p>The sample leader is Kael, a VRoid member. <code>Game/B_XenoCore_Player</code> is the bootstrap pawn the game
+falls back on when the party has no starting roster, so keep it.</p>
 </div>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-point-the-framework-at-your-content-first">1. Point the framework at your content first<a class="headerlink" href="#1-point-the-framework-at-your-content-first" title="Permanent link">&para;</a></h3>

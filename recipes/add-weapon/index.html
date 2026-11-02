@@ -4861,17 +4861,17 @@ the stat block.</p>
 <tbody>
 <tr>
 <td>Item definition</td>
-<td><code>Weapons/BlueSword/ID_XenoCore_BlueSword</code></td>
+<td><code>Weapons/AmberSword/ID_XenoCore_AmberSword</code></td>
 <td>Name, description, icon, slot, stats, sell value. This is what sits in the bag.</td>
 </tr>
 <tr>
 <td>Equipment definition</td>
-<td><code>Weapons/ED_XenoCore_Sword_Base</code> › <code>Weapons/BlueSword/ED_XenoCore_BlueSword</code></td>
+<td><code>Weapons/ED_XenoCore_Sword_Base</code> › <code>Weapons/AmberSword/ED_XenoCore_AmberSword</code></td>
 <td>What equipping it spawns, where it attaches, and which abilities it grants</td>
 </tr>
 <tr>
 <td>Weapon actor</td>
-<td><code>Weapons/B_XenoCore_Sword_Base</code> › <code>Weapons/BlueSword/B_BlueSword</code></td>
+<td><code>Weapons/B_XenoCore_Sword_Base</code> › <code>Weapons/AmberSword/B_AmberSword</code></td>
 <td>The mesh you see</td>
 </tr>
 <tr>
@@ -4889,10 +4889,9 @@ the stat block.</p>
 <p>Every shipped sword's actor is a child of <code>B_XenoCore_Sword_Base</code> (the greatsword mesh) and its
 equipment definition a child of <code>ED_XenoCore_Sword_Base</code> (the instance type, the back socket, and
 <code>AbilitySet_XenoCore_SwordCommon</code>, which draws and sheathes the sword and applies its stats). A sword
-differs only in its item, its material, and the Talent Art its <strong>ability set</strong> (a list of abilities granted while the weapon is worn) grants. Junk, Blue, Green
+differs only in its item, its material, and the Talent Art its <strong>ability set</strong> (a list of abilities granted while the weapon is worn) grants. Junk, Green
 and Red share <code>AbilitySet_XenoCore_JunkSword</code> (Turn Strike); the Violet, Amber and Ivory Swords each
-grant their own Talent Art. <code>Weapons/IronBlade</code> holds only a mesh
-and material.</p>
+grant their own Talent Art.</p>
 <p>A sword whose <a href="../../getting-started/glossary/">Talent Art</a> you want to change is covered in step 3.
 A <strong>new sword</strong> is the short route below. A <strong>new kind of weapon</strong> that animates differently needs
 the extra section at the end.</p>
@@ -4906,9 +4905,9 @@ the extra section at the end.</p>
 <li><code>ED_XenoCore_Sword_Base</code> → <code>ED_MyGame_StoneBlade</code></li>
 </ul>
 </li>
-<li>From <code>Weapons › BlueSword</code>, <strong>duplicate</strong> these two:<ul>
-<li><code>ID_XenoCore_BlueSword</code> → <code>ID_MyGame_StoneBlade</code></li>
-<li><code>MI_XenoCore_BlueSword</code> → <code>MI_MyGame_StoneBlade</code></li>
+<li>From <code>Weapons › AmberSword</code>, <strong>duplicate</strong> these two:<ul>
+<li><code>ID_XenoCore_AmberSword</code> → <code>ID_MyGame_StoneBlade</code></li>
+<li><code>MI_XenoCore_AmberSword</code> → <code>MI_MyGame_StoneBlade</code></li>
 </ul>
 </li>
 </ol>
@@ -5151,7 +5150,7 @@ anything.</p>
   step 7 of <a href="../add-vroid-party-member/">Add a VRoid party member</a>. A socket places a weapon, and its
   <strong>Scale must stay 1.0</strong>: socket scale multiplies every weapon that character ever holds, so one
   character's swords quietly come out a different size from everyone else's.
-- <strong>Materials from a pack</strong> (Paragon, Megascans) must be moved into XenoCore with the weapon. The
+- <strong>Materials from a pack</strong> (Paragon) must be moved into XenoCore with the weapon. The
   packs are not part of the project, so on any other machine the material slot is empty and the
   weapon renders grey. Use the editor's <strong>Move</strong> on the material, its textures and functions, never
   <strong>Copy</strong>, so the mesh is repointed; then cap the textures at 1K (right-click › <strong>Texture Source

@@ -4871,32 +4871,32 @@ character is still levels away from cost nothing. See <a href="../performance/">
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Mira</code></td>
-<td>Mira (<code>B_XenoCore_Party_VRoid_K</code>), <code>B_XenoCore_Party_Maroon</code></td>
+<td>Mira (<code>B_XenoCore_Party_VRoid_K</code>)</td>
 <td>Back Slash, Light Heal, Air Slash, Shield Bash, Wild Down (1)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Nia</code></td>
-<td>Nia (<code>B_XenoCore_Party_VRoid_S</code>), <code>B_XenoCore_Party_Cyan</code></td>
+<td>Nia (<code>B_XenoCore_Party_VRoid_S</code>)</td>
 <td>Back Slash, Light Heal, Air Slash (1)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Dorran</code></td>
-<td>Dorran (<code>B_XenoCore_Party_VRoid_C</code>), <code>B_XenoCore_Party_Lime</code></td>
+<td>Dorran (<code>B_XenoCore_Party_VRoid_C</code>)</td>
 <td>Back Slash, Light Heal, Air Slash (1)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Isolde</code></td>
-<td>Isolde (<code>B_XenoCore_Party_VRoid_M</code>), <code>B_XenoCore_Party_Purple</code></td>
+<td>Isolde (<code>B_XenoCore_Party_VRoid_M</code>)</td>
 <td>Ember Ring, Ether Ward, Frost Lance (1); Mind Sap (3)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Sabine</code></td>
-<td>Sabine (<code>B_XenoCore_Party_VRoid_Q</code>), <code>B_XenoCore_Party_Yellow</code></td>
+<td>Sabine (<code>B_XenoCore_Party_VRoid_Q</code>)</td>
 <td>Bellow, Hamstring, Venom Edge (1); Wild Down (2)</td>
 </tr>
 <tr>
 <td><code>DT_XenoCore_ArtLearnset_Tamsin</code></td>
-<td>Tamsin (<code>B_XenoCore_Party_VRoid_Y</code>), <code>B_XenoCore_Party_Pink</code></td>
+<td>Tamsin (<code>B_XenoCore_Party_VRoid_Y</code>)</td>
 <td>Bolster, Light Heal, Mending Wave (1); Slit Edge (2); Renewal (3)</td>
 </tr>
 </tbody>
@@ -4909,10 +4909,9 @@ get no floating text over heads: the whole party levels at once, so it would be 
 <strong>skill</strong> does float.) The data rides on the level-up message as <code>FXenoCoreLevelUpEntry</code>'s
 <strong>Arts Learned</strong>.</p>
 <div class="admonition note">
-<p class="admonition-title">One example member gets Arts another way</p>
-<p>The colour example <code>PartyMember_Blue</code> (not in the sample cast) uses <code>B_XenoCore_Player</code> as its
-pawn, which is not built on the party base and has no <strong>Art Learn Table</strong>. Its Arts come from
-<code>AbilitySet_XenoCore_Hero</code>.</p>
+<p class="admonition-title">The bootstrap pawn gets Arts another way</p>
+<p><code>B_XenoCore_Player</code>, the pawn the game falls back on with an empty roster, is not built on the
+party base and has no <strong>Art Learn Table</strong>. Its Arts come from <code>AbilitySet_XenoCore_Hero</code>.</p>
 </div>
 <p><strong>Slotting.</strong> Slots are numbered in <strong>unlock order</strong>, not screen position, and the bar fills from
 the centre out: slot 0 sits immediately left of the Talent Art, slot 1 immediately right, slot 2
