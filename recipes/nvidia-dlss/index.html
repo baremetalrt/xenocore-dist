@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4655,12 +4625,13 @@ DLAA), Frame Generation and NVIDIA Reflex Low Latency, on any GeForce RTX graphi
 not inside a source project sold to developers. The settings are already built in. They appear the moment
 you install the plugin, and stay out of sight when it isn't there.</p>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently: a stock Lyra project has no DLSS group</p>
-<p>The <strong>NVIDIA DLSS</strong> group lives in Lyra's own settings screen, which is part of the host Lyra
-project's C++, not the XenoCore plugin. A stock Lyra Starter Game project does not have it, so
-installing NVIDIA's plugin there adds nothing to <strong>Options › Video</strong>, and nothing warns. Adding
-the group to a stock Lyra needs a programmer and a C++ build; see the note at the end of this page.
-The XenoCore download is the plugin folder only, so it does not include those Lyra files.</p>
+<p class="admonition-title">Fails silently: in a Lyra project, the settings screen is Lyra's</p>
+<p>The <strong>NVIDIA DLSS</strong> group is part of the settings screen XenoCore carries in its <code>XenoCoreBase</code>
+module, which a Blank project uses. In a Lyra Starter Game project, <strong>Settings</strong> opens the host's
+own Lyra settings screen instead (<strong>XenoCore UI › Host Settings Screen</strong>), and a stock Lyra screen
+has no DLSS group, so installing NVIDIA's plugin there adds nothing to <strong>Options › Video</strong>, and
+nothing warns. Adding the group to a stock Lyra needs a programmer and a C++ build; see the note
+at the end of this page.</p>
 </div>
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4734,11 +4705,13 @@ Do not use NVIDIA logos in your store page without NVIDIA's approval.</p>
 <details class="note">
 <summary>For programmers: how it works</summary>
 <p>The settings call NVIDIA's own Blueprint libraries by name, so nothing in the project links to
-NVIDIA's code. They are a Lyra game-settings class, <code>LyraNvidiaSettings</code> (in the host project's
-<code>Source/LyraGame/Settings/</code>), registered on Lyra's Video settings page. In a stock Lyra project
-those files must be added to <code>LyraGame</code> and the project rebuilt: the new
-<code>LyraNvidiaSettings.h/.cpp</code> and <code>LyraGameSettingRegistry_Video_NVIDIA.cpp</code>, plus small edits to
-<code>LyraGameSettingRegistry.h/.cpp</code> and <code>LyraSettingsLocal.h/.cpp</code>.</p>
+NVIDIA's code. They are a game-settings class, <code>FXenoBaseNvidiaSettings</code>
+(<code>Source/ThirdParty/XenoCoreBase/.../Settings/XenoBaseNvidiaSettings.h</code>), registered on the Video
+page by <code>UXenoBaseGameSettingRegistry::InitializeVideoSettings_NVIDIA</code>
+(<code>XenoBaseGameSettingRegistry_Video_NVIDIA.cpp</code>) and applied through <code>UXenoBaseSettingsLocal</code>. To
+give a stock Lyra project's own settings screen the same group, port those three pieces into its
+<code>LyraGame</code> module (as <code>LyraNvidiaSettings</code>, <code>LyraGameSettingRegistry_Video_NVIDIA.cpp</code>, and edits to
+<code>LyraGameSettingRegistry</code> and <code>LyraSettingsLocal</code>) and rebuild.</p>
 </details>
 
 

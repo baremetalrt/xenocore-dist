@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -5328,8 +5298,8 @@ sprinting, stopping and walking again. Once the leader stops they come in at <st
 movement while the AI drives it: <strong>Rotation Rate Yaw</strong> (420°/s), <strong>Max Acceleration</strong> (1500) and
 <strong>Braking Deceleration Walking</strong> (1100). The player's numbers are tuned for a hand on the stick and
 look robotic on a body nobody steers. When the player takes the body over, the Blueprint's own
-movement values come straight back. It is on for <code>B_XenoCore_PartyMember_Base</code>,
-<code>B_XenoCore_Party_VRoid_Base</code> and <code>B_XenoCore_Player</code>, and off (untick <strong>Enabled</strong>) for anything that
+movement values come straight back. It is on for <code>B_XenoCore_PartyMember_Base</code>
+and <code>B_XenoCore_Player</code>, and off (untick <strong>Enabled</strong>) for anything that
 does not opt in, enemies included.</p>
 <p><strong>Crowd avoidance.</strong> Out of battle, members follow their paths straight; Detour Crowd avoidance is
 switched off. With it on, members re-steer round each other every frame and the whole party wobbles

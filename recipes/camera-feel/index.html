@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4781,8 +4751,8 @@ back to the shipped camera in one field.</p>
 </table>
 <p>Every character carries a <strong>Gameplay Camera</strong> component pointing at <code>CA_XenoCore_Player</code>: the
 player pawn (<code>Game/B_XenoCore_Player</code>) and every party member
-(<code>Characters/Party/B_XenoCore_PartyMember_Base</code>, which the VRoid base
-<code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code> and all seven sample members inherit from). When you switch leader, the new leader's camera
+(<code>Characters/Party/B_XenoCore_PartyMember_Base</code>, which the six <code>B_XenoCore_Party_&lt;Colour&gt;</code> sample
+members inherit from; Kael is <code>Game/B_XenoCore_Player</code>). When you switch leader, the new leader's camera
 takes over, so both must point at the same camera asset.</p>
 <p>The explore rig's nodes, and what each one changes on screen:</p>
 <table>
@@ -4841,8 +4811,8 @@ takes over, so both must point at the same camera asset.</p>
 <ol>
 <li>Open <code>Game/B_XenoCore_Player</code>. In the <strong>Components</strong> panel, select the <strong>GameplayCamera</strong> component. Set its
    <strong>Camera Asset</strong> to <code>CA_MyGame_Player</code>. <strong>Compile</strong> and <strong>Save</strong>.</li>
-<li>Do the same in <code>Characters/Party/B_XenoCore_PartyMember_Base</code>. Every party member, the VRoid ones
-   included, inherits its camera from this base, so this one change covers them all.</li>
+<li>Do the same in <code>Characters/Party/B_XenoCore_PartyMember_Base</code>. Every other party member inherits its
+   camera from this base, so these two changes cover them all.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: only one of the two</p>

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4609,6 +4579,222 @@ available in a Shipping build. Do not build gameplay on them.</p>
 </thead>
 <tbody>
 <tr>
+<td><code>XenoBase.CommonLoadingScreen.AlwaysShow</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>No</td>
+<td>Force the loading screen to show.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/CommonLoadingScreen/XenoKitLoadingScreenManager.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.CommonLoadingScreen.HoldLoadingScreenAdditionalSecs</code></td>
+<td><code>float</code></td>
+<td><code>2.0</code></td>
+<td>No</td>
+<td>How long to hold the loading screen up after other loading finishes (in seconds) to try to give texture streaming a chance to avoid blurriness.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/CommonLoadingScreen/XenoKitLoadingScreenManager.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.CommonLoadingScreen.LogLoadingScreenReasonEveryFrame</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>No</td>
+<td>When true, the reason the loading screen is shown or hidden will be printed to the log every frame.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/CommonLoadingScreen/XenoKitLoadingScreenManager.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.DeviceProfile.Console.FrameSyncType</code></td>
+<td><code>int32</code></td>
+<td><code>-1</code></td>
+<td>No</td>
+<td>Sync type when being driven by device profile. Corresponds to r.GTSyncType.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.DeviceProfile.Console.TargetFPS</code></td>
+<td><code>int32</code></td>
+<td><code>-1</code></td>
+<td>No</td>
+<td>Target FPS when being driven by device profile.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.DeviceProfile.Mobile.DefaultFrameRate</code></td>
+<td><code>int32</code></td>
+<td><code>30</code></td>
+<td>No</td>
+<td>Default FPS when being driven by device profile.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.DeviceProfile.Mobile.MaxFrameRate</code></td>
+<td><code>int32</code></td>
+<td><code>120</code></td>
+<td>No</td>
+<td>Max FPS when being driven by device profile.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.DeviceProfile.Mobile.OverallQualityLimits</code></td>
+<td><code>FString</code></td>
+<td><code>""</code></td>
+<td>No</td>
+<td>List of limits on resolution quality of the form "FPS:MaxQuality,FPS2:MaxQuality2,...", kicking in when FPS is at or above the threshold.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.DeviceProfile.Mobile.ResolutionQualityLimits</code></td>
+<td><code>FString</code></td>
+<td><code>""</code></td>
+<td>No</td>
+<td>List of limits on resolution quality of the form "FPS:MaxResQuality,FPS2:MaxResQuality2,...", kicking in when FPS is at or above the threshold.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.DeviceProfile.Mobile.ResolutionQualityRecommendation</code></td>
+<td><code>FString</code></td>
+<td><code>"0:75"</code></td>
+<td>No</td>
+<td>List of limits on resolution quality of the form "FPS:Recommendation,FPS2:Recommendation2,...", kicking in when FPS is at or above the threshold.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.GameSettings.ShowDebugInfo</code></td>
+<td><code>int32</code></td>
+<td><code>-1</code></td>
+<td>No</td>
+<td>Should we show the developer name and class as part of dynamic details?\n -1: Default (enabled in editor, disabled in -game or cooked builds)\n 0: Never show it\n 1: Always show it\n\n Note: Shipping builds always disable this.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/GameSettings/XenoKitGameSetting.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.LyraCheat.EnableDebugCameraCycling</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Yes</td>
+<td>If true then you can cycle the debug camera while running the game.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Player/XenoBaseCheatManager.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.LyraCheat.StartInGodMode</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Yes</td>
+<td>If true then the God cheat will be applied on begin play.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Player/XenoBaseCheatManager.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.LyraPC.ShouldAlwaysPlayForceFeedback</code></td>
+<td><code>int32</code></td>
+<td><code>0</code></td>
+<td>No</td>
+<td>Should force feedback effects be played, even if the last input device was not a gamepad?</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Player/XenoBasePlayerController.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.Settings.ApplyDeviceProfilesInPIE</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>No</td>
+<td>Should we apply experience/platform emulated device profiles in PIE?</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.Settings.ApplyFrameRateSettingsInPIE</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>No</td>
+<td>Should we apply frame rate settings in PIE?</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.Settings.ApplyFrontEndPerformanceOptionsInPIE</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>No</td>
+<td>Do we apply front-end specific performance options in PIE?</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsLocal.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.Settings.LatencyMarkersRequireNVIDIA</code></td>
+<td><code>bool</code></td>
+<td><code>true</code></td>
+<td>No</td>
+<td>If true, then only allow latency markers to be enabled on nvidia hardware.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseGameSettingRegistry_PerfStats.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.Weapon.DrawBulletHitDuration</code></td>
+<td><code>float</code></td>
+<td><code>0.0</code></td>
+<td>No</td>
+<td>Should we do debug drawing for bullet impacts (if above zero, sets how long (in seconds))</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Weapons/XenoBaseGameplayAbility_RangedWeapon.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.Weapon.DrawBulletHitRadius</code></td>
+<td><code>float</code></td>
+<td><code>3.0</code></td>
+<td>No</td>
+<td>When bullet hit debug drawing is enabled (see DrawBulletHitDuration), how big should the hit radius be? (in uu)</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Weapons/XenoBaseGameplayAbility_RangedWeapon.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.Weapon.DrawBulletTraceDuration</code></td>
+<td><code>float</code></td>
+<td><code>0.0</code></td>
+<td>No</td>
+<td>Should we do debug drawing for bullet traces (if above zero, sets how long (in seconds))</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Weapons/XenoBaseGameplayAbility_RangedWeapon.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.XenoBaseCharacter.GroundTraceDistance</code></td>
+<td><code>float</code></td>
+<td><code>100000.0</code></td>
+<td>Yes</td>
+<td>Distance to trace down when generating ground information.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Character/XenoBaseCharacterMovementComponent.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.XenoKitGameplayMessageSubsystem.LogMessages</code></td>
+<td><code>int32</code></td>
+<td><code>0</code></td>
+<td>No</td>
+<td>Should messages broadcast through the gameplay message subsystem be logged?</td>
+<td><code>ThirdParty/XenoCoreBase/Private/GameplayMessageRouter/GameFramework/XenoKitGameplayMessageSubsystem.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.chaos.ExperienceDelayLoad.MinSecs</code></td>
+<td><code>float</code></td>
+<td><code>0.0</code></td>
+<td>No</td>
+<td>This value (in seconds) will be added as a delay of load completion of the experience (along with the random value lyra.chaos.ExperienceDelayLoad.RandomSecs)</td>
+<td><code>ThirdParty/XenoCoreBase/Private/GameModes/XenoBaseExperienceManagerComponent.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.chaos.ExperienceDelayLoad.RandomSecs</code></td>
+<td><code>float</code></td>
+<td><code>0.0</code></td>
+<td>No</td>
+<td>A random amount of time between 0 and this value (in seconds) will be added as a delay of load completion of the experience (along with the fixed value lyra.chaos.ExperienceDelayLoad.MinSecs)</td>
+<td><code>ThirdParty/XenoCoreBase/Private/GameModes/XenoBaseExperienceManagerComponent.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.gpad.DefaultLeftStickInnerDeadZone</code></td>
+<td><code>float</code></td>
+<td><code>0.25</code></td>
+<td>No</td>
+<td>Gamepad left stick inner deadzone.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsShared.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.gpad.DefaultRightStickInnerDeadZone</code></td>
+<td><code>float</code></td>
+<td><code>0.25</code></td>
+<td>No</td>
+<td>Gamepad right stick inner deadzone.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/Settings/XenoBaseSettingsShared.cpp</code></td>
+</tr>
+<tr>
 <td><code>XenoCore.Art.MaxStage</code></td>
 <td><code>int32</code></td>
 <td><code>0</code></td>
@@ -4639,6 +4825,14 @@ available in a Shipping build. Do not build gameplay on them.</p>
 <td>No</td>
 <td>1 shows the shader card with a simulated 4 second compile, for previewing it where the queue is empty (the editor).</td>
 <td><code>XenoCoreRuntime/Private/UI/XenoCoreShaderBootScreenBase.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoCore.Debug.LogSyncLoads</code></td>
+<td><code>int32</code></td>
+<td><code>1</code></td>
+<td>No</td>
+<td>Log every synchronous package load that happens during play (not behind a loading screen): 1 package and stacks, 0 off.</td>
+<td><code>XenoCoreRuntime/Private/XenoCoreRuntimeModule.cpp</code></td>
 </tr>
 <tr>
 <td><code>XenoCore.Environment.Freeze</code></td>
@@ -4684,6 +4878,16 @@ available in a Shipping build. Do not build gameplay on them.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>XenoBase.DumpGameplayCues</code></td>
+<td>Shows all assets that were loaded via LyraGameplayCueManager and are currently in memory.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/AbilitySystem/XenoBaseGameplayCueManager.cpp</code></td>
+</tr>
+<tr>
+<td><code>XenoBase.DumpLoadedAssets</code></td>
+<td>Shows all assets that were loaded via the asset manager and are currently in memory.</td>
+<td><code>ThirdParty/XenoCoreBase/Private/System/XenoBaseAssetManager.cpp</code></td>
+</tr>
 <tr>
 <td><code>XenoCore.Aggro.Describe</code></td>
 <td>Log every enemy's aggro ring: shown or not, on whom, and the threat/provoke/engage/death state behind it.</td>

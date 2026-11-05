@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -3935,6 +3905,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#code-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code modules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#plugin-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3951,17 +3932,6 @@
     <span class="md-ellipsis">
       
         Your project's plugin list
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vrm4u" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        VRM4U
       
     </span>
   </a>
@@ -4637,6 +4607,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#code-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code modules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#plugin-dependencies" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4653,17 +4634,6 @@
     <span class="md-ellipsis">
       
         Your project's plugin list
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vrm4u" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        VRM4U
       
     </span>
   </a>
@@ -4751,7 +4721,7 @@
 </tr>
 <tr>
 <td><strong>Binaries</strong></td>
-<td>None. XenoCore is delivered as C++ source and compiles inside your project the first time it opens, which needs Visual Studio 2022. Both modules are limited to Win64 (<code>PlatformAllowList</code>).</td>
+<td>None. XenoCore is delivered as C++ source and compiles inside your project the first time it opens, which needs Visual Studio 2022. All three modules are limited to Win64 (<code>PlatformAllowList</code>).</td>
 </tr>
 <tr>
 <td><strong>Earlier engines</strong></td>
@@ -4775,7 +4745,7 @@
 </tr>
 <tr>
 <td>macOS, Linux</td>
-<td>Not supported. Both modules are Win64-only, and the VRoid sample characters rely on the VRM4U plugin, whose <code>assimp</code> library is provided for Windows x64 only.</td>
+<td>Not supported. XenoCore's modules are Win64-only.</td>
 </tr>
 <tr>
 <td>Consoles, mobile</td>
@@ -4811,94 +4781,167 @@
 <p>Adding multiplayer would mean replicating the party, targeting, arts, inventory messages and
 save state. Treat it as a new project built on XenoCore's ideas, not an option.</p>
 </div>
+<h2 id="code-modules">Code modules<a class="headerlink" href="#code-modules" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Type</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>XenoCoreBase</code></td>
+<td>Runtime</td>
+<td>The Lyra Starter Game code XenoCore is built on, renamed <code>XenoBase</code> / <code>XenoKit</code> so it never clashes with a Lyra project (<code>Source/ThirdParty/XenoCoreBase</code>)</td>
+</tr>
+<tr>
+<td><code>XenoCoreRuntime</code></td>
+<td>Runtime</td>
+<td>All of XenoCore's gameplay code</td>
+</tr>
+<tr>
+<td><code>XenoCoreEditor</code></td>
+<td>Editor</td>
+<td>Editor-only tools and project setup. Never part of a packaged game</td>
+</tr>
+</tbody>
+</table>
 <h2 id="plugin-dependencies">Plugin dependencies<a class="headerlink" href="#plugin-dependencies" title="Permanent link">&para;</a></h2>
-<p><code>XenoCore.uplugin</code> enables these engine and Lyra plugins. They must stay enabled.</p>
+<p><code>XenoCore.uplugin</code> enables these engine plugins, and no others. They must stay enabled. XenoCore
+needs no third-party plugin.</p>
 <table>
 <thead>
 <tr>
 <th>Plugin</th>
+<th>Status in 5.8</th>
 <th>Why XenoCore needs it</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>GameplayAbilities</code></td>
-<td>Arts, auto-attack, reactions, statuses and stats</td>
-</tr>
-<tr>
 <td><code>DataValidation</code></td>
+<td></td>
 <td>The save-time checks on XenoCore's data assets</td>
 </tr>
 <tr>
-<td><code>ModularGameplay</code>, <code>ModularGameplayActors</code></td>
-<td>Components added to Lyra's actors</td>
+<td><code>PCG</code></td>
+<td></td>
+<td>Procedural placement in the sample world</td>
 </tr>
 <tr>
-<td><code>GameplayMessageRouter</code></td>
-<td><a href="../gameplay-messages/">Gameplay messages</a></td>
+<td><code>NiagaraUIRenderer</code></td>
+<td><strong>Experimental</strong></td>
+<td>Effects drawn in the UI: the Party Gauge burst, quest-complete, level-up and party-join bursts</td>
 </tr>
 <tr>
-<td><code>AsyncMixin</code></td>
-<td>Lyra's asynchronous loading helpers</td>
+<td><code>GameplayAbilities</code></td>
+<td></td>
+<td>Arts, auto-attack, reactions, statuses and stats</td>
 </tr>
 <tr>
-<td><code>CommonUI</code>, <code>CommonGame</code>, <code>CommonLoadingScreen</code>, <code>UIExtension</code></td>
-<td>Menus, HUD layers, loading screen</td>
+<td><code>ModularGameplay</code></td>
+<td><strong>Beta</strong></td>
+<td>Components added to XenoCore's actors by the Game Feature</td>
+</tr>
+<tr>
+<td><code>CommonUI</code></td>
+<td></td>
+<td>Menus, HUD layers and button prompts</td>
 </tr>
 <tr>
 <td><code>EnhancedInput</code></td>
+<td></td>
 <td>All input</td>
 </tr>
 <tr>
 <td><code>AnimationWarping</code></td>
+<td></td>
 <td>Stride warping in the locomotion layers</td>
 </tr>
 <tr>
 <td><code>GameplayCameras</code></td>
-<td>The exploration and art cameras</td>
+<td><strong>Experimental</strong></td>
+<td>The exploration, art and dialogue cameras</td>
 </tr>
 <tr>
-<td><code>StateTree</code>, <code>GameplayStateTree</code></td>
+<td><code>GameplayStateTree</code>, <code>StateTree</code></td>
+<td></td>
 <td>Enemy and party AI</td>
 </tr>
 <tr>
-<td><code>PCG</code></td>
-<td>Procedural placement in the sample world</td>
-</tr>
-<tr>
 <td><code>Niagara</code></td>
-<td>Effects: hit sparks, damage numbers, chest beams, footsteps</td>
-</tr>
-<tr>
-<td><code>NiagaraUIRenderer</code></td>
-<td>Effects drawn in the UI: the Party Gauge burst, quest-complete, level-up and party-join bursts</td>
+<td></td>
+<td>Effects: hit sparks, damage numbers, chest beams, footsteps, weather</td>
 </tr>
 <tr>
 <td><code>Water</code></td>
+<td><strong>Experimental</strong></td>
 <td>Water in the sample maps</td>
 </tr>
 <tr>
 <td><code>DataRegistry</code></td>
+<td><strong>Beta</strong></td>
 <td>Not used directly. Every number a Gameplay Effect or art scales by (<code>FScalableFloat</code>) carries a Data Registry field, so XenoCore's effects and arts reference the plugin; <code>GameplayAbilities</code> depends on it too</td>
 </tr>
 <tr>
 <td><code>Metasound</code></td>
+<td></td>
 <td>Sound assets</td>
 </tr>
 <tr>
-<td><code>VRM4U</code></td>
-<td>The VRoid sample party: import, toon materials, spring bones and facial expressions, at runtime as well as import. A free third-party plugin (MIT licence) you download and add to <code>Plugins/VRM4U</code>; see <a href="../../getting-started/install/#add-vrm4u-the-vroid-party-needs-it">Install</a></td>
+<td><code>GameFeatures</code></td>
+<td><strong>Beta</strong></td>
+<td>XenoCore is a Game Feature plugin; its Experiences switch it on</td>
+</tr>
+<tr>
+<td><code>SignificanceManager</code></td>
+<td></td>
+<td>Lyra's significance code that XenoCore carries</td>
+</tr>
+<tr>
+<td><code>AudioModulation</code></td>
+<td></td>
+<td>Volume control buses for the audio settings</td>
+</tr>
+<tr>
+<td><code>OnlineSubsystem</code>, <code>OnlineSubsystemUtils</code>, <code>OnlineServices</code></td>
+<td></td>
+<td>Required by the Lyra session and user code XenoCore carries. XenoCore is single-player and makes no online calls</td>
+</tr>
+<tr>
+<td><code>AnimationLocomotionLibrary</code></td>
+<td><strong>Beta</strong></td>
+<td>Locomotion helpers used by the carried Lyra animation content</td>
+</tr>
+<tr>
+<td><code>FullBodyIK</code></td>
+<td></td>
+<td>IK used by the carried Lyra animation content</td>
+</tr>
+<tr>
+<td><code>Landmass</code></td>
+<td><strong>Beta</strong></td>
+<td>Terrain tools used by the sample map's content</td>
+</tr>
+<tr>
+<td><code>Spatialization</code></td>
+<td></td>
+<td>Audio spatialization used by the carried Lyra sounds</td>
+</tr>
+<tr>
+<td><code>WaveTable</code></td>
+<td><strong>Beta</strong></td>
+<td>Wave tables used by the carried Lyra sounds</td>
 </tr>
 </tbody>
 </table>
 <h3 id="your-projects-plugin-list">Your project's plugin list<a class="headerlink" href="#your-projects-plugin-list" title="Permanent link">&para;</a></h3>
-<p>You do not edit <code>Lyra.uproject</code>: XenoCore switches itself on (<code>EnabledByDefault</code>) and enables the
-plugins above through its own <code>XenoCore.uplugin</code>. Lyra's own sample game features (ShooterCore and
-the rest) can stay; nothing in XenoCore references them, and XenoCore's maps run their own
-Experience.</p>
-<h3 id="vrm4u">VRM4U<a class="headerlink" href="#vrm4u" title="Permanent link">&para;</a></h3>
-<p>XenoCore is tested with the public <code>VRM4U_5_8_20260912</code> release. Use a release built for UE 5.8;
-its <code>assimp</code> library is included, and a packaged game links it.</p>
+<p>You do not edit your <code>.uproject</code>: XenoCore switches itself on (<code>EnabledByDefault</code>) and enables the
+plugins above through its own <code>XenoCore.uplugin</code>. In a Lyra project, Lyra's own sample game features
+(ShooterCore and the rest) can stay; nothing in XenoCore references them, and XenoCore's maps run
+their own Experience.</p>
 <h2 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4910,7 +4953,7 @@ its <code>assimp</code> library is included, and a packaged game links it.</p>
 <tbody>
 <tr>
 <td><strong>Current version</strong></td>
-<td><code>1.2.1</code> (<code>VersionName</code> in <code>XenoCore.uplugin</code>, shown on the XenoCore entry in <strong>Edit › Plugins</strong>)</td>
+<td><code>1.3.0</code> (<code>VersionName</code> in <code>XenoCore.uplugin</code>, shown on the XenoCore entry in <strong>Edit › Plugins</strong>)</td>
 </tr>
 <tr>
 <td><strong>Scheme</strong></td>
@@ -4936,8 +4979,8 @@ project and let it compile, then run <strong>Tools › XenoCore › Apply XenoCo
 in a newer one: each new version says how older files are brought forward, and so far every step
 has needed no conversion (the new fields simply start empty). A save written by a <strong>newer</strong>
 XenoCore cannot be loaded by an older one: on the Load screen that slot cannot be selected (it can
-still be deleted), rather than being read with fields the older code does not understand. Versions 1.0.0 to 1.2.1 write save-data version 5.</p>
-<p><strong>Engine versions.</strong> XenoCore 1.2.1 supports <strong>Unreal Engine 5.8</strong> only. When a new engine version
+still be deleted), rather than being read with fields the older code does not understand. Versions 1.0.0 to 1.3.0 write save-data version 5.</p>
+<p><strong>Engine versions.</strong> XenoCore 1.3.0 supports <strong>Unreal Engine 5.8</strong> only. When a new engine version
 comes out, XenoCore is re-tested against it and a new upload is published for that version; until
 then, moving your project to the new engine is at your own risk.</p>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>

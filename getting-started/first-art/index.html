@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -914,8 +914,6 @@
       
         
       
-        
-      
     
     
     
@@ -985,34 +983,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4887,8 +4857,8 @@ names as its <strong>Art Learn Table</strong>.</p>
 <ol>
 <li>Open your leader's learnset, <code>Characters/Party/Learnsets/DT_XenoCore_ArtLearnset_Kael</code> for
    Kael. (To find any character's table, open their pawn Blueprint, click <strong>Class Defaults</strong>, and
-   look at <strong>XenoCore › Arts › Art Learn Table</strong>.) (<code>DT_XenoCore_ArtLearnset_Default</code> is the table on <code>B_XenoCore_PartyMember_Base</code>, used by
-   the colour-mannequin sample members, not by the VRoid party.)</li>
+   look at <strong>XenoCore › Arts › Art Learn Table</strong>.) (<code>DT_XenoCore_ArtLearnset_Default</code> is the table on <code>B_XenoCore_PartyMember_Base</code>; every sample
+   member replaces it with its own.)</li>
 <li>Click <strong>Add</strong> in the Data Table editor's toolbar to add a row. Right-click the new row, choose
    <strong>Rename</strong>, and name it <code>Lv01_StoneCleave</code> (the name is free text; this form sorts by level).
    With the row selected, set in the <strong>Row Editor</strong> below:<ul>

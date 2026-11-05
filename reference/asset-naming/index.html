@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4829,8 +4799,8 @@ Lyra's assets of the same kind in search results.</p>
 <td><code>DamagePopStyle_</code></td>
 <td><a href="#ui">Damage number style</a></td>
 <td></td>
-<td><code>SK_</code>, <code>SKM_</code>, <code>SKEL_</code></td>
-<td><a href="#animation">Mesh and skeleton</a> (read the VRoid warning)</td>
+<td><code>SK_</code>, <code>SKM_</code></td>
+<td><a href="#animation">Mesh and skeleton</a></td>
 </tr>
 <tr>
 <td><code>DT_</code></td>
@@ -4967,7 +4937,7 @@ Lyra's assets of the same kind in search results.</p>
 <td><code>PartyMember_</code></td>
 <td>Party member definition (a data asset)</td>
 <td>7</td>
-<td><code>Characters/VRoid/Nia/PartyMember_VRoid_S</code></td>
+<td><code>Characters/Party/PartyMember_Cyan</code></td>
 </tr>
 <tr>
 <td><code>ID_</code></td>
@@ -5149,15 +5119,9 @@ Lyra's assets of the same kind in search results.</p>
 </tr>
 <tr>
 <td><code>SK_</code>, <code>SKM_</code></td>
-<td>Skeletal mesh</td>
+<td>Skeleton (<code>SK_</code>), skeletal mesh (<code>SKM_</code>)</td>
 <td>19, 6</td>
 <td><code>Characters/Enemies/Minion/Meshes/SKM_Minion_Melee</code></td>
-</tr>
-<tr>
-<td><code>SKEL_</code></td>
-<td>Skeleton</td>
-<td>7</td>
-<td><code>Characters/VRoid/Dorran/Mesh/SKEL_AvatarSample_C</code></td>
 </tr>
 <tr>
 <td><code>PHYS_</code></td>
@@ -5168,22 +5132,11 @@ Lyra's assets of the same kind in search results.</p>
 <tr>
 <td><code>IK_</code>, <code>RTG_</code></td>
 <td>IK rig, IK retargeter</td>
-<td>8, 8</td>
-<td><code>Characters/VRoid/Dorran/Animation/RTG_Manny_To_AvatarSample_C</code></td>
+<td>2, 1</td>
+<td><code>Characters/Enemies/Minion/Rig/RTG_Manny_To_Minion</code></td>
 </tr>
 </tbody>
 </table>
-<p>The VRoid character folders also hold importer-generated assets with the importer's own prefixes
-(<code>VM_</code>, <code>VL_</code>, <code>VA_</code>, <code>SP_</code>, <code>POSE_</code>, <code>A_</code>). Leave those names alone; the importer expects them.</p>
-<div class="admonition warning">
-<p class="admonition-title">VRoid characters use the importer's mesh and skeleton prefixes, which clash with Lyra's</p>
-<p>Lyra, and everything else in this project, names a <strong>skeleton</strong> <code>SK_</code> and a <strong>skeletal mesh</strong>
-<code>SKM_</code> (<code>SK_Mannequin</code>, <code>SKM_Manny</code>; <code>SK_GoldSword</code>, <code>SKM_GoldSword</code>). The VRoid importer names
-a skeletal mesh <code>SK_</code> and a skeleton <code>SKEL_</code>, so in <code>Characters/VRoid/&lt;Name&gt;/Mesh/</code>,
-<code>SK_AvatarSample_L</code> is Kael's <strong>mesh</strong> and <code>SKEL_AvatarSample_L</code> is his <strong>skeleton</strong>. The sample
-characters keep the importer's names for now. Go by the asset type shown in the Content Browser,
-not by the prefix. Name your own non-VRoid assets the Lyra way.</p>
-</div>
 <h2 id="ui">UI<a class="headerlink" href="#ui" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5293,9 +5246,9 @@ not by the prefix. Name your own non-VRoid assets the Lyra way.</p>
 <li><strong><code>BP_</code> and <code>B_</code> both mean Blueprint.</strong> Lyra uses <code>B_</code>; some XenoCore Blueprints use <code>BP_</code>
   (<code>BP_XenoCore_Party</code>, <code>BP_XenoCore_Progression</code>, <code>Inventory/Loot/BP_XenoCore_TreasureChest</code>,
   <code>Battle/Attributes/BP_XenoCoreDamageExecution</code>). There is no difference in kind.</li>
-<li><strong>Party member definitions have no type prefix</strong> (<code>PartyMember_VRoid_S</code>), unlike every other data
+<li><strong>Party member definitions have no type prefix</strong> (<code>PartyMember_Cyan</code>), unlike every other data
   asset (<code>DA_</code>).</li>
-<li><strong>Retargeted clips keep their source names</strong> (<code>Characters/Player/Animations/Mixamo/Getting_Up_retargeted</code>).</li>
+<li><strong>Retargeted clips keep their source names</strong> (<code>Characters/Player/Animations/Mixamo/Getting_Up_Front_retargeted</code>).</li>
 <li><strong>Some asset names still contain placeholder names</strong> that will change before release. The
   manual writes them as they appear today so you can find them.</li>
 </ul>

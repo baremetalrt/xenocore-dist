@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4827,7 +4797,7 @@ gone, and the game still boots, starts a new game and plays with no missing refe
 </thead>
 <tbody>
 <tr>
-<td><code>XenoCore</code> (the Game Feature Data at the plugin root)</td>
+<td><code>System/XenoCore</code> (the Game Feature Data) and <code>System/DA_XenoCore_AlwaysCookList</code></td>
 <td>Registers the plugin, its input and its components</td>
 </tr>
 <tr>
@@ -4835,7 +4805,7 @@ gone, and the game still boots, starts a new game and plays with no missing refe
 <td>The game rules every map runs, the front end and the HUD</td>
 </tr>
 <tr>
-<td><code>Game/*</code> except the backup pawn (see below)</td>
+<td><code>Game/*</code></td>
 <td>Game mode, player pawn base, ability sets, progression, save point, tag relationships</td>
 </tr>
 <tr>
@@ -4897,7 +4867,7 @@ Keep <code>UserInterface</code> and <code>Characters/NPC</code> where they are.<
 <tbody>
 <tr>
 <td>The sample party (the shipped roster)</td>
-<td><code>Characters/VRoid/&lt;Name&gt;/</code> (Kael, Mira, Nia, Dorran, Isolde, Sabine, Tamsin), their <code>Battle/Attributes/GE_XenoCore_BaseStats_&lt;Name&gt;</code> and their rows in <code>CT_XenoCore_PartyStatlines</code> and <code>Game/DT_XenoCore_ExperienceCurves</code>. Keep <code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code>, <code>B_XenoCore_Cosmetic_VRoid_Base</code> and <code>M_XenoCore_VRoidLit</code> if your characters are VRoid models</td>
+<td>In <code>Characters/Party</code>: <code>PartyMember_&lt;Colour&gt;</code>, <code>B_XenoCore_Party_&lt;Colour&gt;</code>, <code>PawnData_XenoCore_Party_&lt;Colour&gt;</code>, <code>AnimProfiles/</code>, the per-character tables in <code>Learnsets/</code> (keep <code>DT_XenoCore_ArtLearnset_Default</code>), <code>Materials/</code> and <code>Portraits/</code>; their <code>Battle/Attributes/GE_XenoCore_BaseStats_&lt;Name&gt;</code>, their skill trees in <code>Battle/Skills</code>, their voices in <code>Audio/Voice/&lt;Name&gt;</code>, and their rows in <code>CT_XenoCore_PartyStatlines</code> and <code>Game/DT_XenoCore_ExperienceCurves</code>. Kael's pawn is <code>Game/B_XenoCore_Player</code>: keep it (see below)</td>
 </tr>
 <tr>
 <td>Sample weapons</td>
@@ -4931,8 +4901,10 @@ Keep <code>UserInterface</code> and <code>Characters/NPC</code> where they are.<
 </table>
 <div class="admonition note">
 <p class="admonition-title">Keep <code>B_XenoCore_Player</code></p>
-<p>The sample leader is Kael, a VRoid member. <code>Game/B_XenoCore_Player</code> is the bootstrap pawn the game
-falls back on when the party has no starting roster, so keep it.</p>
+<p>The sample leader Kael's pawn is <code>Game/B_XenoCore_Player</code>, which is also the pawn the game
+falls back on when the party has no starting roster, so keep it. To strip Kael from it, clear
+its Kael-specific settings: <strong>Stats Effect</strong>, <strong>Art Learn Table</strong>, <strong>Skill Tree</strong>, <strong>Anim
+Profile</strong>, and the equipment component's <strong>Starting Equipment</strong> and <strong>Starting Inventory</strong>.</p>
 </div>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-point-the-framework-at-your-content-first">1. Point the framework at your content first<a class="headerlink" href="#1-point-the-framework-at-your-content-first" title="Permanent link">&para;</a></h3>

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4417,17 +4387,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-do-i-need-vrm4u" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why do I need VRM4U?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#is-nvidia-dlss-required" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4664,17 +4623,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why-do-i-need-vrm4u" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why do I need VRM4U?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#is-nvidia-dlss-required" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4767,7 +4715,9 @@ inventory and saves: treat that as a new project built on XenoCore's ideas. See
 <h2 id="can-i-add-it-to-a-project-that-is-not-based-on-lyra">Can I add it to a project that is not based on Lyra?<a class="headerlink" href="#can-i-add-it-to-a-project-that-is-not-based-on-lyra" title="Permanent link">&para;</a></h2>
 <p>Yes. Since 1.2.0 the Lyra code and content XenoCore is built on ship inside the plugin (the
 <code>XenoCoreBase</code> module and <code>Content/Imported/Lyra</code>), so a new <strong>Blank</strong> 5.8 project works, and so does
-a Lyra Starter Game project; the two do not conflict. Run <strong>Apply</strong> once after installing. See
+a Lyra Starter Game project; the two do not conflict. It runs without any setup; run <strong>Tools &gt;
+XenoCore &gt; Apply XenoCore Project Settings</strong> once to write its settings into your project (needed
+for the editor's startup map and before packaging). See
 <a href="../../getting-started/install/">Install and first launch</a>.</p>
 <h2 id="do-i-need-to-know-c">Do I need to know C++?<a class="headerlink" href="#do-i-need-to-know-c" title="Permanent link">&para;</a></h2>
 <p>No. Almost everything is data: Blueprints, data assets and Data Tables. You do need <strong>Visual Studio
@@ -4777,12 +4727,6 @@ opens. See <a href="../../getting-started/requirements/">Requirements</a>.</p>
 <p>Windows 64-bit and Unreal Engine 5.8 only. No Mac, Linux, console or mobile support. When a new
 engine version comes out, XenoCore is re-tested and a new upload is published for it. See
 <a href="../../reference/compatibility/">Compatibility</a>.</p>
-<h2 id="why-do-i-need-vrm4u">Why do I need VRM4U?<a class="headerlink" href="#why-do-i-need-vrm4u" title="Permanent link">&para;</a></h2>
-<p>The seven sample party members are VRoid characters, and their skeletons, faces, toon materials and
-hair physics run on VRM4U, a free plugin by ruyo (MIT licence). XenoCore cannot include it, so you
-download it once; see <a href="../../getting-started/install/#add-vrm4u-the-vroid-party-needs-it">Install</a>.
-Your own characters do not have to be VRoid characters: see
-<a href="../../recipes/add-party-member/">Add a party member</a>.</p>
 <h2 id="is-nvidia-dlss-required">Is NVIDIA DLSS required?<a class="headerlink" href="#is-nvidia-dlss-required" title="Permanent link">&para;</a></h2>
 <p>No. DLSS is optional. If you install NVIDIA's own DLSS plugin, DLSS, Frame Generation and Reflex
 appear in the game's video settings; without it they are simply not shown. See
@@ -4802,7 +4746,7 @@ line with your own recording: see <a href="../../concepts/battle-voices/#recordi
 leaving missing references.</p>
 <h2 id="can-i-use-the-included-content-in-my-game">Can I use the included content in my game?<a class="headerlink" href="#can-i-use-the-included-content-in-my-game" title="Permanent link">&para;</a></h2>
 <p>Yes, inside games you make. Some content comes from other sources (Epic's samples, a
-stylized grass kit, Mixamo and Paragon-derived animations, pixiv's VRoid sample models): it is
+stylized grass kit, Mixamo and Paragon-derived animations): it is
 included for use in your project, but not for resale as assets on its own. See
 <a href="../credits/">Credits and licences</a>.</p>
 <h2 id="where-do-i-get-help">Where do I get help?<a class="headerlink" href="#where-do-i-get-help" title="Permanent link">&para;</a></h2>

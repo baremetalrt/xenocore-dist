@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -3729,17 +3699,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ct_xenocore_basestats" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CT_XenoCore_BaseStats
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#ct_xenocore_enemystats" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4627,17 +4586,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ct_xenocore_basestats" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CT_XenoCore_BaseStats
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#ct_xenocore_enemystats" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4747,12 +4695,6 @@ C++ holds these numbers, so balancing is a data job.</p>
 <td>That character's Max HP, Strength, Ether, Agility: rows <code>&lt;Name&gt;.&lt;Stat&gt;</code>, read at ×1.0</td>
 </tr>
 <tr>
-<td><code>CT_XenoCore_BaseStats</code></td>
-<td>Character level</td>
-<td>The stock members' stats effects (<code>GE_XenoCore_BaseStats_Shulk</code>, <code>_Party_*</code>)</td>
-<td>Their Max HP, Strength, Ether, Agility: shared rows with a coefficient per character</td>
-</tr>
-<tr>
 <td><code>CT_XenoCore_EnemyStats</code></td>
 <td>Enemy level</td>
 <td>The enemy stats effects (<code>GE_XenoCore_BaseStats_Minion_Melee</code>, <code>_Minion_Skirmisher</code>, <code>_Minion_Bulwark</code>, <code>_Minion_Brute</code>, <code>GE_XenoCore_BaseStats_Dummy</code>; the other types scale the same rows by a multiplier on their effect), and the enemy's <strong>Experience Level Scale</strong></td>
@@ -4779,7 +4721,7 @@ character. See <a href="../../recipes/tune-progression/">Tune levelling</a>.</p>
 </div>
 <h2 id="how-a-table-is-read">How a table is read<a class="headerlink" href="#how-a-table-is-read" title="Permanent link">&para;</a></h2>
 <p>There are two ways, and they fail differently.</p>
-<p><strong>Stats tables (<code>BaseStats</code>, <code>EnemyStats</code>).</strong> A stats Gameplay Effect has one modifier per
+<p><strong>Stats tables (<code>PartyStatlines</code>, <code>EnemyStats</code>).</strong> A stats Gameplay Effect has one modifier per
 attribute. Each modifier's magnitude is a <em>scalable float</em>: a number multiplied by a curve-table row
 evaluated at the effect's level. The character's level is passed as the effect level, so the row is
 read at that level. The effect is picked per character by the pawn's <strong>Stats Effect</strong> property
@@ -4824,24 +4766,6 @@ table assigned, even if you flatten its values.</p>
 </div>
 <h2 id="the-rows">The rows<a class="headerlink" href="#the-rows" title="Permanent link">&para;</a></h2>
 <p>Row names must match exactly: C++ or the stats effects refer to them by name.</p>
-<h3 id="ct_xenocore_basestats">CT_XenoCore_BaseStats<a class="headerlink" href="#ct_xenocore_basestats" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Shulk.MaxHealth
-Shulk.Strength
-Shulk.Ether
-Shulk.Agility
-</code></pre></div>
-<p>One set of rows, read by every stock party member's stats effect (<code>GE_XenoCore_BaseStats_Shulk</code>
-and the eleven <code>_Party_*</code> effects). Members differ only through their own stats effect: each
-<code>_Party_*</code> effect multiplies the same rows by its own coefficient per stat (between <code>0.8</code> and <code>1.2</code>
-when last measured), so the number in the table is not the number that member gets.</p>
-<div class="admonition note">
-<p class="admonition-title">Scheduled for renaming</p>
-<p>These row names are placeholders and will be renamed before release. When that happens every
-stats effect that reads them is updated in the same change. If you add your own character,
-add your own rows (for example <code>MyHero.Strength</code>) rather than editing these.</p>
-</div>
-<p>Physical and Ether Defence, critical rate and block rate are <strong>not</strong> in this table: party members
-have none of their own, and all of it comes from equipment.</p>
 <h3 id="ct_xenocore_enemystats">CT_XenoCore_EnemyStats<a class="headerlink" href="#ct_xenocore_enemystats" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>Minion_Melee.MaxHealth      Minion_Melee.Strength     Minion_Melee.Ether
 Minion_Melee.Agility        Minion_Melee.PhysicalDefence  Minion_Melee.EtherDefence

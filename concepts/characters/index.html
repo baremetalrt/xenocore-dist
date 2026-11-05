@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4665,26 +4635,23 @@ spawns.</p>
 <li>A character's starting level, name and portrait: <a href="../../getting-started/first-change/">Your first change</a></li>
 <li>Their stats at each level: <a href="../../recipes/character-statline/">Give a character its own statline</a></li>
 <li>Body shape and movement style: <a href="../../recipes/animation-style/">Choose an animation style</a></li>
-<li>A whole new member: <a href="../../recipes/add-vroid-party-member/">Add a VRoid party member</a></li>
+<li>A whole new member: <a href="../../recipes/add-party-member/">Add a party member</a></li>
 <li>Every setting on this page: <a href="#what-you-can-change">What you can change</a></li>
 </ul>
 </div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <p>The class tree, from C++ to the Blueprints you open:</p>
 <ul>
-<li><code>ALyraCharacterWithAbilities</code> (Lyra: a character that owns its ability system)<ul>
+<li><code>AXenoBaseCharacterWithAbilities</code> (XenoCore's copy of Lyra's character that owns its ability system)<ul>
 <li><code>AXenoCoreCombatantCharacter</code>: party-playable pawns<ul>
 <li><code>Game/B_XenoCore_PlayableCharacter_Base</code> (Blueprint)<ul>
-<li><code>Game/B_XenoCore_Player</code>: the bootstrap pawn, used only when the party has no starting roster. Not in the shipped roster</li>
+<li><code>Game/B_XenoCore_Player</code>: <strong>Kael</strong>, the sample leader. It is also the pawn the game falls back on when the party has no starting roster</li>
 </ul>
 </li>
 <li><code>AXenoCorePartyCharacter</code>: adds equipment, AI perception and footstep components in C++<ul>
 <li><code>Characters/Party/B_XenoCore_PartyMember_Base</code> (Blueprint)<ul>
-<li><code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code>: the base for VRoid members<ul>
-<li><code>Characters/VRoid/&lt;Name&gt;/B_XenoCore_Party_VRoid_*</code>: <strong>the sample party</strong>, seven
-  members (Kael, Mira, Nia, Dorran, Isolde, Sabine, Tamsin), one folder each</li>
-</ul>
-</li>
+<li><code>Characters/Party/B_XenoCore_Party_&lt;Colour&gt;</code>: the other six sample members, Mira
+  (Maroon), Nia (Cyan), Dorran (Lime), Isolde (Purple), Sabine (Yellow) and Tamsin (Pink)</li>
 </ul>
 </li>
 </ul>
@@ -4707,7 +4674,7 @@ the same thing.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Who is in the party</p>
-<p>The sample cast is the seven VRoid members. A new game <strong>starts with two</strong>, Kael and Mira; the
+<p>The sample cast is seven UE5 Mannequin members, one colour each. A new game <strong>starts with two</strong>, Kael and Mira; the
 other five (Tamsin, Dorran, Sabine, Nia and Isolde) are <strong>recruited</strong> from NPCs on Gaur Plain,
 and every member who joins fights (<strong>Max Active Members</strong> is 7). See
 <a href="../../recipes/starting-party/">Set the starting party</a> and
@@ -4719,10 +4686,10 @@ character (<code>Battle/Attributes/GE_XenoCore_BaseStats_&lt;Name&gt;</code>, re
 picked by the member definition's <strong>Experience Curve</strong>. See
 <a href="../../recipes/character-statline/">Give a character its own statline</a> and
 <a href="../../recipes/tune-progression/">Tune levelling</a>.</p>
-<p><strong>Pawn data</strong> (<code>ULyraPawnData</code>) is the list of ability sets and input config a character gets. Each
-party Blueprint points at one (the seven sample VRoid members share
-<code>Characters/VRoid/PawnData_XenoCore_Party_VRoid</code>), which grants <code>AbilitySet_XenoCore_PartyMember</code> and uses the tag relationships in
-<code>Game/TagRelationships_XenoCore</code>. The player's pawn uses <code>Game/PawnData_XenoCore_Player</code>, which grants
+<p><strong>Pawn data</strong> (<code>UXenoBasePawnData</code>) is the list of ability sets and input config a character gets. Each
+party Blueprint points at its own (<code>Characters/Party/PawnData_XenoCore_Party_&lt;Colour&gt;</code>), which grants
+<code>AbilitySet_XenoCore_PartyMember</code> and uses the tag relationships in <code>Game/TagRelationships_XenoCore</code>.
+Kael's pawn, <code>Game/B_XenoCore_Player</code>, uses <code>Game/PawnData_XenoCore_Player</code>, which grants
 <code>AbilitySet_XenoCore_Hero</code>.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p><strong>Spawn.</strong> When the party spawns a body, the body sets itself up as it spawns, in this order:</p>
@@ -4761,7 +4728,7 @@ or the end of the battle. See <a href="../party-gauge-and-revive/">Party Gauge, 
 </thead>
 <tbody>
 <tr>
-<td>Party member (sample party and colour variants)</td>
+<td>Party member</td>
 <td>Goes <strong>downed</strong>: kneels in place with its weapon, greys out on the HUD, gets up on a revive. When every active member is down the party is wiped.</td>
 </tr>
 <tr>
@@ -4808,19 +4775,15 @@ begin play, if it is set, the Blueprint adds that part through Lyra's character-
 <li>The same tag picks the animation layer when the weapon is drawn or stowed, so a feminine character
   uses Lyra's feminine clips. See <a href="../animation/">Animation</a>.</li>
 </ul>
-<p>So the colour variants differ only by material, and body shape plus movement style come from one
+<p>So the sample members differ only by material, and body shape plus movement style come from one
 tag.</p>
-<p>VRoid members use the same pattern the other way round: <strong>Body Meshes</strong> point at the invisible
-<code>SKM_Manny_Invis</code> / <code>SKM_Quinn_Invis</code>, and a VRoid cosmetic part (<code>B_XenoCore_Cosmetic_VRoid_*</code>)
-carries the visible mesh, retargeted from the invisible Mannequin. Gameplay, montages and sockets
-all stay on the Mannequin skeleton. See <a href="../../recipes/add-vroid-party-member/">Add a VRoid party member</a>.</p>
 <p><strong>No invisible pawns.</strong> Lyra's character-parts component sets the body mesh from <strong>Body Meshes</strong>
 every time a part is added or removed, and when no rule matches the parts' tags it uses <strong>Body
 Meshes › Default Mesh</strong>. With no default, the body is set to nothing and the character turns
 invisible. XenoCore closes this three ways:</p>
 <ul>
 <li>Every shipped pawn has a <strong>Default Mesh</strong>: <code>SKM_Manny</code> on <code>B_XenoCore_PartyMember_Base</code> and
-  <code>B_XenoCore_PlayableCharacter_Base</code>, the invisible Mannequin on the VRoid pawns.</li>
+  <code>B_XenoCore_PlayableCharacter_Base</code>.</li>
 <li>At Begin Play, before the Blueprint adds its part, a combatant character with no <strong>Default Mesh</strong>
   uses the mesh it spawned with for this session, and logs a <code>LogXenoCosmetics</code> warning once per
   class.</li>
@@ -4908,11 +4871,9 @@ it the <strong>Default Mesh</strong> instead of the body you meant. Give every s
 </table>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>A new party member:</strong> make a <strong>child Blueprint</strong> of <code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code>
-  (a VRoid body, like the sample party) or of <code>Characters/Party/B_XenoCore_PartyMember_Base</code> (a
-  Mannequin body), in <code>Content/MyGame/</code>. Give it its own pawn data and stats effect, then make a
-  member definition for it. See <a href="../../recipes/add-vroid-party-member/">Add a VRoid party member</a> and
-  <a href="../../recipes/add-party-member/">Add a party member</a>.</li>
+<li><strong>A new party member:</strong> make a <strong>child Blueprint</strong> of <code>Characters/Party/B_XenoCore_PartyMember_Base</code>
+  in <code>Content/MyGame/</code>. Give it its own pawn data and stats effect, then make a member definition
+  for it. See <a href="../../recipes/add-party-member/">Add a party member</a>.</li>
 <li><strong>A new statline:</strong> duplicate a party stats effect and change its curve rows. See
   <a href="../../recipes/character-statline/">Give a character its own statline</a>.</li>
 <li><strong>A townsperson:</strong> place <code>B_XenoCore_Npc</code>, or make a child Blueprint of it for a reusable type. It has no ability system and cannot fight.</li>
@@ -4938,7 +4899,7 @@ to downed. Its arts also come from
 <summary>For programmers: the design reasons</summary>
 <p>Lyra's hero component only knows how to find an ability system on a player state. A party of
 characters that each keep their own stats would need a player state each. Instead XenoCore uses
-Lyra's <code>ALyraCharacterWithAbilities</code>, the same shape as Epic's damageable test dummy, and performs the
+<code>AXenoBaseCharacterWithAbilities</code> (Lyra's <code>ALyraCharacterWithAbilities</code>), the same shape as Epic's damageable test dummy, and performs the
 one initialisation call Blueprint cannot make (<code>InitializeAbilitySystem</code>) in C++. The base does
 nothing else: no drop table, no ragdoll, no follow logic, so a subclass never inherits behaviour it
 did not ask for.</p>

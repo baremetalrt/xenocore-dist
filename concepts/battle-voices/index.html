@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4815,7 +4785,8 @@ character or per category.</p>
 <p>All seven characters are voiced (470 lines, two takes each, with lip-sync keys and an
 expression per line) and the gameplay triggers are wired: art calls, battle start, hits,
 downed and revive, victory, Talent ready, the Party Gauge, level up, switching leader and
-talking to an ally. Faces lip-sync and change expression with each line.</p>
+talking to an ally. Each line also carries lip-sync keys and an expression, for characters
+with a face rig; the sample Mannequins have none, so only the voice and subtitle show.</p>
 </div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
@@ -5035,7 +5006,9 @@ held: you keep walking, the camera stays yours, and the box closes itself.</p>
 </table>
 <p>In battle the prompt is not offered; a downed ally offers <strong>Revive</strong> instead.</p>
 <h2 id="the-face">The face<a class="headerlink" href="#the-face" title="Permanent link">&para;</a></h2>
-<p>While a line plays, the speaker's face lip-syncs to it and shows the row's <strong>Expression</strong>. The
+<p>This applies only to a character with a face Animation Blueprint (see
+<a href="../animation/#faces">Animation</a>); the sample Mannequins have no face. While a line plays, the
+speaker's face lip-syncs to it and shows the row's <strong>Expression</strong>. The
 mouth follows the take's keys (baked from the recording, so nothing is guessed at runtime) and
 closes the moment the voice stops, including when a more important line cuts in.</p>
 <table>
@@ -5048,11 +5021,11 @@ closes the moment the voice stops, including when a more important line cuts in.
 <tbody>
 <tr>
 <td>Which expression and how strongly</td>
-<td><strong>Expression</strong> and <strong>Expression Weight</strong> on the voice row (a VRM name: <code>happy</code>, <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>)</td>
+<td><strong>Expression</strong> and <strong>Expression Weight</strong> on the voice row (a face curve or expression name: <code>happy</code>, <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>)</td>
 </tr>
 <tr>
 <td>Lip sync on or off; mouth size; snappiness</td>
-<td><strong>Lip Sync</strong>, <strong>Lip Sync Weight Scale</strong> and <strong>Lip Sync Blend Speed</strong> on the character's face anim Blueprint (<code>ABP_XenoCore_VRoidRetarget_*</code>, parent <code>XenoCoreFaceAnimInstance</code>)</td>
+<td><strong>Lip Sync</strong>, <strong>Lip Sync Weight Scale</strong> and <strong>Lip Sync Blend Speed</strong> on the character's face anim Blueprint (parent <code>XenoCoreFaceAnimInstance</code>)</td>
 </tr>
 </tbody>
 </table>

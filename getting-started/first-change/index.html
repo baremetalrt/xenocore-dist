@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -914,8 +914,6 @@
       
         
       
-        
-      
     
     
     
@@ -985,34 +983,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4770,7 +4740,7 @@ see it on the HUD and in the Party menu the moment you press Play.</p>
 <tbody>
 <tr>
 <td><strong>Member definition</strong></td>
-<td><code>Characters/VRoid/Kael/PartyMember_VRoid_L</code></td>
+<td><code>Characters/Party/PartyMember_Blue</code> (Kael)</td>
 <td>Name, portrait, battle role, and which pawn Blueprint to spawn</td>
 </tr>
 <tr>
@@ -4792,30 +4762,30 @@ there.</p>
    look at <strong>Starting Roster</strong>. The members are fielded in this order until <strong>Max Active Members</strong>
    is reached; the rest start in reserve. <strong>Leader Slot</strong> says which of the active members you
    control, <code>0</code> being the first.</li>
-<li>In the sample, the roster is two VRoid characters, Kael (<code>PartyMember_VRoid_L</code>, the leader) and
-   Mira (<code>PartyMember_VRoid_K</code>). The other five sample characters join later, recruited from NPCs
+<li>In the sample, the roster is two characters, Kael (<code>PartyMember_Blue</code>, the leader) and
+   Mira (<code>PartyMember_Maroon</code>). The other five sample characters join later, recruited from NPCs
    on Gaur Plain. Click the <strong>Browse</strong> arrow (the magnifying glass) beside Kael's entry: the Content
-   Browser jumps to <code>Characters/VRoid/Kael/PartyMember_VRoid_L</code>. Double-click it to open it.</li>
+   Browser jumps to <code>Characters/Party/PartyMember_Blue</code>. Double-click it to open it.</li>
 </ol>
 <h3 id="2-rename-them-and-change-their-portrait">2. Rename them and change their portrait<a class="headerlink" href="#2-rename-them-and-change-their-portrait" title="Permanent link">&para;</a></h3>
 <p>In the member definition, under <strong>XenoCore › Party</strong>:</p>
 <ol>
 <li>Set <strong>Display Name</strong> to a name of your own.</li>
 <li>Set <strong>Portrait</strong> to a different texture from <code>Characters/Party/Portraits</code>, for example
-   <code>T_XenoCore_Portrait_Orange</code>. <strong>Portrait</strong> is the head-and-shoulders picture on the HUD and in
+   <code>T_XenoCore_Portrait_Lime</code>. <strong>Portrait</strong> is the head-and-shoulders picture on the HUD and in
    most menus.</li>
 <li><strong>Save</strong>.</li>
 </ol>
 <div class="admonition note">
-<p class="admonition-title">The main menu uses a second picture</p>
-<p>The main menu's character cards draw <strong>Menu Portrait</strong>, a full-body picture, from the same
-asset. Kael has one, so his main-menu card keeps showing him until you change <strong>Menu Portrait</strong>
-too, or clear it (an empty <strong>Menu Portrait</strong> falls back to <strong>Portrait</strong>).</p>
+<p class="admonition-title">The main menu card</p>
+<p>The main menu's character cards draw <strong>Menu Portrait</strong> when one is set and <strong>Portrait</strong>
+otherwise. Every sample character sets a full-body <strong>Menu Portrait</strong>, so the card keeps its
+old picture until you change that too, or clear it to have the card follow <strong>Portrait</strong>.</p>
 </div>
 <h3 id="3-start-them-at-a-higher-level">3. Start them at a higher level<a class="headerlink" href="#3-start-them-at-a-higher-level" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In the same definition, find <strong>Member Class</strong> (under <strong>XenoCore › Party</strong>). Click the
-   magnifying glass beside it to find the Blueprint it names (<code>B_XenoCore_Party_VRoid_L</code> for Kael)
+   magnifying glass beside it to find the Blueprint it names (<code>Game/B_XenoCore_Player</code> for Kael)
    in the Content Browser, and double-click it.</li>
 <li>Click <strong>Class Defaults</strong>. In the <strong>Details</strong> panel, under <strong>XenoCore › Combatant</strong>, set
    <strong>Combatant Level</strong> to <code>20</code>.</li>
@@ -4869,7 +4839,7 @@ kind of asset it is:</p>
 <tbody>
 <tr>
 <td>A <strong>Blueprint</strong>: a party member, enemy, weapon actor, Art ability, NPC, AI controller</td>
-<td>Right-click the base and choose <strong>Create Child Blueprint Class</strong> (for example from <code>B_XenoCore_Party_VRoid_Base</code>, <code>B_XenoCore_Enemy_Base</code>, <code>B_XenoCore_Sword_Base</code>, <code>GA_XenoCore_Art_Base</code>, <code>GA_XenoCore_TalentArt_Base</code>)</td>
+<td>Right-click the base and choose <strong>Create Child Blueprint Class</strong> (for example from <code>B_XenoCore_PartyMember_Base</code>, <code>B_XenoCore_Enemy_Base</code>, <code>B_XenoCore_Sword_Base</code>, <code>GA_XenoCore_Art_Base</code>, <code>GA_XenoCore_TalentArt_Base</code>)</td>
 <td>The child keeps everything the base does, and picks up fixes when XenoCore updates. A duplicate is frozen at the day you copied it, and carries the sample's own settings with it.</td>
 </tr>
 <tr>

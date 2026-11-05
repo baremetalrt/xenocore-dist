@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4964,9 +4934,9 @@ the module object and the two console-command cheat extensions (<code>UXenoCoreS
 too; only their <code>U</code> halves are minimally exported, which is all implementing one needs.</p>
 <div class="admonition warning">
 <p class="admonition-title">Link error: \"unresolved external symbol\" on a Lyra class</p>
-<p>Some of <strong>Lyra's</strong> own classes are not exported from <code>LyraGame</code> (for example
-<code>ULyraAnimInstance</code>, <code>ULyraButtonBase</code>, <code>ULyraGameplayAbility_FromEquipment</code>,
-<code>ULyraGameplayAbility_Interact</code>). A C++ class of yours that derives from one compiles and then
+<p>Some of the Lyra classes XenoCore carries are not exported from <code>XenoCoreBase</code> (for example
+<code>UXenoBaseAnimInstance</code>, <code>UXenoBaseButtonBase</code>, <code>UXenoBaseGameplayAbility_FromEquipment</code>,
+<code>UXenoBaseGameplayAbility_Interact</code>). A C++ class of yours that derives from one compiles and then
 fails to <strong>link</strong>. XenoCore's bases never require one: each derives only from exported Lyra
 classes. Derive a Blueprint from the Lyra class instead.</p>
 </div>
@@ -4987,7 +4957,7 @@ classes. Derive a Blueprint from the Lyra class instead.</p>
 <div class="highlight"><pre><span></span><code><span class="n">PublicDependencyModuleNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span>
 <span class="p">{</span>
 <span class="w">    </span><span class="s">&quot;Core&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CoreUObject&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Engine&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="s">&quot;XenoCoreRuntime&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LyraGame&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot;XenoCoreRuntime&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;XenoCoreBase&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="s">&quot;GameplayAbilities&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GameplayTags&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GameplayTasks&quot;</span><span class="p">,</span>
 <span class="p">});</span>
 </code></pre></div>

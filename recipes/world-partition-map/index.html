@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4846,7 +4816,7 @@ a reference for <em>what</em> goes in a XenoCore map, not for how it streams.</p
 <td>Without it the map runs Lyra's default rules: no XenoCore HUD, abilities or teams</td>
 </tr>
 <tr>
-<td>A <code>LyraPlayerStart</code></td>
+<td>A <code>XenoBasePlayerStart</code></td>
 <td>Where the party spawns on a new game</td>
 </tr>
 <tr>
@@ -4894,7 +4864,7 @@ copy beside the original and keeps its World Settings.</p>
 <ol>
 <li>Open <strong>World Settings</strong>. Under <strong>Game Mode</strong>, set <strong>Default Gameplay Experience</strong> to
    <code>Experiences/B_XenoCore_Experience</code>.</li>
-<li>Place a <code>LyraPlayerStart</code> where the party should appear.</li>
+<li>Place a <code>XenoBasePlayerStart</code> where the party should appear.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: no experience set</p>

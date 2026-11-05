@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -3224,6 +3194,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#faces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Faces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-head-turn" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4616,6 +4597,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#faces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Faces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#the-head-turn" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4685,8 +4677,8 @@
 <p><em>All · 15 min read</em></p>
 <p><strong>What the player sees:</strong> characters walk and run with smooth blending, turn their upper body
 toward a locked enemy while their legs keep running, switch to a sword stance when a battle starts,
-fidget when left standing, flinch without dropping their swing, and (on VRoid characters) blink,
-pull faces and turn their heads toward whoever they are looking at.</p>
+fidget when left standing, flinch without dropping their swing, and turn their heads toward whoever
+they are looking at. A character you give a face rig can also blink and pull faces.</p>
 <p>Every party character shares one host Animation Blueprint, <code>Characters/Player/ABP_XenoCore_Base</code>,
 which holds the <strong>state machine</strong> (Idle, Move, the jump states). Which <strong>clips</strong> each state plays
 come from a <strong>linked animation layer</strong>: a small Animation Blueprint chosen by what the character
@@ -4752,9 +4744,9 @@ editor with no graph editing.</p>
 <td>Picks and links the layer when the weapon is drawn or stowed</td>
 </tr>
 <tr>
-<td>Face (VRoid only)</td>
-<td><code>Characters/VRoid/&lt;Name&gt;/Animation/ABP_XenoCore_VRoidRetarget_*</code></td>
-<td>Blinks, expressions and mouth on a VRoid body</td>
+<td>Face (optional)</td>
+<td>Your own Animation Blueprint, parent <code>XenoCoreFaceAnimInstance</code></td>
+<td>Blinks, expressions and mouth on a character with a face rig. No sample character has one</td>
 </tr>
 <tr>
 <td>Expression table</td>
@@ -4763,7 +4755,7 @@ editor with no graph editing.</p>
 </tr>
 <tr>
 <td>Anim profile</td>
-<td><code>Characters/VRoid/&lt;Name&gt;/DA_XenoCore_AnimProfile_VRoid_*</code></td>
+<td><code>Characters/Party/AnimProfiles/DA_XenoCore_AnimProfile_&lt;Colour&gt;</code></td>
 <td>One character's own reaction, death and victory clips, idle breaks and resting faces</td>
 </tr>
 <tr>
@@ -4819,7 +4811,7 @@ fidget in unison.</p>
    <code>AS_Kwang_IdleBreak_Laugh</code> (greatsword). An empty <strong>Idle Break Anim</strong> means that stance never
    fidgets, unless the profile gives it a list.</li>
 </ol>
-<p>Each shipped VRoid member has four breaks in its profile, drawn from Lyra's three and nine
+<p>Each sample party member has four breaks in its profile, drawn from Lyra's three and nine
 bare-handed clips in <code>Characters/Core/Animations/IdleBreaks</code> (Stretch, Waiting, Sneeze, Greeting and
 others). Their <strong>Armed Idle Breaks</strong> are empty, so with the sword out they use the stance's own break.
 See <a href="../../recipes/companion-personality/">Give a character its own idle breaks and faces</a>.</p>
@@ -4853,13 +4845,15 @@ profile row it reads with its <strong>Profile Key</strong> (<code>Anim.XenoCore.
 the style and the weapon, as above. See
 <a href="../../recipes/character-combat-animations/">Give a character its own combat animations</a>.</p>
 <p><strong>Stride warping</strong> happens once, in the host ABP, driven by <strong>Stride Scale</strong>.</p>
-<p><strong>VRoid faces.</strong> A VRoid party member runs the Mannequin animation on an invisible body; its VRoid
-mesh copies the pose, and its retarget Animation Blueprint (<code>ABP_XenoCore_VRoidRetarget_*</code>) drives
-the face:</p>
+<h3 id="faces">Faces<a class="headerlink" href="#faces" title="Permanent link">&para;</a></h3>
+<p>The sample party members are UE5 Mannequins, which have no face, so nothing in this section shows in
+the sample. It is there for characters you give a face rig (morph targets driven by named curves).
+Give such a character an Animation Blueprint whose parent class is <code>XenoCoreFaceAnimInstance</code>, on the
+mesh that carries the face, and it drives:</p>
 <ul>
 <li>a random blink, timed per character;</li>
 <li>an expression chosen from the character's gameplay tags by <strong>Expression Rules</strong>, first matching
-  rule wins. The shipped order: downed looks pained, dead closes the eyes, Topple and Break look
+  rule wins. The default order: downed looks pained, dead closes the eyes, Topple and Break look
   surprised, Daze sad, a victory celebration laughs, casting an art and being in battle look angry,
   a conversation looks relaxed;</li>
 <li>a mouth flap while <strong>Talking Tag</strong> is held, or lip sync for a voice line;</li>
@@ -4869,14 +4863,14 @@ the face:</p>
 <code>Characters/Core/Face/DT_XenoCore_FaceExpressions</code>. It ships 19 rows: Happy, Smile, Laugh, Giggle, Wink,
 Smug, Annoyed, Angry, Determined, Sad, Worried, Surprised, Shocked, Relaxed, Bored, Sleepy, Yawn,
 Thinking and Pained. Each row is a <strong>Curves</strong> map of face curve to
-weight, built from the VRM presets (<code>happy</code>, <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>, <code>aa</code>, <code>ih</code>, <code>ou</code>,
+weight, using VRM-style curve names your face rig must provide (<code>happy</code>, <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>, <code>aa</code>, <code>ih</code>, <code>ou</code>,
 <code>ee</code>, <code>oh</code>, <code>blink</code>, <code>blinkLeft</code>, <code>blinkRight</code>). <strong>Suppress Blink</strong> stops the blink while it shows,
 and <strong>Pulse Curve</strong>, <strong>Pulse Weight</strong> and <strong>Pulse Rate</strong> add an oscillating curve on top, such as a
 laugh's opening and closing mouth. A name that is not a row is played as one curve at full weight, so
 a rule that says <code>angry</code> still works.</p>
 <p>To play a face from any Blueprint, call <strong>Play Expression On Actor</strong> with the pawn (or its cosmetic
 part), a row name, a weight and a duration. It returns false, and does nothing, on a character
-without a face, such as a Mannequin-bodied member or an enemy.</p>
+without a face, such as the sample members or an enemy.</p>
 <h3 id="the-head-turn">The head turn<a class="headerlink" href="#the-head-turn" title="Permanent link">&para;</a></h3>
 <p>Companions turn their head and neck toward whatever their <strong>gaze</strong> is on: the leader, another
 member, the view, the battle target. What they look at is chosen by the party StateTree (see
@@ -4945,7 +4939,7 @@ player-controlled body has no gaze and always looks straight ahead.</p>
 </tr>
 <tr>
 <td><strong>Expression Rules</strong>, <strong>Expression Table</strong>, blink and mouth settings</td>
-<td>VRoid retarget ABP › Class Defaults › XenoCore › Face</td>
+<td>Your face Animation Blueprint › Class Defaults › XenoCore › Face</td>
 <td>Face behaviour, and the table expression names are looked up in</td>
 </tr>
 <tr>
@@ -4982,10 +4976,9 @@ Part</strong> must not add a part at all. See <a href="../characters/">Character
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a face curve the mesh does not have</p>
-<p>An expression row that names a curve the VRoid model's face does not have shows nothing, and
+<p>An expression row that names a curve your character's face rig does not have shows nothing, and
 nothing is logged. A typo in a row name looks the same, because a name that is not a row is
-tried as a single curve. Rows built from the VRM presets listed above are known to work; check
-any row that uses a raw <code>Fcl_*</code> morph curve in Play before relying on it.</p>
+tried as a single curve. Check every row in Play on your own character before relying on it.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: the idle break branches wired backwards</p>
@@ -5042,7 +5035,7 @@ while <code>Status.XenoCore.Arming</code> is held.</p>
   draw, and an inertialization request (Lyra delivers the same request through a transition). Links
   are made once on an event, never per frame, and never unlink-then-link, which would drop every
   node to its fallback for an instant.</li>
-<li><strong>Not derived from <code>ULyraAnimInstance</code></strong>, because it has no export macro and cannot be derived
+<li><strong>Not derived from <code>UXenoBaseAnimInstance</code></strong>, because it has no export macro and cannot be derived
   from outside Lyra's module; <code>UXenoCoreAnimInstance</code> reproduces the part it needs and pulls the
   ability system itself.</li>
 <li><strong>Idle breaks in the anim stack</strong>, where Lyra keeps its own, because the graph already knows

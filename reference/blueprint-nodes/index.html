@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -3828,6 +3798,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#xenocore-equipment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Equipment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#xenocore-gems" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4969,6 +4950,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#xenocore-equipment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XenoCore › Equipment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#xenocore-gems" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5533,7 +5525,7 @@ suspended until then, so always wire every output pin you care about.</p>
 </tr>
 <tr>
 <td><a href="#xenocore-arts">XenoCore › Arts</a></td>
-<td>8</td>
+<td>9</td>
 </tr>
 <tr>
 <td><a href="#xenocore-cosmetics">XenoCore › Cosmetics</a></td>
@@ -5542,6 +5534,10 @@ suspended until then, so always wire every output pin you care about.</p>
 <tr>
 <td><a href="#xenocore-enemy">XenoCore › Enemy</a></td>
 <td>3</td>
+</tr>
+<tr>
+<td><a href="#xenocore-equipment">XenoCore › Equipment</a></td>
+<td>1</td>
 </tr>
 <tr>
 <td><a href="#xenocore-gems">XenoCore › Gems</a></td>
@@ -5569,7 +5565,7 @@ suspended until then, so always wire every output pin you care about.</p>
 </tr>
 <tr>
 <td><a href="#xenocore-party">XenoCore › Party</a></td>
-<td>15</td>
+<td>17</td>
 </tr>
 <tr>
 <td><a href="#xenocore-quest">XenoCore › Quest</a></td>
@@ -5672,6 +5668,13 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><code>UXenoCoreArtsUIStatics</code></td>
 <td><code>FText GetCategoryLabel(EXenoCoreArtCategory Category)</code></td>
 <td>The display label of an art category: "Physical", "Break", "Heal".</td>
+</tr>
+<tr>
+<td><strong>Get Item Talent Art</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreArtsUIStatics</code></td>
+<td><code>const UXenoCoreArtDefinition* GetItemTalentArt(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>The Talent Art an item grants when equipped, or null.</td>
 </tr>
 <tr>
 <td><strong>Get Palette Views</strong></td>
@@ -5787,6 +5790,27 @@ suspended until then, so always wire every output pin you care about.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="xenocore-equipment">XenoCore › Equipment<a class="headerlink" href="#xenocore-equipment" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Kind</th>
+<th>Library</th>
+<th>Signature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get Item Actors To Spawn</strong></td>
+<td>Pure</td>
+<td><code>UXenoCoreInventoryStatics</code></td>
+<td><code>TArray&lt;FXenoCoreEquipmentActorSpawn&gt; GetItemActorsToSpawn(const UXenoBaseInventoryItemInstance* Item)</code></td>
+<td>The actors this item spawns when equipped (its Equippable Item fragment's Equipment Definition &gt; Actors To Spawn). Empty for an item that is not equipment.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="xenocore-gems">XenoCore › Gems<a class="headerlink" href="#xenocore-gems" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -5803,105 +5827,105 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Can Unsocket</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>bool CanUnsocket(const ULyraInventoryItemInstance* Host, int32 SocketIndex)</code></td>
+<td><code>bool CanUnsocket(const UXenoBaseInventoryItemInstance* Host, int32 SocketIndex)</code></td>
 <td>True if this socket holds a gem that can be taken out.</td>
 </tr>
 <tr>
 <td><strong>Describe Gem Effect</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>FText DescribeGemEffect(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
+<td><code>FText DescribeGemEffect(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
 <td>"Strength +8" - what a gem of this strength does. Empty for something that is not a gem.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Colour</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>FLinearColor GetGemColour(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef)</code></td>
+<td><code>FLinearColor GetGemColour(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; GemDef)</code></td>
 <td>The gem's colour - its display fragment's Symbol Colour, set to its XC1 element. What its socket icon is tinted.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Name</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>FText GetGemName(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef)</code></td>
+<td><code>FText GetGemName(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; GemDef)</code></td>
 <td>"Strength Up I", the gem's name.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Names Text</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>FText GetGemNamesText(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>FText GetGemNamesText(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>The item's socketed gems by name, "Empty Slot" for an empty one. Empty for no sockets.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Row Text</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>FText GetGemRowText(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>FText GetGemRowText(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>One loadout row's sockets on one line: an O per gem, a dash per empty socket. Empty text for a piece with no sockets, so the cell draws nothing.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Slot Count</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>int32 GetGemSlotCount(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>int32 GetGemSlotCount(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>How many sockets this piece of equipment has. 0 for anything that is not equipment.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Strength</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>int32 GetGemStrength(const ULyraInventoryItemInstance* GemItem)</code></td>
+<td><code>int32 GetGemStrength(const UXenoBaseInventoryItemInstance* GemItem)</code></td>
 <td>A loose gem's strength.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Value Text</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>FText GetGemValueText(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
+<td><code>FText GetGemValueText(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
 <td>"+5", or "+2%" for a percent stat - a gem's value without its stat name, for a row that is short of room.</td>
 </tr>
 <tr>
 <td><strong>Get Loose Gems</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; GetLooseGems()</code></td>
+<td><code>TArray&lt;UXenoBaseInventoryItemInstance*&gt; GetLooseGems()</code></td>
 <td>Every gem in the party bag, strongest first within a name.</td>
 </tr>
 <tr>
 <td><strong>Get Sockets</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>TArray&lt;FXenoCoreSocketedGem&gt; GetSockets(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>TArray&lt;FXenoCoreSocketedGem&gt; GetSockets(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Every socket on this piece, empty ones included, in order.</td>
 </tr>
 <tr>
 <td><strong>Is Gem</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>bool IsGem(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>bool IsGem(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>True if this item is a gem.</td>
 </tr>
 <tr>
 <td><strong>Preview Socket Change</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>TMap&lt;FGameplayTag, float&gt; PreviewSocketChange(const UXenoCoreEquipmentComponent* Wearer, const ULyraInventoryItemInstance* Host, int32 SocketIndex, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; NewGem, int32 NewValue)</code></td>
+<td><code>TMap&lt;FGameplayTag, float&gt; PreviewSocketChange(const UXenoCoreEquipmentComponent* Wearer, const UXenoBaseInventoryItemInstance* Host, int32 SocketIndex, TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; NewGem, int32 NewValue)</code></td>
 <td>Stat changes on the wearer if Host's socket SocketIndex held NewGem at NewValue (null = emptied).</td>
 </tr>
 <tr>
 <td><strong>Socket Gem</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>bool SocketGem(ULyraInventoryItemInstance* Host, int32 SocketIndex, ULyraInventoryItemInstance* GemItem)</code></td>
+<td><code>bool SocketGem(UXenoBaseInventoryItemInstance* Host, int32 SocketIndex, UXenoBaseInventoryItemInstance* GemItem)</code></td>
 <td>Put a loose gem from the bag into a socket. A gem already there goes back into the bag with its own strength.</td>
 </tr>
 <tr>
 <td><strong>Unsocket Gem</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreGemStatics</code></td>
-<td><code>bool UnsocketGem(ULyraInventoryItemInstance* Host, int32 SocketIndex)</code></td>
+<td><code>bool UnsocketGem(UXenoBaseInventoryItemInstance* Host, int32 SocketIndex)</code></td>
 <td>Take a gem out of a socket and back into the bag. Refuses an empty or fixed socket.</td>
 </tr>
 </tbody>
@@ -5922,42 +5946,42 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Add Item To Party</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>int32 AddItemToParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
+<td><code>int32 AddItemToParty(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
 <td>Adds Count of ItemDef to the party bag, honouring the item's MaxCarried cap. Returns how many were actually added - short of Count when the cap was hit.</td>
 </tr>
 <tr>
 <td><strong>Add One Item To Party</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>ULyraInventoryItemInstance* AddOneItemToParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>UXenoBaseInventoryItemInstance* AddOneItemToParty(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>Adds exactly one and returns the instance, which the equip path needs and a count cannot give. Same cap and same broadcast as AddItemToParty; null when the cap left no room.</td>
 </tr>
 <tr>
 <td><strong>Build Item Stat Lines</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLines(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLines(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>One item's own stats, with no character and no comparison - the Items menu's details pane.</td>
 </tr>
 <tr>
 <td><strong>Build Item Stat Lines For Def</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLinesForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLinesForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>The same block, priced off a definition - for an item nobody owns yet.</td>
 </tr>
 <tr>
 <td><strong>Build Stat Comparison</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparison(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Candidate)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparison(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, UXenoBaseInventoryItemInstance* Candidate)</code></td>
 <td>What Candidate would give, and how it differs from what is equipped in Slot right now.</td>
 </tr>
 <tr>
 <td><strong>Build Stat Comparison For Def</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparisonForDef(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; CandidateDef)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparisonForDef(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; CandidateDef)</code></td>
 <td>BuildStatComparison for an item nobody owns yet - a shop's stock.</td>
 </tr>
 <tr>
@@ -5971,7 +5995,7 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Build Stat Totals With Candidate</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatTotalsWithCandidate(AActor* Character, UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Candidate)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatTotalsWithCandidate(AActor* Character, UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, UXenoBaseInventoryItemInstance* Candidate)</code></td>
 <td>The character sheet's totals, with a second column showing what each stat becomes if Candidate is equipped into Slot.</td>
 </tr>
 <tr>
@@ -5985,21 +6009,21 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Consume Items From Party</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>bool ConsumeItemsFromParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
+<td><code>bool ConsumeItemsFromParty(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
 <td>Spends exactly Count of ItemDef, or nothing at all. Returns false, removing nothing, when the party holds fewer than Count unequipped.</td>
 </tr>
 <tr>
 <td><strong>Find Equipment Holding</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>UXenoCoreEquipmentComponent* FindEquipmentHolding(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>UXenoCoreEquipmentComponent* FindEquipmentHolding(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Whose loadout holds this item, or null if nobody is wearing it.</td>
 </tr>
 <tr>
 <td><strong>Find Free Item By Definition</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>ULyraInventoryItemInstance* FindFreeItemByDefinition(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>UXenoBaseInventoryItemInstance* FindFreeItemByDefinition(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>An instance of this definition that the party owns and nobody is wearing, or null.</td>
 </tr>
 <tr>
@@ -6020,42 +6044,42 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Get Free Party Item Count</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>int32 GetFreePartyItemCount(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetFreePartyItemCount(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>How many of ItemDef the party holds that nobody is wearing - what can be spent or sold.</td>
 </tr>
 <tr>
 <td><strong>Get Item Category</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>EXenoCoreItemCategory GetItemCategory(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>EXenoCoreItemCategory GetItemCategory(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Which tab an item belongs to. Equipment if it carries slots; Items if it declares nothing.</td>
 </tr>
 <tr>
 <td><strong>Get Item Display Name</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>FText GetItemDisplayName(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>FText GetItemDisplayName(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>The item's display name off its definition. Empty text for a null item.</td>
 </tr>
 <tr>
 <td><strong>Get Item Stat</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>float GetItemStat(ULyraInventoryItemInstance* Item, FGameplayTag StatTag)</code></td>
+<td><code>float GetItemStat(UXenoBaseInventoryItemInstance* Item, FGameplayTag StatTag)</code></td>
 <td>One stat off an item, 0 when absent. Percent stats are whole percent, as authored.</td>
 </tr>
 <tr>
 <td><strong>Get Item Stat For Def</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>float GetItemStatForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FGameplayTag StatTag)</code></td>
+<td><code>float GetItemStatForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, FGameplayTag StatTag)</code></td>
 <td>One authored stat off a definition's CDO. Zero when the definition grants nothing.</td>
 </tr>
 <tr>
 <td><strong>Get Item Symbol</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>FText GetItemSymbol(ULyraInventoryItemInstance* Item, FLinearColor&amp; OutColour)</code></td>
+<td><code>FText GetItemSymbol(UXenoBaseInventoryItemInstance* Item, FLinearColor&amp; OutColour)</code></td>
 <td>The glyph shown beside an item's name, and its colour.</td>
 </tr>
 <tr>
@@ -6076,14 +6100,14 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Get Items For Category</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; GetItemsForCategory(EXenoCoreItemCategory Category)</code></td>
+<td><code>TArray&lt;UXenoBaseInventoryItemInstance*&gt; GetItemsForCategory(EXenoCoreItemCategory Category)</code></td>
 <td>Every item instance in the party bag whose category matches.</td>
 </tr>
 <tr>
 <td><strong>Get Items For Slot</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; GetItemsForSlot(EXenoCoreEquipSlot Slot, const UXenoCoreEquipmentComponent* ForCharacter = nullptr)</code></td>
+<td><code>TArray&lt;UXenoBaseInventoryItemInstance*&gt; GetItemsForSlot(EXenoCoreEquipSlot Slot, const UXenoCoreEquipmentComponent* ForCharacter = nullptr)</code></td>
 <td>Every item in the party bag that may go in Slot, in bag order. With ForCharacter set, weapons they cannot wield are left out.</td>
 </tr>
 <tr>
@@ -6104,21 +6128,21 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Get Max Carried</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>int32 GetMaxCarried(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetMaxCarried(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>The carry cap for a definition, or 0 when uncapped.</td>
 </tr>
 <tr>
 <td><strong>Get Party Inventory</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>ULyraInventoryManagerComponent* GetPartyInventory()</code></td>
+<td><code>UXenoBaseInventoryManagerComponent* GetPartyInventory()</code></td>
 <td>The party bag. There is exactly one, and this is the only thing that decides where it lives.</td>
 </tr>
 <tr>
 <td><strong>Get Party Item Count</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>int32 GetPartyItemCount(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetPartyItemCount(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>How many of ItemDef the party holds.</td>
 </tr>
 <tr>
@@ -6132,14 +6156,14 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Is Item Equipped By Anyone</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>bool IsItemEquippedByAnyone(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>bool IsItemEquippedByAnyone(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>True if any character in the world has this exact instance equipped.</td>
 </tr>
 <tr>
 <td><strong>Make Item View</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>FXenoCoreItemView MakeItemView(ULyraInventoryItemInstance* Item, UXenoCoreEquipmentComponent* Equipment)</code></td>
+<td><code>FXenoCoreItemView MakeItemView(UXenoBaseInventoryItemInstance* Item, UXenoCoreEquipmentComponent* Equipment)</code></td>
 <td>One selection row: an item, priced and flagged against a character's current loadout.</td>
 </tr>
 <tr>
@@ -6153,14 +6177,14 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Remove Item From Party</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>int32 RemoveItemFromParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
+<td><code>int32 RemoveItemFromParty(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
 <td>Removes up to Count of ItemDef. Returns how many actually went.</td>
 </tr>
 <tr>
 <td><strong>Remove Item Instance From Party</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreInventoryStatics</code></td>
-<td><code>bool RemoveItemInstanceFromParty(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>bool RemoveItemInstanceFromParty(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Removes this exact item from the party bag. Refuses (returns false) if a party member is wearing it or it is not in the bag.</td>
 </tr>
 </tbody>
@@ -6181,42 +6205,42 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Apply Item Definition Rarity To Button</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>bool ApplyItemDefinitionRarityToButton(UUserWidget* Button, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td><code>bool ApplyItemDefinitionRarityToButton(UUserWidget* Button, TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback = FLinearColor::White)</code></td>
 <td>ApplyItemRarityToButton for an item definition - a gem in a socket has no bag instance.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Instance Rarity</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>bool ApplyItemInstanceRarity(ULyraInventoryItemInstance* Item, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
+<td><code>bool ApplyItemInstanceRarity(UXenoBaseInventoryItemInstance* Item, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
 <td>ApplyItemRarity for an item in the bag.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Instance Rarity Label</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>bool ApplyItemInstanceRarityLabel(ULyraInventoryItemInstance* Item, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td><code>bool ApplyItemInstanceRarityLabel(UXenoBaseInventoryItemInstance* Item, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
 <td>ApplyItemRarityLabel for an item in the bag.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Rarity</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>bool ApplyItemRarity(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
+<td><code>bool ApplyItemRarity(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
 <td>Colour an item's name by rarity and fill its diamonds. Any widget may be null.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Rarity Label</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>bool ApplyItemRarityLabel(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td><code>bool ApplyItemRarityLabel(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
 <td>Write the tier's name into a details row and colour it. An empty item clears the text.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Rarity To Button</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>bool ApplyItemRarityToButton(UUserWidget* Button, ULyraInventoryItemInstance* Item, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td><code>bool ApplyItemRarityToButton(UUserWidget* Button, UXenoBaseInventoryItemInstance* Item, FLinearColor Fallback = FLinearColor::White)</code></td>
 <td>Colour a button's label by an item's rarity. For buttons labelled with SetButtonText.</td>
 </tr>
 <tr>
@@ -6237,35 +6261,35 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Get Item Name Colour</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>FLinearColor GetItemNameColour(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback)</code></td>
+<td><code>FLinearColor GetItemNameColour(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback)</code></td>
 <td>The colour this item's name should rest at, or Fallback when its tier does not tint names.</td>
 </tr>
 <tr>
 <td><strong>Get Item Rarity</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>FGameplayTag GetItemRarity(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>FGameplayTag GetItemRarity(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>An item definition's tier: its authored tag, else the default row's.</td>
 </tr>
 <tr>
 <td><strong>Get Item Rarity Info</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>bool GetItemRarityInfo(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FXenoCoreItemRarityRow&amp; OutRow)</code></td>
+<td><code>bool GetItemRarityInfo(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, FXenoCoreItemRarityRow&amp; OutRow)</code></td>
 <td>An item definition's rarity row. False when no table is configured.</td>
 </tr>
 <tr>
 <td><strong>Get Item Rarity Name</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>FText GetItemRarityName(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>FText GetItemRarityName(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>"Common", "Rare", "Legendary". Empty when nothing resolves.</td>
 </tr>
 <tr>
 <td><strong>Get Item Rarity Rank</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>int32 GetItemRarityRank(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetItemRarityRank(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>Higher is rarer. Zero when nothing resolves.</td>
 </tr>
 <tr>
@@ -6286,7 +6310,7 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Prefix With Item Rarity</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreItemRarityStatics</code></td>
-<td><code>FText PrefixWithItemInstanceRarity(ULyraInventoryItemInstance* Item, const FText&amp; Rest)</code></td>
+<td><code>FText PrefixWithItemInstanceRarity(UXenoBaseInventoryItemInstance* Item, const FText&amp; Rest)</code></td>
 <td>"Rare · Weapon" - the tier in words in front of Rest. Rest alone when the item has no rarity.</td>
 </tr>
 </tbody>
@@ -6433,7 +6457,7 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Equip Or Confirm Take</strong></td>
 <td>Callable</td>
 <td><code>UXenoCorePartyUIStatics</code></td>
-<td><code>bool EquipOrConfirmTake(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Item, UCommonActivatableWidget* ListToClose)</code></td>
+<td><code>bool EquipOrConfirmTake(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, UXenoBaseInventoryItemInstance* Item, UCommonActivatableWidget* ListToClose)</code></td>
 <td>Equip it, or ask first if it means stripping another character.</td>
 </tr>
 <tr>
@@ -6447,7 +6471,7 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Get Item Holder Portrait</strong></td>
 <td>Pure</td>
 <td><code>UXenoCorePartyUIStatics</code></td>
-<td><code>UTexture2D* GetItemHolderPortrait(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>UTexture2D* GetItemHolderPortrait(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>The portrait of whoever is wearing this item, loaded, or null if nobody is.</td>
 </tr>
 <tr>
@@ -6477,6 +6501,13 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><code>UXenoCorePartyUIStatics</code></td>
 <td><code>UTexture2D* GetMemberPortraitTexture(UXenoCorePartyMemberDefinition* Member)</code></td>
 <td>This character's portrait, loaded, or null.</td>
+</tr>
+<tr>
+<td><strong>Get Member Talent Art</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>const UXenoCoreArtDefinition* GetMemberTalentArt(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>The Talent Art this character's weapon grants, or null.</td>
 </tr>
 <tr>
 <td><strong>Get Party Name With Level</strong></td>
@@ -6531,8 +6562,15 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Get Take Item Prompt</strong></td>
 <td>Pure</td>
 <td><code>UXenoCorePartyUIStatics</code></td>
-<td><code>FText GetTakeItemPrompt(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>FText GetTakeItemPrompt(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>"Unequip Red Sword from Quinn?" - the whole prompt, built here.</td>
+</tr>
+<tr>
+<td><strong>Get Talent Label</strong></td>
+<td>Pure</td>
+<td><code>UXenoCorePartyUIStatics</code></td>
+<td><code>FText GetTalentLabel(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>"Talent: Turn Strike" for this character, or empty. Works for a benched character too.</td>
 </tr>
 </tbody>
 </table>
@@ -6692,42 +6730,42 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Buy Items</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreShopStatics</code></td>
-<td><code>int32 BuyItems(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count, int32 UnitPrice)</code></td>
+<td><code>int32 BuyItems(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count, int32 UnitPrice)</code></td>
 <td>Buy Count at UnitPrice. Returns how many actually arrived.</td>
 </tr>
 <tr>
 <td><strong>Can Buy Def</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreShopStatics</code></td>
-<td><code>bool CanBuyDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>bool CanBuyDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>May a shop stock this? False for Materials and Key items, and for anything unpriced.</td>
 </tr>
 <tr>
 <td><strong>Can Sell Def</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreShopStatics</code></td>
-<td><code>bool CanSellDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>bool CanSellDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>May the player sell this at all? False for Key items and anything with no category.</td>
 </tr>
 <tr>
 <td><strong>Get Buy Price For Def</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreShopStatics</code></td>
-<td><code>int32 GetBuyPriceForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetBuyPriceForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>SellValue x 10. Zero for null or for an item with no category fragment.</td>
 </tr>
 <tr>
 <td><strong>Get Max Buyable</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreShopStatics</code></td>
-<td><code>int32 GetMaxBuyable(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 UnitPrice)</code></td>
+<td><code>int32 GetMaxBuyable(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 UnitPrice)</code></td>
 <td>The most the stepper may reach when buying: what the purse covers, the room left under the item's MaxCarried, and MaxPerTransaction - whichever is smallest.</td>
 </tr>
 <tr>
 <td><strong>Get Sell Price For Def</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreShopStatics</code></td>
-<td><code>int32 GetSellPriceForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetSellPriceForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>What a shop pays for one, skills included.</td>
 </tr>
 <tr>
@@ -6741,14 +6779,14 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Get Sellable Count</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreShopStatics</code></td>
-<td><code>int32 GetSellableCount(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetSellableCount(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>How many of ItemDef the player could sell right now - the copies nobody is wearing.</td>
 </tr>
 <tr>
 <td><strong>Sell Items</strong></td>
 <td>Callable</td>
 <td><code>UXenoCoreShopStatics</code></td>
-<td><code>int32 SellItems(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count)</code></td>
+<td><code>int32 SellItems(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count)</code></td>
 <td>Sell up to Count of ItemDef. Returns how many actually went; gold is paid for exactly those.</td>
 </tr>
 </tbody>
@@ -6937,28 +6975,28 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Can Offer Def</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreTradeStatics</code></td>
-<td><code>bool CanOfferDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>bool CanOfferDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>Definition-side twin of CanOfferItem, for pricing a row before anything is picked.</td>
 </tr>
 <tr>
 <td><strong>Can Offer Item</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreTradeStatics</code></td>
-<td><code>bool CanOfferItem(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>bool CanOfferItem(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>May the player put this on the table?</td>
 </tr>
 <tr>
 <td><strong>Get Category For Def</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreTradeStatics</code></td>
-<td><code>EXenoCoreItemCategory GetCategoryForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>EXenoCoreItemCategory GetCategoryForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>Which tab an item belongs under.</td>
 </tr>
 <tr>
 <td><strong>Get Effective Offer Value</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreTradeStatics</code></td>
-<td><code>int32 GetEffectiveOfferValue(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>int32 GetEffectiveOfferValue(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>What the NPC reckons the offered item is worth, skills included. This is the number that gets compared against a price.</td>
 </tr>
 <tr>
@@ -6972,14 +7010,14 @@ suspended until then, so always wire every output pin you care about.</p>
 <td><strong>Get Trade Value</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreTradeStatics</code></td>
-<td><code>int32 GetTradeValue(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>int32 GetTradeValue(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>The same number for something actually in the bag.</td>
 </tr>
 <tr>
 <td><strong>Get Trade Value For Def</strong></td>
 <td>Pure</td>
 <td><code>UXenoCoreTradeStatics</code></td>
-<td><code>int32 GetTradeValueForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetTradeValueForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>What one of these is worth on the trade table.</td>
 </tr>
 </tbody>

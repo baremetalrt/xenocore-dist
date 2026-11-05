@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4789,7 +4759,7 @@ in subsystems.</strong> Every system page in this section is one row of that spl
 <a href="#extension-points">extension points</a>. Everything else is background.</p>
 </div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
-<p>The plugin is <code>Plugins/GameFeatures/XenoCore</code>. It has two C++ modules and one content root:</p>
+<p>The plugin is <code>Plugins/GameFeatures/XenoCore</code>. It has three C++ modules and one content root:</p>
 <table>
 <thead>
 <tr>
@@ -4798,6 +4768,10 @@ in subsystems.</strong> Every system page in this section is one row of that spl
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>Source/ThirdParty/XenoCoreBase</code></td>
+<td>The Lyra Starter Game code XenoCore is built on, renamed <code>XenoBase</code> / <code>XenoKit</code> so it never clashes with a Lyra project. Loaded in game and editor.</td>
+</tr>
 <tr>
 <td><code>Source/XenoCoreRuntime</code></td>
 <td>All gameplay C++. Loaded in game and editor.</td>
@@ -4819,7 +4793,9 @@ in subsystems.</strong> Every system page in this section is one row of that spl
 <p>The plugin starts in the <strong>Registered</strong> state (<code>XenoCore.uplugin</code>, <code>BuiltInInitialFeatureState</code>) and
 is switched on by an Experience, exactly like Lyra's own ShooterCore.</p>
 <h3 id="the-game-feature-data-asset">The Game Feature Data asset<a class="headerlink" href="#the-game-feature-data-asset" title="Permanent link">&para;</a></h3>
-<p><code>Content/XenoCore</code> (the asset named after the plugin) is the plugin's <strong>Game Feature Data</strong>. It runs
+<p><code>System/XenoCore</code> (<code>/XenoCore/System/XenoCore</code>, the asset named after the plugin) is the plugin's
+<strong>Game Feature Data</strong>. A Game Feature plugin normally keeps it at the top of its content folder;
+XenoCore's <code>Config/Settings.ini</code> (<code>[GameFeatureData] Override=</code>) tells the engine where it is instead. It runs
 while the feature is active and holds three actions:</p>
 <table>
 <thead>
@@ -4831,7 +4807,7 @@ while the feature is active and holds three actions:</p>
 <tbody>
 <tr>
 <td><strong>Add Components</strong></td>
-<td>On every <code>LyraPlayerController</code>: <code>BP_XenoCore_Party</code> (the party), <code>XenoCoreQuestComponent</code> (quests) and <code>XenoCorePartyGaugeComponent</code> (the Party Gauge). On every <code>Controller</code>: <code>BP_XenoCore_Progression</code> (levels, EXP, gold) and <code>LyraInventoryManagerComponent</code> (the shared bag). On every <code>PlayerController</code>, client side only: <code>LyraIndicatorManagerComponent</code> (world indicators).</td>
+<td>On every <code>XenoBasePlayerController</code>: <code>BP_XenoCore_Party</code> (the party), <code>XenoCoreQuestComponent</code> (quests) and <code>XenoCorePartyGaugeComponent</code> (the Party Gauge). On every <code>Controller</code>: <code>BP_XenoCore_Progression</code> (levels, EXP, gold) and <code>XenoBaseInventoryManagerComponent</code> (the shared bag). On every <code>PlayerController</code>, client side only: <code>XenoBaseIndicatorManagerComponent</code> (world indicators).</td>
 </tr>
 <tr>
 <td><strong>Add Input Context Mapping</strong></td>
@@ -4866,7 +4842,7 @@ the action.</p>
 <tr>
 <td><code>Experiences/B_XenoCore_Experience</code></td>
 <td>The sample world and <code>L_XenoCore_Gym</code></td>
-<td>Sets <strong>Default Pawn Data</strong> to <code>Game/PawnData_XenoCore_Player</code>; adds the <code>LAS_XenoCore_HUD</code> action set (the HUD layout <code>W_XenoCore_HUDLayout</code> and the number-pop component); grants <code>AbilitySet_XenoCore_Interact</code> to <code>LyraPlayerState</code> (whose ability system XenoCore does not use, so this grant does nothing; the party's <strong>Leader Only Ability Set</strong> is the grant that works); adds <code>B_XenoCore_TeamSetup</code> (a team creation component) to <code>LyraGameState</code>; enables the XenoCore Game Feature.</td>
+<td>Sets <strong>Default Pawn Data</strong> to <code>Game/PawnData_XenoCore_Player</code>; adds the <code>LAS_XenoCore_HUD</code> action set (the HUD layout <code>W_XenoCore_HUDLayout</code> and the number-pop component); grants <code>AbilitySet_XenoCore_Interact</code> to <code>XenoBasePlayerState</code> (whose ability system XenoCore does not use, so this grant does nothing; the party's <strong>Leader Only Ability Set</strong> is the grant that works); adds <code>B_XenoCore_TeamSetup</code> (a team creation component) to <code>XenoBaseGameState</code>; enables the XenoCore Game Feature.</td>
 </tr>
 <tr>
 <td><code>Experiences/B_XenoCore_FrontEnd_Experience</code></td>
@@ -4903,7 +4879,7 @@ who is told about it, find its row.</p>
 <tr>
 <td>The bag (all items)</td>
 <td>Player controller</td>
-<td><code>ULyraInventoryManagerComponent</code></td>
+<td><code>UXenoBaseInventoryManagerComponent</code></td>
 <td>Party-wide; Lyra's own item-cost code looks for it on the controller.</td>
 </tr>
 <tr>
@@ -4927,7 +4903,7 @@ who is told about it, find its row.</p>
 <tr>
 <td>Ability system, attributes, active effects</td>
 <td>Each pawn</td>
-<td><code>ULyraAbilitySystemComponent</code> on <code>AXenoCoreCombatantCharacter</code> (party) or <code>AXenoCoreEnemyCharacter</code> (enemies, a separate branch from Lyra's <code>ALyraCharacterWithAbilities</code>)</td>
+<td><code>UXenoBaseAbilitySystemComponent</code> on <code>AXenoCoreCombatantCharacter</code> (party) or <code>AXenoCoreEnemyCharacter</code> (enemies, a separate branch from <code>AXenoBaseCharacterWithAbilities</code>, XenoCore's copy of Lyra's <code>ALyraCharacterWithAbilities</code>)</td>
 <td>Each character is its own identity; switching leader never moves stats.</td>
 </tr>
 <tr>
@@ -5287,7 +5263,7 @@ A fresh download of Lyra therefore needs nothing re-applied.</p>
 <ul>
 <li><strong>Pawn-hosted ability systems.</strong> Lyra keeps a player's ability system on the player state, which
   would mean every party member shares one identity or needs its own player state. XenoCore uses
-  Lyra's own <code>ALyraCharacterWithAbilities</code> shape (the one Epic's damageable test dummy uses), so a
+  Lyra's own <code>ALyraCharacterWithAbilities</code> shape (<code>AXenoBaseCharacterWithAbilities</code> in XenoCore) (the one Epic's damageable test dummy uses), so a
   character's stats, arts and effects travel with its body. Switching leader is only possession.</li>
 <li><strong>Controller components for the party.</strong> The same place Lyra's quick bar and item-cost code look.
   It survives pawn changes and is reachable from anything with a world.</li>

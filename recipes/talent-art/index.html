@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4838,7 +4808,7 @@ built on the Talent Art class) and shows that Art's name, description and icon, 
 gauge covers its <strong>Gauge Cost</strong>. Nothing on the palette widget needs to change.</p>
 <h3 id="3-grant-it-through-the-weapon">3. Grant it through the weapon<a class="headerlink" href="#3-grant-it-through-the-weapon" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Create a <strong>Data Asset</strong> of class <code>LyraAbilitySet</code> named <code>AbilitySet_MyWeapon</code>, and add one
+<li>Create a <strong>Data Asset</strong> of class <code>XenoBaseAbilitySet</code> named <code>AbilitySet_MyWeapon</code>, and add one
    entry to <strong>Granted Gameplay Abilities</strong>: <code>GA_Shatter</code>. Nothing else.</li>
 <li>Open your weapon's equipment definition (a child of <code>Weapons/ED_XenoCore_Sword_Base</code>; see
    <a href="../add-weapon/">Add a weapon</a>) and set <strong>Ability Sets To Grant</strong> to

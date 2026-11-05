@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4972,10 +4942,10 @@ every application is a free full heal.</p>
 <p><strong>Why:</strong> when you hand a body back to its AI, Unreal throws away that body's input bindings, and
 Lyra only binds input the first time a body is possessed. XenoCore's own hero component binds it
 again on every later possession. A pawn whose Components panel has Lyra's stock hero component
-(class <code>LyraHeroComponent</code>) instead of XenoCore's (class <code>XenoCoreHeroComponent</code>) loses that. Nothing is logged. The camera may
+(class <code>XenoBaseHeroComponent</code>) instead of XenoCore's (class <code>XenoCoreHeroComponent</code>) loses that. Nothing is logged. The camera may
 also look fine; only input is dead.</p>
-<p><strong>Fix:</strong> build party pawns as children of <code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code> or
-<code>Characters/Party/B_XenoCore_PartyMember_Base</code>, which carry the right component. On a pawn of your
+<p><strong>Fix:</strong> build party pawns as children of <code>Characters/Party/B_XenoCore_PartyMember_Base</code> (or of
+<code>Game/B_XenoCore_PlayableCharacter_Base</code>, as Kael's pawn is), which carry the right component. On a pawn of your
 own, replace the hero component with <code>XenoCoreHeroComponent</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">For programmers</p>
@@ -5013,8 +4983,7 @@ the mesh it spawned with. The warning (<code>LogXenoCosmetics</code>) names the 
 CharacterParts BodyMeshes has no DefaultMesh ... Falling back to the mesh it spawned with ..."</em>. It is
 logged once per class.</p>
 <p><strong>Fix:</strong> open the named Blueprint, select its character-parts component, and set <strong>Body Meshes ›
-Default Mesh</strong> to the mesh the character normally uses (for a VRoid member, its invisible
-Mannequin mesh). The warning then stops.</p>
+Default Mesh</strong> to the mesh the character normally uses. The warning then stops.</p>
 <h3 id="a-party-member-at-0-hp-ragdolls-instead-of-kneeling-and-cant-be-revived">A party member at 0 HP ragdolls instead of kneeling, and can't be revived<a class="headerlink" href="#a-party-member-at-0-hp-ragdolls-instead-of-kneeling-and-cant-be-revived" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently</p>
@@ -5024,11 +4993,10 @@ nothing is logged.</p>
 <p><strong>Why:</strong> a party member at 0 HP is <strong>downed</strong> by <code>GA_XenoCore_Downed</code>, which the party's ability
 sets grant in place of Lyra's <code>GA_Hero_Death</code>. A pawn whose ability sets grant <code>GA_Hero_Death</code>
 instead (for example a pawn data copied from Lyra's heroes) runs a real death: montage, ragdoll,
-weapon hidden, body gone. A party pawn that is not a child of <code>B_XenoCore_PartyMember_Base</code> or
-<code>B_XenoCore_Party_VRoid_Base</code> cannot kneel either.</p>
+weapon hidden, body gone. A party pawn that is not a child of <code>B_XenoCore_PartyMember_Base</code> cannot kneel either.</p>
 <p><strong>Fix:</strong> grant <code>Battle/GA_XenoCore_Downed</code>, not <code>GA_Hero_Death</code>, in every party member's ability
 sets (<code>AbilitySet_XenoCore_PartyMember</code> already does), and build party pawns as children of
-<code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code> or <code>B_XenoCore_PartyMember_Base</code>.</p>
+<code>Characters/Party/B_XenoCore_PartyMember_Base</code>.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../concepts/party-gauge-and-revive/">Party Gauge, downed and revive</a>.</p>
 <h3 id="pressing-a-over-a-downed-ally-doesnt-revive-them">Pressing A over a downed ally doesn't revive them<a class="headerlink" href="#pressing-a-over-a-downed-ally-doesnt-revive-them" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> a revive costs one full bar of the Party Gauge (<strong>Revive Bar Cost</strong> on <code>BP_XenoCore_Party</code>).

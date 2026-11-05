@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4985,7 +4955,7 @@ removes the particles but not the sounds its graph plays.</p>
   ability, on whichever side has a local player controller.</li>
 <li><strong>The cue is never found</strong> (next entry).</li>
 </ul>
-<p><strong>Fix:</strong> test on a gamepad. To force rumble while testing, run <code>LyraPC.ShouldAlwaysPlayForceFeedback 1</code>
+<p><strong>Fix:</strong> test on a gamepad. To force rumble while testing, run <code>XenoBase.LyraPC.ShouldAlwaysPlayForceFeedback 1</code>
 in the console. Trigger your own shake the same way the auto-attack does: executed directly by the
 ability, not through the damage effect.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/hit-feedback/">Add hit feedback</a>.</p>
@@ -5029,10 +4999,13 @@ for every new damage effect. If the cue asset itself is missing, restore it from
 <p class="admonition-title">Fails silently</p>
 <p>The cue asset looks correct and nothing is logged.</p>
 </div>
-<p><strong>Why:</strong> cues are only found in folders registered with the cue manager. The registered folders are
-<code>XenoCore/Content/GameplayCues</code> and the project's own <code>Content/GameplayCues</code> and
-<code>Content/GameplayCueNotifies</code>. A cue saved anywhere else is never loaded.</p>
-<p><strong>Fix:</strong> save your cues under <code>Content/GameplayCues/MyGame/</code>. If you keep them in a Game Feature
+<p><strong>Why:</strong> cues are only found in folders registered with the cue manager: XenoCore's
+<code>XenoCore/Content/GameplayCues</code>, and in a Lyra project also the project's own <code>Content/GameplayCues</code>
+and <code>Content/GameplayCueNotifies</code>. A Blank project registers no folder of its own. A cue saved
+anywhere else is never loaded.</p>
+<p><strong>Fix:</strong> save your cues under <code>Content/GameplayCues/MyGame/</code> (in a Blank project, first add
+<code>+GameplayCueNotifyPaths="/Game/GameplayCues"</code> under <code>[/Script/GameplayAbilities.AbilitySystemGlobals]</code>
+in <code>Config/DefaultGame.ini</code>). If you keep them in a Game Feature
 plugin of your own, open that plugin's Game Feature Data asset (the one named after the plugin, at
 its content root) and add an <strong>Add Gameplay Cue Path</strong> action. Paths are relative to the plugin's
 content root: <code>/GameplayCues</code>, not the full <code>/MyPlugin/...</code> path.</p>
@@ -5058,7 +5031,7 @@ ability in XenoCore is a Blueprint child, so asking for the C++ parent class mat
 <li>The ability has no <strong>Ability Tags</strong>. Rows match on ability tags, so an ability with none cannot be
   reached by any row.</li>
 </ul>
-<p><strong>Fix:</strong> base your ability on <code>LyraGameplayAbility</code> (or a XenoCore ability), and give it an
+<p><strong>Fix:</strong> base your ability on <code>XenoBaseGameplayAbility</code> (or a XenoCore ability), and give it an
 ability tag. A row keyed on a parent tag, such as <code>Ability.XenoCore.Art</code>, covers every child tag,
 including Arts you add later.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/subclass-mechanic/">Subclass a mechanic</a>.</p>

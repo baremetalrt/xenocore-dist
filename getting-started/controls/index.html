@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -831,8 +831,6 @@
       
         
       
-        
-      
     
     
     
@@ -902,34 +900,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4759,9 +4729,9 @@ members instead of cycling targets. See <a href="../../concepts/party-tactics/">
 </tr>
 </tbody>
 </table>
-<p>Enter works on menu buttons because <strong>Apply</strong> (see <a href="../install/#what-apply-changes">Install</a>) set
-CommonUI's <strong>Common Button Accept Key Handling</strong> to <code>TriggerClick</code> in your project's
-<code>Config/DefaultGame.ini</code>. If Enter does nothing, see
+<p>Enter works on menu buttons because CommonUI's <strong>Common Button Accept Key Handling</strong> is
+<code>TriggerClick</code>: <strong>Apply</strong> (see <a href="../install/#what-apply-changes">Install</a>) writes it to your project's
+<code>Config/DefaultGame.ini</code>, and in a project without Lyra XenoCore also sets it in memory at startup. If Enter does nothing, see
 <a href="../../troubleshooting/ui-and-input/#enter-doesnt-press-menu-buttons-on-keyboard">Enter doesn't press menu buttons</a>.</p>
 <h2 id="where-the-bindings-live">Where the bindings live<a class="headerlink" href="#where-the-bindings-live" title="Permanent link">&para;</a></h2>
 <table>

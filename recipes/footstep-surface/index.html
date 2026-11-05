@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4836,7 +4806,7 @@ puff of snow, and the old grass and stone surfaces keep theirs.</p>
 <tr>
 <td>4</td>
 <td>The name becomes a <a href="../../getting-started/glossary/">gameplay tag</a></td>
-<td><strong>Project Settings › LyraContextEffects › Surface Type To Context Map</strong></td>
+<td><strong>Project Settings › XenoBaseContextEffects › Surface Type To Context Map</strong></td>
 <td><code>SurfaceType4</code> → <code>SurfaceType.Grass</code></td>
 </tr>
 <tr>
@@ -4874,7 +4844,7 @@ and the surface falls back to the default step.</p>
 </div>
 <h3 id="3-map-the-surface-type-to-the-tag">3. Map the surface type to the tag<a class="headerlink" href="#3-map-the-surface-type-to-the-tag" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Project Settings › Game › LyraContextEffects</strong>.</li>
+<li><strong>Project Settings › Game › XenoBaseContextEffects</strong>.</li>
 <li>In <strong>Surface Type To Context Map</strong>, add <code>SurfaceType5</code> (it shows as <strong>Snow</strong>) →
    <code>SurfaceType.Snow</code>.</li>
 </ol>
@@ -4931,15 +4901,15 @@ field.</p>
 </li>
 <li>
 <p>Add <code>CFX_MyGame</code> to the characters. Open <code>Game/B_XenoCore_PlayableCharacter_Base</code> and
-   <code>Characters/Party/B_XenoCore_PartyMember_Base</code>. On each, select the <strong>LyraContextEffect</strong>
+   <code>Characters/Party/B_XenoCore_PartyMember_Base</code>. On each, select the <strong>XenoBaseContextEffect</strong>
    component and add <code>CFX_MyGame</code> to <strong>Default Context Effects Libraries</strong>. <strong>Compile</strong> and
    <strong>Save</strong> both.</p>
 </li>
 </ol>
 <p>Both pawn bases need it: the player's pawn and the party members are built on different bases.
-The VRoid party members (<code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code> and its children) are
-children of <code>B_XenoCore_PartyMember_Base</code>, so they inherit it. (On the party base the
-<strong>LyraContextEffect</strong> component comes from its C++ parent, so it shows as inherited; the library
+The six <code>B_XenoCore_Party_&lt;Colour&gt;</code> sample members are
+children of <code>B_XenoCore_PartyMember_Base</code>, so they inherit it; Kael is the player pawn. (On the party base the
+<strong>XenoBaseContextEffect</strong> component comes from its C++ parent, so it shows as inherited; the library
 list you set on the Blueprint is still what the members use.) Libraries add up rather than one
 winning: a step plays every matching row from every library in the list.</p>
 <div class="admonition note">

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4800,12 +4770,12 @@ on their own. Tap a trigger to take control of another, in or out of battle.</p>
 </tr>
 <tr>
 <td>Member definition</td>
-<td><code>Characters/VRoid/&lt;Name&gt;/PartyMember_VRoid_*</code> for the seven sample characters (<code>UXenoCorePartyMemberDefinition</code>); the colour mannequins' <code>Characters/Party/PartyMember_*</code> are kept as samples</td>
+<td><code>Characters/Party/PartyMember_&lt;Colour&gt;</code> for the seven sample characters (<code>UXenoCorePartyMemberDefinition</code>): Kael Blue, Mira Maroon, Nia Cyan, Dorran Lime, Isolde Purple, Sabine Yellow, Tamsin Pink</td>
 <td>Name, role, portrait, which Blueprint to spawn, which AI controller drives it. One per recruitable character.</td>
 </tr>
 <tr>
 <td>Member Blueprint</td>
-<td><code>Characters/VRoid/&lt;Name&gt;/B_XenoCore_Party_VRoid_*</code>, children of <code>Characters/VRoid/B_XenoCore_Party_VRoid_Base</code></td>
+<td><code>Characters/Party/B_XenoCore_Party_&lt;Colour&gt;</code>, children of <code>Characters/Party/B_XenoCore_PartyMember_Base</code>; Kael's is <code>Game/B_XenoCore_Player</code></td>
 <td>Everything about the character itself. See <a href="../characters/">Characters</a>.</td>
 </tr>
 <tr>

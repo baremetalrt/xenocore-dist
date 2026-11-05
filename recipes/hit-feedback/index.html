@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4806,8 +4776,8 @@ guessing:</p>
 </tr>
 <tr>
 <td>Sparks, hit sound, the damage number over the enemy</td>
-<td>Lyra's damage cue, carried by the damage effect</td>
-<td><code>Battle/Attributes/GE_XenoCore_Damage</code> → Lyra's <code>GCNL_Character_DamageTaken</code></td>
+<td>XenoCore's damage cue (a copy of Lyra's), carried by the damage effect</td>
+<td><code>Battle/Attributes/GE_XenoCore_Damage</code> → <code>GameplayCues/GCNL_XenoCore_DamageTaken</code></td>
 </tr>
 <tr>
 <td>Particles on the target for a critical, a block or an evade</td>
@@ -4816,14 +4786,14 @@ guessing:</p>
 </tr>
 <tr>
 <td><strong>CRITICAL HIT!</strong> over the target, the gold critical number and the critical hit sound</td>
-<td>The damage calculation, plus Lyra's damage cue</td>
+<td>The damage calculation, plus XenoCore's damage cue</td>
 <td><strong>Project Settings › Game › XenoCore Content › Critical Hit</strong></td>
 </tr>
 </tbody>
 </table>
 <p>The <a href="../../getting-started/glossary/">auto-attack</a> and every damaging <a href="../../getting-started/glossary/">Art</a> fire the hit cue themselves, after the hit has landed. A
 missed swing fires nothing. Heals never fire the hit cue.</p>
-<p>Lyra's damage cue draws the number and plays the hit-confirm and kill sounds for <strong>every party
+<p>XenoCore's damage cue draws the number and plays the hit-confirm and kill sounds for <strong>every party
 member's</strong> hits, not only the leader's: an AI-controlled ally's hit on an enemy sounds and reads the
 same as yours. An enemy's hit on a party member plays the damage-taken sound instead, and draws a
 number over whoever was hit. For an AI-controlled ally that number and sound come from XenoCore, not
@@ -4953,14 +4923,14 @@ changed the world speed in the meantime.</p>
 <li>Watch an ally's hits on an enemy. Each one draws a number and plays the hit-confirm sound.</li>
 </ol>
 <p>To test rumble while using a keyboard, open the console (<code>`</code>) and enter
-<code>LyraPC.ShouldAlwaysPlayForceFeedback 1</code>. Set it back to <code>0</code> when you are done.</p>
+<code>XenoBase.LyraPC.ShouldAlwaysPlayForceFeedback 1</code>. Set it back to <code>0</code> when you are done.</p>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">No rumble at all</p>
 <p>Rumble plays only while the <strong>last input you used was the gamepad</strong>, and only while
 <strong>Vibration</strong> is on in the game's settings (<strong>Gamepad › Hardware</strong>). Touching the mouse or
 keyboard switches it off until you press a pad button again. Nothing is logged. Use
-<code>LyraPC.ShouldAlwaysPlayForceFeedback 1</code> to rule this out.</p>
+<code>XenoBase.LyraPC.ShouldAlwaysPlayForceFeedback 1</code> to rule this out.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a cue added to an effect never shakes the camera</p>
@@ -4972,10 +4942,12 @@ filled in.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a new cue that never plays</p>
-<p>A cue notify is only found if it sits under a registered cue folder. The registered folders are
-<code>XenoCore/Content/GameplayCues</code> (registered by the XenoCore Game Feature) and the project's
-<code>Content/GameplayCues</code> and <code>Content/GameplayCueNotifies</code> (from <code>Config/DefaultGame.ini</code>). Put
-your own cues under <code>Content/GameplayCues/MyGame/</code>. A notify anywhere else loads fine, shows no
+<p>A cue notify is only found if it sits under a registered cue folder. XenoCore registers
+<code>XenoCore/Content/GameplayCues</code> through its Game Feature. A Lyra project also registers its own
+<code>Content/GameplayCues</code> and <code>Content/GameplayCueNotifies</code> (from Lyra's <code>Config/DefaultGame.ini</code>);
+a Blank project registers none until you add <code>+GameplayCueNotifyPaths="/Game/GameplayCues"</code> under
+<code>[/Script/GameplayAbilities.AbilitySystemGlobals]</code> in its <code>Config/DefaultGame.ini</code>. Then put your
+own cues under <code>Content/GameplayCues/MyGame/</code>. A notify anywhere else loads fine, shows no
 error, and never plays.</p>
 </div>
 <div class="admonition warning">

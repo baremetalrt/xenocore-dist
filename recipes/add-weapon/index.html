@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4854,7 +4824,7 @@ the stat block.</p>
 <thead>
 <tr>
 <th>Piece</th>
-<th>Sample (Blue Sword)</th>
+<th>Sample (Amber Sword)</th>
 <th>What it decides</th>
 </tr>
 </thead>
@@ -5015,7 +4985,7 @@ See <a href="../add-a-gem/">Add a gem</a>.</p>
 <p>For testing, give the party one at the start:</p>
 <ol>
 <li>Open the leader's pawn Blueprint, for example Kael's,
-   <code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>.</li>
+   <code>Game/B_XenoCore_Player</code>.</li>
 <li>In the <strong>Components</strong> panel, select its equipment component (the <code>XenoCoreEquipmentComponent</code>)
    and find <strong>XenoCore › Equipment › Starting Inventory</strong>.</li>
 <li>Add an entry: <strong>Item Definition</strong> <code>ID_MyGame_StoneBlade</code>, <strong>Count</strong> <code>1</code>.</li>
@@ -5146,8 +5116,8 @@ anything.</p>
 - <strong>Pivot:</strong> export the mesh with its pivot at the grip, where the palm closes, and the blade along
   +X. Then it sits in every character's hand without an offset, and scaling shrinks it toward the
   hand.
-- <strong>Where it sits on a character</strong> is that character's two weapon sockets, not the weapon. See
-  step 7 of <a href="../add-vroid-party-member/">Add a VRoid party member</a>. A socket places a weapon, and its
+- <strong>Where it sits on a character</strong> is that character's two weapon sockets, not the weapon. On the
+  UE5 Mannequin the drawn weapon sits on <code>weapon_r</code>. A socket places a weapon, and its
   <strong>Scale must stay 1.0</strong>: socket scale multiplies every weapon that character ever holds, so one
   character's swords quietly come out a different size from everyone else's.
 - <strong>Materials from a pack</strong> (Paragon) must be moved into XenoCore with the weapon. The

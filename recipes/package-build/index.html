@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4780,10 +4750,11 @@ your map, and has every menu working, checked in the packaged build rather than 
 <li>Your content is in place. See <a href="../replace-sample-content/">Replace the sample content</a>.</li>
 </ul>
 <h2 id="what-packaging-does-here">What packaging does here<a class="headerlink" href="#what-packaging-does-here" title="Permanent link">&para;</a></h2>
-<p>The project is Lyra with XenoCore added, so it packages as Lyra does: the <strong>LyraGame</strong> target,
-Development configuration by default, compressed into pak files. The editor-only
+<p>XenoCore packages with your project like any other plugin: your project's game target (for a Lyra
+project, <strong>LyraGame</strong>), Development configuration by default, compressed into pak files. The editor-only
 <code>XenoCoreEditor</code> module is left out automatically.</p>
-<p>Two XenoCore specifics shape the packaging settings. The <strong>Apply</strong> step of
+<p>Two XenoCore specifics shape the packaging settings. Unlike the rest of XenoCore's settings, these
+are not applied in memory at startup, so they must be written to the project. The <strong>Apply</strong> step of
 <a href="../../getting-started/install/">Install and first launch</a> writes both into your project's
 <code>Config/DefaultGame.ini</code>. If you are not sure it ran, use <strong>Tools › XenoCore › Apply XenoCore
 Project Settings</strong>; it changes nothing that is already set:</p>
@@ -4822,22 +4793,16 @@ Before packaging, open the <strong>Reference Viewer</strong> on the test assets 
 own test content out of shipped folders altogether.</p>
 </div>
 <h3 id="2-check-which-plugins-ship">2. Check which plugins ship<a class="headerlink" href="#2-check-which-plugins-ship" title="Permanent link">&para;</a></h3>
-<p>Your Lyra project still carries Lyra's own sample game features (ShooterCore, ShooterMaps,
-ShooterExplorer, TopDownArena and others), and they cook unless you turn them off.
+<p>A Lyra project still carries Lyra's own sample game features (ShooterCore, ShooterMaps,
+ShooterExplorer, TopDownArena and others), and they cook unless you turn them off. A Blank project
+has none of these.
 <code>XenoCore.uplugin</code> declares every plugin XenoCore's content needs (Niagara, Niagara UI Renderer,
-Water, DataRegistry, Metasound and VRM4U among them), so they stay on whatever you disable. See
+Water, DataRegistry and Metasound among them), so they stay on whatever you disable. See
 <a href="../../reference/compatibility/">Compatibility</a> for the list.</p>
 <ol>
 <li>Open <strong>Edit › Plugins</strong>, filter by <strong>Enabled</strong>.</li>
 <li>Disable what your game doesn't use. Re-open the editor and play-test after each change.</li>
 </ol>
-<div class="admonition warning">
-<p class="admonition-title">VRM4U is needed at runtime</p>
-<p>The sample party is VRoid characters, and their materials, spring bones and facial expressions
-use the VRM4U plugin in the game, not only at import. Keep it enabled while any VRoid character
-ships. It compiles from source with the rest of the project; its <code>assimp</code> library is in
-<code>Plugins/VRM4U/ThirdParty/assimp</code>, and a packaged build links it.</p>
-</div>
 <h3 id="3-set-the-version">3. Set the version<a class="headerlink" href="#3-set-the-version" title="Permanent link">&para;</a></h3>
 <p>Set <strong>Project Settings › Project › Description › Project Version</strong>. XenoCore draws this version in
 the bottom-right corner of every screen, including in packaged builds, so a bug report can name
@@ -4847,7 +4812,7 @@ the build.</p>
 <details class="note">
 <summary>For programmers: the same from the command line</summary>
 <p>Unreal Automation Tool runs the whole package without the editor:</p>
-<div class="highlight"><pre><span></span><code>&quot;&lt;Engine&gt;\Engine\Build\BatchFiles\RunUAT.bat&quot; BuildCookRun -project=&quot;&lt;project folder&gt;\Lyra.uproject&quot; -noP4 -target=LyraGame -platform=Win64 -clientconfig=Development -build -cook -stage -pak -iostore -archive -archivedirectory=&quot;&lt;output folder&gt;&quot; -unattended
+<div class="highlight"><pre><span></span><code>&quot;&lt;Engine&gt;\Engine\Build\BatchFiles\RunUAT.bat&quot; BuildCookRun -project=&quot;&lt;project folder&gt;\&lt;Project&gt;.uproject&quot; -noP4 -target=&lt;Project&gt; -platform=Win64 -clientconfig=Development -build -cook -stage -pak -iostore -archive -archivedirectory=&quot;&lt;output folder&gt;&quot; -unattended
 </code></pre></div>
 </details>
 <div class="admonition warning">

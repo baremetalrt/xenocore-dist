@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4821,7 +4791,7 @@ material has a physical material output per layer, the landscape's <strong>only<
 <li>Select the landscape in your map and set <strong>Default Phys Material</strong> to
    <code>Environment/PM_XenoCore_Grass</code>, or your own physical material.</li>
 <li>For a new surface: add it under <strong>Project Settings › Physics › Physical Surface</strong>, map it to a
-   <code>SurfaceType.*</code> tag in <strong>Project Settings › Game › LyraContextEffects › Surface Type to Context
+   <code>SurfaceType.*</code> tag in <strong>Project Settings › Game › XenoBaseContextEffects › Surface Type to Context
    Map</strong>, create a physical material that uses it, and add rows for that tag to <code>CFX_XenoCore</code>.</li>
 </ol>
 <p>Every new map's landscape needs step 1, or it sounds like concrete again.</p>
@@ -4875,8 +4845,8 @@ the project's fallback tracks, and make sure <strong>Is Spatially Loaded</strong
 <div class="admonition note">
 <p class="admonition-title">Fights much louder or quieter than exploring, or the Music slider does nothing</p>
 <p>The first is a volume mismatch between the two tracks: match <strong>Field Volume</strong> and
-<strong>Battle Volume</strong> by loudness. The second means the tracks are not on Lyra's
-<code>Audio/Classes/Music</code> sound class.</p>
+<strong>Battle Volume</strong> by loudness. The second means the tracks are not on XenoCore's
+<code>Imported/Lyra/Audio/Classes/Music</code> sound class.</p>
 </div>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/area-music/">Give a map its music</a>.</p>
 <h3 id="my-new-actor-never-shows-an-interaction-prompt">My new actor never shows an interaction prompt<a class="headerlink" href="#my-new-actor-never-shows-an-interaction-prompt" title="Permanent link">&para;</a></h3>

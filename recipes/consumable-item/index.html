@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4841,19 +4811,19 @@ screen that the bag changed.</p>
 </ol>
 <h3 id="2-make-the-heal">2. Make the heal<a class="headerlink" href="#2-make-the-heal" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In the Content Browser, open <code>Content/Environments/Gameplay</code> (Lyra's own content), right-click
-   <code>GE_GameplayEffectPad_Heal</code>, choose <strong>Duplicate</strong>, move the copy into <code>MyGame/Items</code> and name it
-   <code>GE_MyGame_Mend</code>.</li>
+<li>In the Content Browser, open <strong>XenoCore Content › Imported › Lyra › GameplayEffects › Heal</strong>,
+   right-click <code>GameplayEffectParent_Heal</code>, choose <strong>Duplicate</strong>, move the copy into <code>MyGame/Items</code>
+   and name it <code>GE_MyGame_Mend</code>.</li>
 <li>Open it. The heal amount is on its execution, not a modifier: under <strong>Executions</strong>, in the
-   <strong>Lyra Heal Execution</strong> entry's <strong>Calculation Modifiers</strong>, set the <strong>BaseHeal</strong> modifier's
-   scalable float. Keep its <strong>Gameplay Cues</strong> entry
+   <strong>Xeno Base Heal Execution</strong> entry's <strong>Calculation Modifiers</strong>, set the <strong>BaseHeal</strong> modifier's
+   magnitude to a <strong>Scalable Float</strong> with the amount to heal. Keep its <strong>Gameplay Cues</strong> entry
    (<code>GameplayCue.Character.Heal</code>): that is the heal effect you see.</li>
 <li>Click <strong>Save</strong>.</li>
 </ol>
 <h3 id="3-make-the-ability">3. Make the ability<a class="headerlink" href="#3-make-the-ability" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In <code>MyGame/Items</code>, right-click and choose <strong>Blueprint Class</strong>. Under <strong>All Classes</strong>, pick
-   <code>LyraGameplayAbility</code>. Name it <code>GA_MyGame_UseMendSalve</code>.</li>
+   <code>XenoBaseGameplayAbility</code>. Name it <code>GA_MyGame_UseMendSalve</code>.</li>
 <li>Open it. In <strong>Class Defaults</strong>, set <strong>Instancing Policy</strong> to <strong>Instanced Per Actor</strong> and leave
    <strong>Activation Policy</strong> on <strong>On Input Triggered</strong>.</li>
 <li>Under <strong>Costs</strong>, click <strong>+</strong> beside <strong>Additional Costs</strong> and choose <strong>Party Item (XenoCore)</strong>
@@ -4894,7 +4864,7 @@ Instance From Party</strong> (both under <strong>XenoCore › Inventory</strong>
 <h3 id="4-give-the-party-some-to-use">4. Give the party some to use<a class="headerlink" href="#4-give-the-party-some-to-use" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open a pawn in the starting party, for example Kael,
-   <code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>.</li>
+   <code>Game/B_XenoCore_Player</code>.</li>
 <li>In the <strong>Components</strong> panel, select its equipment component.</li>
 <li>In the Details panel, under <strong>XenoCore › Equipment</strong>, click <strong>+</strong> beside <strong>Starting Inventory</strong>.</li>
 <li>In the new entry, set <strong>Item Definition</strong> to <code>ID_MyGame_MendSalve</code> and <strong>Count</strong> to <code>3</code>.</li>
@@ -4903,15 +4873,16 @@ Instance From Party</strong> (both under <strong>XenoCore › Inventory</strong>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a pawn that never spawns</p>
 <p><strong>Starting Inventory</strong> reaches the bag only when that pawn is spawned. A member who is not in
-the party's <strong>Starting Roster</strong> (on <code>Characters/Party/BP_XenoCore_Party</code>), such as the colour
-mannequins in <code>Characters/Party</code>, or <code>B_XenoCore_Player</code>, never spawns at New Game, so their
-list is ignored with nothing logged. The shipped roster starts with Kael and Mira.</p>
+the party's <strong>Starting Roster</strong> (on <code>Characters/Party/BP_XenoCore_Party</code>), such as the five
+sample recruits, does not spawn at New Game, so their list is ignored until they join, with
+nothing logged. The shipped roster starts with Kael (<code>Game/B_XenoCore_Player</code>) and Mira.</p>
 </div>
 <h3 id="5-grant-the-ability">5. Grant the ability<a class="headerlink" href="#5-grant-the-ability" title="Permanent link">&para;</a></h3>
 <p>For a first test, grant it from the console (step 3 of Test it). To keep it:</p>
 <ol>
-<li>Open <code>Characters/Party/AbilitySet_XenoCore_PartyMember</code>. Every VRoid member is granted it,
-   through <code>Characters/VRoid/PawnData_XenoCore_Party_VRoid</code>.</li>
+<li>Open <code>Characters/Party/AbilitySet_XenoCore_PartyMember</code>. Every sample member except Kael is
+   granted it, through its own <code>Characters/Party/PawnData_XenoCore_Party_&lt;Colour&gt;</code>. Kael's pawn data,
+   <code>Game/PawnData_XenoCore_Player</code>, grants <code>Game/AbilitySet_XenoCore_Hero</code>: add the ability there too.</li>
 <li>Click <strong>+</strong> beside <strong>Granted Gameplay Abilities</strong>.</li>
 <li>In the new entry, set <strong>Ability</strong> to <code>GA_MyGame_UseMendSalve</code>.</li>
 <li>Set <strong>Input Tag</strong> to a <a href="../../getting-started/glossary/">gameplay tag</a> your input config maps to

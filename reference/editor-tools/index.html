@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4687,7 +4657,9 @@
 <p class="admonition-title">Designers: the two things on this page you will use</p>
 <ul>
 <li><strong>Tools › XenoCore › Apply XenoCore Project Settings</strong> writes the project settings XenoCore
-  needs. Run it once after installing, and again if a recipe tells you to. It never overwrites
+  needs into your project. XenoCore runs without it (it applies the settings for its Lyra code in
+  memory at startup), but run it once after installing: the editor's startup map, the gamepad
+  View button and the packaging cook list come only from it. Run it again if a recipe tells you to. It never overwrites
   a setting you changed yourself. See <a href="#project-setup">Project setup</a>.</li>
 <li><strong>Save-time checks</strong>: saving an Art definition or a pawn Blueprint can show an error or warning
   in the <strong>Message Log</strong>. The messages are listed in <a href="#save-time-checks">Save-time checks</a>.</li>
@@ -4842,8 +4814,10 @@ assets, save, then re-open the asset (or run a second script that reads it back)
 trusting the result. The <code>Describe…</code> functions exist for exactly that.</p>
 </div>
 <h2 id="project-setup">Project setup<a class="headerlink" href="#project-setup" title="Permanent link">&para;</a></h2>
-<p><code>UXenoCoreProjectSetup</code> writes the settings a Lyra project needs to run XenoCore into the project's
-own <code>Config/Default*.ini</code> files. It never overwrites a value you have set yourself; it lists it as
+<p><code>UXenoCoreProjectSetup</code> writes the settings a project needs to run XenoCore into the project's
+own <code>Config/Default*.ini</code> files. Separately, at every editor and game start, the <code>XenoCoreBase</code>
+module applies the same settings for its Lyra code in memory wherever the project still has the
+engine's default value; it writes nothing, and a value the project sets always wins. It never overwrites a value you have set yourself; it lists it as
 a conflict in the Output Log under <code>LogXenoSetup</code>. Run it any of three ways:</p>
 <ul>
 <li>the notification that appears when the editor opens, while any step is pending;</li>

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4349,17 +4319,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-c-build-fails-inside-the-vrm4u-plugin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The C++ build fails inside the VRM4U plugin
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#linker-error-unresolved-external-symbol-for-a-lyra-class" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4839,17 +4798,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-c-build-fails-inside-the-vrm4u-plugin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The C++ build fails inside the VRM4U plugin
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#linker-error-unresolved-external-symbol-for-a-lyra-class" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4961,8 +4909,8 @@ the result: <code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</c
 scanned by default. A <code>DefaultGame.ini</code> inside the plugin does not help. The log says
 <code>EXPERIENCE: Wanted to use &lt;id&gt; but couldn't find it, falling back to the default</code>.</p>
 <p><strong>Fix:</strong> open your plugin's <strong>Game Feature Data</strong> asset (the one named after the plugin, at its
-content root) and add your experience folder under <strong>Primary Asset Types to Scan</strong>, the way the
-<code>XenoCore</code> Game Feature Data does.</p>
+content root) and add your experience folder under <strong>Primary Asset Types to Scan</strong>, the way
+XenoCore's Game Feature Data, <code>System/XenoCore</code>, does.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/subclass-mechanic/">Subclass a mechanic</a>.</p>
 <h2 id="blueprints">Blueprints<a class="headerlink" href="#blueprints" title="Permanent link">&para;</a></h2>
 <h3 id="a-blueprint-uses-a-default-value-instead-of-the-one-i-expected-with-no-error">A Blueprint uses a default value instead of the one I expected, with no error<a class="headerlink" href="#a-blueprint-uses-a-default-value-instead-of-the-one-i-expected-with-no-error" title="Permanent link">&para;</a></h3>
@@ -5022,35 +4970,14 @@ sure a cooked asset references it.</p>
 <li>Restart the editor after changing anything held in a function-local static.</li>
 </ol>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/subclass-mechanic/">Subclass a mechanic</a>.</p>
-<h3 id="the-c-build-fails-inside-the-vrm4u-plugin">The C++ build fails inside the VRM4U plugin<a class="headerlink" href="#the-c-build-fails-inside-the-vrm4u-plugin" title="Permanent link">&para;</a></h3>
-<p>You see this on the first build of a new project if the install step
-<a href="../../getting-started/install/#in-a-lyra-project-only-let-lyras-editor-build-compile-vrm4u">Let Lyra's editor build compile VRM4U</a>
-was skipped: Unreal compiles VRM4U's C++ from source along with XenoCore's.</p>
-<p>The build stops with dozens of header-tool errors like:</p>
-<div class="highlight"><pre><span></span><code>VRM4U\Source\VRM4U\Public\VrmAnimInstance.h(74): Error: Native pointer usage in member
-declaration detected [[[UVrmMetaObject *]]]. This is disallowed for the target/module,
-consider TObjectPtr as an alternative.
-</code></pre></div>
-<p>Lyra's editor target refuses raw object pointers in reflected members, and VRM4U's public source
-still uses them.</p>
-<p><strong>Fix:</strong> open <code>Source/LyraEditor.Target.cs</code> in your project and change one line:</p>
-<div class="highlight"><pre><span></span><code><span class="n">NativePointerMemberBehaviorOverride</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PointerMemberBehavior</span><span class="p">.</span><span class="n">Disallow</span><span class="p">;</span>
-</code></pre></div>
-<p>to</p>
-<div class="highlight"><pre><span></span><code><span class="n">NativePointerMemberBehaviorOverride</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PointerMemberBehavior</span><span class="p">.</span><span class="n">AllowAndLog</span><span class="p">;</span>
-</code></pre></div>
-<p>Then build again. This only relaxes a code-style check for C++ that is compiled; it changes no
-behaviour and no data. If you do not use the VRoid characters, you can instead remove them and
-disable VRM4U; see <a href="../../recipes/replace-sample-content/">Replace the sample content</a>.</p>
-<p><strong>Avoid it next time:</strong> before updating VRM4U, read <a href="../../reference/compatibility/">Compatibility</a>.</p>
 <h3 id="linker-error-unresolved-external-symbol-for-a-lyra-class">Linker error "unresolved external symbol" for a Lyra class<a class="headerlink" href="#linker-error-unresolved-external-symbol-for-a-lyra-class" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> several Lyra classes are not exported from the <code>LyraGame</code> module (they have no
-<code>LYRAGAME_API</code>), so C++ outside Lyra cannot derive from them or call their functions. It compiles,
-then fails at link. Examples: <code>ULyraAnimInstance</code>, <code>ULyraButtonBase</code>,
-<code>ULyraGameplayAbility_Interact</code>.</p>
+<p><strong>Why:</strong> several of the Lyra classes XenoCore carries are not exported from the <code>XenoCoreBase</code> module (they have neither
+<code>XENOCOREBASE_API</code> nor <code>MinimalAPI</code>), so C++ outside that module cannot derive from them or call their functions. It compiles,
+then fails at link. Examples: <code>UXenoBaseAnimInstance</code>, <code>UXenoBaseButtonBase</code>,
+<code>UXenoBaseGameplayAbility_Interact</code>.</p>
 <p>XenoCore's own classes are all exported (<code>XENOCORERUNTIME_API</code>), so this error on a
 <code>UXenoCore*</code> or <code>AXenoCore*</code> class means a missing module in your <code>Build.cs</code> instead.</p>
-<p><strong>Fix:</strong> check for <code>LYRAGAME_API</code> on the class before designing around it. A <strong>Blueprint</strong> can
+<p><strong>Fix:</strong> check for <code>XENOCOREBASE_API</code> (or <code>MinimalAPI</code>) on the class before designing around it. A <strong>Blueprint</strong> can
 still derive from an unexported class, so keep that part in Blueprint. Do not add the macro to
 Lyra's headers: that is an engine-side change you would have to carry through every update.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/subclass-mechanic/">Subclass a mechanic</a>.</p>
@@ -5105,7 +5032,7 @@ Development build.</p>
 <p><strong>Why:</strong> some engine functions exist only in editor builds (they sit inside <code>WITH_EDITOR</code>). The
 editor target compiles them happily; the game target used for packaging does not have them.</p>
 <p><strong>Fix:</strong> wrap the call in <code>#if WITH_EDITOR</code>, or use a runtime alternative. Build the game target
-(for example <code>Build.bat LyraGame Win64 Development -Project=...</code>) after touching engine APIs, rather
+(for example <code>Build.bat &lt;Project&gt; Win64 Development -Project=...</code>, or <code>LyraGame</code> in a Lyra project) after touching engine APIs, rather
 than finding out at package time.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/package-build/">Package a build</a>.</p>
 

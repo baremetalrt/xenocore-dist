@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4834,11 +4804,11 @@ the character sheet is right the moment the item goes on. Which stats it copies 
 <strong>Modifiers</strong> on <code>Inventory/GE_XenoCore_EquipmentStats</code>: one row per stat. An item stat with no row
 there is ignored, with a warning in the Output Log (<code>LogXenoCoreEquipmentStats</code>). Screens hear
 about the change through the <code>XenoCore.Equipment.Message.SlotChanged</code> message.</p>
-<p><strong>Which body holds it.</strong> A VRoid member's own mesh is an invisible Mannequin, so its weapon goes to
-the visible VRoid body instead, whenever that body's skeleton has the socket being used
-(<code>XC_WeaponGrip_R</code> in the hand, <code>XC_WeaponStow_Back</code> on the back). Move those sockets in the VRoid
-skeleton's editor to fit the weapon to each character. A body without them keeps the weapon on the
-Mannequin's own sockets.</p>
+<p><strong>Which body holds it.</strong> The weapon goes on the pawn's own mesh, the Mannequin. If a character
+carries a separate visible mesh as a cosmetic part (for example a body retargeted from the
+Mannequin), the weapon goes to that mesh instead, whenever its skeleton has the socket being used
+(<code>XC_WeaponGrip_R</code> in the hand, <code>XC_WeaponStow_Back</code> on the back). The sample members have no such
+part, so their weapons stay on the Mannequin's own sockets.</p>
 <p><strong>What a weapon type changes.</strong> A weapon's type (a data asset such as
 <code>Weapons/Types/DA_XenoCore_WeaponType_Greatsword</code>, picked on the item's Equip Slots fragment)
 decides who may wield it, and can also bring its own stance, draw and sheathe montages, auto-attack
@@ -5002,11 +4972,11 @@ as well gives the party two: one worn, one loose.</p>
 </ul>
 <details class="note">
 <summary>For programmers: classes and extension points</summary>
-<p>The component is <code>UXenoCoreEquipmentComponent</code>, a subclass of <code>ULyraEquipmentManagerComponent</code>.
+<p>The component is <code>UXenoCoreEquipmentComponent</code>, a subclass of <code>UXenoBaseEquipmentManagerComponent</code>.
 The stats ability's C++ parent is <code>UXenoCoreGameplayAbility_EquipmentStats</code>: it calls <strong>Get Item
 For Equipment</strong>, then fills every Set By Caller tag named by the effect's own modifiers from the
 item instance's stat tags (0 where absent, percent stats divided by 100). Weapon attachment to a
-VRoid body goes through <strong>Get Weapon Attach Parent</strong>; the weapon instance's <code>SetDrawn</code> asks it on
+cosmetic body goes through <strong>Get Weapon Attach Parent</strong>; the weapon instance's <code>SetDrawn</code> asks it on
 every draw and sheathe. Weapon types are <code>UXenoCoreWeaponTypeDefinition</code>; the arm ability asks
 <strong>Get Weapon Arm Montage</strong> and <code>SetDrawn</code> asks <strong>Resolve Weapon Anim Layer</strong>. The stats the menus
 draw are <code>UXenoCoreInventoryStatics::GetStatDefinitions</code> (<code>XenoCoreInventoryStatics.cpp</code>); slots
@@ -5017,7 +4987,7 @@ are <code>EXenoCoreEquipSlot</code> (<code>XenoCoreEquipmentComponent.h</code>).
 <summary>For programmers</summary>
 <ul>
 <li><strong>Subclass, not a sibling component.</strong> Lyra's own code finds the equipment manager with
-  <code>FindComponentByClass&lt;ULyraEquipmentManagerComponent&gt;</code>, which finds ours. A second component beside
+  <code>FindComponentByClass&lt;UXenoBaseEquipmentManagerComponent&gt;</code>, which finds ours. A second component beside
   Lyra's would have left those lookups finding the wrong one.</li>
 <li><strong>On the pawn.</strong> Equipment spawns the meshes animation depends on, so it stays with the body.
   Inventory is data, so it lives on the controller.</li>

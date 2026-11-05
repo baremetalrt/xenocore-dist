@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4754,7 +4724,7 @@ when their body spawns, and again on every level-up.</p>
 <tbody>
 <tr>
 <td><strong>Attribute</strong></td>
-<td><code>XenoCoreStatSet.Strength</code>, <code>.Ether</code>, <code>.Agility</code>, <code>LyraHealthSet.MaxHealth</code>, <code>LyraHealthSet.Health</code>, <code>XenoCoreStatSet.TalentChargePerHit</code>, <code>XenoCoreStatSet.CharacterLevel</code></td>
+<td><code>XenoCoreStatSet.Strength</code>, <code>.Ether</code>, <code>.Agility</code>, <code>XenoBaseHealthSet.MaxHealth</code>, <code>XenoBaseHealthSet.Health</code>, <code>XenoCoreStatSet.TalentChargePerHit</code>, <code>XenoCoreStatSet.CharacterLevel</code></td>
 <td>One modifier per stat</td>
 </tr>
 <tr>
@@ -4774,16 +4744,15 @@ when their body spawns, and again on every level-up.</p>
 </tr>
 </tbody>
 </table>
-<p>The seven VRoid characters each have <strong>rows of their own</strong> in
+<p>The seven sample characters each have <strong>rows of their own</strong> in
 <code>Battle/Attributes/CT_XenoCore_PartyStatlines</code> (<code>Kael.MaxHealth</code>, <code>Mira.Strength</code> and so on, levels
 1 to 99), read by their own effect (<code>GE_XenoCore_BaseStats_Kael</code>, ...) with every <strong>Value</strong> at
 <code>1.0</code>, so the number in the table is the number the game uses. The curves are XC1's own: each
 character follows the XC1 party member their skill tree comes from (Kael Shulk, Mira Reyn, Nia
-Dunban, Dorran Fiora, Isolde Melia, Sabine Riki, Tamsin Sharla). The older stock members read <code>CT_XenoCore_BaseStats</code>'s shared
-rows with a different <strong>Value</strong> multiplier each. Give your character rows of their own, which is
+Dunban, Dorran Fiora, Isolde Melia, Sabine Riki, Tamsin Sharla). Give your character rows of their own, which is
 what this recipe does.</p>
 <p>How much EXP each level costs is separate from the statline: it is the
-<a href="../../getting-started/glossary/">member definition</a>'s <strong>Experience Curve</strong>, a row of <code>Game/DT_XenoCore_ExperienceCurves</code>. Each VRoid character has a row of
+<a href="../../getting-started/glossary/">member definition</a>'s <strong>Experience Curve</strong>, a row of <code>Game/DT_XenoCore_ExperienceCurves</code>. Each sample character has a row of
 its own. See <a href="../tune-progression/">Tune levelling</a>.</p>
 <p><code>CharacterLevel</code> is the exception: it uses the custom calculation <code>XenoCoreMMC_EffectLevel</code>, which
 simply reports the level the effect was applied at. Leave it alone.</p>

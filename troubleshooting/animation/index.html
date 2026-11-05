@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4918,15 +4888,14 @@ is the <strong>True</strong> pose; wired backwards, the fidget becomes the idle.
 </div>
 <p><strong>Why:</strong> expressions are rows of the face's <strong>Expression Table</strong>
 (<code>Characters/Core/Face/DT_XenoCore_FaceExpressions</code> by default). A name that is not a row is tried as a
-single face curve, and a curve the VRoid model does not have does nothing. So a typo in a profile's
-<strong>Social Expressions</strong>, a face rule or a <strong>Play Expression On Actor</strong> call shows a neutral face. Only
-VRoid members have a face at all: a Mannequin-bodied character never shows one.</p>
-<p><strong>Fix:</strong> copy the row name exactly from the table. Build new rows from the VRM preset curves (<code>happy</code>,
-<code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>, <code>aa</code>, <code>ih</code>, <code>ou</code>, <code>ee</code>, <code>oh</code>, <code>blink</code>, <code>blinkLeft</code>,
-<code>blinkRight</code>), and check any raw <code>Fcl_*</code> curve in Play before relying on it. If the downed or victory
-face is missing on one character only, its retarget anim Blueprint has its own <strong>Expression Rules</strong>
-list; add the missing rule there, or reset the property to its default. The seven shipped retarget
-anim Blueprints keep the default list.</p>
+single face curve, and a curve the character's face rig does not have does nothing. So a typo in a
+profile's <strong>Social Expressions</strong>, a face rule or a <strong>Play Expression On Actor</strong> call shows a neutral
+face. Only a character with a face Animation Blueprint (parent <code>XenoCoreFaceAnimInstance</code>) has a
+face at all. The sample party members are UE5 Mannequins and never show one.</p>
+<p><strong>Fix:</strong> copy the row name exactly from the table, use only curve names your face rig has, and check
+new rows in Play before relying on them. If the downed or victory face is missing on one character
+only, its face Animation Blueprint has its own <strong>Expression Rules</strong> list; add the missing rule there,
+or reset the property to its default. See <a href="../../concepts/animation/#faces">Animation</a>.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/companion-personality/">Give a character its own idle breaks and faces</a>.</p>
 <h3 id="a-feminine-or-armed-character-stands-in-the-masculine-unarmed-idle-but-moves-correctly">A feminine or armed character stands in the masculine unarmed idle, but moves correctly<a class="headerlink" href="#a-feminine-or-armed-character-stands-in-the-masculine-unarmed-idle-but-moves-correctly" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> a layer child swaps clips with <strong>asset overrides</strong>, and each override is tied to one node

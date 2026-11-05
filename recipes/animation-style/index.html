@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4836,10 +4806,7 @@ one that swaps two assets: the idle and the locomotion blend space. Nothing else
 <ol>
 <li>Open the character's pawn Blueprint, for example your own child of
    <code>Characters/Party/B_XenoCore_PartyMember_Base</code>, and click <strong>Class Defaults</strong>.</li>
-<li>Under <strong>Default</strong>, set <strong>Cosmetic Part</strong> to <code>B_XenoCore_Cosmetic_Masculine</code> or <code>B_XenoCore_Cosmetic_Feminine</code>.
-   A VRoid member's <strong>Cosmetic Part</strong> is its own VRoid part (for Mira,
-   <code>Characters/VRoid/Mira/B_XenoCore_Cosmetic_VRoid_K</code>): change the tag in that part's <strong>Static
-   Gameplay Tags</strong> instead, and its pawn's <strong>Body Meshes</strong> pick the matching invisible body.</li>
+<li>Under <strong>Default</strong>, set <strong>Cosmetic Part</strong> to <code>B_XenoCore_Cosmetic_Masculine</code> or <code>B_XenoCore_Cosmetic_Feminine</code>.</li>
 <li>The body swaps with it. If you want a feminine movement set on the Manny body, you cannot do
    it with this field alone: see <em>Make a new style</em> below.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
@@ -4858,8 +4825,8 @@ naming the part and its tags.</p>
 <p class="admonition-title">Fails silently: the character's anim profile wins</p>
 <p>If the character's anim profile lists <strong>Idle Breaks</strong> (sheathed) or <strong>Armed Idle Breaks</strong> (drawn),
 those clips play instead of the layer's <strong>Idle Break Anim</strong>, and editing the layer changes nothing.
-Every VRoid party member's profile ships with its own idle breaks. To change a VRoid member's
-fidgets, edit its profile: see <a href="../character-combat-animations/">Give a character its own combat animations</a>.
+Every sample member's profile (<code>Characters/Party/AnimProfiles</code>) ships with its own idle breaks.
+To change a sample member's fidgets, edit its profile: see <a href="../character-combat-animations/">Give a character its own combat animations</a>.
 The layer's <strong>Idle Break Delay</strong> and <strong>Idle Break Jitter</strong> still set the timing.</p>
 </div>
 <ol>
@@ -4939,7 +4906,7 @@ Every weapon instance the character can hold needs the rule.</p>
 <div class="admonition warning">
 <p class="admonition-title">The character takes the default body</p>
 <p>A tag with no <strong>Body Meshes</strong> rule selects <strong>Default Mesh</strong>: <code>SKM_Manny</code> on the shipped party
-and player bases, or the invisible Mannequin on a VRoid pawn. Every style tag a pawn can carry
+and player bases. Every style tag a pawn can carry
 needs its own <strong>Body Meshes</strong> rule on that pawn. Saving the pawn reports a <strong>Cosmetic Part</strong>
 whose tags match no rule.</p>
 </div>

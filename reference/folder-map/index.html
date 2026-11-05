@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4775,7 +4745,7 @@ Plugin Content</strong> first). On disk it is <code>Plugins/GameFeatures/XenoCor
 </tr>
 <tr>
 <td>One character's stats, Arts, AI pacing, portrait</td>
-<td>Its member definition, <code>Characters/VRoid/&lt;Name&gt;/PartyMember_VRoid_*</code></td>
+<td>Its member definition, <code>Characters/Party/PartyMember_&lt;Colour&gt;</code></td>
 </tr>
 <tr>
 <td>A character's learnset</td>
@@ -4875,7 +4845,7 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 </tr>
 <tr>
 <td><code>Characters</code></td>
-<td>Party members, the player pawn's animation, enemies, NPCs, the VRoid sample characters</td>
+<td>Party members, the player pawn's animation, enemies, NPCs</td>
 <td>Mixed; see below</td>
 </tr>
 <tr>
@@ -4940,13 +4910,13 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 </tr>
 <tr>
 <td><code>System</code></td>
-<td>Lyra playlist entry for the gym</td>
-<td>Sample</td>
+<td>The plugin's Game Feature Data <code>XenoCore</code> (found through <code>Config/Settings.ini</code>), the always-cook list <code>DA_XenoCore_AlwaysCookList</code>, and the Lyra playlist entry for the gym (<code>Playlists</code>)</td>
+<td>Framework (Game Feature Data, cook list) and Sample (playlist)</td>
 </tr>
 <tr>
 <td><code>Imported</code></td>
-<td>Assets from other packs the sample map places, cut down to what it uses: StyleHex grass, effect samples</td>
-<td>Sample</td>
+<td>Content from other sources, cut down to what XenoCore uses: the Lyra Starter Game content XenoCore is built on (<code>Imported/Lyra</code>: Mannequin bodies and animations, UI, input, sounds, effects), StyleHex grass (<code>Imported/StyleHex_Studio</code>), Niagara and effect samples (<code>Imported/NiagaraExamples</code>, <code>Imported/Effects</code>), cave rocks (<code>Imported/Environment</code>)</td>
+<td>Framework (<code>Imported/Lyra</code>) and Sample (the rest)</td>
 </tr>
 <tr>
 <td><code>UserInterface</code></td>
@@ -5033,13 +5003,23 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 <td>Framework</td>
 </tr>
 <tr>
+<td><code>Characters/Core/Animations</code></td>
+<td>Shared clips: defence, downed, idle breaks, victory emotes</td>
+<td>Framework</td>
+</tr>
+<tr>
+<td><code>Characters/Core/Face</code></td>
+<td>The face expression table <code>DT_XenoCore_FaceExpressions</code>, for characters with a face rig</td>
+<td>Framework</td>
+</tr>
+<tr>
 <td><code>Characters/Party</code></td>
-<td>The party component Blueprint (<code>BP_XenoCore_Party</code>), the party member base, party AI controller, ability set</td>
+<td>The party component Blueprint (<code>BP_XenoCore_Party</code>), the party member base, party AI controller, ability set, and the sample members: <code>PartyMember_&lt;Colour&gt;</code>, <code>B_XenoCore_Party_&lt;Colour&gt;</code>, <code>PawnData_XenoCore_Party_&lt;Colour&gt;</code> (Kael's pawn is <code>Game/B_XenoCore_Player</code>)</td>
 <td>Framework (base, component, controller, ability set) and Sample (each member)</td>
 </tr>
 <tr>
 <td><code>Characters/Party/AnimProfiles</code></td>
-<td>Character animation profiles for the colour-mannequin members</td>
+<td>Each sample member's animation profile (<code>DA_XenoCore_AnimProfile_&lt;Colour&gt;</code>)</td>
 <td>Sample</td>
 </tr>
 <tr>
@@ -5049,12 +5029,12 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 </tr>
 <tr>
 <td><code>Characters/Party/Learnsets</code></td>
-<td>Art learnset Data Tables (<code>XenoCoreArtUnlock</code> rows): <code>DT_XenoCore_ArtLearnset_Default</code> on the party base, and <code>_Kael</code>, <code>_Mira</code>, <code>_Nia</code>, <code>_Dorran</code>, <code>_Isolde</code>, <code>_Sabine</code>, <code>_Tamsin</code> for the seven VRoid characters</td>
+<td>Art learnset Data Tables (<code>XenoCoreArtUnlock</code> rows): <code>DT_XenoCore_ArtLearnset_Default</code> on the party base, and <code>_Kael</code>, <code>_Mira</code>, <code>_Nia</code>, <code>_Dorran</code>, <code>_Isolde</code>, <code>_Sabine</code>, <code>_Tamsin</code> for the seven sample characters</td>
 <td>Framework (Default) and Sample (per-lead tables)</td>
 </tr>
 <tr>
 <td><code>Characters/Party/Materials</code>, <code>Portraits</code></td>
-<td>Sample members' colour variants and HUD portraits</td>
+<td>Sample members' colour materials and HUD portraits</td>
 <td>Sample</td>
 </tr>
 <tr>
@@ -5107,11 +5087,6 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 <td>The NPC Blueprint <code>B_XenoCore_Npc</code> and the dialogue anchor</td>
 <td>Framework</td>
 </tr>
-<tr>
-<td><code>Characters/VRoid</code></td>
-<td>The VRoid bases (<code>B_XenoCore_Party_VRoid_Base</code>, <code>B_XenoCore_Cosmetic_VRoid_Base</code>, <code>PawnData_XenoCore_Party_VRoid</code>, <code>M_XenoCore_VRoidLit</code>), and one folder per sample character (<code>Kael</code>, <code>Mira</code>, <code>Nia</code>, <code>Dorran</code>, <code>Isolde</code>, <code>Sabine</code>, <code>Tamsin</code>) with its member definition, pawn, cosmetic, animation profile, portraits, mesh, materials and retarget rigs</td>
-<td>Framework (bases) and Sample (each character)</td>
-</tr>
 </tbody>
 </table>
 <h2 id="game">Game<a class="headerlink" href="#game" title="Permanent link">&para;</a></h2>
@@ -5129,7 +5104,7 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 </tr>
 <tr>
 <td><code>B_XenoCore_PlayableCharacter_Base</code>, <code>B_XenoCore_Player</code></td>
-<td>The player-character base and the player pawn</td>
+<td>The player-character base, and the player pawn, which is Kael in the sample</td>
 </tr>
 <tr>
 <td><code>PawnData_XenoCore_Player</code></td>
@@ -5162,10 +5137,6 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 <tr>
 <td><code>BP_XenoCore_TitleGrass</code></td>
 <td>Decoration for the title screen</td>
-</tr>
-<tr>
-<td><code>B_XenoCore_Player_XC1_Backup</code></td>
-<td>A backup copy of the player pawn. <strong>Not used; ignore it.</strong> It is removed before release.</td>
 </tr>
 </tbody>
 </table>
@@ -5309,7 +5280,7 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 </tr>
 <tr>
 <td><code>Environment/GaurPlain</code></td>
-<td>The sample world's grass and ground materials, PCG graphs (cliffs, grass, scatter), and granite</td>
+<td>The sample world's grass material and PCG graphs (cliffs, grass, scatter)</td>
 <td>Sample</td>
 </tr>
 <tr>
@@ -5344,12 +5315,12 @@ clips fails, because the source files are not included.</p>
 <tbody>
 <tr>
 <td><code>Content/</code></td>
-<td>Lyra's own content: mannequins, UI toolkit, shooter sample</td>
-<td>No; reference only</td>
+<td>Your project's own content. In a Lyra project, also Lyra's: mannequins, UI toolkit, shooter sample</td>
+<td>Lyra's: no, reference only</td>
 </tr>
 <tr>
 <td><code>Plugins/GameFeatures/</code> (other folders)</td>
-<td>Lyra's sample game features (shooter modes)</td>
+<td>In a Lyra project, Lyra's sample game features (shooter modes)</td>
 <td>No</td>
 </tr>
 <tr>
@@ -5361,11 +5332,6 @@ clips fails, because the source files are not included.</p>
 <td><code>Plugins/GameFeatures/XenoCore/Source/</code></td>
 <td>XenoCore C++</td>
 <td>Subclass, don't edit</td>
-</tr>
-<tr>
-<td><code>Plugins/VRM4U/</code></td>
-<td>The VRM4U plugin the VRoid party needs</td>
-<td>No</td>
 </tr>
 <tr>
 <td><code>Content/MyGame/</code> (you create it)</td>

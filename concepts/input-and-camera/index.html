@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4782,8 +4752,7 @@ menu, a conversation or target mode can switch buttons off without touching the 
 </tr>
 </tbody>
 </table>
-<p>Both mapping contexts are added by the plugin's own game feature data (<code>XenoCore.uasset</code> at the
-plugin content root), <code>IMC_XenoCore</code> at priority 2 and Lyra's <code>IMC_Default</code> at priority 1, so they
+<p>Both mapping contexts are added by the plugin's own game feature data (<code>System/XenoCore</code>), <code>IMC_XenoCore</code> at priority 2 and Lyra's <code>IMC_Default</code> at priority 1, so they
 are active in every XenoCore Experience. The pawn data (<code>Game/PawnData_XenoCore_Player</code> and each
 <code>Characters/Party/PawnData_XenoCore_Party_*</code>) points at <code>InputData_XenoCore</code>, and lists
 <code>AbilitySet_XenoCore_Input</code> beside the body's own set (<code>AbilitySet_XenoCore_Hero</code> for the player's

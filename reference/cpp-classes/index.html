@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -5335,6 +5305,17 @@
     <span class="md-ellipsis">
       
         EXenoCoreItemCategory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fxenocoreequipmentactorspawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FXenoCoreEquipmentActorSpawn
       
     </span>
   </a>
@@ -11529,6 +11510,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#fxenocoreequipmentactorspawn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FXenoCoreEquipmentActorSpawn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#fxenocorefixedgem" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -15167,7 +15159,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <li><a href="#xenocoreruntime-equipment">XenoCoreRuntime / Equipment</a> — EXenoCoreEquipBlocker, EXenoCoreEquipSlot, FXenoCoreEquipmentSlotChangedMessage, FXenoCoreEquippedSlot, FXenoCoreMemberLoadout, FXenoCoreStartingEquipment, FXenoCoreStartingItem, FXenoCoreWeaponAnimLayerRule, FXenoCoreWeaponAnimLayers, UXenoCoreEquipmentComponent, UXenoCoreGameplayAbility_EquipmentStats, UXenoCoreWeaponTypeDefinition</li>
 <li><a href="#xenocoreruntime-feedback">XenoCoreRuntime / Feedback</a> — AXenoCoreBeamFX</li>
 <li><a href="#xenocoreruntime-interaction">XenoCoreRuntime / Interaction</a> — AXenoCoreInteractableActor, UXenoCoreInteractionSubsystem</li>
-<li><a href="#xenocoreruntime-inventory">XenoCoreRuntime / Inventory</a> — EXenoCoreEquipType, EXenoCoreItemCategory, FXenoCoreFixedGem, FXenoCoreInventoryChangedMessage, FXenoCoreItemRarityRow, FXenoCoreItemView, FXenoCoreSocketedGem, FXenoCoreStatDefinition, FXenoCoreStatLine, UXenoCoreAbilityCost_PartyItem, UXenoCoreFragment_EquipSlots, UXenoCoreFragment_Gem, UXenoCoreFragment_ItemCategory, UXenoCoreFragment_ItemDisplay, UXenoCoreGemRegistry, UXenoCoreGemStatics, UXenoCoreInventoryStatics, UXenoCoreInventoryWatchSubsystem, UXenoCoreItemIconSet, UXenoCoreItemRarityStatics, UXenoCoreStatRowBase</li>
+<li><a href="#xenocoreruntime-inventory">XenoCoreRuntime / Inventory</a> — EXenoCoreEquipType, EXenoCoreItemCategory, FXenoCoreEquipmentActorSpawn, FXenoCoreFixedGem, FXenoCoreInventoryChangedMessage, FXenoCoreItemRarityRow, FXenoCoreItemView, FXenoCoreSocketedGem, FXenoCoreStatDefinition, FXenoCoreStatLine, UXenoCoreAbilityCost_PartyItem, UXenoCoreFragment_EquipSlots, UXenoCoreFragment_Gem, UXenoCoreFragment_ItemCategory, UXenoCoreFragment_ItemDisplay, UXenoCoreGemRegistry, UXenoCoreGemStatics, UXenoCoreInventoryStatics, UXenoCoreInventoryWatchSubsystem, UXenoCoreItemIconSet, UXenoCoreItemRarityStatics, UXenoCoreStatRowBase</li>
 <li><a href="#xenocoreruntime-locomotion">XenoCoreRuntime / Locomotion</a> — UXenoCoreLocomotionStatics</li>
 <li><a href="#xenocoreruntime-loot">XenoCoreRuntime / Loot</a> — AXenoCoreCollectableOrb, AXenoCoreTreasureChest, EXenoCoreChestTier, FXenoCoreChestOpenedMessage, FXenoCoreCollectableCollectedMessage, FXenoCoreDropEntry, FXenoCoreDropPool, UXenoCoreDropTable, UXenoCoreLootPopupBase, UXenoCoreLootPopupSubsystem, UXenoCoreLootStatics</li>
 <li><a href="#xenocoreruntime-lyra">XenoCoreRuntime / Lyra</a> — FXenoCoreGrantedHandles</li>
@@ -16832,7 +16824,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <p>Every other party member's position, plus the spot each other companion has claimed.</p>
 <h2 id="xenocoreruntime-abilitysystemattributes">XenoCoreRuntime / AbilitySystem/Attributes<a class="headerlink" href="#xenocoreruntime-abilitysystemattributes" title="Permanent link">&para;</a></h2>
 <h3 id="uxenocorestatset">UXenoCoreStatSet<a class="headerlink" href="#uxenocorestatset" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraAttributeSet</code> · header <code>XenoCoreRuntime/Public/AbilitySystem/Attributes/XenoCoreStatSet.h</code> · BlueprintType</em></p>
+<p><em>Class · derives from <code>UXenoBaseAttributeSet</code> · header <code>XenoCoreRuntime/Public/AbilitySystem/Attributes/XenoCoreStatSet.h</code> · BlueprintType</em></p>
 <p>Every per-character scalar the XC1 damage formula reads.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -17214,7 +17206,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>Face</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
-<td>Face curve -&gt; weight at full intensity. VRM presets (happy, angry, blink, aa...) or raw Fcl_* morphs.</td>
+<td>Face curve -&gt; weight at full intensity, by the face rig's curve names (happy, angry, blink, aa...).</td>
 </tr>
 <tr>
 <td><strong>Suppress Blink</strong></td>
@@ -17305,7 +17297,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>XenoCore › Face</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td><code>false</code></td>
-<td>For expressions that already close the eyes (VRoid's "happy" is a closed-eye smile), or that must hold them shut (death). A blink on top reads as a twitch.</td>
+<td>For expressions that already close the eyes (a closed-eye smile), or that must hold them shut (death). A blink on top reads as a twitch.</td>
 </tr>
 </tbody>
 </table>
@@ -17887,7 +17879,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </table>
 <h3 id="uxenocorefaceaniminstance">UXenoCoreFaceAnimInstance<a class="headerlink" href="#uxenocorefaceaniminstance" title="Permanent link">&para;</a></h3>
 <p><em>Class · derives from <code>UAnimInstance</code> · header <code>XenoCoreRuntime/Public/Animation/XenoCoreFaceAnimInstance.h</code> · Blueprintable</em></p>
-<p>The parent of every VRoid body's runtime ABP (<code>ABP_XenoCore_VRoidRetarget_</code>*). The AnimGraph retargets the invisible Mannequin body's pose onto the VRoid mesh, then a Modify Curve node writes FaceCurves - one wire, the node's CurveMap pin - into the pose. The mesh's VRM4U post-process ABP (<code>ABP_Post_</code>*) turns those curves into morph targets through the model's own POSE_face asset, so the expressions are the ones authored in VRoid Studio.</p>
+<p>The parent for the Animation Blueprint of a character with a face rig: blinks, tag-driven expressions, a mouth flap while talking and PlayExpression, written into the pose as face curves by one Modify Curve node. The sample characters are Mannequins with no face, so nothing in the sample uses it.</p>
 <p><strong>Properties</strong></p>
 <table>
 <thead>
@@ -19153,7 +19145,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoregameplayability_art">UXenoCoreGameplayAbility_Art<a class="headerlink" href="#uxenocoregameplayability_art" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Arts/XenoCoreGameplayAbility_Art.h</code> · abstract</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Arts/XenoCoreGameplayAbility_Art.h</code> · abstract</em></p>
 <p>The base every XC1 Art is authored on. Reads everything it does from a <code>UXenoCoreArtDefinition</code>.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -19872,7 +19864,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoregameplayability_autoattack">UXenoCoreGameplayAbility_AutoAttack<a class="headerlink" href="#uxenocoregameplayability_autoattack" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Battle/XenoCoreGameplayAbility_AutoAttack.h</code> · abstract</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Battle/XenoCoreGameplayAbility_AutoAttack.h</code> · abstract</em></p>
 <p>The free auto-attack that runs while engaged.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -20113,7 +20105,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <p><em>Class · derives from <code>UXenoCoreGameplayAbility_Reaction</code> · header <code>XenoCoreRuntime/Public/Battle/XenoCoreGameplayAbility_DefenceReact.h</code> · abstract</em></p>
 <p>No description.</p>
 <h3 id="uxenocoregameplayability_downed">UXenoCoreGameplayAbility_Downed<a class="headerlink" href="#uxenocoregameplayability_downed" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Battle/XenoCoreGameplayAbility_Downed.h</code> · Blueprintable</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Battle/XenoCoreGameplayAbility_Downed.h</code> · Blueprintable</em></p>
 <p>A party member at 0 HP: kneels, cannot act, and waits for a revive. Replaces <code>GA_Hero_Death</code> on the party.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -20214,7 +20206,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><code>float</code></td>
 <td>XenoCore › HitReact › Push</td>
 <td>EditDefaultsOnly, ClampMin=0.02, Units=Seconds</td>
-<td><code>0.12</code></td>
+<td><code>0.25</code></td>
 <td>How long the knockback takes, in seconds.</td>
 </tr>
 <tr>
@@ -20224,7 +20216,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>XenoCore › HitReact › Push</td>
 <td>EditDefaultsOnly</td>
 <td></td>
-<td>Shapes the knockback over PushTime (X 0-1 = normalised time, Y = strength). None = constant.</td>
+<td>Shapes the knockback over PushTime (X 0-1 = normalised time, Y = strength). None = an ease-out from 2 to 0, which keeps PushDistance exact.</td>
 </tr>
 <tr>
 <td><strong>Flinch Suppressed By Tags</strong></td>
@@ -20241,7 +20233,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <p><em>Class · derives from <code>UXenoCoreGameplayAbility_Reaction</code> · header <code>XenoCoreRuntime/Public/Battle/XenoCoreGameplayAbility_KnockdownReact.h</code> · abstract</em></p>
 <p>No description.</p>
 <h3 id="uxenocoregameplayability_reaction">UXenoCoreGameplayAbility_Reaction<a class="headerlink" href="#uxenocoregameplayability_reaction" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Battle/XenoCoreGameplayAbility_Reaction.h</code> · abstract</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Battle/XenoCoreGameplayAbility_Reaction.h</code> · abstract</em></p>
 <p>Base for a body's reaction - flinch, knockdown, guard, recoil, dodge. Machinery only.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -20526,7 +20518,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </table>
 <h2 id="xenocoreruntime-camera">XenoCoreRuntime / Camera<a class="headerlink" href="#xenocoreruntime-camera" title="Permanent link">&para;</a></h2>
 <h3 id="uxenocoregameplayability_camerarecentre">UXenoCoreGameplayAbility_CameraRecentre<a class="headerlink" href="#uxenocoregameplayability_camerarecentre" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Camera/XenoCoreGameplayAbility_CameraRecentre.h</code> · abstract</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Camera/XenoCoreGameplayAbility_CameraRecentre.h</code> · abstract</em></p>
 <p>R3: swing the camera back behind whoever the player is driving.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -20592,7 +20584,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </table>
 <h2 id="xenocoreruntime-characters">XenoCoreRuntime / Characters<a class="headerlink" href="#xenocoreruntime-characters" title="Permanent link">&para;</a></h2>
 <h3 id="axenocorecombatantcharacter">AXenoCoreCombatantCharacter<a class="headerlink" href="#axenocorecombatantcharacter" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ALyraCharacterWithAbilities</code> · header <code>XenoCoreRuntime/Public/Characters/XenoCoreCombatantCharacter.h</code> · abstract · Blueprintable</em></p>
+<p><em>Class · derives from <code>AXenoBaseCharacterWithAbilities</code> · header <code>XenoCoreRuntime/Public/Characters/XenoCoreCombatantCharacter.h</code> · abstract · Blueprintable</em></p>
 <p>No description.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -20647,7 +20639,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Combatant Pawn Data</strong></td>
 <td><code>CombatantPawnData</code></td>
-<td><code>TObjectPtr&lt;const ULyraPawnData&gt;</code></td>
+<td><code>TObjectPtr&lt;const UXenoBasePawnData&gt;</code></td>
 <td>XenoCore › Combatant</td>
 <td>EditDefaultsOnly</td>
 <td></td>
@@ -20748,6 +20740,12 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </thead>
 <tbody>
 <tr>
+<td><strong>Prime Cosmetic Pose</strong></td>
+<td>Callable</td>
+<td><code>void PrimeCosmeticPose()</code></td>
+<td>Poses every cosmetic part's mesh now, so a newly spawned body is never drawn in T-pose.</td>
+</tr>
+<tr>
 <td><strong>Get Combatant Level</strong></td>
 <td>Pure</td>
 <td><code>int32 GetCombatantLevel() const</code></td>
@@ -20756,7 +20754,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Combatant Pawn Data</strong></td>
 <td>Pure</td>
-<td><code>const ULyraPawnData* GetCombatantPawnData() const</code></td>
+<td><code>const UXenoBasePawnData* GetCombatantPawnData() const</code></td>
 <td>The PawnData this combatant initialises from, or null if it was never set.</td>
 </tr>
 <tr>
@@ -20893,8 +20891,8 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocorehealthcomponent">UXenoCoreHealthComponent<a class="headerlink" href="#uxenocorehealthcomponent" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraHealthComponent</code> · header <code>XenoCoreRuntime/Public/Characters/XenoCoreHealthComponent.h</code> · Blueprintable</em></p>
-<p>A <code>ULyraHealthComponent</code> that can be brought back.</p>
+<p><em>Class · derives from <code>UXenoBaseHealthComponent</code> · header <code>XenoCoreRuntime/Public/Characters/XenoCoreHealthComponent.h</code> · Blueprintable</em></p>
+<p>A UXenoBaseHealthComponent that can be brought back.</p>
 <p><strong>Blueprint functions</strong></p>
 <table>
 <thead>
@@ -20915,8 +20913,8 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoreherocomponent">UXenoCoreHeroComponent<a class="headerlink" href="#uxenocoreherocomponent" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraHeroComponent</code> · header <code>XenoCoreRuntime/Public/Characters/XenoCoreHeroComponent.h</code> · Blueprintable</em></p>
-<p><code>ULyraHeroComponent</code> that binds the pawn's ability system instead of the PlayerState's.</p>
+<p><em>Class · derives from <code>UXenoBaseHeroComponent</code> · header <code>XenoCoreRuntime/Public/Characters/XenoCoreHeroComponent.h</code> · Blueprintable</em></p>
+<p>UXenoBaseHeroComponent that binds the pawn's ability system instead of the PlayerState's.</p>
 <h2 id="xenocoreruntime-debug">XenoCoreRuntime / Debug<a class="headerlink" href="#xenocoreruntime-debug" title="Permanent link">&para;</a></h2>
 <h3 id="axenocoretestinteractable">AXenoCoreTestInteractable<a class="headerlink" href="#axenocoretestinteractable" title="Permanent link">&para;</a></h3>
 <p><em>Class · derives from <code>AXenoCoreInteractableActor</code> · header <code>XenoCoreRuntime/Public/Debug/XenoCoreTestInteractable.h</code></em></p>
@@ -21309,7 +21307,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </table>
 <h2 id="xenocoreruntime-enemies">XenoCoreRuntime / Enemies<a class="headerlink" href="#xenocoreruntime-enemies" title="Permanent link">&para;</a></h2>
 <h3 id="axenocoreenemycharacter">AXenoCoreEnemyCharacter<a class="headerlink" href="#axenocoreenemycharacter" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ALyraCharacterWithAbilities</code> · header <code>XenoCoreRuntime/Public/Enemies/XenoCoreEnemyCharacter.h</code> · Blueprintable</em></p>
+<p><em>Class · derives from <code>AXenoBaseCharacterWithAbilities</code> · header <code>XenoCoreRuntime/Public/Enemies/XenoCoreEnemyCharacter.h</code> · Blueprintable</em></p>
 <p>No description.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -21328,7 +21326,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Enemy Pawn Data</strong></td>
 <td><code>EnemyPawnData</code></td>
-<td><code>TObjectPtr&lt;const ULyraPawnData&gt;</code></td>
+<td><code>TObjectPtr&lt;const UXenoBasePawnData&gt;</code></td>
 <td>XenoCore › Enemy</td>
 <td>EditDefaultsOnly</td>
 <td></td>
@@ -21860,7 +21858,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="axenocoreenemycontroller">AXenoCoreEnemyController<a class="headerlink" href="#axenocoreenemycontroller" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>AModularAIController</code> · header <code>XenoCoreRuntime/Public/Enemies/XenoCoreEnemyController.h</code> · Blueprintable</em></p>
+<p><em>Class · derives from <code>AXenoKitModularAIController</code> · header <code>XenoCoreRuntime/Public/Enemies/XenoCoreEnemyController.h</code> · Blueprintable</em></p>
 <p>The AI controller enemies are possessed by. It carries the enemy's team; the behaviour itself lives in a StateTree on the pawn's StateTree AI component. Set the team before possession: the pawn reads it once, when it is possessed.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -21964,7 +21962,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>XenoCore › Teams</td>
 <td>EditDefaultsOnly, BlueprintReadOnly</td>
 <td><code>2</code></td>
-<td>The team every enemy using this controller belongs to. An int32 rather than FGenericTeamId because that is what <code>ULyraTeamSubsystem</code> speaks and what Lyra's team assets are keyed on.</td>
+<td>The team every enemy using this controller belongs to. An int32 rather than FGenericTeamId because that is what UXenoBaseTeamSubsystem speaks and what Lyra's team assets are keyed on.</td>
 </tr>
 </tbody>
 </table>
@@ -21996,6 +21994,18 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>Callable</td>
 <td><code>void ResetAggro()</code></td>
 <td>Forget the fight: not engaged, not provoked.</td>
+</tr>
+<tr>
+<td><strong>Is Dormant</strong></td>
+<td>Pure</td>
+<td><code>bool IsDormant() const</code></td>
+<td>Is this enemy dormant - far from the party, its AI, movement and off-screen animation stopped?</td>
+</tr>
+<tr>
+<td><strong>Wake From Dormancy</strong></td>
+<td>Callable</td>
+<td><code>void WakeFromDormancy()</code></td>
+<td>Wake this enemy now if it is dormant (it may go dormant again on its next check if still far away).</td>
 </tr>
 <tr>
 <td><strong>Is Provoked</strong></td>
@@ -22508,6 +22518,42 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><code>6000.0</code></td>
 <td>A Unique Monster's label is visible from this far, so the player sees it coming.</td>
 </tr>
+<tr>
+<td><strong>Enable Dormancy</strong></td>
+<td><code>bEnableDormancy</code></td>
+<td><code>bool</code></td>
+<td>Performance</td>
+<td>Config, EditAnywhere</td>
+<td><code>true</code></td>
+<td>Enemies far from the party leader go dormant: AI paused, movement off, animation only while on screen.</td>
+</tr>
+<tr>
+<td><strong>Dormant Distance</strong></td>
+<td><code>DormantDistance</code></td>
+<td><code>float</code></td>
+<td>Performance</td>
+<td>Config, EditAnywhere, ClampMin=2000.0, EditCondition=bEnableDormancy, Units=Centimeters</td>
+<td><code>6000.0</code></td>
+<td>An unprovoked enemy farther than this from the party leader goes dormant. Keep it well beyond every detection radius.</td>
+</tr>
+<tr>
+<td><strong>Wake Distance</strong></td>
+<td><code>WakeDistance</code></td>
+<td><code>float</code></td>
+<td>Performance</td>
+<td>Config, EditAnywhere, ClampMin=1000.0, EditCondition=bEnableDormancy, Units=Centimeters</td>
+<td><code>5000.0</code></td>
+<td>A dormant enemy wakes inside this. Smaller than Dormant Distance, so one standing at the edge does not flicker.</td>
+</tr>
+<tr>
+<td><strong>Dormancy Check Interval</strong></td>
+<td><code>DormancyCheckInterval</code></td>
+<td><code>float</code></td>
+<td>Performance</td>
+<td>Config, EditAnywhere, ClampMin=0.1, EditCondition=bEnableDormancy, Units=Seconds</td>
+<td><code>0.5</code></td>
+<td>Seconds between each enemy's dormancy checks (staggered per enemy).</td>
+</tr>
 </tbody>
 </table>
 <h3 id="uxenocoreenemystatics">UXenoCoreEnemyStatics<a class="headerlink" href="#uxenocoreenemystatics" title="Permanent link">&para;</a></h3>
@@ -22570,7 +22616,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><code>NotEquippable</code></td>
 <td>Not Equippable</td>
-<td>No UInventoryFragment_EquippableItem, or one naming no equipment definition.</td>
+<td>No UXenoKitInventoryFragment_EquippableItem, or one naming no equipment definition.</td>
 </tr>
 <tr>
 <td><code>WrongSlot</code></td>
@@ -22676,7 +22722,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item</strong></td>
 <td><code>Item</code></td>
-<td><code>TObjectPtr&lt;ULyraInventoryItemInstance&gt;</code></td>
+<td><code>TObjectPtr&lt;UXenoBaseInventoryItemInstance&gt;</code></td>
 <td>XenoCore › Equipment</td>
 <td>BlueprintReadOnly</td>
 <td><code>nullptr</code></td>
@@ -22719,7 +22765,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item Definition</strong></td>
 <td><code>ItemDefinition</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Equipment</td>
 <td>EditDefaultsOnly</td>
 <td></td>
@@ -22747,7 +22793,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item Definition</strong></td>
 <td><code>ItemDefinition</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Equipment</td>
 <td>EditDefaultsOnly</td>
 <td></td>
@@ -22839,7 +22885,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoreequipmentcomponent">UXenoCoreEquipmentComponent<a class="headerlink" href="#uxenocoreequipmentcomponent" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraEquipmentManagerComponent</code> · header <code>XenoCoreRuntime/Public/Equipment/XenoCoreEquipmentComponent.h</code> · Blueprintable</em></p>
+<p><em>Class · derives from <code>UXenoBaseEquipmentManagerComponent</code> · header <code>XenoCoreRuntime/Public/Equipment/XenoCoreEquipmentComponent.h</code> · Blueprintable</em></p>
 <p>XC1's equipment paperdoll, over Lyra's inventory and equipment managers.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -22915,13 +22961,13 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Equip Item Definition To Slot</strong></td>
 <td>Callable</td>
-<td><code>ULyraInventoryItemInstance* EquipItemDefinitionToSlot(EXenoCoreEquipSlot Slot, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDefinition)</code></td>
+<td><code>UXenoBaseInventoryItemInstance* EquipItemDefinitionToSlot(EXenoCoreEquipSlot Slot, TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDefinition)</code></td>
 <td>Puts an item definition in a slot: adds it to the inventory, then equips it.</td>
 </tr>
 <tr>
 <td><strong>Equip Item To Slot</strong></td>
 <td>Callable</td>
-<td><code>bool EquipItemToSlot(EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Item, bool bTakeFromOtherCharacter = false)</code></td>
+<td><code>bool EquipItemToSlot(EXenoCoreEquipSlot Slot, UXenoBaseInventoryItemInstance* Item, bool bTakeFromOtherCharacter = false)</code></td>
 <td>Equips an item the inventory already holds.</td>
 </tr>
 <tr>
@@ -22933,7 +22979,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Item In Slot</strong></td>
 <td>Pure</td>
-<td><code>ULyraInventoryItemInstance* GetItemInSlot(EXenoCoreEquipSlot Slot) const</code></td>
+<td><code>UXenoBaseInventoryItemInstance* GetItemInSlot(EXenoCoreEquipSlot Slot) const</code></td>
 <td>The item worn in a slot, or null when it is empty.</td>
 </tr>
 <tr>
@@ -22945,37 +22991,37 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Equipment In Slot</strong></td>
 <td>Pure</td>
-<td><code>ULyraEquipmentInstance* GetEquipmentInSlot(EXenoCoreEquipSlot Slot) const</code></td>
+<td><code>UXenoBaseEquipmentInstance* GetEquipmentInSlot(EXenoCoreEquipSlot Slot) const</code></td>
 <td>The equipment instance spawned for a slot's item, or null when the slot is empty.</td>
 </tr>
 <tr>
 <td><strong>Get Item For Equipment</strong></td>
 <td>Pure</td>
-<td><code>ULyraInventoryItemInstance* GetItemForEquipment(const ULyraEquipmentInstance* Equipment) const</code></td>
+<td><code>UXenoBaseInventoryItemInstance* GetItemForEquipment(const UXenoBaseEquipmentInstance* Equipment) const</code></td>
 <td>The inventory item an equipment instance was spawned from - the item whose stats it carries.</td>
 </tr>
 <tr>
 <td><strong>Is Item Equipped</strong></td>
 <td>Pure</td>
-<td><code>bool IsItemEquipped(const ULyraInventoryItemInstance* Item) const</code></td>
+<td><code>bool IsItemEquipped(const UXenoBaseInventoryItemInstance* Item) const</code></td>
 <td>True if this exact item instance is in any slot.</td>
 </tr>
 <tr>
 <td><strong>Find Slot For Item</strong></td>
 <td>Pure</td>
-<td><code>EXenoCoreEquipSlot FindSlotForItem(const ULyraInventoryItemInstance* Item, bool&amp; bOutFound) const</code></td>
+<td><code>EXenoCoreEquipSlot FindSlotForItem(const UXenoBaseInventoryItemInstance* Item, bool&amp; bOutFound) const</code></td>
 <td>Which slot holds Item. bOutFound is false - and the slot meaningless - when it is in none.</td>
 </tr>
 <tr>
 <td><strong>Can Equip Item To Slot</strong></td>
 <td>Pure</td>
-<td><code>bool CanEquipItemToSlot(EXenoCoreEquipSlot Slot, const ULyraInventoryItemInstance* Item) const</code></td>
+<td><code>bool CanEquipItemToSlot(EXenoCoreEquipSlot Slot, const UXenoBaseInventoryItemInstance* Item) const</code></td>
 <td>Whether EquipItemToSlot would accept this pairing, without performing it.</td>
 </tr>
 <tr>
 <td><strong>Get Equip Blocker</strong></td>
 <td>Pure</td>
-<td><code>EXenoCoreEquipBlocker GetEquipBlocker(EXenoCoreEquipSlot Slot, const ULyraInventoryItemInstance* Item) const</code></td>
+<td><code>EXenoCoreEquipBlocker GetEquipBlocker(EXenoCoreEquipSlot Slot, const UXenoBaseInventoryItemInstance* Item) const</code></td>
 <td>The same rule as CanEquipItemToSlot, but it says why.</td>
 </tr>
 <tr>
@@ -22999,7 +23045,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Weapon Type Of Item</strong></td>
 <td>Pure</td>
-<td><code>const UXenoCoreWeaponTypeDefinition* GetWeaponTypeOfItem(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>const UXenoCoreWeaponTypeDefinition* GetWeaponTypeOfItem(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>The kind of weapon an item is, read off its definition.</td>
 </tr>
 <tr>
@@ -23017,7 +23063,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Resolve Weapon Anim Layer</strong></td>
 <td>Pure</td>
-<td><code>TSubclassOf&lt;UAnimInstance&gt; ResolveWeaponAnimLayer(const ULyraEquipmentInstance* Instance, bool bArmed, const FGameplayTagContainer&amp; CosmeticTags, TSubclassOf&lt;UAnimInstance&gt; Fallback)</code></td>
+<td><code>TSubclassOf&lt;UAnimInstance&gt; ResolveWeaponAnimLayer(const UXenoBaseEquipmentInstance* Instance, bool bArmed, const FGameplayTagContainer&amp; CosmeticTags, TSubclassOf&lt;UAnimInstance&gt; Fallback)</code></td>
 <td>Anim layer for this weapon's stance: the weapon type's, else Fallback (Lyra's PickBestAnimLayer).</td>
 </tr>
 <tr>
@@ -23041,7 +23087,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoregameplayability_equipmentstats">UXenoCoreGameplayAbility_EquipmentStats<a class="headerlink" href="#uxenocoregameplayability_equipmentstats" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Equipment/XenoCoreGameplayAbility_EquipmentStats.h</code> · abstract</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Equipment/XenoCoreGameplayAbility_EquipmentStats.h</code> · abstract</em></p>
 <p>Applies an equipped item's stats: every SetByCaller tag the stats effect consumes is filled from the item's stat tags. Removed again when the item is unequipped.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -23097,7 +23143,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Stat Magnitude</strong></td>
 <td>Pure</td>
-<td><code>float GetStatMagnitude(const ULyraInventoryItemInstance* Item, FGameplayTag StatTag) const</code></td>
+<td><code>float GetStatMagnitude(const UXenoBaseInventoryItemInstance* Item, FGameplayTag StatTag) const</code></td>
 <td>The magnitude an item contributes for one stat tag: its stat-tag count, as a fraction when the tag is a percent stat.</td>
 </tr>
 </tbody>
@@ -23639,6 +23685,52 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tr>
 </tbody>
 </table>
+<h3 id="fxenocoreequipmentactorspawn">FXenoCoreEquipmentActorSpawn<a class="headerlink" href="#fxenocoreequipmentactorspawn" title="Permanent link">&para;</a></h3>
+<p><em>Struct · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreInventoryStatics.h</code> · BlueprintType</em></p>
+<p>One actor an item spawns when equipped, read from its Lyra equipment definition. Lyra's own FXenoBaseEquipmentActorToSpawn is not Blueprint-visible in a stock Lyra project, so Blueprints read this copy instead (for example the equipment screen's character preview).</p>
+<p><strong>Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>C++ name</th>
+<th>Type</th>
+<th>Category</th>
+<th>Specifiers</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Actor To Spawn</strong></td>
+<td><code>ActorToSpawn</code></td>
+<td><code>TSubclassOf&lt;AActor&gt;</code></td>
+<td>XenoCore › Equipment</td>
+<td>BlueprintReadOnly</td>
+<td></td>
+<td>The actor class the equipment spawns.</td>
+</tr>
+<tr>
+<td><strong>Attach Socket</strong></td>
+<td><code>AttachSocket</code></td>
+<td><code>FName</code></td>
+<td>XenoCore › Equipment</td>
+<td>BlueprintReadOnly</td>
+<td></td>
+<td>The socket Lyra attaches it to on the pawn.</td>
+</tr>
+<tr>
+<td><strong>Attach Transform</strong></td>
+<td><code>AttachTransform</code></td>
+<td><code>FTransform</code></td>
+<td>XenoCore › Equipment</td>
+<td>BlueprintReadOnly</td>
+<td></td>
+<td>The transform Lyra applies relative to that socket.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="fxenocorefixedgem">FXenoCoreFixedGem<a class="headerlink" href="#fxenocorefixedgem" title="Permanent link">&para;</a></h3>
 <p><em>Struct · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreItemFragments.h</code> · BlueprintType</em></p>
 <p>A gem fixed into a piece of equipment from the moment it exists. It can never be removed.</p>
@@ -23659,7 +23751,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Gem</strong></td>
 <td><code>Gem</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Gems</td>
 <td>EditDefaultsOnly, BlueprintReadOnly</td>
 <td></td>
@@ -23705,7 +23797,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item Def</strong></td>
 <td><code>ItemDef</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Inventory</td>
 <td>BlueprintReadOnly</td>
 <td></td>
@@ -23923,7 +24015,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item</strong></td>
 <td><code>Item</code></td>
-<td><code>TObjectPtr&lt;ULyraInventoryItemInstance&gt;</code></td>
+<td><code>TObjectPtr&lt;UXenoBaseInventoryItemInstance&gt;</code></td>
 <td>XenoCore › Inventory</td>
 <td>BlueprintReadOnly</td>
 <td><code>nullptr</code></td>
@@ -24203,7 +24295,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Gem</strong></td>
 <td><code>Gem</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Gems</td>
 <td>BlueprintReadOnly</td>
 <td></td>
@@ -24448,7 +24540,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoreabilitycost_partyitem">UXenoCoreAbilityCost_PartyItem<a class="headerlink" href="#uxenocoreabilitycost_partyitem" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraAbilityCost</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreAbilityCost_PartyItem.h</code></em></p>
+<p><em>Class · derives from <code>UXenoBaseAbilityCost</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreAbilityCost_PartyItem.h</code></em></p>
 <p>Ability cost: spends a number of an item from the party bag. The ability cannot activate unless the party holds enough unequipped copies. Use this instead of Lyra's Inventory Item cost, which never lets an ability activate.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -24476,7 +24568,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item Definition</strong></td>
 <td><code>ItemDefinition</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Cost</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
@@ -24485,7 +24577,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocorefragment_equipslots">UXenoCoreFragment_EquipSlots<a class="headerlink" href="#uxenocorefragment_equipslots" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraInventoryItemFragment</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreItemFragments.h</code></em></p>
+<p><em>Class · derives from <code>UXenoBaseInventoryItemFragment</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreItemFragments.h</code></em></p>
 <p>Which of XC1's six slots an item may occupy.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -24558,7 +24650,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocorefragment_gem">UXenoCoreFragment_Gem<a class="headerlink" href="#uxenocorefragment_gem" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraInventoryItemFragment</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreItemFragments.h</code></em></p>
+<p><em>Class · derives from <code>UXenoBaseInventoryItemFragment</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreItemFragments.h</code></em></p>
 <p>Makes an item a gem: the stat it raises, its rank, its strength band and its per-character cap.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -24631,7 +24723,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocorefragment_itemcategory">UXenoCoreFragment_ItemCategory<a class="headerlink" href="#uxenocorefragment_itemcategory" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraInventoryItemFragment</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreItemFragments.h</code></em></p>
+<p><em>Class · derives from <code>UXenoBaseInventoryItemFragment</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreItemFragments.h</code></em></p>
 <p>Which tab an item lives under, and how many of it the party may hold.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -24695,7 +24787,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocorefragment_itemdisplay">UXenoCoreFragment_ItemDisplay<a class="headerlink" href="#uxenocorefragment_itemdisplay" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraInventoryItemFragment</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreItemFragments.h</code></em></p>
+<p><em>Class · derives from <code>UXenoBaseInventoryItemFragment</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreItemFragments.h</code></em></p>
 <p>The prose an item shows in a details panel.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -24769,7 +24861,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Gems</strong></td>
 <td><code>Gems</code></td>
-<td><code>TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;</code></td>
+<td><code>TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;</code></td>
 <td>XenoCore › Gems</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
@@ -24803,98 +24895,98 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Is Gem</strong></td>
 <td>Pure</td>
-<td><code>bool IsGem(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>bool IsGem(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>True if this item is a gem.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Slot Count</strong></td>
 <td>Pure</td>
-<td><code>int32 GetGemSlotCount(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>int32 GetGemSlotCount(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>How many sockets this piece of equipment has.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Strength</strong></td>
 <td>Pure</td>
-<td><code>int32 GetGemStrength(const ULyraInventoryItemInstance* GemItem)</code></td>
+<td><code>int32 GetGemStrength(const UXenoBaseInventoryItemInstance* GemItem)</code></td>
 <td>A loose gem's strength.</td>
 </tr>
 <tr>
 <td><strong>Get Sockets</strong></td>
 <td>Pure</td>
-<td><code>TArray&lt;FXenoCoreSocketedGem&gt; GetSockets(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>TArray&lt;FXenoCoreSocketedGem&gt; GetSockets(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Every socket on this piece, empty ones included, in order.</td>
 </tr>
 <tr>
 <td><strong>Get Loose Gems</strong></td>
 <td>Callable</td>
-<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; GetLooseGems()</code></td>
+<td><code>TArray&lt;UXenoBaseInventoryItemInstance*&gt; GetLooseGems()</code></td>
 <td>Every gem in the party bag, strongest first within a name.</td>
 </tr>
 <tr>
 <td><strong>Socket Gem</strong></td>
 <td>Callable</td>
-<td><code>bool SocketGem(ULyraInventoryItemInstance* Host, int32 SocketIndex, ULyraInventoryItemInstance* GemItem)</code></td>
+<td><code>bool SocketGem(UXenoBaseInventoryItemInstance* Host, int32 SocketIndex, UXenoBaseInventoryItemInstance* GemItem)</code></td>
 <td>Put a loose gem from the bag into a socket.</td>
 </tr>
 <tr>
 <td><strong>Unsocket Gem</strong></td>
 <td>Callable</td>
-<td><code>bool UnsocketGem(ULyraInventoryItemInstance* Host, int32 SocketIndex)</code></td>
+<td><code>bool UnsocketGem(UXenoBaseInventoryItemInstance* Host, int32 SocketIndex)</code></td>
 <td>Take a gem out of a socket and back into the bag.</td>
 </tr>
 <tr>
 <td><strong>Can Unsocket</strong></td>
 <td>Pure</td>
-<td><code>bool CanUnsocket(const ULyraInventoryItemInstance* Host, int32 SocketIndex)</code></td>
+<td><code>bool CanUnsocket(const UXenoBaseInventoryItemInstance* Host, int32 SocketIndex)</code></td>
 <td>True if this socket holds a gem that can be taken out.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Name</strong></td>
 <td>Pure</td>
-<td><code>FText GetGemName(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef)</code></td>
+<td><code>FText GetGemName(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; GemDef)</code></td>
 <td>"Strength Up I", the gem's name.</td>
 </tr>
 <tr>
 <td><strong>Describe Gem Effect</strong></td>
 <td>Pure</td>
-<td><code>FText DescribeGemEffect(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
+<td><code>FText DescribeGemEffect(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
 <td>"Strength +8" - what a gem of this strength does.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Value Text</strong></td>
 <td>Pure</td>
-<td><code>FText GetGemValueText(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
+<td><code>FText GetGemValueText(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; GemDef, int32 Value)</code></td>
 <td>"+5", or "+2%" for a percent stat - a gem's value without its stat name, for a row that is short of room.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Row Text</strong></td>
 <td>Pure</td>
-<td><code>FText GetGemRowText(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>FText GetGemRowText(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>One loadout row's sockets on one line: an O per gem, a dash per empty socket.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Colour</strong></td>
 <td>Pure</td>
-<td><code>FLinearColor GetGemColour(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; GemDef)</code></td>
+<td><code>FLinearColor GetGemColour(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; GemDef)</code></td>
 <td>The gem's colour - its display fragment's Symbol Colour, set to its XC1 element.</td>
 </tr>
 <tr>
 <td><strong>Get Gem Names Text</strong></td>
 <td>Pure</td>
-<td><code>FText GetGemNamesText(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>FText GetGemNamesText(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>The item's socketed gems by name, "Empty Slot" for an empty one.</td>
 </tr>
 <tr>
 <td><strong>Preview Socket Change</strong></td>
 <td>Callable</td>
-<td><code>TMap&lt;FGameplayTag, float&gt; PreviewSocketChange(const UXenoCoreEquipmentComponent* Wearer, const ULyraInventoryItemInstance* Host, int32 SocketIndex, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; NewGem, int32 NewValue)</code></td>
+<td><code>TMap&lt;FGameplayTag, float&gt; PreviewSocketChange(const UXenoCoreEquipmentComponent* Wearer, const UXenoBaseInventoryItemInstance* Host, int32 SocketIndex, TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; NewGem, int32 NewValue)</code></td>
 <td>Stat changes on the wearer if Host's socket SocketIndex held NewGem at NewValue (null = emptied).</td>
 </tr>
 </tbody>
 </table>
 <h3 id="uxenocoreinventorystatics">UXenoCoreInventoryStatics<a class="headerlink" href="#uxenocoreinventorystatics" title="Permanent link">&para;</a></h3>
 <p><em>Class · derives from <code>UBlueprintFunctionLibrary</code> · header <code>XenoCoreRuntime/Public/Inventory/XenoCoreInventoryStatics.h</code></em></p>
-<p>The read side of XC1 equipment: everything a screen needs to know, and nothing that changes state.</p>
+<p>No description.</p>
 <p><strong>Blueprint functions</strong></p>
 <table>
 <thead>
@@ -24909,13 +25001,19 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Party Inventory</strong></td>
 <td>Pure</td>
-<td><code>ULyraInventoryManagerComponent* GetPartyInventory()</code></td>
+<td><code>UXenoBaseInventoryManagerComponent* GetPartyInventory()</code></td>
 <td>The party bag.</td>
+</tr>
+<tr>
+<td><strong>Get Item Actors To Spawn</strong></td>
+<td>Pure</td>
+<td><code>TArray&lt;FXenoCoreEquipmentActorSpawn&gt; GetItemActorsToSpawn(const UXenoBaseInventoryItemInstance* Item)</code></td>
+<td>The actors this item spawns when equipped (its Equippable Item fragment's Equipment Definition &gt; Actors To Spawn).</td>
 </tr>
 <tr>
 <td><strong>Get Items For Slot</strong></td>
 <td>Callable</td>
-<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; GetItemsForSlot(EXenoCoreEquipSlot Slot, const UXenoCoreEquipmentComponent* ForCharacter = nullptr)</code></td>
+<td><code>TArray&lt;UXenoBaseInventoryItemInstance*&gt; GetItemsForSlot(EXenoCoreEquipSlot Slot, const UXenoCoreEquipmentComponent* ForCharacter = nullptr)</code></td>
 <td>Every item in the party bag that may go in Slot, in bag order.</td>
 </tr>
 <tr>
@@ -24927,13 +25025,13 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Item Display Name</strong></td>
 <td>Pure</td>
-<td><code>FText GetItemDisplayName(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>FText GetItemDisplayName(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>The item's display name off its definition.</td>
 </tr>
 <tr>
 <td><strong>Get Item Stat</strong></td>
 <td>Pure</td>
-<td><code>float GetItemStat(ULyraInventoryItemInstance* Item, FGameplayTag StatTag)</code></td>
+<td><code>float GetItemStat(UXenoBaseInventoryItemInstance* Item, FGameplayTag StatTag)</code></td>
 <td>One stat off an item, 0 when absent.</td>
 </tr>
 <tr>
@@ -24957,7 +25055,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Make Item View</strong></td>
 <td>Pure</td>
-<td><code>FXenoCoreItemView MakeItemView(ULyraInventoryItemInstance* Item, UXenoCoreEquipmentComponent* Equipment)</code></td>
+<td><code>FXenoCoreItemView MakeItemView(UXenoBaseInventoryItemInstance* Item, UXenoCoreEquipmentComponent* Equipment)</code></td>
 <td>One selection row: an item, priced and flagged against a character's current loadout.</td>
 </tr>
 <tr>
@@ -24981,7 +25079,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Items For Category</strong></td>
 <td>Callable</td>
-<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; GetItemsForCategory(EXenoCoreItemCategory Category)</code></td>
+<td><code>TArray&lt;UXenoBaseInventoryItemInstance*&gt; GetItemsForCategory(EXenoCoreItemCategory Category)</code></td>
 <td>Every item instance in the party bag whose category matches.</td>
 </tr>
 <tr>
@@ -24993,13 +25091,13 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Item Category</strong></td>
 <td>Pure</td>
-<td><code>EXenoCoreItemCategory GetItemCategory(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>EXenoCoreItemCategory GetItemCategory(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Which tab an item belongs to.</td>
 </tr>
 <tr>
 <td><strong>Get Item Symbol</strong></td>
 <td>Pure</td>
-<td><code>FText GetItemSymbol(ULyraInventoryItemInstance* Item, FLinearColor&amp; OutColour)</code></td>
+<td><code>FText GetItemSymbol(UXenoBaseInventoryItemInstance* Item, FLinearColor&amp; OutColour)</code></td>
 <td>The glyph shown beside an item's name, and its colour.</td>
 </tr>
 <tr>
@@ -25023,97 +25121,97 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Party Item Count</strong></td>
 <td>Pure</td>
-<td><code>int32 GetPartyItemCount(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetPartyItemCount(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>How many of ItemDef the party holds.</td>
 </tr>
 <tr>
 <td><strong>Add Item To Party</strong></td>
 <td>Callable</td>
-<td><code>int32 AddItemToParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
+<td><code>int32 AddItemToParty(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
 <td>Adds Count of ItemDef to the party bag, honouring the item's MaxCarried cap.</td>
 </tr>
 <tr>
 <td><strong>Add One Item To Party</strong></td>
 <td>Callable</td>
-<td><code>ULyraInventoryItemInstance* AddOneItemToParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>UXenoBaseInventoryItemInstance* AddOneItemToParty(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>Adds exactly one and returns the instance, which the equip path needs and a count cannot give.</td>
 </tr>
 <tr>
 <td><strong>Remove Item From Party</strong></td>
 <td>Callable</td>
-<td><code>int32 RemoveItemFromParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
+<td><code>int32 RemoveItemFromParty(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
 <td>Removes up to Count of ItemDef.</td>
 </tr>
 <tr>
 <td><strong>Remove Item Instance From Party</strong></td>
 <td>Callable</td>
-<td><code>bool RemoveItemInstanceFromParty(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>bool RemoveItemInstanceFromParty(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Removes this exact item from the party bag.</td>
 </tr>
 <tr>
 <td><strong>Consume Items From Party</strong></td>
 <td>Callable</td>
-<td><code>bool ConsumeItemsFromParty(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
+<td><code>bool ConsumeItemsFromParty(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count = 1)</code></td>
 <td>Spends exactly Count of ItemDef, or nothing at all.</td>
 </tr>
 <tr>
 <td><strong>Get Free Party Item Count</strong></td>
 <td>Pure</td>
-<td><code>int32 GetFreePartyItemCount(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetFreePartyItemCount(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>How many of ItemDef the party holds that nobody is wearing - what can be spent or sold.</td>
 </tr>
 <tr>
 <td><strong>Is Item Equipped By Anyone</strong></td>
 <td>Pure</td>
-<td><code>bool IsItemEquippedByAnyone(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>bool IsItemEquippedByAnyone(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>True if any character in the world has this exact instance equipped.</td>
 </tr>
 <tr>
 <td><strong>Find Free Item By Definition</strong></td>
 <td>Pure</td>
-<td><code>ULyraInventoryItemInstance* FindFreeItemByDefinition(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>UXenoBaseInventoryItemInstance* FindFreeItemByDefinition(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>An instance of this definition that the party owns and nobody is wearing, or null.</td>
 </tr>
 <tr>
 <td><strong>Find Equipment Holding</strong></td>
 <td>Pure</td>
-<td><code>UXenoCoreEquipmentComponent* FindEquipmentHolding(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>UXenoCoreEquipmentComponent* FindEquipmentHolding(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Whose loadout holds this item, or null if nobody is wearing it.</td>
 </tr>
 <tr>
 <td><strong>Get Max Carried</strong></td>
 <td>Pure</td>
-<td><code>int32 GetMaxCarried(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetMaxCarried(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>The carry cap for a definition, or 0 when uncapped.</td>
 </tr>
 <tr>
 <td><strong>Build Item Stat Lines</strong></td>
 <td>Callable</td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLines(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLines(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>One item's own stats, with no character and no comparison - the Items menu's details pane.</td>
 </tr>
 <tr>
 <td><strong>Build Item Stat Lines For Def</strong></td>
 <td>Callable</td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLinesForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildItemStatLinesForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>The same block, priced off a definition - for an item nobody owns yet.</td>
 </tr>
 <tr>
 <td><strong>Get Item Stat For Def</strong></td>
 <td>Pure</td>
-<td><code>float GetItemStatForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FGameplayTag StatTag)</code></td>
+<td><code>float GetItemStatForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, FGameplayTag StatTag)</code></td>
 <td>One authored stat off a definition's CDO.</td>
 </tr>
 <tr>
 <td><strong>Build Stat Comparison</strong></td>
 <td>Callable</td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparison(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Candidate)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparison(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, UXenoBaseInventoryItemInstance* Candidate)</code></td>
 <td>What Candidate would give, and how it differs from what is equipped in Slot right now.</td>
 </tr>
 <tr>
 <td><strong>Build Stat Comparison For Def</strong></td>
 <td>Callable</td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparisonForDef(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; CandidateDef)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatComparisonForDef(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; CandidateDef)</code></td>
 <td>BuildStatComparison for an item nobody owns yet - a shop's stock.</td>
 </tr>
 <tr>
@@ -25125,7 +25223,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Build Stat Totals With Candidate</strong></td>
 <td>Callable</td>
-<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatTotalsWithCandidate(AActor* Character, UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Candidate)</code></td>
+<td><code>TArray&lt;FXenoCoreStatLine&gt; BuildStatTotalsWithCandidate(AActor* Character, UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, UXenoBaseInventoryItemInstance* Candidate)</code></td>
 <td>The character sheet's totals, with a second column showing what each stat becomes if Candidate is equipped into Slot.</td>
 </tr>
 </tbody>
@@ -25199,31 +25297,31 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Item Rarity</strong></td>
 <td>Pure</td>
-<td><code>FGameplayTag GetItemRarity(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>FGameplayTag GetItemRarity(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>An item definition's tier: its authored tag, else the default row's.</td>
 </tr>
 <tr>
 <td><strong>Get Item Rarity Info</strong></td>
 <td>Pure</td>
-<td><code>bool GetItemRarityInfo(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FXenoCoreItemRarityRow&amp; OutRow)</code></td>
+<td><code>bool GetItemRarityInfo(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, FXenoCoreItemRarityRow&amp; OutRow)</code></td>
 <td>An item definition's rarity row.</td>
 </tr>
 <tr>
 <td><strong>Get Item Rarity Rank</strong></td>
 <td>Pure</td>
-<td><code>int32 GetItemRarityRank(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetItemRarityRank(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>Higher is rarer.</td>
 </tr>
 <tr>
 <td><strong>Get Item Rarity Name</strong></td>
 <td>Pure</td>
-<td><code>FText GetItemRarityName(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>FText GetItemRarityName(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>"Common", "Rare", "Legendary".</td>
 </tr>
 <tr>
 <td><strong>Get Item Name Colour</strong></td>
 <td>Pure</td>
-<td><code>FLinearColor GetItemNameColour(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback)</code></td>
+<td><code>FLinearColor GetItemNameColour(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback)</code></td>
 <td>The colour this item's name should rest at, or Fallback when its tier does not tint names.</td>
 </tr>
 <tr>
@@ -25235,25 +25333,25 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Apply Item Rarity</strong></td>
 <td>Callable</td>
-<td><code>bool ApplyItemRarity(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
+<td><code>bool ApplyItemRarity(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
 <td>Colour an item's name by rarity and fill its diamonds.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Instance Rarity</strong></td>
 <td>Callable</td>
-<td><code>bool ApplyItemInstanceRarity(ULyraInventoryItemInstance* Item, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
+<td><code>bool ApplyItemInstanceRarity(UXenoBaseInventoryItemInstance* Item, UTextBlock* NameText, UPanelWidget* PipBox, FLinearColor Fallback = FLinearColor::White, float Opacity = 1.0f, float PipSize = 0.0f)</code></td>
 <td>ApplyItemRarity for an item in the bag.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Rarity To Button</strong></td>
 <td>Callable</td>
-<td><code>bool ApplyItemRarityToButton(UUserWidget* Button, ULyraInventoryItemInstance* Item, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td><code>bool ApplyItemRarityToButton(UUserWidget* Button, UXenoBaseInventoryItemInstance* Item, FLinearColor Fallback = FLinearColor::White)</code></td>
 <td>Colour a button's label by an item's rarity.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Definition Rarity To Button</strong></td>
 <td>Callable</td>
-<td><code>bool ApplyItemDefinitionRarityToButton(UUserWidget* Button, TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td><code>bool ApplyItemDefinitionRarityToButton(UUserWidget* Button, TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, FLinearColor Fallback = FLinearColor::White)</code></td>
 <td>ApplyItemRarityToButton for an item definition - a gem in a socket has no bag instance.</td>
 </tr>
 <tr>
@@ -25265,19 +25363,19 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Prefix With Item Rarity</strong></td>
 <td>Pure</td>
-<td><code>FText PrefixWithItemInstanceRarity(ULyraInventoryItemInstance* Item, const FText&amp; Rest)</code></td>
+<td><code>FText PrefixWithItemInstanceRarity(UXenoBaseInventoryItemInstance* Item, const FText&amp; Rest)</code></td>
 <td>"Rare · Weapon" - the tier in words in front of Rest.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Rarity Label</strong></td>
 <td>Callable</td>
-<td><code>bool ApplyItemRarityLabel(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td><code>bool ApplyItemRarityLabel(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
 <td>Write the tier's name into a details row and colour it.</td>
 </tr>
 <tr>
 <td><strong>Apply Item Instance Rarity Label</strong></td>
 <td>Callable</td>
-<td><code>bool ApplyItemInstanceRarityLabel(ULyraInventoryItemInstance* Item, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
+<td><code>bool ApplyItemInstanceRarityLabel(UXenoBaseInventoryItemInstance* Item, UTextBlock* Text, FLinearColor Fallback = FLinearColor::White)</code></td>
 <td>ApplyItemRarityLabel for an item in the bag.</td>
 </tr>
 </tbody>
@@ -25430,7 +25528,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item To Grant</strong></td>
 <td><code>ItemToGrant</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Collectable</td>
 <td>EditAnywhere, BlueprintReadWrite</td>
 <td></td>
@@ -25527,7 +25625,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>On Collected</strong></td>
 <td>Event (implement in Blueprint)</td>
-<td><code>void K2_OnCollected(ULyraInventoryItemInstance* Instance)</code></td>
+<td><code>void K2_OnCollected(UXenoBaseInventoryItemInstance* Instance)</code></td>
 <td>Called after the item has entered the bag.</td>
 </tr>
 <tr>
@@ -25576,7 +25674,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Option</strong></td>
 <td><code>Option</code></td>
-<td><code>FInteractionOption</code></td>
+<td><code>FXenoKitInteractionOption</code></td>
 <td>XenoCore › Loot</td>
 <td>EditDefaultsOnly, BlueprintReadOnly</td>
 <td></td>
@@ -25630,7 +25728,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Pending Contents</strong></td>
 <td><code>PendingContents</code></td>
-<td><code>TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;</code></td>
+<td><code>TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;</code></td>
 <td>XenoCore › Loot</td>
 <td>VisibleInstanceOnly, BlueprintReadOnly</td>
 <td></td>
@@ -25970,7 +26068,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Pending Contents</strong></td>
 <td>Pure</td>
-<td><code>const TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;&amp; GetPendingContents() const</code></td>
+<td><code>const TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;&amp; GetPendingContents() const</code></td>
 <td>What the chest is currently offering, if anything.</td>
 </tr>
 <tr>
@@ -26012,7 +26110,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>On Opened</strong></td>
 <td>Event (implement in Blueprint)</td>
-<td><code>void K2_OnOpened(const TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;&amp; Offered)</code></td>
+<td><code>void K2_OnOpened(const TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;&amp; Offered)</code></td>
 <td>Play the lid, spawn the beam.</td>
 </tr>
 <tr>
@@ -26108,7 +26206,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Offered</strong></td>
 <td><code>Offered</code></td>
-<td><code>TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;</code></td>
+<td><code>TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;</code></td>
 <td>XenoCore › Loot</td>
 <td>BlueprintReadOnly</td>
 <td></td>
@@ -26136,7 +26234,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item Def</strong></td>
 <td><code>ItemDef</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Collectable</td>
 <td>BlueprintReadOnly</td>
 <td></td>
@@ -26145,7 +26243,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Instance</strong></td>
 <td><code>Instance</code></td>
-<td><code>TObjectPtr&lt;ULyraInventoryItemInstance&gt;</code></td>
+<td><code>TObjectPtr&lt;UXenoBaseInventoryItemInstance&gt;</code></td>
 <td>XenoCore › Collectable</td>
 <td>BlueprintReadOnly</td>
 <td><code>nullptr</code></td>
@@ -26182,7 +26280,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item Def</strong></td>
 <td><code>ItemDef</code></td>
-<td><code>TSoftClassPtr&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSoftClassPtr&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Loot</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
@@ -26353,7 +26451,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Roll Contents</strong></td>
 <td>Callable</td>
-<td><code>TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt; RollContents(EXenoCoreChestTier Tier, int32 Level = 0) const</code></td>
+<td><code>TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt; RollContents(EXenoCoreChestTier Tier, int32 Level = 0) const</code></td>
 <td>What is actually inside.</td>
 </tr>
 </tbody>
@@ -26571,7 +26669,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <h2 id="xenocoreruntime-lyra">XenoCoreRuntime / Lyra<a class="headerlink" href="#xenocoreruntime-lyra" title="Permanent link">&para;</a></h2>
 <h3 id="fxenocoregrantedhandles">FXenoCoreGrantedHandles<a class="headerlink" href="#fxenocoregrantedhandles" title="Permanent link">&para;</a></h3>
 <p><em>Struct · header <code>XenoCoreRuntime/Public/Lyra/XenoCoreLyraBridge.h</code></em></p>
-<p>What GiveAbilitySet granted, so it can be taken back - XenoCore's own copy of <code>FLyraAbilitySet_GrantedHandles</code>, whose arrays are protected and whose TakeFromAbilitySystem is not exported.</p>
+<p>What GiveAbilitySet granted, so it can be taken back - XenoCore's own copy of FXenoBaseAbilitySet_GrantedHandles, whose arrays are protected and whose TakeFromAbilitySystem is not exported.</p>
 <h2 id="xenocoreruntime-map">XenoCoreRuntime / Map<a class="headerlink" href="#xenocoreruntime-map" title="Permanent link">&para;</a></h2>
 <h3 id="axenocoremaparea">AXenoCoreMapArea<a class="headerlink" href="#axenocoremaparea" title="Permanent link">&para;</a></h3>
 <p><em>Class · derives from <code>AActor</code> · header <code>XenoCoreRuntime/Public/Map/XenoCoreMapArea.h</code></em></p>
@@ -26831,7 +26929,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoregameplayability_minimapoverlay">UXenoCoreGameplayAbility_MinimapOverlay<a class="headerlink" href="#uxenocoregameplayability_minimapoverlay" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Map/XenoCoreGameplayAbility_MinimapOverlay.h</code></em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Map/XenoCoreGameplayAbility_MinimapOverlay.h</code></em></p>
 <p>No description.</p>
 <h3 id="uxenocoremapmarkersubsystem">UXenoCoreMapMarkerSubsystem<a class="headerlink" href="#uxenocoremapmarkersubsystem" title="Permanent link">&para;</a></h3>
 <p><em>Class · derives from <code>UWorldSubsystem</code> · header <code>XenoCoreRuntime/Public/Map/XenoCoreMapMarkerSubsystem.h</code></em></p>
@@ -27770,7 +27868,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>XenoCore › NPC › Dialogue</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
-<td>Straight after the player accepts the quest.</td>
+<td>Straight after the player accepts the quest. Empty says nothing (it does not fall back to Dialogue, the pitch just heard).</td>
 </tr>
 <tr>
 <td><strong>Declined Dialogue</strong></td>
@@ -27779,7 +27877,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>XenoCore › NPC › Dialogue</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
-<td>Straight after the player turns it down.</td>
+<td>Straight after the player turns it down. Empty says nothing (it does not fall back to Dialogue).</td>
 </tr>
 <tr>
 <td><strong>In Progress Dialogue</strong></td>
@@ -27936,7 +28034,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Get Lines For</strong></td>
 <td>Pure</td>
 <td><code>TArray&lt;FXenoCoreDialogueLine&gt; GetLinesFor(EXenoCoreNpcLine Which) const</code></td>
-<td>The lines for one occasion, falling back to Dialogue when that set is empty.</td>
+<td>The lines for one occasion, falling back to Dialogue when that set is empty - except Accepted and Declined, which say nothing rather than replay the pitch.</td>
 </tr>
 <tr>
 <td><strong>Get Quest</strong></td>
@@ -28159,7 +28257,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Context Effect Component</strong></td>
 <td><code>ContextEffectComponent</code></td>
-<td><code>TObjectPtr&lt;ULyraContextEffectComponent&gt;</code></td>
+<td><code>TObjectPtr&lt;UXenoBaseContextEffectComponent&gt;</code></td>
 <td>XenoCore › Party</td>
 <td>VisibleAnywhere, BlueprintReadOnly</td>
 <td></td>
@@ -28168,7 +28266,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="axenocorepartymembercontroller">AXenoCorePartyMemberController<a class="headerlink" href="#axenocorepartymembercontroller" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>AModularAIController</code> · header <code>XenoCoreRuntime/Public/Party/XenoCorePartyMemberController.h</code> · Blueprintable</em></p>
+<p><em>Class · derives from <code>AXenoKitModularAIController</code> · header <code>XenoCoreRuntime/Public/Party/XenoCorePartyMemberController.h</code> · Blueprintable</em></p>
 <p>The AI controller every party member is possessed by. Like the enemy controller it carries the team and very little else - the behaviour lives in a StateTree on the pawn's <code>UStateTreeAIComponent</code>, as data.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -29284,7 +29382,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoregameplayability_partycommand">UXenoCoreGameplayAbility_PartyCommand<a class="headerlink" href="#uxenocoregameplayability_partycommand" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Party/XenoCoreGameplayAbility_PartyCommand.h</code> · abstract</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Party/XenoCoreGameplayAbility_PartyCommand.h</code> · abstract</em></p>
 <p>A party-tactics button: toggle a tactic, hold the tactics panel open, or step the panel's scope.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -29348,7 +29446,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoregameplayability_partyswitch">UXenoCoreGameplayAbility_PartySwitch<a class="headerlink" href="#uxenocoregameplayability_partyswitch" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Party/XenoCoreGameplayAbility_PartySwitch.h</code> · abstract</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Party/XenoCoreGameplayAbility_PartySwitch.h</code> · abstract</em></p>
 <p>XC3's ZL: tap switches control to the next party member, hold opens a selector on the party rows.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -29566,7 +29664,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Leader Only Ability Set</strong></td>
 <td><code>LeaderOnlyAbilitySet</code></td>
-<td><code>TObjectPtr&lt;const ULyraAbilitySet&gt;</code></td>
+<td><code>TObjectPtr&lt;const UXenoBaseAbilitySet&gt;</code></td>
 <td>XenoCore › Party</td>
 <td>EditDefaultsOnly</td>
 <td></td>
@@ -30662,8 +30760,8 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </table>
 <h2 id="xenocoreruntime-player">XenoCoreRuntime / Player<a class="headerlink" href="#xenocoreruntime-player" title="Permanent link">&para;</a></h2>
 <h3 id="axenocoreplayercontroller">AXenoCorePlayerController<a class="headerlink" href="#axenocoreplayercontroller" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ALyraPlayerController</code> · header <code>XenoCoreRuntime/Public/Player/XenoCorePlayerController.h</code></em></p>
-<p><code>ALyraPlayerController</code> that pumps the pawn's ability system, not the PlayerState's.</p>
+<p><em>Class · derives from <code>AXenoBasePlayerController</code> · header <code>XenoCoreRuntime/Public/Player/XenoCorePlayerController.h</code></em></p>
+<p>AXenoBasePlayerController that pumps the pawn's ability system, not the PlayerState's.</p>
 <h2 id="xenocoreruntime-progression">XenoCoreRuntime / Progression<a class="headerlink" href="#xenocoreruntime-progression" title="Permanent link">&para;</a></h2>
 <h3 id="exenocoreartsource">EXenoCoreArtSource<a class="headerlink" href="#exenocoreartsource" title="Permanent link">&para;</a></h3>
 <p><em>Enum · header <code>XenoCoreRuntime/Public/Progression/XenoCoreProgressionComponent.h</code> · BlueprintType</em></p>
@@ -32141,7 +32239,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item Target</strong></td>
 <td><code>ItemTarget</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Quest</td>
 <td>EditAnywhere, BlueprintReadOnly, EditCondition=Kind == <code>EXenoCoreObjectiveKind::CollectItem</code></td>
 <td></td>
@@ -32296,7 +32394,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Items</strong></td>
 <td><code>Items</code></td>
-<td><code>TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;</code></td>
+<td><code>TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;</code></td>
 <td>XenoCore › Quest</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
@@ -32505,7 +32603,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Items</strong></td>
 <td><code>Items</code></td>
-<td><code>TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;</code></td>
+<td><code>TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;</code></td>
 <td>XenoCore › Quest</td>
 <td>BlueprintReadOnly</td>
 <td></td>
@@ -33742,7 +33840,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Show Reward</strong></td>
 <td>Callable</td>
-<td><code>void ShowReward(const FText&amp; QuestTitle, int32 Gold, int32 Experience, const TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;&amp; Items)</code></td>
+<td><code>void ShowReward(const FText&amp; QuestTitle, int32 Gold, int32 Experience, const TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;&amp; Items)</code></td>
 <td>Show the banner for one payout.</td>
 </tr>
 <tr>
@@ -33778,7 +33876,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Show Items Obtained</strong></td>
 <td>Callable</td>
-<td><code>bool ShowItemsObtained(const FText&amp; Heading, const FText&amp; Subtitle, const TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;&amp; Items, bool bCelebrate = false)</code></td>
+<td><code>bool ShowItemsObtained(const FText&amp; Heading, const FText&amp; Subtitle, const TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;&amp; Items, bool bCelebrate = false)</code></td>
 <td>Show the banner for items that were not a quest reward - "Trade complete" and what came of it.</td>
 </tr>
 </tbody>
@@ -36177,7 +36275,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item</strong></td>
 <td><code>Item</code></td>
-<td><code>TSoftClassPtr&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSoftClassPtr&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Shop</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
@@ -36763,7 +36861,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>On Transaction</strong></td>
 <td>Event (implement in Blueprint)</td>
-<td><code>void K2_OnTransaction(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; Item, int32 Count, bool bSold)</code></td>
+<td><code>void K2_OnTransaction(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; Item, int32 Count, bool bSold)</code></td>
 <td>Content-side hook, for a sting on every sale.</td>
 </tr>
 </tbody>
@@ -36785,13 +36883,13 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Buy Price For Def</strong></td>
 <td>Pure</td>
-<td><code>int32 GetBuyPriceForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetBuyPriceForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>SellValue x 10.</td>
 </tr>
 <tr>
 <td><strong>Get Sell Price For Def</strong></td>
 <td>Pure</td>
-<td><code>int32 GetSellPriceForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetSellPriceForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>What a shop pays for one, skills included.</td>
 </tr>
 <tr>
@@ -36803,37 +36901,37 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Can Buy Def</strong></td>
 <td>Pure</td>
-<td><code>bool CanBuyDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>bool CanBuyDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>May a shop stock this?</td>
 </tr>
 <tr>
 <td><strong>Can Sell Def</strong></td>
 <td>Pure</td>
-<td><code>bool CanSellDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>bool CanSellDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>May the player sell this at all?</td>
 </tr>
 <tr>
 <td><strong>Get Sellable Count</strong></td>
 <td>Pure</td>
-<td><code>int32 GetSellableCount(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetSellableCount(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>How many of ItemDef the player could sell right now - the copies nobody is wearing.</td>
 </tr>
 <tr>
 <td><strong>Get Max Buyable</strong></td>
 <td>Pure</td>
-<td><code>int32 GetMaxBuyable(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 UnitPrice)</code></td>
+<td><code>int32 GetMaxBuyable(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 UnitPrice)</code></td>
 <td>The most the stepper may reach when buying: what the purse covers, the room left under the item's MaxCarried, and MaxPerTransaction - whichever is smallest.</td>
 </tr>
 <tr>
 <td><strong>Buy Items</strong></td>
 <td>Callable</td>
-<td><code>int32 BuyItems(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count, int32 UnitPrice)</code></td>
+<td><code>int32 BuyItems(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count, int32 UnitPrice)</code></td>
 <td>Buy Count at UnitPrice.</td>
 </tr>
 <tr>
 <td><strong>Sell Items</strong></td>
 <td>Callable</td>
-<td><code>int32 SellItems(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, int32 Count)</code></td>
+<td><code>int32 SellItems(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, int32 Count)</code></td>
 <td>Sell up to Count of ItemDef.</td>
 </tr>
 </tbody>
@@ -37870,7 +37968,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoregameplayability_skill">UXenoCoreGameplayAbility_Skill<a class="headerlink" href="#uxenocoregameplayability_skill" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Skills/XenoCoreGameplayAbility_Skill.h</code> · abstract · Blueprintable</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Skills/XenoCoreGameplayAbility_Skill.h</code> · abstract · Blueprintable</em></p>
 <p>The base of every skill that does something - the skill counterpart of <code>UXenoCoreGameplayAbility_Art</code>.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -38432,7 +38530,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoregameplayability_targetmode">UXenoCoreGameplayAbility_TargetMode<a class="headerlink" href="#uxenocoregameplayability_targetmode" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Targeting/XenoCoreTargetModeAbility.h</code> · abstract</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/Targeting/XenoCoreTargetModeAbility.h</code> · abstract</em></p>
 <p>The base for <code>GA_XenoCore_TargetMode</code>. It exists to hold the selected target and to be the only thing that writes it - everything else about the mode (input, indicator, the poll) is Blueprint in the child.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -38922,7 +39020,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item</strong></td>
 <td><code>Item</code></td>
-<td><code>TSoftClassPtr&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSoftClassPtr&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Trade</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
@@ -38971,7 +39069,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item</strong></td>
 <td><code>Item</code></td>
-<td><code>TSoftClassPtr&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSoftClassPtr&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Trade</td>
 <td>EditAnywhere, BlueprintReadOnly</td>
 <td></td>
@@ -39035,7 +39133,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Item Def</strong></td>
 <td><code>ItemDef</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>XenoCore › Trade</td>
 <td>BlueprintReadOnly</td>
 <td></td>
@@ -39690,31 +39788,31 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Trade Value For Def</strong></td>
 <td>Pure</td>
-<td><code>int32 GetTradeValueForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>int32 GetTradeValueForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>What one of these is worth on the trade table.</td>
 </tr>
 <tr>
 <td><strong>Get Trade Value</strong></td>
 <td>Pure</td>
-<td><code>int32 GetTradeValue(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>int32 GetTradeValue(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>The same number for something actually in the bag.</td>
 </tr>
 <tr>
 <td><strong>Can Offer Item</strong></td>
 <td>Pure</td>
-<td><code>bool CanOfferItem(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>bool CanOfferItem(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>May the player put this on the table?</td>
 </tr>
 <tr>
 <td><strong>Can Offer Def</strong></td>
 <td>Pure</td>
-<td><code>bool CanOfferDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>bool CanOfferDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>Definition-side twin of CanOfferItem, for pricing a row before anything is picked.</td>
 </tr>
 <tr>
 <td><strong>Get Category For Def</strong></td>
 <td>Pure</td>
-<td><code>EXenoCoreItemCategory GetCategoryForDef(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef)</code></td>
+<td><code>EXenoCoreItemCategory GetCategoryForDef(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
 <td>Which tab an item belongs under.</td>
 </tr>
 <tr>
@@ -39726,7 +39824,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Effective Offer Value</strong></td>
 <td>Pure</td>
-<td><code>int32 GetEffectiveOfferValue(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>int32 GetEffectiveOfferValue(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>What the NPC reckons the offered item is worth, skills included.</td>
 </tr>
 </tbody>
@@ -40688,7 +40786,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><code>Character</code></td>
 <td>Character</td>
-<td>One character's sheet: name, level, role, HP and EXP bars, stats grouped into sections.</td>
+<td>One character's sheet: name, level, Talent Art, HP and EXP bars, stats grouped into sections.</td>
 </tr>
 <tr>
 <td><code>Item</code></td>
@@ -41341,7 +41439,25 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>XenoCore › Party</td>
 <td>BlueprintReadOnly</td>
 <td></td>
-<td>The role as drawn - "Attacker", or empty for None so an unset member shows nothing.</td>
+<td>The role as text - "Attacker", or empty for None. Not drawn by any shipped screen; see TalentLabel.</td>
+</tr>
+<tr>
+<td><strong>Talent Art Name</strong></td>
+<td><code>TalentArtName</code></td>
+<td><code>FText</code></td>
+<td>XenoCore › Party</td>
+<td>BlueprintReadOnly</td>
+<td></td>
+<td>The Talent Art their weapon grants ("Turn Strike"), or empty. Also set for a benched character.</td>
+</tr>
+<tr>
+<td><strong>Talent Label</strong></td>
+<td><code>TalentLabel</code></td>
+<td><code>FText</code></td>
+<td>XenoCore › Party</td>
+<td>BlueprintReadOnly</td>
+<td></td>
+<td>The line drawn under a character's name: "Talent: Turn Strike", or empty without a Talent Art.</td>
 </tr>
 <tr>
 <td><strong>Portrait</strong></td>
@@ -42189,7 +42305,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Blade Icon</strong></td>
 <td><code>BladeIcon</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The icon for the selected entry.</td>
@@ -42198,7 +42314,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Outgoing Icon</strong></td>
 <td><code>OutgoingIcon</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The outgoing icon during a cycle. Hidden when nothing is moving.</td>
@@ -42207,7 +42323,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Blade Icon Shadow</strong></td>
 <td><code>BladeIconShadow</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The centre glyph's drop shadow, inside the slot overlay.</td>
@@ -42216,7 +42332,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Attack Slot Glow</strong></td>
 <td><code>AttackSlotGlow</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Layer 3 (SelectionRing) carries the auto-attack highlight and the confirm flash. Kept bound only so existing palette assets still compile.</td>
@@ -42225,7 +42341,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Talent Ring</strong></td>
 <td><code>TalentRing</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The Talent Gauge ring wrapping the palette's central slot.</td>
@@ -42252,7 +42368,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Ring Image</strong></td>
 <td><code>RingImage</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Layer 1 - the inner disc. Its brightness is the availability signal: muted while charging, white when ready.</td>
@@ -42261,7 +42377,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Selection Ring</strong></td>
 <td><code>SelectionRing</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Layer 3 - the selection ring, outermost. Bright yellow.</td>
@@ -42270,7 +42386,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Selection Group</strong></td>
 <td><code>SelectionGroup</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Layer 3's container: the selection ring plus its corner triangles.</td>
@@ -42279,7 +42395,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Selection Tris</strong></td>
 <td><code>SelectionTris</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The four corner triangles, in their own container so they can pulse without the ring.</td>
@@ -42351,7 +42467,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Cycle Up Arrow</strong></td>
 <td><code>CycleUpArrow</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Cycle affordances above and below the ring.</td>
@@ -42360,7 +42476,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Cycle Down Arrow</strong></td>
 <td><code>CycleDownArrow</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -42387,7 +42503,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Action Label</strong></td>
 <td><code>ActionLabel</code></td>
 <td><code>TObjectPtr&lt;URichTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The selected entry's name, drawn above the ring.</td>
@@ -42396,7 +42512,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Blocked Mark</strong></td>
 <td><code>BlockedMark</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The red ring-and-slash laid over the centre slot when the selected command is blocked.</td>
@@ -42531,7 +42647,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Chance Badge Left</strong></td>
 <td><code>ChanceBadgeLeft</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The blue ! marking an art whose positional bonus is live right now.</td>
@@ -42540,7 +42656,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Chance Badge Right</strong></td>
 <td><code>ChanceBadgeRight</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -42549,7 +42665,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Chance Shadow Left</strong></td>
 <td><code>ChanceShadowLeft</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The badges' drop shadows - shown and hidden with their badge.</td>
@@ -42558,7 +42674,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Chance Shadow Right</strong></td>
 <td><code>ChanceShadowRight</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -42567,7 +42683,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Chance Popup</strong></td>
 <td><code>ChancePopup</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The italic "Chance!" wordmark. Fixed on screen - it does not track the player.</td>
@@ -42594,7 +42710,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Side Disc Left</strong></td>
 <td><code>SideDiscLeft</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -42603,7 +42719,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Cooldown Ring Left</strong></td>
 <td><code>CooldownRingLeft</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The recharge ring around a side art, filling as it cools down.</td>
@@ -42612,7 +42728,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Cooldown Ring Right</strong></td>
 <td><code>CooldownRingRight</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -42621,7 +42737,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Side Icon Left</strong></td>
 <td><code>SideIconLeft</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -42630,7 +42746,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Side Disc Right</strong></td>
 <td><code>SideDiscRight</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -42639,7 +42755,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Side Icon Right</strong></td>
 <td><code>SideIconRight</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -42648,7 +42764,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Side Icon Shadow Left</strong></td>
 <td><code>SideIconShadowLeft</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Drop shadows for the side glyphs, shown and hidden with their glyph.</td>
@@ -42657,7 +42773,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Slot Shadow Left</strong></td>
 <td><code>SlotShadowLeft</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The disc's drop shadow on each side. Bound so it can be stamped per position with the rest of the slot - an empty slot is exactly this plus a grey disc.</td>
@@ -42666,7 +42782,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Slot Shadow Right</strong></td>
 <td><code>SlotShadowRight</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -42675,7 +42791,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Side Icon Shadow Right</strong></td>
 <td><code>SideIconShadowRight</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -43159,6 +43275,12 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>The member's Talent Art, read off their live pawn. bIsEmpty when they have no body (benched) or no talent - the strip then simply draws no centre cell.</td>
 </tr>
 <tr>
+<td><strong>Get Item Talent Art</strong></td>
+<td>Pure</td>
+<td><code>const UXenoCoreArtDefinition* GetItemTalentArt(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef)</code></td>
+<td>The Talent Art an item grants when equipped, or null.</td>
+</tr>
+<tr>
 <td><strong>Get Selectable Art Views</strong></td>
 <td>Pure</td>
 <td><code>TArray&lt;FXenoCoreArtView&gt; GetSelectableArtViews(UXenoCorePartyMemberDefinition* Member)</code></td>
@@ -43282,7 +43404,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Notify Text</strong></td>
 <td><code>NotifyText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -43291,7 +43413,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Name Text</strong></td>
 <td><code>NameText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -43428,7 +43550,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Get Build Version</strong></td>
 <td>Pure</td>
 <td><code>FString GetBuildVersion()</code></td>
-<td>"1.0.0.2014" - ProjectVersion, then the number of commits this build came from.</td>
+<td>"0.1.1464" - ProjectVersion, then the number of commits this build came from.</td>
 </tr>
 </tbody>
 </table>
@@ -43805,7 +43927,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Line Text</strong></td>
 <td><code>LineText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>The sentence. Auto-wrapped; the subsystem's character limit is what keeps it to two lines.</td>
@@ -43814,7 +43936,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Speaker Text</strong></td>
 <td><code>SpeakerText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>The name on the plate.</td>
@@ -43823,7 +43945,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Name Plate</strong></td>
 <td><code>NamePlate</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The rounded plate, so a line with no speaker at all can hide it.</td>
@@ -43832,7 +43954,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Advance Group</strong></td>
 <td><code>AdvanceGroup</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The "press the button for more" group - glyph and chevron together.</td>
@@ -43841,7 +43963,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Advance Arrow</strong></td>
 <td><code>AdvanceArrow</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Bobbed to draw the eye. Optional so a box can omit it entirely.</td>
@@ -43984,7 +44106,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 </tbody>
 </table>
 <h3 id="uxenocoregameplayability_palettecycle">UXenoCoreGameplayAbility_PaletteCycle<a class="headerlink" href="#uxenocoregameplayability_palettecycle" title="Permanent link">&para;</a></h3>
-<p><em>Class · derives from <code>ULyraGameplayAbility</code> · header <code>XenoCoreRuntime/Public/UI/XenoCoreGameplayAbility_PaletteCycle.h</code> · abstract</em></p>
+<p><em>Class · derives from <code>UXenoBaseGameplayAbility</code> · header <code>XenoCoreRuntime/Public/UI/XenoCoreGameplayAbility_PaletteCycle.h</code> · abstract</em></p>
 <p>Moves the palette carousel one step. Bound to D-pad Up and D-pad Down.</p>
 <p><strong>Properties</strong></p>
 <table>
@@ -44367,7 +44489,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Plate Bg</strong></td>
 <td><code>PlateBg</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>One row = a plate, a button glyph and a label, and all three are shown or hidden together.</td>
@@ -44376,7 +44498,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Border A</strong></td>
 <td><code>Border_A</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>No description.</td>
@@ -44385,7 +44507,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Open Label</strong></td>
 <td><code>OpenLabel</code></td>
 <td><code>TObjectPtr&lt;UTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>No description.</td>
@@ -44394,7 +44516,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Plate Bg 2</strong></td>
 <td><code>PlateBg2</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44403,7 +44525,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Img X</strong></td>
 <td><code>Img_X</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44412,7 +44534,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Label 2</strong></td>
 <td><code>Label2</code></td>
 <td><code>TObjectPtr&lt;UTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44421,7 +44543,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Plate Bg 3</strong></td>
 <td><code>PlateBg3</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44430,7 +44552,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Img Y</strong></td>
 <td><code>Img_Y</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44439,7 +44561,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Label 3</strong></td>
 <td><code>Label3</code></td>
 <td><code>TObjectPtr&lt;UTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44448,7 +44570,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Plate Bg 4</strong></td>
 <td><code>PlateBg4</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44457,7 +44579,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Img B</strong></td>
 <td><code>Img_B</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44466,7 +44588,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Label 4</strong></td>
 <td><code>Label4</code></td>
 <td><code>TObjectPtr&lt;UTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44519,7 +44641,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Badge Root</strong></td>
 <td><code>BadgeRoot</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Everything that moves. Slid and faded as one so the parts cannot drift apart.</td>
@@ -44528,7 +44650,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Symbol Icon</strong></td>
 <td><code>SymbolIcon</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The category glyph, immediately left of the name.</td>
@@ -44537,7 +44659,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Name Text</strong></td>
 <td><code>NameText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44546,7 +44668,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Rarity Pips</strong></td>
 <td><code>RarityPips</code></td>
 <td><code>TObjectPtr&lt;class UPanelWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The item's rarity diamonds. Optional; the name is coloured by rarity either way.</td>
@@ -44555,7 +44677,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Title Text</strong></td>
 <td><code>TitleText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -44564,7 +44686,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Height Box</strong></td>
 <td><code>HeightBox</code></td>
 <td><code>TObjectPtr&lt;USizeBox&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Collapses the row's height across the outro, and without it the stack pops. A VerticalBox reflows the instant a child is removed, so a row in the middle vanishing would snap the ones below it upwards.</td>
@@ -44573,7 +44695,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Content Root</strong></td>
 <td><code>ContentRoot</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The content inside the frame. Carries the entrance scale pop.</td>
@@ -44684,7 +44806,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Show Item</strong></td>
 <td>Callable</td>
-<td><code>void ShowItem(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>void ShowItem(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Fill the row and start its clock.</td>
 </tr>
 <tr>
@@ -44696,7 +44818,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>On Item Shown</strong></td>
 <td>Event (overridable)</td>
-<td><code>void OnItemShown(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>void OnItemShown(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Repaints the bound widgets.</td>
 </tr>
 </tbody>
@@ -44722,7 +44844,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Row Box</strong></td>
 <td><code>RowBox</code></td>
 <td><code>TObjectPtr&lt;UVerticalBox&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The rows live here. A VerticalBox so they stack in arrival order without any maths.</td>
@@ -44761,7 +44883,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Push Item</strong></td>
 <td>Callable</td>
-<td><code>void PushItem(ULyraInventoryItemInstance* Item)</code></td>
+<td><code>void PushItem(UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>Show a badge now.</td>
 </tr>
 </tbody>
@@ -44858,7 +44980,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Sort Items</strong></td>
 <td>Pure</td>
-<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; SortItems(const TArray&lt;ULyraInventoryItemInstance*&gt;&amp; Items) const</code></td>
+<td><code>TArray&lt;UXenoBaseInventoryItemInstance*&gt; SortItems(const TArray&lt;UXenoBaseInventoryItemInstance*&gt;&amp; Items) const</code></td>
 <td>Items in the current mode's order.</td>
 </tr>
 <tr>
@@ -44876,7 +44998,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Sort Item Instances</strong></td>
 <td>Pure</td>
-<td><code>TArray&lt;ULyraInventoryItemInstance*&gt; SortItemInstances(const TArray&lt;ULyraInventoryItemInstance*&gt;&amp; Items, EXenoCoreItemSort Mode)</code></td>
+<td><code>TArray&lt;UXenoBaseInventoryItemInstance*&gt; SortItemInstances(const TArray&lt;UXenoBaseInventoryItemInstance*&gt;&amp; Items, EXenoCoreItemSort Mode)</code></td>
 <td>The one ordering rule, for any caller.</td>
 </tr>
 </tbody>
@@ -44889,7 +45011,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <p>No description.</p>
 <h3 id="uxenocoreloadingscreenbase">UXenoCoreLoadingScreenBase<a class="headerlink" href="#uxenocoreloadingscreenbase" title="Permanent link">&para;</a></h3>
 <p><em>Class · derives from <code>UUserWidget</code> · header <code>XenoCoreRuntime/Public/UI/XenoCoreLoadingScreenBase.h</code> · abstract · Blueprintable</em></p>
-<p>Loading screen: an animated "loading..." word. Named by <code>LoadingScreenWidget</code> in DefaultGame.ini; <code>ULoadingScreenManager</code> adds it straight to the viewport, so it is a plain <code>UUserWidget</code>.</p>
+<p>Loading screen: an animated "loading..." word. Named by <code>LoadingScreenWidget</code> in DefaultGame.ini; <code>UXenoKitLoadingScreenManager</code> adds it straight to the viewport, so it is a plain <code>UUserWidget</code>.</p>
 <p><strong>Properties</strong></p>
 <table>
 <thead>
@@ -45963,7 +46085,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Banner Root</strong></td>
 <td><code>BannerRoot</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Everything that moves. Slid and faded as one, so the parts cannot drift apart.</td>
@@ -45972,7 +46094,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Portrait Image</strong></td>
 <td><code>PortraitImage</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -45981,7 +46103,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Name Text</strong></td>
 <td><code>NameText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -45990,7 +46112,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Role Text</strong></td>
 <td><code>RoleText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -45999,7 +46121,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Title Text</strong></td>
 <td><code>TitleText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -46008,7 +46130,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Flash Image</strong></td>
 <td><code>FlashImage</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The burst behind the portrait: scales out and fades on entry.</td>
@@ -46098,7 +46220,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Effect Layer</strong></td>
 <td><code>EffectLayer</code></td>
 <td><code>TObjectPtr&lt;UCanvasPanel&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Behind the banner: where JoinedEffect draws.</td>
@@ -46256,7 +46378,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Name Text</strong></td>
 <td><code>NameText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>BindWidgetOptional: a row that shows no name should not be a compile error.</td>
@@ -46265,7 +46387,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Party Gauge</strong></td>
 <td><code>PartyGauge</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The Party Gauge, shown on the leader's row (slot 0) only.</td>
@@ -46274,7 +46396,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Portrait Image</strong></td>
 <td><code>PortraitImage</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The character's face.</td>
@@ -46283,7 +46405,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Status Icon Box</strong></td>
 <td><code>StatusIconBox</code></td>
 <td><code>TObjectPtr&lt;class UPanelWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The character's active statuses, one icon each, beside the plate.</td>
@@ -46432,6 +46554,18 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>The display name for a role.</td>
 </tr>
 <tr>
+<td><strong>Get Talent Label</strong></td>
+<td>Pure</td>
+<td><code>FText GetTalentLabel(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>"Talent: Turn Strike" for this character, or empty.</td>
+</tr>
+<tr>
+<td><strong>Get Member Talent Art</strong></td>
+<td>Pure</td>
+<td><code>const UXenoCoreArtDefinition* GetMemberTalentArt(UXenoCorePartyMemberDefinition* Member)</code></td>
+<td>The Talent Art this character's weapon grants, or null.</td>
+</tr>
+<tr>
 <td><strong>Get Party Stat Lines</strong></td>
 <td>Pure</td>
 <td><code>TArray&lt;FXenoCoreStatLine&gt; GetPartyStatLines(UXenoCorePartyMemberDefinition* Member)</code></td>
@@ -46482,19 +46616,19 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Get Item Holder Portrait</strong></td>
 <td>Pure</td>
-<td><code>UTexture2D* GetItemHolderPortrait(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>UTexture2D* GetItemHolderPortrait(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>The portrait of whoever is wearing this item, loaded, or null if nobody is.</td>
 </tr>
 <tr>
 <td><strong>Get Take Item Prompt</strong></td>
 <td>Pure</td>
-<td><code>FText GetTakeItemPrompt(const ULyraInventoryItemInstance* Item)</code></td>
+<td><code>FText GetTakeItemPrompt(const UXenoBaseInventoryItemInstance* Item)</code></td>
 <td>"Unequip Red Sword from Quinn?" - the whole prompt, built here.</td>
 </tr>
 <tr>
 <td><strong>Equip Or Confirm Take</strong></td>
 <td>Callable</td>
-<td><code>bool EquipOrConfirmTake(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, ULyraInventoryItemInstance* Item, UCommonActivatableWidget* ListToClose)</code></td>
+<td><code>bool EquipOrConfirmTake(UXenoCoreEquipmentComponent* Equipment, EXenoCoreEquipSlot Slot, UXenoBaseInventoryItemInstance* Item, UCommonActivatableWidget* ListToClose)</code></td>
 <td>Equip it, or ask first if it means stripping another character.</td>
 </tr>
 </tbody>
@@ -46520,7 +46654,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Level Text</strong></td>
 <td><code>LevelText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>BindWidget: the Blueprint must contain these names or it fails to compile - which is the intent, because a silently blank HUD is worse than a compile error.</td>
@@ -46529,7 +46663,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Health Text</strong></td>
 <td><code>HealthText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>No description.</td>
@@ -46538,7 +46672,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Health Bar</strong></td>
 <td><code>HealthBar</code></td>
 <td><code>TObjectPtr&lt;UProgressBar&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>No description.</td>
@@ -46547,7 +46681,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Exp Bar</strong></td>
 <td><code>ExpBar</code></td>
 <td><code>TObjectPtr&lt;UProgressBar&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>EXP toward the next level.</td>
@@ -46556,7 +46690,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Portrait Box</strong></td>
 <td><code>PortraitBox</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Everything that is not the health bar, bound so bBarOnly can collapse it.</td>
@@ -46565,7 +46699,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Portrait Overlay</strong></td>
 <td><code>PortraitOverlay</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -46574,7 +46708,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Shadow Image</strong></td>
 <td><code>ShadowImage</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -46583,7 +46717,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Exp Bar Box</strong></td>
 <td><code>ExpBarBox</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -46774,7 +46908,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><code>TSoftObjectPtr&lt;class USoundBase&gt;</code></td>
 <td>XenoCore › UI</td>
 <td>EditDefaultsOnly</td>
-<td><code>TSoftObjectPtr&lt;USoundBase&gt;(FSoftObjectPath("/Game/Audio/S...</code></td>
+<td><code>TSoftObjectPtr&lt;USoundBase&gt;(FSoftObjectPath("/XenoCore/Imp...</code></td>
 <td>Played once as "+N" starts counting, and again for each kill that stacks onto it.</td>
 </tr>
 <tr>
@@ -46783,7 +46917,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><code>TSoftObjectPtr&lt;class USoundBase&gt;</code></td>
 <td>XenoCore › UI</td>
 <td>EditDefaultsOnly</td>
-<td><code>TSoftObjectPtr&lt;USoundBase&gt;(FSoftObjectPath("/Game/Audio/S...</code></td>
+<td><code>TSoftObjectPtr&lt;USoundBase&gt;(FSoftObjectPath("/XenoCore/Imp...</code></td>
 <td>Played on every wrap, with the gold pulse - the level-up sound.</td>
 </tr>
 <tr>
@@ -46862,7 +46996,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Ally Selector Box</strong></td>
 <td><code>AllySelectorBox</code></td>
 <td><code>TObjectPtr&lt;class UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The rounded yellow box around the HP line.</td>
@@ -46871,7 +47005,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Ally Selector Arrow Up</strong></td>
 <td><code>AllySelectorArrowUp</code></td>
 <td><code>TObjectPtr&lt;class UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>Scroll affordances - they say the party is cyclable, so they follow the box.</td>
@@ -46880,7 +47014,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Ally Selector Arrow Down</strong></td>
 <td><code>AllySelectorArrowDown</code></td>
 <td><code>TObjectPtr&lt;class UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>No description.</td>
@@ -47656,13 +47790,13 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <tr>
 <td><strong>Show Item Header</strong></td>
 <td>Callable</td>
-<td><code>void ShowItemHeader(TSubclassOf&lt;ULyraInventoryItemDefinition&gt; ItemDef, const FText&amp; Type)</code></td>
+<td><code>void ShowItemHeader(TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt; ItemDef, const FText&amp; Type)</code></td>
 <td>ShowHeader for an item: its name in its rarity colour, and Type prefixed with the tier - "Rare · Materials".</td>
 </tr>
 <tr>
 <td><strong>Show Item Instance Header</strong></td>
 <td>Callable</td>
-<td><code>void ShowItemInstanceHeader(ULyraInventoryItemInstance* Item, const FText&amp; Type)</code></td>
+<td><code>void ShowItemInstanceHeader(UXenoBaseInventoryItemInstance* Item, const FText&amp; Type)</code></td>
 <td>ShowItemHeader for an item in the bag.</td>
 </tr>
 <tr>
@@ -48266,7 +48400,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Level Text</strong></td>
 <td><code>LevelText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>BindWidget: the Blueprint must contain text blocks with these exact names, or it fails to compile. That is the intent - a silently blank badge is worse than a compile error.</td>
@@ -48275,7 +48409,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Name Text</strong></td>
 <td><code>NameText</code></td>
 <td><code>TObjectPtr&lt;UCommonTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>No description.</td>
@@ -48302,7 +48436,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Health Bar</strong></td>
 <td><code>HealthBar</code></td>
 <td><code>TObjectPtr&lt;UProgressBar&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The target's health.</td>
@@ -48311,7 +48445,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Background Image</strong></td>
 <td><code>BackgroundImage</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The banner plate behind the badge.</td>
@@ -48647,6 +48781,15 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>The in-game menu's entries, in any order - they are sorted by Sort Order. The menu shell builds one button per entry each time it opens.</td>
 </tr>
 <tr>
+<td><strong>Host Settings Screen</strong></td>
+<td><code>HostSettingsScreen</code></td>
+<td><code>TSoftClassPtr&lt;UCommonActivatableWidget&gt;</code></td>
+<td>Menu</td>
+<td>Config, EditAnywhere, AllowedClasses=/Script/CommonUI.CommonActivatableWidget</td>
+<td></td>
+<td>The settings screen to open instead of XenoCore's when the project has its own local player class - a Lyra project.</td>
+</tr>
+<tr>
 <td><strong>Additional Menu Entry Sets</strong></td>
 <td><code>AdditionalMenuEntrySets</code></td>
 <td><code>TArray&lt;TSoftObjectPtr&lt;UXenoCoreMenuEntrySet&gt;&gt;</code></td>
@@ -48705,7 +48848,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Name Text</strong></td>
 <td><code>NameText</code></td>
 <td><code>TObjectPtr&lt;UTextBlock&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>BindWidget, so the Blueprint must contain widgets with these exact names or the asset fails to compile. That is the intent: a name plate with no name is not a degraded plate, it is a broken one, and a compile error is a better report than an empty rectangle.</td>
@@ -48714,7 +48857,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Chevron Image</strong></td>
 <td><code>ChevronImage</code></td>
 <td><code>TObjectPtr&lt;UImage&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidget</td>
 <td></td>
 <td>The chevron under the name. Required, like NameText.</td>
@@ -48723,7 +48866,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Name Group</strong></td>
 <td><code>NameGroup</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The name and its chevron, as one collapsible unit.</td>
@@ -48732,7 +48875,7 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><strong>Marker Root</strong></td>
 <td><code>MarkerRoot</code></td>
 <td><code>TObjectPtr&lt;UWidget&gt;</code></td>
-<td></td>
+<td>XenoCore</td>
 <td>BlueprintReadOnly, BindWidgetOptional</td>
 <td></td>
 <td>The grey bubble carrying the exclamation point. NPC-only, hence optional.</td>
@@ -50823,8 +50966,17 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td><code>float</code></td>
 <td>Sun</td>
 <td>EditAnywhere, BlueprintReadOnly, ClampMin=1, ClampMax=18, Units=deg</td>
-<td><code>9.0</code></td>
+<td><code>2.0</code></td>
 <td>How far below the horizon the sun keeps lighting the sky (twilight) before the moon takes over.</td>
+</tr>
+<tr>
+<td><strong>Twilight Sky Light Boost</strong></td>
+<td><code>TwilightSkyLightBoost</code></td>
+<td><code>float</code></td>
+<td>Sun</td>
+<td>EditAnywhere, BlueprintReadOnly, ClampMin=0, UIMax=10</td>
+<td><code>1.5</code></td>
+<td>Extra sky light through twilight, while the sun is down and the moon not yet up (1 = twice as bright).</td>
 </tr>
 <tr>
 <td><strong>Moon Max Elevation</strong></td>
@@ -50834,6 +50986,24 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>EditAnywhere, BlueprintReadOnly, ClampMin=5, ClampMax=90, Units=deg</td>
 <td><code>48.0</code></td>
 <td>Highest the moon climbs, in the middle of the night.</td>
+</tr>
+<tr>
+<td><strong>Moon Min Elevation</strong></td>
+<td><code>MoonMinElevation</code></td>
+<td><code>float</code></td>
+<td>Moon</td>
+<td>EditAnywhere, BlueprintReadOnly, ClampMin=0, ClampMax=90, Units=deg</td>
+<td><code>25.0</code></td>
+<td>Lowest the moon's light sits, at the start and end of the night. 0 = it rises from the horizon.</td>
+</tr>
+<tr>
+<td><strong>Moon Fade In Degrees</strong></td>
+<td><code>MoonFadeInDegrees</code></td>
+<td><code>float</code></td>
+<td>Moon</td>
+<td>EditAnywhere, BlueprintReadOnly, ClampMin=0.1, ClampMax=18, Units=deg</td>
+<td><code>1.0</code></td>
+<td>Once the sun is Twilight Degrees down, the moonlight reaches full over this many more degrees of sun depth (~3 in-game minutes a degree at dusk).</td>
 </tr>
 <tr>
 <td><strong>Moon Intensity Fraction</strong></td>
@@ -51582,6 +51752,12 @@ nodes and function libraries, see <a href="../blueprint-nodes/">Blueprint nodes<
 <td>Callable</td>
 <td><code>UMaterial* BuildScannedRockMaterial(const FString&amp; AssetPath)</code></td>
 <td>Creates (or rebuilds) the scanned-rock material at AssetPath.</td>
+</tr>
+<tr>
+<td><strong>Build Triplanar Rock Material</strong></td>
+<td>Callable</td>
+<td><code>UMaterial* BuildTriplanarRockMaterial(const FString&amp; AssetPath)</code></td>
+<td><code>M_XenoCore_TriplanarRock</code> - a tiled rock set mapped on world axes, two scales blended, so a cliff of any size keeps the same texel density and needs no UVs.</td>
 </tr>
 </tbody>
 </table>

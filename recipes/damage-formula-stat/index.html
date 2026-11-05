@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4904,7 +4874,7 @@ no term can be overridden on its own.</p>
 </tr>
 <tr>
 <td><strong>Keep it in your module</strong></td>
-<td>Put the attribute on your own attribute set (a child of <code>UXenoCoreStatSet</code> or of <code>ULyraAttributeSet</code>) granted in your ability sets, and derive your own execution from <code>UXenoCoreDamageExecution</code>, overriding <code>Execute_Implementation</code></td>
+<td>Put the attribute on your own attribute set (a child of <code>UXenoCoreStatSet</code> or of <code>UXenoBaseAttributeSet</code>) granted in your ability sets, and derive your own execution from <code>UXenoCoreDamageExecution</code>, overriding <code>Execute_Implementation</code></td>
 <td>Nothing of XenoCore's is edited, but your override must reproduce the whole formula, and <code>GE_XenoCore_Damage</code> must use your execution (a copy of the effect, or <code>BP_XenoCoreDamageExecution</code> reparented)</td>
 </tr>
 </tbody>
@@ -4949,7 +4919,7 @@ bonus). Read the new stat and add it after those lines, still inside the block:<
 <h3 id="4-build">4. Build<a class="headerlink" href="#4-build" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Close the editor completely. A new <code>UPROPERTY</code> cannot go through Live Coding.</li>
-<li>Build the <code>LyraEditor</code> target, then check the end of the build log, not only the exit code.</li>
+<li>Build your project's editor target (<code>&lt;Project&gt;Editor</code>; <code>LyraEditor</code> in a Lyra project), then check the end of the build log, not only the exit code.</li>
 <li>Open the editor.</li>
 </ol>
 <h3 id="5-give-a-character-some">5. Give a character some<a class="headerlink" href="#5-give-a-character-some" title="Permanent link">&para;</a></h3>

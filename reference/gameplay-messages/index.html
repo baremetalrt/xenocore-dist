@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -5243,7 +5213,7 @@ unregister in <code>EndPlay</code> or <code>NativeDestruct</code>. Every payload
 </tr>
 <tr>
 <td><code>ItemDef</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>The item that changed</td>
 </tr>
 <tr>
@@ -5280,7 +5250,7 @@ unregister in <code>EndPlay</code> or <code>NativeDestruct</code>. Every payload
 </tr>
 <tr>
 <td><code>Item</code></td>
-<td><code>ULyraInventoryItemInstance*</code></td>
+<td><code>UXenoBaseInventoryItemInstance*</code></td>
 <td>What is in the slot now; null when it was emptied</td>
 </tr>
 </tbody>
@@ -5536,7 +5506,7 @@ details.</p>
 </tr>
 <tr>
 <td><code>Items</code></td>
-<td><code>TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;</code></td>
+<td><code>TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;</code></td>
 <td>Items handed over</td>
 </tr>
 </tbody>
@@ -5592,7 +5562,7 @@ part of a running total and the items may already be spent.</p>
 </tr>
 <tr>
 <td><code>Offered</code></td>
-<td><code>TArray&lt;TSubclassOf&lt;ULyraInventoryItemDefinition&gt;&gt;</code></td>
+<td><code>TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;</code></td>
 <td>What the chest offers. Nothing is in the bag yet: the loot panel lets the player take or leave it.</td>
 </tr>
 </tbody>
@@ -5609,12 +5579,12 @@ part of a running total and the items may already be spent.</p>
 <tbody>
 <tr>
 <td><code>ItemDef</code></td>
-<td><code>TSubclassOf&lt;ULyraInventoryItemDefinition&gt;</code></td>
+<td><code>TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;</code></td>
 <td>What was picked up. Never null: a refused pickup sends nothing.</td>
 </tr>
 <tr>
 <td><code>Instance</code></td>
-<td><code>ULyraInventoryItemInstance*</code></td>
+<td><code>UXenoBaseInventoryItemInstance*</code></td>
 <td>The instance that entered the bag</td>
 </tr>
 <tr>

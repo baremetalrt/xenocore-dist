@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4772,8 +4742,8 @@
 <h1 id="bake-a-portrait">Bake a portrait<a class="headerlink" href="#bake-a-portrait" title="Permanent link">&para;</a></h1>
 <p><em>Designer · 30 min · No code</em></p>
 <p><strong>Result:</strong> a party member has a portrait of their own, cut out on a transparent background. It
-shows on their HUD plate, on the Party screen and in the equipment screen's character strip. A
-second, full-body <strong>menu portrait</strong> fills their card on the main menu.</p>
+shows on their HUD plate, on the Party screen, in the equipment screen's character strip and on
+their main-menu card. Optionally, a second, full-body <strong>menu portrait</strong> can fill that card instead.</p>
 <!-- SCREENSHOT: the HUD plate with the new portrait beside a sample one -->
 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
@@ -4823,7 +4793,7 @@ tools.</p>
 <li>Create an empty level (<strong>File › New Level › Empty Level</strong>) with one directional light and a
    <strong>Sky Light</strong>. Save it in a scratch folder of your own, such as <code>MyGame/WorkLevels</code>: it is a
    work level, not game content.</li>
-<li>Drag your pawn Blueprint into the level, or for a VRoid member drag its skeletal mesh.</li>
+<li>Drag your pawn Blueprint into the level, or drag its skeletal mesh.</li>
 <li>Select its mesh component. Set <strong>Animation Mode</strong> to <strong>Use Animation Asset</strong> and pick an idle,
    for example <code>MM_Unarmed_Idle_Ready</code> from Lyra's Mannequin animations (or the <code>MF_</code> version for
    a feminine character), so it is not in a T-pose.</li>
@@ -4873,8 +4843,8 @@ member definition); left empty, the card falls back to <strong>Portrait</strong>
 <li>Import it with <strong>Texture Group</strong> <strong>UI</strong>, <strong>Compression Settings</strong> <strong>BC7</strong> (it is much larger than a
    HUD portrait), <strong>Mip Gen Settings</strong> <strong>SimpleAverage</strong> and <strong>Filter</strong> <strong>Trilinear</strong>.</li>
 <li>On the member definition, under <strong>XenoCore › Party</strong>, set <strong>Menu Portrait</strong> to it. <strong>Save</strong>. The
-   samples are <code>Characters/VRoid/&lt;Name&gt;/T_XenoCore_MenuPortrait_VRoid_*</code>, for example
-   <code>Characters/VRoid/Kael/T_XenoCore_MenuPortrait_VRoid_L</code>.</li>
+   sample members' menu portraits, <code>T_XenoCore_MenuPortrait_*</code> in <code>Characters/Party/Portraits</code>, show
+   the framing and import settings.</li>
 </ol>
 <p>The HUD samples are in <code>Characters/Party/Portraits</code>, for example <code>T_XenoCore_Portrait_Blue</code>: open one
 to compare your import settings.</p>
@@ -4882,7 +4852,7 @@ to compare your import settings.</p>
 <ol>
 <li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong> with the character in the active party.</li>
 <li>Their HUD plate shows the new portrait, cut out cleanly against the plate.</li>
-<li>Open the menu: the character's card shows the menu portrait. Check the <strong>Party</strong> screen and the
+<li>Open the menu: the character's card shows the portrait (or the menu portrait, if you made one). Check the <strong>Party</strong> screen and the
    equipment screen's character strip too.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>

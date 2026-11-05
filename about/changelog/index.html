@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4440,6 +4410,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#130-2026-11-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.0 (2026-11-03)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#122-2026-11-02" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4598,6 +4579,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#130-2026-11-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.0 (2026-11-03)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#122-2026-11-02" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4699,6 +4691,55 @@ re-check; a <strong>minor</strong> release adds features; a <strong>patch</stron
 <a href="../../reference/compatibility/#upgrading">Compatibility</a> for how to take an update.</p>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
 <p>Changes merged since the last release; they ship in the next version.</p>
+<h2 id="130-2026-11-03">1.3.0 (2026-11-03)<a class="headerlink" href="#130-2026-11-03" title="Permanent link">&para;</a></h2>
+<p>A content and setup release for Fab's review. Content of yours that pointed at a VRoid character must be repointed at
+the member that replaces it, below.</p>
+<ul>
+<li><strong>Changed:</strong> the sample party is now the UE5 Mannequin in seven colours, each with its character's name, stats, Arts,
+  skills, voice and animations: Kael (<code>Characters/Party/PartyMember_Blue</code>, pawn <code>Game/B_XenoCore_Player</code>), Mira
+  (<code>PartyMember_Maroon</code>), Nia (<code>PartyMember_Cyan</code>), Dorran (<code>PartyMember_Lime</code>), Isolde (<code>PartyMember_Purple</code>), Sabine
+  (<code>PartyMember_Yellow</code>) and Tamsin (<code>PartyMember_Pink</code>). New Game still starts with Kael and Mira, and the other five
+  are still recruited on Gaur Plain, where their NPCs now wear the same bodies.</li>
+<li><strong>Removed:</strong> the VRoid characters (<code>Characters/VRoid</code>) and their full-body main-menu portraits. Each Mannequin member
+  has its own full-body main-menu portrait instead (<code>Characters/Party/Portraits/T_XenoCore_MenuPortrait_*</code>).</li>
+<li><strong>Removed:</strong> the VRM4U dependency. XenoCore needs no third-party plugin; you can remove VRM4U from your project if
+  nothing else of yours uses it, and a Lyra project no longer needs its <code>LyraEditor.Target.cs</code> change.</li>
+<li><strong>Removed:</strong> unused content: the spare colour members (Black, Orange, White, Manny, Quinn) with their pawn data and
+  portraits, the Blue Sword, the Iron Blade, the <code>GE_XenoCore_BaseStats_Party_*</code> and <code>GE_XenoCore_BaseStats_Shulk</code>
+  stats effects, and the <code>B_XenoCore_Player_XC1_Backup</code> pawn.</li>
+<li><strong>Changed:</strong> face expressions and lip sync (<code>XenoCoreFaceAnimInstance</code>, <code>DT_XenoCore_FaceExpressions</code>) remain for
+  characters you give a face rig, but no sample character has a face, so the sample shows none.</li>
+<li><strong>Changed:</strong> XenoCore now runs in a project nobody has set up. At startup it applies the settings for its Lyra code in
+  memory wherever the project still has the engine's defaults, and writes no file. <strong>Tools &gt; XenoCore &gt; Apply XenoCore
+  Project Settings</strong> still writes them into your <code>Config/Default*.ini</code> files, and is still needed to package.</li>
+<li><strong>Fixed:</strong> a packaged game made without Project Settings no longer leaves out assets that only a XenoCore setting or
+  C++ default names (the dialogue camera, the gem popup and its icons, the tutorial cards, the EXP tick sound). XenoCore
+  adds them to every cook itself.</li>
+<li><strong>Fixed:</strong> a packaged game no longer halts on boot with <em>"breaking Disregard for GC assumptions"</em> over CommonInput's
+  controller data.</li>
+<li><strong>Fixed:</strong> a packaged game made without Project Settings now ships the intro movie; XenoCore stages it itself.</li>
+<li><strong>Fixed:</strong> without Project Settings applied, the Equipment screen showed no character. The preview needs
+  <code>r.PostProcessing.PropagateAlpha</code>, which XenoCore now turns on at startup unless your project sets it.</li>
+<li><strong>Fixed:</strong> without Project Settings applied, gameplay input stayed live under menus (A both confirmed and jumped), and
+  Quit to Title opened the engine's empty OpenWorld map. Both now work in a project nobody has set up; a project that
+  set its own default map keeps it.</li>
+<li><strong>Fixed:</strong> Gaur Plain no longer carries an editor-only water brush manager (none of its lakes shapes the landscape),
+  which logged load errors when the map ran outside the editor without cooking.</li>
+<li><strong>Fixed:</strong> the main menu's Blueprint compiled with 9 warnings from an animation that targeted widgets no longer in it.</li>
+<li><strong>Fixed:</strong> installed anywhere other than <code>Plugins/GameFeatures</code> (a Fab install, or a project's own <code>Plugins</code> folder),
+  XenoCore never registered as a game feature, so maps loaded no experience and the editor could crash on Play. It now
+  registers itself wherever it is installed.</li>
+<li><strong>Fixed:</strong> Gaur Plain could not load its world settings in a project without Lyra, and played with no party.</li>
+<li><strong>Fixed:</strong> the boot sequence's Unreal Engine movie was only found when the plugin sat in <code>Plugins/GameFeatures</code>.</li>
+<li><strong>Fixed:</strong> a missing experience or gameplay cue manager logs an error instead of stopping the editor.</li>
+<li><strong>Fixed:</strong> warnings when the plugin loads in a project without Lyra: an unregistered <code>HUD.Slot.PerfStats.Text</code> tag,
+  an editor-only Lyra node in the mobile touch button, and 28 out-of-date Mannequin rig poses.</li>
+<li><strong>Changed:</strong> the plugin's Game Feature Data moved from the top of XenoCore Content to <code>System/XenoCore</code>
+  (<code>Config/Settings.ini</code> tells the engine where it is). If you edited it, make the same change on the asset in its new
+  place.</li>
+<li><strong>Changed:</strong> the manual's <a href="../../reference/compatibility/#code-modules">Compatibility</a> page lists XenoCore's code
+  modules and every engine plugin it enables, marked Beta or Experimental where the engine marks them so.</li>
+</ul>
 <h2 id="122-2026-11-02">1.2.2 (2026-11-02)<a class="headerlink" href="#122-2026-11-02" title="Permanent link">&para;</a></h2>
 <p>A content release for Fab's review. Saves still load, but anything of yours that pointed at a removed asset must be
 repointed.</p>

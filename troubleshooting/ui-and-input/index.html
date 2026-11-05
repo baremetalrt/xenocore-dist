@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -5206,8 +5176,10 @@ under menus.</p>
 <p>Separately, when a menu closes while its confirm button is still held, gameplay input comes back
 and can read the held button as a fresh press.</p>
 <p><strong>Fix:</strong> leave <strong>Use Project Default Query</strong> on for gameplay contexts. If gameplay input works under
-<strong>every</strong> menu, the project's default query was never set: run <strong>Tools › XenoCore › Apply XenoCore
-Project Settings</strong>, which writes it to <code>Config/DefaultInput.ini</code>. For the close, add a short
+<strong>every</strong> menu, the project's default query is not XenoCore's: XenoCore applies it in memory only
+while the project still has the engine's default, so a query your project sets wins. Run <strong>Tools ›
+XenoCore › Apply XenoCore Project Settings</strong>, which writes it to <code>Config/DefaultInput.ini</code>, and check
+the Output Log (<code>LogXenoSetup</code>) for a conflict on that line. For the close, add a short
 delay before re-enabling anything the confirm button also triggers, or block the ability with a
 state tag until the menu has faded.</p>
 <div class="admonition warning">
@@ -5219,9 +5191,11 @@ widget that sets Menu mode filters out the gameplay contexts, including its own 
 <h3 id="enter-doesnt-press-menu-buttons-on-keyboard">Enter doesn't press menu buttons on keyboard<a class="headerlink" href="#enter-doesnt-press-menu-buttons-on-keyboard" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> CommonUI's <strong>Common Button Accept Key Handling</strong> is not <code>TriggerClick</code> in the project
 you are running. XenoCore's project setup writes it to the project's <code>Config/DefaultGame.ini</code>
-(<code>[/Script/CommonUI.CommonUISettings]</code>, <code>CommonButtonAcceptKeyHandling=TriggerClick</code>). If the setup
-was never applied, or the project already had its own value (setup never overwrites one), the engine's
-older default applies, where buttons ignore the Enter key. Arrow keys still move focus. Gamepad and
+(<code>[/Script/CommonUI.CommonUISettings]</code>, <code>CommonButtonAcceptKeyHandling=TriggerClick</code>). In a project
+without Lyra, XenoCore also applies it in memory at startup while the project has the engine's
+default. If neither happened (for example in a Lyra project where the setup was never applied), or
+the project already had its own value (setup never overwrites one), the engine's older default
+applies, where buttons ignore the Enter key. Arrow keys still move focus. Gamepad and
 mouse work.</p>
 <p><strong>Fix:</strong> run <strong>Tools › XenoCore › Apply XenoCore Project Settings</strong> (see
 <a href="../../getting-started/install/#4-apply-the-project-settings">Install</a>) and check the Output Log

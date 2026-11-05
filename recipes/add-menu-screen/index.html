@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4808,7 +4778,7 @@ cannot move or jump while it is open.</p>
 <p>XenoCore's menus use Epic's <strong>CommonUI</strong> through Lyra:</p>
 <ul>
 <li>A screen is an <strong>activatable widget</strong>: a widget that knows when it is on top, where focus goes,
-  and whether it handles <strong>Back</strong>. Blueprint screens derive from Lyra's <code>LyraActivatableWidget</code>.</li>
+  and whether it handles <strong>Back</strong>. Blueprint screens derive from <code>XenoBaseActivatableWidget</code> (Lyra's activatable widget).</li>
 <li>Screens are pushed onto a <strong>layer</strong>, a stack of screens. Menus go on the layer tagged
   <code>UI.Layer.Menu</code> (a <a href="../../getting-started/glossary/">gameplay tag</a>). Only the top screen of a layer is shown, and <strong>Back</strong> pops it off to reveal the
   one underneath.</li>
@@ -4827,7 +4797,7 @@ cannot move or jump while it is open.</p>
 <h3 id="1-create-the-screen">1. Create the screen<a class="headerlink" href="#1-create-the-screen" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In <code>MyGame/UI</code>, right-click and choose <strong>User Interface › Widget Blueprint</strong>. Pick
-   <code>LyraActivatableWidget</code> as the parent class. Name it <code>W_Bestiary</code>.</li>
+   <code>XenoBaseActivatableWidget</code> as the parent class. Name it <code>W_Bestiary</code>.</li>
 <li>Open it. In the <strong>Designer</strong>, build the layout: a background, a title, and a vertical box of
    buttons or a list. Use <code>W_XenoCore_MenuButton</code> or <code>W_XenoCore_TabButton</code> from
    <code>UserInterface/Foundation</code> so it matches the rest of the menus.</li>

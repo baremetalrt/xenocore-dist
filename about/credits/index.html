@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -747,8 +747,6 @@
       
         
       
-        
-      
     
     
     
@@ -818,34 +816,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4625,8 +4595,8 @@
 
 <h1 id="credits-and-licences">Credits and licences<a class="headerlink" href="#credits-and-licences" title="Permanent link">&para;</a></h1>
 <p><em>All · reference · No code</em></p>
-<p>XenoCore is by Brian Habana. It is an independent project, not affiliated with, endorsed by or
-sponsored by Nintendo, Monolith Soft, Epic Games, NVIDIA, pixiv or Adobe. Product and company names
+<p>XenoCore is by BareMetalRT. It is an independent project, not affiliated with, endorsed by or
+sponsored by Nintendo, Monolith Soft, Epic Games, NVIDIA or Adobe. Product and company names
 on this page are trademarks of their owners.</p>
 <p>The same information ships inside the plugin as <code>THIRD_PARTY_NOTICES.md</code>.</p>
 <h2 id="xenocores-own-work">XenoCore's own work<a class="headerlink" href="#xenocores-own-work" title="Permanent link">&para;</a></h2>
@@ -4646,6 +4616,16 @@ or inside another asset pack. Shipping them inside your game is fine.</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Lyra Starter Game C++: the parts XenoCore uses, renamed <code>XenoBase</code> / <code>XenoKit</code> so they never clash with a Lyra project's own. Each file keeps Epic's copyright notice</td>
+<td><code>Source/ThirdParty/XenoCoreBase</code> (plugin folder)</td>
+<td>Epic Games, <em>Lyra Starter Game</em> 5.8, under the Unreal Engine EULA</td>
+</tr>
+<tr>
+<td>Lyra Starter Game content: the UE5 Mannequin bodies and animations, input data, UI widgets and fonts, sounds, effects and gameplay effects XenoCore uses</td>
+<td><code>Imported/Lyra</code></td>
+<td>Epic Games, <em>Lyra Starter Game</em> 5.8, under the Unreal Engine EULA</td>
+</tr>
 <tr>
 <td>Cliff and boulder scans, tileable cliff rock texture</td>
 <td><code>Environment/Kit</code></td>
@@ -4667,23 +4647,14 @@ or inside another asset pack. Shipping them inside your game is fine.</p>
 <td>Derived from Epic Games' <em>Paragon</em> assets, including clips retargeted to the UE5 Mannequin</td>
 </tr>
 <tr>
-<td>Gesture and reaction clips</td>
-<td><code>Characters/Player/Animations/Gestures</code>, <code>.../Mixamo</code>, <code>.../Reactions</code></td>
+<td>Reaction clips (duck, dodge, get-up and similar)</td>
+<td><code>Characters/Player/Animations/Mixamo</code>, <code>.../Reactions</code></td>
 <td>Adobe Mixamo, retargeted to the UE5 Mannequin</td>
-</tr>
-<tr>
-<td>The seven sample party characters, and portraits rendered from them</td>
-<td><code>Characters/VRoid</code></td>
-<td>pixiv VRoid sample models, edited for XenoCore</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition warning">
-<p class="admonition-title">VRoid sample models</p>
-<p>pixiv's sample models may not be redistributed for a fee unedited. The seven XenoCore characters
-ship edited. If you make your own characters from a VRoid sample, edit them too; see
-<a href="../../recipes/add-vroid-party-member/">Add a VRoid party member</a>.</p>
-</div>
+<p>The seven sample party members are the UE5 Mannequin (<code>SKM_Manny</code>, <code>SKM_Quinn</code>, from Lyra) in
+XenoCore's own colour materials; their portraits are rendered from those bodies.</p>
 <h2 id="night-sky">Night sky<a class="headerlink" href="#night-sky" title="Permanent link">&para;</a></h2>
 <p>The night sky textures in <code>World/Sky</code> come from Unreal Engine's CelestialVault plugin:</p>
 <ul>
@@ -4708,10 +4679,6 @@ to replace them.</p>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><strong>VRM4U</strong> (required)</td>
-<td>By ruyo, MIT licence, <a href="https://github.com/ruyo/VRM4U">github.com/ruyo/VRM4U</a>. Download it separately; its licence and its bundled third-party licences come with it.</td>
-</tr>
 <tr>
 <td><strong>NVIDIA DLSS</strong> (optional)</td>
 <td>NVIDIA's own plugin, under NVIDIA's licence. See <a href="../../recipes/nvidia-dlss/">Turn on NVIDIA DLSS</a>.</td>

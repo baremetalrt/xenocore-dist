@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4723,7 +4693,7 @@ Party and Equipment screens.</p>
 </tr>
 <tr>
 <td>Health</td>
-<td>Lyra's <code>ULyraHealthSet</code>, created with the pawn's ability system</td>
+<td><code>UXenoBaseHealthSet</code> (Lyra's health set), created with the pawn's ability system</td>
 <td>Health, Max Health.</td>
 </tr>
 <tr>
@@ -4734,7 +4704,7 @@ Party and Equipment screens.</p>
 <tr>
 <td>Party curves</td>
 <td><code>Battle/Attributes/CT_XenoCore_PartyStatlines</code></td>
-<td>Each character's own rows, such as <code>Kael.Strength</code>, one curve per stat, X = level. Each follows the XC1 character whose skill tree it uses. <code>CT_XenoCore_BaseStats</code> holds the older shared <code>Shulk.*</code> rows the colour mannequins still read.</td>
+<td>Each character's own rows, such as <code>Kael.Strength</code>, one curve per stat, X = level. Each follows the XC1 character whose skill tree it uses.</td>
 </tr>
 <tr>
 <td>Enemy curves</td>
@@ -4965,7 +4935,7 @@ once under <code>LogXenoDamage</code>.</p>
 <tbody>
 <tr>
 <td>Base stat curves</td>
-<td><code>CT_XenoCore_BaseStats</code>, <code>CT_XenoCore_EnemyStats</code></td>
+<td><code>CT_XenoCore_PartyStatlines</code>, <code>CT_XenoCore_EnemyStats</code></td>
 <td>Stat value at each level.</td>
 </tr>
 <tr>

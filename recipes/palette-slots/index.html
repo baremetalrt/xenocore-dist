@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4800,9 +4770,9 @@ placed). The row name is free text; only the columns matter, and rows are read s
 <strong>Unlock Level</strong>, so their order does not matter either. The shipped tables are in
 <code>Characters/Party/Learnsets/</code>: <code>DT_XenoCore_ArtLearnset_Default</code> on
 <code>Characters/Party/B_XenoCore_PartyMember_Base</code>, and one per sample character: <code>_Kael</code>, <code>_Mira</code>,
-<code>_Nia</code>, <code>_Dorran</code>, <code>_Isolde</code>, <code>_Sabine</code> and <code>_Tamsin</code>. Each VRoid member's pawn
-(<code>Characters/VRoid/&lt;Name&gt;/B_XenoCore_Party_VRoid_*</code>) points at its own table, and so does the
-matching colour-variant pawn. Kael's, for example, adds Stream Edge and War Swing to the Back
+<code>_Nia</code>, <code>_Dorran</code>, <code>_Isolde</code>, <code>_Sabine</code> and <code>_Tamsin</code>. Each sample member's pawn
+(<code>Characters/Party/B_XenoCore_Party_&lt;Colour&gt;</code>, and <code>Game/B_XenoCore_Player</code> for Kael) points at its
+own table. Kael's, for example, adds Stream Edge and War Swing to the Back
 Slash / Light Heal / Air Slash start; Isolde, Sabine and Tamsin have their own Arts entirely.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-choose-the-slot-ladder">1. Choose the slot ladder<a class="headerlink" href="#1-choose-the-slot-ladder" title="Permanent link">&para;</a></h3>

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4961,7 +4931,7 @@ gets it. The other action simply stops working. Nothing warns.</p>
 <h3 id="5-create-the-ability">5. Create the ability<a class="headerlink" href="#5-create-the-ability" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In <code>MyGame/Abilities</code>, right-click and choose <strong>Blueprint Class</strong>. Under <strong>All Classes</strong>, pick
-   <code>LyraGameplayAbility</code>. Name it <code>GA_MyGame_Whistle</code>.</li>
+   <code>XenoBaseGameplayAbility</code>. Name it <code>GA_MyGame_Whistle</code>.</li>
 <li>Open it and click <strong>Class Defaults</strong>:<ul>
 <li><strong>Lyra › Ability Activation › Activation Policy</strong>: <strong>On Input Triggered</strong>.</li>
 <li><strong>Tags › AssetTags (Default AbilityTags)</strong>: add a tag such as <code>Ability.MyGame.Whistle</code>. Tag relationship rows (for
@@ -4994,8 +4964,7 @@ must not have it at all.</p>
 </div>
 <p><code>AbilitySet_XenoCore_Input</code> is a shipped asset; note your row for template updates. To keep it in
 your own content, make your own ability set and add it to the <strong>Ability Sets</strong> of each pawn data
-you use: <code>Characters/VRoid/PawnData_XenoCore_Party_VRoid</code> (shared by all seven VRoid members),
-<code>Game/PawnData_XenoCore_Player</code> and each <code>Characters/Party/PawnData_XenoCore_Party_*</code>.</p>
+you use: <code>Game/PawnData_XenoCore_Player</code> (Kael) and each <code>Characters/Party/PawnData_XenoCore_Party_*</code>.</p>
 <h3 id="7-add-the-glyph-row">7. Add the glyph row<a class="headerlink" href="#7-add-the-glyph-row" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open <code>UserInterface/Foundation/DT_XenoCore_Actions</code> and add a row named <code>Whistle</code>.</li>
@@ -5021,8 +4990,8 @@ key, and nothing is logged. To add one, add a texture and a row to that data ass
 <ol>
 <li>In <code>MyGame/UI</code>, right-click and choose <strong>User Interface › Widget Blueprint</strong> (parent
    <strong>User Widget</strong>). Name it <code>W_MyGame_WhistlePrompt</code>.</li>
-<li>In the <strong>Palette</strong>, find Lyra's <code>InputActionWidget</code> (it lives in the project's
-   <code>Content/UI/Foundation/Widgets</code>) and drag it into a <strong>Horizontal Box</strong>, with a <strong>Text</strong> label
+<li>In the <strong>Palette</strong>, find Lyra's <code>InputActionWidget</code> (XenoCore carries it as
+   <code>Imported/Lyra/UI/Foundation/Widgets/InputActionWidget</code>) and drag it into a <strong>Horizontal Box</strong>, with a <strong>Text</strong> label
    beside it.</li>
 <li>In its <strong>Details</strong>, set <strong>Input Actions</strong> to one entry: table <code>DT_XenoCore_Actions</code>, row
    <code>Whistle</code>.</li>

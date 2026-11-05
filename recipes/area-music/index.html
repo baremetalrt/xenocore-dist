@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -2308,10 +2278,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-put-the-tracks-on-lyras-music-sound-class" class="md-nav__link">
+  <a href="#1-put-the-tracks-on-the-music-sound-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Put the tracks on Lyra's Music sound class
+        1. Put the tracks on the Music sound class
       
     </span>
   </a>
@@ -4660,10 +4630,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-put-the-tracks-on-lyras-music-sound-class" class="md-nav__link">
+  <a href="#1-put-the-tracks-on-the-music-sound-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Put the tracks on Lyra's Music sound class
+        1. Put the tracks on the Music sound class
       
     </span>
   </a>
@@ -4830,17 +4800,17 @@ nearby is fighting the party. See <a href="../../concepts/party/">Party</a>. The
 <p>Both tracks play as UI sounds: the music carries on under the pause and party menus, which pause
 the world.</p>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
-<h3 id="1-put-the-tracks-on-lyras-music-sound-class">1. Put the tracks on Lyra's Music sound class<a class="headerlink" href="#1-put-the-tracks-on-lyras-music-sound-class" title="Permanent link">&para;</a></h3>
+<h3 id="1-put-the-tracks-on-the-music-sound-class">1. Put the tracks on the Music sound class<a class="headerlink" href="#1-put-the-tracks-on-the-music-sound-class" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open each Sound Wave in the Content Browser.</li>
-<li>Under <strong>Sound</strong>, set <strong>Class</strong> to Lyra's <code>Audio/Classes/Music</code>.</li>
+<li>Under <strong>Sound</strong>, set <strong>Class</strong> to <code>Imported/Lyra/Audio/Classes/Music</code> (in <strong>XenoCore Content</strong>).</li>
 <li>Tick <strong>Looping</strong> if the track is not already set to loop.</li>
 <li><strong>Save</strong>.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a track on the wrong sound class ignores the Music slider</p>
 <p>A track left on the default sound class plays at full volume whatever the player sets
-<strong>Music</strong> to in the options. Nothing warns. Put every music track on <code>Audio/Classes/Music</code>.</p>
+<strong>Music</strong> to in the options. Nothing warns. Put every music track on <code>Imported/Lyra/Audio/Classes/Music</code>.</p>
 </div>
 <h3 id="2-place-the-actor">2. Place the actor<a class="headerlink" href="#2-place-the-actor" title="Permanent link">&para;</a></h3>
 <ol>
@@ -5016,7 +4986,7 @@ is set, check that the party really enters battle: lock on and draw, or let an e
 </div>
 <div class="admonition warning">
 <p class="admonition-title">The Music slider does nothing</p>
-<p>The tracks are not on <code>Audio/Classes/Music</code>. See step 1.</p>
+<p>The tracks are not on <code>Imported/Lyra/Audio/Classes/Music</code>. See step 1.</p>
 </div>
 <p>More in <a href="../../troubleshooting/world-and-maps/#a-map-plays-no-music-or-the-music-stops-as-you-walk">World and maps troubleshooting</a>.</p>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>

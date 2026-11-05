@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4811,7 +4781,7 @@ under it until the new one closes.</p>
 <h3 id="the-hud">The HUD<a class="headerlink" href="#the-hud" title="Permanent link">&para;</a></h3>
 <p><code>Experiences/LAS_XenoCore_HUD</code>, an action set used by <code>B_XenoCore_Experience</code>, adds:</p>
 <ul>
-<li><code>W_XenoCore_HUDLayout</code> to <code>UI.Layer.Game</code>. It derives from Lyra's <code>LyraHUDLayout</code> and places the
+<li><code>W_XenoCore_HUDLayout</code> to <code>UI.Layer.Game</code>. It derives from <code>XenoBaseHUDLayout</code> (Lyra's HUD layout) and places the
   party member plates, the item pickup badges, the quest tracker, the quest reward banner, the
   level-up banner, the party join banner and the autosave badge.</li>
 <li><code>B_XenoCore_NumberPopComponent</code> to the player controller, for damage numbers.</li>
@@ -4922,16 +4892,16 @@ and focuses the first. It rebuilds every time the menu opens, which is what re-a
 <ul>
 <li><strong>Party cards.</strong> One full-height card per active party member (up to seven), in party order with
   the leader first. The row is divided into <strong>Card Slots</strong> (7) equal slots, so a full party fills the
-  screen and a smaller one keeps the same card width. A card shows the slot number, "Leader" on the first, the member's full-body
-  portrait, the skill tree they are learning, their name, a divider, then Lv and HP. The cards come
+  screen and a smaller one keeps the same card width. A card shows the slot number, "Leader" on the first, the member's portrait, the skill tree they are learning, their name, a divider, then Lv and HP. The cards come
   from <strong>Card Class</strong> on the shell's Class Defaults; the default, <code>XenoCorePartyCardBase</code>, builds its
   own look. To restyle it, make a Widget Blueprint child of <code>XenoCorePartyCardBase</code> and name its
   parts <code>PortraitImage</code>, <code>SlotText</code>, <code>LeaderText</code>, <code>BranchText</code>, <code>NameText</code>, <code>LevelValueText</code> and
   <code>HealthValueText</code>. A part you leave out is not drawn.</li>
-<li><strong>Portraits.</strong> The card draws the member definition's <strong>Menu Portrait</strong>, a full-body texture, and
-  falls back to <strong>Portrait</strong> (the HUD bust) when it is empty. The seven sample members ship with
-  one each. The card shows the top of it, from the crown down, filling the card's height:
-  <strong>Portrait Crop</strong> on the card class (0.55, crown to hips) sets how much; 1.0 shows the whole body.</li>
+<li><strong>Portraits.</strong> The card draws the member definition's <strong>Menu Portrait</strong> when one is set, and
+  <strong>Portrait</strong> (the HUD bust) otherwise. Each sample member sets one
+  (<code>Characters/Party/Portraits/T_XenoCore_MenuPortrait_*</code>). A <strong>Menu Portrait</strong> is meant to be a full-body picture: the card shows the top of
+  it, from the crown down, filling the card's height; <strong>Portrait Crop</strong> on the card class (0.55,
+  crown to hips) sets how much, and 1.0 shows the whole image.</li>
 <li><strong>Entries</strong> are <code>XenoCoreMenuEntryButton</code> rows, styled like the Party Tactics list. Change
   <strong>Menu Button Class</strong> in the settings to use your own button. Cards, entries and the shell share
   the tactics panel's colours (navy panel, blue rim, Orbitron), so the menu matches the HUD.</li>
@@ -5237,7 +5207,7 @@ nothing changes until you edit one.</p>
 <td>HUD</td>
 <td><strong>Keyboard Key Icons</strong></td>
 <td>Lyra's keyboard controller data</td>
-<td><code>Input/CommonInput_XenoCore_Keyboard</code></td>
+<td><code>UserInterface/Input/CommonInput_XenoCore_Keyboard</code></td>
 </tr>
 <tr>
 <td>Items</td>

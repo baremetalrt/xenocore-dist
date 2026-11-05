@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4708,7 +4678,7 @@
 <p><strong>Result:</strong> one companion (an <a href="../../getting-started/glossary/">active member</a> the AI drives) fidgets with its own clips and has its own temperament at rest: a cheerful
 brawler laughs when it turns to a friend, a deadpan lookout looks bored. Every other character keeps
 its own. You edit one asset per character, and the face table if you want a new expression.</p>
-<!-- SCREENSHOT: DA_XenoCore_AnimProfile_VRoid_L open, Idle and Face categories expanded -->
+<!-- SCREENSHOT: DA_XenoCore_AnimProfile_Blue open, Idle and Face categories expanded -->
 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4716,11 +4686,12 @@ its own. You edit one asset per character, and the face table if you want a new 
   resting companion strolls, turns to a friend or pulls a face. This recipe only changes <strong>which</strong>
   clip and <strong>which</strong> face.</li>
 <li>The character needs an <strong>anim profile</strong>: the data asset set as <strong>Anim Profile</strong> in its pawn
-  Blueprint's <strong>Class Defaults</strong> (<strong>XenoCore › Animation</strong>). Every shipped VRoid member has one beside
-  its pawn, for example <code>Characters/VRoid/Kael/DA_XenoCore_AnimProfile_VRoid_L</code>. For anyone else,
+  Blueprint's <strong>Class Defaults</strong> (<strong>XenoCore › Animation</strong>). Every sample member has one in
+  <code>Characters/Party/AnimProfiles</code>, for example Kael's <code>DA_XenoCore_AnimProfile_Blue</code>. For anyone else,
   make one as in <a href="../character-combat-animations/">Give a character its own combat animations</a>, step 1.</li>
-<li>Faces work only on a character with a face: a VRoid member. A Mannequin-bodied member still gets
-  its idle breaks, still turns to its friends and looks at them, but shows no expression.</li>
+<li>Faces work only on a character with a face rig (see <a href="../../concepts/animation/#faces">Animation</a>).
+  The sample members are UE5 Mannequins, which have none: they still get their idle breaks, still
+  turn to their friends and look at them, but show no expression.</li>
 <li>Idle-break clips are <strong>animation sequences</strong> (not montages) on the UE5 Mannequin skeleton
   (<code>SK_Mannequin</code>). <code>Characters/Core/Animations/IdleBreaks</code> ships nine you can use:
   <code>AS_XenoCore_IdleBreak_Browse</code>, <code>_GimmeBreak</code>, <code>_Greeting</code>, <code>_Impatient</code>, <code>_Poise</code>, <code>_Relaxed</code>,
@@ -4731,7 +4702,7 @@ its own. You edit one asset per character, and the face table if you want a new 
 <h3 id="1-give-the-character-its-own-idle-breaks">1. Give the character its own idle breaks<a class="headerlink" href="#1-give-the-character-its-own-idle-breaks" title="Permanent link">&para;</a></h3>
 <ol>
 <li>In the Content Browser, double-click the character's anim profile (for Kael,
-   <code>Characters/VRoid/Kael/DA_XenoCore_AnimProfile_VRoid_L</code>).</li>
+   <code>Characters/Party/AnimProfiles/DA_XenoCore_AnimProfile_Blue</code>).</li>
 <li>Under <strong>Idle</strong>, click <strong>+</strong> beside <strong>Idle Breaks</strong> and pick a clip. Repeat for each clip. These
    play while the weapon is <a href="../../getting-started/glossary/">sheathed</a>. Four is a good number: one is
    picked at random each time and never the same one twice running.</li>
@@ -4776,8 +4747,8 @@ playful (<code>Laugh</code>, <code>Happy</code>, <code>Wink</code>, <code>Giggle
    editor's toolbar. Rename the new row (right-click it &gt; <strong>Rename</strong>). Its name is what profiles,
    face rules and Blueprints ask for.</li>
 <li>In the row's <strong>Curves</strong>, click <strong>+</strong> once per face curve, type the curve name as the key and its
-   weight at full intensity as the value. Use the VRM
-   presets: <code>happy</code>, <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>, <code>aa</code>, <code>ih</code>, <code>ou</code>, <code>ee</code>, <code>oh</code>, <code>blink</code>,
+   weight at full intensity as the value. Use curve names your character's face rig has; the
+   shipped rows use these VRM-style names: <code>happy</code>, <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>, <code>aa</code>, <code>ih</code>, <code>ou</code>, <code>ee</code>, <code>oh</code>, <code>blink</code>,
    <code>blinkLeft</code>, <code>blinkRight</code>. Most expressions are a mix: the shipped <code>Annoyed</code> is <code>angry</code> 0.45 with
    <code>blink</code> 0.3, for narrowed eyes under a half frown.</li>
 <li>Tick <strong>Suppress Blink</strong> for an expression whose eyes are already shut or squeezed.</li>
@@ -4787,9 +4758,8 @@ playful (<code>Laugh</code>, <code>Happy</code>, <code>Wink</code>, <code>Giggle
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a curve the face does not have</p>
-<p>A curve name the VRoid model's face does not have shows nothing and logs nothing, exactly like a
-typo. The VRM presets above are known to reach the face. Check any row that uses a raw <code>Fcl_*</code>
-morph curve in Play before you rely on it.</p>
+<p>A curve name your character's face rig does not have shows nothing and logs nothing, exactly
+like a typo. Check every row in Play on your own character before you rely on it.</p>
 </div>
 <h3 id="4-optional-play-a-face-from-a-blueprint">4. (Optional) Play a face from a Blueprint<a class="headerlink" href="#4-optional-play-a-face-from-a-blueprint" title="Permanent link">&para;</a></h3>
 <p>Call <strong>Play Expression On Actor</strong> with the character (its pawn or its cosmetic part), a row name, a

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4795,7 +4765,7 @@
 <p><em>Designer · 20 min · No code · Last tested: 2026-09-30 (automated play test)</em></p>
 <p><strong>Result:</strong> one character topples, flinches, blocks, dodges, dies or celebrates a win with its own clips, while every
 other character keeps the shared ones. You edit one asset per character.</p>
-<!-- SCREENSHOT: DA_XenoCore_AnimProfile_VRoid_C open, a Topple row with Front filled in -->
+<!-- SCREENSHOT: DA_XenoCore_AnimProfile_Lime open, a Topple row with Front filled in -->
 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4864,12 +4834,11 @@ side the attacker is on. A profile <strong>Evade</strong> row still wins: a fill
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-find-or-make-the-characters-profile">1. Find or make the character's profile<a class="headerlink" href="#1-find-or-make-the-characters-profile" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>VRoid party members</strong> already have one each, beside their pawn:
-  <code>Characters/VRoid/Dorran/DA_XenoCore_AnimProfile_VRoid_C</code>, and the same for <code>_L</code> (Kael), <code>_K</code>
-  (Mira), <code>_S</code> (Nia), <code>_M</code> (Isolde), <code>_Q</code> (Sabine) and <code>_Y</code> (Tamsin). Each holds that character's
-  victory emote and idle breaks; its <strong>Reactions</strong> list is empty, so every reaction uses the shared
-  clips until you add a row. The Mannequin colour samples have theirs in
-  <code>Characters/Party/AnimProfiles</code>.</li>
+<li><strong>The sample party members</strong> already have one each, in <code>Characters/Party/AnimProfiles</code>:
+  <code>DA_XenoCore_AnimProfile_Lime</code> for Dorran, and <code>_Blue</code> (Kael), <code>_Maroon</code> (Mira), <code>_Cyan</code> (Nia),
+  <code>_Purple</code> (Isolde), <code>_Yellow</code> (Sabine) and <code>_Pink</code> (Tamsin). Each holds that character's victory
+  emote and idle breaks; its <strong>Reactions</strong> list is empty, so every reaction uses the shared clips
+  until you add a row.</li>
 <li><strong>Anyone else:</strong> in your folder, right-click › <strong>Data › Data Asset</strong>, pick
   <strong>Xeno Core Character Anim Profile</strong>, and name it <code>DA_MyGame_AnimProfile_&lt;Name&gt;</code>. Then open the
   character's pawn Blueprint, <strong>Class Defaults</strong>, and set <strong>XenoCore › Animation › Anim Profile</strong> to it.
@@ -4931,7 +4900,7 @@ stay armed and skip the emote.</p>
 <ul>
 <li><strong>Idle Breaks</strong> and <strong>Armed Idle Breaks</strong>: the fidgets played while standing still, sheathed and
   drawn. One is picked at random, never the same twice running. Empty uses the stance's own break.</li>
-<li><strong>Social Expressions</strong> and <strong>Solo Expressions</strong> (VRoid faces): the expressions a resting companion
+<li><strong>Social Expressions</strong> and <strong>Solo Expressions</strong> (only for a character with a face rig; see <a href="../../concepts/animation/#faces">Animation</a>): the expressions a resting companion
   pulls when it chats with another member, or on its own. Empty means a neutral face.</li>
 </ul>
 <h3 id="6-share-a-profile">6. Share a profile<a class="headerlink" href="#6-share-a-profile" title="Permanent link">&para;</a></h3>
@@ -4942,7 +4911,7 @@ and point every enemy Blueprint on it there.</p>
 <ol>
 <li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong> with the character in the party.</li>
 <li>Open the console (<code>`</code>) and type <code>XenoCore.Anim.Describe</code> (the leader), or
-   <code>XenoCore.Anim.Describe enemy</code>, or part of a pawn's name such as <code>XenoCore.Anim.Describe VRoid_C</code>.
+   <code>XenoCore.Anim.Describe enemy</code>, or part of a pawn's name such as <code>XenoCore.Anim.Describe Party_Lime</code>.
    The Output Log lists every reaction slot and where it comes from: <strong>PROFILE</strong> for yours,
    <strong>default</strong> for the shared clip.</li>
 <li><code>XenoCore.Anim.Play Topple front</code> plays the clip a front Topple would use, on the leader, without
@@ -4984,8 +4953,8 @@ fight starts. No <code>victory:</code> line at all means the game did not count 
 last enemy died while nobody in the party was armed, or another enemy was still fighting.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">A duplicated VRoid pawn shares the original's profile</p>
-<p>Duplicating <code>B_XenoCore_Party_VRoid_C</code>, or making a child of it, keeps its <strong>Anim Profile</strong>, so the new member and
+<p class="admonition-title">A duplicated sample pawn shares the original's profile</p>
+<p>Duplicating <code>B_XenoCore_Party_Lime</code>, or making a child of it, keeps its <strong>Anim Profile</strong>, so the new member and
 Dorran share one asset and editing one changes both. Duplicate the profile as well and point the
 new pawn at the copy.</p>
 </div>

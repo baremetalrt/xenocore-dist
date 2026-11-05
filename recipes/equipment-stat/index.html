@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4888,7 +4858,7 @@ comparison does not list it.</p>
 </div>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Open Kael's pawn, <code>Characters/VRoid/Kael/B_XenoCore_Party_VRoid_L</code>. In the <strong>Components</strong>
+<li>Open Kael's pawn, <code>Game/B_XenoCore_Player</code>. In the <strong>Components</strong>
    panel select the equipment component, then add your item to <strong>XenoCore › Equipment › Starting
    Inventory</strong>. <strong>Compile</strong> and <strong>Save</strong>.</li>
 <li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>. Open the main menu and look at Kael's stats.</li>
@@ -4926,7 +4896,7 @@ effect. <code>XenoCore.Stat.MaxHealth</code> already exists as a tag.</p>
 <ol>
 <li>Open <code>Inventory/GE_XenoCore_EquipmentStats</code>. Under <strong>Modifiers</strong>, add an entry. Copy the shape of
    an existing row:<ul>
-<li><strong>Attribute</strong>: <code>LyraHealthSet.MaxHealth</code></li>
+<li><strong>Attribute</strong>: <code>XenoBaseHealthSet.MaxHealth</code></li>
 <li><strong>Modifier Op</strong>: Add</li>
 <li><strong>Magnitude Calculation Type</strong>: Set By Caller</li>
 <li><strong>Data Tag</strong>: <code>XenoCore.Stat.MaxHealth</code></li>

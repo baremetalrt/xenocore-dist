@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -751,8 +751,6 @@
       
         
       
-        
-      
     
     
     
@@ -822,34 +820,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -4801,15 +4771,14 @@ moves their body to where the NPC stood. Then the NPC leaves.</p>
 To make the hand-over read, give the NPC the member's own body: the NPC plays one clip, <strong>Idle
 Animation</strong>, straight on its mesh, so the clip must be on that mesh's skeleton.</p>
 <ul>
-<li><strong>A VRoid member:</strong> select the NPC's inherited mesh component and set <strong>Skeletal Mesh Asset</strong> to
-  the member's <code>Characters/VRoid/&lt;Name&gt;/Mesh/SK_AvatarSample_&lt;X&gt;_Lit</code> (<code>&lt;X&gt;</code> is the letter in the
-  member's asset names, for example <code>L</code> for Kael). On the actor, set <strong>Idle
-  Animation</strong> to <code>Characters/VRoid/&lt;Name&gt;/Animation/AS_XenoCore_NpcIdle_&lt;X&gt;</code>, a standing idle already
-  retargeted to that skeleton for each of the seven sample members. Set <strong>Portrait</strong> to the member's
-  <code>Characters/VRoid/&lt;Name&gt;/T_XenoCore_Portrait_VRoid_&lt;X&gt;</code>. This is how the five Gaur Plain recruits are set up. For a VRoid
-  character of your own, retarget a standing idle onto its skeleton (right-click the idle,
-  <strong>Retarget Animations</strong>, using that character's IK Retargeter).</li>
-<li><strong>A Mannequin member:</strong> its mesh and colour materials, with Lyra's <code>MM_Unarmed_Idle_Ready</code>.</li>
+<li><strong>A Mannequin member:</strong> select the NPC's inherited mesh component and set <strong>Skeletal Mesh Asset</strong>
+  to the member's body (<code>SKM_Manny</code> or <code>SKM_Quinn</code>, in <code>Imported/Lyra/Characters/Heroes/Mannequin/Meshes</code>)
+  and its two colour materials from <code>Characters/Party/Materials</code> (for Nia, <code>MI_XenoCore_Quinn_01_Cyan</code>
+  and <code>MI_XenoCore_Quinn_02_Cyan</code>). On the actor, set <strong>Idle Animation</strong> to Lyra's <code>MM_Unarmed_Idle_Ready</code>
+  and <strong>Portrait</strong> to the member's <code>Characters/Party/Portraits/T_XenoCore_Portrait_&lt;Colour&gt;</code>. This is
+  how the five Gaur Plain recruits are set up.</li>
+<li><strong>A body on another skeleton:</strong> retarget a standing idle onto its skeleton (right-click the idle,
+  <strong>Retarget Animations</strong>, using that character's IK Retargeter) and use it as <strong>Idle Animation</strong>.</li>
 </ul>
 <h3 id="2-pick-who-joins">2. Pick who joins<a class="headerlink" href="#2-pick-who-joins" title="Permanent link">&para;</a></h3>
 <p>On the <strong>placed</strong> NPC, under <strong>XenoCore › NPC › Recruit</strong>:</p>

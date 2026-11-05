@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Lyra Game Feature plugin for Unreal Engine 5.8.">
+        <meta name="description" content="Party-based real-time RPG combat and menus, built as a Game Feature plugin for Unreal Engine 5.8, on Epic's Lyra; runs in a Blank or a Lyra project.">
       
       
       
@@ -749,8 +749,6 @@
       
         
       
-        
-      
     
     
     
@@ -820,34 +818,6 @@
     
   
     Add a party member
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../recipes/add-vroid-party-member/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a VRoid party member
   
 
     
@@ -5356,7 +5326,7 @@ Strength a level.</p>
 <summary>For programmers: a C++ enemy</summary>
 <p><code>AXenoCoreEnemyCharacter</code> and <code>AXenoCoreEnemyController</code> are exported, so your own module can
 subclass them. Enemies do not derive from <code>AXenoCoreCombatantCharacter</code> (the party's base);
-both derive from Lyra's <code>ALyraCharacterWithAbilities</code>. The pawn owns its own Ability System
+both derive from <code>AXenoBaseCharacterWithAbilities</code> (XenoCore's copy of Lyra's <code>ALyraCharacterWithAbilities</code>). The pawn owns its own Ability System
 Component and has no PlayerState.</p>
 </details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
@@ -5364,8 +5334,8 @@ Component and has no PlayerState.</p>
 <summary>For programmers</summary>
 <ul>
 <li><strong>No PlayerState.</strong> Lyra's PlayerState route would give every enemy the experience's default pawn
-  data (the player's kit), because the only per-pawn hook, <code>ALyraGameMode::GetPawnDataForController</code>,
-  is not virtual. Deriving from <code>ALyraCharacterWithAbilities</code> gives the pawn its own ASC. It is the
+  data (the player's kit), because the only per-pawn hook, <code>AXenoBaseGameMode::GetPawnDataForController</code>,
+  is not virtual. Deriving from <code>AXenoBaseCharacterWithAbilities</code> gives the pawn its own ASC. It is the
   same shape as Lyra's own <code>B_ShootingTarget</code>, and it lets enemies simply be placed in a level.</li>
 <li><strong>Two small C++ classes.</strong> The pawn exists to call <code>InitializeAbilitySystem</code>, which is not a
   <code>UFUNCTION</code>; without it the health component never initialises. The controller exists because
