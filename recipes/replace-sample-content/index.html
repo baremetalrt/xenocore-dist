@@ -4853,8 +4853,11 @@ gone, and the game still boots, starts a new game and plays with no missing refe
 <div class="admonition warning">
 <p class="admonition-title">Never move or rename these screens</p>
 <p>The shop, trade, arts, save, quest and loot screens, the dialogue anchor and several popups
-are found by a fixed path, not by a reference. Moved or renamed, they simply stop opening.
-Keep <code>UserInterface</code> and <code>Characters/NPC</code> where they are.</p>
+are named by settings in <strong>Project Settings › Game › XenoCore UI</strong> and <strong>XenoCore Content</strong>,
+not by a reference. A setting that no longer loads logs a warning and falls back to the
+shipped asset, so a moved or deleted shipped screen stops opening. Keep <code>UserInterface</code> and
+<code>Characters/NPC</code> where they are, and replace a screen through its setting instead
+(<a href="../restyle-menus/#5-replace-a-whole-screen">Restyle the menus</a>).</p>
 </div>
 <h3 id="sample-replace-or-delete">Sample: replace or delete<a class="headerlink" href="#sample-replace-or-delete" title="Permanent link">&para;</a></h3>
 <table>
@@ -4975,7 +4978,8 @@ TopDownArena and others). Whether to disable them is covered in
 </div>
 <div class="admonition warning">
 <p class="admonition-title">A menu screen never opens</p>
-<p>A screen found by fixed path was moved, renamed or deleted. Restore it from your backup.</p>
+<p>A screen named by a XenoCore UI setting was moved, renamed or deleted. The Output Log names
+the setting. Restore the asset from your backup, or point the setting at a valid screen.</p>
 </div>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>
 <ul>

@@ -4916,9 +4916,10 @@ Keep using <code>W_XenoCore_TabButton</code>.</p>
 </li>
 <li>Text blocks placed directly in screens also carry a font. In a screen, select a text block
    and set <strong>Font › Font Family</strong> in <strong>Details</strong>.</li>
-<li>Two screens are drawn in C++ and take their font from a <strong>Font Family</strong> class default instead:
-   the party tactics panel (<code>XenoCoreTacticsPanelBase</code>, <strong>Tactics › Text</strong>) and the Change Time
-   screen (<code>XenoCoreChangeTimeScreen</code>, <strong>Change Time › Text</strong>). Set it on a Blueprint child; the
+<li>Two screens are drawn in C++ and take their fonts from class defaults instead. The party
+   tactics panel (<code>XenoCoreTacticsPanelBase</code>) has one <strong>Font Family</strong> under <strong>Tactics › Text</strong>. The
+   Change Time screen (<code>XenoCoreChangeTimeScreen</code>) has <strong>Title Font</strong> and <strong>Time Font</strong> under
+   <strong>Change Time › Text</strong>, and <strong>Hour Font</strong> under <strong>Dial</strong>. Set them on a Blueprint child; the
    tactics panel's child goes in <strong>Tactics Panel Class</strong> (see <a href="../../concepts/party-tactics/">Party tactics</a>).</li>
 </ol>
 <p>The shipped menus use Lyra's <code>Orbitron</code> font, carried in <code>Imported/Lyra/UI/Foundation/Fonts/Orbitron</code>. Search the

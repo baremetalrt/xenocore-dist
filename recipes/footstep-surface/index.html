@@ -4817,7 +4817,7 @@ puff of snow, and the old grass and stone surfaces keep theirs.</p>
 </tr>
 </tbody>
 </table>
-<p>The character's <strong>Lyra Context Effect</strong> component traces the ground under the foot, reads its
+<p>The character's context effect component (<code>XenoBaseContextEffectComponent</code>) traces the ground under the foot, reads its
 physical material, turns the surface into a tag, and plays whatever the library lists for
 <em>that step tag + that surface tag</em>. The party pawns use <code>CFX_XenoCore</code>.</p>
 <p>Ground with no physical material resolves to <code>SurfaceType.Default</code>, which plays the concrete
@@ -4873,10 +4873,12 @@ field.</p>
 <h3 id="6-add-the-effect-rows">6. Add the effect rows<a class="headerlink" href="#6-add-the-effect-rows" title="Permanent link">&para;</a></h3>
 <p>Rather than editing XenoCore's library, give the characters a library of your own:</p>
 <ol>
-<li>In the Content Browser, open <code>MyGame/Audio</code>, right-click, and choose <strong>Data › Data
-   Asset</strong>. Pick the class <strong>Lyra Context Effects Library</strong> and name it <code>CFX_MyGame</code>.</li>
+<li>In <strong>Plugins › XenoCore Content › ContextEffects</strong>, right-click <code>CFX_XenoCore</code>, choose
+   <strong>Duplicate</strong>, move the copy into <code>MyGame/Audio</code> and name it <code>CFX_MyGame</code>. (A context effects
+   library is not a Data Asset, so <strong>Data › Data Asset</strong> does not offer it.)</li>
 <li>
-<p>Add two entries to <strong>Context Effects</strong>:</p>
+<p>Open it and delete the entries it copied under <strong>Context Effects</strong>: <code>CFX_XenoCore</code> already
+   plays them, and libraries add up. Then add two entries:</p>
 <table>
 <thead>
 <tr>
@@ -4901,15 +4903,15 @@ field.</p>
 </li>
 <li>
 <p>Add <code>CFX_MyGame</code> to the characters. Open <code>Game/B_XenoCore_PlayableCharacter_Base</code> and
-   <code>Characters/Party/B_XenoCore_PartyMember_Base</code>. On each, select the <strong>XenoBaseContextEffect</strong>
-   component and add <code>CFX_MyGame</code> to <strong>Default Context Effects Libraries</strong>. <strong>Compile</strong> and
+   <code>Characters/Party/B_XenoCore_PartyMember_Base</code>. On each, select the context effect
+   component (<code>ContextEffect</code> on the player base, <code>LyraContextEffect</code> on the party base) and add <code>CFX_MyGame</code> to <strong>Default Context Effects Libraries</strong>. <strong>Compile</strong> and
    <strong>Save</strong> both.</p>
 </li>
 </ol>
 <p>Both pawn bases need it: the player's pawn and the party members are built on different bases.
 The six <code>B_XenoCore_Party_&lt;Colour&gt;</code> sample members are
 children of <code>B_XenoCore_PartyMember_Base</code>, so they inherit it; Kael is the player pawn. (On the party base the
-<strong>XenoBaseContextEffect</strong> component comes from its C++ parent, so it shows as inherited; the library
+<code>LyraContextEffect</code> component comes from its C++ parent, so it shows as inherited; the library
 list you set on the Blueprint is still what the members use.) Libraries add up rather than one
 winning: a step plays every matching row from every library in the list.</p>
 <div class="admonition note">

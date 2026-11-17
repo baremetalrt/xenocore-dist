@@ -4742,8 +4742,8 @@ is pure data: no effect asset or graph of its own.</p>
 </tr>
 </tbody>
 </table>
-<p>The sample swords (Junk, Blue, Green, Red, Amber, Gold, Ivory and Violet, one folder each under
-<code>Weapons/</code>) are all children of the two sword bases, share <code>B_WeaponInstance_GreatSword</code> and the
+<p>The seven sample swords (Junk in <code>Weapons/GreatSword/</code>, then Green, Red, Amber, Gold, Ivory and
+Violet, each in its own <code>Weapons/&lt;Colour&gt;Sword/</code> folder) are all children of the two sword bases, share <code>B_WeaponInstance_GreatSword</code> and the
 Greatsword type, and differ only in their item, mesh or material, and the Talent Art their ability
 set grants. Junk, Green, Red and Gold share <code>AbilitySet_XenoCore_JunkSword</code> (Turn Strike);
 Amber, Ivory and Violet grant their own. See
@@ -4777,7 +4777,7 @@ would fail:</p>
 </tr>
 <tr>
 <td>Not Equippable</td>
-<td>No <code>InventoryFragment_EquippableItem</code>, or one with no equipment definition</td>
+<td>No <code>XenoKitInventoryFragment_EquippableItem</code>, or one with no equipment definition</td>
 </tr>
 <tr>
 <td>Wrong Slot</td>
@@ -4799,7 +4799,7 @@ would fail:</p>
 </table>
 <p>If allowed, whatever was in the slot is unequipped, the weapon actor (if any) spawns, and the
 equipment definition's ability sets are granted. One of those, <code>GA_XenoCore_EquipmentStats</code>, copies
-the item's stat numbers (its <code>InventoryFragment_SetStats</code> values) onto the character at once, so
+the item's stat numbers (its <code>XenoKitInventoryFragment_SetStats</code> values) onto the character at once, so
 the character sheet is right the moment the item goes on. Which stats it copies is the list of
 <strong>Modifiers</strong> on <code>Inventory/GE_XenoCore_EquipmentStats</code>: one row per stat. An item stat with no row
 there is ignored, with a warning in the Output Log (<code>LogXenoCoreEquipmentStats</code>). Screens hear
@@ -4877,17 +4877,17 @@ created</strong>, within its rank's range.</p>
 </tr>
 <tr>
 <td>Stat numbers</td>
-<td>Item › <code>InventoryFragment_SetStats</code></td>
+<td>Item › <code>XenoKitInventoryFragment_SetStats</code></td>
 <td><code>XenoCore.Stat.*</code> tags and values</td>
 </tr>
 <tr>
 <td><strong>Equipment Definition</strong></td>
-<td>Item › <code>InventoryFragment_EquippableItem</code></td>
+<td>Item › <code>XenoKitInventoryFragment_EquippableItem</code></td>
 <td>Which equipment definition equips it</td>
 </tr>
 <tr>
 <td><strong>Actors To Spawn</strong>, <strong>Instance Type</strong>, <strong>Ability Sets To Grant</strong></td>
-<td>Equipment definition (Lyra)</td>
+<td>Equipment definition (<code>XenoBaseEquipmentDefinition</code>)</td>
 <td>What equipping spawns and grants</td>
 </tr>
 <tr>
@@ -4993,7 +4993,7 @@ are <code>EXenoCoreEquipSlot</code> (<code>XenoCoreEquipmentComponent.h</code>).
   Inventory is data, so it lives on the controller.</li>
 <li><strong>One SetByCaller effect.</strong> One effect asset per item would be two hand-made assets per item, and
   would make the comparison screen price an item by equipping it. The stats come from the item's own
-  <code>InventoryFragment_SetStats</code>, which Lyra already writes onto the instance.</li>
+  <code>XenoKitInventoryFragment_SetStats</code>, which already writes them onto the instance.</li>
 <li><strong>Get Item For Equipment.</strong> Lyra's <code>EquipItem</code> spawns the instance and grants its abilities in one
   call, so the stats ability runs before the slot is recorded. The component remembers the item for
   the length of that call, so the ability can find it immediately rather than a frame later, which

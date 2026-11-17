@@ -4660,10 +4660,10 @@ adds settings; see <a href="#what-apply-changes">What Apply changes</a> for the 
 <h2 id="2-add-the-plugin">2. Add the plugin<a class="headerlink" href="#2-add-the-plugin" title="Permanent link">&para;</a></h2>
 <p><strong>From Fab:</strong> in the Epic Games Launcher's <strong>Fab Library</strong>, click <strong>Install to Engine</strong> on XenoCore
 and choose 5.8. The launcher puts it in the engine's plugin folder,
-<code>C:\Program Files\Epic Games\UE_5.8\Engine\Plugins\Marketplace\XenoCore</code>. XenoCore cannot run
-from there, because Unreal only loads a Game Feature plugin from a project's <code>Plugins/GameFeatures</code>
-folder, so <strong>move</strong> (cut, not copy) that <code>XenoCore</code> folder into your project as below. Leaving a
-second copy in the engine folder makes Unreal find the plugin twice.</p>
+<code>C:\Program Files\Epic Games\UE_5.8\Engine\Plugins\Marketplace\XenoCore</code>. <strong>Move</strong> (cut, not
+copy) that <code>XenoCore</code> folder into your project as below: XenoCore is built and tested in the
+project's <code>Plugins/GameFeatures</code> folder, and the packaging settings that <strong>Apply</strong> writes expect it
+there. Leaving a second copy in the engine folder makes Unreal find the plugin twice.</p>
 <p><strong>From a zip download:</strong> unzip it and copy its <code>XenoCore</code> folder into the project.</p>
 <p>Either way, it goes in the project's <strong><code>Plugins/GameFeatures</code></strong> folder (create the folders if they do
 not exist), so you have:</p>
@@ -4706,11 +4706,13 @@ Lyra's or Windows', not XenoCore's, and are harmless (the last two appear in a L
 needs <strong>in memory</strong>, wherever your project still has the engine's own default value, and it writes
 nothing to disk. <strong>Apply</strong> writes the full set of settings into your project's <code>Config/Default*.ini</code>
 files, where you can see and edit them. Do it once: some settings come only from Apply, namely the
-title screen as the editor's startup map, the gamepad View button, and the maps and folders a
-packaged build must cook.</p>
+title screen as the editor's startup map, the gamepad View button, and the maps a packaged build
+must cook.</p>
 <p>A few seconds after the editor opens, a notification appears in the bottom-right:</p>
 <blockquote>
-<p><strong>XenoCore needs N project setting(s) to run in this project.</strong> [Apply] [Not now]</p>
+<p><strong>XenoCore needs N project setting(s) to run in this project (startup map, input, loading screen...).</strong>
+Settings you have changed yourself are left alone. Tools &gt; XenoCore runs this again any time.
+[Apply] [Not now]</p>
 </blockquote>
 <ol>
 <li>Click <strong>Apply</strong>.</li>
@@ -4719,7 +4721,7 @@ packaged build must cook.</p>
 </ol>
 <p>After the restart the editor opens on XenoCore's title screen map, <code>L_XenoCore_FrontEnd</code>. (Without
 Apply, open <code>Plugins &gt; XenoCore Content &gt; Maps &gt; L_XenoCore_FrontEnd</code> yourself before pressing Play.)</p>
-<p>If you clicked <strong>Not now</strong>, or the notification has gone, use <strong>Tools &gt; XenoCore &gt; Apply XenoCore
+<p><strong>Not now</strong> stops the notification for this project. If you clicked it, or the notification has gone, use <strong>Tools &gt; XenoCore &gt; Apply XenoCore
 Project Settings</strong>. It is safe to run any number of times.</p>
 <h2 id="5-press-play">5. Press Play<a class="headerlink" href="#5-press-play" title="Permanent link">&para;</a></h2>
 <p>Press <strong>Play</strong>. The boot screens run, then the title screen. Choose <strong>New Game</strong>: you start on
@@ -4728,13 +4730,16 @@ Gaur Plain with Kael and Mira. See <a href="../play-the-sample/">Play the sample
 <p>Apply writes to the project's own <code>Config/Default*.ini</code> files, so every change is visible and
 yours to edit. (The settings for the Lyra code, described next, are also applied in memory at every
 editor and game start while your project has the engine's default for them; Apply makes them
-permanent. In the table below, the map, <code>r.TSR</code>, <code>CommonUI.SyncCursor...</code>, cook, save-name and
-<code>DefaultInput.ini</code> rows come only from Apply.) Every project gets XenoCore's own configuration of the Lyra code it carries (its
+permanent. In the table below, the editor startup map, <code>r.TSR</code>, <code>CommonUI.SyncCursor...</code>, cook,
+save-name and View-button rows come only from Apply; in a Lyra project, so do the Grass surface and
+<code>CommonButtonAcceptKeyHandling</code> rows.) Every project gets XenoCore's own configuration of the Lyra code it carries (its
 player controller, asset manager, UI and loading-screen settings, read only by XenoCore's classes).
 A project <strong>without Lyra</strong> also gets what Lyra's own project settings would have held: the engine
 classes (viewport client, asset manager, world settings, local player, user settings), collision
 profiles, CommonUI and CommonInput settings, gameplay-ability and game-feature settings, and the
-asset types the asset manager scans. A Lyra project keeps Lyra's own. A setting you have already changed yourself is <strong>left alone</strong> and listed in the
+asset types the asset manager scans. A Lyra project keeps Lyra's own, and Apply points
+<strong>XenoCore UI &gt; Host Settings Screen</strong> at Lyra's settings screen so the menu's <strong>Settings</strong> entry opens
+it. A setting you have already changed yourself is <strong>left alone</strong> and listed in the
 Output Log under <code>LogXenoSetup</code>, with the value XenoCore expected.</p>
 <table>
 <thead>
@@ -4782,8 +4787,8 @@ Output Log under <code>LogXenoSetup</code>, with the value XenoCore expected.</p
 </tr>
 <tr>
 <td><code>DefaultGame.ini</code></td>
-<td>Maps and folders to cook (title screen, Gym, Gaur Plain), boot movies to stage</td>
-<td>A packaged game includes XenoCore's maps, UI and movies</td>
+<td>Maps to cook (title screen, Gym, Gaur Plain), plus folders to always cook</td>
+<td>A packaged game includes XenoCore's maps. (Assets named in XenoCore's settings and the boot movies are added to every build by the plugin itself.)</td>
 </tr>
 <tr>
 <td><code>DefaultGame.ini</code></td>
@@ -4804,6 +4809,11 @@ Output Log under <code>LogXenoSetup</code>, with the value XenoCore expected.</p
 <td><code>DefaultGameplayTags.ini</code></td>
 <td>Tag <code>SurfaceType.Grass</code></td>
 <td>Grass footsteps</td>
+</tr>
+<tr>
+<td><code>DefaultGameUserSettings.ini</code></td>
+<td>Default VSync on, no frame-rate cap on battery</td>
+<td>Lyra's own defaults for the settings screen</td>
 </tr>
 </tbody>
 </table>

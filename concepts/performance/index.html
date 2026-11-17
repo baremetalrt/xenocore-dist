@@ -4717,6 +4717,11 @@ a packaged build.</p>
   refreshes brightness, fog and sky colour at most every 0.1 s.</li>
 <li><strong>Turn tick off when idle.</strong> A widget or component with nothing to do should stop ticking and
   start again when something changes. Enemy health bars and labels do this.</li>
+<li><strong>Distant enemies sleep.</strong> An unprovoked enemy farther than <strong>Dormant Distance</strong> (60 m) from the
+  party leader goes dormant: its AI pauses, its movement stops, and it animates only while on
+  screen. It wakes inside <strong>Wake Distance</strong> (50 m), or the moment it is hit. Set these, <strong>Enable
+  Dormancy</strong> and <strong>Dormancy Check Interval</strong> (0.5 s) in <strong>Project Settings › Game › XenoCore Enemies ›
+  Performance</strong>.</li>
 <li><strong>No per-frame searches.</strong> <strong>Get Component by Class</strong>, <strong>Get All Actors of Class</strong> and similar
   iterators belong in Begin Play or behind a timer, with the result cached.</li>
 </ul>
@@ -4758,6 +4763,10 @@ see the warning above.</p>
 <tr>
 <td><code>memreport -full</code></td>
 <td>Memory by class and asset, written to <code>Saved/Profiling/MemReports</code></td>
+</tr>
+<tr>
+<td><code>XenoCore.Debug.LogSyncLoads 1</code></td>
+<td>On by default outside Shipping. Logs <code>SyncLoad during play: &lt;package&gt;</code> under <code>LogXenoCore</code> for every asset loaded synchronously while a world plays with no loading screen up, with the Blueprint and C++ caller. Each line is a possible hitch. <code>0</code> turns it off</td>
 </tr>
 </tbody>
 </table>

@@ -5105,8 +5105,8 @@ target mode end.</p>
 command <code>XenoCore.Battle.Victory</code> runs the whole sequence without a fight.</p>
 <p><strong>Recovering.</strong> Once no enemy has been engaged for <strong>Battle Over Grace</strong> (<code>1</code> s) and the party is not
 in battle, every member recovers <strong>Out Of Battle Regen Per Second</strong> (<code>0.1</code>, a tenth of max HP a
-second) after <strong>Out Of Battle Regen Delay</strong> (<code>1</code> s), benched members included. Both are on
-<code>BP_XenoCore_Party</code> › XenoCore › Party › Recovery; <code>0</code> turns recovery off. A party fleeing with
+second) after <strong>Out Of Battle Regen Delay</strong> (<code>1</code> s), benched members included. The two regen settings are on
+<code>BP_XenoCore_Party</code> › XenoCore › Party › Recovery (<strong>Battle Over Grace</strong> is under XenoCore › Party › Battle); <code>0</code> turns recovery off. A party fleeing with
 enemies on its heels recovers nothing. Heal Arts work only in battle, so this is how the party gets
 back to full between fights.</p>
 <p>When an enemy dies it awards EXP to the party, broadcasts <code>XenoCore.Enemy.Message.Defeated</code> and drops
@@ -5184,12 +5184,12 @@ down. See <a href="../party-gauge-and-revive/">Party Gauge, downed and revive</a
 <tr>
 <td><strong>Push Distance</strong>, <strong>Push Time</strong></td>
 <td>Any hit-react ability › XenoCore › HitReact › Push</td>
-<td>How far a hit at <strong>Force Multiplier</strong> 1 knocks this body back (60 cm) and over how long (0.12 s). It then stops dead. Lower <strong>Push Distance</strong> for a heavy enemy; 0 means it is never pushed.</td>
+<td>How far a hit at <strong>Force Multiplier</strong> 1 knocks this body back (60 cm) and over how long (0.25 s). The push is strongest at the hit and eases to nothing, on top of the body's own movement. Lower <strong>Push Distance</strong> for a heavy enemy; 0 means it is never pushed.</td>
 </tr>
 <tr>
 <td><strong>Push Strength Over Time</strong></td>
 <td>same</td>
-<td>Optional curve shaping the knockback across <strong>Push Time</strong> (X 0-1). Empty is a constant push.</td>
+<td>Optional curve shaping the knockback across <strong>Push Time</strong> (X 0-1). Empty eases out from strong to nothing, which keeps <strong>Push Distance</strong> exact.</td>
 </tr>
 <tr>
 <td><strong>Directional Montages</strong></td>

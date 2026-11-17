@@ -4866,8 +4866,8 @@ one, and the SP from every kill fills its skills top to bottom.</p>
 </ul>
 </div>
 <div class="admonition note">
-<p class="admonition-title">63 shipped skills are stand-ins</p>
-<p>Every one of the 100 shipped skills, and every branch trait, does something. But 63 of the
+<p class="admonition-title">121 shipped skills are stand-ins</p>
+<p>Every one of the 175 shipped skills, and every branch trait, does something. But 121 of the
 skills keep their Xenoblade Chronicles name, shape, colour, scope and cost while doing a
 different, simpler thing, because the system their original effect needs is not built yet
 (tension, visions, chain attacks, counters, equipment weight classes, gem crafting), or is built
@@ -4985,7 +4985,7 @@ waits on.</p>
 </tr>
 </tbody>
 </table>
-<p>A tree can be shared: Kael and Blue point at the same table, but each has their own progress,
+<p>A tree can be shared: point two characters at the same table and each keeps their own progress,
 because progress is keyed by the character, not by the table.</p>
 <h3 id="a-branch">A branch<a class="headerlink" href="#a-branch" title="Permanent link">&para;</a></h3>
 <p>Each row of a tree table is one branch:</p>
@@ -5302,10 +5302,10 @@ skills never fire for it, and nothing reports it. Send <code>XenoCore.Event.Comb
 Data Validation warns about it.</p>
 </div>
 <h2 id="stand-in-skills">Stand-in skills<a class="headerlink" href="#stand-in-skills" title="Permanent link">&para;</a></h2>
-<p>All 100 shipped skills have an effect. Each character's tree mixes three kinds:</p>
+<p>All 175 shipped skills (seven trees of 25) have an effect. Each character's tree mixes three kinds:</p>
 <ul>
-<li><strong>Faithful skills</strong> (37) do what the original game's skill does.</li>
-<li><strong>Stand-ins</strong> (63) keep the original skill's name, shape, colour, scope and SP cost, and use an
+<li><strong>Faithful skills</strong> (54) do what the original game's skill does.</li>
+<li><strong>Stand-ins</strong> (121) keep the original skill's name, shape, colour, scope and SP cost, and use an
   effect that already works in XenoCore. Each is the nearest live effect in the spirit of the name:
   a taunt raises defence, a tension skill gives a combat buff at a similar moment, an
   equipment-class skill reduces <strong>Weight</strong>.</li>
@@ -5317,7 +5317,7 @@ Data Validation warns about it.</p>
 of your own, edit the skill's entry in its tree table (see
 <a href="../../recipes/add-skill/#changing-a-shipped-tree-instead">Changing a shipped tree</a>).</p>
 <details class="info">
-<summary>Every stand-in (63)</summary>
+<summary>Every stand-in (121)</summary>
 <table>
 <thead>
 <tr>
@@ -5834,14 +5834,479 @@ of your own, edit the skill's entry in its tree table (see
 <td>Battle party Haste 20 %, 15 s at Burst Affinity</td>
 <td>Affinity</td>
 </tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Honesty 2</td>
+<td>Whisper of the Wind</td>
+<td>Ether +5 %</td>
+<td>Wind Arts Plus 25%</td>
+<td>elemental arts</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Honesty 4</td>
+<td>Electric Shock</td>
+<td>Ether +5 %</td>
+<td>Electric Arts Plus 25%</td>
+<td>elemental arts</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Honesty 5</td>
+<td>Enlightenment</td>
+<td>Ether defence +5</td>
+<td>Reduced Ether Resist</td>
+<td>ether resistance</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Passion 1</td>
+<td>Nonchalant Heart</td>
+<td>Ether Defence Up 15 %, 20 s at the start of a battle</td>
+<td>Tension Down Protect +5</td>
+<td>Tension</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Passion 2</td>
+<td>Awakening Strike</td>
+<td>The first hit of a battle deals 20 % more damage</td>
+<td>Effective on Sleep 50%</td>
+<td>Sleep</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Passion 3</td>
+<td>Telethia Killer</td>
+<td>Critical hits deal 15 % more damage</td>
+<td>Effective on Telethia 50% (with aura)</td>
+<td>enemy families</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Passion 4</td>
+<td>Passion of Flame</td>
+<td>Ether Up 15 %, 15 s, on a crit</td>
+<td>Blaze Time Up +20s</td>
+<td>status durations</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Passion 5</td>
+<td>Rejection of Evil</td>
+<td>Physical damage taken −0 %</td>
+<td>Spike Damage Down 50%</td>
+<td>spikes</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Reliability 2</td>
+<td>Playing with Poison</td>
+<td>Ether Up 15 %, 20 s, on a kill</td>
+<td>Poison Time Up +15s</td>
+<td>status durations</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Reliability 3</td>
+<td>Power of the Moon</td>
+<td>Ether +10 % while HP is full</td>
+<td>Strength Up 15% (nighttime)</td>
+<td>time of day</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Reliability 4</td>
+<td>Unyielding Heart</td>
+<td>Ether defence +10 % while HP is at half or below</td>
+<td>Tension Low Protect 50%</td>
+<td>Tension</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Reliability 5</td>
+<td>Ether Guard</td>
+<td>Ether damage taken −0 %</td>
+<td>Ether Down Block 100%</td>
+<td>debuff immunity</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Reticence 2</td>
+<td>Heavyweight Expert</td>
+<td>Ether defence +10 %</td>
+<td>Heavy Equip. Plus +30 (ether defence)</td>
+<td>weight classes</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Reticence 3</td>
+<td>Unadorned Beauty</td>
+<td>Agility +15 % while wearing no armour</td>
+<td>All Stats Up 20% (gemless)</td>
+<td>Gems (v2)</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Reticence 4</td>
+<td>Mental Barrier</td>
+<td>Ether damage taken −5 %</td>
+<td>Ether Damage Down 25% (area-of-effect damage taken)</td>
+<td>area damage taken</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Reticence 5</td>
+<td>Arcane Aura</td>
+<td>Agility +10 %</td>
+<td>Aggro Down 30% (with aura)</td>
+<td>Aggro</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Serenity 1</td>
+<td>Amplified Healing</td>
+<td>Max HP +5 %</td>
+<td>Heal Bonus 15% (received)</td>
+<td>heal received bonus</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Serenity 2</td>
+<td>Serenity of Water</td>
+<td>Healing arts restore 10 % more HP</td>
+<td>Water Arts Plus 25% (HP gained)</td>
+<td>elemental arts</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Serenity 3</td>
+<td>Mining Master</td>
+<td>AP from enemies +10 %</td>
+<td>Crystal Harvest Bonus 5%</td>
+<td>collection points</td>
+</tr>
+<tr>
+<td><code>_Arcanist</code></td>
+<td>Serenity 4</td>
+<td>Glistening Ice</td>
+<td>Ether Up 20 %, 30 s at the start of a battle against a stronger enemy</td>
+<td>Chill Time Up +6s</td>
+<td>status durations</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Cowardice 1</td>
+<td>Pretty Stars!</td>
+<td>Strength +5 %</td>
+<td>Strength Up 15% (nighttime)</td>
+<td>time of day</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Cowardice 3</td>
+<td>Amazing Stars!</td>
+<td>Haste 10 %, 20 s at the start of a battle</td>
+<td>Cooldown Reduced 15% (nighttime)</td>
+<td>time of day</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Cowardice 4</td>
+<td>Bullseye!</td>
+<td>Critical hit rate +5 %</td>
+<td>Back Atk Accuracy Up 50%</td>
+<td>positional accuracy</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Cowardice 5</td>
+<td>Bestest Stars!</td>
+<td>EXP from enemies +10 %</td>
+<td>EXP Bonus 20% (nighttime)</td>
+<td>time of day</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Flexibility 1</td>
+<td>Buy Stuff!</td>
+<td>Quest EXP +10 %</td>
+<td>Profit Up 20% (sell price)</td>
+<td>a shop price hook</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Flexibility 2</td>
+<td>Riki See, Riki Do</td>
+<td>EXP from enemies +10 %</td>
+<td>EXP Bonus (disabled bench penalty)</td>
+<td>reserve EXP rate per skill</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Flexibility 3</td>
+<td>AP for All!</td>
+<td>AP from enemies +15 %</td>
+<td>Theft Arts Plus (can Yoink! AP)</td>
+<td>theft arts</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Flexibility 4</td>
+<td>Riki Strong!</td>
+<td>Strength +10</td>
+<td>Strength Down Block</td>
+<td>debuff immunity</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Flexibility 5</td>
+<td>EXP for All!</td>
+<td>EXP from enemies +15 %</td>
+<td>Theft Arts Plus (can Yoink! EXP)</td>
+<td>theft arts</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Heroism 1</td>
+<td>Heavy Equipment</td>
+<td>Weight −4</td>
+<td>Heavy Equip. OK</td>
+<td>weight classes</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Heroism 3</td>
+<td>Kissy Kissy!</td>
+<td>Physical Defence Up 20 %, 20 s when an ally falls</td>
+<td>Reduced Revival Cost 50%</td>
+<td>revive cost</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Heroism 4</td>
+<td>Ouchies!</td>
+<td>Physical damage taken −0 %</td>
+<td>Spike Attack Plus 25%</td>
+<td>spikes</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Heroism 5</td>
+<td>Cuddly Hero!</td>
+<td>Ether damage taken −0 %</td>
+<td>Debuff Defence 30%</td>
+<td>debuff immunity</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Innocence 2</td>
+<td>Learning all the Time!</td>
+<td>AP from enemies +10 %</td>
+<td>AP Bonus (disabled bench penalty)</td>
+<td>reserve AP rate per skill</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Innocence 3</td>
+<td>Explore Time!</td>
+<td>Quest EXP +15 %</td>
+<td>EXP Bonus 20% (landmarks/locations)</td>
+<td>landmark EXP</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Innocence 4</td>
+<td>Make it all Better!</td>
+<td>Healing arts restore 10 % more HP</td>
+<td>Heal Bonus 20% (half-HP target)</td>
+<td>a half-HP heal condition</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Innocence 5</td>
+<td>Dream of Money!</td>
+<td>Max HP +5 %</td>
+<td>Rare Treasure Bonus 3% (gold)</td>
+<td>chest tiers</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Vivacity 1</td>
+<td>Like Sun!</td>
+<td>Strength +5 %</td>
+<td>Strength Up 10% (daytime)</td>
+<td>time of day</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Vivacity 2</td>
+<td>Friends Now!</td>
+<td>Physical Defence Up 15 %, 20 s at the start of a battle</td>
+<td>Trading Bonus 5%</td>
+<td>trade bonus</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Vivacity 3</td>
+<td>Love Sun!</td>
+<td>Haste 15 %, 15 s, on a kill</td>
+<td>Cooldown Reduced 10% (daytime)</td>
+<td>time of day</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Vivacity 4</td>
+<td>Lucky Me!</td>
+<td>Critical hit rate +5 %</td>
+<td>Rare Treasure Bonus 10% (silver)</td>
+<td>chest tiers</td>
+</tr>
+<tr>
+<td><code>_Trickster</code></td>
+<td>Vivacity 5</td>
+<td>Adore Sun!</td>
+<td>EXP from enemies +15 %</td>
+<td>EXP Bonus 15% (daytime)</td>
+<td>time of day</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Affection 1</td>
+<td>Vote of Confidence</td>
+<td>Healing arts restore 10 % more HP</td>
+<td>Heal Bonus 25% (when warned)</td>
+<td>Visions</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Affection 3</td>
+<td>Hearty Cry</td>
+<td>Battle party Max HP +5 %</td>
+<td>HP Recovery Extra 10% (on burst affinity, of max HP)</td>
+<td>Burst Affinity</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Affection 4</td>
+<td>Shield of Kindness</td>
+<td>Battle party: Ether Defence Up 20 %, 30 s at the start of a battle</td>
+<td>Ether Protect 25%, 75% chance, 30s (battle start affinity)</td>
+<td>Affinity</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Affection 5</td>
+<td>Miracle of Love</td>
+<td>Max HP Up 15 %, 30 s when an ally falls</td>
+<td>HP Recovery Extra 20% (when KO'd, of max HP)</td>
+<td>Party Gauge revive</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Confidence 1</td>
+<td>Ether Assault</td>
+<td>Ether +10 %</td>
+<td>Ether Arts Plus 20% (damage)</td>
+<td>ether-art damage bonus</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Confidence 2</td>
+<td>Initial Endurance</td>
+<td>Battle party: Physical Defence Up 20 %, 30 s at the start of a battle</td>
+<td>Physical Protect 20%, 50% chance, 30s (battle start affinity)</td>
+<td>Affinity</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Confidence 3</td>
+<td>Middleweight Expert</td>
+<td>Physical and ether defence +10 %</td>
+<td>Medium Equip. Plus 10% (phys. def. and eth. def.)</td>
+<td>weight classes</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Confidence 4</td>
+<td>Adrenaline</td>
+<td>Agility +10 % while HP is at half or below</td>
+<td>Tension Bonus +5 (taking damage)</td>
+<td>Tension</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Confidence 5</td>
+<td>Heavy Equipment</td>
+<td>Weight −4</td>
+<td>Heavy Equip. OK</td>
+<td>weight classes</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Devotion 1</td>
+<td>Medium Equipment</td>
+<td>Weight −2</td>
+<td>Medium Equip. OK</td>
+<td>weight classes</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Devotion 2</td>
+<td>Medical Knowledge</td>
+<td>Healing arts restore 15 % more HP</td>
+<td>Heal Bonus 25% (in chain attacks)</td>
+<td>Chain Attack</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Devotion 3</td>
+<td>Long-Range</td>
+<td>Agility +5</td>
+<td>Remote Arts Plus +5m</td>
+<td>art range</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Devotion 5</td>
+<td>Rapid Healing</td>
+<td>Healing arts restore 10 % more HP</td>
+<td>Cooldown Reduced 15% (healing arts)</td>
+<td>per-art cooldown reduction</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Perseverance 5</td>
+<td>Ultimate Sniper</td>
+<td>Critical hit rate +5 %</td>
+<td>Cool Off Reduced 50%</td>
+<td>Cool Off</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Reliance 2</td>
+<td>Vendetta</td>
+<td>Block rate +5 %</td>
+<td>Counter Rate Up 15%</td>
+<td>counters (parked)</td>
+</tr>
+<tr>
+<td><code>_Medic</code></td>
+<td>Reliance 3</td>
+<td>Decisive Follow-Up</td>
+<td>Ether Up 20 %, 30 s, on a kill</td>
+<td>Ether Up 20%, 100% chance, 30s (on ally kill)</td>
+<td>an ally-kill trigger</td>
+</tr>
 </tbody>
 </table>
 </details>
 <div class="admonition note">
 <p class="admonition-title">The pre-learnt first skills are stand-ins</p>
-<p>Each character's free first skill is an equipment-class skill (Medium or Mechonis Equipment).
-Until equipment weight classes exist, it reduces <strong>Weight</strong>, so every character starts with a
-learnt skill that works. Weight is subtracted from Agility when hits are rolled, so less of it
+<p>Five characters' free first skill is an equipment-class skill (Medium or Mechonis Equipment).
+Until equipment weight classes exist, it reduces <strong>Weight</strong>, so they start with a learnt skill
+that works. Isolde's is Amplified Healing (Max HP +5 %) and Sabine's is Like Sun! (Strength
++5 %), both stand-ins too. Weight is subtracted from Agility when hits are rolled, so less of it
 means better evasion and accuracy (see <a href="../stats-and-damage/">Stats and damage</a>).</p>
 </div>
 <h2 id="the-skills-screen">The Skills screen<a class="headerlink" href="#the-skills-screen" title="Permanent link">&para;</a></h2>

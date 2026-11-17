@@ -4859,8 +4859,8 @@ the stat block.</p>
 <p>Every shipped sword's actor is a child of <code>B_XenoCore_Sword_Base</code> (the greatsword mesh) and its
 equipment definition a child of <code>ED_XenoCore_Sword_Base</code> (the instance type, the back socket, and
 <code>AbilitySet_XenoCore_SwordCommon</code>, which draws and sheathes the sword and applies its stats). A sword
-differs only in its item, its material, and the Talent Art its <strong>ability set</strong> (a list of abilities granted while the weapon is worn) grants. Junk, Green
-and Red share <code>AbilitySet_XenoCore_JunkSword</code> (Turn Strike); the Violet, Amber and Ivory Swords each
+differs only in its item, its material, and the Talent Art its <strong>ability set</strong> (a list of abilities granted while the weapon is worn) grants. Junk, Green,
+Red and Gold share <code>AbilitySet_XenoCore_JunkSword</code> (Turn Strike); the Violet, Amber and Ivory Swords each
 grant their own Talent Art.</p>
 <p>A sword whose <a href="../../getting-started/glossary/">Talent Art</a> you want to change is covered in step 3.
 A <strong>new sword</strong> is the short route below. A <strong>new kind of weapon</strong> that animates differently needs
@@ -4919,7 +4919,7 @@ logged.</p>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 <li>Open <code>ID_MyGame_StoneBlade</code> (<strong>Class Defaults</strong>). Set <strong>Display Name</strong> to <code>Stone Blade</code>.</li>
 <li>In <strong>Fragments</strong>, expand each fragment and set:<ul>
-<li><strong>Inventory Fragment Equippable Item</strong> › <strong>Equipment Definition</strong>: <code>ED_MyGame_StoneBlade</code></li>
+<li><strong>Xeno Kit Inventory Fragment Equippable Item</strong> › <strong>Equipment Definition</strong>: <code>ED_MyGame_StoneBlade</code></li>
 <li><strong>Xeno Core Fragment Item Display</strong> › <strong>XenoCore › Display</strong> › <strong>Description</strong> and <strong>Icon</strong></li>
 <li><strong>Xeno Core Fragment Item Category</strong> › <strong>XenoCore › Item</strong> › <strong>Sell Value</strong> and <strong>Sort Order</strong>
   (and <strong>Rarity</strong>, see <a href="../item-rarity/">Item rarity</a>)</li>
@@ -4930,7 +4930,7 @@ logged.</p>
 </ol>
 <h3 id="4-set-its-stats">4. Set its stats<a class="headerlink" href="#4-set-its-stats" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In <code>ID_MyGame_StoneBlade</code>, open the <strong>Inventory Fragment Set Stats</strong> fragment.</li>
+<li>In <code>ID_MyGame_StoneBlade</code>, open the <strong>Xeno Kit Inventory Fragment Set Stats</strong> fragment.</li>
 <li>Edit <strong>Initial Item Stats</strong>. Each entry is a <code>XenoCore.Stat.*</code> tag and a whole number:</li>
 </ol>
 <table>
@@ -5108,7 +5108,7 @@ anything.</p>
 <li><strong>A whole family of weapons:</strong> the <strong>Attach Transform › Scale</strong> on the family's base equipment
   definition. Every sword inherits <strong>0.75</strong> from <code>Weapons/ED_XenoCore_Sword_Base</code>, so all swords
   are drawn at 75% of their mesh. Change it there to resize every sword at once.</li>
-<li><strong>One weapon:</strong> its actor Blueprint's <strong>StaticMesh</strong> component <strong>Scale</strong> (1.0 on every shipped
+<li><strong>One weapon:</strong> its actor Blueprint's <strong>SwordMesh</strong> component <strong>Scale</strong> (1.0 on every shipped
   sword). Scale the component, never the actor: drawing and sheathing rewrite the actor's
   transform every time.</li>
 </ul>

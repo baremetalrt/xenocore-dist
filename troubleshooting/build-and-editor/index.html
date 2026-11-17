@@ -4895,14 +4895,16 @@ Everyone compiles once, because XenoCore is delivered as source and builds the f
 opens; after that, only whoever changes C++ sees those errors.</p>
 <h2 id="loading-the-right-content">Loading the right content<a class="headerlink" href="#loading-the-right-content" title="Permanent link">&para;</a></h2>
 <h3 id="play-loads-the-wrong-experience-whatever-the-maps-world-settings-say">Play loads the wrong experience, whatever the map's World Settings say<a class="headerlink" href="#play-loads-the-wrong-experience-whatever-the-maps-world-settings-say" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> an <strong>Experience Override</strong> in Lyra's developer settings beats the map's World Settings in
+<p><strong>Why:</strong> an <strong>Experience Override</strong> in the developer settings beats the map's World Settings in
 Play-in-Editor. It is saved in your per-user settings under <code>Saved/Config</code>, which is not in source
 control, so it survives across sessions and differs between machines. A small toast, "Developer
 Settings Override", appears for two seconds when Play starts.</p>
 <p><strong>Fix:</strong> open <strong>Edit › Editor Preferences</strong>, find the category named after your project (<strong>Lyra</strong>
-for a project named Lyra), open <strong>Lyra Developer Settings</strong> and clear <strong>Experience Override</strong>. It is
-an Editor Preference, not a Project Setting, because it is saved per user. The Output Log confirms
-the result: <code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</code>.</p>
+for a project named Lyra), open <strong>Lyra Developer Settings</strong> (in a Blank project, <strong>Xeno Base
+Developer Settings</strong>) and clear <strong>Experience Override</strong>. It is an Editor Preference, not a Project
+Setting, because it is saved per user. The Output Log confirms the result:
+<code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</code>, under <code>LogXenoBaseExperience</code> in a Blank project
+or <code>LogLyraExperience</code> in a Lyra project.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../getting-started/project-tour/">Tour of the project</a>.</p>
 <h3 id="the-experience-in-my-own-game-feature-plugin-cant-be-found">The experience in my own Game Feature plugin can't be found<a class="headerlink" href="#the-experience-in-my-own-game-feature-plugin-cant-be-found" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> Lyra finds experiences through the Asset Manager, and a plugin's experience folder is not
@@ -4938,14 +4940,16 @@ needs into it. Keep identity (mesh, pawn data, abilities, stats) on the children
 <p>Nothing is shown to the player. The game log (not present in a Shipping build) says
 <code>XenoCore UI setting '...' did not load - using the shipped ...</code>.</p>
 </div>
-<p><strong>Why:</strong> a screen, HUD widget or asset named in <strong>Project Settings › Game › XenoCore UI</strong> or
-<strong>XenoCore Content</strong> is a soft reference, and the cooker does not follow soft references in
-settings. XenoCore's own folders <code>/XenoCore/UserInterface</code> and <code>/XenoCore/Characters/NPC</code> are always
-cooked; your folder is not, so your replacement is left out of the build and XenoCore falls back to
-the shipped asset. A menu entry's <strong>Screen</strong> or <strong>Action</strong> has the same problem.</p>
-<p><strong>Fix:</strong> add your folder (for example <code>/Game/MyGame/UI</code>) to <strong>Project Settings › Packaging ›
-Additional Asset Directories to Cook</strong> (<code>DirectoriesToAlwaysCook</code> in <code>DefaultGame.ini</code>), or make
-sure a cooked asset references it.</p>
+<p><strong>Why:</strong> not the cook. XenoCore adds every asset named in <strong>Project Settings › Game › XenoCore UI</strong>
+and <strong>XenoCore Content</strong> (each menu entry's <strong>Screen</strong>, <strong>Action</strong> and <strong>Icon</strong> included) to every
+cook, so a replacement set there is in the packaged build. What can still be left out is an asset
+your game reaches only by a path typed into a Blueprint or C++, that no setting, map or cooked
+asset references.</p>
+<p><strong>Fix:</strong> the warning above names the setting. Check that its value is in your project's
+<code>Config/DefaultGame.ini</code> (the cook reads that file, not the open editor), and read the cook log for
+<code>XenoCore: ... names ..., which does not exist - nothing to cook</code>. For an asset reached only by a typed path, add its folder
+(for example <code>/Game/MyGame/UI</code>) to <strong>Project Settings › Packaging › Additional Asset Directories to
+Cook</strong> (<code>DirectoriesToAlwaysCook</code> in <code>DefaultGame.ini</code>).</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/restyle-menus/#5-replace-a-whole-screen">Restyle the menus</a>.</p>
 <h2 id="building-c">Building C++<a class="headerlink" href="#building-c" title="Permanent link">&para;</a></h2>
 <h3 id="the-build-says-it-succeeded-but-my-c-change-isnt-in-the-game">The build says it succeeded, but my C++ change isn't in the game<a class="headerlink" href="#the-build-says-it-succeeded-but-my-c-change-isnt-in-the-game" title="Permanent link">&para;</a></h3>

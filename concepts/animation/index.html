@@ -5036,7 +5036,7 @@ while <code>Status.XenoCore.Arming</code> is held.</p>
   are made once on an event, never per frame, and never unlink-then-link, which would drop every
   node to its fallback for an instant.</li>
 <li><strong>Not derived from <code>UXenoBaseAnimInstance</code></strong>, because it has no export macro and cannot be derived
-  from outside Lyra's module; <code>UXenoCoreAnimInstance</code> reproduces the part it needs and pulls the
+  from outside its module, <code>XenoCoreBase</code>; <code>UXenoCoreAnimInstance</code> reproduces the part it needs and pulls the
   ability system itself.</li>
 <li><strong>Idle breaks in the anim stack</strong>, where Lyra keeps its own, because the graph already knows
   whether the Idle state is active; an ability polling for it was heavier and less exact.</li>

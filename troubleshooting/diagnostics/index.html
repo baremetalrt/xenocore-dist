@@ -4852,12 +4852,57 @@ while the first log keeps its old contents. Close every editor but one.</p>
 <td><code>LogXenoSkills</code></td>
 <td>Skill trees: skills learnt, branch selection, missing SP bands, stat skills with no channel, a wrong or missing table or stats effect. See <a href="../../concepts/skills/">Skills</a></td>
 </tr>
+<tr>
+<td><code>LogXenoArts</code></td>
+<td>The Art ability</td>
+</tr>
+<tr>
+<td><code>LogXenoAI</code></td>
+<td>Companion AI: which Art it chose and why, and positioning (Verbose)</td>
+</tr>
+<tr>
+<td><code>LogXenoEnemyAI</code>, <code>LogXenoSpawner</code></td>
+<td>Enemy controllers; enemy spawners and respawns</td>
+</tr>
+<tr>
+<td><code>LogXenoThreat</code>, <code>LogXenoAggro</code></td>
+<td>Enemy threat; the aggro ring</td>
+</tr>
+<tr>
+<td><code>LogXenoVoice</code></td>
+<td>Battle voices: why a line was or was not said (Verbose). See <a href="../../concepts/battle-voices/">Battle voices and banter</a></td>
+</tr>
+<tr>
+<td><code>LogXenoTutorial</code></td>
+<td>Tutorial cards and their triggers</td>
+</tr>
+<tr>
+<td><code>LogXenoMenu</code></td>
+<td>The main menu's entries, including a Settings entry with no <strong>Host Settings Screen</strong></td>
+</tr>
+<tr>
+<td><code>LogXenoUISettings</code>, <code>LogXenoContentSettings</code></td>
+<td>A XenoCore UI or XenoCore Content setting that did not load, and the shipped asset used instead</td>
+</tr>
+<tr>
+<td><code>LogXenoRarity</code>, <code>LogXenoCoreGems</code>, <code>LogXenoCoreGemPopup</code></td>
+<td>Item rarity, gems, the gem popup</td>
+</tr>
+<tr>
+<td><code>LogXenoDialogueCamera</code></td>
+<td>The conversation camera</td>
+</tr>
+<tr>
+<td><code>LogXenoTest</code></td>
+<td>The in-build test pass started by <code>XenoCore.Test.Run</code></td>
+</tr>
 </tbody>
 </table>
 <p>Editor-only tools also write <code>LogXenoCoreAnimLayers</code> and <code>LogXenoCoreMapTools</code>. Some older setup errors are written to <code>LogTemp</code> with a <code>[XenoCore]</code>
 prefix, for example an enemy with no pawn data. Search for <code>[XenoCore]</code> as well as the categories.</p>
-<p>Lyra's own categories matter too. <code>LogLyraExperience</code> names the experience each map loaded and
-where the choice came from: <code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</code>.</p>
+<p>The experience log matters too. It names the experience each map loaded and where the choice came
+from: <code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</code>. In a Blank project it is
+<code>LogXenoBaseExperience</code>; in a Lyra project, Lyra's <code>LogLyraExperience</code>.</p>
 <h2 id="xenocore-console-commands">XenoCore console commands<a class="headerlink" href="#xenocore-console-commands" title="Permanent link">&para;</a></h2>
 <p>Open the console with the backquote key (<code>`</code>, above Tab) in Play-in-Editor.</p>
 <h3 id="testing-combat">Testing combat<a class="headerlink" href="#testing-combat" title="Permanent link">&para;</a></h3>
@@ -5040,6 +5085,18 @@ Development packaged builds, not Shipping).</p>
 <tr>
 <td><code>XenoCore.ProjectSetup [apply]</code></td>
 <td>Lists (or applies) the project settings XenoCore still needs. Editor only</td>
+</tr>
+<tr>
+<td><code>XenoCore.Voice.Describe</code>, <code>XenoCore.Voice.Speak &lt;Member&gt; &lt;Category&gt; [Art]</code></td>
+<td>Prints the voice config, rules and tables; asks a member for a line. See <a href="../../concepts/battle-voices/">Battle voices and banter</a></td>
+</tr>
+<tr>
+<td><code>XenoCore.Debug.LogSyncLoads 0/1</code></td>
+<td>On by default outside Shipping: logs <code>SyncLoad during play: &lt;package&gt;</code> (under <code>LogXenoCore</code>) for every synchronous load while a world plays with no loading screen up. See <a href="../../concepts/performance/">Loading and ticking</a></td>
+</tr>
+<tr>
+<td><code>XenoCore.Test.Run [All\|Combat\|Inventory\|Quest\|Save] [quit]</code></td>
+<td>Runs the in-build test pass on the live session; results in <code>LogXenoTest</code> and <code>Saved/Logs/XenoTest.txt</code>. Use a throwaway session: it plays the game. Not in Shipping</td>
 </tr>
 </tbody>
 </table>

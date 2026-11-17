@@ -4799,7 +4799,7 @@ do, and the shared AI decides when.</strong> An enemy fights with the same AI as
 </tr>
 <tr>
 <td>Overhead widgets</td>
-<td><code>Characters/Enemies/Core/W_XenoCore_EnemyLabel</code>, <code>W_XenoCore_OverheadHealth</code></td>
+<td><code>Characters/Enemies/Core/W_XenoCore_EnemyLabel</code>, <code>UserInterface/HUD/W_XenoCore_OverheadHealth</code></td>
 <td><code>lvl.N</code> label and chevron over every enemy; HP bar while engaged</td>
 </tr>
 <tr>
@@ -4855,7 +4855,7 @@ do, and the shared AI decides when.</strong> An enemy fights with the same AI as
 <td>Plays when the minion blocks, is blocked, or dodges. Clips retargeted onto the minion's skeleton. See <a href="../combat-loop/#blocks-and-dodges">Blocks and dodges</a></td>
 </tr>
 <tr>
-<td><code>GA_Hero_Death</code> (Lyra)</td>
+<td><code>GA_Hero_Death</code> (XenoCore's copy of Lyra's, in <code>Imported/Lyra/Characters/Heroes/Abilities</code>)</td>
 <td>none</td>
 <td>Death. Without it the enemy cannot die</td>
 </tr>
@@ -4932,7 +4932,9 @@ enemy gains no aggro.</p>
 <p><strong>Giving up.</strong> If the enemy strays more than <strong>Leash Radius</strong> (<code>7000</code>) from <strong>home</strong>, or the party
 outruns it (the target leaves the disengage radius), it disengages, forgets it was provoked and its
 aggro, recovers to full health (<strong>Heal On Give Up</strong>), and walks home at the chase task's return
-speed. It then resumes its patrol or wander. A <a href="../party/">party wipe</a> does the same to every enemy
+speed. It then resumes its patrol or wander. An enemy provoked from range that never engages gives
+up the same way once nobody has been in reach for <strong>Provoked Give Up Seconds</strong> (<code>10</code>). A
+<a href="../party/">party wipe</a> does the same to every enemy
 at once. A Blueprint can do it to one enemy with the controller's <strong>Reset Aggro</strong> node
 (<strong>XenoCore › AI</strong>).</p>
 <p><strong>Dying.</strong> On death the enemy announces its defeat (see <a href="../events/">Events</a>), awards the party EXP, Art Points and Skill Points through the progression component
@@ -4940,7 +4942,8 @@ at once. A Blueprint can do it to one enemy with the controller's <strong>Reset 
 plays one of its <strong>Death Montages</strong>, ragdolls after a random <strong>Ragdoll Delay Min</strong>–<strong>Max</strong>, then
 vanishes after <strong>Death Vanish Delay</strong> with its <strong>Death Effect</strong>, if one is set (empty by default - the body simply disappears). The effect is a soft reference: it
 starts loading when the enemy is first provoked, so idle enemies on a map do not hold it in memory. In a squad, only the last member
-killed drops a chest, upgraded to at least silver. A spawner brings fallen members back after its
+killed drops a chest: gold at three times the usual chance, otherwise silver, filled from the squad
+leader's drop table and level (see <a href="../loot/#lifecycle">Loot</a>). A spawner brings fallen members back after its
 <strong>Respawn Delay</strong>, only while the party is out of sight of the spot and not fighting that squad.</p>
 <p><strong>Widgets.</strong> Every enemy wears a <code>lvl.N</code> label with a chevron, coloured by how its level compares
 with the party leader's. It fades out with distance and is always shown in battle. A Unique
@@ -5148,6 +5151,11 @@ drawn between the enemy and its target. See
 <td><strong>Heal On Give Up</strong></td>
 <td>XenoCore › AI</td>
 <td>Restore full health when the enemy gives up a fight. Default on</td>
+</tr>
+<tr>
+<td><strong>Provoked Give Up Seconds</strong></td>
+<td>XenoCore › AI</td>
+<td>How long an enemy that was provoked but never engaged waits with nobody in reach before it gives up (and heals). Default <code>10</code></td>
 </tr>
 <tr>
 <td><strong>Team Id</strong></td>

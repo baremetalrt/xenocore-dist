@@ -5026,8 +5026,8 @@ ability in XenoCore is a Blueprint child, so asking for the C++ parent class mat
 <p><strong>Why:</strong> XenoCore blocks abilities during states such as looting or dialogue with rows in
 <code>Game/TagRelationships_XenoCore</code>. Two things make a row miss:</p>
 <ul>
-<li>The ability is a plain <strong>Gameplay Ability</strong>, not a <strong>Lyra Gameplay Ability</strong>. Only Lyra's ability
-  class reads the mapping.</li>
+<li>The ability is a plain <strong>Gameplay Ability</strong>, not a <code>XenoBaseGameplayAbility</code>. Only that ability
+  class (and its children) reads the mapping.</li>
 <li>The ability has no <strong>Ability Tags</strong>. Rows match on ability tags, so an ability with none cannot be
   reached by any row.</li>
 </ul>

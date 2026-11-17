@@ -4671,7 +4671,7 @@ Blueprint function library for programmers automating the editor.</p>
 <code>XenoCore.uplugin</code>. It never loads in a packaged game. It holds Blueprint function libraries that
 automate editor tasks the engine's own scripting cannot reach: building anim-layer graphs, camera
 rigs, Gameplay Effect tag requirements and so on. It also holds the <strong>project setup</strong> that writes
-the settings XenoCore needs into your project (below), and two save-time asset checks. Apart from
+the settings XenoCore needs into your project (below), and four save-time asset checks. Apart from
 project setup, you don't need any of it to use the template.</p>
 <h2 id="how-to-call-them">How to call them<a class="headerlink" href="#how-to-call-them" title="Permanent link">&para;</a></h2>
 <p>Every function is a static <code>BlueprintCallable</code> on a <code>UBlueprintFunctionLibrary</code>, so you can call it
@@ -4727,6 +4727,11 @@ calls one of these nodes cannot work in a packaged build. Use them only from Edi
 <td><code>UXenoCoreEnvironmentTools</code></td>
 <td><code>XenoCoreEnvironmentTools.h</code></td>
 <td>Builds the procedural terrain, rock, bark and canopy materials, and the scanned-rock material.</td>
+</tr>
+<tr>
+<td><code>UXenoCoreGraphTools</code></td>
+<td><code>XenoCoreGraphTools.h</code></td>
+<td>Reads and sets the position and size of any graph node, comment boxes included, for scripted Blueprint layout.</td>
 </tr>
 <tr>
 <td><code>UXenoCoreGameplayEffectTools</code></td>
@@ -4826,7 +4831,7 @@ a conflict in the Output Log under <code>LogXenoSetup</code>. Run it any of thre
 </ul>
 <p>The full list of settings is in <a href="../../getting-started/install/#what-apply-changes">Install › What Apply changes</a>.</p>
 <h2 id="save-time-checks">Save-time checks<a class="headerlink" href="#save-time-checks" title="Permanent link">&para;</a></h2>
-<p>Two validators in this module run when you save an asset, and when you right-click an asset or
+<p>Four validators in this module run when you save an asset, and when you right-click an asset or
 folder and choose <strong>Validate Assets</strong>:</p>
 <table>
 <thead>
@@ -4841,6 +4846,16 @@ folder and choose <strong>Validate Assets</strong>:</p>
 <td>Art cooldown tags</td>
 <td>Every Art definition</td>
 <td><strong>Error:</strong> <em>"Cooldown Tag … is also used by …. Arts sharing a tag share one cooldown"</em>. Give each Art its own tag. (An Art with a cooldown and no tag at all is reported by the Art definition's own check.)</td>
+</tr>
+<tr>
+<td>Data Tables</td>
+<td>XenoCore Data Tables whose rows have no check of their own: tutorial cards, item rarities, minimap marker styles, weather chances, battle voice lines and face expressions</td>
+<td>Rows that would never be found or shown: an empty or duplicate key tag, a tutorial card with no trigger, and similar</td>
+</tr>
+<tr>
+<td>Item definitions</td>
+<td>Item definitions</td>
+<td>Settings that leave an item unusable, such as an equippable item with no equipment settings</td>
 </tr>
 <tr>
 <td>Body meshes</td>

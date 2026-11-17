@@ -4809,9 +4809,11 @@ appears.</p>
 <li><strong>Continue</strong> loads the newest loadable file, autosave included. It is disabled when there are
   no saves.</li>
 <li><strong>New Game</strong> tells the subsystem a new game is starting, then opens <strong>New Game Map</strong>
-  (<code>L_XenoCore_GaurPlain</code>).</li>
+  (<code>L_XenoCore_GaurPlain</code>), or <strong>New Game Map Override</strong> when that project setting is set.</li>
 <li><strong>Load Game</strong> opens the save screen in Load mode.</li>
-<li><strong>Settings</strong> pushes Lyra's settings screen.</li>
+<li><strong>Settings</strong> pushes the settings screen (XenoCore's copy of Lyra's). In a Lyra project it pushes
+  <strong>XenoCore UI › Host Settings Screen</strong> instead, which <strong>Project Setup</strong> sets to Lyra's own; while
+  that is empty, Settings logs a warning (<code>LogXenoMenu</code>) and does nothing.</li>
 <li><strong>Quit</strong> quits.</li>
 </ul>
 <p>The title screen keeps the world running behind it, so the scene animates.</p>
@@ -4936,12 +4938,22 @@ save again.</p>
 <tr>
 <td><strong>New Game Map</strong></td>
 <td><code>W_XenoCore_TitleScreen</code> › XenoCore › Title</td>
-<td>Where New Game starts</td>
+<td>Where New Game starts, unless the override below is set</td>
+</tr>
+<tr>
+<td><strong>New Game Map Override</strong></td>
+<td>Project Settings › Game › XenoCore Content › Startup</td>
+<td>When set, New Game opens this map instead of the title screen's <strong>New Game Map</strong></td>
 </tr>
 <tr>
 <td><strong>Settings Screen Class</strong></td>
-<td>same</td>
-<td>The settings screen (Lyra's by default)</td>
+<td>same as <strong>New Game Map</strong></td>
+<td>The settings screen (XenoCore's copy of Lyra's by default)</td>
+</tr>
+<tr>
+<td><strong>Host Settings Screen</strong></td>
+<td>Project Settings › Game › XenoCore UI › Menu</td>
+<td>In a Lyra project, the settings screen opened instead (Project Setup sets it to Lyra's)</td>
 </tr>
 <tr>
 <td>Autosave badge labels and hold times</td>
@@ -5001,8 +5013,9 @@ a player's save file. A participant's own <strong>Get Save Data Version</strong>
 <ul>
 <li><strong>More or different boot cards:</strong> duplicate a card from <code>UserInterface/Boot/</code> into your folder,
   change it, and add it to <strong>Boot Screens</strong>. A movie card takes a <strong>Movie</strong>.</li>
-<li><strong>A different first map:</strong> set <strong>New Game Map</strong> on your copy of the title screen and point
-  <strong>Title Screen Class</strong> at it.</li>
+<li><strong>A different first map:</strong> set <strong>New Game Map Override</strong> in <strong>Project Settings › Game ›
+  XenoCore Content › Startup</strong>. Or set <strong>New Game Map</strong> on your copy of the title screen and point
+  <strong>Title Screen Class</strong> at it; the override, when set, still wins.</li>
 <li><strong>More save points:</strong> place <code>BP_XenoCore_SavePoint</code>. Set its mesh on a child Blueprint to restyle
   it.</li>
 <li><strong>Saving your own data</strong> (for example a door that stays open): tick <strong>SaveGame</strong> on the

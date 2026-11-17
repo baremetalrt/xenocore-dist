@@ -4812,8 +4812,12 @@ a reference for <em>what</em> goes in a XenoCore map, not for how it streams.</p
 </thead>
 <tbody>
 <tr>
+<td><strong>GameMode Override</strong> = <code>B_XenoCore_GameMode</code></td>
+<td>The XenoCore game mode is what reads the map's experience. Without it the experience is ignored</td>
+</tr>
+<tr>
 <td><strong>Default Gameplay Experience</strong> = <code>B_XenoCore_Experience</code></td>
-<td>Without it the map runs Lyra's default rules: no XenoCore HUD, abilities or teams</td>
+<td>Without it the map has no XenoCore rules: no XenoCore HUD, abilities or teams</td>
 </tr>
 <tr>
 <td>A <code>XenoBasePlayerStart</code></td>
@@ -4862,14 +4866,17 @@ loaded wherever the party is.</p>
 copy beside the original and keeps its World Settings.</p>
 <h3 id="2-point-it-at-the-xenocore-experience">2. Point it at the XenoCore experience<a class="headerlink" href="#2-point-it-at-the-xenocore-experience" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Open <strong>World Settings</strong>. Under <strong>Game Mode</strong>, set <strong>Default Gameplay Experience</strong> to
+<li>Open <strong>World Settings</strong>. Under <strong>Game Mode</strong>, set <strong>GameMode Override</strong> to
+   <code>Game/B_XenoCore_GameMode</code>. Both shipped maps set it.</li>
+<li>In the same section, set <strong>Default Gameplay Experience</strong> to
    <code>Experiences/B_XenoCore_Experience</code>.</li>
 <li>Place a <code>XenoBasePlayerStart</code> where the party should appear.</li>
 </ol>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently: no experience set</p>
+<p class="admonition-title">Fails silently: no game mode or experience set</p>
 <p>The map loads, the character walks, and nothing XenoCore works: no HUD, no targeting, no arts.
-Check <strong>Default Gameplay Experience</strong> first whenever a new map "does nothing".</p>
+Check <strong>GameMode Override</strong> and <strong>Default Gameplay Experience</strong> first whenever a new map
+"does nothing".</p>
 </div>
 <h3 id="3-set-up-streaming">3. Set up streaming<a class="headerlink" href="#3-set-up-streaming" title="Permanent link">&para;</a></h3>
 <p>In <strong>World Settings › World Partition Setup</strong>, set the runtime grids. A reasonable start for a
@@ -4981,7 +4988,7 @@ The packaged title screen then works and New Game goes nowhere. Always list your
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">The party spawns but nothing XenoCore works</p>
-<p><strong>Default Gameplay Experience</strong> is not set.</p>
+<p><strong>GameMode Override</strong> is not <code>B_XenoCore_GameMode</code>, or <strong>Default Gameplay Experience</strong> is not set.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Party members stand still</p>

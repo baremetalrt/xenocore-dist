@@ -4645,7 +4645,7 @@ spawns.</p>
 <li><code>AXenoBaseCharacterWithAbilities</code> (XenoCore's copy of Lyra's character that owns its ability system)<ul>
 <li><code>AXenoCoreCombatantCharacter</code>: party-playable pawns<ul>
 <li><code>Game/B_XenoCore_PlayableCharacter_Base</code> (Blueprint)<ul>
-<li><code>Game/B_XenoCore_Player</code>: <strong>Kael</strong>, the sample leader. It is also the pawn the game falls back on when the party has no starting roster</li>
+<li><code>Game/B_XenoCore_Player</code>: <strong>Kael</strong>, the sample leader. The party spawns it as Kael's <strong>Member Class</strong> (<code>PartyMember_Blue</code>)</li>
 </ul>
 </li>
 <li><code>AXenoCorePartyCharacter</code>: adds equipment, AI perception and footstep components in C++<ul>
@@ -4701,9 +4701,10 @@ Kael's pawn, <code>Game/B_XenoCore_Player</code>, uses <code>Game/PawnData_XenoC
    component; anything without a roster entry uses <strong>Combatant Level</strong>.</li>
 <li>Grants the art palette stored for this character (see <a href="../arts/">Arts</a>).</li>
 </ol>
-<p>The player's bootstrap pawn, spawned by Lyra's game mode before the party exists, does the same steps
-through its hero component instead, because <strong>Self Initialise Ability System</strong> is off on
-<code>B_XenoCore_Player</code>.</p>
+<p>A combatant placed in a level or spawned by the game mode, rather than by the party, does the same
+steps through its hero component instead when <strong>Self Initialise Ability System</strong> is off (it is off on
+<code>B_XenoCore_PlayableCharacter_Base</code>, the parent of <code>B_XenoCore_Player</code>). The party switches it on for
+every body it spawns.</p>
 <p><strong>Statline.</strong> A statline is a Gameplay Effect whose modifiers read curve tables at the effect's level.
 Applying it again at a new level is what a level-up is. See
 <a href="../stats-and-damage/">Stats and damage</a>.</p>
@@ -4825,7 +4826,7 @@ it the <strong>Default Mesh</strong> instead of the body you meant. Give every s
 <tr>
 <td><strong>Self Initialise Ability System</strong></td>
 <td>Character Blueprint › XenoCore › Combatant</td>
-<td>Off only on the bootstrap player pawn. The party component forces it on for bodies it spawns.</td>
+<td>Off on <code>B_XenoCore_PlayableCharacter_Base</code> (and so on <code>B_XenoCore_Player</code>). The party component forces it on for bodies it spawns.</td>
 </tr>
 <tr>
 <td><strong>Keep Body On Death</strong></td>
@@ -4891,8 +4892,8 @@ equipment component is created in C++ on <code>AXenoCorePartyCharacter</code> fo
 <p><code>B_XenoCore_Player</code> derives from <code>B_XenoCore_PlayableCharacter_Base</code>, not from the party base, and
 has its own editor-added equipment component. Changes you make to
 <code>B_XenoCore_PartyMember_Base</code> do not reach it. Its death graph was removed when the party moved
-to downed. Its arts also come from
-<code>AbilitySet_XenoCore_Hero</code>; it has no <strong>Art Learn Table</strong>.</p>
+to downed. Its abilities come from <code>AbilitySet_XenoCore_Hero</code>, and its learnset is
+<code>Characters/Party/Learnsets/DT_XenoCore_ArtLearnset_Kael</code> (<strong>Art Learn Table</strong>).</p>
 </div>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
 <details class="note">

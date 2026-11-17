@@ -4697,9 +4697,9 @@ chest holds a drop table and a tier, never a list of items.</strong></p>
 <td>Holds tier and table, rolls on open, offers the contents</td>
 </tr>
 <tr>
-<td>Open ability</td>
-<td><code>Inventory/Loot/GA_XenoCore_OpenChest</code></td>
-<td>Granted near a chest by Lyra's interaction system</td>
+<td>Opening</td>
+<td>XenoCore's interaction system (built in)</td>
+<td>Offers the chest on the interact prompt when it is the nearest interactable in range, and opens it on the press. See <a href="../interaction-npcs-dialogue/">Interaction</a></td>
 </tr>
 <tr>
 <td>Chest label</td>
@@ -4939,16 +4939,6 @@ the player emptied comes back full, and nothing is logged. Settle placed chests'
 ship, and do not rename them in an update.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently: the chest must answer the interaction trace channel</p>
-<p>A custom chest whose collision does not respond to <code>Lyra_TraceChannel_Interaction</code> is never found:
-no prompt and no way to open it, with nothing logged. Build chests from <code>BP_XenoCore_TreasureChest</code>.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Fails silently: the chest's open ability must be the exact Blueprint</p>
-<p>The chest's interaction option names <code>GA_XenoCore_OpenChest</code>. Lyra finds that ability by exact
-class, so pointing it at a parent class makes the option disappear.</p>
-</div>
-<div class="admonition warning">
 <p class="admonition-title">Fails silently: an orb on an interaction collision profile</p>
 <p>An orb's volume must overlap pawns only. On an <code>Interactable_*</code> profile, the chest's interact
 prompt starts offering the orb.</p>
@@ -4965,18 +4955,20 @@ prompt starts offering the orb.</p>
   not build a chest from a plain Actor: only the shipped chest can be opened with the interact button.</li>
 <li><strong>Not built yet:</strong> taking <strong>specific</strong> items from a chest (only Take All and Take None exist).
   Outside a spawner squad, every enemy with a table drops its own chest.</li>
-<li>Do not build a pickup on Lyra's own pickup system: it puts items in the bag behind XenoCore's
-  back, so carry limits are skipped.</li>
+<li>Do not build a pickup on Lyra's own pickup system (in a Lyra project): it does not go through the
+  XenoCore inventory nodes, so carry limits are skipped and the item may never reach the party bag.</li>
 </ul>
 <details class="note">
 <summary>For programmers: classes</summary>
-<p>Drop table <code>UXenoCoreDropTable</code>; chest <code>AXenoCoreTreasureChest</code> (C++ because Lyra's
-<code>IInteractableTarget</code> cannot be implemented in Blueprint); popup <code>UXenoCoreLootPopupBase</code>, shown by
+<p>Drop table <code>UXenoCoreDropTable</code>; chest <code>AXenoCoreTreasureChest</code> (C++ because
+<code>IXenoKitInteractableTarget</code>, XenoCore's copy of Lyra's <code>IInteractableTarget</code>, cannot be
+implemented in Blueprint); popup <code>UXenoCoreLootPopupBase</code>, shown by
 <code>UXenoCoreLootPopupSubsystem</code> on <code>XenoCore.Loot.Message.ChestOpened</code>; orb
-<code>AXenoCoreCollectableOrb</code>. The chest answers <code>Lyra_TraceChannel_Interaction</code> and grants
-<code>GA_XenoCore_OpenChest</code>; the popup blocks jumping with <code>Status.XenoCore.Looting</code>. Do not
-implement Lyra's <code>IPickupable</code>: it adds to the bag directly (only the bag watcher announces it, and carry caps are skipped) and passes a
-stack count, which the one-entry-per-item bag does not use.</p>
+<code>AXenoCoreCollectableOrb</code>. The chest has no collision: it implements <code>IXenoCoreInteractable</code>,
+and the interaction subsystem's press calls its <code>Interact</code>, which opens it. The popup blocks
+jumping with <code>Status.XenoCore.Looting</code>. Do not implement Lyra's <code>IPickupable</code> (Lyra projects
+only): it adds to Lyra's own inventory component rather than through the XenoCore statics, so
+carry caps are skipped, and it passes a stack count, which the one-entry-per-item bag does not use.</p>
 </details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
 <details class="note">
@@ -4987,8 +4979,8 @@ stack count, which the one-entry-per-item bag does not use.</p>
 <li><strong>Chests persist</strong>, so no "encounter ended" signal is needed to decide when to hand out loot.</li>
 <li><strong>The drop table is a data asset, not a component:</strong> it is static, shared by every enemy of a
   type, and read once, at death.</li>
-<li><strong>The chest is C++</strong> because Lyra's <code>IInteractableTarget</code> cannot be implemented in Blueprint. It is
-  shaped on ShooterCore's <code>ALyraWorldCollectable</code>.</li>
+<li><strong>The chest is C++</strong> because <code>IXenoKitInteractableTarget</code> (Lyra's <code>IInteractableTarget</code>) cannot be
+  implemented in Blueprint. It is shaped on ShooterCore's <code>ALyraWorldCollectable</code>.</li>
 <li><strong>The popup cannot be backed out of</strong> because closing it without an answer would leave a rolled,
   opened chest with no way back in. It consumes the back action rather than ignoring it, so back
   reaches nothing underneath either.</li>

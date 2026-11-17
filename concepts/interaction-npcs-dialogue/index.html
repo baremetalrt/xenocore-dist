@@ -4725,11 +4725,14 @@ does nothing.)</p>
 level starts playing and signs off when it is removed. Nothing to set up.</p>
 <p><strong>Choosing.</strong> Every 0.2 seconds XenoCore looks at every interactable, skips any that
 say they are unavailable (an opened chest, for example), and takes the nearest one within <strong>that
-actor's own range</strong>, measured from the player character's location to the actor's origin. The
+actor's own range</strong>, measured from the player character's location to the actor's origin. A
+healthy companion is only chosen when no NPC, chest, downed ally or other interactable is in range,
+so a companion at your shoulder never hides the NPC in front of you. The
 prompt then shows the actor's verbs: the main verb on A and the first extra verb on X. Any further
 verbs are dropped (see below). When the chosen actor changes, the old one is told it lost focus and
-then the new one that it has it. While the prompt is up, A does not also jump, and that lasts 0.5 s
-after the prompt goes away, so a held button does not turn into a jump.</p>
+then the new one that it has it. On a gamepad, while the prompt is up, A does not also jump, and
+that lasts 0.5 s after the prompt goes away, so a held button does not turn into a jump. On a
+keyboard the interact key is not the jump key, so Space still jumps beside a prompt.</p>
 <p><strong>Hidden prompt.</strong> The prompt hides whenever the world is covered: a menu is open, a quest reward
 or level-up banner is showing, or a panel has suppressed it (the loot panel, a conversation).</p>
 <p><strong>Pressing.</strong> The press runs in a fixed order:</p>
@@ -4746,8 +4749,9 @@ or turns in its quest, recruits its <strong>Member To Recruit</strong> if it has
 of the conversation if it has a <strong>Shop Table</strong> (see <a href="../quests/">Quests</a> and
 <a href="../shops-and-trade/">Shops and trade</a>).</p>
 <p><strong>Recruiting.</strong> An NPC with <strong>Member To Recruit</strong> set adds that character to the party at the end of
-the talk (or after a turn-in, when <strong>Recruit After Quest</strong> names a quest that must be complete
-first). The member arrives at least at the party's level, their body steps into the NPC's place,
+the talk (or once <strong>Recruit After Quest</strong> names a quest: by default after it is turned in, or as
+soon as it is accepted when <strong>Recruit When</strong> is Quest Accepted). Until then the NPC says its
+<strong>Not Yet Recruited Dialogue</strong>. The member arrives at least at the party's level, their body steps into the NPC's place,
 and the NPC leaves. On every other NPC this does nothing. See
 <a href="../../recipes/recruit-npc/">Recruit a party member from an NPC</a>.</p>
 <p><strong>Party members</strong> are interactables too: out of battle, stopping beside a companion offers
@@ -4828,7 +4832,17 @@ box and the next line reopens it.</p>
 <tr>
 <td><strong>Recruit After Quest</strong></td>
 <td>XenoCore › NPC › Recruit</td>
-<td>Join only once this quest is turned in. Empty = on the first talk</td>
+<td>Join only once this quest reaches <strong>Recruit When</strong>. Empty = on the first talk</td>
+</tr>
+<tr>
+<td><strong>Recruit When</strong></td>
+<td>XenoCore › NPC › Recruit</td>
+<td><strong>Quest Complete</strong> (default: help first, then join) or <strong>Quest Accepted</strong> (join during the quest, for an NPC the quest sends you to)</td>
+</tr>
+<tr>
+<td><strong>Not Yet Recruited Dialogue</strong></td>
+<td>XenoCore › NPC › Recruit</td>
+<td>Said instead of <strong>Dialogue</strong> while the quest gate is not met. Empty = <strong>Dialogue</strong></td>
 </tr>
 <tr>
 <td><strong>Join At Party Level</strong></td>
@@ -4987,8 +5001,9 @@ capped by <code>MaxPressableVerbs</code> in <strong>Get Offered Verbs</strong>).
 interface directly must do it itself. The NPC is <code>AXenoCoreNpcCharacter</code> (its <code>Interact</code> calls
 <strong>On Interact</strong>), the label <code>UXenoCoreWorldLabelBase</code>, the prompt <code>UXenoCoreInteractPromptBase</code>,
 dialogue <code>UXenoCoreDialogueSubsystem</code> with <code>AXenoCoreDialogueAnchor</code>. The chest implements both
-<code>IXenoCoreInteractable</code> and Lyra's <code>IInteractableTarget</code>. While the prompt is up the player holds
-<code>Status.XenoCore.Looting</code>; a conversation adds <code>Gameplay.MovementStopped</code>,
+<code>IXenoCoreInteractable</code> and <code>IXenoKitInteractableTarget</code> (XenoCore's copy of Lyra's
+<code>IInteractableTarget</code>). While the prompt is up on a gamepad, or a panel covers the world, the
+player holds <code>Status.XenoCore.Looting</code>; a conversation adds <code>Gameplay.MovementStopped</code>,
 <code>Status.XenoCore.Dialogue</code> and <code>SetIgnoreLookInput</code>.</p>
 </details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>

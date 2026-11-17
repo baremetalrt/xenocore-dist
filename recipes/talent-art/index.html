@@ -4771,8 +4771,7 @@ spends it on Shatter from the palette's centre slot.</p>
 <p>The weapon owns the Art; the character owns the fill rate. Equip a different weapon and the same
 character has a different Talent Art, filling at the same speed.</p>
 <p>A Talent Art has <strong>no cooldown</strong>: the gauge is the cooldown. The gauge (0 to 100) persists out of
-combat, and a Talent Art that misses or is interrupted still spends it. While it plays, the world
-can slow down around the attacker.</p>
+combat, and a Talent Art that misses or is interrupted still spends it.</p>
 <div class="admonition note">
 <p class="admonition-title">Talent Arts are not in a learnset</p>
 <p>A Talent Art never appears on the Arts palette row, is never learned through a character's
@@ -4799,8 +4798,8 @@ battle.</p>
 <li>Open it, click <strong>Class Defaults</strong>, and set <strong>Art Data</strong> (<strong>XenoCore › Art</strong>) to <code>DA_Shatter</code>.</li>
 <li>Leave <strong>Talent Gauge Effect</strong> as <code>GE_XenoCore_TalentCharge</code>: the same effect that fills the
    gauge also empties it.</li>
-<li>Keep <strong>Ability Tags</strong> as <code>Ability.XenoCore.Art.Talent</code>, so tag rules that name Arts still
-   cover it. The palette does not need the tag: it finds the Talent Art by its class.</li>
+<li>Add <code>Ability.XenoCore.Art.Talent</code> to <strong>Ability Tags</strong>. The base carries no ability tag, so
+   without it the tag rules that name Arts do not cover your Talent Art. The palette does not need the tag: it finds the Talent Art by its class.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
 <p>The palette's centre slot looks up the Talent Art the character was actually granted (any ability
@@ -4832,7 +4831,7 @@ character never charges from auto-attacks.</p>
 <li>Engage a minion. The centre slot shows <strong>Shatter</strong> with an empty ring around it.</li>
 <li>Let auto-attacks land. The ring fills, and the disc lights once the gauge reaches Shatter's
    <strong>Gauge Cost</strong> (half-way for a cost of <code>50</code>).</li>
-<li>Confirm the centre slot. Shatter plays, the world slows if you set dilation, and the gauge
+<li>Confirm the centre slot. Shatter plays and the gauge
    empties by <strong>Gauge Cost</strong>.</li>
 </ol>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>

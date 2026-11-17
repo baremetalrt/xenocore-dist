@@ -4802,6 +4802,16 @@ Animation</strong>, straight on its mesh, so the clip must be on that mesh's ske
 <td>Optional. They join only once this quest has been <strong>turned in</strong>. Usually the NPC's own <strong>Quest</strong>. Empty = they join the first time you talk to them.</td>
 </tr>
 <tr>
+<td><strong>Recruit When</strong></td>
+<td>Quest Complete</td>
+<td>Only with <strong>Recruit After Quest</strong> set. <strong>Quest Complete</strong> waits for the quest to be turned in. <strong>Quest Accepted</strong> lets them join as soon as the quest is taken, for a quest that sends the player to this NPC.</td>
+</tr>
+<tr>
+<td><strong>Not Yet Recruited Dialogue</strong></td>
+<td>empty</td>
+<td>What they say while that condition is not yet met.</td>
+</tr>
+<tr>
 <td><strong>Join At Party Level</strong></td>
 <td>on</td>
 <td>They arrive at least at the leader's level. A recruit authored <em>above</em> the party keeps their own level.</td>
@@ -4849,8 +4859,8 @@ same recruit.</p>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: the conversation ends and nobody joins</p>
 <p><strong>Member To Recruit</strong> is empty on this placed NPC (you may have set it on a different copy), or
-<strong>Recruit After Quest</strong> names a quest that has not been <strong>turned in</strong> yet. Only accepting the
-quest is not enough.</p>
+<strong>Recruit After Quest</strong> names a quest that has not been <strong>turned in</strong> yet. With <strong>Recruit
+When</strong> at <strong>Quest Complete</strong> (the default), only accepting the quest is not enough.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">The member is already in the party at the start</p>

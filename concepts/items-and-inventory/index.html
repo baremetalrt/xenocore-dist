@@ -4778,8 +4778,8 @@ honour carry limits and never take an item someone is wearing.</p>
 <td>Slots, weapon type and sockets; menu tab, carry cap and rarity; description and icon; what a gem adds</td>
 </tr>
 <tr>
-<td>Lyra fragments</td>
-<td><code>InventoryFragment_EquippableItem</code>, <code>InventoryFragment_SetStats</code></td>
+<td>Fragments copied from Lyra</td>
+<td><code>XenoKitInventoryFragment_EquippableItem</code>, <code>XenoKitInventoryFragment_SetStats</code></td>
 <td>What equipping spawns and grants; the item's stat numbers</td>
 </tr>
 <tr>
@@ -4830,12 +4830,12 @@ honour carry limits and never take an item someone is wearing.</p>
 <td>Only on gems. Its strength is rolled when the gem is created. See <a href="../equipment/#gems">Equipment › Gems</a></td>
 </tr>
 <tr>
-<td><code>InventoryFragment_EquippableItem</code> (Lyra)</td>
+<td><code>XenoKitInventoryFragment_EquippableItem</code></td>
 <td><strong>Equipment Definition</strong></td>
 <td>Only on equipment. See <a href="../equipment/">Equipment</a></td>
 </tr>
 <tr>
-<td><code>InventoryFragment_SetStats</code> (Lyra)</td>
+<td><code>XenoKitInventoryFragment_SetStats</code></td>
 <td><strong>Initial Item Stats</strong> (tag → number)</td>
 <td>Stats under <code>XenoCore.Stat.*</code>, such as <code>XenoCore.Stat.PhysicalDefence</code></td>
 </tr>
@@ -4916,8 +4916,8 @@ Items</strong>, so each list opens already sorted.</p>
 <p>See <a href="../../recipes/sort-a-list/">Add Y-to-sort to an item list</a>. The shop and trade screens have
 their own sort, through the merchant base.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
-<p><strong>Where the bag comes from.</strong> The plugin adds Lyra's inventory component to the player's
-controller. <strong>Get Party Inventory</strong> always returns that bag, whichever character asks. Do not look
+<p><strong>Where the bag comes from.</strong> The plugin adds an inventory component
+(<code>UXenoBaseInventoryManagerComponent</code>, XenoCore's copy of Lyra's) to the player's controller. <strong>Get Party Inventory</strong> always returns that bag, whichever character asks. Do not look
 for a bag on an AI party member's controller: it is not the party's.</p>
 <p><strong>Starting contents.</strong> Each character's equipment component adds its <strong>Starting Inventory</strong> (loose
 items) and then its <strong>Starting Equipment</strong> (items it immediately wears) to the party bag when the
@@ -4977,7 +4977,7 @@ new count and the change (positive gained, negative spent). A change of zero bro
 Open menus, the item badge and quest counters listen for it. Chests and collectable orbs add
 through the same functions, so they update everything too.</p>
 <p><strong>Changes made another way.</strong> XenoCore compares the bag with what it last saw every frame (paused
-menus included). When something other than the XenoCore nodes changed it (Lyra's own inventory nodes, or Lyra's pickup interface), it broadcasts the same
+menus included). When something other than the XenoCore nodes changed it (the inventory component's own nodes, such as <strong>Add Item Definition</strong>), it broadcasts the same
 change message on that change's behalf and logs a line to <code>LogXenoBagWatch</code>: <em>"The party bag changed
 outside the XenoCore inventory functions (+1 ...); announcing it on their behalf."</em> So menus stay
 current. What it cannot do is undo a change: see the warnings below.</p>
@@ -5024,24 +5024,24 @@ move items when they are equipped; the equipment component only points at them.<
 <p>An item's own <strong>Icon</strong> wins over the category glyph. None of the shipped items sets one, so every
 icon you see in the sample comes from <code>DA_XenoCore_ItemIcons</code>.</p>
 <div class="admonition warning">
-<p class="admonition-title">Lyra's Remove Item Instance can take an item someone is wearing</p>
-<p>Lyra's <strong>Remove Item Instance</strong> removes the item you give it even if a character is wearing it.
+<p class="admonition-title">The inventory component's Remove Item Instance can take an item someone is wearing</p>
+<p>The inventory component's own <strong>Remove Item Instance</strong> removes the item you give it even if a character is wearing it.
 The character keeps showing it in its slot, but the bag, and therefore the save, no longer holds
 it. The watcher cannot put it back; it logs an <strong>Error</strong> to <code>LogXenoBagWatch</code> naming the item and
 the wearer. Use <strong>Remove Item Instance From Party</strong>, which refuses. The same risk applies to
-Lyra's <strong>Consume Items By Definition</strong>, which takes the first entries it finds; use <strong>Consume Items
+the component's <strong>Consume Items By Definition</strong>, which takes the first entries it finds; use <strong>Consume Items
 From Party</strong>.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Lyra's Add Item Instance crashes</p>
-<p>Lyra's <strong>Add Item Instance</strong> node is not implemented in stock Lyra and stops the editor or the
-game when it runs. There is no way to put an existing
+<p class="admonition-title">Add Item Instance crashes</p>
+<p>The inventory component's <strong>Add Item Instance</strong> node is not implemented (as in stock Lyra) and
+stops the editor or the game when it runs. There is no way to put an existing
 item instance back into the bag. Add by definition with <strong>Add Item To Party</strong> instead.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently: Lyra's Inventory Item cost never lets the ability run</p>
-<p>Lyra's own <strong>Inventory Item</strong> ability cost is switched off inside stock Lyra 5.8, so its check
-always fails and an ability carrying it can never
+<p class="admonition-title">Fails silently: the Inventory Item cost never lets the ability run</p>
+<p>The <strong>Inventory Item</strong> ability cost copied from Lyra (<code>UXenoBaseAbilityCost_InventoryItem</code>) is
+switched off, as in stock Lyra 5.8, so its check always fails and an ability carrying it can never
 activate. Nothing is logged. Use <strong>Party Item (XenoCore)</strong> instead.</p>
 </div>
 <div class="admonition warning">
@@ -5062,7 +5062,8 @@ icon set instead.</p>
 <li><strong>Something that gives items</strong> (a quest reward, a shop, a script) should call <strong>Add Item To
   Party</strong> so the change message fires.</li>
 <li><strong>Reacting when the bag changes:</strong> listen for the <code>XenoCore.Inventory.Message.Changed</code> message.
-  See <a href="../events/">Events</a>.</li>
+  In 1.3.2 that listener is C++ (<code>UXenoKitGameplayMessageSubsystem::RegisterListener</code>); there is
+  no Blueprint listen node for it. See <a href="../events/#listening">Events</a>.</li>
 <li>Never rename or delete the fragments on shipped items in place; duplicate first.</li>
 </ul>
 <details class="note">
@@ -5090,8 +5091,8 @@ store the number.</p>
 <li><strong>One resolver</strong> because "which bag" has one right answer in single-player, and writing that
   assumption down in exactly one function means only that function changes if it ever stops being
   true.</li>
-<li><strong>Our own change message</strong> because Lyra's <code>Lyra.Inventory.Message.StackChanged</code> is only sent from
-  replication callbacks, which never run in a standalone single-player game.</li>
+<li><strong>Our own change message</strong> because the inventory component's <code>Lyra.Inventory.Message.StackChanged</code>
+  is only sent from replication callbacks, which never run in a standalone single-player game.</li>
 <li><strong>A watcher as well as a rule.</strong> Designers reach for Lyra's inventory nodes, because they are the
   first ones the node menu offers. The watcher keeps menus current when that happens; it is cheap
   because an untouched bag compares equal in one pass. It is a net under the rule, not a

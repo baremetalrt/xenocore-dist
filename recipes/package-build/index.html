@@ -4759,10 +4759,11 @@ are not applied in memory at startup, so they must be written to the project. Th
 <code>Config/DefaultGame.ini</code>. If you are not sure it ran, use <strong>Tools › XenoCore › Apply XenoCore
 Project Settings</strong>; it changes nothing that is already set:</p>
 <ul>
-<li><strong>Some assets are found by path, not by reference.</strong> The shop, trade, arts, save, quest and
-  loot screens and the dialogue anchor are loaded by a fixed path from C++. The cooker can't see
-  those paths, so the project cooks <code>/XenoCore/UserInterface</code> and <code>/XenoCore/Characters/NPC</code> in
-  full (<strong>Additional Asset Directories to Cook</strong> in the packaging settings). Keep them there.</li>
+<li><strong>Some assets are named by a setting, not by a reference.</strong> The shop, trade, arts, save, quest
+  and loot screens, the dialogue anchor and the dialogue camera are named in the XenoCore project
+  settings. XenoCore adds the assets those settings name to every cook, and the project also cooks
+  <code>/XenoCore/UserInterface</code>, <code>/XenoCore/Characters/NPC</code> and <code>/XenoCore/Cameras</code> in full
+  (<strong>Additional Asset Directories to Cook</strong> in the packaging settings). Keep them there.</li>
 <li><strong>Maps reached only by a setting must be listed.</strong> The new-game map and any map a save file
   names are soft references. The shipped list is <code>L_XenoCore_FrontEnd</code>, <code>L_XenoCore_GaurPlain</code>
   (where <strong>New Game</strong> starts) and <code>L_XenoCore_Gym</code>. List every map you ship.</li>
@@ -4775,8 +4776,9 @@ Project Settings</strong>; it changes nothing that is already set:</p>
 <li><strong>List of maps to include in a packaged build</strong>: your title map (<code>Maps/L_XenoCore_FrontEnd</code>
    unless you replaced it) and <strong>every</strong> playable map. The shipped list is the front end,
    <code>L_XenoCore_GaurPlain</code> and <code>L_XenoCore_Gym</code>; remove the sample maps once yours replace them.</li>
-<li><strong>Additional Asset Directories to Cook</strong>: keep <code>/XenoCore/UserInterface</code> and
-   <code>/XenoCore/Characters/NPC</code>. Add any folder of yours whose assets are loaded only by path.</li>
+<li><strong>Additional Asset Directories to Cook</strong>: keep <code>/XenoCore/UserInterface</code>,
+   <code>/XenoCore/Characters/NPC</code> and <code>/XenoCore/Cameras</code>. Add any folder of yours whose assets are
+   loaded only by path.</li>
 <li><strong>Directories to Never Cook</strong>: add your own test or scratch folders.</li>
 <li><strong>For Distribution</strong>: tick for the build you release.</li>
 </ol>
@@ -4833,13 +4835,14 @@ the exit code or a "finished" message. Read the end of the log for <strong>BUILD
 <p>Anything that works in the editor and not here is almost always a missing cooked asset.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <p>The packaged game completes step 5 with nothing missing, and its log
-(<code>&lt;output folder&gt;/Windows/Lyra/Saved/Logs/Lyra.log</code>) has no <code>LoadErrors</code> or "failed to load" lines
+(<code>&lt;output folder&gt;/Windows/&lt;Project&gt;/Saved/Logs/&lt;Project&gt;.log</code>, named after your project) has no
+<code>LoadErrors</code> or "failed to load" lines
 for your assets.</p>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">A menu or popup never opens in the build</p>
-<p>It is loaded by path and its folder is not cooked. Add the folder to
-<strong>Additional Asset Directories to Cook</strong>, or move the asset back where XenoCore expects it.</p>
+<p>It is named by a XenoCore UI setting and its folder is not cooked. Add the folder to
+<strong>Additional Asset Directories to Cook</strong>, or move the asset back where the setting expects it.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">The build fails on a plugin you don't use</p>

@@ -4879,9 +4879,11 @@ get no floating text over heads: the whole party levels at once, so it would be 
 <strong>skill</strong> does float.) The data rides on the level-up message as <code>FXenoCoreLevelUpEntry</code>'s
 <strong>Arts Learned</strong>.</p>
 <div class="admonition note">
-<p class="admonition-title">The bootstrap pawn gets Arts another way</p>
-<p><code>B_XenoCore_Player</code>, the pawn the game falls back on with an empty roster, is not built on the
-party base and has no <strong>Art Learn Table</strong>. Its Arts come from <code>AbilitySet_XenoCore_Hero</code>.</p>
+<p class="admonition-title">Kael's pawn is not built on the party base</p>
+<p><code>B_XenoCore_Player</code> (Kael, and the pawn the game falls back on with an empty roster) is not a
+child of <code>B_XenoCore_PartyMember_Base</code>. It sets its own <strong>Art Learn Table</strong>
+(<code>DT_XenoCore_ArtLearnset_Kael</code>), and <code>AbilitySet_XenoCore_Hero</code> also grants it Back Slash and
+Light Heal.</p>
 </div>
 <p><strong>Slotting.</strong> Slots are numbered in <strong>unlock order</strong>, not screen position, and the bar fills from
 the centre out: slot 0 sits immediately left of the Talent Art, slot 1 immediately right, slot 2
@@ -5015,7 +5017,7 @@ curve reads the Art's level. Talent Arts cannot be levelled.</p>
 <tr>
 <td><strong>Force Multiplier</strong></td>
 <td>Art definition › Art › Hits</td>
-<td>How hard each hit knocks its target back, as a multiple of the target's <strong>Push Distance</strong> (default <code>1</code>; the shipped damage Arts use <code>2</code>). <code>0</code> = no knockback. Every hit of an Art aimed at enemies also makes the target flinch</td>
+<td>How hard each hit knocks its target back, as a multiple of the target's <strong>Push Distance</strong> (default <code>1</code>; most of the shipped sword Arts use <code>2</code>). <code>0</code> = no knockback. Every hit of an Art aimed at enemies also makes the target flinch</td>
 </tr>
 <tr>
 <td><strong>Lunge Multiplier</strong></td>
@@ -5171,7 +5173,15 @@ Data validation reports the second case on save.</p>
 <td>Error (editor validator)</td>
 </tr>
 <tr>
+<td>An <strong>Effects</strong> entry with no <strong>Effect</strong></td>
+<td>Error</td>
+</tr>
+<tr>
 <td>A status entry whose duration comes from the Art, with <strong>Duration</strong> <code>0</code></td>
+<td>Error</td>
+</tr>
+<tr>
+<td>A status entry whose strength comes from the Art, with <strong>Magnitude</strong> <code>0</code></td>
 <td>Error</td>
 </tr>
 <tr>

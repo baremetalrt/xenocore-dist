@@ -4619,9 +4619,10 @@
 
 <h1 id="tour-of-the-project">Tour of the project<a class="headerlink" href="#tour-of-the-project" title="Permanent link">&para;</a></h1>
 <p><em>All · 15 min · No code</em></p>
-<p>The project is Epic's <strong>Lyra</strong> sample with XenoCore added as a <strong>Game Feature plugin</strong>. Lyra is the
-host: it provides the game framework, the menu toolkit and the ability-system plumbing. XenoCore is
-everything RPG, and it all lives in one plugin.</p>
+<p>XenoCore is a <strong>Game Feature plugin</strong> built on Epic's <strong>Lyra</strong> sample. The parts of Lyra it uses (the
+game framework, the menu toolkit and the ability-system plumbing) ship inside the plugin, so your
+project can be a Blank project or a Lyra project. XenoCore is everything RPG, and it all lives in
+one plugin.</p>
 <div class="admonition danger">
 <p class="admonition-title">The one rule: change XenoCore and your own content, never Lyra</p>
 <p>Everything XenoCore does is added to Lyra, not edited into it. Keep it that way. Your changes
@@ -4637,7 +4638,8 @@ Suffix</strong> in <strong>Editor Preferences › Content Editors › Content Br
 <p class="admonition-title">How to read paths in this manual</p>
 <p>A path such as <code>Characters/Party/BP_XenoCore_Party</code> is inside <strong>XenoCore Content</strong>: open
 <strong>XenoCore Content › Characters › Party</strong> and the asset is there. A path that starts with
-<code>/Game/</code> is Lyra's own content, under <strong>Content</strong>. To find any asset by name, type the name into
+<code>/Game/</code> is your project's own content, under <strong>Content</strong>. The Lyra content XenoCore uses is
+inside the plugin, under <code>Imported/Lyra</code>. To find any asset by name, type the name into
 the Content Browser's search box with <strong>XenoCore Content</strong> selected.</p>
 </div>
 <table>
@@ -4650,9 +4652,9 @@ the Content Browser's search box with <strong>XenoCore Content</strong> selected
 </thead>
 <tbody>
 <tr>
-<td><code>Content/</code> (Lyra)</td>
-<td>Lyra's own content: characters, UI toolkit, sample weapons</td>
-<td>No: reference only</td>
+<td><code>Content/</code></td>
+<td>Your project's content (in a Lyra project, also Lyra's own sample content)</td>
+<td>Yes; leave Lyra's own as reference</td>
 </tr>
 <tr>
 <td><code>Plugins/GameFeatures/XenoCore/</code></td>
@@ -4685,7 +4687,7 @@ the Content Browser's search box with <strong>XenoCore Content</strong> selected
 </tr>
 <tr>
 <td><code>Cameras</code></td>
-<td>The exploration camera and the Art close-up camera</td>
+<td>The exploration camera and the dialogue camera</td>
 </tr>
 <tr>
 <td><code>Characters</code></td>
@@ -4799,8 +4801,9 @@ game is silent until you add your own. See <a href="../../recipes/area-music/">A
 <p>An <strong>Experience</strong> is Lyra's way of saying "in this map, the game is <em>this</em>". XenoCore ships its own,
 which is why none of Lyra's shooter rules apply in XenoCore's maps.</p>
 <h2 id="source-code">Source code<a class="headerlink" href="#source-code" title="Permanent link">&para;</a></h2>
-<p>XenoCore's C++ is in <code>Plugins/GameFeatures/XenoCore/Source</code>: <code>XenoCoreRuntime</code> for the game and
-<code>XenoCoreEditor</code> for editor-only tools. You don't need to open it to use the template: every
+<p>XenoCore's C++ is in <code>Plugins/GameFeatures/XenoCore/Source</code>: <code>XenoCoreRuntime</code> for the game,
+<code>XenoCoreEditor</code> for editor-only tools, and <code>ThirdParty/XenoCoreBase</code> for the Lyra code XenoCore
+carries. You don't need to open it to use the template: every
 setting this manual names is in the editor's <strong>Details</strong> panel, a Data Table or <strong>Project Settings</strong>.
 When a programmer wants to extend a system, the <a href="../../concepts/">Concepts</a> page for that
 system says which class to subclass.</p>

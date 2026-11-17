@@ -4711,8 +4711,8 @@ menu, a conversation or target mode can switch buttons off without touching the 
 <td>Keys for XenoCore's actions: targeting, interact, palette, party switch, party tactics, menu, minimap, camera reset, quest tracker</td>
 </tr>
 <tr>
-<td><code>/Game/Input/Mappings/IMC_Default</code></td>
-<td>Lyra</td>
+<td><code>Imported/Lyra/Input/Mappings/IMC_Default</code></td>
+<td>XenoCore's copy of Lyra's</td>
 <td>Move, look, jump, crouch</td>
 </tr>
 <tr>
@@ -4746,14 +4746,14 @@ menu, a conversation or target mode can switch buttons off without touching the 
 <td>Which states block which abilities</td>
 </tr>
 <tr>
-<td><code>Config/DefaultInput.ini</code></td>
-<td>Project</td>
-<td>Turns gameplay input off while a menu is open</td>
+<td>Input settings (<code>DefaultMappingContextInputModeQuery</code>, <code>DefaultInputMode</code>)</td>
+<td>XenoCore (<code>Config/Templates/XenoCoreBase_Input.ini</code>)</td>
+<td>Turns gameplay input off while a menu is open. Applied in memory at startup; <strong>Project Setup</strong> writes them to your project's <code>Config/DefaultInput.ini</code></td>
 </tr>
 </tbody>
 </table>
-<p>Both mapping contexts are added by the plugin's own game feature data (<code>System/XenoCore</code>), <code>IMC_XenoCore</code> at priority 2 and Lyra's <code>IMC_Default</code> at priority 1, so they
-are active in every XenoCore Experience. The pawn data (<code>Game/PawnData_XenoCore_Player</code> and each
+<p>Both mapping contexts are added by an <strong>Add Input Mapping</strong> action on <code>Experiences/B_XenoCore_Experience</code>, <code>IMC_XenoCore</code> at priority 2 and <code>IMC_Default</code> at priority 1, so they
+are active whenever the game runs <code>B_XenoCore_Experience</code>. An Experience of your own needs the same action. The pawn data (<code>Game/PawnData_XenoCore_Player</code> and each
 <code>Characters/Party/PawnData_XenoCore_Party_*</code>) points at <code>InputData_XenoCore</code>, and lists
 <code>AbilitySet_XenoCore_Input</code> beside the body's own set (<code>AbilitySet_XenoCore_Hero</code> for the player's
 pawn, <code>AbilitySet_XenoCore_PartyMember</code> for the others), which hold only non-input abilities.</p>
@@ -4847,14 +4847,14 @@ pawn, <code>AbilitySet_XenoCore_PartyMember</code> for the others), which hold o
 <td>A built-in C++ ability (no asset to edit)</td>
 </tr>
 <tr>
-<td>Recentre the camera</td>
+<td>Recentre the camera (R3 / V)</td>
 <td><code>InputTag.XenoCore.CameraReset</code></td>
 <td><code>GA_XenoCore_CameraReset</code></td>
 </tr>
 <tr>
 <td>Jump</td>
 <td><code>InputTag.Jump</code></td>
-<td>Lyra's <code>GA_Hero_Jump</code></td>
+<td><code>GA_Hero_Jump</code> (XenoCore's copy of Lyra's, in <code>Imported/Lyra/Characters/Heroes/Abilities</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -4938,12 +4938,13 @@ reports a release on the frame after it fires, so the cursor opens and commits a
 the hold looks like a tap. Keep it off on any hold-to-open input.</p>
 </div>
 <p><strong>Menus.</strong> While a menu screen is open, <code>IMC_XenoCore</code> and <code>IMC_Default</code> switch off, so nothing in
-the game world can react to a key behind a menu. That is set project-wide in
-<code>Config/DefaultInput.ini</code> (the default mapping-context query asks for <code>InputMode.Game</code>), and needs no
-setting on each mapping context.</p>
-<p><strong>Enter and Space click.</strong> <code>Config/DefaultGame.ini</code> sets CommonUI's <strong>Common Button Accept Key
+the game world can react to a key behind a menu. That is a project-wide input setting
+(the default mapping-context query asks for <code>InputMode.Game</code>) that XenoCore applies at startup and
+<strong>Project Setup</strong> writes to your <code>Config/DefaultInput.ini</code>. It needs no setting on each mapping context.</p>
+<p><strong>Enter and Space click.</strong> In a Blank project, XenoCore sets CommonUI's <strong>Common Button Accept Key
 Handling</strong> to <code>TriggerClick</code> (<strong>Project Settings › Plugins › Common UI Framework › Button</strong>), so
-Enter and Space press the focused menu button, as the pad's A does.</p>
+Enter and Space press the focused menu button, as the pad's A does. In a Lyra project the value is
+your project's own; set it there if Enter does nothing on a menu.</p>
 <p><strong>X is shared with Trade.</strong> While the interaction prompt offers a second verb (Trade, at a trader
 NPC), tap X is Trade and does not change the tactic.</p>
 <p><strong>The camera</strong> runs on every playable character all the time, but only the character the player is
@@ -4978,8 +4979,8 @@ then turns onto the locked enemy; out of battle it turns to face the new leader'
 </tr>
 <tr>
 <td>Movement, look, jump keys</td>
-<td><code>IMC_Default</code> (Lyra)</td>
-<td>Lyra's bindings. Copy the context rather than editing Lyra's</td>
+<td><code>Imported/Lyra/Input/Mappings/IMC_Default</code></td>
+<td>Lyra's bindings, as XenoCore carries them. Copy the context rather than editing this one</td>
 </tr>
 <tr>
 <td>Action to tag</td>
@@ -5044,7 +5045,7 @@ trigger to every new button action.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">IMC_XenoCore's priority is load-bearing</p>
-<p><code>IMC_XenoCore</code> is added at priority 2, above Lyra's <code>IMC_Default</code> (1) and any context at 0
+<p><code>IMC_XenoCore</code> is added at priority 2, above <code>IMC_Default</code> (1) and any context at 0
 another plugin adds on the same keys. Lowering it to 0 lets such a context win the tie, and
 the pad's look stick can stop working.</p>
 </div>
@@ -5065,9 +5066,9 @@ at runtime, so a mismatch is a prompt that lies.</p>
   of the mapping context, add an action-to-tag row to the input config, and grant an ability with
   that tag in <code>AbilitySet_XenoCore_Input</code>, once. See
   <a href="../../recipes/input-action-prompt/">Add an input action with a prompt</a>.</li>
-<li><strong>Rebinding keys:</strong> edit <code>IMC_XenoCore</code> (a XenoCore asset). For Lyra's keys, make your own
-  mapping context and add it in your own Experience or game feature rather than editing
-  <code>IMC_Default</code>.</li>
+<li><strong>Rebinding keys:</strong> edit <code>IMC_XenoCore</code> (a XenoCore asset). For the movement, look and jump keys, make your
+  own mapping context and add it in your own Experience or game feature rather than editing
+  <code>Imported/Lyra/Input/Mappings/IMC_Default</code>.</li>
 <li><strong>A different camera:</strong> duplicate <code>CameraRig_XenoCore_Explore</code> and <code>CA_XenoCore_Player</code> into
   <code>Content/MyGame/Cameras/</code>, change the rig, and point the camera components at your camera asset.</li>
 <li><strong>An Art close-up for another Art:</strong> copy the start and stop camera-modifier nodes from
@@ -5079,7 +5080,8 @@ at runtime, so a mismatch is a prompt that lies.</p>
 abilities are Blueprint children of <code>UXenoCoreGameplayAbility_PartySwitch</code>; the recentre is a
 child of <code>UXenoCoreGameplayAbility_CameraRecentre</code>. Menus filter mapping contexts through
 Enhanced Input's mode filtering: <code>DefaultMappingContextInputModeQuery</code> and <code>DefaultInputMode</code>
-in <code>Config/DefaultInput.ini</code> both carry <code>InputMode.Game</code>, which CommonUI adds and removes. The
+(<code>Config/Templates/XenoCoreBase_Input.ini</code> in the plugin, applied in memory and written to the
+project's <code>Config/DefaultInput.ini</code> by Project Setup) both carry <code>InputMode.Game</code>, which CommonUI adds and removes. The
 conversation camera is started as a global camera modifier rig, and look input is held with
 <code>SetIgnoreLookInput</code>.</p>
 </details>

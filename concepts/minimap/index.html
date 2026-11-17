@@ -4954,7 +4954,8 @@ so press the button in Play after every change.</p>
 <li><strong>Markers are a registry, not a component.</strong> <code>UXenoCoreMapMarkerSubsystem</code> (a world subsystem)
   holds weak pointers. Actors that implement <code>IXenoCoreMapMarkerSource</code> answer their kind every
   frame, which is how a dead enemy or a taken quest disappears with nothing to unregister.</li>
-<li><strong>One actor per map, not World Settings</strong>, because Lyra's World Settings is host code. It is not
+<li><strong>One actor per map, not World Settings</strong>, because the World Settings class is the host project's choice (a Lyra project uses Lyra's,
+  a Blank project XenoCore's copy), so data on it would not survive in both. It is not
   spatially loaded, so it is never streamed out.</li>
 </ul>
 </details>

@@ -4812,8 +4812,8 @@ settings live in one struct, <strong>Burst Effects</strong>.</p>
 <h3 id="1-make-your-own-camera-shake">1. Make your own camera shake<a class="headerlink" href="#1-make-your-own-camera-shake" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create a folder <code>MyGame/Feedback</code> under <strong>Content</strong>.</li>
-<li>Find Lyra's <code>Feedback/CameraShakes/CS_Character_DamageTaken</code> (in the project's own <strong>Content</strong>
-   folder, not under Plugins). This is the shake the hit cue
+<li>Find <code>Imported/Lyra/Feedback/CameraShakes/CS_Character_DamageTaken</code> (under <strong>Plugins ›
+   XenoCore Content</strong>, XenoCore's copy of Lyra's shake). This is the shake the hit cue
    uses today.</li>
 <li>Duplicate it into <code>MyGame/Feedback</code> and name it <code>CS_MyGame_Hit</code>.</li>
 <li>Open <code>CS_MyGame_Hit</code> and adjust it. It is a legacy (oscillation) camera shake: under
@@ -4824,7 +4824,7 @@ settings live in one struct, <strong>Burst Effects</strong>.</p>
 </ol>
 <h3 id="2-make-your-own-rumble-optional">2. Make your own rumble (optional)<a class="headerlink" href="#2-make-your-own-rumble-optional" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Duplicate Lyra's <code>Feedback/Haptics/FFE_Character_Damage</code> (project <strong>Content</strong> folder) into <code>MyGame/Feedback</code>. Name it
+<li>Duplicate <code>Imported/Lyra/Feedback/Haptics/FFE_Character_Damage</code> (under <strong>Plugins › XenoCore Content</strong>) into <code>MyGame/Feedback</code>. Name it
    <code>FFE_MyGame_Hit</code>.</li>
 <li>Open it and edit the curves. Keep it short: a rumble that outlasts the hit feels like lag.</li>
 <li><strong>Save</strong>.</li>

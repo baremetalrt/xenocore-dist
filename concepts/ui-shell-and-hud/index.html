@@ -4970,7 +4970,7 @@ and focuses the first. It rebuilds every time the menu opens, which is what re-a
 <tr>
 <td>1100</td>
 <td>Settings</td>
-<td>Lyra's <code>W_LyraSettingScreen</code></td>
+<td><code>W_LyraSettingScreen</code>, XenoCore's copy in <code>Imported/Lyra/UI/Settings</code>. In a Lyra project, the <strong>Host Settings Screen</strong> setting instead (see below)</td>
 </tr>
 <tr>
 <td>1200, 1300</td>
@@ -5057,7 +5057,7 @@ eye, or with a screenshot of the whole desktop.</p>
 <tr>
 <td><strong>Escape Menu Class</strong></td>
 <td><code>W_XenoCore_HUDLayout</code></td>
-<td>What Escape and the pad's Select button open during play: <code>W_XenoCore_MenuShell</code>, the same menu as the menu button</td>
+<td>What the Escape key opens during play: <code>W_XenoCore_MenuShell</code>, the same menu as the menu button</td>
 </tr>
 <tr>
 <td>Styles</td>
@@ -5103,7 +5103,8 @@ eye, or with a screenshot of the whole desktop.</p>
 </tr>
 </tbody>
 </table>
-<p>The text styles use Lyra's Orbitron font (<code>/Game/UI/Foundation/Fonts/Orbitron</code>).</p>
+<p>The text styles use Lyra's Orbitron font, which XenoCore carries at
+<code>/XenoCore/Imported/Lyra/UI/Foundation/Fonts/Orbitron</code>.</p>
 <p><strong>The stat block</strong> (<code>W_XenoCore_StatBlock</code>) draws a list of stat
 rows. <strong>Show Lines</strong> and <strong>Show Header</strong> draw what you pass; <strong>Show Character</strong> and <strong>Show Item</strong> make
 the block fill itself from a party member or an equipped slot and redraw when equipment changes.</p>
@@ -5233,6 +5234,12 @@ nothing changes until you edit one.</p>
 <td>A CommonUI button</td>
 <td><code>XenoCoreMenuEntryButton</code>, 4 px below each, 20 px before a group</td>
 </tr>
+<tr>
+<td>Menu</td>
+<td><strong>Host Settings Screen</strong></td>
+<td><code>CommonActivatableWidget</code></td>
+<td>Empty. Used only in a Lyra project, where XenoCore's settings screen cannot open: the Settings entry and the title screen open this instead. <strong>Project Setup</strong> sets it to Lyra's <code>W_LyraSettingScreen</code>; while it is empty, Settings logs a warning and does nothing</td>
+</tr>
 </tbody>
 </table>
 <p><strong>XenoCore Content</strong></p>
@@ -5270,15 +5277,14 @@ described on the page for its system.</p>
 <p><strong>The fallback.</strong> If a setting is cleared, fails to load, or names an asset of the wrong class,
 XenoCore logs a warning and uses the shipped asset. A mistake costs the replacement, never the
 feature. The dialogue anchor falls back one step further, to the C++ anchor.</p>
-<div class="admonition warning">
-<p class="admonition-title">Fails silently in a packaged build: a replacement outside the cooked folders</p>
-<p>A setting holds a soft reference, and the cooker does not follow soft references in project
-settings. The shipped assets are cooked because <code>Config/DefaultGame.ini</code> always cooks
-<code>/XenoCore/UserInterface</code> and <code>/XenoCore/Characters/NPC</code>, or because other cooked assets
-reference them. Your replacement works in the editor,
-and in a packaged build it is missing, so the game falls back to the shipped asset with nothing
-on screen to say so. Add your folder to <strong>Project Settings › Packaging › Additional Asset
-Directories to Cook</strong> (<code>DirectoriesToAlwaysCook</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Replacements are cooked automatically</p>
+<p>XenoCore adds every asset named in its own settings (XenoCore UI, XenoCore Content, and each
+menu entry's <strong>Screen</strong>, <strong>Action</strong> and <strong>Icon</strong>) to every cook, so a replacement you set there
+reaches a packaged build with no packaging setting. An asset your game reaches only by a path
+typed into a Blueprint or C++, and that no setting, map or cooked asset references, is still
+left out: add its folder to <strong>Project Settings › Packaging › Additional Asset Directories to
+Cook</strong> (<code>DirectoriesToAlwaysCook</code>).</p>
 </div>
 <h3 id="silent-traps">Silent traps<a class="headerlink" href="#silent-traps" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
@@ -5305,8 +5311,10 @@ setting a font by hand, or set the font in a text style.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Enter and Space press the focused button</p>
-<p><code>Config/DefaultGame.ini</code> sets CommonUI's <code>CommonButtonAcceptKeyHandling</code> to <code>TriggerClick</code>, so
-the keyboard's accept keys click the focused button, just as the pad's A does. A pad A press is
+<p>In a Blank project XenoCore sets CommonUI's <code>CommonButtonAcceptKeyHandling</code> to <code>TriggerClick</code>, so
+the keyboard's accept keys click the focused button, just as the pad's A does. In a Lyra
+project the value is your project's own (<strong>Project Settings › Plugins › Common UI Framework</strong>);
+set it to <code>TriggerClick</code> if Enter does nothing on a menu. A pad A press is
 never handled twice: CommonUI's analog cursor takes it first, and only a press nothing handled
 reaches the button.</p>
 </div>
@@ -5354,7 +5362,9 @@ actions <code>UXenoCoreMenuAction</code>; the settings pages are <code>UXenoCore
   the chrome is Lyra's. XenoCore authors its own style assets in Lyra's idiom rather than
   pointing at Lyra's, apart from the font.</li>
 <li><strong>Opacity, not visibility.</strong> HUD plates have two opacity drivers, the entrance/exit and the
-  show/hide fade. They are multiplied through one function, so neither can erase the other.</li>
+  show/hide fade. Each writes the render opacity directly and the last write wins, so a plate
+  must not drive both at once; a battle-gated plate starts hidden with <strong>Begin Hidden</strong> rather
+  than relying on its intro.</li>
 <li><strong>Pause by the layer, not by a screen.</strong> Pushing a sub-screen deactivates the shell, so a
   shell-scoped pause would resume the game under an open screen. "Is anything on the menu layer"
   is the question that matters.</li>

@@ -4749,7 +4749,7 @@ The Art still plays, still deals damage and still goes on cooldown; the reaction
 land.</p>
 <p><strong>While active.</strong> The tag is on the target's ASC for the effect's duration. What reads it:</p>
 <ul>
-<li>The damage formula: a Dazed target cannot be missed, Ether Arts always crit a Dazed target, and a
+<li>The damage formula: a Toppled or Dazed target cannot be missed, Ether Arts always crit a Dazed target, and a
   critical hit on a Toppled or Dazed target uses the larger critical multiplier.</li>
 <li>Art <strong>Effects</strong> conditions (Target is Broken / Toppled / Dazed).</li>
 <li>The enemy AI, which chooses its next Art by the target's reaction state
@@ -4797,8 +4797,8 @@ reaction (Topple, Daze) does. The shipped flinches are <strong>additive</strong>
 <strong>Flinch On Hit</strong> plays it; both shipped hit reacts turn it on (the C++ default is off).</p>
 <p><strong>Knockback.</strong> A flinch also knocks the victim back, straight away from the attacker: its
 hit-react ability's <strong>Push Distance</strong> (60 cm) x the hit's <strong>Force Multiplier</strong>, over <strong>Push Time</strong>
-(0.12 s), and then it stops dead. Auto-attacks ship at <strong>Force Multiplier</strong> 1 and the shipped damage
-Arts at 2. Whatever stops the flinch stops the push too, so a guard, an Art in progress, a weapon
+(0.25 s). The push is strongest at the hit and eases to nothing, on top of the body's own movement. Auto-attacks ship at <strong>Force Multiplier</strong> 1, and most of the shipped
+sword Arts at 2 (Hamstring, Venom Edge, Ember Ring, Frost Lance and Mind Sap keep the default 1). Whatever stops the flinch stops the push too, so a guard, an Art in progress, a weapon
 draw or a knock-down is never shoved. The flinch itself plays additively, so the body leans with the
 hit while it moves.</p>
 <h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
@@ -4879,7 +4879,7 @@ hit while it moves.</p>
 <tr>
 <td><strong>Push Distance</strong>, <strong>Push Time</strong>, <strong>Push Strength Over Time</strong></td>
 <td>Hit-react ability › XenoCore › HitReact › Push</td>
-<td>How far and how fast a hit at <strong>Force Multiplier</strong> 1 knocks this body back. Defaults <code>60</code> cm over <code>0.12</code> s. <strong>Push Distance</strong> <code>0</code> = never pushed</td>
+<td>How far and how fast a hit at <strong>Force Multiplier</strong> 1 knocks this body back. Defaults <code>60</code> cm over <code>0.25</code> s, easing out. <strong>Push Distance</strong> <code>0</code> = never pushed</td>
 </tr>
 <tr>
 <td><strong>Force Multiplier</strong></td>

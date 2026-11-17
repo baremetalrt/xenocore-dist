@@ -5033,12 +5033,12 @@ Set</strong>, which moves to whichever body the player drives. Do not also grant
 own ability set: the switch moves the leader-only set on the next frame, and a second copy on
 another body is never removed, so it answers the trigger from a body the player is not driving.</p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Fails silently: a party member that nothing can hurt</p>
-<p>A party member is only on a team if its controller is <code>AXenoCorePartyMemberController</code> or a child
-of it. A plain Blueprint AI controller leaves the member on no team: enemies ignore it and your
-own attacks pass through it, with no error. Keep <strong>Controller Class</strong> empty (to use the component's
-<strong>Default Controller Class</strong>) or point it at a child of <code>BP_AIC_XenoCore_PartyMember</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Why the controller list is short</p>
+<p>A party member is only on a team because its controller is <code>AXenoCorePartyMemberController</code> or a
+child of it, so <strong>Controller Class</strong> and <strong>Default Controller Class</strong> only offer those classes. Keep
+<strong>Controller Class</strong> empty (to use the component's <strong>Default Controller Class</strong>) or point it at a
+child of <code>BP_AIC_XenoCore_PartyMember</code>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a member who never spawns</p>
@@ -5181,9 +5181,9 @@ without changing the shipped tree:</p>
 <td>Who joins, whether they are fielded, whether they arrive at the party's level (on), whether walking in triggers it, and whether the trigger removes itself.</td>
 </tr>
 <tr>
-<td><strong>Member To Recruit</strong>, <strong>Recruit After Quest</strong>, <strong>Join At Party Level</strong>, <strong>Leave When Recruited</strong></td>
+<td><strong>Member To Recruit</strong>, <strong>Recruit After Quest</strong>, <strong>Recruit When</strong>, <strong>Not Yet Recruited Dialogue</strong>, <strong>Join At Party Level</strong>, <strong>Leave When Recruited</strong></td>
 <td>Placed NPC › XenoCore › NPC › Recruit</td>
-<td>Talking to this NPC recruits the member (after the quest, if one is set), at the party's level, and the NPC steps out. See <a href="../../recipes/recruit-npc/">Recruit by talking</a>.</td>
+<td>Talking to this NPC recruits the member, at the party's level, and the NPC steps out. With a <strong>Recruit After Quest</strong> set, <strong>Recruit When</strong> chooses whether that quest must be complete (the default) or only accepted; until then the NPC says its <strong>Not Yet Recruited Dialogue</strong>. See <a href="../../recipes/recruit-npc/">Recruit by talking</a>.</td>
 </tr>
 <tr>
 <td><strong>Wipe Fade Delay</strong>, <strong>Wipe Fade Out Duration</strong>, <strong>Wipe Hold Duration</strong>, <strong>Wipe Fade In Duration</strong>, <strong>Wipe Fade Colour</strong></td>

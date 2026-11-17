@@ -4880,8 +4880,11 @@ a child means a template update does not overwrite your lines.</p>
 price from. The table's validation reports it.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">The Output Log says Open Trade could not load W_XenoCore_TradeScreen</p>
-<p>The trade screen asset was moved or renamed. See
+<p class="admonition-title">The Output Log says Open Trade could not load the trade screen</p>
+<p>The screen named by <strong>Project Settings › Game › XenoCore UI › Screens › Trade Screen</strong> was
+moved, renamed, or does not derive from <code>XenoCoreTradeScreenBase</code>, and the shipped
+<code>UserInterface/HUD/W_XenoCore_TradeScreen</code> is missing too. Point the setting at a valid screen,
+or move the shipped one back. See
 <a href="../../troubleshooting/ui-and-input/">UI and input</a>.</p>
 </div>
 <h2 id="going-further">Going further<a class="headerlink" href="#going-further" title="Permanent link">&para;</a></h2>

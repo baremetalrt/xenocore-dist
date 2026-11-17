@@ -4838,8 +4838,8 @@ Three things stop it:</p>
   default), so it streams out with its cell when the player walks far enough away.</li>
 <li>Two of them are in the map, and both play.</li>
 </ul>
-<p>When an Area Music actor starts, the Output Log prints one line naming both tracks:
-<code>AreaMusic &lt;name&gt;: field=&lt;track&gt; (x&lt;volume&gt;), battle=&lt;track&gt; (x&lt;volume&gt;).</code></p>
+<p>When an Area Music actor starts, the Output Log prints one line naming its tracks:
+<code>AreaMusic &lt;name&gt;: field=&lt;track&gt; (x&lt;volume&gt;), night=&lt;track&gt; (x&lt;volume&gt;), battle=&lt;track&gt; (x&lt;volume&gt;).</code></p>
 <p><strong>Fix:</strong> keep exactly one Area Music actor per map, set its <strong>Field Music</strong> (<strong>Music › Field</strong>) or
 the project's fallback tracks, and make sure <strong>Is Spatially Loaded</strong> is off on it.</p>
 <div class="admonition note">
@@ -4875,11 +4875,13 @@ ability, and a programmer (the two-verb limit, <code>MaxPressableVerbs</code>, i
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/branch-conversation/">Branch a conversation</a>.</p>
 <h3 id="the-speech-box-height-cant-be-changed-or-a-warning-names-the-dialogue-anchor">The speech box height can't be changed, or a warning names the dialogue anchor<a class="headerlink" href="#the-speech-box-height-cant-be-changed-or-a-warning-names-the-dialogue-anchor" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the dialogue box is carried by an actor the game spawns, and its settings, such as the box
-height above the speaker's head, live on <code>Characters/NPC/BP_XenoCore_DialogueAnchor</code>. If that
-Blueprint is moved, renamed or deleted, the game falls back to the C++ class, logs a warning, and
-the settings are no longer editable.</p>
-<p><strong>Fix:</strong> keep <code>BP_XenoCore_DialogueAnchor</code> at its path, and change its <strong>Class Defaults</strong> to tune
-the box.</p>
+height above the speaker's head, live on the Blueprint named by <strong>Project Settings › Game ›
+XenoCore Content › Dialogue Anchor</strong> (by default <code>Characters/NPC/BP_XenoCore_DialogueAnchor</code>). If
+the Blueprint it names cannot be loaded, the game uses the shipped one instead. If that is moved,
+renamed or deleted too, the game falls back to the C++ class, logs a warning, and the settings are
+no longer editable.</p>
+<p><strong>Fix:</strong> point <strong>Dialogue Anchor</strong> at your anchor Blueprint (a child of <code>XenoCoreDialogueAnchor</code>),
+or keep <code>BP_XenoCore_DialogueAnchor</code> at its path, and change its <strong>Class Defaults</strong> to tune the box.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/npc-conversation/">Write an NPC conversation</a>.</p>
 <h3 id="a-conversation-closes-on-its-own-after-2-seconds-with-a-warning">A conversation closes on its own after 2 seconds, with a warning<a class="headerlink" href="#a-conversation-closes-on-its-own-after-2-seconds-with-a-warning" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the NPC's <strong>On Interact</strong> graph shows lines with <strong>Show Dialogue</strong> and one of its branches

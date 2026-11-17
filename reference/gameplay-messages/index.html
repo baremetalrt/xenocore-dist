@@ -5027,14 +5027,22 @@
 
 <h1 id="gameplay-messages">Gameplay messages<a class="headerlink" href="#gameplay-messages" title="Permanent link">&para;</a></h1>
 <p><em>Programmer · reference · No code</em></p>
-<p>XenoCore announces changes through Lyra's <strong>Gameplay Message Router</strong>: a sender broadcasts a payload
+<p>XenoCore announces changes through its own copy of Lyra's <strong>Gameplay Message Router</strong>,
+<code>UXenoKitGameplayMessageSubsystem</code> (module <code>XenoCoreBase</code>): a sender broadcasts a payload
 struct on a gameplay-tag channel, and any number of listeners receive it without knowing who sent
 it. This is how the HUD, menus and quests stay up to date. For the idea behind it, see
 <a href="../../concepts/events/">Events and messages</a>.</p>
-<p>To listen from a Blueprint, use Lyra's <strong>Listen for Gameplay Messages</strong> latent node, set <strong>Channel</strong>
-to the tag and <strong>Payload Type</strong> to the struct below. From C++, use
-<code>UGameplayMessageSubsystem::Get(this).RegisterListener(...)</code> and keep the returned handle so you can
-unregister in <code>EndPlay</code> or <code>NativeDestruct</code>. Every payload struct is <code>BlueprintType</code>.</p>
+<p>Listen from C++: call
+<code>UXenoKitGameplayMessageSubsystem::Get(this).RegisterListener(Channel, this, &amp;UMyClass::OnMessage)</code>
+and keep the returned handle so you can unregister in <code>EndPlay</code> or <code>NativeDestruct</code>. Every payload
+struct is <code>BlueprintType</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Fails silently: no Blueprint node listens on XenoCore's router</p>
+<p>XenoCore 1.3.2 ships no Blueprint listen node for <code>UXenoKitGameplayMessageSubsystem</code>. In a Lyra
+project, Lyra's <strong>Listen for Gameplay Messages</strong> node listens on Lyra's own router and never
+hears a XenoCore message, and nothing is logged. Listen from C++ as above. Sending works from a
+Blueprint: use the <strong>Broadcast Message</strong> node (category <strong>Messaging</strong>).</p>
+</div>
 <h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5399,6 +5407,11 @@ unregister in <code>EndPlay</code> or <code>NativeDestruct</code>. Every payload
 <td><code>int32</code></td>
 <td>The EXP this award was worth</td>
 </tr>
+<tr>
+<td><code>Gains</code></td>
+<td><code>TArray&lt;FXenoCoreMemberGain&gt;</code></td>
+<td>Per-character detail of this award</td>
+</tr>
 </tbody>
 </table>
 <h3 id="fxenocorelevelupmessage">FXenoCoreLevelUpMessage<a class="headerlink" href="#fxenocorelevelupmessage" title="Permanent link">&para;</a></h3>
@@ -5419,7 +5432,7 @@ unregister in <code>EndPlay</code> or <code>NativeDestruct</code>. Every payload
 <tr>
 <td><code>Levelled</code></td>
 <td><code>TArray&lt;FXenoCoreLevelUpEntry&gt;</code></td>
-<td>One entry per character that levelled: <code>Member</code>, <code>LevelBefore</code>, <code>LevelAfter</code></td>
+<td>One entry per character that levelled: <code>Member</code>, <code>LevelBefore</code>, <code>LevelAfter</code>, <code>ArtsLearned</code></td>
 </tr>
 </tbody>
 </table>
@@ -5508,6 +5521,11 @@ details.</p>
 <td><code>Items</code></td>
 <td><code>TArray&lt;TSubclassOf&lt;UXenoBaseInventoryItemDefinition&gt;&gt;</code></td>
 <td>Items handed over</td>
+</tr>
+<tr>
+<td><code>SkillBranches</code></td>
+<td><code>TArray&lt;FXenoCoreSkillBranchUnlock&gt;</code></td>
+<td>Skill branches the quest unlocked</td>
 </tr>
 </tbody>
 </table>
@@ -5650,6 +5668,11 @@ part of a running total and the items may already be spent.</p>
 <td><code>Scale</code></td>
 <td><code>float</code></td>
 <td>Draw size</td>
+</tr>
+<tr>
+<td><code>Punch</code></td>
+<td><code>float</code></td>
+<td>Pop-in scale for the line (1 = none)</td>
 </tr>
 </tbody>
 </table>
@@ -5849,12 +5872,12 @@ anything else listening (a combat log, a tutorial) sees your text too.</p>
 </tbody>
 </table>
 <p>No shipped Blueprint listens to a XenoCore channel; all listeners are the C++ bases above.
-XenoCore also listens to one Lyra channel: <code>UXenoCoreDamageNumberSubsystem</code> draws taken-damage and
-heal numbers from Lyra's damage message.</p>
+XenoCore also listens to one channel of the Lyra code it carries: <code>UXenoCoreDamageNumberSubsystem</code>
+draws taken-damage and heal numbers from its damage message.</p>
 <h2 id="rules-and-traps">Rules and traps<a class="headerlink" href="#rules-and-traps" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently: Lyra's own inventory message never fires here</p>
-<p>Lyra's <code>Lyra.Inventory.Message.StackChanged</code> is only sent from network-replication callbacks.
+<p class="admonition-title">Fails silently: the Lyra inventory message never fires here</p>
+<p><code>Lyra.Inventory.Message.StackChanged</code> (kept by the Lyra code XenoCore carries) is only sent from network-replication callbacks.
 XenoCore is single-player, so it <strong>never</strong> arrives. Listen to
 <code>XenoCore.Inventory.Message.Changed</code> instead.</p>
 </div>

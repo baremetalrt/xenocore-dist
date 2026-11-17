@@ -4830,7 +4830,9 @@ editor, open your project's <code>Config/DefaultGame.ini</code> in a text editor
 <li><strong>Level multiplier.</strong> The level-difference curve at (attacker level − target level).</li>
 <li><strong>Block.</strong> If step 3 rolled a block, damage is multiplied by <strong>Block Multiplier</strong>: 0 by default,
    so a block takes no damage at all.</li>
-<li><strong>The formula</strong>, then rounded down:</li>
+<li><strong>The formula</strong> (below).</li>
+<li><strong>Damage-taken skills.</strong> The target's Physical or Ether Damage Taken skill bonus lowers the
+    result by that percentage (see <a href="../skills/">Skills</a>). Then the damage is rounded down.</li>
 </ol>
 <table>
 <thead>
@@ -4980,7 +4982,7 @@ once under <code>LogXenoDamage</code>.</p>
 </tr>
 <tr>
 <td><strong>Block Rate Per Level</strong>, <strong>Block Level Dead Zone</strong>, <strong>Block Level Modifier Cap</strong></td>
-<td>same</td>
+<td>same › XenoCore › Damage › Level Difference</td>
 <td>Block-chance change per level of gap: 5%, 0 and 100%.</td>
 </tr>
 <tr>
@@ -5048,7 +5050,8 @@ application and the numbers climb with each level. Use <strong>Override</strong>
 <div class="admonition warning">
 <p class="admonition-title">Enemy types are one curve times a multiplier</p>
 <p>The minion's rows are anchored on XC1's Hand Bunnit: <code>Minion_Melee.MaxHealth</code> is 900 + 100 per
-level and <code>Minion_Melee.Strength</code> 69 + 10 per level. The other minion types read the same rows,
+level and <code>Minion_Melee.Strength</code> 69 + 10 per level. The other minion types read the same <code>Minion_Melee.*</code> rows
+(the table's <code>Minion_Ranged</code>, <code>Minion_Siege</code> and <code>Minion_Super</code> rows are read by nothing),
 and their <code>GE_XenoCore_BaseStats_Minion_*</code> effects scale them on each modifier: Melee 1.0,
 Brute 1.45, Bulwark 1.15, Skirmisher 0.9. So the number the game uses is not always the number in
 the table. Check the scale on every modifier of an effect you duplicate.</p>

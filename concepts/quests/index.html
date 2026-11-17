@@ -4881,7 +4881,7 @@ the file. See <a href="../save-and-front-end/">Save and front end</a>.</p>
 <tr>
 <td><strong>Reward</strong></td>
 <td>XenoCore › Quest</td>
-<td><strong>Gold</strong>, <strong>Experience</strong>, and <strong>Items</strong> (one entry per item, so ten of a thing is ten entries)</td>
+<td><strong>Gold</strong>, <strong>Experience</strong>, <strong>Items</strong> (one entry per item, so ten of a thing is ten entries) and <strong>Skill Branches</strong> (a skill branch this quest opens for one party member, by its row name in that member's skill tree)</td>
 </tr>
 <tr>
 <td><strong>Can Decline</strong></td>
@@ -4974,9 +4974,10 @@ player's saved kill counts land on the wrong objective.</p>
   NPC or Reach Location objective and advance it from any Blueprint with <strong>Notify Objective</strong> on
   <strong>Get Party Quests</strong>, passing its <strong>Kind</strong> and the objective's <strong>Target Id</strong>.</li>
 <li><strong>A new objective kind needs a programmer</strong>: the list of kinds is fixed in C++.</li>
-<li><strong>Reacting to quests</strong> from your own Blueprints: listen for <code>XenoCore.Quest.Message.Changed</code>
-  and re-read the component, or <code>XenoCore.Quest.Message.TurnedIn</code> for the payout. See
-  <a href="../events/">Events you can listen to</a>.</li>
+<li><strong>Reacting to quests</strong>: listen for <code>XenoCore.Quest.Message.Changed</code> and re-read the component,
+  or <code>XenoCore.Quest.Message.TurnedIn</code> for the payout. In 1.3.2 listening is C++
+  (<code>UXenoKitGameplayMessageSubsystem::RegisterListener</code>); there is no Blueprint listen node for
+  XenoCore's channels. See <a href="../events/#listening">Events you can listen to</a>.</li>
 </ul>
 <p>Console command for checking the ledger: <code>XenoQuestStatus</code> prints every quest the party has touched.</p>
 <details class="note">

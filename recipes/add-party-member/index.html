@@ -4887,13 +4887,15 @@ Set every link:</p>
   system changes behaviour on it yet.</li>
 <li><strong>Portrait</strong>: any texture from <code>Characters/Party/Portraits</code> for now. Making your own is
   <a href="../bake-portrait/">Bake a portrait</a>.</li>
-<li><strong>Menu Portrait</strong>: optional, a separate picture for the main menu's card. Leave it empty and
-  the card uses <strong>Portrait</strong>, as every sample member does.</li>
+<li><strong>Menu Portrait</strong>: the full-body picture on the main menu's card. The copy still shows Nia's
+  (<code>T_XenoCore_MenuPortrait_Cyan</code>). Set your own, or clear it and the card uses <strong>Portrait</strong>.</li>
 <li><strong>Experience Curve</strong> (<strong>XenoCore › Progression</strong>): a row of
   <code>Game/DT_XenoCore_ExperienceCurves</code>, the EXP needed for each level. Pick <code>XC1</code> or one of the
   shipped characters' rows, or add a row of your own. Empty uses the progression default.</li>
 <li><strong>Controller Class</strong>: leave <code>BP_AIC_XenoCore_PartyMember</code>. Empty also works: the party
   component's default is used.</li>
+<li><strong>Voice Table</strong> (<strong>XenoCore › Voice</strong>): the copy still points at Nia's lines,
+  <code>DT_XenoCore_Voice_Nia</code>. Set your own table, or clear it for a silent character.</li>
 <li>Save. The Content Browser runs the member check on save: an empty <strong>Member Class</strong>, or a pawn
    with no <strong>Combatant Pawn Data</strong>, is reported as an error.</li>
 </ul>
@@ -4980,9 +4982,9 @@ reserve (<a href="../../getting-started/glossary/">active and reserve members</a
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: Rook appears, but with Nia's name, stats or look</p>
-<p>One of the duplicated assets still points at Nia's. Check the four links in step 2:
-<strong>Member Class</strong>, <strong>Combatant Pawn Data</strong>, <strong>Stats Effect</strong>, and <strong>Pawn Class</strong> on the pawn
-data.</p>
+<p>One of the duplicated assets still points at Nia's. Check the links in step 2:
+<strong>Member Class</strong>, <strong>Combatant Pawn Data</strong>, <strong>Stats Effect</strong>, <strong>Pawn Class</strong> on the pawn
+data, and <strong>Menu Portrait</strong> and <strong>Voice Table</strong> on the member definition.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Rook has the Manny body whatever you set</p>

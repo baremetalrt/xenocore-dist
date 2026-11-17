@@ -4757,7 +4757,7 @@ and shows as <strong>Light</strong> on the item details.</p>
 <code>Inventory/AbilitySet_XenoCore_EquipmentStats</code>, whose only job is to apply the piece's stats while it
 is worn. So a new piece of armour is <strong>one asset</strong>: its item definition.</p>
 <p>Armour changes numbers only. It does not change how the character looks.</p>
-<p>The sixteen shipped pieces are in <code>Inventory/Armour</code>, several per slot:</p>
+<p>The fifteen shipped pieces are in <code>Inventory/Armour</code>, several per slot:</p>
 <table>
 <thead>
 <tr>
@@ -4809,7 +4809,7 @@ does nothing when chosen. Duplicate a shipped piece every time.</p>
 <li>Open <strong>Xeno Core Fragment Item Category</strong> and, under <strong>XenoCore › Item</strong>, set <strong>Sell Value</strong> and
    <strong>Rarity</strong> (<a href="../../getting-started/glossary/">rarity</a>). Leave <strong>Category</strong> as <code>Equipment</code>.</li>
 </ol>
-<p>Leave <strong>Inventory Fragment Equippable Item</strong> › <strong>Equipment Definition</strong> on <code>ED_XenoCore_Armour</code>.</p>
+<p>Leave <strong>Xeno Kit Inventory Fragment Equippable Item</strong> › <strong>Equipment Definition</strong> on <code>ED_XenoCore_Armour</code>.</p>
 <h3 id="3-choose-the-slot-and-weight-class">3. Choose the slot and weight class<a class="headerlink" href="#3-choose-the-slot-and-weight-class" title="Permanent link">&para;</a></h3>
 <p>In <strong>Xeno Core Fragment Equip Slots</strong> (<strong>XenoCore › Equipment</strong>):</p>
 <ol>
@@ -4820,7 +4820,7 @@ does nothing when chosen. Duplicate a shipped piece every time.</p>
    <a href="../add-a-gem/">Add a gem</a>.</li>
 </ol>
 <h3 id="4-set-its-stats">4. Set its stats<a class="headerlink" href="#4-set-its-stats" title="Permanent link">&para;</a></h3>
-<p>In <strong>Inventory Fragment Set Stats</strong>, edit <strong>Initial Item Stats</strong>. Armour normally carries three:</p>
+<p>In <strong>Xeno Kit Inventory Fragment Set Stats</strong>, edit <strong>Initial Item Stats</strong>. Armour normally carries three:</p>
 <table>
 <thead>
 <tr>
@@ -4868,7 +4868,7 @@ the comparison block, because for this one stat, more is worse.</p>
 <li>Open a starting party member's pawn, for example Kael,
    <code>Game/B_XenoCore_Player</code>. A member's Starting Inventory reaches the party
    bag when its body first spawns, so a member who joins later brings it only then.</li>
-<li>In <strong>Components</strong>, select <strong>Equipment Component</strong>. Add an entry to <strong>XenoCore › Equipment ›
+<li>In <strong>Components</strong>, select <strong>XenoCoreEquipment</strong>. Add an entry to <strong>XenoCore › Equipment ›
    Starting Inventory</strong>:
    <strong>Item Definition</strong> <code>ID_MyGame_HideVest</code>, <strong>Count</strong> <code>1</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>

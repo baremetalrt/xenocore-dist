@@ -4840,7 +4840,7 @@ want that dependency.</p>
 every asset in the closure is under source control (next step).</p>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: moving pack content that PCG assemblies use</p>
-<p>Some packs (Electric Dreams among them) build cliffs and scatter from PCG assemblies that name
+<p>Some packs build cliffs and scatter from PCG assemblies that name
 their meshes and materials as <strong>text</strong> in point attributes, not as asset references. Moving or
 renaming those assets fixes every real reference and leaves the text pointing at the old path,
 so the next time the PCG graph generates, it spawns nothing there. Nothing warns. Decide where
@@ -4867,12 +4867,13 @@ check after <strong>every</strong> edit that places new pack content.</p>
 <p>Resizing the <strong>source</strong> is what shrinks the project and the package. <strong>Maximum Texture Size</strong> and
 <strong>LOD Bias</strong> in a texture's Details shrink only the cooked output, and the full-size source still
 sits in source control.</p>
-<p>The sample went from 1.77 GB to 191 MB of textures with no visible change up against a cliff.</p>
+<p>For most scan textures the drop to 1K shows no visible change at gameplay distance; check one up
+against a cliff.</p>
 <h3 id="5-reduce-rock-meshes">5. Reduce rock meshes<a class="headerlink" href="#5-reduce-rock-meshes" title="Permanent link">&para;</a></h3>
 <p>For each large rock or cliff mesh:</p>
 <ol>
 <li>Open it in the Static Mesh editor. Under <strong>Nanite Settings</strong>, lower <strong>Keep Triangle Percent</strong>
-   (the sample used 25 %), and click <strong>Apply Changes</strong>. This reduces what is cooked.</li>
+   (25 % is a good start for rocks), and click <strong>Apply Changes</strong>. This reduces what is cooked.</li>
 <li>Or, to reduce the source itself, use the <strong>Simplify</strong> tool in <strong>Modeling Mode</strong>. Leave
    <strong>Preserve Sharp Edges</strong> on and <strong>Discard Attributes</strong> off, which keeps the UV seams, then click
    <strong>Accept</strong>.</li>

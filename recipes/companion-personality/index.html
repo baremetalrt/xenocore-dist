@@ -4739,8 +4739,13 @@ shared by everyone using the stance. See <a href="../../concepts/animation/">Ani
 <p>Both lists empty means a neutral face at rest. The faces for battle, a Topple, being downed or a
 victory come from the face's own rules and are not affected. (See the glossary for
 <a href="../../getting-started/glossary/">Topple</a> and <a href="../../getting-started/glossary/">downed</a>.)</p>
-<p>The shipped members show the range: Kael is warm (<code>Smile</code>, <code>Happy</code>, <code>Laugh</code>, <code>Thinking</code>), Mira
-playful (<code>Laugh</code>, <code>Happy</code>, <code>Wink</code>, <code>Giggle</code>), Nia dry (<code>Smug</code>, <code>Smile</code>, <code>Annoyed</code>, <code>Bored</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">The sample characters have no face</p>
+<p>The shipped profiles fill these lists (Kael's leans to <code>Smile</code> and <code>Laugh</code>, Mira's to <code>Wink</code> and
+<code>Smug</code>), but the sample cast are Mannequins with no face rig, so nothing shows on them. A
+temperament shows only on a character you give a face Animation Blueprint (parent
+<code>XenoCoreFaceAnimInstance</code>); see <a href="../../concepts/animation/">Animation</a>.</p>
+</div>
 <h3 id="3-optional-add-an-expression-of-your-own">3. (Optional) Add an expression of your own<a class="headerlink" href="#3-optional-add-an-expression-of-your-own" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open <code>Characters/Core/Face/DT_XenoCore_FaceExpressions</code> and click <strong>Add</strong> in the Data Table
