@@ -4640,14 +4640,14 @@
 
 
 <h1 id="install-and-first-launch">Install and first launch<a class="headerlink" href="#install-and-first-launch" title="Permanent link">&para;</a></h1>
-<p><em>All · 20 min · No code · Last tested: 2026-10-29 (Blank and Lyra 5.8 projects, UE 5.8.1)</em></p>
+<p><em>All · 20 min · No code</em></p>
 <p>XenoCore is a <strong>Game Feature plugin</strong> for Unreal Engine 5.8, delivered as C++ source plus content.
-Everything it needs ships inside the plugin, including the parts of Epic's Lyra Starter Game it is
-built on, so it works in a <strong>new Blank project</strong> or in a <strong>Lyra project</strong> you already have. You add it
-to the project and open the project; it runs straight away. Clicking <strong>Apply</strong> once then writes its
+You add it to a <strong>new Blank project</strong> (you do not need Lyra or any other plugin), open the project,
+and it runs straight away. Clicking <strong>Apply</strong> once then writes its
 settings into your project for good.</p>
 <p>Before you start, install <strong>Visual Studio 2022</strong> with the <em>Game development with C++</em> workload; see
-<a href="../requirements/">Requirements</a>. If Unreal asks to compile XenoCore when the project opens, it needs it.</p>
+<a href="../requirements/">Requirements</a>. Unreal compiles XenoCore the first time the project opens, and needs it
+for that.</p>
 <h2 id="1-create-a-project">1. Create a project<a class="headerlink" href="#1-create-a-project" title="Permanent link">&para;</a></h2>
 <ol>
 <li>In the Epic Games Launcher, launch <strong>Unreal Engine 5.8</strong> and create a new project from
@@ -4655,8 +4655,6 @@ settings into your project for good.</p>
 <li>Put it on a <strong>short path</strong>, such as <code>C:\Projects\MyRPG</code>. Long paths can break the C++ build on
    Windows.</li>
 </ol>
-<p>You can also use a project you already have, including a <strong>Lyra Starter Game</strong> project. XenoCore only
-adds settings; see <a href="#what-apply-changes">What Apply changes</a> for the list.</p>
 <h2 id="2-add-the-plugin">2. Add the plugin<a class="headerlink" href="#2-add-the-plugin" title="Permanent link">&para;</a></h2>
 <p><strong>From Fab:</strong> in the Epic Games Launcher's <strong>Fab Library</strong>, click <strong>Install to Engine</strong> on XenoCore
 and choose 5.8. The launcher puts it in the engine's plugin folder,
@@ -4685,8 +4683,8 @@ to open the log; see <a href="../../troubleshooting/build-and-editor/">Troublesh
 If you would rather watch the build, right-click the <code>.uproject</code>, choose <strong>Generate Visual Studio
 project files</strong>, open the solution and build the editor target in <strong>Development Editor</strong>.</p>
 <p>After the build, the first open compiles shaders and builds cached data, and can take a long time once (10 minutes
-or more); later opens take under a minute. Several things you may see on the way are Unreal's,
-Lyra's or Windows', not XenoCore's, and are harmless (the last two appear in a Lyra project only):</p>
+or more); later opens take under a minute. A few things you may see on the way are Unreal's or
+Windows', not XenoCore's, and are harmless:</p>
 <ul>
 <li><strong>"Wait for ZenServer?"</strong>: Unreal's shared cache is doing maintenance. Click <strong>Yes</strong>.</li>
 <li><strong>"New plugins are available"</strong>: Unreal noticing XenoCore. Click <strong>Dismiss</strong>; it is already
@@ -4694,15 +4692,9 @@ Lyra's or Windows', not XenoCore's, and are harmless (the last two appear in a L
 <li><strong>A Windows Firewall prompt for the editor</strong>: Windows asking about a program it has not seen before.
   XenoCore is single-player and needs no network; either answer is fine. While it is open, the
   editor behind it does not respond to clicks.</li>
-<li><strong>Red and yellow AutomationTool text over the viewport</strong> ending in <code>Build FAILED</code> and
-  <code>error CS0579: Duplicate 'System.Reflection...'</code>: Lyra's own build scripts failing a platform-SDK
-  check. It does not affect the editor or play.</li>
-<li><strong>"Project file is out of date. Would you like to update it?"</strong>: stock Lyra's <code>Lyra.uproject</code>
-  lists three platform plugins (PlayFabParty, XInputDevice, GameInputWindows) slightly differently
-  from the engine. <strong>Update</strong> or <strong>Not Now</strong> are both fine.</li>
 </ul>
 <h2 id="4-apply-the-project-settings">4. Apply the project settings<a class="headerlink" href="#4-apply-the-project-settings" title="Permanent link">&para;</a></h2>
-<p>XenoCore already runs at this point. When the editor starts, it applies the settings its Lyra code
+<p>XenoCore already runs at this point. When the editor starts, it applies the settings it
 needs <strong>in memory</strong>, wherever your project still has the engine's own default value, and it writes
 nothing to disk. <strong>Apply</strong> writes the full set of settings into your project's <code>Config/Default*.ini</code>
 files, where you can see and edit them. Do it once: some settings come only from Apply, namely the
@@ -4728,19 +4720,15 @@ Project Settings</strong>. It is safe to run any number of times.</p>
 Gaur Plain with Kael and Mira. See <a href="../play-the-sample/">Play the sample</a>.</p>
 <h2 id="what-apply-changes">What Apply changes<a class="headerlink" href="#what-apply-changes" title="Permanent link">&para;</a></h2>
 <p>Apply writes to the project's own <code>Config/Default*.ini</code> files, so every change is visible and
-yours to edit. (The settings for the Lyra code, described next, are also applied in memory at every
-editor and game start while your project has the engine's default for them; Apply makes them
-permanent. In the table below, the editor startup map, <code>r.TSR</code>, <code>CommonUI.SyncCursor...</code>, cook,
-save-name and View-button rows come only from Apply; in a Lyra project, so do the Grass surface and
-<code>CommonButtonAcceptKeyHandling</code> rows.) Every project gets XenoCore's own configuration of the Lyra code it carries (its
-player controller, asset manager, UI and loading-screen settings, read only by XenoCore's classes).
-A project <strong>without Lyra</strong> also gets what Lyra's own project settings would have held: the engine
-classes (viewport client, asset manager, world settings, local player, user settings), collision
-profiles, CommonUI and CommonInput settings, gameplay-ability and game-feature settings, and the
-asset types the asset manager scans. A Lyra project keeps Lyra's own, and Apply points
-<strong>XenoCore UI &gt; Host Settings Screen</strong> at Lyra's settings screen so the menu's <strong>Settings</strong> entry opens
-it. A setting you have already changed yourself is <strong>left alone</strong> and listed in the
-Output Log under <code>LogXenoSetup</code>, with the value XenoCore expected.</p>
+yours to edit. Most of them are also applied in memory at every editor and game start while your
+project still has the engine's default; Apply makes them permanent. In the table below, the editor
+startup map, <code>r.TSR</code>, <code>CommonUI.SyncCursor...</code>, cook, save-name and View-button rows come only from
+Apply.</p>
+<p>Besides the table, Apply writes the settings of XenoCore's game framework: the engine classes it uses
+(viewport client, asset manager, world settings, local player, user settings), collision profiles,
+CommonUI and CommonInput settings, gameplay-ability and game-feature settings, and the asset types
+the asset manager scans. A setting you have already changed yourself is <strong>left alone</strong> and listed in
+the Output Log under <code>LogXenoSetup</code>, with the value XenoCore expected.</p>
 <table>
 <thead>
 <tr>
@@ -4753,7 +4741,7 @@ Output Log under <code>LogXenoSetup</code>, with the value XenoCore expected.</p
 <tr>
 <td><code>DefaultEngine.ini</code></td>
 <td>Game default map and editor startup map: <code>L_XenoCore_FrontEnd</code></td>
-<td>Boot into XenoCore's title screen. Changed only while they are unset or still name a template's map (Lyra's, or the engine's Blank / Open World map)</td>
+<td>Boot into XenoCore's title screen. Changed only while they are unset or still name a template's map (such as the engine's Blank or Open World map)</td>
 </tr>
 <tr>
 <td><code>DefaultEngine.ini</code></td>
@@ -4813,7 +4801,7 @@ Output Log under <code>LogXenoSetup</code>, with the value XenoCore expected.</p
 <tr>
 <td><code>DefaultGameUserSettings.ini</code></td>
 <td>Default VSync on, no frame-rate cap on battery</td>
-<td>Lyra's own defaults for the settings screen</td>
+<td>Defaults for the in-game graphics settings</td>
 </tr>
 </tbody>
 </table>
