@@ -4967,7 +4967,7 @@ their own Experience.</p>
 </table>
 <h2 id="upgrading">Upgrading<a class="headerlink" href="#upgrading" title="Permanent link">&para;</a></h2>
 <p><strong>Your own content.</strong> Keep everything you make in your own folder (for example <code>Content/MyGame/</code>)
-and your own C++ module, never inside <code>Plugins/GameFeatures/XenoCore</code>. An update replaces the
+and your own C++ module, never inside the <code>XenoCore</code> plugin folder. An update replaces the
 plugin folder as a whole, so anything you changed inside it is lost. To change a shipped asset,
 <strong>duplicate</strong> it into your folder (or make a child of it) and point your content at the copy;
 subclass XenoCore's C++ bases instead of editing them. Keep the project in source control, so an

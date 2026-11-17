@@ -426,10 +426,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-create-a-project" class="md-nav__link">
+  <a href="#1-install-xenocore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Create a project
+        1. Install XenoCore
       
     </span>
   </a>
@@ -437,10 +437,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-add-the-plugin" class="md-nav__link">
+  <a href="#2-create-a-blank-project-and-switch-xenocore-on" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Add the plugin
+        2. Create a Blank project and switch XenoCore on
       
     </span>
   </a>
@@ -448,10 +448,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-open-the-project" class="md-nav__link">
+  <a href="#3-press-play" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Open the project
+        3. Press Play
       
     </span>
   </a>
@@ -459,21 +459,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-apply-the-project-settings" class="md-nav__link">
+  <a href="#4-save-the-settings-to-your-project-before-you-package" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Apply the project settings
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-press-play" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Press Play
+        4. Save the settings to your project (before you package)
       
     </span>
   </a>
@@ -4546,10 +4535,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-create-a-project" class="md-nav__link">
+  <a href="#1-install-xenocore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Create a project
+        1. Install XenoCore
       
     </span>
   </a>
@@ -4557,10 +4546,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-add-the-plugin" class="md-nav__link">
+  <a href="#2-create-a-blank-project-and-switch-xenocore-on" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Add the plugin
+        2. Create a Blank project and switch XenoCore on
       
     </span>
   </a>
@@ -4568,10 +4557,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-open-the-project" class="md-nav__link">
+  <a href="#3-press-play" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Open the project
+        3. Press Play
       
     </span>
   </a>
@@ -4579,21 +4568,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-apply-the-project-settings" class="md-nav__link">
+  <a href="#4-save-the-settings-to-your-project-before-you-package" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Apply the project settings
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-press-play" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Press Play
+        4. Save the settings to your project (before you package)
       
     </span>
   </a>
@@ -4641,83 +4619,51 @@
 
 <h1 id="install-and-first-launch">Install and first launch<a class="headerlink" href="#install-and-first-launch" title="Permanent link">&para;</a></h1>
 <p><em>All · 20 min · No code</em></p>
-<p>XenoCore is a <strong>Game Feature plugin</strong> for Unreal Engine 5.8, delivered as C++ source plus content.
-You add it to a <strong>new Blank project</strong> (you do not need Lyra or any other plugin), open the project,
-and it runs straight away. Clicking <strong>Apply</strong> once then writes its
-settings into your project for good.</p>
-<p>Before you start, install <strong>Visual Studio 2022</strong> with the <em>Game development with C++</em> workload; see
-<a href="../requirements/">Requirements</a>. Unreal compiles XenoCore the first time the project opens, and needs it
-for that.</p>
-<h2 id="1-create-a-project">1. Create a project<a class="headerlink" href="#1-create-a-project" title="Permanent link">&para;</a></h2>
+<p>XenoCore is a plugin for Unreal Engine 5.8. You install it, make a new <strong>Blank</strong> project, switch
+XenoCore on and press Play. You do not need Lyra or any other plugin, and nothing has to be set up
+first.</p>
+<h2 id="1-install-xenocore">1. Install XenoCore<a class="headerlink" href="#1-install-xenocore" title="Permanent link">&para;</a></h2>
+<p><strong>From Fab:</strong> in the Epic Games Launcher, open <strong>Fab Library</strong>, find XenoCore and click
+<strong>Install to Engine</strong>, then choose <strong>5.8</strong>. XenoCore is now available to every 5.8 project.</p>
+<p><strong>From a zip download:</strong> unzip it and keep the <code>XenoCore</code> folder; you copy it into the project in
+step 2. A zip holds C++ source only, so you need <strong>Visual Studio 2022</strong> with the
+<em>Game development with C++</em> workload to compile it (see <a href="../requirements/">Requirements</a>).</p>
+<h2 id="2-create-a-blank-project-and-switch-xenocore-on">2. Create a Blank project and switch XenoCore on<a class="headerlink" href="#2-create-a-blank-project-and-switch-xenocore-on" title="Permanent link">&para;</a></h2>
 <ol>
 <li>In the Epic Games Launcher, launch <strong>Unreal Engine 5.8</strong> and create a new project from
-   <strong>Games &gt; Blank</strong> (Blueprint or C++, either works; starter content is not needed).</li>
-<li>Put it on a <strong>short path</strong>, such as <code>C:\Projects\MyRPG</code>. Long paths can break the C++ build on
-   Windows.</li>
+   <strong>Games &gt; Blank</strong> (Blueprint or C++, either works; starter content is not needed). Put it on a
+   <strong>short path</strong>, such as <code>C:\Projects\MyRPG</code>.</li>
+<li><strong>From a zip only:</strong> close the editor, then copy the <code>XenoCore</code> folder into the project's
+   <code>Plugins</code> folder (create it if it does not exist), so you have <code>MyRPG/Plugins/XenoCore/XenoCore.uplugin</code>.
+   Open the project again. When Unreal says the XenoCore modules are missing and asks to rebuild
+   them, click <strong>Yes</strong>; the first build takes several minutes.</li>
+<li>In the editor, open <strong>Edit &gt; Plugins</strong>, search for <strong>XenoCore</strong> and make sure <strong>Enabled</strong> is
+   ticked. If you had to tick it, click <strong>Restart Now</strong>.</li>
 </ol>
-<h2 id="2-add-the-plugin">2. Add the plugin<a class="headerlink" href="#2-add-the-plugin" title="Permanent link">&para;</a></h2>
-<p><strong>From Fab:</strong> in the Epic Games Launcher's <strong>Fab Library</strong>, click <strong>Install to Engine</strong> on XenoCore
-and choose 5.8. The launcher puts it in the engine's plugin folder,
-<code>C:\Program Files\Epic Games\UE_5.8\Engine\Plugins\Marketplace\XenoCore</code>. <strong>Move</strong> (cut, not
-copy) that <code>XenoCore</code> folder into your project as below: XenoCore is built and tested in the
-project's <code>Plugins/GameFeatures</code> folder, and the packaging settings that <strong>Apply</strong> writes expect it
-there. Leaving a second copy in the engine folder makes Unreal find the plugin twice.</p>
-<p><strong>From a zip download:</strong> unzip it and copy its <code>XenoCore</code> folder into the project.</p>
-<p>Either way, it goes in the project's <strong><code>Plugins/GameFeatures</code></strong> folder (create the folders if they do
-not exist), so you have:</p>
-<div class="highlight"><pre><span></span><code>MyRPG/
-  MyRPG.uproject
-  Plugins/
-    GameFeatures/
-      XenoCore/          &lt;- here
-        XenoCore.uplugin
-</code></pre></div>
-<p>You do not need to edit the <code>.uproject</code>; the plugin switches itself on.</p>
-<h2 id="3-open-the-project">3. Open the project<a class="headerlink" href="#3-open-the-project" title="Permanent link">&para;</a></h2>
-<p>Double-click the <code>.uproject</code>. If Windows asks which engine to use, pick <strong>5.8</strong>.</p>
-<p>If Unreal says that modules are <strong>missing or built with a different engine version</strong> (it names
-<code>XenoCoreBase</code>, <code>XenoCoreRuntime</code> and <code>XenoCoreEditor</code>) and asks whether
-to rebuild them, click <strong>Yes</strong>. This compiles XenoCore's C++ inside your project and takes several
-minutes the first time. If the build fails, Unreal offers
-to open the log; see <a href="../../troubleshooting/build-and-editor/">Troubleshooting &gt; Build and editor</a>.
-If you would rather watch the build, right-click the <code>.uproject</code>, choose <strong>Generate Visual Studio
-project files</strong>, open the solution and build the editor target in <strong>Development Editor</strong>.</p>
-<p>After the build, the first open compiles shaders and builds cached data, and can take a long time once (10 minutes
-or more); later opens take under a minute. A few things you may see on the way are Unreal's or
-Windows', not XenoCore's, and are harmless:</p>
-<ul>
-<li><strong>"Wait for ZenServer?"</strong>: Unreal's shared cache is doing maintenance. Click <strong>Yes</strong>.</li>
-<li><strong>"New plugins are available"</strong>: Unreal noticing XenoCore. Click <strong>Dismiss</strong>; it is already
-  enabled.</li>
-<li><strong>A Windows Firewall prompt for the editor</strong>: Windows asking about a program it has not seen before.
-  XenoCore is single-player and needs no network; either answer is fine. While it is open, the
-  editor behind it does not respond to clicks.</li>
-</ul>
-<h2 id="4-apply-the-project-settings">4. Apply the project settings<a class="headerlink" href="#4-apply-the-project-settings" title="Permanent link">&para;</a></h2>
-<p>XenoCore already runs at this point. When the editor starts, it applies the settings it
-needs <strong>in memory</strong>, wherever your project still has the engine's own default value, and it writes
-nothing to disk. <strong>Apply</strong> writes the full set of settings into your project's <code>Config/Default*.ini</code>
-files, where you can see and edit them. Do it once: some settings come only from Apply, namely the
-title screen as the editor's startup map, the gamepad View button, and the maps a packaged build
-must cook.</p>
-<p>A few seconds after the editor opens, a notification appears in the bottom-right:</p>
+<p>The first open after this compiles shaders and can take 10 minutes or more once; later opens take
+under a minute. Unreal may ask <em>"Wait for ZenServer?"</em> (click <strong>Yes</strong>) or tell you <em>"New plugins are
+available"</em> (click <strong>Dismiss</strong>), and Windows may show a Firewall prompt for the editor (either answer
+is fine; XenoCore needs no network). None of these come from XenoCore.</p>
+<h2 id="3-press-play">3. Press Play<a class="headerlink" href="#3-press-play" title="Permanent link">&para;</a></h2>
+<ol>
+<li>In the Content Browser, open <strong>Plugins &gt; XenoCore Content &gt; Maps</strong> and double-click
+   <code>L_XenoCore_FrontEnd</code>, the title screen. (If you cannot see <strong>Plugins</strong>, click the Content
+   Browser's <strong>Settings</strong> and tick <strong>Show Plugin Content</strong>.)</li>
+<li>Press <strong>Play</strong>. The boot screens run, then the title screen. Choose <strong>New Game</strong>: you start on
+   Gaur Plain with Kael and Mira. See <a href="../play-the-sample/">Play the sample</a>.</li>
+</ol>
+<h2 id="4-save-the-settings-to-your-project-before-you-package">4. Save the settings to your project (before you package)<a class="headerlink" href="#4-save-the-settings-to-your-project-before-you-package" title="Permanent link">&para;</a></h2>
+<p>XenoCore applies the project settings it needs at startup, so it runs without this step. A few
+seconds after the editor opens, a notification offers to write them into your project's
+<code>Config/Default*.ini</code> files:</p>
 <blockquote>
 <p><strong>XenoCore needs N project setting(s) to run in this project (startup map, input, loading screen...).</strong>
-Settings you have changed yourself are left alone. Tools &gt; XenoCore runs this again any time.
 [Apply] [Not now]</p>
 </blockquote>
-<ol>
-<li>Click <strong>Apply</strong>.</li>
-<li>Click <strong>Restart Now</strong> on the notification that follows. If anything is unsaved, Unreal offers to
-   save it first.</li>
-</ol>
-<p>After the restart the editor opens on XenoCore's title screen map, <code>L_XenoCore_FrontEnd</code>. (Without
-Apply, open <code>Plugins &gt; XenoCore Content &gt; Maps &gt; L_XenoCore_FrontEnd</code> yourself before pressing Play.)</p>
-<p><strong>Not now</strong> stops the notification for this project. If you clicked it, or the notification has gone, use <strong>Tools &gt; XenoCore &gt; Apply XenoCore
-Project Settings</strong>. It is safe to run any number of times.</p>
-<h2 id="5-press-play">5. Press Play<a class="headerlink" href="#5-press-play" title="Permanent link">&para;</a></h2>
-<p>Press <strong>Play</strong>. The boot screens run, then the title screen. Choose <strong>New Game</strong>: you start on
-Gaur Plain with Kael and Mira. See <a href="../play-the-sample/">Play the sample</a>.</p>
+<p>Click <strong>Apply</strong>, then <strong>Restart Now</strong>. Do this before you package a game: the list of maps to cook
+comes only from these files. It also makes the editor open on the title screen. If you clicked
+<strong>Not now</strong>, use <strong>Tools &gt; XenoCore &gt; Apply XenoCore Project Settings</strong> at any time; it is safe to run
+again.</p>
 <h2 id="what-apply-changes">What Apply changes<a class="headerlink" href="#what-apply-changes" title="Permanent link">&para;</a></h2>
 <p>Apply writes to the project's own <code>Config/Default*.ini</code> files, so every change is visible and
 yours to edit. Most of them are also applied in memory at every editor and game start while your
