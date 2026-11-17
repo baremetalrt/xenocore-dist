@@ -4742,14 +4742,13 @@
 
 
 <h1 id="architecture-overview">Architecture overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h1>
-<p>XenoCore is one <strong>Game Feature plugin</strong> built on the framework of Epic's Lyra sample, which it carries
-inside itself as the <code>XenoCoreBase</code> module, so it runs in a Blank project or a Lyra project. That
-framework supplies the game mode, <strong>Experiences</strong>, the ability system plumbing, CommonUI menus and the
-character base classes. XenoCore adds everything RPG by <strong>subclassing</strong> those classes and <strong>adding
-components</strong> to their actors, never by editing them. The one idea that makes the rest make sense: <strong>party-wide
+<p>XenoCore is one <strong>Game Feature plugin</strong>. It carries its own game framework, the <code>XenoCoreBase</code>
+module, so it runs in a new Blank project. That framework supplies the game mode, <strong>Experiences</strong>, the
+ability system plumbing, CommonUI menus and the character base classes. XenoCore adds everything RPG by
+<strong>subclassing</strong> those classes and <strong>adding components</strong> to their actors, never by editing them. The one idea that makes the rest make sense: <strong>party-wide
 state lives on the player controller, per-character state lives on each pawn, and presentation lives
 in subsystems.</strong> Every system page in this section is one row of that split.</p>
-<p>If you are new to the Lyra vocabulary, read the <a href="../../getting-started/glossary/">Glossary</a> entries for
+<p>If these words are new to you, read the <a href="../../getting-started/glossary/">Glossary</a> entries for
 <em>Experience</em>, <em>Game Feature plugin</em> and <em>Pawn data</em> first.</p>
 <div class="admonition tip">
 <p class="admonition-title">Designers: what you need from this page</p>
@@ -4771,7 +4770,7 @@ goes in your project's <code>Plugins</code> folder). It has three C++ modules an
 <tbody>
 <tr>
 <td><code>Source/ThirdParty/XenoCoreBase</code></td>
-<td>The Lyra Starter Game code XenoCore is built on, renamed <code>XenoBase</code> / <code>XenoKit</code> so it never clashes with a Lyra project. Loaded in game and editor.</td>
+<td>XenoCore's game framework. Its classes are named <code>XenoBase...</code> and <code>XenoKit...</code>. Loaded in game and editor.</td>
 </tr>
 <tr>
 <td><code>Source/XenoCoreRuntime</code></td>
@@ -4791,12 +4790,12 @@ goes in your project's <code>Plugins</code> folder). It has three C++ modules an
 </tr>
 <tr>
 <td><code>Config/Tags/XenoCoreBaseTags.ini</code></td>
-<td>The Lyra project tags the copied framework and content need, so they exist in a Blank project too.</td>
+<td>The gameplay tags the framework and its content need.</td>
 </tr>
 </tbody>
 </table>
 <p>The plugin starts in the <strong>Registered</strong> state (<code>XenoCore.uplugin</code>, <code>BuiltInInitialFeatureState</code>) and
-is switched on by an Experience, exactly like Lyra's own ShooterCore.</p>
+is switched on by an Experience.</p>
 <h3 id="the-game-feature-data-asset">The Game Feature Data asset<a class="headerlink" href="#the-game-feature-data-asset" title="Permanent link">&para;</a></h3>
 <p><code>System/XenoCore</code> (<code>/XenoCore/System/XenoCore</code>, the asset named after the plugin) is the plugin's
 <strong>Game Feature Data</strong>. A Game Feature plugin normally keeps it at the top of its content folder;
@@ -4828,7 +4827,7 @@ Experience or an action set instead.</p>
 </div>
 <p>It also tells the Asset Manager to scan <code>/XenoCore/Experiences</code>, <code>/XenoCore/Maps</code> and
 <code>/XenoCore/System/Playlists</code>, which is how the plugin's Experiences become discoverable without you
-editing the host project's config.</p>
+editing your project's config.</p>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a new cue folder is never searched</p>
 <p>Only the plugin's <code>GameplayCues</code> folder is registered. A Gameplay Cue Notify you save anywhere
@@ -4847,13 +4846,13 @@ nothing plays, nothing is logged. Keep cue notifies in the plugin's <code>Gamepl
 <tbody>
 <tr>
 <td><code>Experiences/B_XenoCore_Experience</code></td>
-<td>The sample world and <code>L_XenoCore_Gym</code></td>
-<td>Leaves <strong>Default Pawn Data</strong> empty, so the game mode uses the Asset Manager's default pawn data (the party then spawns the real characters); adds <code>IMC_Default</code> (Lyra's, from <code>Imported/Lyra</code>) and <code>IMC_XenoCore</code> (XenoCore's inputs) with an <strong>Add Input Context Mapping</strong> action; adds the <code>LAS_XenoCore_HUD</code> action set (the HUD layout <code>W_XenoCore_HUDLayout</code> and the number-pop component); grants <code>AbilitySet_XenoCore_Interact</code> to <code>XenoBasePlayerState</code> (whose ability system XenoCore does not use, so this grant does nothing; the party's <strong>Leader Only Ability Set</strong> is the grant that works); adds <code>B_XenoCore_TeamSetup</code> (a team creation component) to <code>XenoBaseGameState</code>; enables the XenoCore Game Feature.</td>
+<td><code>L_XenoCore_GaurPlain</code> and <code>L_XenoCore_Gym</code></td>
+<td>Leaves <strong>Default Pawn Data</strong> empty, so the game mode uses the Asset Manager's default pawn data (the party then spawns the real characters); adds <code>IMC_Default</code> (from <code>Imported/Lyra/Input/Mappings</code>) and <code>IMC_XenoCore</code> (XenoCore's inputs) with an <strong>Add Input Context Mapping</strong> action; adds the <code>LAS_XenoCore_HUD</code> action set (the HUD layout <code>W_XenoCore_HUDLayout</code> and the number-pop component); grants <code>AbilitySet_XenoCore_Interact</code> to <code>XenoBasePlayerState</code> (whose ability system XenoCore does not use, so this grant does nothing; the party's <strong>Leader Only Ability Set</strong> is the grant that works); adds <code>B_XenoCore_TeamSetup</code> (a team creation component) to <code>XenoBaseGameState</code>; enables the XenoCore Game Feature.</td>
 </tr>
 <tr>
 <td><code>Experiences/B_XenoCore_FrontEnd_Experience</code></td>
 <td><code>L_XenoCore_FrontEnd</code></td>
-<td>Adds <code>BP_XenoCore_TitleState</code> to the game state, which pushes the boot screens and the title screen.</td>
+<td>Adds <code>BP_XenoCore_TitleState</code> to the game state, which pushes the boot screens and the title screen, and the front-end performance stats widget.</td>
 </tr>
 </tbody>
 </table>
@@ -4886,7 +4885,7 @@ who is told about it, find its row.</p>
 <td>The bag (all items)</td>
 <td>Player controller</td>
 <td><code>UXenoBaseInventoryManagerComponent</code></td>
-<td>Party-wide; Lyra's own item-cost code looks for it on the controller.</td>
+<td>Party-wide; the framework's item-cost code looks for it on the controller.</td>
 </tr>
 <tr>
 <td>Quest records</td>
@@ -4909,14 +4908,14 @@ who is told about it, find its row.</p>
 <tr>
 <td>Ability system, attributes, active effects</td>
 <td>Each pawn</td>
-<td><code>UXenoBaseAbilitySystemComponent</code> on <code>AXenoCoreCombatantCharacter</code> (party) or <code>AXenoCoreEnemyCharacter</code> (enemies, a separate branch from <code>AXenoBaseCharacterWithAbilities</code>, XenoCore's copy of Lyra's <code>ALyraCharacterWithAbilities</code>)</td>
+<td><code>UXenoBaseAbilitySystemComponent</code> on <code>AXenoCoreCombatantCharacter</code> (party) or <code>AXenoCoreEnemyCharacter</code> (enemies); both derive from <code>AXenoBaseCharacterWithAbilities</code></td>
 <td>Each character is its own identity; switching leader never moves stats.</td>
 </tr>
 <tr>
 <td>Health and death, revive</td>
 <td>Each pawn</td>
 <td><code>UXenoCoreHealthComponent</code></td>
-<td>Swapped in for Lyra's health component on every combatant.</td>
+<td>Replaces the framework's health component on every combatant.</td>
 </tr>
 <tr>
 <td>Worn equipment</td>
@@ -4964,7 +4963,7 @@ who is told about it, find its row.</p>
 <td>Damage-taken and heal numbers</td>
 <td>World</td>
 <td><code>UXenoCoreDamageNumberSubsystem</code></td>
-<td>Listens to Lyra's damage message; draws what Lyra does not.</td>
+<td>Listens to the damage message; draws the numbers the damage cue does not.</td>
 </tr>
 <tr>
 <td>Battle text (MISS, CRITICAL HIT!, BREAK...)</td>
@@ -5036,7 +5035,7 @@ who is told about it, find its row.</p>
 <td>Title screen</td>
 <td>Game state (front end only)</td>
 <td><code>UXenoCoreTitleStateComponent</code> (<code>UserInterface/BP_XenoCore_TitleState</code>)</td>
-<td>Lyra's own front-end shape.</td>
+<td>Only the front end needs it.</td>
 </tr>
 </tbody>
 </table>
@@ -5096,8 +5095,10 @@ with empty data. Always use the resolvers above.</p>
 <li>Subsystems register their message listeners at world begin play and react from then on.</li>
 </ol>
 <h2 id="change-signals-are-messages">Change signals are messages<a class="headerlink" href="#change-signals-are-messages" title="Permanent link">&para;</a></h2>
-<p>Lyra's own inventory and equipment change messages are sent only from replication callbacks, so in a
-single-player game they never fire. XenoCore broadcasts its own on the <strong>Gameplay Message Subsystem</strong>.
+<p>The framework's own inventory and equipment change messages are sent only from replication callbacks, so
+in a single-player game they never fire. XenoCore broadcasts its own on its gameplay message subsystem
+(<code>UXenoKitGameplayMessageSubsystem</code>). In 1.3.2 you listen to them from C++; Blueprint has the
+<strong>Broadcast Message</strong> node but no listen node.
 Each has exactly one broadcaster, and every change goes through that broadcaster. The one safety net is
 the inventory watcher, which announces bag changes made around the statics.</p>
 <table>
@@ -5174,21 +5175,23 @@ the inventory watcher, which announces bag changes made around the statics.</p>
 <p>The full list and payloads are in <a href="../events/">Events you can listen to</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Changing the bag directly</p>
-<p>Every bag change goes through <code>UXenoCoreInventoryStatics</code>. A change made by calling Lyra's
+<p>Every bag change goes through <code>UXenoCoreInventoryStatics</code>. A change made by calling the
 inventory component yourself is caught by <code>UXenoCoreInventoryWatchSubsystem</code>, which sends
 <code>XenoCore.Inventory.Message.Changed</code> for it a frame later, so menus stay current. It cannot undo
-one, though: Lyra's <strong>Remove Item Instance</strong> will remove an item a character is wearing, and the
+one, though: the inventory component's <strong>Remove Item Instance</strong> will remove an item a character is wearing, and the
 save then loses it. See <a href="../items-and-inventory/">Items and inventory</a>.</p>
 </div>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <p><strong>The rule: never edit the framework. Subclass it, add a component, or add a row of data.</strong> The
-framework code in <code>Source/ThirdParty/XenoCoreBase</code> is generated from Lyra's; if you change it, a
-XenoCore update overwrites your work, and XenoCore's behaviour may change under you. The same goes
-for a Lyra host project's own files.</p>
+framework code in <code>Source/ThirdParty/XenoCoreBase</code> is part of XenoCore; if you change it, a XenoCore
+update overwrites your work, and XenoCore's behaviour may change under you.</p>
 <ul>
-<li>To change a XenoCore system's <strong>numbers</strong>, edit the Blueprint subclass that holds them
-  (<code>BP_XenoCore_Party</code>, <code>BP_XenoCore_Progression</code>, <code>BP_XenoCoreDamageExecution</code>) or, better, make a
-  child Blueprint of it in <code>Content/MyGame/</code> and point the Game Feature Data at your child.</li>
+<li>To change a XenoCore system's <strong>numbers</strong>, make a child Blueprint of the Blueprint that holds them
+  (<code>BP_XenoCore_Party</code>, <code>BP_XenoCore_Progression</code>, <code>BP_XenoCoreDamageExecution</code>) in your project's own
+  Content folder, and point whatever uses it at your child (for the party and progression components,
+  the <strong>Add Components</strong> entry on the Game Feature Data). Editing XenoCore's Blueprint directly also
+  works, but a XenoCore update replaces it, and an update also resets the Game Feature Data, so re-point
+  it after updating.</li>
 <li>To change <strong>behaviour</strong> in C++, subclass the XenoCore class and override its virtuals. See
   <a href="../../recipes/subclass-mechanic/">Subclass a mechanic</a>.</li>
 <li>To add a <strong>new system</strong>, give it the same shape: party-wide state on a controller component with a
@@ -5260,25 +5263,25 @@ file.</p>
 </tbody>
 </table>
 <div class="admonition note">
-<p class="admonition-title">XenoCore needs no edits to Lyra</p>
-<p>Where XenoCore needs Lyra content to behave differently, it ships its own copy instead of
-changing Lyra's: the damage-number cue is <code>GameplayCues/GCNL_XenoCore_DamageTaken</code> (fired by
-<code>GE_XenoCore_Damage</code>; in a Lyra project, Lyra's own <code>GCNL_Character_DamageTaken</code> is untouched), and keyboard key
-icons are added at startup from <strong>Project Settings › Game › XenoCore UI › HUD › Keyboard Key Icons</strong>.
-A fresh download of Lyra therefore needs nothing re-applied.</p>
+<p class="admonition-title">Damage numbers and keyboard key icons</p>
+<p>The damage-number cue is <code>GameplayCues/GCNL_XenoCore_DamageTaken</code>, fired by <code>GE_XenoCore_Damage</code>.
+Keyboard key icons are added at startup from
+<strong>Project Settings › Game › XenoCore UI › HUD › Keyboard Key Icons</strong>, so your project's input
+settings need no edit.</p>
 </div>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Pawn-hosted ability systems.</strong> Lyra keeps a player's ability system on the player state, which
-  would mean every party member shares one identity or needs its own player state. XenoCore uses
-  Lyra's own <code>ALyraCharacterWithAbilities</code> shape (<code>AXenoBaseCharacterWithAbilities</code> in XenoCore) (the one Epic's damageable test dummy uses), so a
+<li><strong>Pawn-hosted ability systems.</strong> A player's ability system usually lives on the player state, which
+  would mean every party member shares one identity or needs its own player state. XenoCore's
+  characters derive from <code>AXenoBaseCharacterWithAbilities</code>, which carries its own ability system, so a
   character's stats, arts and effects travel with its body. Switching leader is only possession.</li>
-<li><strong>Controller components for the party.</strong> The same place Lyra's quick bar and item-cost code look.
-  It survives pawn changes and is reachable from anything with a world.</li>
+<li><strong>Controller components for the party.</strong> The same place the framework's quick bar and item-cost code
+  look. It survives pawn changes and is reachable from anything with a world.</li>
 <li><strong>Subsystems for presentation.</strong> A notification is about the battle, not a pawn, so it has no
   business being a component on every character.</li>
-<li><strong>Own messages.</strong> Lyra's change messages rely on replication. XenoCore's fire in standalone play,
-  and each has one sender, so a listener never has to guess which of several paths changed something.</li>
+<li><strong>Own messages.</strong> The framework's change messages rely on replication. XenoCore's fire in standalone
+  play, and each has one sender, so a listener never has to guess which of several paths changed
+  something.</li>
 </ul>
 
 

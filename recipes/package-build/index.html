@@ -4745,27 +4745,30 @@ your map, and has every menu working, checked in the packaged build rather than 
 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../getting-started/requirements/">Requirements</a>: Visual Studio and the Windows SDK are
-  needed to package, because the project has C++.</li>
+  needed to package, because XenoCore has C++ modules and packaging compiles a game executable
+  (even for a Blueprint project).</li>
+<li>You have clicked <strong>Apply</strong> once (see <a href="../../getting-started/install/">Install and first launch</a>).
+  Packaging reads its map list from the project's config files, and only <strong>Apply</strong> writes it.</li>
 <li>Your content is in place. See <a href="../replace-sample-content/">Replace the sample content</a>.</li>
 </ul>
 <h2 id="what-packaging-does-here">What packaging does here<a class="headerlink" href="#what-packaging-does-here" title="Permanent link">&para;</a></h2>
-<p>XenoCore packages with your project like any other plugin: your project's game target (for a Lyra
-project, <strong>LyraGame</strong>), Development configuration by default, compressed into pak files. The editor-only
+<p>XenoCore packages with your project like any other plugin: your project's game target,
+Development configuration by default, compressed into pak files. The editor-only
 <code>XenoCoreEditor</code> module is left out automatically.</p>
 <p>Two XenoCore specifics shape the packaging settings. Unlike the rest of XenoCore's settings, these
-are not applied in memory at startup, so they must be written to the project. The <strong>Apply</strong> step of
-<a href="../../getting-started/install/">Install and first launch</a> writes both into your project's
-<code>Config/DefaultGame.ini</code>. If you are not sure it ran, use <strong>Tools › XenoCore › Apply XenoCore
-Project Settings</strong>; it changes nothing that is already set:</p>
+are not applied in memory at startup, so they must be written to the project. <strong>Apply</strong> writes both
+into your project's <code>Config/DefaultGame.ini</code>. If you are not sure it ran, use <strong>Tools › XenoCore ›
+Apply XenoCore Project Settings</strong>; it changes nothing that is already set:</p>
 <ul>
 <li><strong>Some assets are named by a setting, not by a reference.</strong> The shop, trade, arts, save, quest
   and loot screens, the dialogue anchor and the dialogue camera are named in the XenoCore project
-  settings. XenoCore adds the assets those settings name to every cook, and the project also cooks
-  <code>/XenoCore/UserInterface</code>, <code>/XenoCore/Characters/NPC</code> and <code>/XenoCore/Cameras</code> in full
-  (<strong>Additional Asset Directories to Cook</strong> in the packaging settings). Keep them there.</li>
+  settings. XenoCore adds the assets those settings name to every cook by itself. <strong>Apply</strong> also
+  adds <code>/XenoCore/UserInterface</code>, <code>/XenoCore/Characters/NPC</code> and <code>/XenoCore/Cameras</code> to
+  <strong>Additional Asset Directories to Cook</strong>, so they cook in full. Keep them there.</li>
 <li><strong>Maps reached only by a setting must be listed.</strong> The new-game map and any map a save file
-  names are soft references. The shipped list is <code>L_XenoCore_FrontEnd</code>, <code>L_XenoCore_GaurPlain</code>
-  (where <strong>New Game</strong> starts) and <code>L_XenoCore_Gym</code>. List every map you ship.</li>
+  names are soft references. <strong>Apply</strong> lists <code>L_XenoCore_FrontEnd</code>, <code>L_XenoCore_GaurPlain</code>
+  (where <strong>New Game</strong> starts) and <code>L_XenoCore_Gym</code>. Without <strong>Apply</strong> the list is empty and no
+  XenoCore map is cooked. List every map you ship.</li>
 </ul>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-check-the-packaging-settings">1. Check the packaging settings<a class="headerlink" href="#1-check-the-packaging-settings" title="Permanent link">&para;</a></h3>
@@ -4773,8 +4776,9 @@ Project Settings</strong>; it changes nothing that is already set:</p>
 <ol>
 <li><strong>Build Configuration</strong>: <code>Development</code> while testing; <code>Shipping</code> for release.</li>
 <li><strong>List of maps to include in a packaged build</strong>: your title map (<code>Maps/L_XenoCore_FrontEnd</code>
-   unless you replaced it) and <strong>every</strong> playable map. The shipped list is the front end,
-   <code>L_XenoCore_GaurPlain</code> and <code>L_XenoCore_Gym</code>; remove the sample maps once yours replace them.</li>
+   unless you replaced it) and <strong>every</strong> playable map. After <strong>Apply</strong> the list is the front end,
+   <code>L_XenoCore_GaurPlain</code> and <code>L_XenoCore_Gym</code>; remove the sample maps once yours replace them.
+   If the list is empty, click <strong>Apply</strong> first.</li>
 <li><strong>Additional Asset Directories to Cook</strong>: keep <code>/XenoCore/UserInterface</code>,
    <code>/XenoCore/Characters/NPC</code> and <code>/XenoCore/Cameras</code>. Add any folder of yours whose assets are
    loaded only by path.</li>
@@ -4794,10 +4798,7 @@ Before packaging, open the <strong>Reference Viewer</strong> on the test assets 
 own test content out of shipped folders altogether.</p>
 </div>
 <h3 id="2-check-which-plugins-ship">2. Check which plugins ship<a class="headerlink" href="#2-check-which-plugins-ship" title="Permanent link">&para;</a></h3>
-<p>A Lyra project still carries Lyra's own sample game features (ShooterCore, ShooterMaps,
-ShooterExplorer, TopDownArena and others), and they cook unless you turn them off. A Blank project
-has none of these.
-<code>XenoCore.uplugin</code> declares every plugin XenoCore's content needs (Niagara, Niagara UI Renderer,
+<p><code>XenoCore.uplugin</code> declares every plugin XenoCore's content needs (Niagara, Niagara UI Renderer,
 Water, DataRegistry and Metasound among them), so they stay on whatever you disable. See
 <a href="../../reference/compatibility/">Compatibility</a> for the list.</p>
 <ol>
@@ -4806,7 +4807,7 @@ Water, DataRegistry and Metasound among them), so they stay on whatever you disa
 </ol>
 <h3 id="3-set-the-version">3. Set the version<a class="headerlink" href="#3-set-the-version" title="Permanent link">&para;</a></h3>
 <p>Set <strong>Project Settings › Project › Description › Project Version</strong>. XenoCore draws this version in
-the bottom-right corner of every screen, including in packaged builds, so a bug report can name
+the bottom-right corner of the title screen, including in packaged builds, so a bug report can name
 the build.</p>
 <h3 id="4-package">4. Package<a class="headerlink" href="#4-package" title="Permanent link">&para;</a></h3>
 <p>From the editor: <strong>Platforms › Windows › Package Project</strong>, and choose an output folder.</p>
@@ -4850,7 +4851,7 @@ for your assets.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">The package is far bigger than expected</p>
-<p>Sample content, pack assets or unused Lyra features are still being cooked. Right-click each
+<p>Sample content or pack assets are still being cooked. Right-click each
 of your maps in the Content Browser and choose <strong>Size Map...</strong> to see what it pulls in, and see
 <a href="../megascans-assets/">Megascans at shipping size</a>.</p>
 </div>

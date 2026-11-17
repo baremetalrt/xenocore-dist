@@ -4731,7 +4731,8 @@ read at that level. The effect is picked per character by the pawn's <strong>Sta
 <p>A scalable float <strong>multiplies</strong> its curve by its own coefficient. If the coefficient is not
 <code>1.0</code>, the game uses a different number from the one you see in the table, and nothing says so.
 The shipped minion types use this on purpose: the melee minion reads its rows at <code>1.0</code>, and the
-Brute (<code>1.45</code>), Bulwark (<code>1.15</code>) and Skirmisher (<code>0.9</code>) scale the same rows. Before you
+Brute, Bulwark and Skirmisher scale the same rows by a coefficient per stat (the Brute: HP <code>3.0</code>,
+Strength <code>1.45</code>, Agility <code>0.8</code>, defences <code>1.3</code>). Before you
 rebalance a row, open the effect that reads it and check the coefficient on each modifier.</p>
 </div>
 <p><strong>Lookup tables (<code>RewardLevelDiff</code>, <code>DamageLevelDiff</code>).</strong> C++ looks the row up by name on the

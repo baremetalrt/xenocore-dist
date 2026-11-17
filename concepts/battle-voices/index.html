@@ -4780,12 +4780,12 @@ character or per category.</p>
 </ul>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Status, 2026-10-03</p>
-<p>All seven characters are voiced (470 lines, two takes each, with lip-sync keys and an
-expression per line) and the gameplay triggers are wired: art calls, battle start, hits,
-downed and revive, victory, Talent ready, the Party Gauge, level up, switching leader and
-talking to an ally. Each line also carries lip-sync keys and an expression, for characters
-with a face rig; the sample Mannequins have none, so only the voice and subtitle show.</p>
+<p class="admonition-title">What ships</p>
+<p>All seven characters are voiced, two takes per line, and the gameplay triggers are wired:
+art calls, battle start, hits, downed and revive, victory, Talent ready, the Party Gauge,
+level up, switching leader and talking to an ally. Each line also carries lip-sync keys and
+an expression, for characters with a face rig; the sample Mannequins have none, so only the
+voice and subtitle show.</p>
 </div>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <table>
@@ -4810,12 +4810,12 @@ with a face rig; the sample Mannequins have none, so only the voice and subtitle
 <tr>
 <td>Global feel</td>
 <td>Data Asset <strong>Xeno Core Battle Voice Config</strong></td>
-<td><code>Audio/Voice/DA_XenoCore_BattleVoiceConfig</code>, chosen in <strong>Project Settings &gt; XenoCore Content &gt; Voice</strong></td>
+<td><code>Audio/Voice/DA_XenoCore_BattleVoiceConfig</code>, chosen in <strong>Project Settings › Game › XenoCore Content › Voice</strong></td>
 </tr>
 <tr>
 <td>Volume</td>
 <td>Sound class <code>SC_XenoCore_Dialogue</code></td>
-<td>Follows Lyra's <strong>Dialogue</strong> volume slider, mixed through Lyra's <code>VoiceSubmix</code></td>
+<td>Follows the <strong>Dialogue</strong> volume slider in the game's audio settings, mixed through <code>VoiceSubmix</code></td>
 </tr>
 <tr>
 <td>Left / right</td>
@@ -5176,6 +5176,10 @@ therefore follows these rules, all set in <code>DT_XenoCore_VoiceRules</code>:</
 <td>Battle start, take control</td>
 </tr>
 <tr>
+<td>50</td>
+<td>Talking to an ally (<code>Field.Talk</code>)</td>
+</tr>
+<tr>
 <td>45</td>
 <td>Reactions (off)</td>
 </tr>
@@ -5197,11 +5201,11 @@ therefore follows these rules, all set in <code>DT_XenoCore_VoiceRules</code>:</
 </tr>
 <tr>
 <td>20</td>
-<td>Aid</td>
+<td>Aid; enemy sighted (<code>Field.EnemySighted</code>)</td>
 </tr>
 <tr>
 <td>15</td>
-<td>Miss, evade</td>
+<td>Miss, evade, wait up (<code>Field.WaitUp</code>)</td>
 </tr>
 <tr>
 <td>10</td>
@@ -5209,7 +5213,7 @@ therefore follows these rules, all set in <code>DT_XenoCore_VoiceRules</code>:</
 </tr>
 <tr>
 <td>5</td>
-<td>Field banter</td>
+<td>Other field banter</td>
 </tr>
 </tbody>
 </table>
@@ -5241,7 +5245,7 @@ lip-sync keys. To add your own recording:</p>
 <a href="#the-face">The face</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Test it</p>
-<p>Start the gym, then type <code>XenoCore.Voice.Speak Kael &lt;Category&gt;</code> in the console with your row's
+<p>Open <code>Maps/L_XenoCore_Gym</code> and press Play, then type <code>XenoCore.Voice.Speak Kael &lt;Category&gt;</code> in the console with your row's
 category. <code>Log LogXenoVoice Verbose</code> explains a line that did not play.</p>
 </div>
 <h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>

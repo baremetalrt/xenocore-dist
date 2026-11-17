@@ -4702,7 +4702,7 @@ it.</p>
 <tr>
 <td><code>Maps/L_XenoCore_FrontEnd</code></td>
 <td>Map</td>
-<td>The front end. The project's default map and the editor's startup map</td>
+<td>The front end. XenoCore makes it the game's default map; <strong>Apply XenoCore Project Settings</strong> (Tools › XenoCore) also makes it the editor's startup map</td>
 </tr>
 <tr>
 <td><code>Experiences/B_XenoCore_FrontEnd_Experience</code></td>
@@ -4798,7 +4798,7 @@ simply lacks its data: no participant records reads as "nothing saved yet", no t
 <strong>Default Tactics</strong>, and no gems leaves every socket empty.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p><strong>Boot.</strong> The project opens <code>L_XenoCore_FrontEnd</code>. Its Experience adds <code>BP_XenoCore_TitleState</code>,
-which waits for Lyra's loading screen to lift, then shows each boot card in its <strong>Boot Screens</strong>
+which waits for the loading screen to lift, then shows each boot card in its <strong>Boot Screens</strong>
 list: fade in, hold, fade out. A, B, Escape or a click skips a card (it still fades). The shader
 card only appears if shaders are still compiling. The sequence plays once per launch; returning to
 the title goes straight to the title. The world behind stays black and silent until the title
@@ -4810,15 +4810,13 @@ appears.</p>
 <li><strong>New Game</strong> tells the subsystem a new game is starting, then opens <strong>New Game Map</strong>
   (<code>L_XenoCore_GaurPlain</code>), or <strong>New Game Map Override</strong> when that project setting is set.</li>
 <li><strong>Load Game</strong> opens the save screen in Load mode.</li>
-<li><strong>Settings</strong> pushes the settings screen (XenoCore's copy of Lyra's). In a Lyra project it pushes
-  <strong>XenoCore UI › Host Settings Screen</strong> instead, which <strong>Project Setup</strong> sets to Lyra's own; while
-  that is empty, Settings logs a warning (<code>LogXenoMenu</code>) and does nothing.</li>
+<li><strong>Settings</strong> pushes XenoCore's settings screen.</li>
 <li><strong>Quit</strong> quits.</li>
 </ul>
 <p>The title screen keeps the world running behind it, so the scene animates.</p>
 <p><strong>Saving.</strong> From the in-game menu, <strong>Save</strong> opens the save screen in Save mode. The autosave row is
 listed but cannot be saved over. Saving is refused while any enemy is engaged in a fight: picking a
-slot then shows Lyra's message box, <em>Save</em> / <em>You cannot save right now.</em>, with an OK button. Writes are asynchronous; the screen's "do not turn off the power" notice lasts
+slot then shows a message box, <em>Save</em> / <em>You cannot save right now.</em>, with an OK button. Writes are asynchronous; the screen's "do not turn off the power" notice lasts
 exactly as long as the write.</p>
 <p><strong>Autosave.</strong> A save point autosaves when <strong>the player</strong> (not a following party member) steps on
 it. If a fight refuses the save, it keeps retrying every <strong>Retry Interval</strong> while the player
@@ -4947,12 +4945,7 @@ save again.</p>
 <tr>
 <td><strong>Settings Screen Class</strong></td>
 <td>same as <strong>New Game Map</strong></td>
-<td>The settings screen (XenoCore's copy of Lyra's by default)</td>
-</tr>
-<tr>
-<td><strong>Host Settings Screen</strong></td>
-<td>Project Settings › Game › XenoCore UI › Menu</td>
-<td>In a Lyra project, the settings screen opened instead (Project Setup sets it to Lyra's)</td>
+<td>The settings screen (XenoCore's own by default)</td>
 </tr>
 <tr>
 <td>Autosave badge labels and hold times</td>
@@ -4972,7 +4965,7 @@ save again.</p>
 <tr>
 <td><strong>Game Default Map</strong>, <strong>Editor Startup Map</strong></td>
 <td>Project Settings › Maps &amp; Modes</td>
-<td><code>L_XenoCore_FrontEnd</code></td>
+<td><code>L_XenoCore_FrontEnd</code> once <strong>Apply XenoCore Project Settings</strong> has run. Until then XenoCore uses it as the game default map in memory, and the editor opens on the project's own startup map</td>
 </tr>
 </tbody>
 </table>
@@ -4981,9 +4974,10 @@ save again.</p>
 <code>-XenoCoreSkipBoot</code> skips the boot cards. See <a href="../../reference/console-commands/">Console commands</a>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: your map's saves show no location</p>
-<p><strong>Location Names</strong> only lists the sample maps. A save written on a map of yours prints an empty
-location until you add an entry for it in <strong>Project Settings › Game › XenoCore Save</strong>. Nothing
-is logged. Add the entry when you create the map.</p>
+<p><strong>Location Names</strong> starts empty. <strong>Apply XenoCore Project Settings</strong> (Tools › XenoCore) adds the
+two sample maps, and sets <strong>Default Story Text</strong> to <em>Chapter 1</em>. A save written on any map with
+no entry prints an empty location. Nothing is logged. Add an entry in <strong>Project Settings › Game ›
+XenoCore Save</strong> when you create a map.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Adding per-item state breaks saving</p>
@@ -5063,9 +5057,8 @@ are <code>AXenoCoreSavePoint</code>. The loading-screen hold is <code>UXenoCoreW
   let the player see a chest's contents in advance.</li>
 <li><strong>Health as a fraction.</strong> Max health depends on level and gear, both restored after health is
   read, so saved points could exceed the new maximum.</li>
-<li><strong>The front end is Lyra's pattern.</strong> Lyra's own front end puts a state component on the game
-  state through its Experience; XenoCore's does the same with its own component, so the title map
-  itself stays empty.</li>
+<li><strong>A state component, not a map script.</strong> The front end's Experience puts
+  <code>UXenoCoreTitleStateComponent</code> on the game state, so the title map itself stays empty.</li>
 </ul>
 </details>
 <p><strong>Next:</strong> <a href="../ui-shell-and-hud/">UI shell and HUD</a> · <a href="../events/">Events you can listen to</a></p>

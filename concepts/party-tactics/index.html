@@ -4757,7 +4757,7 @@ always means everyone.</p>
 <p>Each companion scores every enemy fighting the party and takes the best. Only enemies already in the
 fight count: as in every Xenoblade, companions never start a battle themselves - and with squads that link
 aggro, one that did would pull the whole squad onto you. The weights are on the
-character's <strong>AI Profile › Target Choice</strong> (party member definition), so a defender and a healer can
+character's <strong>AI Profile › Target Choice</strong> (party member definition, under <strong>XenoCore › AI</strong>), so a defender and a healer can
 choose differently:</p>
 <table>
 <thead>
@@ -4857,7 +4857,7 @@ value pills, highlight). A child that authors its own widget tree keeps it, and 
 after every change to draw from.</p>
 <p>The glyphs - <strong>X</strong> on the prompt, <strong>LB / RB</strong> on the list - are the rows <strong>PartyTactics</strong>,
 <strong>TacticsScopePrev</strong> and <strong>TacticsScopeNext</strong> in <code>DT_XenoCore_Actions</code> (the panel's <strong>Action Table</strong>,
-drawn with its <strong>Glyph Class</strong>, Lyra's <code>InputActionWidget</code>). <strong>Glyph Class</strong>, <strong>Action Table</strong> and
+drawn with its <strong>Glyph Class</strong>, <code>Imported/Lyra/UI/Foundation/Widgets/InputActionWidget</code>). <strong>Glyph Class</strong>, <strong>Action Table</strong> and
 <strong>Font Family</strong> are soft defaults on the class: they load when the panel is first built, and a
 Blueprint child can point them elsewhere.</p>
 <div class="admonition warning">

@@ -4698,7 +4698,7 @@ rows.</p>
 <tr>
 <td>Incapacitation</td>
 <td><code>UXenoCoreGameplayAbility_AutoAttack</code> › <strong>Incapacitated Tags</strong></td>
-<td>A Toppled or Dazed attacker does not swing or use its Arts</td>
+<td>A Toppled or Dazed attacker does not auto-attack</td>
 </tr>
 <tr>
 <td>Flinch</td>
@@ -4770,11 +4770,9 @@ land.</p>
   stays down for exactly as long as the reaction tag lasts: a clip shorter than the reaction holds
   its last pose, a longer one is cut when the tag goes. The minion has no get-up clip, so it simply
   blends back to its idle.</li>
-<li>Any attacker built on the auto-attack base (the auto-attack itself and the minion's Arts) checks
-  <strong>Incapacitated Tags</strong> (Topple and Daze by default). While the attacker carries one, its auto-attack
-  loop pauses, its Arts refuse to start (so the enemy AI sees them as not ready and no cooldown is
-  spent), and a swing already in flight does not connect. The enemy's chase also stops, so a toppled
-  minion does not turn to follow you.</li>
+<li>The auto-attack checks its <strong>Incapacitated Tags</strong> (Topple and Daze by default). While the
+  attacker carries one, its auto-attack loop pauses and a swing already in flight does not connect.
+  The knock-down also stops movement, so a toppled minion does not chase or turn to follow you.</li>
 </ul>
 <p><strong>Ending.</strong> When the effect expires GAS removes the tag. Nothing else has to clean up.</p>
 <p><strong>Statuses.</strong> When a <code>UXenoCoreStatusEffect</code> is newly applied, its <strong>Display Name</strong> pops up over the
@@ -4887,8 +4885,8 @@ hit while it moves.</p>
 </tr>
 <tr>
 <td><strong>Incapacitated Tags</strong></td>
-<td>Auto-attack or enemy Art ability › XenoCore › AutoAttack</td>
-<td>The attacker cannot swing or use Arts while it holds any of these. Default: Topple, Daze</td>
+<td>Auto-attack ability › XenoCore › AutoAttack</td>
+<td>The attacker does not auto-attack while it holds any of these. Default: Topple, Daze. <code>Status.XenoCore.Defence</code> is also on the list, so a guard, recoil or dodge pauses the swing too</td>
 </tr>
 <tr>
 <td><strong>Status Icon Size</strong>, <strong>Status Refresh Interval</strong></td>
@@ -4929,7 +4927,7 @@ the rule off for that ability.</p>
 <ul>
 <li><strong>A new status:</strong> create a Blueprint child of <code>UXenoCoreStatusEffect</code> in your own folder, set its
   duration to SetByCaller <code>XenoCore.Status.Duration</code> if Arts should choose the duration, add its
-  modifiers and the four display fields. It then pops up and shows on the HUD with no registration.
+  modifiers and the five <strong>Status</strong> fields (Display Name, Abbreviation, Colour, Icon, Is Buff). It then pops up and shows on the HUD with no registration.
   See <a href="../../recipes/status-effect/">Status effect</a>.</li>
 <li><strong>Making an Art react:</strong> add a <code>GE_XenoCore_Reaction_*</code> entry to the Art's <strong>Effects</strong> list. See
   <a href="../../recipes/art-reactions/">Art reactions</a>.</li>
@@ -4970,7 +4968,7 @@ the rule off for that ability.</p>
 <li><strong>Watch the tag, not the source.</strong> The popups, the player's reactions and the face all listen for
   the tag appearing on an ASC, so an Art, a status, a script or the console command all behave the
   same and nothing can apply a reaction silently.</li>
-<li><strong>Status presentation on the effect.</strong> <code>UXenoCoreStatusEffect</code> adds only the four fields a Gameplay
+<li><strong>Status presentation on the effect.</strong> <code>UXenoCoreStatusEffect</code> adds only the five fields a Gameplay
   Effect has no home for, so there is no separate list of statuses to keep in step.</li>
 <li><strong>The victim decides the flinch.</strong> The attacker only sends an event; direction is computed from
   the victim's facing, and the victim's own blocked tags decide whether it reacts.</li>

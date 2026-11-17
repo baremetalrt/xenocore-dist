@@ -4641,7 +4641,7 @@ spawns.</p>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
 <p>The class tree, from C++ to the Blueprints you open:</p>
 <ul>
-<li><code>AXenoBaseCharacterWithAbilities</code> (XenoCore's copy of Lyra's character that owns its ability system)<ul>
+<li><code>AXenoBaseCharacterWithAbilities</code> (the framework's character that owns its ability system)<ul>
 <li><code>AXenoCoreCombatantCharacter</code>: party-playable pawns<ul>
 <li><code>Game/B_XenoCore_PlayableCharacter_Base</code> (Blueprint)<ul>
 <li><code>Game/B_XenoCore_Player</code>: <strong>Kael</strong>, the sample leader. The party spawns it as Kael's <strong>Member Class</strong> (<code>PartyMember_Blue</code>)</li>
@@ -4687,9 +4687,9 @@ picked by the member definition's <strong>Experience Curve</strong>. See
 <a href="../../recipes/tune-progression/">Tune levelling</a>.</p>
 <p><strong>Pawn data</strong> (<code>UXenoBasePawnData</code>) is the list of ability sets and input config a character gets. Each
 party Blueprint points at its own (<code>Characters/Party/PawnData_XenoCore_Party_&lt;Colour&gt;</code>), which grants
-<code>AbilitySet_XenoCore_PartyMember</code> and uses the tag relationships in <code>Game/TagRelationships_XenoCore</code>.
+<code>AbilitySet_XenoCore_PartyMember</code> and <code>AbilitySet_XenoCore_Input</code>, and uses the tag relationships in <code>Game/TagRelationships_XenoCore</code>.
 Kael's pawn, <code>Game/B_XenoCore_Player</code>, uses <code>Game/PawnData_XenoCore_Player</code>, which grants
-<code>AbilitySet_XenoCore_Hero</code>.</p>
+<code>AbilitySet_XenoCore_Hero</code> and <code>AbilitySet_XenoCore_Input</code>.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p><strong>Spawn.</strong> When the party spawns a body, the body sets itself up as it spawns, in this order:</p>
 <ol>
@@ -4709,14 +4709,14 @@ Applying it again at a new level is what a level-up is. See
 <a href="../stats-and-damage/">Stats and damage</a>.</p>
 <p><strong>Possession.</strong> Every party body is born under AI control. When the player takes one over, its hero
 component binds input and the camera. When the player hands a body back to the AI and later takes it
-again, input is re-bound explicitly, because Lyra only binds on the first possession.</p>
+again, input is re-bound explicitly, because the framework only binds input on the first possession.</p>
 <p>A body with <strong>AI Steering</strong> on moves more softly while the AI drives it: a lower turn rate, a slower
 start and a longer stop, so a companion has weight instead of snapping and spinning like a
 player-driven body. When the player takes it over, the Blueprint's own movement values (the
 <strong>Character Movement</strong> component's <strong>Rotation Rate</strong>, <strong>Max Acceleration</strong> and <strong>Braking Deceleration
 Walking</strong>) are put back from the class defaults, so the player's feel is never changed by it.</p>
 <p><strong>Down, not dead.</strong> Health reaching zero on a party member does not kill it. The party's ability
-sets grant <code>Battle/GA_XenoCore_Downed</code> in place of Lyra's <code>GA_Hero_Death</code>: the member kneels
+sets grant <code>Battle/GA_XenoCore_Downed</code> in place of a death ability: the member kneels
 (<code>Characters/Core/Animations/Downed/AS_XenoCore_DownedKneel_*</code>), cannot act, and waits for a revive
 or the end of the battle. See <a href="../party-gauge-and-revive/">Party Gauge, downed and revive</a>.</p>
 <table>
@@ -4732,7 +4732,7 @@ or the end of the battle. See <a href="../party-gauge-and-revive/">Party Gauge, 
 <td>Goes <strong>downed</strong>: kneels in place with its weapon, greys out on the HUD, gets up on a revive. When every active member is down the party is wiped.</td>
 </tr>
 <tr>
-<td>A party pawn (<code>AXenoCorePartyCharacter</code>) whose ability sets grant <code>GA_Hero_Death</code> instead</td>
+<td>A party pawn (<code>AXenoCorePartyCharacter</code>) whose ability sets grant a death ability (such as <code>Imported/Lyra/Characters/Heroes/Abilities/GA_Hero_Death</code>) instead</td>
 <td>The death performance: one of <strong>Death Montages</strong> at random, a wait between <strong>Ragdoll Delay Min</strong> and <strong>Ragdoll Delay Max</strong>, a ragdoll with an impulse on <strong>Ragdoll Impulse Bone</strong>, and its weapons hidden.</td>
 </tr>
 <tr>
@@ -4742,8 +4742,7 @@ or the end of the battle. See <a href="../party-gauge-and-revive/">Party Gauge, 
 </tbody>
 </table>
 <p><strong>Keep Body On Death</strong> keeps the body, and its ability system, after a real death so it can be
-brought back with <strong>Revive</strong>. It is on for the party bases and <code>B_XenoCore_Player</code>, and off (Lyra's
-behaviour) for anything else.</p>
+brought back with <strong>Revive</strong>. It is on for the party base and <code>B_XenoCore_Player</code>, and off for anything else.</p>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a pawn with no pawn data cannot die</p>
 <p>Death and damage come from abilities that the pawn data grants. A character Blueprint with
@@ -4765,19 +4764,19 @@ character's ability system (a buff, a custom attribute) is lost on death unless 
 Death</strong> is on. A downed member keeps its body, so nothing is lost while it waits for a revive.</p>
 </div>
 <h2 id="appearance-cosmetic-parts-and-body-meshes">Appearance: cosmetic parts and body meshes<a class="headerlink" href="#appearance-cosmetic-parts-and-body-meshes" title="Permanent link">&para;</a></h2>
-<p>XenoCore uses Lyra's cosmetic system. Each playable Blueprint has a <strong>Cosmetic Part</strong> variable. On
-begin play, if it is set, the Blueprint adds that part through Lyra's character-parts component.</p>
+<p>Each playable Blueprint has a <strong>Cosmetic Part</strong> variable. On begin play, if it is set, the Blueprint
+adds that part through its character-parts component (<code>XenoBasePawnComponent_CharacterParts</code>).</p>
 <ul>
 <li><code>Characters/Core/Cosmetics/B_XenoCore_Cosmetic_Masculine</code> and <code>_Feminine</code> are parts with <strong>no
   mesh</strong>. They exist only to carry a tag, <code>Cosmetic.AnimationStyle.Masculine</code> or <code>.Feminine</code>.</li>
 <li>The character-parts component's <strong>Body Meshes</strong> rules read that tag and set the body mesh:
   masculine to <code>SKM_Manny</code>, feminine to <code>SKM_Quinn</code>.</li>
 <li>The same tag picks the animation layer when the weapon is drawn or stowed, so a feminine character
-  uses Lyra's feminine clips. See <a href="../animation/">Animation</a>.</li>
+  uses the feminine Mannequin clips. See <a href="../animation/">Animation</a>.</li>
 </ul>
 <p>So the sample members differ only by material, and body shape plus movement style come from one
 tag.</p>
-<p><strong>No invisible pawns.</strong> Lyra's character-parts component sets the body mesh from <strong>Body Meshes</strong>
+<p><strong>No invisible pawns.</strong> The character-parts component sets the body mesh from <strong>Body Meshes</strong>
 every time a part is added or removed, and when no rule matches the parts' tags it uses <strong>Body
 Meshes › Default Mesh</strong>. With no default, the body is set to nothing and the character turns
 invisible. XenoCore closes this three ways:</p>
@@ -4890,16 +4889,15 @@ equipment component is created in C++ on <code>AXenoCorePartyCharacter</code> fo
 <p class="admonition-title">The player's pawn is on a different branch</p>
 <p><code>B_XenoCore_Player</code> derives from <code>B_XenoCore_PlayableCharacter_Base</code>, not from the party base, and
 has its own editor-added equipment component. Changes you make to
-<code>B_XenoCore_PartyMember_Base</code> do not reach it. Its death graph was removed when the party moved
-to downed. Its abilities come from <code>AbilitySet_XenoCore_Hero</code>, and its learnset is
+<code>B_XenoCore_PartyMember_Base</code> do not reach it. Its abilities come from <code>AbilitySet_XenoCore_Hero</code>, and its learnset is
 <code>Characters/Party/Learnsets/DT_XenoCore_ArtLearnset_Kael</code> (<strong>Art Learn Table</strong>).</p>
 </div>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
 <details class="note">
 <summary>For programmers: the design reasons</summary>
-<p>Lyra's hero component only knows how to find an ability system on a player state. A party of
-characters that each keep their own stats would need a player state each. Instead XenoCore uses
-<code>AXenoBaseCharacterWithAbilities</code> (Lyra's <code>ALyraCharacterWithAbilities</code>), the same shape as Epic's damageable test dummy, and performs the
+<p>The framework's hero component only knows how to find an ability system on a player state. A
+party of characters that each keep their own stats would need a player state each. Instead
+XenoCore uses <code>AXenoBaseCharacterWithAbilities</code>, a character that owns its ability system, and performs the
 one initialisation call Blueprint cannot make (<code>InitializeAbilitySystem</code>) in C++. The base does
 nothing else: no drop table, no ragdoll, no follow logic, so a subclass never inherits behaviour it
 did not ask for.</p>

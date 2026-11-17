@@ -4780,7 +4780,7 @@ replaces XenoCore and leaves your code alone.</p>
 <li><a href="../../reference/cpp-classes/">C++ classes</a> lists every class with its header.</li>
 </ul>
 <h2 id="the-rule">The rule<a class="headerlink" href="#the-rule" title="Permanent link">&para;</a></h2>
-<p><strong>Don't edit XenoCore's source, and don't edit Lyra's.</strong> Add behaviour by subclassing, in a module
+<p><strong>Don't edit XenoCore's source, its <code>XenoCoreBase</code> module included.</strong> Add behaviour by subclassing, in a module
 you own. If a base class is missing a hook you need, that is a gap in the template: report it
 (<a href="../../troubleshooting/reporting-bugs/">Reporting bugs</a>) rather than patching around it, and keep
 any unavoidable patch small and written down.</p>
@@ -4928,16 +4928,17 @@ any unavoidable patch small and written down.</p>
 <p>Every public class and struct in <code>XenoCoreRuntime</code> is exported with <code>XENOCORERUNTIME_API</code>, so a
 C++ class in your own module can derive from it and call its functions. The only exceptions are
 the module object and the two console-command cheat extensions (<code>UXenoCoreSystemCheats</code>,
-<code>UXenoCoreProgressionCheats</code>), which are not meant to be extended. The three interfaces
-(<code>IXenoCoreAnimProfileProvider</code>, <code>IXenoCoreMapMarkerSource</code>, <code>IXenoCoreMenuButton</code>) are exported
-too; only their <code>U</code> halves are minimally exported, which is all implementing one needs.</p>
+<code>UXenoCoreProgressionCheats</code>), which are not meant to be extended. The interfaces
+(<code>IXenoCoreAnimProfileProvider</code>, <code>IXenoCoreMapMarkerSource</code>, <code>IXenoCoreMenuButton</code>,
+<code>IXenoCoreSaveParticipant</code> and the rest) are exported too; only their <code>U</code> halves are minimally
+exported, which is all implementing one needs.</p>
 <div class="admonition warning">
-<p class="admonition-title">Link error: \"unresolved external symbol\" on a Lyra class</p>
-<p>Some of the Lyra classes XenoCore carries are not exported from <code>XenoCoreBase</code> (for example
+<p class="admonition-title">Link error: \"unresolved external symbol\" on a XenoBase class</p>
+<p>Some classes in XenoCore's <code>XenoCoreBase</code> module are not exported (for example
 <code>UXenoBaseAnimInstance</code>, <code>UXenoBaseButtonBase</code>, <code>UXenoBaseGameplayAbility_FromEquipment</code>,
 <code>UXenoBaseGameplayAbility_Interact</code>). A C++ class of yours that derives from one compiles and then
-fails to <strong>link</strong>. XenoCore's bases never require one: each derives only from exported Lyra
-classes. Derive a Blueprint from the Lyra class instead.</p>
+fails to <strong>link</strong>. XenoCore's bases never require one: each derives only from exported
+classes. Derive a Blueprint from that class instead.</p>
 </div>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-your-plugin">1. Create your plugin<a class="headerlink" href="#1-create-your-plugin" title="Permanent link">&para;</a></h3>
@@ -5029,7 +5030,7 @@ anything that has not opted in to your new behaviour.</p>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Unresolved external symbol at link</p>
-<p>The base is one of Lyra's unexported classes (see the warning above), or your <code>Build.cs</code> is
+<p>The base is one of the unexported <code>XenoBase</code> classes (see the warning above), or your <code>Build.cs</code> is
 missing a module the base's header needs, such as <code>GameplayAbilities</code> or <code>StateTreeModule</code>.</p>
 </div>
 <div class="admonition warning">

@@ -5116,25 +5116,27 @@ in <code>Input/InputActions/</code> has one; copy that.</p>
 </div>
 <p><strong>Why:</strong> two input mapping contexts map the same key at the same priority, and the other one's
 action <strong>consumes</strong> the input. Enhanced Input settles the conflict before any ability is asked,
-so blocking abilities with tags cannot fix it. XenoCore adds its own context, <code>IMC_XenoCore</code>, at
-priority 2 and Lyra's <code>IMC_Default</code> at 1, so they win ties against contexts added at the default 0,
-such as those from another Game Feature you add.</p>
+so blocking abilities with tags cannot fix it. XenoCore adds two contexts, <code>IMC_XenoCore</code> at
+priority 2 and <code>IMC_Default</code> at 1, so they win ties against contexts added at the default 0, such
+as those from another Game Feature you add.</p>
 <p><strong>Fix:</strong></p>
 <ol>
 <li>List every key your new mapping shares with <code>IMC_Default</code> and <code>IMC_XenoCore</code>.</li>
-<li>Give your context a higher <strong>Priority</strong> in the Game Feature Data's <strong>Add Input Mapping</strong> action,
-   or move the action to a free key.</li>
+<li>Give your context a higher <strong>Priority</strong> in the <strong>Add Input Mapping</strong> action that adds it (on
+   your experience or Game Feature Data), or move the action to a free key.</li>
 <li>On the winning action, leave <strong>Consume Input</strong> off if the other action must still work.</li>
 </ol>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/input-action-prompt/">Show an input action prompt</a>.</p>
 <h3 id="one-press-of-a-button-also-opens-the-menu">One press of a button also opens the menu<a class="headerlink" href="#one-press-of-a-button-also-opens-the-menu" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the Escape key is bound twice. It is a gameplay key in a mapping context <strong>and</strong> CommonUI's
-<code>UI.Action.Escape</code> UI action (in <code>Config/DefaultInput.ini</code>), which the HUD layout answers by opening
+<code>UI.Action.Escape</code> UI action (a XenoCore project setting, written to <code>Config/DefaultInput.ini</code> when you
+run <strong>Apply XenoCore Project Settings</strong>), which the HUD layout answers by opening
 its <strong>Escape Menu Class</strong>. Both fire on one press. XenoCore's <code>UI.Action.Escape</code> is on the Escape key
 only, so pad Select (View/Back) is free for the quest tracker; the menu opens from Y, Start, I or
 Escape.</p>
-<p><strong>Fix:</strong> do not map a gameplay action to a key listed under <code>UI.Action.Escape</code>'s <strong>Key Mappings</strong> in
-<code>Config/DefaultInput.ini</code>, or take that key off the UI action.</p>
+<p><strong>Fix:</strong> do not map a gameplay action to Escape. To change the UI action's key instead, run <strong>Tools ›
+XenoCore › Apply XenoCore Project Settings</strong>, then edit the <code>UI.Action.Escape</code> line under
+<code>[/Script/CommonUI.CommonUIInputSettings]</code> in <code>Config/DefaultInput.ini</code>.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/input-action-prompt/">Show an input action prompt</a>.</p>
 <h3 id="holding-a-trigger-switches-at-once-instead-of-opening-the-party-cursor">Holding a trigger switches at once instead of opening the party cursor<a class="headerlink" href="#holding-a-trigger-switches-at-once-instead-of-opening-the-party-cursor" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
@@ -5168,9 +5170,9 @@ party component never hands the set to the player's pawn either.</p>
 with their input tags, to the set named in <strong>Leader Only Ability Set</strong>.</p>
 <h3 id="the-character-jumps-or-acts-while-a-menu-is-open-or-when-it-closes">The character jumps or acts while a menu is open, or when it closes<a class="headerlink" href="#the-character-jumps-or-acts-while-a-menu-is-open-or-when-it-closes" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> gameplay input stops under a menu because every gameplay mapping context only matches
-while the input mode has <code>InputMode.Game</code>, and CommonUI removes that tag while a menu is up. The
-project sets this once, as the default query in <code>Config/DefaultInput.ini</code>. A mapping context of
-yours with its own <strong>Input Mode Query</strong> instead of <strong>Use Project Default Query</strong> keeps working
+while the input mode has <code>InputMode.Game</code>, and CommonUI removes that tag while a menu is up. XenoCore
+sets this as the project's default query (written to <code>Config/DefaultInput.ini</code> when you apply its
+project settings). A mapping context of yours with its own <strong>Input Mode Query</strong> instead of <strong>Use Project Default Query</strong> keeps working
 under menus.</p>
 <p>Separately, when a menu closes while its confirm button is still held, gameplay input comes back
 and can read the held button as a fresh press.</p>
@@ -5189,12 +5191,11 @@ widget that sets Menu mode filters out the gameplay contexts, including its own 
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-menu-screen/">Add a menu screen</a>.</p>
 <h3 id="enter-doesnt-press-menu-buttons-on-keyboard">Enter doesn't press menu buttons on keyboard<a class="headerlink" href="#enter-doesnt-press-menu-buttons-on-keyboard" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> CommonUI's <strong>Common Button Accept Key Handling</strong> is not <code>TriggerClick</code> in the project
-you are running. XenoCore's project setup writes it to the project's <code>Config/DefaultGame.ini</code>
-(<code>[/Script/CommonUI.CommonUISettings]</code>, <code>CommonButtonAcceptKeyHandling=TriggerClick</code>). In a project
-without Lyra, XenoCore also applies it in memory at startup while the project has the engine's
-default. If neither happened (for example in a Lyra project where the setup was never applied), or
-the project already had its own value (setup never overwrites one), the engine's older default
-applies, where buttons ignore the Enter key. Arrow keys still move focus. Gamepad and
+you are running. XenoCore applies <code>TriggerClick</code> in memory at startup while the project has the
+engine's default, and <strong>Apply XenoCore Project Settings</strong> writes it to <code>Config/DefaultGame.ini</code>
+(<code>[/Script/CommonUI.CommonUISettings]</code>, <code>CommonButtonAcceptKeyHandling=TriggerClick</code>). If your
+project already had its own value, XenoCore leaves it alone (setup never overwrites one), and with
+the older setting buttons ignore the Enter key. Arrow keys still move focus. Gamepad and
 mouse work.</p>
 <p><strong>Fix:</strong> run <strong>Tools › XenoCore › Apply XenoCore Project Settings</strong> (see
 <a href="../../getting-started/install/#4-save-the-settings-to-your-project-before-you-package">Install</a>) and check the Output Log

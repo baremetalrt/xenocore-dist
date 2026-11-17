@@ -4782,7 +4782,7 @@ with an input or from another graph. A menu entry that calls it is a UI job; see
 <tr>
 <td>The use</td>
 <td><code>GA_MyGame_UseMendSalve</code></td>
-<td>A new Lyra Gameplay Ability</td>
+<td>A new <code>XenoBaseGameplayAbility</code> Blueprint</td>
 </tr>
 </tbody>
 </table>
@@ -4848,16 +4848,16 @@ false when there are not enough, and never takes an item someone is wearing. <st
 Item Count</strong> tells you beforehand how many can be spent.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently: do not use Lyra's Inventory Item cost</p>
-<p>The cost list also offers Lyra's own <strong>Inventory Item</strong> cost, and it looks like the same thing.
-In stock Lyra 5.8 its code is compiled out: its check always fails, so an ability carrying it
-<strong>can never activate</strong>, with nothing logged. Use <strong>Party Item (XenoCore)</strong>.</p>
+<p class="admonition-title">Fails silently: do not use the Inventory Item cost</p>
+<p>The cost list also offers an <strong>Inventory Item</strong> cost, and it looks like the same thing. Its code
+is compiled out: its check always fails, so an ability carrying it <strong>can never activate</strong>, with
+nothing logged. Use <strong>Party Item (XenoCore)</strong>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: spend items with the XenoCore nodes</p>
-<p>Lyra's own inventory functions also remove items. XenoCore notices and still updates open
-screens and quest counters, but Lyra's removal functions can take an item a character is
-wearing, which then vanishes from the save. Use <strong>Consume Items From Party</strong> or <strong>Remove Item
+<p>The bag component's own functions (such as <strong>Remove Item Instance</strong> on the inventory manager)
+also remove items. XenoCore notices and still updates open screens and quest counters, but
+those functions can take an item a character is wearing, which then vanishes from the save. Use <strong>Consume Items From Party</strong> or <strong>Remove Item
 Instance From Party</strong> (both under <strong>XenoCore › Inventory</strong>).</p>
 </div>
 <h3 id="4-give-the-party-some-to-use">4. Give the party some to use<a class="headerlink" href="#4-give-the-party-some-to-use" title="Permanent link">&para;</a></h3>
@@ -4914,7 +4914,7 @@ nothing logged. The shipped roster starts with Kael (<code>Game/B_XenoCore_Playe
 </tr>
 <tr>
 <td>The ability never activates</td>
-<td>The cost's <strong>Item Definition</strong> is a different item from the one in <strong>Starting Inventory</strong>; both must be <code>ID_MyGame_MendSalve</code>. Also check that the cost is <strong>Party Item (XenoCore)</strong>, not Lyra's <strong>Inventory Item</strong> (see the warning above).</td>
+<td>The cost's <strong>Item Definition</strong> is a different item from the one in <strong>Starting Inventory</strong>; both must be <code>ID_MyGame_MendSalve</code>. Also check that the cost is <strong>Party Item (XenoCore)</strong>, not <strong>Inventory Item</strong> (see the warning above).</td>
 </tr>
 <tr>
 <td>The count never goes down</td>

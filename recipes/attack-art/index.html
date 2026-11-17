@@ -4953,7 +4953,9 @@ Level Up tab does not change their numbers. Give them curves as above if you use
 <li>The montage's slot must be in the <strong>DefaultGroup</strong> slot group: <code>FullBody</code> is the one the
    shipped Arts use.</li>
 <li>Set <strong>Impact Fraction</strong>: where in the montage the hit lands, as a fraction of its length
-   (<code>0.45</code> = a little before halfway). An Art applies itself on this timer, not from a notify.</li>
+   (<code>0.45</code> = a little before halfway). By default an Art lands on this timer. To land it from the
+   animation instead, add an <code>XenoCore Gameplay Event</code> notify on the contact frame and set the
+   same tag as <strong>Impact Event Tag</strong> (<strong>Art › Hits</strong>).</li>
 <li><strong>Montage Play Rate</strong> speeds the whole Art up, impact included.</li>
 </ol>
 <div class="admonition warning">

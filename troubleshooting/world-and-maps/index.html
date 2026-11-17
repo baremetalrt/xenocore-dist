@@ -4781,7 +4781,7 @@ and the map recipes, including <a href="../../recipes/area-music/">Give a map it
 <p>The footstep system works; the ground simply never says it is grass.</p>
 </div>
 <p><strong>Why:</strong> footstep sounds and effects are picked by the <strong>surface type</strong> under the foot, through
-Lyra's context effects (<code>ContextEffects/CFX_XenoCore</code>). A landscape with no physical material
+XenoCore's context effects (<code>ContextEffects/CFX_XenoCore</code>). A landscape with no physical material
 reports the default surface, and the default surface is mapped to concrete. Unless the landscape's
 material has a physical material output per layer, the landscape's <strong>only</strong> surface comes from its
 <strong>Default Phys Material</strong>.</p>
@@ -4800,10 +4800,10 @@ material has a physical material output per layer, the landscape's <strong>only<
 <p class="admonition-title">Fails silently</p>
 <p>Your own machine shows everything, because the files are on your disk.</p>
 </div>
-<p><strong>Why:</strong> pack folders under <code>Content/</code> (<code>Megascans</code>, <code>Custom</code>, <code>FX</code>, <code>MSPresets</code>, <code>Meshes</code>, <code>PCG</code>,
-<code>PhysicalMaterials</code>, <code>SmartAssets</code>, <code>Landscape</code>) are usually listed in the project's <code>.gitignore</code>,
-so a whole pack cannot be committed by accident. Anything <strong>you</strong> place from an ignored folder then
-stays on your disk only, and a teammate's clone shows a hole where it should be.</p>
+<p><strong>Why:</strong> teams often list pack folders under <code>Content/</code> (such as <code>Megascans</code>, <code>FX</code>, <code>Meshes</code> or
+<code>PCG</code>) in their source control's ignore file (<code>.gitignore</code> for Git), so a whole pack cannot be
+committed by accident. Anything <strong>you</strong> place from an ignored folder then stays on your disk only,
+and a teammate's copy shows a hole where it should be.</p>
 <p><strong>Fix:</strong> for each pack asset your maps use, add it and everything it depends on to source control
 explicitly. Right-click the map, open <strong>Reference Viewer</strong> or <strong>Size Map</strong> to see the dependency
 list, and add those files. Keep textures and meshes at the sizes your game needs before the first
@@ -4831,8 +4831,8 @@ Three things stop it:</p>
 <ul>
 <li>The map has no such actor, or its <strong>Field Music</strong> is empty and no fallback is set. An empty slot
   plays <strong>Project Settings › Game › XenoCore Content › Startup › Fallback Field Music</strong> (or
-  <strong>Fallback Battle Music</strong>); with those empty too, it is silence by design. The shipped Gaur Plain
-  leaves its slots empty, because the sample tracks are not licensed to ship.</li>
+  <strong>Fallback Battle Music</strong>); with those empty too, it is silence by design. XenoCore ships no
+  music, so the sample maps' slots are empty and they play silence until you set tracks.</li>
 <li>In a World Partition map, someone turned <strong>Is Spatially Loaded</strong> on for the actor (it is off by
   default), so it streams out with its cell when the player walks far enough away.</li>
 <li>Two of them are in the map, and both play.</li>
@@ -4850,8 +4850,9 @@ the project's fallback tracks, and make sure <strong>Is Spatially Loaded</strong
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/area-music/">Give a map its music</a>.</p>
 <h3 id="my-new-actor-never-shows-an-interaction-prompt">My new actor never shows an interaction prompt<a class="headerlink" href="#my-new-actor-never-shows-an-interaction-prompt" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the interaction prompt only knows about XenoCore interactables: NPCs, chests, party
-members and children of <code>XenoCoreInteractableActor</code>. Lyra's own interaction system
-does not drive the prompt, so an actor set up only for Lyra's interaction is ignored. For an actor
+members and children of <code>XenoCoreInteractableActor</code>. An actor that only
+implements the base interaction interface (<code>XenoKitInteractableTarget</code>) does not drive the prompt and
+is ignored. For an actor
 that does qualify, the usual causes are: <strong>Interact Enabled</strong> is off on that placed instance; its
 <strong>Can Interact</strong> returns false; the player is not within <strong>Interact Range</strong> of the actor's
 <strong>origin</strong> (range is measured from the root, not from the mesh); or a nearer interactable is

@@ -4653,7 +4653,7 @@
 
 <h1 id="stats-and-damage">Stats and damage<a class="headerlink" href="#stats-and-damage" title="Permanent link">&para;</a></h1>
 <p>A character's numbers are <strong>Gameplay Ability System attributes</strong> on its own ability system. Health
-comes from Lyra's health set; everything else (Strength, Ether, Agility, defences, rates, weapon
+comes from the health set, <code>UXenoBaseHealthSet</code>; everything else (Strength, Ether, Agility, defences, rates, weapon
 attack, level, talent gauge) is XenoCore's <code>UXenoCoreStatSet</code>. Numbers get onto a character in two
 layers: a <strong>statline</strong> effect that reads curve tables at the character's level, and an <strong>equipment</strong>
 effect that adds the stats of what it wears. Damage is calculated by one execution,
@@ -4692,7 +4692,7 @@ Party and Equipment screens.</p>
 </tr>
 <tr>
 <td>Health</td>
-<td><code>UXenoBaseHealthSet</code> (Lyra's health set), created with the pawn's ability system</td>
+<td><code>UXenoBaseHealthSet</code>, created with the pawn's ability system</td>
 <td>Health, Max Health.</td>
 </tr>
 <tr>
@@ -4857,8 +4857,8 @@ control and the same character under your control deal the same damage. In order
 <li>An <code>AXenoCoreEnemyCharacter</code> is always an enemy.</li>
 <li>A character with a <strong>Member Definition</strong> (every party member) is always party.</li>
 <li>Otherwise, the team: on the player's team is party, on any other team is enemy. This covers a
-   player pawn with no member definition, such as the one Lyra spawns when <strong>Starting Roster</strong> is
-   empty.</li>
+   player pawn with no member definition, such as the one the game mode spawns when <strong>Starting
+   Roster</strong> is empty.</li>
 <li>Last resort, for an actor with no team: whether a player is controlling it.</li>
 </ol>
 <p>If the attacker and the target come out on the <strong>same</strong> side, a warning is logged under
@@ -5048,12 +5048,64 @@ application and the numbers climb with each level. Use <strong>Override</strong>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Enemy types are one curve times a multiplier</p>
-<p>The minion's rows are anchored on XC1's Hand Bunnit: <code>Minion_Melee.MaxHealth</code> is 900 + 100 per
-level and <code>Minion_Melee.Strength</code> 69 + 10 per level. The other minion types read the same <code>Minion_Melee.*</code> rows
-(the table's <code>Minion_Ranged</code>, <code>Minion_Siege</code> and <code>Minion_Super</code> rows are read by nothing),
-and their <code>GE_XenoCore_BaseStats_Minion_*</code> effects scale them on each modifier: Melee 1.0,
-Brute 1.45, Bulwark 1.15, Skirmisher 0.9. So the number the game uses is not always the number in
-the table. Check the scale on every modifier of an effect you duplicate.</p>
+<p>The minion's rows are anchored on XC1's Hand Bunnit: <code>Minion_Melee.MaxHealth</code> is 900 at level 1
+plus 100 per level, and <code>Minion_Melee.Strength</code> 69 at level 1 plus 10 per level. The other minion
+types read the same <code>Minion_Melee.*</code> rows (the table's <code>Minion_Ranged</code>, <code>Minion_Siege</code> and
+<code>Minion_Super</code> rows are read by nothing), and their <code>GE_XenoCore_BaseStats_Minion_*</code> effects scale
+each stat on its own modifier:</p>
+<table>
+<thead>
+<tr>
+<th>Effect</th>
+<th>Max HP and HP</th>
+<th>Strength</th>
+<th>Ether</th>
+<th>Agility</th>
+<th>Physical Def</th>
+<th>Ether Def</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_Minion_Melee</code></td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td><code>_Minion_Brute</code></td>
+<td>3.0</td>
+<td>1.45</td>
+<td>1.0</td>
+<td>0.8</td>
+<td>1.3</td>
+<td>1.3</td>
+</tr>
+<tr>
+<td><code>_Minion_Bulwark</code></td>
+<td>1.9</td>
+<td>1.15</td>
+<td>1.0</td>
+<td>0.6</td>
+<td>1.6</td>
+<td>1.3</td>
+</tr>
+<tr>
+<td><code>_Minion_Skirmisher</code></td>
+<td>0.8</td>
+<td>0.9</td>
+<td>1.2</td>
+<td>1.6</td>
+<td>1.0</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>So the number the game uses is not always the number in the table. Check the scale on every
+modifier of an effect you duplicate.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Every character has its own statline</p>
@@ -5083,8 +5135,8 @@ new character its own growth, add rows for it and point its effect at them. See
 <li><strong>The hit and block rolls live in the attacking ability.</strong> An execution can only output attribute
   changes; it cannot tell the ability "you missed" or "you were blocked". Rolling first lets a miss
   cancel the whole hit, and lets a block stop a Topple and the rest of a multi-hit art.</li>
-<li><strong>Its own execution instead of Lyra's.</strong> Lyra's formula is a shooter's. Lyra's team check is
-  kept, because without it arts would damage allies.</li>
+<li><strong>Its own execution.</strong> The game framework's stock damage execution is a shooter's formula.
+  Only its team check is kept, because without it arts would damage allies.</li>
 </ul>
 </details>
 

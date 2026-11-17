@@ -4737,8 +4737,8 @@
   This one logs an error: <code>&lt;name&gt; has no EnemyPawnData. It will have no stats, no abilities and
   cannot die.</code></li>
 <li>Its pawn data's ability sets grant no death ability. Nothing is logged.</li>
-<li>It is possessed by the wrong AI controller. Lyra only lets a character damage another on a
-  different team, and an enemy gets its team from its controller. Only
+<li>It is possessed by the wrong AI controller. Damage only applies between characters on
+  different teams, and an enemy gets its team from its controller. Only
   <code>Characters/Enemies/Core/BP_AIC_XenoCore_Enemy</code> and its children supply one. A plain AI
   controller leaves the enemy on no team, and every hit on it is applied with zero effect.
   Nothing is logged.</li>
@@ -4758,9 +4758,9 @@
 <code>CT_XenoCore_EnemyStats</code> at the enemy's level. Two things change the result:</p>
 <ul>
 <li>A modifier's magnitude is the curve value <strong>times</strong> the modifier's own coefficient. The minion
-  types share the <code>Minion_Melee.*</code> rows and differ only by that coefficient: Brute <code>1.45</code>, Bulwark
-  <code>1.15</code>, Skirmisher <code>0.9</code> (Melee <code>1.0</code>). A stats effect duplicated from one of them inherits its
-  multiplier.</li>
+  types share the <code>Minion_Melee.*</code> rows and differ only by those coefficients, set per stat. Melee
+  uses <code>1.0</code> throughout; Strength is Brute <code>1.45</code>, Bulwark <code>1.15</code>, Skirmisher <code>0.9</code>, and the Brute's
+  Max Health is <code>3.0</code>. A stats effect duplicated from one of them inherits all its multipliers.</li>
 <li>Every modifier must use <strong>Override</strong>. An <strong>Add</strong> modifier stacks on the old value each time the
   effect is re-applied.</li>
 </ul>

@@ -4872,7 +4872,7 @@ dodge, blocks guard; when the last enemy falls the party sheathes and celebrates
 </tr>
 <tr>
 <td>Numbers</td>
-<td>Lyra's number pop + <code>UXenoCoreDamageNumberSubsystem</code></td>
+<td><code>UserInterface/HUD/B_XenoCore_NumberPopComponent</code> + <code>UXenoCoreDamageNumberSubsystem</code></td>
 <td>See below</td>
 </tr>
 </tbody>
@@ -5031,7 +5031,7 @@ camera or rumbles the pad on a cue your ability executes itself, the way the aut
 </div>
 <div class="admonition note">
 <p class="admonition-title">No rumble on keyboard</p>
-<p>Lyra only plays force feedback when the current input device is a gamepad and the player's
+<p>XenoCore only plays force feedback when the current input device is a gamepad and the player's
 setting allows it. To test with a keyboard, use the console command
 <code>XenoBase.LyraPC.ShouldAlwaysPlayForceFeedback 1</code>.</p>
 </div>
@@ -5046,7 +5046,7 @@ setting allows it. To test with a keyboard, use the console command
 <tbody>
 <tr>
 <td>Damage the party <strong>deals</strong> (yours and every ally's)</td>
-<td>XenoCore's damage cue <code>GameplayCues/GCNL_XenoCore_DamageTaken</code> (a copy of Lyra's), through <code>B_XenoCore_NumberPopComponent</code>, <code>DamagePopStyle_XenoCore</code> and <code>NS_XenoCore_DamageNumbers</code>. A critical hit draws gold.</td>
+<td>XenoCore's damage cue <code>GameplayCues/GCNL_XenoCore_DamageTaken</code>, through <code>B_XenoCore_NumberPopComponent</code>, <code>DamagePopStyle_XenoCore</code> and <code>NS_XenoCore_DamageNumbers</code>. A critical hit draws gold.</td>
 </tr>
 <tr>
 <td>Damage you <strong>take</strong></td>
@@ -5068,13 +5068,14 @@ setting allows it. To test with a keyboard, use the console command
 <strong>Project Settings › Game › XenoCore Content › Critical Hit</strong>; see
 <a href="../../recipes/hit-feedback/#5-tune-the-critical-hit-optional">Tune hit feedback</a>.</p>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently: a damage effect that fires Lyra's cue</p>
-<p>The dealt-damage number, the hit-confirm sound and the kill sound come from XenoCore's own copy
-of Lyra's damage cue, <code>GCNL_XenoCore_DamageTaken</code>, which knows that XenoCore's attackers are
-pawns and that allies' hits count. Lyra's own <code>GCNL_Character_DamageTaken</code> is left untouched, and
-it does <strong>not</strong> work with XenoCore's characters: a damage effect of your own that fires
-<code>GameplayCue.Character.DamageTaken</code> shows sparks but no number and no hit sound. Duplicate
-<code>GE_XenoCore_Damage</code> for new damage effects, so they keep <code>GameplayCue.XenoCore.DamageTaken</code>.
+<p class="admonition-title">Fails silently: a damage effect that fires a different cue</p>
+<p>The dealt-damage number, the sparks, the hit-confirm sound and the kill sound all come from
+XenoCore's damage cue, <code>GCNL_XenoCore_DamageTaken</code>, which answers only
+<code>GameplayCue.XenoCore.DamageTaken</code>. A damage effect of your own that fires any other cue (for
+example <code>GameplayCue.Character.DamageTaken</code>, which the imported
+<code>GameplayEffectParent_Damage_Basic</code> uses) still does damage, but shows no number and plays no hit
+sound. Duplicate <code>GE_XenoCore_Damage</code> for new damage effects, so they keep
+<code>GameplayCue.XenoCore.DamageTaken</code>.
 See <a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Hit numbers or hit sounds are missing</a>.</p>
 </div>
 <div class="admonition warning">
@@ -5128,7 +5129,7 @@ down. See <a href="../party-gauge-and-revive/">Party Gauge, downed and revive</a
 <tr>
 <td><strong>Attack Range</strong></td>
 <td><code>GA_XenoCore_AutoAttack</code> › XenoCore › AutoAttack</td>
-<td>Reach at swing start (420).</td>
+<td>Reach at swing start (300 on the shipped ability; the C++ default is 420).</td>
 </tr>
 <tr>
 <td><strong>Contact Reach Tolerance</strong></td>
@@ -5178,7 +5179,7 @@ down. See <a href="../party-gauge-and-revive/">Party Gauge, downed and revive</a
 <tr>
 <td><strong>Lunge Multiplier</strong>, <strong>Lunge</strong></td>
 <td>same › XenoCore › Attack</td>
-<td>Lyra's melee lunge: each landed swing also drives the <strong>attacker</strong> into its target. <strong>Lunge Multiplier</strong> 0 (off) by default; <strong>Lunge</strong> holds Lyra's values (2200 cm/s for 0.05 s, scaled by the gap).</td>
+<td>A melee lunge: each landed swing also drives the <strong>attacker</strong> into its target. <strong>Lunge Multiplier</strong> 0 (off) by default; <strong>Lunge</strong> holds the push (2200 cm/s for 0.05 s, scaled by the gap).</td>
 </tr>
 <tr>
 <td><strong>Push Distance</strong>, <strong>Push Time</strong></td>
@@ -5279,7 +5280,7 @@ and the character can then move or swing while it guards.</p>
   block, and sends an event to each side. The guard, recoil and dodge never change an outcome, so
   removing one costs an animation, not a rule.</li>
 <li><strong>One battle tag.</strong> A second "in combat" flag somewhere else would eventually disagree with this one.</li>
-<li><strong>State tags block abilities as data.</strong> Lyra's tag relationship mapping turns "while this tag is
+<li><strong>State tags block abilities as data.</strong> The tag relationship mapping (<code>TagRelationships_XenoCore</code>) turns "while this tag is
   present, this ability cannot start" into a table row, so no ability has to know about another.</li>
 </ul>
 </details>

@@ -4838,7 +4838,7 @@ on the HUD that shows the right key for keyboard or gamepad.</p>
 <li><a href="../../getting-started/controls/">Controls</a>: which keys are already taken.</li>
 </ul>
 <h2 id="how-a-key-reaches-an-ability">How a key reaches an ability<a class="headerlink" href="#how-a-key-reaches-an-ability" title="Permanent link">&para;</a></h2>
-<p>XenoCore uses Lyra's input chain. Five pieces, each in its own asset:</p>
+<p>Five pieces, each in its own asset:</p>
 <table>
 <thead>
 <tr>
@@ -4884,8 +4884,8 @@ on the HUD that shows the right key for keyboard or gamepad.</p>
 <p>The on-screen glyph is a sixth, separate piece: a row in a <strong>CommonUI action table</strong>
 (<code>UserInterface/Foundation/DT_XenoCore_Actions</code>) that says which key to draw. It does not read
 the mapping context. <strong>You keep the two in agreement yourself.</strong></p>
-<p><code>IMC_XenoCore</code> is added by the XenoCore plugin at priority <strong>2</strong>, above <code>IMC_Default</code> (XenoCore's copy of
-Lyra's, in <code>Imported/Lyra/Input/Mappings</code>) at <strong>1</strong>. Both are added by the XenoCore experience,
+<p><code>IMC_XenoCore</code> is added by the XenoCore plugin at priority <strong>2</strong>, above <code>IMC_Default</code> (in
+<code>Imported/Lyra/Input/Mappings</code>) at <strong>1</strong>. Both are added by the XenoCore experience,
 <code>Experiences/B_XenoCore_Experience</code>. Don't lower it: other contexts that
 share keys would start winning.
 When two contexts map the same key, the higher priority wins only if its action <strong>consumes</strong> the
@@ -4910,7 +4910,7 @@ key; otherwise both fire. Its contexts only apply in <strong>Game</strong> input
 <p>With no trigger, a held key fires the action on every frame. An ability that ends straight
 away then starts again on the next frame, so one tap runs it five or six times. Every one-shot
 action needs the <strong>Pressed</strong> trigger. Abilities that stay active for a montage are protected,
-which is why some Lyra actions get away without one.</p>
+which is why some shipped actions get away without one.</p>
 </div>
 <h3 id="3-map-the-keys">3. Map the keys<a class="headerlink" href="#3-map-the-keys" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4921,7 +4921,7 @@ which is why some Lyra actions get away without one.</p>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">A shared key is decided by priority, silently</p>
-<p>If Lyra's <code>IMC_Default</code> or another context maps the same key, only the higher-priority context
+<p>If <code>IMC_Default</code> or another context maps the same key, only the higher-priority context
 gets it. The other action simply stops working. Nothing warns.</p>
 </div>
 <h3 id="4-link-the-action-to-the-tag">4. Link the action to the tag<a class="headerlink" href="#4-link-the-action-to-the-tag" title="Permanent link">&para;</a></h3>
@@ -4980,7 +4980,7 @@ and forget the row, the HUD shows a key that does nothing. Change both together.
 </div>
 <div class="admonition note">
 <p class="admonition-title">Keyboard key icons</p>
-<p>Lyra's keyboard data has icons only for mouse buttons. XenoCore adds a keycap icon for 81
+<p>The base keyboard controller data has icons only for mouse buttons. XenoCore adds a keycap icon for 81
 keyboard keys (letters, digits, F-keys, arrows, modifiers, punctuation) in
 <code>UserInterface/Input/CommonInput_XenoCore_Keyboard</code>, named by <strong>Project Settings › Game ›
 XenoCore UI › HUD › Keyboard Key Icons</strong>. A key outside that set draws its prompt text with no
@@ -4990,8 +4990,8 @@ key, and nothing is logged. To add one, add a texture and a row to that data ass
 <ol>
 <li>In <code>MyGame/UI</code>, right-click and choose <strong>User Interface › Widget Blueprint</strong> (parent
    <strong>User Widget</strong>). Name it <code>W_MyGame_WhistlePrompt</code>.</li>
-<li>In the <strong>Palette</strong>, find Lyra's <code>InputActionWidget</code> (XenoCore carries it as
-   <code>Imported/Lyra/UI/Foundation/Widgets/InputActionWidget</code>) and drag it into a <strong>Horizontal Box</strong>, with a <strong>Text</strong> label
+<li>In the <strong>Palette</strong>, find <code>InputActionWidget</code>
+   (<code>Imported/Lyra/UI/Foundation/Widgets/InputActionWidget</code>) and drag it into a <strong>Horizontal Box</strong>, with a <strong>Text</strong> label
    beside it.</li>
 <li>In its <strong>Details</strong>, set <strong>Input Actions</strong> to one entry: table <code>DT_XenoCore_Actions</code>, row
    <code>Whistle</code>.</li>

@@ -4961,8 +4961,8 @@ leader goes down.</p>
 Member</strong> between the leader's slot and another active member is a leader change, not a
 composition change, so it is allowed in battle; that is how the Party screen picks a leader. Story
 events (add, remove, set) are deliberately not gated, so a cutscene recruit never fails because a
-fight was running. <strong>Show Party Locked Message</strong> raises Lyra's own confirmation dialog explaining the
-refusal.</p>
+fight was running. <strong>Show Party Locked Message</strong> shows an OK dialog explaining the refusal ("You
+cannot edit the party while in battle.").</p>
 <div class="admonition warning">
 <p class="admonition-title">Slots move when you clear one, and when the leader changes</p>
 <p><strong>Clear Slot</strong> compacts the active list, so the member who was in slot 2 is now in slot 1. A
@@ -5028,7 +5028,8 @@ the cursor on the caster, the D-pad moves it, and confirming again casts. See
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: switch abilities granted outside the leader-only set</p>
 <p>The three switch abilities live in <code>AbilitySet_XenoCore_Interact</code>, the <strong>Leader Only Ability
-Set</strong>, which moves to whichever body the player drives. Do not also grant them in a member's
+Set</strong>, which moves to whichever body the player drives (the party tactics abilities live there
+too). Do not also grant them in a member's
 own ability set: the switch moves the leader-only set on the next frame, and a second copy on
 another body is never removed, so it answers the trigger from a body the player is not driving.</p>
 </div>
@@ -5226,9 +5227,9 @@ Copy both parameters from <code>Effects/Aggro/M_XenoCore_AggroRing</code>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: interaction on an AI body</p>
-<p>Anything in <strong>Leader Only Ability Set</strong> is granted only to a player-controlled body. Lyra's
-interaction scan asserts if it runs without a player controller, which is why interaction lives
-there. If you add your own ability that needs a player controller, put it in that set, not in a
+<p>Anything in <strong>Leader Only Ability Set</strong> is granted only to a player-controlled body. The
+interaction scan finds nothing on a body without a player controller, which is why interaction
+lives there. If you add your own ability that needs a player controller, put it in that set, not in a
 member's pawn data.</p>
 </div>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
@@ -5259,7 +5260,7 @@ run in development builds. See <a href="../../troubleshooting/diagnostics/">Diag
 <summary>For programmers: the design reasons</summary>
 <ul>
 <li><strong>On the controller</strong> because the party must survive changing which body the player drives, and
-  because Lyra's own party-wide systems (quick bar, item costs) look there.</li>
+  because the framework's party-wide systems (quick bar, item costs) look there.</li>
 <li><strong>Spawning lives with the lists</strong> because "who is active" and "who has a body" are one fact. Two
   components each owning half would disagree.</li>
 <li><strong>The leader is a slot</strong> so the Party screen, the HUD and the save all describe the leader the same
@@ -5269,7 +5270,7 @@ run in development builds. See <a href="../../troubleshooting/diagnostics/">Diag
   rather than ended and restarted. Every rule lives on the party component, so the triggers, the
   Party screen and the console all obey the same ones.</li>
 <li><strong>An empty roster still plays.</strong> Until you author your first member, the player keeps the pawn
-  Lyra's game mode spawned. Nothing in the component names a character, so you can delete every
+  the game mode spawned. Nothing in the component names a character, so you can delete every
   shipped character without touching C++.</li>
 </ul>
 </details>

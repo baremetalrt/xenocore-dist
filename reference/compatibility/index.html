@@ -4716,11 +4716,11 @@
 </tr>
 <tr>
 <td><strong>Host project</strong></td>
-<td>A new <strong>Blank</strong> 5.8 project. No Lyra and no other plugin needed. See <a href="../../getting-started/install/">Install</a>.</td>
+<td>A new <strong>Blank</strong> 5.8 project. No other plugin needed. See <a href="../../getting-started/install/">Install</a>.</td>
 </tr>
 <tr>
 <td><strong>Binaries</strong></td>
-<td>None. XenoCore is delivered as C++ source and compiles inside your project the first time it opens, which needs Visual Studio 2022. All three modules are limited to Win64 (<code>PlatformAllowList</code>).</td>
+<td>The zip download has none: it is C++ source, and it compiles inside your project the first time it opens, which needs Visual Studio 2022. All three modules are limited to Win64 (<code>PlatformAllowList</code>).</td>
 </tr>
 <tr>
 <td><strong>Earlier engines</strong></td>
@@ -4763,7 +4763,7 @@
 <tbody>
 <tr>
 <td><strong>Players</strong></td>
-<td><strong>Single-player only.</strong> Party members are AI-controlled characters on one machine. Nothing is replicated or predicted for multiplayer, and some systems depend on that (for example XenoCore sends its own inventory messages because Lyra's only fire through replication).</td>
+<td><strong>Single-player only.</strong> Party members are AI-controlled characters on one machine. Nothing is replicated or predicted for multiplayer, and some systems depend on that (for example XenoCore sends its own inventory messages, because the inventory's built-in ones only fire through replication).</td>
 </tr>
 <tr>
 <td><strong>Input</strong></td>
@@ -4793,7 +4793,7 @@ save state. Treat it as a new project built on XenoCore's ideas, not an option.<
 <tr>
 <td><code>XenoCoreBase</code></td>
 <td>Runtime</td>
-<td>The Lyra Starter Game code XenoCore is built on, renamed <code>XenoBase</code> / <code>XenoKit</code> so it never clashes with a Lyra project (<code>Source/ThirdParty/XenoCoreBase</code>)</td>
+<td>XenoCore's game framework: experiences, pawn data, ability system, equipment, inventory and the CommonUI layer. Its classes are named <code>XenoBase…</code> / <code>XenoKit…</code> (<code>Source/ThirdParty/XenoCoreBase</code>; its origin is on <a href="../../about/credits/">Credits</a>)</td>
 </tr>
 <tr>
 <td><code>XenoCoreRuntime</code></td>
@@ -4897,7 +4897,7 @@ needs no third-party plugin.</p>
 <tr>
 <td><code>SignificanceManager</code></td>
 <td></td>
-<td>Lyra's significance code that XenoCore carries</td>
+<td>Significance code in XenoCore's game framework</td>
 </tr>
 <tr>
 <td><code>AudioModulation</code></td>
@@ -4907,17 +4907,17 @@ needs no third-party plugin.</p>
 <tr>
 <td><code>OnlineSubsystem</code>, <code>OnlineSubsystemUtils</code>, <code>OnlineServices</code></td>
 <td></td>
-<td>Required by the Lyra session and user code XenoCore carries. XenoCore is single-player and makes no online calls</td>
+<td>Required by the session and user code in XenoCore's game framework. XenoCore is single-player and makes no online calls</td>
 </tr>
 <tr>
 <td><code>AnimationLocomotionLibrary</code></td>
 <td><strong>Beta</strong></td>
-<td>Locomotion helpers used by the carried Lyra animation content</td>
+<td>Locomotion helpers used by the Mannequin animation content in <code>Imported/Lyra</code></td>
 </tr>
 <tr>
 <td><code>FullBodyIK</code></td>
 <td></td>
-<td>IK used by the carried Lyra animation content</td>
+<td>IK used by the Mannequin animation content in <code>Imported/Lyra</code></td>
 </tr>
 <tr>
 <td><code>Landmass</code></td>
@@ -4927,20 +4927,18 @@ needs no third-party plugin.</p>
 <tr>
 <td><code>Spatialization</code></td>
 <td></td>
-<td>Audio spatialization used by the carried Lyra sounds</td>
+<td>Audio spatialization used by the sounds in <code>Imported/Lyra</code></td>
 </tr>
 <tr>
 <td><code>WaveTable</code></td>
 <td><strong>Beta</strong></td>
-<td>Wave tables used by the carried Lyra sounds</td>
+<td>Wave tables used by the sounds in <code>Imported/Lyra</code></td>
 </tr>
 </tbody>
 </table>
 <h3 id="your-projects-plugin-list">Your project's plugin list<a class="headerlink" href="#your-projects-plugin-list" title="Permanent link">&para;</a></h3>
 <p>You do not edit your <code>.uproject</code>: XenoCore switches itself on (<code>EnabledByDefault</code>) and enables the
-plugins above through its own <code>XenoCore.uplugin</code>. In a Lyra project, Lyra's own sample game features
-(ShooterCore and the rest) can stay; nothing in XenoCore references them, and XenoCore's maps run
-their own Experience.</p>
+plugins above through its own <code>XenoCore.uplugin</code>.</p>
 <h2 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

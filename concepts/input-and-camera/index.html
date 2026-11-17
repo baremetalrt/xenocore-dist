@@ -4678,7 +4678,7 @@
 talks to an NPC, or uses the selected Art; the triggers switch the party leader; buttons go quiet
 behind a menu. The camera follows the leader on a boom, recentres on a button, blends to a new
 leader on a switch, and frames both speakers in a conversation.</p>
-<p>XenoCore uses Lyra's input chain unchanged: a key is mapped to an <strong>input action</strong> by a mapping
+<p>In XenoCore a key is mapped to an <strong>input action</strong> by a mapping
 context, the action raises an <strong>input tag</strong> (a <a href="../../getting-started/glossary/">gameplay tag</a>), and
 the tag starts whichever ability was granted with it. So almost every button in XenoCore is a small
 input ability named <code>GA_XenoCore_*</code>. The camera is built with Unreal's Gameplay Cameras plugin: a
@@ -4711,7 +4711,7 @@ menu, a conversation or target mode can switch buttons off without touching the 
 </tr>
 <tr>
 <td><code>Imported/Lyra/Input/Mappings/IMC_Default</code></td>
-<td>XenoCore's copy of Lyra's</td>
+<td>XenoCore's default mapping context</td>
 <td>Move, look, jump, crouch</td>
 </tr>
 <tr>
@@ -4721,7 +4721,7 @@ menu, a conversation or target mode can switch buttons off without touching the 
 </tr>
 <tr>
 <td><code>Input/InputData_XenoCore</code></td>
-<td>XenoCore (a Lyra input config)</td>
+<td>XenoCore (an input config)</td>
 <td>Maps each action to an input tag, such as <code>InputTag.XenoCore.TargetNext</code></td>
 </tr>
 <tr>
@@ -4747,7 +4747,7 @@ menu, a conversation or target mode can switch buttons off without touching the 
 <tr>
 <td>Input settings (<code>DefaultMappingContextInputModeQuery</code>, <code>DefaultInputMode</code>)</td>
 <td>XenoCore (<code>Config/Templates/XenoCoreBase_Input.ini</code>)</td>
-<td>Turns gameplay input off while a menu is open. Applied in memory at startup; <strong>Project Setup</strong> writes them to your project's <code>Config/DefaultInput.ini</code></td>
+<td>Turns gameplay input off while a menu is open. Applied in memory at startup; <strong>Tools › XenoCore › Apply XenoCore Project Settings</strong> writes them to your project's <code>Config/DefaultInput.ini</code></td>
 </tr>
 </tbody>
 </table>
@@ -4802,7 +4802,7 @@ pawn, <code>AbilitySet_XenoCore_PartyMember</code> for the others), which hold o
 </tr>
 <tr>
 <td>Open the menu (Escape key)</td>
-<td>Lyra's <code>UI.Action.Escape</code> UI action</td>
+<td>The <code>UI.Action.Escape</code> UI action</td>
 <td>Pushes the HUD layout's <strong>Escape Menu Class</strong>, <code>W_XenoCore_MenuShell</code></td>
 </tr>
 <tr>
@@ -4853,7 +4853,7 @@ pawn, <code>AbilitySet_XenoCore_PartyMember</code> for the others), which hold o
 <tr>
 <td>Jump</td>
 <td><code>InputTag.Jump</code></td>
-<td><code>GA_Hero_Jump</code> (XenoCore's copy of Lyra's, in <code>Imported/Lyra/Characters/Heroes/Abilities</code>)</td>
+<td><code>GA_Hero_Jump</code> (in <code>Imported/Lyra/Characters/Heroes/Abilities</code>)</td>
 </tr>
 </tbody>
 </table>
@@ -4886,7 +4886,7 @@ pawn, <code>AbilitySet_XenoCore_PartyMember</code> for the others), which hold o
 </tbody>
 </table>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
-<p><strong>A press.</strong> Enhanced Input fires the action. Lyra's hero component turns it into the input tag,
+<p><strong>A press.</strong> Enhanced Input fires the action. The character's hero component (<code>XenoCoreHeroComponent</code>) turns it into the input tag,
 and the ability system activates the ability granted with that tag, unless something blocks it.</p>
 <p><strong>One press, one activation.</strong> Every <code>IA_XenoCore_*</code> action carries a <strong>Pressed</strong> trigger. Without
 a trigger, Enhanced Input fires every frame the key is held. An ability that ends on the same
@@ -4903,7 +4903,7 @@ player. Its rows:</p>
 </thead>
 <tbody>
 <tr>
-<td><code>Ability.Type.Action.Jump</code> (Lyra's jump)</td>
+<td><code>Ability.Type.Action.Jump</code> (jump)</td>
 <td><code>Status.XenoCore.Looting</code> (the prompt holds A), <code>.TargetMode</code>, <code>.Dialogue</code>, <code>.Downed</code></td>
 </tr>
 <tr>
@@ -4939,11 +4939,11 @@ the hold looks like a tap. Keep it off on any hold-to-open input.</p>
 <p><strong>Menus.</strong> While a menu screen is open, <code>IMC_XenoCore</code> and <code>IMC_Default</code> switch off, so nothing in
 the game world can react to a key behind a menu. That is a project-wide input setting
 (the default mapping-context query asks for <code>InputMode.Game</code>) that XenoCore applies at startup and
-<strong>Project Setup</strong> writes to your <code>Config/DefaultInput.ini</code>. It needs no setting on each mapping context.</p>
-<p><strong>Enter and Space click.</strong> In a Blank project, XenoCore sets CommonUI's <strong>Common Button Accept Key
-Handling</strong> to <code>TriggerClick</code> (<strong>Project Settings › Plugins › Common UI Framework › Button</strong>), so
-Enter and Space press the focused menu button, as the pad's A does. In a Lyra project the value is
-your project's own; set it there if Enter does nothing on a menu.</p>
+<strong>Apply XenoCore Project Settings</strong> writes to your <code>Config/DefaultInput.ini</code>. It needs no setting on each mapping context.</p>
+<p><strong>Enter and Space click.</strong> XenoCore sets CommonUI's <strong>Common Button Accept Key Handling</strong> to
+<code>TriggerClick</code> (<strong>Project Settings › Plugins › Common UI Framework › Button</strong>), so Enter and Space
+press the focused menu button, as the pad's A does. If you have set that value yourself, XenoCore
+leaves it alone; set it back to <code>TriggerClick</code> if Enter does nothing on a menu.</p>
 <p><strong>X is shared with Trade.</strong> While the interaction prompt offers a second verb (Trade, at a trader
 NPC), tap X is Trade and does not change the tactic.</p>
 <p><strong>The camera</strong> runs on every playable character all the time, but only the character the player is
@@ -4979,7 +4979,7 @@ then turns onto the locked enemy; out of battle it turns to face the new leader'
 <tr>
 <td>Movement, look, jump keys</td>
 <td><code>Imported/Lyra/Input/Mappings/IMC_Default</code></td>
-<td>Lyra's bindings, as XenoCore carries them. Copy the context rather than editing this one</td>
+<td>The default movement bindings. Copy the context rather than editing this one</td>
 </tr>
 <tr>
 <td>Action to tag</td>
@@ -5008,7 +5008,7 @@ then turns onto the locked enemy; out of battle it turns to face the new leader'
 </tr>
 <tr>
 <td><strong>Dialogue Camera Rig</strong></td>
-<td>Project Settings › XenoCore Content › Dialogue</td>
+<td>Project Settings › Game › XenoCore Content › Dialogue</td>
 <td>Which rig conversations use. Clear it to leave the camera alone</td>
 </tr>
 <tr>
@@ -5033,8 +5033,8 @@ then turns onto the locked enemy; out of battle it turns to face the new leader'
 <div class="admonition warning">
 <p class="admonition-title">Several keys are shared</p>
 <p>Pad A is Jump, Interact <strong>and</strong> Palette Confirm; Space is Jump and Palette Confirm; pad B is
-Crouch and Leave Target Mode. Each trigger carries a tap action and a hold action on purpose. Which one wins depends on state and on the blocking rules above.
-<code>InputData_XenoCore</code> also maps Lyra's Crouch.</p>
+Crouch and Leave Target Mode. LT and RT each carry a tap action and a hold action on purpose. Which one wins depends on state and on the blocking rules above.
+<code>InputData_XenoCore</code> also maps Crouch (<code>IA_Crouch</code>).</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a new one-shot action with no trigger</p>
@@ -5080,7 +5080,7 @@ abilities are Blueprint children of <code>UXenoCoreGameplayAbility_PartySwitch</
 child of <code>UXenoCoreGameplayAbility_CameraRecentre</code>. Menus filter mapping contexts through
 Enhanced Input's mode filtering: <code>DefaultMappingContextInputModeQuery</code> and <code>DefaultInputMode</code>
 (<code>Config/Templates/XenoCoreBase_Input.ini</code> in the plugin, applied in memory and written to the
-project's <code>Config/DefaultInput.ini</code> by Project Setup) both carry <code>InputMode.Game</code>, which CommonUI adds and removes. The
+project's <code>Config/DefaultInput.ini</code> by <strong>Apply XenoCore Project Settings</strong>) both carry <code>InputMode.Game</code>, which CommonUI adds and removes. The
 conversation camera is started as a global camera modifier rig, and look input is held with
 <code>SetIgnoreLookInput</code>.</p>
 </details>
@@ -5088,12 +5088,12 @@ conversation camera is started as a global camera modifier rig, and look input i
 <details class="note">
 <summary>For programmers</summary>
 <ul>
-<li><strong>Lyra's chain, untouched.</strong> Input actions to tags to abilities is Lyra's own design, so every
-  Lyra rule (blocking, relationships, cooldowns) applies to XenoCore buttons for free.</li>
+<li><strong>One chain for every button.</strong> Input actions raise tags and tags start abilities, so every
+  ability rule (blocking, relationships, cooldowns) applies to XenoCore buttons for free.</li>
 <li><strong>Blocking by state, not by input.</strong> A state tag plus a relationship row is data: the widget or
   system that owns the state knows nothing about which buttons it blocks.</li>
 <li><strong>Menus filter contexts.</strong> CommonUI already reports Game and Menu modes to Enhanced Input. The
-  project default query makes gameplay contexts listen to it, with no change to Lyra's assets.</li>
+  project default query makes gameplay contexts listen to it, with no change to any mapping context.</li>
 <li><strong>Gameplay Cameras.</strong> Rigs are data assets a designer tunes in the editor, and a camera modifier
   rig layers a close-up on top without replacing the exploration camera.</li>
 </ul>

@@ -4319,10 +4319,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#linker-error-unresolved-external-symbol-for-a-lyra-class" class="md-nav__link">
+  <a href="#linker-error-unresolved-external-symbol-for-a-xenobase-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Linker error "unresolved external symbol" for a Lyra class
+        Linker error "unresolved external symbol" for a XenoBase class
       
     </span>
   </a>
@@ -4798,10 +4798,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#linker-error-unresolved-external-symbol-for-a-lyra-class" class="md-nav__link">
+  <a href="#linker-error-unresolved-external-symbol-for-a-xenobase-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Linker error "unresolved external symbol" for a Lyra class
+        Linker error "unresolved external symbol" for a XenoBase class
       
     </span>
   </a>
@@ -4898,15 +4898,13 @@ opens; after that, only whoever changes C++ sees those errors.</p>
 Play-in-Editor. It is saved in your per-user settings under <code>Saved/Config</code>, which is not in source
 control, so it survives across sessions and differs between machines. A small toast, "Developer
 Settings Override", appears for two seconds when Play starts.</p>
-<p><strong>Fix:</strong> open <strong>Edit › Editor Preferences</strong>, find the category named after your project (<strong>Lyra</strong>
-for a project named Lyra), open <strong>Lyra Developer Settings</strong> (in a Blank project, <strong>Xeno Base
-Developer Settings</strong>) and clear <strong>Experience Override</strong>. It is an Editor Preference, not a Project
-Setting, because it is saved per user. The Output Log confirms the result:
-<code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</code>, under <code>LogXenoBaseExperience</code> in a Blank project
-or <code>LogLyraExperience</code> in a Lyra project.</p>
+<p><strong>Fix:</strong> open <strong>Edit › Editor Preferences</strong>, find the category named after your project, open
+<strong>Xeno Base Developer Settings</strong> and clear <strong>Experience Override</strong>. It is an Editor Preference, not
+a Project Setting, because it is saved per user. The Output Log confirms the result:
+<code>Identified experience &lt;name&gt; (Source: &lt;source&gt;)</code>, under <code>LogXenoBaseExperience</code>.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../getting-started/project-tour/">Tour of the project</a>.</p>
 <h3 id="the-experience-in-my-own-game-feature-plugin-cant-be-found">The experience in my own Game Feature plugin can't be found<a class="headerlink" href="#the-experience-in-my-own-game-feature-plugin-cant-be-found" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> Lyra finds experiences through the Asset Manager, and a plugin's experience folder is not
+<p><strong>Why:</strong> XenoCore finds experiences through the Asset Manager, and a plugin's experience folder is not
 scanned by default. A <code>DefaultGame.ini</code> inside the plugin does not help. The log says
 <code>EXPERIENCE: Wanted to use &lt;id&gt; but couldn't find it, falling back to the default</code>.</p>
 <p><strong>Fix:</strong> open your plugin's <strong>Game Feature Data</strong> asset (the one named after the plugin, at its
@@ -4973,16 +4971,16 @@ Cook</strong> (<code>DirectoriesToAlwaysCook</code> in <code>DefaultGame.ini</co
 <li>Restart the editor after changing anything held in a function-local static.</li>
 </ol>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/subclass-mechanic/">Subclass a mechanic</a>.</p>
-<h3 id="linker-error-unresolved-external-symbol-for-a-lyra-class">Linker error "unresolved external symbol" for a Lyra class<a class="headerlink" href="#linker-error-unresolved-external-symbol-for-a-lyra-class" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> several of the Lyra classes XenoCore carries are not exported from the <code>XenoCoreBase</code> module (they have neither
-<code>XENOCOREBASE_API</code> nor <code>MinimalAPI</code>), so C++ outside that module cannot derive from them or call their functions. It compiles,
-then fails at link. Examples: <code>UXenoBaseAnimInstance</code>, <code>UXenoBaseButtonBase</code>,
+<h3 id="linker-error-unresolved-external-symbol-for-a-xenobase-class">Linker error "unresolved external symbol" for a XenoBase class<a class="headerlink" href="#linker-error-unresolved-external-symbol-for-a-xenobase-class" title="Permanent link">&para;</a></h3>
+<p><strong>Why:</strong> several <code>XenoBase*</code> classes in the <code>XenoCoreBase</code> module are not exported (they have
+neither <code>XENOCOREBASE_API</code> nor <code>MinimalAPI</code>), so C++ outside that module cannot derive from them or
+call their functions. It compiles, then fails at link. Examples: <code>UXenoBaseAnimInstance</code>, <code>UXenoBaseButtonBase</code>,
 <code>UXenoBaseGameplayAbility_Interact</code>.</p>
 <p>XenoCore's own classes are all exported (<code>XENOCORERUNTIME_API</code>), so this error on a
 <code>UXenoCore*</code> or <code>AXenoCore*</code> class means a missing module in your <code>Build.cs</code> instead.</p>
 <p><strong>Fix:</strong> check for <code>XENOCOREBASE_API</code> (or <code>MinimalAPI</code>) on the class before designing around it. A <strong>Blueprint</strong> can
 still derive from an unexported class, so keep that part in Blueprint. Do not add the macro to
-Lyra's headers: that is an engine-side change you would have to carry through every update.</p>
+the <code>XenoCoreBase</code> headers: a XenoCore update replaces them, and your change with them.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/subclass-mechanic/">Subclass a mechanic</a>.</p>
 <h3 id="a-compile-error-points-into-a-gencpp-file-i-never-wrote">A compile error points into a <code>.gen.cpp</code> file I never wrote<a class="headerlink" href="#a-compile-error-points-into-a-gencpp-file-i-never-wrote" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> Unreal Header Tool generated code that does not match your declaration. The usual causes:</p>
@@ -5035,7 +5033,7 @@ Development build.</p>
 <p><strong>Why:</strong> some engine functions exist only in editor builds (they sit inside <code>WITH_EDITOR</code>). The
 editor target compiles them happily; the game target used for packaging does not have them.</p>
 <p><strong>Fix:</strong> wrap the call in <code>#if WITH_EDITOR</code>, or use a runtime alternative. Build the game target
-(for example <code>Build.bat &lt;Project&gt; Win64 Development -Project=...</code>, or <code>LyraGame</code> in a Lyra project) after touching engine APIs, rather
+(for example <code>Build.bat &lt;Project&gt; Win64 Development -Project=...</code>) after touching engine APIs, rather
 than finding out at package time.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/package-build/">Package a build</a>.</p>
 

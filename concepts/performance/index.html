@@ -4632,8 +4632,7 @@ code asks for it.</p>
 <li>drop pools, shop and trade stock, quest targets, learnable Arts, rare effects;</li>
 <li>a default that a Blueprint child is expected to override (fonts, glyph widgets, textures).</li>
 </ul>
-<p>These XenoCore properties are soft. Existing data converted on its own; you set them the same way
-as before.</p>
+<p>These XenoCore properties are soft. You set them in the Details panel like any other reference.</p>
 <table>
 <thead>
 <tr>
@@ -4682,7 +4681,7 @@ as before.</p>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Blueprint graphs that read these fields</p>
-<p>A graph reading one of the properties above now gets a soft reference. Load it with <strong>Load
+<p>A graph reading one of the properties above gets a soft reference. Load it with <strong>Load
 Class Asset Blocking</strong> / <strong>Load Asset Blocking</strong> at a pause (below), or <strong>Async Load Class
 Asset</strong> / <strong>Async Load Asset</strong> if it can wait. (For programmers: in C++, the shop and trade rows
 have <code>LoadItem()</code>.)</p>
@@ -4790,7 +4789,7 @@ frame.</p>
 <td>Every starting member spawns at New Game, and the party and progression screens read benched members' class defaults</td>
 </tr>
 <tr>
-<td>Lyra's fonts</td>
+<td>The fonts under <code>Imported/Lyra/UI/Foundation/Fonts</code></td>
 <td>Already set to <strong>Lazy Load</strong></td>
 </tr>
 <tr>

@@ -2098,10 +2098,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-author-your-own-styles-not-references-to-lyras" class="md-nav__link">
+  <a href="#6-author-your-own-styles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Author your own styles, not references to Lyra's
+        6. Author your own styles
       
     </span>
   </a>
@@ -4730,10 +4730,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-author-your-own-styles-not-references-to-lyras" class="md-nav__link">
+  <a href="#6-author-your-own-styles" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Author your own styles, not references to Lyra's
+        6. Author your own styles
       
     </span>
   </a>
@@ -4806,7 +4806,7 @@ change together, because you edit the few shared style assets rather than each s
 <li>Import your font first if you want one (see step 4).</li>
 </ul>
 <h2 id="where-the-look-lives">Where the look lives<a class="headerlink" href="#where-the-look-lives" title="Permanent link">&para;</a></h2>
-<p>XenoCore's menus are built with Epic's <strong>CommonUI</strong>, the same toolkit Lyra uses. In CommonUI a
+<p>XenoCore's menus are built with Epic's <strong>CommonUI</strong>. In CommonUI a
 widget does not store its own colours; it points at a <strong>style asset</strong>. Change the style and every
 widget using it changes.</p>
 <p>The shared pieces are in <code>UserInterface/Foundation</code>:</p>
@@ -4898,10 +4898,10 @@ Party screen's member buttons and the trade rows.</p>
    padding or background. Keep <strong>Min Width</strong> at <code>0</code>.</li>
 </ol>
 <div class="admonition warning">
-<p class="admonition-title">Don't swap in Lyra's tab button</p>
-<p>Lyra's <code>W_LyraButtonTab</code> has a minimum width of 320. A twelve-tab strip of them is 3840 pixels
-wide and pushes headers, tables and titles off screen, which looks like three unrelated bugs.
-Keep using <code>W_XenoCore_TabButton</code>.</p>
+<p class="admonition-title">Don't swap in a wide tab button</p>
+<p><code>W_LyraButtonTab</code> (in <code>Imported/Lyra/UI/Foundation/Buttons</code>) has a minimum width of 320. A
+twelve-tab strip of them is 3840 pixels wide and pushes headers, tables and titles off screen,
+which looks like three unrelated bugs. Keep using <code>W_XenoCore_TabButton</code>.</p>
 </div>
 <h3 id="4-change-the-font">4. Change the font<a class="headerlink" href="#4-change-the-font" title="Permanent link">&para;</a></h3>
 <ol>
@@ -4917,11 +4917,12 @@ Keep using <code>W_XenoCore_TabButton</code>.</p>
    and set <strong>Font › Font Family</strong> in <strong>Details</strong>.</li>
 <li>Two screens are drawn in C++ and take their fonts from class defaults instead. The party
    tactics panel (<code>XenoCoreTacticsPanelBase</code>) has one <strong>Font Family</strong> under <strong>Tactics › Text</strong>. The
-   Change Time screen (<code>XenoCoreChangeTimeScreen</code>) has <strong>Title Font</strong> and <strong>Time Font</strong> under
-   <strong>Change Time › Text</strong>, and <strong>Hour Font</strong> under <strong>Dial</strong>. Set them on a Blueprint child; the
+   Change Time screen (<code>XenoCoreChangeTimeScreen</code>) has <strong>Font Family</strong>, <strong>Title Font</strong> and <strong>Time
+   Font</strong> under <strong>Change Time › Text</strong>; its clock dial (<code>XenoCoreClockDial</code>) has <strong>Hour Font</strong> under
+   <strong>Dial</strong>. Set them on a Blueprint child; the
    tactics panel's child goes in <strong>Tactics Panel Class</strong> (see <a href="../../concepts/party-tactics/">Party tactics</a>).</li>
 </ol>
-<p>The shipped menus use Lyra's <code>Orbitron</code> font, carried in <code>Imported/Lyra/UI/Foundation/Fonts/Orbitron</code>. Search the
+<p>The shipped menus use the <code>Orbitron</code> font, in <code>Imported/Lyra/UI/Foundation/Fonts/Orbitron</code>. Search the
 Content Browser for widgets referencing it (right-click the font, <strong>Reference Viewer</strong>) to find
 every place to change.</p>
 <div class="admonition warning">
@@ -5009,28 +5010,24 @@ shipped asset.</p>
 <li>Duplicate the shipped widget into <code>Content/MyGame/UI</code> (for example <code>W_XenoCore_ShopScreen</code> to
    <code>W_MyGame_ShopScreen</code>) and change it. Keep its parent class.</li>
 <li>Set the matching setting to your copy. Settings are saved to <code>Config/DefaultGame.ini</code>.</li>
-<li>Add your folder to <strong>Project Settings › Packaging › Additional Asset Directories to Cook</strong>
-   (an advanced setting; it is <code>DirectoriesToAlwaysCook</code> in <code>DefaultGame.ini</code>). See below.</li>
 </ol>
 <p>If a setting is cleared, fails to load, or names a widget with the wrong parent, XenoCore logs a
 warning (<code>XenoCore UI setting '...' did not load</code>) and uses the shipped asset, so a mistake costs
 your change, never the feature.</p>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently in a packaged build: your replacement is not cooked</p>
-<p>A setting holds a soft reference, and the cooker does not follow soft references in settings.
-The shipped widgets are cooked only because <code>Config/DefaultGame.ini</code> always cooks
-<code>/XenoCore/UserInterface</code> and <code>/XenoCore/Characters/NPC</code>, or because other cooked assets
-reference them. A replacement stored anywhere else
-works in the editor and is missing from a packaged build, which then quietly falls back to the
-shipped screen. Add your folder (for example <code>/Game/MyGame/UI</code>) to <strong>Additional Asset
-Directories to Cook</strong> (<code>DirectoriesToAlwaysCook</code>), or make sure something that is cooked references it.</p>
+<p class="admonition-title">Fails silently in a packaged build: an asset loaded only by path</p>
+<p>XenoCore adds whatever these settings name to every cook, so your replacement screen is cooked.
+Anything your screen loads only by a path (a soft reference) is not followed: it works in the
+editor and is missing from a packaged build. Add its folder (for example <code>/Game/MyGame/UI</code>) to
+<strong>Project Settings › Packaging › Additional Asset Directories to Cook</strong>, or reference it
+directly.</p>
 </div>
-<h3 id="6-author-your-own-styles-not-references-to-lyras">6. Author your own styles, not references to Lyra's<a class="headerlink" href="#6-author-your-own-styles-not-references-to-lyras" title="Permanent link">&para;</a></h3>
+<h3 id="6-author-your-own-styles">6. Author your own styles<a class="headerlink" href="#6-author-your-own-styles" title="Permanent link">&para;</a></h3>
 <p>When you create new widgets, create your own style assets in <code>MyGame/UI/Styles</code>: right-click,
 <strong>Blueprint Class</strong>, and pick <code>CommonButtonStyle</code> or <code>CommonTextStyle</code> as the parent. Point your
 widgets at those.</p>
-<p>Referencing Lyra's style assets from <code>/Game/UI/...</code> works today, but it ties your look to host
-content you don't own, and any change there changes you.</p>
+<p>Referencing XenoCore's shipped style assets works, but a XenoCore update can change them, and
+your widgets change with them.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>.</li>
@@ -5052,7 +5049,8 @@ Button Class</strong> to your own child of it. See
 </div>
 <div class="admonition warning">
 <p class="admonition-title">My replacement screen shows in the editor but the packaged game uses the old one</p>
-<p>Your folder is not cooked. See <a href="#5-replace-a-whole-screen">step 5</a>.</p>
+<p>Your screen failed to load in the build: something it needs was not cooked. Search the packaged
+game's log for <code>did not load</code>, and see <a href="#5-replace-a-whole-screen">step 5</a>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Tab strip runs off the screen</p>

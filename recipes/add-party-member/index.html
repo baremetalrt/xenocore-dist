@@ -4924,7 +4924,7 @@ stronger than the sample. The whole model, and how to add rows of your own, is i
 <a href="../character-statline/">Author a character's statline</a>.</p>
 <h3 id="5-set-their-starting-gear">5. Set their starting gear<a class="headerlink" href="#5-set-their-starting-gear" title="Permanent link">&para;</a></h3>
 <ol>
-<li>In <code>B_Party_Rook</code>, select the <strong>Equipment Component</strong> in the <strong>Components</strong> panel.</li>
+<li>In <code>B_Party_Rook</code>, select <strong>EquipmentComponent</strong> in the <strong>Components</strong> panel.</li>
 <li>Under <strong>XenoCore › Equipment › Starting Equipment</strong>, each entry is a <strong>Slot</strong> (Weapon, Head,
    Chest, Arms, Legs, Feet) and an <strong>Item Definition</strong>. Nia
    (<code>Characters/Party/B_XenoCore_Party_Cyan</code>) wears <code>Weapons/RedSword/ID_XenoCore_RedSword</code> and five
@@ -4935,8 +4935,8 @@ stronger than the sample. The whole model, and how to add rows of your own, is i
    item there that <strong>Starting Equipment</strong> already equips, or it is added twice.</p>
 </li>
 <li>
-<p>On the same component, set <strong>Allowed Weapon Types</strong> to the kinds of weapon Rook may wield, such as
-   <code>DA_XenoCore_WeaponType_Greatsword</code>. The starting weapon must be one of them: saving the pawn
+<p>On the same component, <strong>Allowed Weapon Types</strong> lists the kinds of weapon Rook may wield. The
+   party base sets <code>DA_XenoCore_WeaponType_Greatsword</code>; change it if Rook uses another type. The starting weapon must be one of them: saving the pawn
    reports an error if it is not. Empty allows any weapon, and saving warns.</p>
 </li>
 </ol>
@@ -4968,8 +4968,8 @@ reserve (<a href="../../getting-started/glossary/">active and reserve members</a
    a save remembers the old roster.</li>
 <li>Open the menu (pad <strong>Y</strong>, keyboard <strong>I</strong>) and go to the <strong>Party</strong> screen. Rook is in the
    roster with the portrait and role you set.</li>
-<li>Swap Rook into an active slot, close the menu, and walk. Rook follows you with the new
-   materials.</li>
+<li>If Rook is in reserve, swap Rook into an active slot. Close the menu and walk. Rook follows you
+   with the new materials.</li>
 <li>Back on the Party screen, make Rook the leader. You now control Rook, with Rook's Arts on the
    palette and Rook's weapon drawn in battle.</li>
 </ol>

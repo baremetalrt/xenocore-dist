@@ -3905,17 +3905,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#development-scripts-are-not-part-of-the-template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Development scripts are not part of the template
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#removing-the-module" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4613,17 +4602,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#development-scripts-are-not-part-of-the-template" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Development scripts are not part of the template
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#removing-the-module" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4656,10 +4634,10 @@
 <p class="admonition-title">Designers: the two things on this page you will use</p>
 <ul>
 <li><strong>Tools › XenoCore › Apply XenoCore Project Settings</strong> writes the project settings XenoCore
-  needs into your project. XenoCore runs without it (it applies the settings for its Lyra code in
-  memory at startup), but run it once after installing: the editor's startup map, the gamepad
-  View button and the packaging cook list come only from it. Run it again if a recipe tells you to. It never overwrites
-  a setting you changed yourself. See <a href="#project-setup">Project setup</a>.</li>
+  needs into your project. XenoCore runs without it (it applies most of its settings in memory
+  at startup), but run it before you package: the packaging cook list, the editor's startup map
+  and the gamepad View button come only from it. Run it again if a recipe tells you to. It never
+  overwrites a setting you changed yourself. See <a href="#project-setup">Project setup</a>.</li>
 <li><strong>Save-time checks</strong>: saving an Art definition or a pawn Blueprint can show an error or warning
   in the <strong>Message Log</strong>. The messages are listed in <a href="#save-time-checks">Save-time checks</a>.</li>
 </ul>
@@ -4820,8 +4798,8 @@ trusting the result. The <code>Describe…</code> functions exist for exactly th
 <h2 id="project-setup">Project setup<a class="headerlink" href="#project-setup" title="Permanent link">&para;</a></h2>
 <p><code>UXenoCoreProjectSetup</code> writes the settings a project needs to run XenoCore into the project's
 own <code>Config/Default*.ini</code> files. Separately, at every editor and game start, the <code>XenoCoreBase</code>
-module applies the same settings for its Lyra code in memory wherever the project still has the
-engine's default value; it writes nothing, and a value the project sets always wins. It never overwrites a value you have set yourself; it lists it as
+module applies most of the same settings in memory wherever the project still has the
+engine's default value; it writes nothing, and a value the project sets always wins. Project setup never overwrites a value you have set yourself; it lists it as
 a conflict in the Output Log under <code>LogXenoSetup</code>. Run it any of three ways:</p>
 <ul>
 <li>the notification that appears when the editor opens, while any step is pending;</li>
@@ -4866,12 +4844,6 @@ folder and choose <strong>Validate Assets</strong>:</p>
 <p>Many runtime assets (shop and trade tables, drop tables, member definitions, experience curves,
 Art definitions) carry their own checks, which run the same way. Each recipe lists the messages
 for its asset.</p>
-<h2 id="development-scripts-are-not-part-of-the-template">Development scripts are not part of the template<a class="headerlink" href="#development-scripts-are-not-part-of-the-template" title="Permanent link">&para;</a></h2>
-<p>The repository that XenoCore is developed in has a <code>Tools/</code> folder at its root, full of Python and
-shell scripts used to author the shipped assets. Those scripts are internal: they assume the
-developer's machine, a running editor bridge, and specific asset states. They are not supported,
-not documented, and not needed to use or extend the template. The package you receive holds only
-the plugin folder, so <code>Tools/</code> is not in it.</p>
 <h2 id="removing-the-module">Removing the module<a class="headerlink" href="#removing-the-module" title="Permanent link">&para;</a></h2>
 <p>If you do not want the editor tools, you can remove the <code>XenoCoreEditor</code> entry from
 <code>XenoCore.uplugin</code>'s <code>Modules</code> list and delete <code>Source/XenoCoreEditor</code>. Nothing in the runtime

@@ -4845,7 +4845,7 @@ parts in the last table.</p>
 </tr>
 <tr>
 <td><code>Characters/Enemies/Core/BP_AIC_XenoCore_Enemy</code></td>
-<td>The AI controller, its team, and the shared behaviour tree <code>ST_XenoCore_EnemyFreeroam</code></td>
+<td>The AI controller, its team, and the shared StateTree <code>Core/AI/ST_XenoCore_EnemyFreeroam</code></td>
 </tr>
 </tbody>
 </table>
@@ -4946,10 +4946,10 @@ parent a new one to <code>XenoCoreAnimInstance</code>.</p>
 </code></pre>
 <ol>
 <li>Open <code>GA_MyGame_Golem_Topple</code> and <code>GA_MyGame_Golem_Daze</code>. Under <strong>XenoCore › Reaction</strong>, set
-   <strong>Directional Montages</strong> to your knock-down montage (one entry is enough). Leave <strong>Hold While
-   Trigger Tag Present</strong> on, so the Golem stays down for exactly as long as the reaction lasts. Add a
-   get-up as <strong>Follow Up Montage</strong> if you have one. The trigger and the hold come from the parent
-   class; there is nothing else to set.</li>
+   <strong>Directional Montages</strong> to your knock-down montage (one entry is enough). Leave <strong>Hold Until
+   Montage Ends</strong> and <strong>Hold While Trigger Tag Present</strong> on, so the Golem stays down for exactly as
+   long as the reaction lasts. Add a get-up as <strong>Follow Up Montage</strong> if you have one. The trigger
+   comes from the parent class; there is nothing else to set.</li>
 <li>Open <code>GA_MyGame_Golem_Guard</code>, <code>_Recoil</code> and <code>_Evade</code> (copies of the minion's). Under
    <strong>XenoCore › Reaction</strong>, set <strong>Directional Montages</strong> to your block, recoil and dodge clips. See
    <a href="../../concepts/combat-loop/#blocks-and-dodges">Blocks and dodges</a> for which side each slot means.

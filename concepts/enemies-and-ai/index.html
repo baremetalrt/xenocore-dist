@@ -3109,15 +3109,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change_1" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What you can change">
+    <nav class="md-nav" aria-label="Settings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4618,15 +4618,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-can-change_1" class="md-nav__link">
+  <a href="#settings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What you can change
+        Settings
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What you can change">
+    <nav class="md-nav" aria-label="Settings">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4854,7 +4854,7 @@ do, and the shared AI decides when.</strong> An enemy fights with the same AI as
 <td>Plays when the minion blocks, is blocked, or dodges. Clips retargeted onto the minion's skeleton. See <a href="../combat-loop/#blocks-and-dodges">Blocks and dodges</a></td>
 </tr>
 <tr>
-<td><code>GA_Hero_Death</code> (XenoCore's copy of Lyra's, in <code>Imported/Lyra/Characters/Heroes/Abilities</code>)</td>
+<td><code>GA_Hero_Death</code> (in <code>Imported/Lyra/Characters/Heroes/Abilities</code>)</td>
 <td>none</td>
 <td>Death. Without it the enemy cannot die</td>
 </tr>
@@ -4872,7 +4872,10 @@ where it spawned.</p>
 <p><strong>Waiting.</strong> Until it is <em>provoked</em> its aggro target is empty and the StateTree keeps it in
 <strong>Freeroam</strong>: it walks its <strong>Patrol Points</strong> back and forth at <strong>Patrol Speed</strong> (<code>105</code> cm/s, its
 walk), pausing <strong>Patrol Wait</strong> (<code>2</code> s) at each point; with no points it wanders within <strong>Wander
-Radius</strong> of home, or stands still if that is <code>0</code>. A spawner sets the wander radius for its squad.</p>
+Radius</strong> of home, or stands still if that is <code>0</code>. A spawner sets the wander radius for its squad.
+An unprovoked enemy far from the party sleeps (its AI pauses and resumes where it was); being hit
+or link-aggroed wakes it at once. The distances are in <strong>Project Settings › Game › XenoCore
+Enemies › Performance</strong> (sleep beyond <code>60</code> m, wake inside <code>50</code> m).</p>
 <p><strong>Noticing.</strong> An enemy is provoked by taking damage, or by its <strong>Detection</strong>:</p>
 <table>
 <thead>
@@ -4924,7 +4927,8 @@ another party member, the enemy turns on them.</p>
 <p><strong>Moving.</strong> The minion's anim Blueprint plays a 2D blend space over <strong>Direction</strong> and <strong>Ground
 Speed</strong>, so it walks on patrol, jogs in a chase, and strafes or backs off with side and back clips
 while it shuffles round its attackers. A hit's knockback is <em>not</em> treated as movement: while the
-shove lasts the legs hold their pose and the body slides underneath, with the flinch on the torso.</p>
+shove lasts the legs carry on as before the hit (a standing minion stays standing, a running one
+keeps running) and the body is pushed underneath, with the flinch on the torso.</p>
 <p><strong>Knocked down.</strong> While the enemy is Toppled or Dazed it plays its knock-down, stops chasing, does
 not auto-attack, and uses no Arts. It picks up where it left off when the reaction ends. A Dazed
 enemy gains no aggro.</p>
@@ -4952,7 +4956,7 @@ enemy is engaged. Neither widget costs anything while it has nothing to show: th
 itself off beyond its fade distance (re-checked every <strong>Label Tick Check Interval</strong>, <code>0.4</code> s). While the enemy fights, a red ring lies under whoever it is after. No line is
 drawn between the enemy and its target. See
 <a href="../companion-ai/#seeing-who-an-enemy-is-after">Seeing who an enemy is after</a>.</p>
-<h2 id="what-you-can-change_1">What you can change<a class="headerlink" href="#what-you-can-change_1" title="Permanent link">&para;</a></h2>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
 <h3 id="on-the-enemy-blueprint-class-defaults">On the enemy Blueprint (Class Defaults)<a class="headerlink" href="#on-the-enemy-blueprint-class-defaults" title="Permanent link">&para;</a></h3>
 <p>Settings marked <em>per placement</em> can also be changed on a placed enemy in the level.</p>
 <table>
@@ -5333,20 +5337,20 @@ Strength a level.</p>
 <summary>For programmers: a C++ enemy</summary>
 <p><code>AXenoCoreEnemyCharacter</code> and <code>AXenoCoreEnemyController</code> are exported, so your own module can
 subclass them. Enemies do not derive from <code>AXenoCoreCombatantCharacter</code> (the party's base);
-both derive from <code>AXenoBaseCharacterWithAbilities</code> (XenoCore's copy of Lyra's <code>ALyraCharacterWithAbilities</code>). The pawn owns its own Ability System
+both derive from <code>AXenoBaseCharacterWithAbilities</code>. The pawn owns its own Ability System
 Component and has no PlayerState.</p>
 </details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
 <details class="note">
 <summary>For programmers</summary>
 <ul>
-<li><strong>No PlayerState.</strong> Lyra's PlayerState route would give every enemy the experience's default pawn
+<li><strong>No PlayerState.</strong> The PlayerState route would give every enemy the experience's default pawn
   data (the player's kit), because the only per-pawn hook, <code>AXenoBaseGameMode::GetPawnDataForController</code>,
-  is not virtual. Deriving from <code>AXenoBaseCharacterWithAbilities</code> gives the pawn its own ASC. It is the
-  same shape as Lyra's own <code>B_ShootingTarget</code>, and it lets enemies simply be placed in a level.</li>
+  is not virtual. Deriving from <code>AXenoBaseCharacterWithAbilities</code> gives the pawn its own ASC, and it
+  lets enemies simply be placed in a level.</li>
 <li><strong>Two small C++ classes.</strong> The pawn exists to call <code>InitializeAbilitySystem</code>, which is not a
   <code>UFUNCTION</code>; without it the health component never initialises. The controller exists because
-  Lyra's team interface cannot be implemented in Blueprint, and a pawn's team must come from its
+  the team interface (<code>IXenoBaseTeamAgentInterface</code>) cannot be implemented in Blueprint, and a pawn's team must come from its
   controller.</li>
 <li><strong>Level on the instance.</strong> Ability sets apply effects at a level fixed on the asset, so a
   per-placement level needs its own stats effect path.</li>

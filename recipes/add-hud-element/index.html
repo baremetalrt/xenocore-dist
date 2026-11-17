@@ -4707,8 +4707,8 @@ named slots, without editing <code>W_XenoCore_HUDLayout</code> or any other Xeno
 <li><a href="../../getting-started/glossary/">Glossary</a>: <strong>Experience</strong>, <strong>Game Feature plugin</strong>.</li>
 </ul>
 <h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
-<p>The HUD layout, <code>UserInterface/HUD/W_XenoCore_HUDLayout</code>, carries five empty <strong>extension points</strong>:
-Lyra's <code>UIExtensionPointWidget</code>, each named by a <a href="../../getting-started/glossary/">gameplay tag</a>. Lyra's <strong>Add Widgets</strong> action puts a
+<p>The HUD layout, <code>UserInterface/HUD/W_XenoCore_HUDLayout</code>, carries five empty <strong>extension points</strong>
+(<code>XenoKitUIExtensionPointWidget</code>), each named by a <a href="../../getting-started/glossary/">gameplay tag</a>. The <strong>Add Widgets</strong> action puts a
 widget into the point whose tag matches. The points are empty and do not take clicks until
 something is added.</p>
 <table>
@@ -4722,12 +4722,12 @@ something is added.</p>
 <tbody>
 <tr>
 <td><code>HUD.Slot.XenoCore.TopCenter</code></td>
-<td>Top centre, 48 px down</td>
+<td>Top centre</td>
 <td>In a column, centred</td>
 </tr>
 <tr>
 <td><code>HUD.Slot.XenoCore.TopRight</code></td>
-<td>Top right, 48 px in, 330 px down (below the minimap and its prompt)</td>
+<td>Top right, below the minimap and its prompt</td>
 <td>In a column, right-aligned</td>
 </tr>
 <tr>
@@ -4737,7 +4737,7 @@ something is added.</p>
 </tr>
 <tr>
 <td><code>HUD.Slot.XenoCore.BottomCenter</code></td>
-<td>Bottom centre, 48 px up</td>
+<td>Bottom centre</td>
 <td>In a column, centred</td>
 </tr>
 <tr>

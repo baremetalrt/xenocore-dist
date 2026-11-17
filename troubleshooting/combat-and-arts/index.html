@@ -4946,8 +4946,8 @@ removes the particles but not the sounds its graph plays.</p>
 <h3 id="hits-land-but-theres-no-camera-shake-or-controller-rumble">Hits land but there's no camera shake or controller rumble<a class="headerlink" href="#hits-land-but-theres-no-camera-shake-or-controller-rumble" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> one of three:</p>
 <ul>
-<li><strong>You are on keyboard.</strong> Rumble is gamepad-only, and Lyra switches it off unless the active input
-  type is Gamepad <strong>and</strong> the player's force-feedback setting is on.</li>
+<li><strong>You are on keyboard.</strong> Rumble is gamepad-only, and XenoCore's player controller switches it off
+  unless the active input type is Gamepad <strong>and</strong> the player's force-feedback setting is on.</li>
 <li><strong>The shake is played by a cue that a gameplay effect triggers.</strong> Such a cue has no player
   controller to shake, so camera shake and rumble silently do nothing. Particles and numbers still
   work, which hides the problem. XenoCore's <code>GCN_XenoCore_Hit</code> is invoked directly by the attack
@@ -4965,9 +4965,10 @@ ability, not through the damage effect.</p>
 logged.</p>
 </div>
 <p><strong>Why:</strong> the number, the hit-confirm sound and the kill sound are drawn by XenoCore's damage cue,
-<code>GameplayCues/GCNL_XenoCore_DamageTaken</code> (XenoCore's own copy of Lyra's, which knows XenoCore's attackers
-are characters and that allies' hits count). It plays only when the damage effect carries the cue tag
-<code>GameplayCue.XenoCore.DamageTaken</code>. Lyra's own <code>GCNL_Character_DamageTaken</code> cannot draw these hits.</p>
+<code>GameplayCues/GCNL_XenoCore_DamageTaken</code>. It plays only when the damage effect carries the cue tag
+<code>GameplayCue.XenoCore.DamageTaken</code>. No cue in XenoCore answers <code>GameplayCue.Character.DamageTaken</code>,
+the tag the imported effect <code>Imported/Lyra/GameplayEffects/Damage/GameplayEffectParent_Damage_Basic</code>
+fires.</p>
 <table>
 <thead>
 <tr>
@@ -4978,15 +4979,15 @@ are characters and that allies' hits count). It plays only when the damage effec
 <tbody>
 <tr>
 <td>No number and no hit sound on hits from <strong>your own</strong> damage effect, while the sample's hits work</td>
-<td>The effect fires <code>GameplayCue.Character.DamageTaken</code> (Lyra's), not <code>GameplayCue.XenoCore.DamageTaken</code></td>
+<td>The effect fires <code>GameplayCue.Character.DamageTaken</code> (for example, it was made from <code>GameplayEffectParent_Damage_Basic</code>), not <code>GameplayCue.XenoCore.DamageTaken</code></td>
 </tr>
 <tr>
 <td>No number on <strong>any</strong> hit</td>
-<td><code>GCNL_XenoCore_DamageTaken</code> was moved out of <code>XenoCore/Content/GameplayCues</code>, or deleted</td>
+<td><code>GCNL_XenoCore_DamageTaken</code> was moved out of the plugin's <code>GameplayCues</code> folder, or deleted</td>
 </tr>
 <tr>
 <td><strong>CRITICAL HIT!</strong> shows, but the number is the normal colour</td>
-<td>Same as the first row: Lyra's cue does not hear about XenoCore's critical hits</td>
+<td>Same as the first row: the effect does not fire XenoCore's cue</td>
 </tr>
 </tbody>
 </table>
@@ -4999,8 +5000,7 @@ for every new damage effect. If the cue asset itself is missing, restore it from
 <p>The cue asset looks correct and nothing is logged.</p>
 </div>
 <p><strong>Why:</strong> cues are only found in folders registered with the cue manager: XenoCore's
-<code>XenoCore/Content/GameplayCues</code>, and in a Lyra project also the project's own <code>Content/GameplayCues</code>
-and <code>Content/GameplayCueNotifies</code>. A Blank project registers no folder of its own. A cue saved
+<code>GameplayCues</code> folder in the XenoCore plugin folder. A Blank project registers no folder of its own. A cue saved
 anywhere else is never loaded.</p>
 <p><strong>Fix:</strong> save your cues under <code>Content/GameplayCues/MyGame/</code> (in a Blank project, first add
 <code>+GameplayCueNotifyPaths="/Game/GameplayCues"</code> under <code>[/Script/GameplayAbilities.AbilitySystemGlobals]</code>
@@ -5049,10 +5049,10 @@ stats is fixed in C++, so adding yours to it needs a programmer (<code>AddStat</
 ends in <code>Rate</code>, so name the tag to match.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../concepts/skills/#extending-it">Skills</a>.</p>
 <h3 id="the-god-cheat-doesnt-stop-the-player-taking-damage">The <code>God</code> cheat doesn't stop the player taking damage<a class="headerlink" href="#the-god-cheat-doesnt-stop-the-player-taking-damage" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> Lyra's <code>God</code> command gives god mode to the player <strong>state</strong>'s ability system. XenoCore
+<p><strong>Why:</strong> the <code>God</code> command gives god mode to the player <strong>state</strong>'s ability system. XenoCore
 characters carry their own ability system on the pawn, so the command changes nothing.</p>
 <p><strong>Fix:</strong> to keep a character alive while testing, add the <code>Gameplay.DamageImmunity</code> tag to the
-pawn's ability system (Lyra's health set honours it), for example with <strong>Add Loose Gameplay Tags</strong>
+pawn's ability system (the health set honours it), for example with <strong>Add Loose Gameplay Tags</strong>
 on the pawn's ability system component from a debug Blueprint.</p>
 
 

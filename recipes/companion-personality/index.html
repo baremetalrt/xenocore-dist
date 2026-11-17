@@ -4694,8 +4694,9 @@ its own. You edit one asset per character, and the face table if you want a new 
 <li>Idle-break clips are <strong>animation sequences</strong> (not montages) on the UE5 Mannequin skeleton
   (<code>SK_Mannequin</code>). <code>Characters/Core/Animations/IdleBreaks</code> ships nine you can use:
   <code>AS_XenoCore_IdleBreak_Browse</code>, <code>_GimmeBreak</code>, <code>_Greeting</code>, <code>_Impatient</code>, <code>_Poise</code>, <code>_Relaxed</code>,
-  <code>_Sneeze</code>, <code>_Stretch</code> and <code>_Waiting</code>. Lyra's own <code>MM_Unarmed_IdleBreak_Fidget</code>,
-  <code>MM_Unarmed_IdleBreak_Scan</code> and <code>MF_Unarmed_Idle_Break</code> work too.</li>
+  <code>_Sneeze</code>, <code>_Stretch</code> and <code>_Waiting</code>. <code>MM_Unarmed_IdleBreak_Fidget</code>, <code>MM_Unarmed_IdleBreak_Scan</code> and
+  <code>MF_Unarmed_Idle_Break</code> in <code>Imported/Lyra/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed</code>
+  work too.</li>
 </ul>
 <h2 id="steps">Steps<a class="headerlink" href="#steps" title="Permanent link">&para;</a></h2>
 <h3 id="1-give-the-character-its-own-idle-breaks">1. Give the character its own idle breaks<a class="headerlink" href="#1-give-the-character-its-own-idle-breaks" title="Permanent link">&para;</a></h3>
@@ -4706,7 +4707,7 @@ its own. You edit one asset per character, and the face table if you want a new 
    play while the weapon is <a href="../../getting-started/glossary/">sheathed</a>. Four is a good number: one is
    picked at random each time and never the same one twice running.</li>
 <li>Leave <strong>Armed Idle Breaks</strong> empty unless you have clips made for holding the weapon. Empty means
-   the stance's own break plays with the weapon out (for the greatsword, Kwang's laugh).</li>
+   the stance's own break plays with the weapon out (for the greatsword, <code>AS_Kwang_IdleBreak_Laugh</code>).</li>
 <li>Click <strong>Save</strong>.</li>
 </ol>
 <div class="admonition warning">
@@ -4740,8 +4741,7 @@ victory come from the face's own rules and are not affected. (See the glossary f
 <a href="../../getting-started/glossary/">Topple</a> and <a href="../../getting-started/glossary/">downed</a>.)</p>
 <div class="admonition note">
 <p class="admonition-title">The sample characters have no face</p>
-<p>The shipped profiles fill these lists (Kael's leans to <code>Smile</code> and <code>Laugh</code>, Mira's to <code>Wink</code> and
-<code>Smug</code>), but the sample cast are Mannequins with no face rig, so nothing shows on them. A
+<p>The shipped profiles fill these lists (Kael's favours <code>Smile</code>, Mira's <code>Laugh</code>), but the sample cast are Mannequins with no face rig, so nothing shows on them. A
 temperament shows only on a character you give a face Animation Blueprint (parent
 <code>XenoCoreFaceAnimInstance</code>); see <a href="../../concepts/animation/">Animation</a>.</p>
 </div>

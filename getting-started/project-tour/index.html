@@ -4696,7 +4696,7 @@ the Content Browser's search box with <strong>XenoCore Content</strong> selected
 </tr>
 <tr>
 <td><code>Effects</code></td>
-<td>Niagara effects: loot orbs, footsteps</td>
+<td>Effects: chest beams, collectable orbs, grass footsteps, the aggro ring, revive, weapon trails, rain</td>
 </tr>
 <tr>
 <td><code>Environment</code></td>
@@ -4744,7 +4744,7 @@ the Content Browser's search box with <strong>XenoCore Content</strong> selected
 </tr>
 <tr>
 <td><code>Imported</code></td>
-<td>Content XenoCore uses from other sources, cut down to what is used: the parts of Lyra Starter Game it is built on (<code>Imported/Lyra</code>), StyleHex grass, Niagara and effect samples, cave rocks</td>
+<td>Content XenoCore uses from other sources, cut down to what is used: the Mannequin bodies and animations, input, UI, sounds and effects in <code>Imported/Lyra</code>, StyleHex grass, Niagara and effect samples, cave rocks</td>
 </tr>
 <tr>
 <td><code>UserInterface</code></td>
@@ -4760,9 +4760,8 @@ the Content Browser's search box with <strong>XenoCore Content</strong> selected
 </tr>
 </tbody>
 </table>
-<p>If you see a <code>Dev</code> folder, it holds development-only test content: it is never cooked into a
-packaged build, nothing outside it depends on it, and you can ignore it. XenoCore ships <strong>no music</strong>: the title screen, Gaur Plain's field and
-battle slots and the fallback tracks in <strong>Project Settings › XenoCore Content</strong> are empty, so the
+<p>XenoCore ships <strong>no music</strong>: the title screen, Gaur Plain's field and
+battle slots and the fallback tracks in <strong>Project Settings › Game › XenoCore Content</strong> are empty, so the
 game is silent until you add your own. See <a href="../../recipes/area-music/">Area music</a>.</p>
 <h2 id="the-maps">The maps<a class="headerlink" href="#the-maps" title="Permanent link">&para;</a></h2>
 <table>
@@ -4775,7 +4774,7 @@ game is silent until you add your own. See <a href="../../recipes/area-music/">A
 <tbody>
 <tr>
 <td><code>L_XenoCore_FrontEnd</code></td>
-<td>Boot screens and the title screen. The project opens here.</td>
+<td>Boot screens and the title screen. After <strong>Apply</strong>, the editor opens here.</td>
 </tr>
 <tr>
 <td><code>L_XenoCore_GaurPlain</code></td>
@@ -4789,8 +4788,7 @@ game is silent until you add your own. See <a href="../../recipes/area-music/">A
 </table>
 <h2 id="how-it-starts">How it starts<a class="headerlink" href="#how-it-starts" title="Permanent link">&para;</a></h2>
 <ol>
-<li>The project opens <code>L_XenoCore_FrontEnd</code>, which runs the front-end Experience: boot screens, then
-   the title screen.</li>
+<li><code>L_XenoCore_FrontEnd</code> runs the front-end Experience: boot screens, then the title screen.</li>
 <li><strong>New Game</strong> loads the sample map. <strong>Continue</strong> loads your newest save.</li>
 <li>The sample map and the gym run <code>B_XenoCore_Experience</code>. It sets the player pawn data, the HUD, the
    interaction abilities and the teams, and it switches the XenoCore plugin's features on.</li>

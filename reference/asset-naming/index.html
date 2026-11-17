@@ -4685,11 +4685,10 @@
 
 <h1 id="asset-naming">Asset naming<a class="headerlink" href="#asset-naming" title="Permanent link">&para;</a></h1>
 <p>The prefixes XenoCore's content actually uses, so you can tell an asset's type from its name in the
-Content Browser. Most follow Lyra's own conventions; a few are XenoCore's. XenoCore-authored assets
-also carry <code>XenoCore</code> after the prefix (<code>GA_XenoCore_TargetMode</code>), which keeps them apart from
-Lyra's assets of the same kind in search results.</p>
+Content Browser. Most XenoCore assets also carry <code>XenoCore</code> after the prefix
+(<code>GA_XenoCore_TargetMode</code>); assets under <code>Imported/</code> keep the names they came with.</p>
 <p>Counts are of the plugin content you receive in 1.3.2 (the plugin's <code>Content</code> folder,
-including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed before packaging). Counts change as content is added.</p>
+including <code>Imported/</code>). Counts change as content is added.</p>
 <h2 id="quick-lookup">Quick lookup<a class="headerlink" href="#quick-lookup" title="Permanent link">&para;</a></h2>
 <p>Alphabetical. Each prefix links to its table below.</p>
 <table>
@@ -4866,7 +4865,7 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 </tr>
 </tbody>
 </table>
-<p>For what the Unreal and Lyra types are, see the <a href="../../getting-started/glossary/">glossary</a>.</p>
+<p>For what these asset types are, see the <a href="../../getting-started/glossary/">glossary</a>.</p>
 <h2 id="gameplay">Gameplay<a class="headerlink" href="#gameplay" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -4898,19 +4897,19 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 </tr>
 <tr>
 <td><code>AbilitySet_</code></td>
-<td>Lyra ability set (abilities, effects and attribute sets granted together)</td>
+<td>Ability set (abilities, effects and attribute sets granted together)</td>
 <td>13</td>
 <td><code>Game/AbilitySet_XenoCore_Hero</code></td>
 </tr>
 <tr>
 <td><code>PawnData_</code></td>
-<td>Lyra pawn data</td>
+<td>Pawn data</td>
 <td>9</td>
 <td><code>Characters/Enemies/Minion/PawnData_XenoCore_Minion_Melee</code></td>
 </tr>
 <tr>
 <td><code>TagRelationships_</code></td>
-<td>Lyra ability tag relationship mapping</td>
+<td>Ability tag relationship mapping</td>
 <td>1</td>
 <td><code>Game/TagRelationships_XenoCore</code></td>
 </tr>
@@ -4940,13 +4939,13 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 </tr>
 <tr>
 <td><code>ID_</code></td>
-<td>Lyra inventory item definition</td>
+<td>Inventory item definition</td>
 <td>60</td>
 <td><code>Inventory/Items/ID_XenoCore_EtherCrystal</code></td>
 </tr>
 <tr>
 <td><code>ED_</code></td>
-<td>Lyra equipment definition</td>
+<td>Equipment definition</td>
 <td>9</td>
 <td><code>Inventory/Armour/ED_XenoCore_Armour</code></td>
 </tr>
@@ -4977,25 +4976,25 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 <tbody>
 <tr>
 <td><code>B_</code></td>
-<td>Actor or pawn Blueprint (Lyra's convention)</td>
+<td>Actor or pawn Blueprint</td>
 <td>45</td>
 <td><code>Characters/Party/B_XenoCore_PartyMember_Base</code></td>
 </tr>
 <tr>
 <td><code>BP_</code></td>
-<td>Blueprint (older XenoCore convention; see below)</td>
+<td>Blueprint (older convention; see below)</td>
 <td>11</td>
 <td><code>Characters/Party/BP_XenoCore_Party</code></td>
 </tr>
 <tr>
 <td><code>LAS_</code></td>
-<td>Lyra layout-and-actions set (HUD layout for an experience)</td>
+<td>Layout-and-actions set (HUD layout for an experience)</td>
 <td>1</td>
 <td><code>Experiences/LAS_XenoCore_HUD</code></td>
 </tr>
 <tr>
 <td><code>UFE_</code></td>
-<td>Lyra user-facing experience (playlist entry)</td>
+<td>User-facing experience (playlist entry)</td>
 <td>1</td>
 <td><code>System/Playlists/UFE_XenoCore_Gym</code></td>
 </tr>
@@ -5013,7 +5012,7 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 </tr>
 <tr>
 <td><code>CFX_</code></td>
-<td>Lyra context effects library (footsteps by surface)</td>
+<td>Context effects library (footsteps by surface)</td>
 <td>1</td>
 <td><code>ContextEffects/CFX_XenoCore</code></td>
 </tr>
@@ -5025,7 +5024,7 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 </tr>
 </tbody>
 </table>
-<p>Experiences themselves use <code>B_</code> (<code>Experiences/B_XenoCore_Experience</code>), as Lyra's do.</p>
+<p>Experiences themselves use <code>B_</code> (<code>Experiences/B_XenoCore_Experience</code>).</p>
 <h2 id="input-and-camera">Input and camera<a class="headerlink" href="#input-and-camera" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -5051,7 +5050,7 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 </tr>
 <tr>
 <td><code>InputData_</code></td>
-<td>Lyra input config (input action to input tag)</td>
+<td>Input config (input action to input tag)</td>
 <td>1</td>
 <td><code>Input/InputData_XenoCore</code></td>
 </tr>
@@ -5167,7 +5166,7 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 </tr>
 <tr>
 <td><code>DamagePopStyle_</code></td>
-<td>Lyra damage number style</td>
+<td>Damage number style</td>
 <td>1</td>
 <td><code>UserInterface/HUD/DamagePopStyle_XenoCore</code></td>
 </tr>
@@ -5234,7 +5233,7 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 </tr>
 <tr>
 <td><code>sfx_</code></td>
-<td>Sound (Lyra's footstep convention)</td>
+<td>Sound (footstep sounds)</td>
 <td>22</td>
 <td><code>ContextEffects/Audio/sfx_XenoCore_FS_Grass</code></td>
 </tr>
@@ -5242,7 +5241,7 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 </table>
 <h2 id="exceptions-you-will-see">Exceptions you will see<a class="headerlink" href="#exceptions-you-will-see" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong><code>BP_</code> and <code>B_</code> both mean Blueprint.</strong> Lyra uses <code>B_</code>; some XenoCore Blueprints use <code>BP_</code>
+<li><strong><code>BP_</code> and <code>B_</code> both mean Blueprint.</strong> Most use <code>B_</code>; some XenoCore Blueprints use <code>BP_</code>
   (<code>BP_XenoCore_Party</code>, <code>BP_XenoCore_Progression</code>, <code>Inventory/Loot/BP_XenoCore_TreasureChest</code>,
   <code>Battle/Attributes/BP_XenoCoreDamageExecution</code>). There is no difference in kind.</li>
 <li><strong>Party member definitions have no type prefix</strong> (<code>PartyMember_Cyan</code>), unlike every other data
@@ -5250,7 +5249,7 @@ including <code>Imported/</code>, excluding <code>Dev/</code>, which is removed 
 <li><strong>Retargeted clips keep their source names</strong> (<code>Characters/Player/Animations/Mixamo/Getting_Up_Front_retargeted</code>).</li>
 </ul>
 <h2 id="for-your-own-content">For your own content<a class="headerlink" href="#for-your-own-content" title="Permanent link">&para;</a></h2>
-<p>Use Lyra's prefixes (<code>B_</code>, <code>GA_</code>, <code>GE_</code>, <code>W_</code>, <code>DA_</code>…) and your own project tag in place of
+<p>Use the same prefixes (<code>B_</code>, <code>GA_</code>, <code>GE_</code>, <code>W_</code>, <code>DA_</code>…) and your own project tag in place of
 <code>XenoCore</code> (<code>GA_MyGame_Fireball</code>), under <code>Content/MyGame/</code>. Then a search for your tag finds only
 your assets, and a template update never collides with your names.</p>
 

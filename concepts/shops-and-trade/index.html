@@ -4722,7 +4722,7 @@ its Sell Value</strong>, and each system applies its own multiplier to it.</p>
 <tr>
 <td><code>Shop/DA_XenoCore_Shop_Colony9</code></td>
 <td>Shop table (data asset)</td>
-<td>The Gym sample shop's stock: seven pieces of equipment</td>
+<td>A sample shop's stock: seven pieces of equipment</td>
 </tr>
 <tr>
 <td><code>Shop/DA_XenoCore_Shop_KamosOutpost</code></td>
@@ -4766,9 +4766,9 @@ its Sell Value</strong>, and each system applies its own multiplier to it.</p>
 </tr>
 </tbody>
 </table>
-<p>Both screens are pushed onto the menu layer, so the world pauses while they are open. The NPCs
-using the Colony 9 tables are placed in <code>Maps/L_XenoCore_Gym</code>; the Kamos Outpost shopkeeper is in
-<code>Maps/L_XenoCore_GaurPlain</code>.</p>
+<p>Both screens are pushed onto the menu layer, so the world pauses while they are open. NPCs using
+the Colony 9 tables are placed in both <code>Maps/L_XenoCore_Gym</code> and <code>Maps/L_XenoCore_GaurPlain</code>; the
+Kamos Outpost shopkeeper is in <code>Maps/L_XenoCore_GaurPlain</code>.</p>
 <p><strong>Stock loads when the screen opens.</strong> Every <strong>Item</strong> in a shop or trade table (offers and the
 overtrade bonus) is a soft reference, so a placed shopkeeper does not load its stock, with its
 weapon meshes and abilities, along with the map. The shop and trade screens load the table's items
@@ -4787,7 +4787,7 @@ graph plays its dialogue, then checks <strong>Can Shop</strong>, and if the NPC 
    your gold covers, the room left under the item's <strong>Max Carried</strong>, and 99.</li>
 <li>Buying takes the gold first, then adds the items. Anything that did not fit is refunded.</li>
 <li>After buying equipment, the shop asks whether to equip it now, on a character you pick.</li>
-<li><strong>Sell</strong> lists your bag. Worn copies cannot be sold ("You cannot sell weapons that are in use").
+<li><strong>Sell</strong> lists your bag. Worn copies cannot be sold ("You cannot sell equipment that is in use.").
    Key items never appear.</li>
 <li>The list stays open after each purchase or sale, with the numbers updated in place.</li>
 <li>Leaving fires <strong>Transacted</strong> if anything was bought or sold, otherwise <strong>Nothing Changed</strong>.</li>
@@ -4911,7 +4911,7 @@ or cheaper, a programmer has to change the multiplier.</p>
 <tr>
 <td><strong>Celebrate On Trade</strong></td>
 <td>same</td>
-<td>Confetti and fanfare after a trade. Off by default</td>
+<td>The quest banner's celebration and fanfare after a trade. Off by default</td>
 </tr>
 <tr>
 <td><strong>Tab Button Class</strong>, <strong>Row Class</strong>, <strong>Stat Row Class</strong>, <strong>Icon Set</strong>, icon sizes</td>
@@ -4955,7 +4955,7 @@ reward.</p>
   programmer; see the note below.</li>
 </ul>
 <p>Never edit the sample tables in place if you want to keep them as reference; they are overwritten
-by template updates.</p>
+by XenoCore updates.</p>
 <details class="note">
 <summary>For programmers: classes and extension points</summary>
 <p>Tables are <code>UXenoCoreShopTable</code> and <code>UXenoCoreTradeTable</code>; the nodes are the latent actions

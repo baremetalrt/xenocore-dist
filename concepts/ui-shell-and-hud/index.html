@@ -4736,8 +4736,8 @@
 quest tracker, pickup badges and banners; in battle, the target plate and the Arts palette. The
 menu button opens an XC1-style main menu (entries on the left, a full-height card per party member)
 from which every other screen opens. Menus pause the game.</p>
-<p>XenoCore's interface is built on Lyra's UI framework, CommonUI, and follows Lyra's look: clean,
-dark and restrained. Everything on screen falls into two groups. <strong>HUD plates</strong> sit over gameplay,
+<p>XenoCore's interface is built on CommonUI, Unreal's UI framework, with a clean, dark and
+restrained look. Everything on screen falls into two groups. <strong>HUD plates</strong> sit over gameplay,
 take no input, and fade in and out. <strong>Screens</strong> are full menus; while one is up the game pauses and
 gameplay input switches off. The idea that makes the rest make sense: <strong>a HUD plate hides by fading
 its opacity, never by collapsing</strong>, and <strong>a screen owns the input while it is on top</strong>. Nearly every
@@ -4752,7 +4752,7 @@ UI trap in this project is one of those two rules broken.</p>
 <li><strong>Replace any screen or HUD widget the game opens by itself</strong>: <a href="#the-two-settings-pages">The two settings pages</a>.</li>
 </ul>
 <h2 id="how-it-fits-together">How it fits together<a class="headerlink" href="#how-it-fits-together" title="Permanent link">&para;</a></h2>
-<p>Lyra's root layout, <code>W_OverallUILayout</code>, holds a stack per layer tag. XenoCore uses three of them:</p>
+<p>The root layout, <code>Imported/Lyra/UI/W_OverallUILayout</code>, holds a stack per layer tag. XenoCore uses three of them:</p>
 <table>
 <thead>
 <tr>
@@ -4771,7 +4771,7 @@ UI trap in this project is one of those two rules broken.</p>
 </tr>
 <tr>
 <td><code>UI.Layer.Modal</code></td>
-<td>Lyra's own full-screen confirmation dialog. XenoCore's popups deliberately do not use it</td>
+<td>The full-screen confirmation dialog (<code>Imported/Lyra/UI/Foundation/Dialogs</code>). XenoCore's popups deliberately do not use it</td>
 </tr>
 </tbody>
 </table>
@@ -4780,13 +4780,13 @@ under it until the new one closes.</p>
 <h3 id="the-hud">The HUD<a class="headerlink" href="#the-hud" title="Permanent link">&para;</a></h3>
 <p><code>Experiences/LAS_XenoCore_HUD</code>, an action set used by <code>B_XenoCore_Experience</code>, adds:</p>
 <ul>
-<li><code>W_XenoCore_HUDLayout</code> to <code>UI.Layer.Game</code>. It derives from <code>XenoBaseHUDLayout</code> (Lyra's HUD layout) and places the
+<li><code>W_XenoCore_HUDLayout</code> to <code>UI.Layer.Game</code>. It derives from <code>XenoBaseHUDLayout</code> and places the
   party member plates, the item pickup badges, the quest tracker, the quest reward banner, the
   level-up banner, the party join banner and the autosave badge.</li>
 <li><code>B_XenoCore_NumberPopComponent</code> to the player controller, for damage numbers.</li>
 </ul>
-<p>The layout also carries five empty <strong>extension points</strong> (Lyra's <code>UIExtensionPointWidget</code>), each
-named by a tag. Lyra's <strong>Add Widgets</strong> action puts your own widget into one, so a new HUD element
+<p>The layout also carries five empty <strong>extension points</strong> (<code>UIExtensionPointWidget</code>), each
+named by a tag. An <strong>Add Widgets</strong> action puts your own widget into one, so a new HUD element
 needs no edit to the layout:</p>
 <table>
 <thead>
@@ -4799,7 +4799,7 @@ needs no edit to the layout:</p>
 <tbody>
 <tr>
 <td><code>HUD.Slot.XenoCore.TopCenter</code></td>
-<td>Top centre, 48 px down</td>
+<td>Top centre</td>
 <td>Column, centred</td>
 </tr>
 <tr>
@@ -4814,7 +4814,7 @@ needs no edit to the layout:</p>
 </tr>
 <tr>
 <td><code>HUD.Slot.XenoCore.BottomCenter</code></td>
-<td>Bottom centre, 48 px up</td>
+<td>Bottom centre</td>
 <td>Column, centred</td>
 </tr>
 <tr>
@@ -4969,7 +4969,7 @@ and focuses the first. It rebuilds every time the menu opens, which is what re-a
 <tr>
 <td>1100</td>
 <td>Settings</td>
-<td><code>W_LyraSettingScreen</code>, XenoCore's copy in <code>Imported/Lyra/UI/Settings</code>. In a Lyra project, the <strong>Host Settings Screen</strong> setting instead (see below)</td>
+<td>XenoCore's settings screen, <code>Imported/Lyra/UI/Settings/W_LyraSettingScreen</code></td>
 </tr>
 <tr>
 <td>1200, 1300</td>
@@ -5094,7 +5094,7 @@ eye, or with a screenshot of the whole desktop.</p>
 </tr>
 <tr>
 <td><code>W_XenoCore_TabButton</code></td>
-<td>Tab button for tab lists. Use it instead of Lyra's <code>W_LyraButtonTab</code></td>
+<td>Tab button for tab lists. Use it instead of <code>W_LyraButtonTab</code>, whose minimum width is too wide for a row of tabs</td>
 </tr>
 <tr>
 <td><code>W_XenoCore_MenuButton</code>, <code>W_XenoCore_GlyphButton</code>, <code>W_XenoCore_ItemRow</code>, <code>W_XenoCore_StatBlock</code>, <code>W_XenoCore_StatRow</code>, <code>W_XenoCore_Rule</code></td>
@@ -5102,7 +5102,7 @@ eye, or with a screenshot of the whole desktop.</p>
 </tr>
 </tbody>
 </table>
-<p>The text styles use Lyra's Orbitron font, which XenoCore carries at
+<p>The text styles use the Orbitron font, at
 <code>/XenoCore/Imported/Lyra/UI/Foundation/Fonts/Orbitron</code>.</p>
 <p><strong>The stat block</strong> (<code>W_XenoCore_StatBlock</code>) draws a list of stat
 rows. <strong>Show Lines</strong> and <strong>Show Header</strong> draw what you pass; <strong>Show Character</strong> and <strong>Show Item</strong> make
@@ -5206,7 +5206,7 @@ nothing changes until you edit one.</p>
 <tr>
 <td>HUD</td>
 <td><strong>Keyboard Key Icons</strong></td>
-<td>Lyra's keyboard controller data</td>
+<td>A CommonInput controller data class</td>
 <td><code>UserInterface/Input/CommonInput_XenoCore_Keyboard</code></td>
 </tr>
 <tr>
@@ -5232,12 +5232,6 @@ nothing changes until you edit one.</p>
 <td><strong>Menu Button Class</strong>, <strong>Menu Button Padding</strong>, <strong>Menu Group Gap</strong></td>
 <td>A CommonUI button</td>
 <td><code>XenoCoreMenuEntryButton</code>, 4 px below each, 20 px before a group</td>
-</tr>
-<tr>
-<td>Menu</td>
-<td><strong>Host Settings Screen</strong></td>
-<td><code>CommonActivatableWidget</code></td>
-<td>Empty. Used only in a Lyra project, where XenoCore's settings screen cannot open: the Settings entry and the title screen open this instead. <strong>Project Setup</strong> sets it to Lyra's <code>W_LyraSettingScreen</code>; while it is empty, Settings logs a warning and does nothing</td>
 </tr>
 </tbody>
 </table>
@@ -5310,10 +5304,10 @@ setting a font by hand, or set the font in a text style.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Enter and Space press the focused button</p>
-<p>In a Blank project XenoCore sets CommonUI's <code>CommonButtonAcceptKeyHandling</code> to <code>TriggerClick</code>, so
-the keyboard's accept keys click the focused button, just as the pad's A does. In a Lyra
-project the value is your project's own (<strong>Project Settings › Plugins › Common UI Framework</strong>);
-set it to <code>TriggerClick</code> if Enter does nothing on a menu. A pad A press is
+<p>XenoCore sets CommonUI's <code>CommonButtonAcceptKeyHandling</code> to <code>TriggerClick</code>, so the keyboard's
+accept keys click the focused button, just as the pad's A does. If you set that value yourself
+(<strong>Project Settings › Plugins › Common UI Framework</strong>), XenoCore leaves it alone; set it to
+<code>TriggerClick</code> if Enter does nothing on a menu. A pad A press is
 never handled twice: CommonUI's analog cursor takes it first, and only a press nothing handled
 reaches the button.</p>
 </div>
@@ -5341,7 +5335,7 @@ reaches the button.</p>
 <li><strong>A button prompt on a screen:</strong> add a row to your own action table and bind it; see
   <a href="../../recipes/input-action-prompt/">Add an input action with a button prompt</a>.</li>
 </ul>
-<p>Never edit Lyra's UI assets; copy what you need.</p>
+<p>Never edit the UI assets under <code>Imported/Lyra</code>; copy what you need.</p>
 <details class="note">
 <summary>For programmers: classes</summary>
 <p>Plates derive from <code>UXenoCoreHudPlateBase</code>; the stat block is <code>UXenoCoreStatBlockBase</code>; menu
@@ -5356,10 +5350,9 @@ actions <code>UXenoCoreMenuAction</code>; the settings pages are <code>UXenoCore
 <details class="note">
 <summary>For programmers</summary>
 <ul>
-<li><strong>Lyra's look, not an imitation of a console RPG.</strong> XenoCore ships as a Lyra template, so a
-  buyer expects an interface that belongs to Lyra. The layouts and information follow the genre;
-  the chrome is Lyra's. XenoCore authors its own style assets in Lyra's idiom rather than
-  pointing at Lyra's, apart from the font.</li>
+<li><strong>A clean framework look, not an imitation of a console RPG.</strong> The layouts and information
+  follow the genre; the chrome stays plain so it fits whatever game you build on it. XenoCore
+  authors its own style assets rather than pointing at the imported ones, apart from the font.</li>
 <li><strong>Opacity, not visibility.</strong> HUD plates have two opacity drivers, the entrance/exit and the
   show/hide fade. Each writes the render opacity directly and the last write wins, so a plate
   must not drive both at once; a battle-gated plate starts hidden with <strong>Begin Hidden</strong> rather
@@ -5375,7 +5368,7 @@ actions <code>UXenoCoreMenuAction</code>; the settings pages are <code>UXenoCore
   swaps a screen without touching XenoCore, and a bad value cannot break the feature.</li>
 <li><strong>Data-driven menu.</strong> Eleven hand-wired buttons meant every new screen was an edit to a shipped
   asset. An entry list merged by Id lets a plugin add, reword or hide entries from its own content.</li>
-<li><strong>Rows built in C++.</strong> Lyra's list view drops null items without warning, so several XenoCore
+<li><strong>Rows built in C++.</strong> A List View drops null items without warning, so several XenoCore
   screens build their rows into a vertical box from C++, where what was built can be logged.</li>
 </ul>
 </details>

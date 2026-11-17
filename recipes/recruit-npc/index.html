@@ -4773,8 +4773,8 @@ Animation</strong>, straight on its mesh, so the clip must be on that mesh's ske
 <li><strong>A Mannequin member:</strong> select the NPC's inherited mesh component and set <strong>Skeletal Mesh Asset</strong>
   to the member's body (<code>SKM_Manny</code> or <code>SKM_Quinn</code>, in <code>Imported/Lyra/Characters/Heroes/Mannequin/Meshes</code>)
   and its two colour materials from <code>Characters/Party/Materials</code> (for Nia, <code>MI_XenoCore_Quinn_01_Cyan</code>
-  and <code>MI_XenoCore_Quinn_02_Cyan</code>). On the actor, set <strong>Idle Animation</strong> to Lyra's <code>MM_Unarmed_Idle_Ready</code>
-  and <strong>Portrait</strong> to the member's <code>Characters/Party/Portraits/T_XenoCore_Portrait_&lt;Colour&gt;</code>. This is
+  and <code>MI_XenoCore_Quinn_02_Cyan</code>). On the actor, set <strong>Idle Animation</strong> to <code>MM_Unarmed_Idle_Ready</code>
+  (in <code>Imported/Lyra/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed</code>) and <strong>Portrait</strong> to the member's <code>Characters/Party/Portraits/T_XenoCore_Portrait_&lt;Colour&gt;</code>. This is
   how the five Gaur Plain recruits are set up.</li>
 <li><strong>A body on another skeleton:</strong> retarget a standing idle onto its skeleton (right-click the idle,
   <strong>Retarget Animations</strong>, using that character's IK Retargeter) and use it as <strong>Idle Animation</strong>.</li>

@@ -4938,14 +4938,14 @@ For the same reason, never re-apply a statline for any reason other than a level
 every application is a free full heal.</p>
 </div>
 <h3 id="after-making-someone-else-the-leader-and-swapping-back-the-controls-do-nothing">After making someone else the leader and swapping back, the controls do nothing<a class="headerlink" href="#after-making-someone-else-the-leader-and-swapping-back-the-controls-do-nothing" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> when you hand a body back to its AI, Unreal throws away that body's input bindings, and
-Lyra only binds input the first time a body is possessed. XenoCore's own hero component binds it
-again on every later possession. A pawn whose Components panel has Lyra's stock hero component
-(class <code>XenoBaseHeroComponent</code>) instead of XenoCore's (class <code>XenoCoreHeroComponent</code>) loses that. Nothing is logged. The camera may
-also look fine; only input is dead.</p>
+<p><strong>Why:</strong> when you hand a body back to its AI, Unreal throws away that body's input bindings. The
+base hero component (class <code>XenoBaseHeroComponent</code>) only binds input the first time a body is
+possessed. XenoCore's hero component (class <code>XenoCoreHeroComponent</code>) binds it again on every later
+possession. A pawn whose Components panel has the base one instead loses its input. Nothing is
+logged. The camera may also look fine; only input is dead.</p>
 <p><strong>Fix:</strong> build party pawns as children of <code>Characters/Party/B_XenoCore_PartyMember_Base</code> (or of
-<code>Game/B_XenoCore_PlayableCharacter_Base</code>, as Kael's pawn is), which carry the right component. On a pawn of your
-own, replace the hero component with <code>XenoCoreHeroComponent</code>.</p>
+<code>Game/B_XenoCore_PlayableCharacter_Base</code>, as Kael's pawn is), which carry the right component. On a
+pawn of your own, replace the hero component with <code>XenoCoreHeroComponent</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">For programmers</p>
 <p>The rebind runs from <code>AXenoCoreCombatantCharacter::SetupPlayerInputComponent</code> through
@@ -4954,7 +4954,7 @@ own, replace the hero component with <code>XenoCoreHeroComponent</code>.</p>
 </div>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-party-member/">Add a party member</a>.</p>
 <h3 id="a-character-turns-invisible-after-i-give-it-a-cosmetic-part">A character turns invisible after I give it a cosmetic part<a class="headerlink" href="#a-character-turns-invisible-after-i-give-it-a-cosmetic-part" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> when cosmetic parts change, Lyra's character-parts component always sets the body mesh
+<p><strong>Why:</strong> when cosmetic parts change, the character-parts component always sets the body mesh
 from <strong>Body Meshes</strong>, chosen by the parts' tags. If no rule matches the tags (the part carries a tag
 with no rule, or has no <strong>Part Class</strong> and so no tag), it uses <strong>Body Meshes › Default Mesh</strong>. With
 no default mesh either, the body mesh is set to nothing.</p>
@@ -4962,8 +4962,8 @@ no default mesh either, the body mesh is set to nothing.</p>
 (every party pawn and the player) has a runtime safety net: if its <strong>Default Mesh</strong> is empty at
 Begin Play, it uses the mesh it spawned with and logs a warning once per class (see the next
 entry). So on those characters an unmatched tag gives the <strong>wrong body</strong> rather than none. A pawn
-that is not a XenoCore combatant, for example a plain Lyra character, has no safety net and still
-turns invisible, with nothing logged.</p>
+that is not a XenoCore combatant, for example one made straight from <code>XenoBaseCharacter</code>, has no
+safety net and still turns invisible, with nothing logged.</p>
 <p><strong>Fix:</strong></p>
 <ol>
 <li>On the pawn's character-parts component, make sure <strong>Body Meshes</strong> has a rule for every
@@ -4990,12 +4990,12 @@ Default Mesh</strong> to the mesh the character normally uses. The warning then 
 nothing is logged.</p>
 </div>
 <p><strong>Why:</strong> a party member at 0 HP is <strong>downed</strong> by <code>GA_XenoCore_Downed</code>, which the party's ability
-sets grant in place of Lyra's <code>GA_Hero_Death</code>. A pawn whose ability sets grant <code>GA_Hero_Death</code>
-instead (for example a pawn data copied from Lyra's heroes) runs a real death: montage, ragdoll,
-weapon hidden, body gone. A party pawn that is not a child of <code>B_XenoCore_PartyMember_Base</code> cannot kneel either.</p>
+sets grant in place of the plain death ability <code>GA_Hero_Death</code>. A pawn whose ability sets grant
+<code>GA_Hero_Death</code> instead runs a real death: montage, ragdoll, weapon hidden, body gone.</p>
 <p><strong>Fix:</strong> grant <code>Battle/GA_XenoCore_Downed</code>, not <code>GA_Hero_Death</code>, in every party member's ability
 sets (<code>AbilitySet_XenoCore_PartyMember</code> already does), and build party pawns as children of
-<code>Characters/Party/B_XenoCore_PartyMember_Base</code>.</p>
+<code>Characters/Party/B_XenoCore_PartyMember_Base</code>, which keeps the body when it goes down. On any
+other party pawn, tick <strong>Keep Body On Death</strong> (Kael's <code>Game/B_XenoCore_Player</code> sets it itself).</p>
 <p><strong>Avoid it next time:</strong> <a href="../../concepts/party-gauge-and-revive/">Party Gauge, downed and revive</a>.</p>
 <h3 id="pressing-a-over-a-downed-ally-doesnt-revive-them">Pressing A over a downed ally doesn't revive them<a class="headerlink" href="#pressing-a-over-a-downed-ally-doesnt-revive-them" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> a revive costs one full bar of the Party Gauge (<strong>Revive Bar Cost</strong> on <code>BP_XenoCore_Party</code>).

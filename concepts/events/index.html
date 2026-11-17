@@ -4618,12 +4618,13 @@
 
 
 <h1 id="events-you-can-listen-to">Events you can listen to<a class="headerlink" href="#events-you-can-listen-to" title="Permanent link">&para;</a></h1>
-<p><strong>Who this is for:</strong> anyone making a Blueprint react to the game (a HUD element that updates when
-the party changes, a door that opens when a quest is turned in). The <strong>Sent by</strong> column and the
-notes marked <em>For programmers</em> are for C++ readers; a designer needs only the channel and payload.</p>
+<p><strong>Who this is for:</strong> anyone making their game react to a change (a HUD element that updates when
+the party changes, a door that opens when a quest is turned in). In 1.3.2 listening is done in C++
+(see <a href="#listening">Listening</a>); a Blueprint can send its own messages. The <strong>Sent by</strong> column and the
+notes marked <em>For programmers</em> are for C++ readers.</p>
 <p>When something changes in the game (the bag, the party, a quest, the locked-on target), XenoCore
-announces it on a <strong>gameplay message channel</strong>, using XenoCore's own copy of Lyra's Gameplay
-Message Router (<code>UXenoKitGameplayMessageSubsystem</code>, module XenoCoreBase). A channel is a gameplay
+announces it on a <strong>gameplay message channel</strong>, using XenoCore's gameplay message router
+(<code>UXenoKitGameplayMessageSubsystem</code>, module XenoCoreBase). A channel is a gameplay
 tag; a message carries a small struct. A listener does not need to know who sends it, which is how
 every XenoCore screen and HUD element stays current. The idea that makes
 the rest make sense: <strong>each channel has exactly one sender</strong>, and most messages only say "this
@@ -4640,8 +4641,7 @@ a copy.</p>
 <details class="note">
 <summary>For programmers</summary>
 <p>Senders call <code>UXenoKitGameplayMessageSubsystem::BroadcastMessage</code>; C++ listeners use
-<code>UXenoKitGameplayMessageSubsystem::RegisterListener</code>. Lyra's <code>UGameplayMessageSubsystem</code>, in a
-Lyra project, is a different router and never hears XenoCore. The channel tags are native, declared in
+<code>UXenoKitGameplayMessageSubsystem::RegisterListener</code>. The channel tags are native, declared in
 <code>Source/XenoCoreRuntime/Public/XenoCoreGameplayTags.h</code>.</p>
 </details>
 <h2 id="the-channels">The channels<a class="headerlink" href="#the-channels" title="Permanent link">&para;</a></h2>
@@ -4787,8 +4787,7 @@ Lyra project, is a different router and never hears XenoCore. The channel tags a
 The <strong>Owner</strong> of an equipment message is the character wearing the gear.</p>
 <h2 id="listening">Listening<a class="headerlink" href="#listening" title="Permanent link">&para;</a></h2>
 <p>In 1.3.2, listening to a XenoCore channel is <strong>C++ only</strong>. There is no Blueprint listen node for
-XenoCore's router. In a Lyra project the editor does offer Lyra's <strong>Listen for Gameplay Messages</strong>
-node, but it listens on Lyra's router and never hears XenoCore.</p>
+XenoCore's router.</p>
 <ol>
 <li>Register once, for example in <strong>Begin Play</strong> (or <strong>Native Construct</strong> for a widget), with
    <code>UXenoKitGameplayMessageSubsystem::Get(this).RegisterListener(Channel, this, &amp;UMyClass::OnMessage)</code>.</li>
@@ -4832,13 +4831,13 @@ gets none of those protections.</p>
 <p>Two consequences worth knowing:</p>
 <ul>
 <li><strong>The inventory component's own message does not fire here.</strong> <code>UXenoBaseInventoryManagerComponent</code>
-  (XenoCore's copy of Lyra's) sends <code>Lyra.Inventory.Message.StackChanged</code> only from replication
+  sends its own stack-changed message (<code>Lyra.Inventory.Message.StackChanged</code>) only from replication
   callbacks, which a single-player game never runs. That is why
   XenoCore has its own channel.</li>
 <li><strong>Item costs go through the statics.</strong> The <strong>Party Item (XenoCore)</strong> ability cost spends items
   with <strong>Consume Items From Party</strong>, so an item spent as a cost sends the message too. (The
-  <strong>Inventory Item</strong> cost copied from Lyra, <code>UXenoBaseAbilityCost_InventoryItem</code>, is switched off,
-  as in stock Lyra, and never lets an ability activate.)</li>
+  base <strong>Inventory Item</strong> cost, <code>UXenoBaseAbilityCost_InventoryItem</code>, is switched off and never
+  lets an ability activate.)</li>
 </ul>
 <p>The same one-sender rule holds for gold (through the progression component), the party (the party
 component) and quests (the quest component).</p>
@@ -4847,8 +4846,7 @@ component) and quests (the quest component).</p>
 <li><strong>A new channel for your own system:</strong> add a tag in <strong>Project Settings › Project › GameplayTags</strong>
   (for example <code>MyGame.Door.Message.Opened</code>), make a Blueprint <strong>Structure</strong> for the payload, and
   send it with the <strong>Broadcast Message</strong> node (category <strong>Messaging</strong>, on
-  <code>XenoKitGameplayMessageSubsystem</code>) from exactly one place. In a Lyra project, do not pick Lyra's
-  node of the same name: it broadcasts on Lyra's router. Listeners register in C++ as above. Prefer "this changed, re-read me" messages; add details
+  <code>XenoKitGameplayMessageSubsystem</code>) from exactly one place. Listeners register in C++ as above. Prefer "this changed, re-read me" messages; add details
   only when a listener cannot reconstruct them, as the quest turn-in payout does. (In C++: a native
   tag and a <code>USTRUCT(BlueprintType)</code> with <code>BlueprintReadOnly</code> fields.)</li>
 <li><strong>Raising a battle notification</strong> from a Blueprint: call the <strong>Notify</strong> node (<strong>XenoCore ›
@@ -4860,9 +4858,9 @@ component) and quests (the quest component).</p>
 <details class="note">
 <summary>For programmers</summary>
 <ul>
-<li><strong>Lyra's router, not delegates.</strong> A message needs no reference between sender and listener, so a
+<li><strong>A message router, not delegates.</strong> A message needs no reference between sender and listener, so a
   HUD widget can react to the party component without ever finding it, and a new screen needs no
-  change to the system it watches. It is the same router Lyra uses for its own events.</li>
+  change to the system it watches.</li>
 <li><strong>One sender per channel.</strong> If two systems broadcast the same channel, a listener cannot know
   which view of the world is current. Keeping one broadcaster per channel is what makes "re-read on
   message" safe.</li>

@@ -4798,8 +4798,59 @@ with level. The melee minion's HP and Strength follow an XC1 Colony 9 field enem
 level, Strength 69 + 10 per level); its other rows are placeholders to be tuned for your game.</p>
 <p>The other minion types (Brute, Bulwark, Skirmisher) have their own effects that read the <strong>same</strong>
 <code>Minion_Melee.*</code> rows and multiply them: each modifier's coefficient <strong>Value</strong> is that type's
-multiplier (Strength: Melee <code>1.0</code>, Brute <code>1.45</code>, Bulwark <code>1.15</code>, Skirmisher <code>0.9</code>). That is how one
-table row serves several enemy types.</p>
+multiplier for that one stat, so a type can be tougher in one stat and weaker in another. That is
+how one table row serves several enemy types:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>HP</th>
+<th>Strength</th>
+<th>Ether</th>
+<th>Agility</th>
+<th>Physical Def</th>
+<th>Ether Def</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Melee</td>
+<td><code>1.0</code></td>
+<td><code>1.0</code></td>
+<td><code>1.0</code></td>
+<td><code>1.0</code></td>
+<td><code>1.0</code></td>
+<td><code>1.0</code></td>
+</tr>
+<tr>
+<td>Brute</td>
+<td><code>3.0</code></td>
+<td><code>1.45</code></td>
+<td><code>1.0</code></td>
+<td><code>0.8</code></td>
+<td><code>1.3</code></td>
+<td><code>1.3</code></td>
+</tr>
+<tr>
+<td>Bulwark</td>
+<td><code>1.9</code></td>
+<td><code>1.15</code></td>
+<td><code>1.0</code></td>
+<td><code>0.6</code></td>
+<td><code>1.6</code></td>
+<td><code>1.3</code></td>
+</tr>
+<tr>
+<td>Skirmisher</td>
+<td><code>0.8</code></td>
+<td><code>0.9</code></td>
+<td><code>1.2</code></td>
+<td><code>1.6</code></td>
+<td><code>1.0</code></td>
+<td><code>1.0</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="what-each-stat-means-on-an-enemy">What each stat means on an enemy<a class="headerlink" href="#what-each-stat-means-on-an-enemy" title="Permanent link">&para;</a></h3>
 <p>Enemy stats are read differently from party stats. This is intended.</p>
 <table>
@@ -4891,8 +4942,8 @@ tables remember a source file that is not on your machine.</p>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a coefficient you did not mean</p>
 <p>The coefficient <strong>Value</strong> multiplies the curve row, and nothing on the table shows it. If you
-duplicated the Brute, Bulwark or Skirmisher effect, your copy carries that type's multiplier
-(for example Strength ×1.45). Set <strong>Value</strong> to <code>1.0</code> on every modifier unless you meant it.</p>
+duplicated the Brute, Bulwark or Skirmisher effect, your copy carries that type's multipliers
+(for example the Brute's HP ×3.0 and Strength ×1.45). Set <strong>Value</strong> to <code>1.0</code> on every modifier unless you meant it.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: Add instead of Override</p>
@@ -4933,7 +4984,7 @@ changed on a placed enemy):</p>
 <li><strong>Enemy Strength against <a href="../../getting-started/glossary/">party</a> defence.</strong> Party defence is flat points summed from armour. If a
   full set of armour approaches an enemy's Strength, that enemy barely scratches the party.</li>
 <li><strong>Agility difference.</strong> Hit chance is 100% plus the attacker's Agility minus the defender's, one
-  percent per point, never below 5% (<strong>Agility Hit Per Point</strong> and <strong>Hit Chance Floor</strong> on
+  percent per point, adjusted by the level gap, never below 5% (<strong>Agility Hit Per Point</strong> and <strong>Hit Chance Floor</strong> on
   <code>Battle/Attributes/BP_XenoCoreDamageExecution</code>). Armour Weight comes off the wearer's Agility for
   this roll.</li>
 <li><strong>Level difference.</strong> Damage in both directions is scaled by the gap between the two levels,

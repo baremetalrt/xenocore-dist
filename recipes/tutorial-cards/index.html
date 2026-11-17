@@ -4866,7 +4866,7 @@ has been seen does nothing, so it is safe to call every time.</p>
 <strong>draws</strong> a button; the button itself is bound in the game's input mapping. So the row must name
 the same keys as the input it stands for.</p>
 <ol>
-<li>Open <code>Input/Mappings/IMC_XenoCore</code> (or Lyra's <code>IMC_Default</code> for movement, look and jump) and find the
+<li>Open <code>Input/Mappings/IMC_XenoCore</code> (or <code>Imported/Lyra/Input/Mappings/IMC_Default</code> for movement, look and jump) and find the
    input action your card talks about. Note its <strong>keyboard</strong> key and its <strong>gamepad</strong> key.</li>
 <li>Open <code>DT_XenoCore_Actions</code>. Right-click an existing <code>Tutorial*</code> row and choose <strong>Duplicate</strong>.
    Name the copy <code>Tutorial&lt;Something&gt;</code>.</li>
@@ -4885,7 +4885,7 @@ mapping context, and re-check your rows whenever you rebind an input.</p>
 <li>Open <code>Maps/L_XenoCore_Gym</code> and press <strong>Play</strong>.</li>
 <li>Open the console (<code>`</code>) and type <code>XenoCore.Tutorial.Reset</code> to forget every card already seen.</li>
 <li>Type <code>XenoCore.Tutorial.Show Crafting</code> (your row name). The card appears and the game pauses.
-   Check the title, body, picture and button glyphs. Press <strong>A</strong> to close it.</li>
+   Check the title, body, picture and button glyphs. Press <strong>A</strong> (or the key its prompt shows) to close it.</li>
 <li>Type <code>XenoCore.Tutorial.Reset</code> again, then cause the trigger for real: walk towards an enemy for
    <code>EnemyNear</code>, or reach your <strong>Trigger Tutorial</strong> node. The card appears once.</li>
 <li>Cause the trigger again. Nothing shows: the card has been seen.</li>

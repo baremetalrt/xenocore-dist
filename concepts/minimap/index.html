@@ -4735,10 +4735,10 @@ one, see <a href="../../recipes/minimap-marker/">Show something on the minimap</
 <ul>
 <li><strong>The image</strong> is a picture of the whole area seen from straight above, stored on an <strong>Area
   Definition</strong> data asset with the rectangle of the world it covers (<code>Maps/Areas/DA_XenoCore_Area_*</code>).
-  XenoCore bakes it from the map into an XC1-style plan: tan ground tinted olive where it is grassy
-  and pale where it is sandy, dark rock, blue water, outlines between levels, faint contour lines every
-  3 m of height, higher ground casting a soft shadow to the south-east and lit along its north-west
-  edges, all on a light paper texture. You can also paint your own in any image editor.</li>
+  Gaur Plain's image is an XC1-style plan: tan ground tinted olive where it is grassy and pale where
+  it is sandy, dark rock, blue water, outlines between levels, faint contour lines, all on a light
+  paper texture. For a map of your own you paint the image in any image editor; there is no bake
+  button in the editor.</li>
 <li><strong>One XenoCore Map Area actor per map</strong> says which Area Definition the map uses. In the editor it
   draws that rectangle as an orange box, so you can see exactly where the image lands. Its <strong>Fit Bounds
   To Landscape</strong> button sizes the rectangle to the map's landscape (for a hand-painted image), and
@@ -4910,9 +4910,9 @@ without the other and the HUD tells players to press a button that does nothing.
 so press the button in Play after every change.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">L3 was Lyra's Dash</p>
-<p>Lyra's own <code>IMC_Default</code> binds the left stick click to Dash, which XenoCore has no use for.
-<code>IMC_XenoCore</code> runs at a higher priority, so the minimap overlay wins the button.</p>
+<p class="admonition-title">L3 is also Dash in <code>IMC_Default</code></p>
+<p><code>Imported/Lyra/Input/Mappings/IMC_Default</code> binds the left stick click to Dash, which XenoCore
+has no use for. <code>IMC_XenoCore</code> runs at a higher priority, so the minimap overlay wins the button.</p>
 </div>
 <h3 id="testing-from-the-console">Testing from the console<a class="headerlink" href="#testing-from-the-console" title="Permanent link">&para;</a></h3>
 <table>
@@ -4953,9 +4953,9 @@ so press the button in Play after every change.</p>
 <li><strong>Markers are a registry, not a component.</strong> <code>UXenoCoreMapMarkerSubsystem</code> (a world subsystem)
   holds weak pointers. Actors that implement <code>IXenoCoreMapMarkerSource</code> answer their kind every
   frame, which is how a dead enemy or a taken quest disappears with nothing to unregister.</li>
-<li><strong>One actor per map, not World Settings</strong>, because the World Settings class is the host project's choice (a Lyra project uses Lyra's,
-  a Blank project XenoCore's copy), so data on it would not survive in both. It is not
-  spatially loaded, so it is never streamed out.</li>
+<li><strong>One actor per map, not World Settings</strong>, because the World Settings class is a project
+  setting, so data on it would be lost in a project that picks its own. It is not spatially
+  loaded, so it is never streamed out.</li>
 </ul>
 </details>
 

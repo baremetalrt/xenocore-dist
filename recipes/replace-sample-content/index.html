@@ -2534,17 +2534,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#4-remove-what-you-dont-ship-from-the-host" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Remove what you don't ship from the host
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -4707,17 +4696,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#4-remove-what-you-dont-ship-from-the-host" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Remove what you don't ship from the host
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -4847,6 +4825,14 @@ gone, and the game still boots, starts a new game and plays with no missing refe
 <td><code>Maps/L_XenoCore_FrontEnd</code></td>
 <td>The title screen, unless you replace the front end too</td>
 </tr>
+<tr>
+<td><code>Imported/*</code></td>
+<td>Bodies, animations, menu styles, sounds and effects the framework is built from. Don't delete it as a folder</td>
+</tr>
+<tr>
+<td><code>World/*</code>, <code>Movies/*</code>, <code>Audio/Battle</code>, <code>Audio/Weather</code>, and the shared assets at the top of <code>Audio/Voice</code></td>
+<td>Sky, weather, boot movie, victory fanfare, rain and thunder, the voice settings</td>
+</tr>
 </tbody>
 </table>
 <div class="admonition warning">
@@ -4881,7 +4867,7 @@ shipped asset, so a moved or deleted shipped screen stops opening. Keep <code>Us
 </tr>
 <tr>
 <td>Sample enemies</td>
-<td><code>Characters/Enemies/Minion</code> (including the seven types in <code>Minion/Variants</code>), <code>Characters/Enemies/Dummy</code>, <code>Inventory/Loot/DA_XenoCore_Drops_Minion</code>. Gaur Plain's 15 <strong>XenoCore Enemy Spawner</strong> actors point at the variants: delete the map or repoint the spawners first</td>
+<td><code>Characters/Enemies/Minion</code> (including the seven types in <code>Minion/Variants</code>), <code>Characters/Enemies/Dummy</code>, the <code>Inventory/Loot/DA_XenoCore_Drops_*</code> tables. Gaur Plain's 15 <strong>XenoCore Enemy Spawner</strong> actors point at the variants: delete the map or repoint the spawners first</td>
 </tr>
 <tr>
 <td>Sample arts</td>
@@ -4953,10 +4939,6 @@ lists nothing but other sample assets.</p>
 as their import source. The source files are not included. That is editor-only metadata: the
 clips load and cook normally, and only <strong>Reimport</strong> on those clips fails.</p>
 </div>
-<h3 id="4-remove-what-you-dont-ship-from-the-host">4. Remove what you don't ship from the host<a class="headerlink" href="#4-remove-what-you-dont-ship-from-the-host" title="Permanent link">&para;</a></h3>
-<p>Your Lyra project still has Lyra's own sample game features (ShooterCore, ShooterMaps,
-TopDownArena and others). Whether to disable them is covered in
-<a href="../package-build/">Package a build</a>.</p>
 <h2 id="test-it">Test it<a class="headerlink" href="#test-it" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Close and reopen the editor. The Output Log shows no missing-package warnings on startup.</li>

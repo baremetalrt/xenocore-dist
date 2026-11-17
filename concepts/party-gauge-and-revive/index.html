@@ -4827,7 +4827,7 @@ knockout loses the fight.</p>
 </tr>
 <tr>
 <td>Downed</td>
-<td><code>GA_XenoCore_Downed</code>, triggered by Lyra's death event</td>
+<td><code>GA_XenoCore_Downed</code>, triggered by the death event (<code>GameplayEvent.Death</code>)</td>
 <td><code>Battle/GA_XenoCore_Downed</code>, granted by <code>AbilitySet_XenoCore_Hero</code> and <code>AbilitySet_XenoCore_PartyMember</code></td>
 </tr>
 <tr>
@@ -4939,7 +4939,7 @@ Console: <code>XenoHurtParty 0.3</code> drops every standing member to 30% so yo
 <p>When every active member is down, the party is wiped:</p>
 <ol>
 <li><strong>The defeat beat.</strong> Time slows to 35%, the world drains of colour, <strong>Defeated</strong> fades in, bold
-   and red, in the middle of the screen, and Lyra's end-of-round sting plays.</li>
+   and red, in the middle of the screen, and an end-of-round sting plays.</li>
 <li>The camera fades to black with the word still showing.</li>
 <li>Under black, the party is moved to the respawn point and restored to full health. Enemies forget
    the fight.</li>
@@ -4974,7 +4974,7 @@ Console: <code>XenoHurtParty 0.3</code> drops every standing member to 30% so yo
 <tr>
 <td><strong>Revive Gesture Montage</strong></td>
 <td>same</td>
-<td>Played on the reviver. Default: Lyra's upper-body heal gesture.</td>
+<td>Played on the reviver. Default: an upper-body gesture, <code>AM_MM_Generic_Unequip</code>.</td>
 </tr>
 <tr>
 <td><strong>Revive Refused Text</strong>, <strong>Colour</strong>, <strong>Scale</strong></td>
@@ -5038,7 +5038,7 @@ component in play is lost when play stops. To retune them:</p>
    entry whose <strong>Component Class</strong> is <code>XenoCorePartyGaugeComponent</code>. Set it to <code>BP_MyPartyGauge</code>.
    <strong>Save</strong>.</li>
 </ol>
-<p>A template update replaces the <code>XenoCore</code> asset, so note this change to re-apply after
+<p>A XenoCore update replaces the <code>XenoCore</code> asset, so note this change to re-apply after
 updating.</p>
 </div>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
@@ -5063,8 +5063,8 @@ revived; a death ability ragdolls it and removes it.</p>
 <details class="note">
 <summary>For programmers: the design reasons</summary>
 <ul>
-<li><strong>Downed is Lyra's death, stopped halfway.</strong> <code>GA_XenoCore_Downed</code> triggers on
-  <code>GameplayEvent.Death</code>, as Lyra's death ability does, and calls <code>StartDeath</code> but never
+<li><strong>Downed is the framework's death, stopped halfway.</strong> <code>GA_XenoCore_Downed</code> triggers on
+  <code>GameplayEvent.Death</code>, as a death ability does, and calls <code>StartDeath</code> but never
   <code>FinishDeath</code>, so the health component reports dead while the body stays.</li>
 <li><strong>Revive is an interaction, not an ability.</strong> The prompt, the range check and the button are
   <code>UXenoCoreInteractionSubsystem</code>'s, the same path Talk and Trade use. A downed body is just one

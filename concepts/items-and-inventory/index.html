@@ -4728,7 +4728,7 @@ can equip from the bag.</p>
 blocks of settings for its menu tab, description, rarity, equipment slot and stats. Making an item
 is duplicating one that is close and changing those settings.</p>
 <p>The one rule for Blueprints that give or take items: <strong>use the XenoCore inventory nodes</strong>
-(<strong>XenoCore › Inventory</strong>, such as <strong>Add Item To Party</strong>), not Lyra's. They keep every menu current,
+(<strong>XenoCore › Inventory</strong>, such as <strong>Add Item To Party</strong>), not the inventory component's own nodes. They keep every menu current,
 honour carry limits and never take an item someone is wearing.</p>
 <h2 id="what-you-can-change">What you can change<a class="headerlink" href="#what-you-can-change" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4777,7 +4777,7 @@ honour carry limits and never take an item someone is wearing.</p>
 <td>Slots, weapon type and sockets; menu tab, carry cap and rarity; description and icon; what a gem adds</td>
 </tr>
 <tr>
-<td>Fragments copied from Lyra</td>
+<td>Base fragments</td>
 <td><code>XenoKitInventoryFragment_EquippableItem</code>, <code>XenoKitInventoryFragment_SetStats</code></td>
 <td>What equipping spawns and grants; the item's stat numbers</td>
 </tr>
@@ -4903,7 +4903,9 @@ has a labelled <strong>Rarity</strong> row.</p>
 <li><strong>A screen's own state colours win.</strong> An unaffordable row keeps its rarity colour, dimmed. A
   "(no room)" line stays red.</li>
 <li><strong>Rarity changes no price</strong>, as in Xenoblade 3.</li>
-<li><strong>A new game starts with one item of each tier</strong> in the leader's <strong>Starting Inventory</strong>.</li>
+<li><strong>A new game starts with items of every tier</strong> in the leader's <strong>Starting Inventory</strong>
+  (<code>Game/B_XenoCore_Player</code>), for example Prototype Helm (Common), Veteran Gauntlets (Rare) and
+  Vanguard Plate (Legendary).</li>
 </ul>
 <h3 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h3>
 <p>Pressing Y on the Items menu or the equipment swap list cycles the list's order. The Items menu
@@ -4916,7 +4918,7 @@ Items</strong>, so each list opens already sorted.</p>
 their own sort, through the merchant base.</p>
 <h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
 <p><strong>Where the bag comes from.</strong> The plugin adds an inventory component
-(<code>UXenoBaseInventoryManagerComponent</code>, XenoCore's copy of Lyra's) to the player's controller. <strong>Get Party Inventory</strong> always returns that bag, whichever character asks. Do not look
+(<code>UXenoBaseInventoryManagerComponent</code>) to the player's controller. <strong>Get Party Inventory</strong> always returns that bag, whichever character asks. Do not look
 for a bag on an AI party member's controller: it is not the party's.</p>
 <p><strong>Starting contents.</strong> Each character's equipment component adds its <strong>Starting Inventory</strong> (loose
 items) and then its <strong>Starting Equipment</strong> (items it immediately wears) to the party bag when the
@@ -5000,7 +5002,7 @@ move items when they are equipped; the equipment component only points at them.<
 <tbody>
 <tr>
 <td><strong>Display Name</strong></td>
-<td>Item Blueprint › Class Defaults (Lyra)</td>
+<td>Item Blueprint › Class Defaults</td>
 <td>The name shown everywhere</td>
 </tr>
 <tr>
@@ -5033,14 +5035,14 @@ From Party</strong>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Add Item Instance crashes</p>
-<p>The inventory component's <strong>Add Item Instance</strong> node is not implemented (as in stock Lyra) and
+<p>The inventory component's <strong>Add Item Instance</strong> node is not implemented and
 stops the editor or the game when it runs. There is no way to put an existing
 item instance back into the bag. Add by definition with <strong>Add Item To Party</strong> instead.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: the Inventory Item cost never lets the ability run</p>
-<p>The <strong>Inventory Item</strong> ability cost copied from Lyra (<code>UXenoBaseAbilityCost_InventoryItem</code>) is
-switched off, as in stock Lyra 5.8, so its check always fails and an ability carrying it can never
+<p>The base <strong>Inventory Item</strong> ability cost (<code>UXenoBaseAbilityCost_InventoryItem</code>) is
+switched off, so its check always fails and an ability carrying it can never
 activate. Nothing is logged. Use <strong>Party Item (XenoCore)</strong> instead.</p>
 </div>
 <div class="admonition warning">
@@ -5080,23 +5082,23 @@ store the number.</p>
 <details class="note">
 <summary>For programmers</summary>
 <ul>
-<li><strong>One entry per item</strong> because Lyra counts entries. <code>GetTotalItemCountByDefinition</code> adds one per
-  entry and never reads <code>StackCount</code>, and <code>ConsumeItemsByDefinition</code> removes one entry per unit.
-  Merged stacks would make Lyra's counting under-report and break item ability costs. Lyra
-  knowledge a buyer already has stays correct.</li>
-<li><strong>The bag on the controller</strong> because Lyra's inventory consumers, such as the quick bar, look for
-  it there, and because the party, not a character, owns it. The
-  controller survives switching the leader.</li>
+<li><strong>One entry per item</strong> because the base inventory component counts entries.
+  <code>GetTotalItemCountByDefinition</code> adds one per entry and never reads <code>StackCount</code>, and
+  <code>ConsumeItemsByDefinition</code> removes one entry per unit. Merged stacks would make that counting
+  under-report and break item ability costs.</li>
+<li><strong>The bag on the controller</strong> because the base inventory code (its item ability cost, for one)
+  looks for it there, and because the party, not a character, owns it. The controller survives
+  switching the leader.</li>
 <li><strong>One resolver</strong> because "which bag" has one right answer in single-player, and writing that
   assumption down in exactly one function means only that function changes if it ever stops being
   true.</li>
-<li><strong>Our own change message</strong> because the inventory component's <code>Lyra.Inventory.Message.StackChanged</code>
+<li><strong>Our own change message</strong> because the inventory component's own stack-changed message
   is only sent from replication callbacks, which never run in a standalone single-player game.</li>
-<li><strong>A watcher as well as a rule.</strong> Designers reach for Lyra's inventory nodes, because they are the
+<li><strong>A watcher as well as a rule.</strong> Designers reach for the inventory component's own nodes, because they are the
   first ones the node menu offers. The watcher keeps menus current when that happens; it is cheap
   because an untouched bag compares equal in one pass. It is a net under the rule, not a
   replacement: only the statics honour carry caps and refuse worn items.</li>
-<li><strong>Our own item cost</strong> because Lyra's is compiled out, and even restored it would look for the bag
+<li><strong>Our own item cost</strong> because the base one is compiled out, and even restored it would look for the bag
   on the casting character's own controller (wrong for an AI party member) and could spend a worn
   item.</li>
 <li><strong>Fragments in C++</strong> because C++ cannot read variables defined on a Blueprint class, so data that

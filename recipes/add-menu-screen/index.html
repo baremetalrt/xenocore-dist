@@ -4774,10 +4774,10 @@ cannot move or jump while it is open.</p>
 <li><a href="../restyle-menus/">Restyle the menus</a> lists the shared button and text styles to reuse.</li>
 </ul>
 <h2 id="how-a-menu-screen-works">How a menu screen works<a class="headerlink" href="#how-a-menu-screen-works" title="Permanent link">&para;</a></h2>
-<p>XenoCore's menus use Epic's <strong>CommonUI</strong> through Lyra:</p>
+<p>XenoCore's menus use Epic's <strong>CommonUI</strong>:</p>
 <ul>
 <li>A screen is an <strong>activatable widget</strong>: a widget that knows when it is on top, where focus goes,
-  and whether it handles <strong>Back</strong>. Blueprint screens derive from <code>XenoBaseActivatableWidget</code> (Lyra's activatable widget).</li>
+  and whether it handles <strong>Back</strong>. Blueprint screens derive from <code>XenoBaseActivatableWidget</code>, XenoCore's activatable widget.</li>
 <li>Screens are pushed onto a <strong>layer</strong>, a stack of screens. Menus go on the layer tagged
   <code>UI.Layer.Menu</code> (a <a href="../../getting-started/glossary/">gameplay tag</a>). Only the top screen of a layer is shown, and <strong>Back</strong> pops it off to reveal the
   one underneath.</li>
@@ -4811,7 +4811,7 @@ button receives the click instead, and the button never fires. The mouse works i
 beside the text, so it looks intermittent. Make every overlay <strong>Hit Test Invisible</strong>.</p>
 </div>
 <h3 id="2-set-its-class-defaults">2. Set its class defaults<a class="headerlink" href="#2-set-its-class-defaults" title="Permanent link">&para;</a></h3>
-<p>Click <strong>Class Defaults</strong> and set (the categories are Lyra's and CommonUI's):</p>
+<p>Click <strong>Class Defaults</strong> and set:</p>
 <table>
 <thead>
 <tr>
@@ -5004,7 +5004,7 @@ in Construct or as a variable default.</p>
 <td>1100</td>
 <td><code>Settings</code></td>
 <td>Settings</td>
-<td>Screen Lyra's <code>W_LyraSettingScreen</code></td>
+<td>Screen <code>Imported/Lyra/UI/Settings/W_LyraSettingScreen</code></td>
 </tr>
 <tr>
 <td>1200</td>
@@ -5027,7 +5027,7 @@ order they are listed in.</p>
 your screen on top of the menu, so <strong>Back</strong> returns to the menu without any extra wiring.</p>
 <div class="admonition warning">
 <p class="admonition-title">Don't push onto UI.Layer.Modal or the Game layer</p>
-<p><code>UI.Layer.Modal</code> is for Lyra's full-screen dialogs and does not stack under the menu.
+<p><code>UI.Layer.Modal</code> is for full-screen dialogs and does not stack under the menu.
 The game layer holds the HUD, and a screen there never takes Menu input mode.</p>
 </div>
 <div class="admonition warning">
@@ -5067,8 +5067,8 @@ it to remove it. An entry with no <strong>Id</strong> is always added.</p>
 <p><strong>A different button:</strong> set <strong>Menu › Menu Button Class</strong> to your own CommonUI button. Implement
   the <code>XenoCoreMenuButton</code> interface on it to receive the whole entry (label and <strong>Icon</strong>)
   through <strong>Set Menu Entry</strong>; otherwise the shell calls its <strong>Set Button Text</strong> function.
-  The default is <code>XenoCoreMenuEntryButton</code>, a Party Tactics-style row; Lyra's <code>W_LyraMenuButton</code>
-  also works. <strong>Menu Button Padding</strong> sets the space around each button (default 4 px below).</p>
+  The default is <code>XenoCoreMenuEntryButton</code>, a Party Tactics-style row;
+  <code>Imported/Lyra/UI/Menu/W_LyraMenuButton</code> also works. <strong>Menu Button Padding</strong> sets the space around each button (default 4 px below).</p>
 </li>
 <li>
 <p><strong>A menu of your own layout:</strong> call <strong>Build Menu In Panel</strong> (or <strong>Build Menu</strong> with a panel
@@ -5117,9 +5117,10 @@ nothing, the Output Log names the entry (<code>LogXenoMenu</code>): "has neither
 or "did not load".</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Fails silently in a packaged build: the entry does nothing</p>
-<p>A screen or action named only in settings is not found by the cooker. Put your UI under a
-folder that is always cooked, or add its folder to <strong>Additional Asset Directories to Cook</strong>. See
+<p class="admonition-title">The entry does nothing in a packaged build</p>
+<p>XenoCore adds every screen and action named in the <strong>XenoCore UI</strong> settings to the cook for you,
+and an entry set's own screens cook with the set. If an entry still does nothing, the Output Log
+says which asset "did not load"; add its folder to <strong>Additional Asset Directories to Cook</strong>. See
 <a href="../restyle-menus/#5-replace-a-whole-screen">Restyle the menus</a>.</p>
 </div>
 <p>More in <a href="../../troubleshooting/ui-and-input/">UI and input troubleshooting</a>.</p>

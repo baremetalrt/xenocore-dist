@@ -4771,7 +4771,8 @@ carries it too, as a ready-made example.</p>
 </tr>
 </tbody>
 </table>
-<p>Any empty list falls back to <strong>Dialogue</strong>.</p>
+<p>An empty <strong>In Progress</strong> or <strong>Turn In</strong> list falls back to <strong>Dialogue</strong>. An empty <strong>Accepted</strong> or
+<strong>Declined</strong> list says nothing.</p>
 <p>Counting is automatic. The party's bag is re-read whenever it changes, and the count is set from it.
 Items the party <strong>already holds</strong> when it accepts count straight away, so a quest can be ready to
 hand in the moment it is accepted.</p>
@@ -4917,7 +4918,7 @@ be offered or is ready to hand in, and disappears while the quest is in progress
 <p class="admonition-title">Fails silently: the count sticks at 0</p>
 <p><strong>Item Target</strong> is a different item from the one being picked up. Check that it is the exact
 item definition (not a duplicate with the same display name). Every change to the party's bag
-refreshes the count, including changes made with Lyra's own inventory nodes.</p>
+refreshes the count.</p>
 </div>
 <table>
 <thead>

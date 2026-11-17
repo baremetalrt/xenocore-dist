@@ -4768,7 +4768,7 @@ chest holds a drop table and a tier, never a list of items.</strong></p>
 <p>Each item in a chest is rolled independently, so the same material can appear twice (equipment too,
 unless <strong>No Duplicate Equipment</strong> is on).</p>
 <p>The sample tables give each minion family its own common and rare material, a silver chance between
-18% and 34%, and level-banded armour in the gold pool: the Legendary Vanguard Plate only drops from a
+20% and 34%, and level-banded armour in the gold pool: the Legendary Vanguard Plate only drops from a
 level 10+ enemy. Gems are never in a chest; they come from quests and shops. To see what a table
 really pays out, run <code>XenoCore.Loot.Simulate &lt;table&gt; [level] [chests]</code> in the console.</p>
 <p>Each <strong>Item Def</strong> is a soft reference. Holding a drop table (every enemy and chest does) loads none
@@ -4951,23 +4951,19 @@ prompt starts offering the orb.</p>
   <strong>Tier</strong> and <strong>Source Level</strong>.</li>
 <li><strong>A different chest look:</strong> right-click <code>BP_XenoCore_TreasureChest</code>, choose <strong>Create Child
   Blueprint Class</strong>, and use its three events (<strong>On Tier Set</strong>, <strong>On Opened</strong>, <strong>On Resolved</strong>). Do
-  not build a chest from a plain Actor: only the shipped chest can be opened with the interact button.</li>
+  not build a chest from a plain Actor: only the shipped chest class rolls a drop table and shows the
+  loot panel.</li>
 <li><strong>Not built yet:</strong> taking <strong>specific</strong> items from a chest (only Take All and Take None exist).
   Outside a spawner squad, every enemy with a table drops its own chest.</li>
-<li>Do not build a pickup on Lyra's own pickup system (in a Lyra project): it does not go through the
-  XenoCore inventory nodes, so carry limits are skipped and the item may never reach the party bag.</li>
 </ul>
 <details class="note">
 <summary>For programmers: classes</summary>
 <p>Drop table <code>UXenoCoreDropTable</code>; chest <code>AXenoCoreTreasureChest</code> (C++ because
-<code>IXenoKitInteractableTarget</code>, XenoCore's copy of Lyra's <code>IInteractableTarget</code>, cannot be
-implemented in Blueprint); popup <code>UXenoCoreLootPopupBase</code>, shown by
+<code>IXenoKitInteractableTarget</code> cannot be implemented in Blueprint); popup <code>UXenoCoreLootPopupBase</code>, shown by
 <code>UXenoCoreLootPopupSubsystem</code> on <code>XenoCore.Loot.Message.ChestOpened</code>; orb
 <code>AXenoCoreCollectableOrb</code>. The chest has no collision: it implements <code>IXenoCoreInteractable</code>,
 and the interaction subsystem's press calls its <code>Interact</code>, which opens it. The popup blocks
-jumping with <code>Status.XenoCore.Looting</code>. Do not implement Lyra's <code>IPickupable</code> (Lyra projects
-only): it adds to Lyra's own inventory component rather than through the XenoCore statics, so
-carry caps are skipped, and it passes a stack count, which the one-entry-per-item bag does not use.</p>
+jumping with <code>Status.XenoCore.Looting</code>.</p>
 </details>
 <h2 id="why-its-built-this-way">Why it's built this way<a class="headerlink" href="#why-its-built-this-way" title="Permanent link">&para;</a></h2>
 <details class="note">
@@ -4978,8 +4974,7 @@ carry caps are skipped, and it passes a stack count, which the one-entry-per-ite
 <li><strong>Chests persist</strong>, so no "encounter ended" signal is needed to decide when to hand out loot.</li>
 <li><strong>The drop table is a data asset, not a component:</strong> it is static, shared by every enemy of a
   type, and read once, at death.</li>
-<li><strong>The chest is C++</strong> because <code>IXenoKitInteractableTarget</code> (Lyra's <code>IInteractableTarget</code>) cannot be
-  implemented in Blueprint. It is shaped on ShooterCore's <code>ALyraWorldCollectable</code>.</li>
+<li><strong>The chest is C++</strong> because <code>IXenoKitInteractableTarget</code> cannot be implemented in Blueprint.</li>
 <li><strong>The popup cannot be backed out of</strong> because closing it without an answer would leave a rolled,
   opened chest with no way back in. It consumes the back action rather than ignoring it, so back
   reaches nothing underneath either.</li>

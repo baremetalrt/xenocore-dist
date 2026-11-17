@@ -5021,7 +5021,7 @@ curve reads the Art's level. Talent Arts cannot be levelled.</p>
 <tr>
 <td><strong>Lunge Multiplier</strong></td>
 <td>Art definition › Art › Hits</td>
-<td>Lyra's melee lunge: the first hit that connects also drives the <strong>user</strong> into the target. <code>0</code> (off) by default; the lunge's own values are <strong>Lunge</strong> on the Art's ability class</td>
+<td>A melee lunge: the first hit that connects also drives the <strong>user</strong> into the target. <code>0</code> (off) by default; the lunge's own values are <strong>Lunge</strong> (XenoCore › Art) on the Art's ability class</td>
 </tr>
 <tr>
 <td><strong>Impact Event Tag</strong></td>
@@ -5249,8 +5249,9 @@ the convention because it sorts in the editor. Learnsets can be CSV-imported lik
 duplicate <code>DT_XenoCore_ArtLearnset_Default</code> (a table, not a concrete Art, so duplicating it is
 fine), then set that character's <strong>Art Learn Table</strong>.</p>
 <h3 id="on-the-talent-art-ability">On the Talent Art ability<a class="headerlink" href="#on-the-talent-art-ability" title="Permanent link">&para;</a></h3>
-<p><strong>Talent Gauge Effect</strong> (<strong>XenoCore › Talent</strong>). Arts never slow the world: XC1 has no slow
-motion on Arts, and a companion's Art slowing the player's own character read as a frame drop.</p>
+<p><strong>Talent Gauge Effect</strong> (<strong>XenoCore › Talent</strong>): the effect that spends the gauge. It is the same
+<code>GE_XenoCore_TalentCharge</code> the auto-attack fills it with. Arts never slow the world; XC1 has no slow
+motion on Arts.</p>
 <h2 id="extending-it">Extending it<a class="headerlink" href="#extending-it" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>A new standard Art:</strong> create it blank in your own folder (<code>Content/MyGame/Arts</code>): right-click ›

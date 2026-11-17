@@ -4853,8 +4853,9 @@ a <strong>User</strong> entry to buff its caster as it hits.</p>
 <h3 id="3-your-own-gesture-montage-optional">3. Your own gesture montage (optional)<a class="headerlink" href="#3-your-own-gesture-montage-optional" title="Permanent link">&para;</a></h3>
 <p>If you replace <code>AM_XenoCore_LightHeal</code>:</p>
 <ol>
-<li>Make a montage from a casting or gesture sequence on the Mannequin skeleton. Lyra's own heal
-   uses <code>AM_MM_Generic_Unequip</code>, an upper-body gesture, as reference.</li>
+<li>Make a montage from a casting or gesture sequence on the Mannequin skeleton.
+   <code>Imported/Lyra/Characters/Heroes/Mannequin/Animations/Actions/AM_MM_Generic_Unequip</code> is a
+   short gesture with no notifies you can look at for reference.</li>
 <li>Put it on the <code>FullBody</code> slot (the <strong>DefaultGroup</strong> slot group), like the shipped Arts. Every
    Art roots the character while it plays, so an upper-body slot gains nothing here.</li>
 <li><strong>Add no notifies.</strong> No hit events, no weapon trail.</li>

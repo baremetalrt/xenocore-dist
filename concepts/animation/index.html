@@ -4719,7 +4719,7 @@ editor with no graph editing.</p>
 </tr>
 <tr>
 <td>Layer base</td>
-<td><code>AnimLayers/ABP_XenoCore_ItemLayersBase</code></td>
+<td><code>Characters/Player/AnimLayers/ABP_XenoCore_ItemLayersBase</code></td>
 <td>The layer graphs, written once</td>
 </tr>
 <tr>
@@ -4772,8 +4772,8 @@ the Animation Blueprint's <strong>Variables</strong> list):</p>
   Threshold</strong> (<code>20</code>).</li>
 <li><strong>Direction</strong>, −180 to 180 against the actor's facing. Out of battle the character faces where it
   runs, so this stays near 0.</li>
-<li><strong>Stride Scale</strong> = Ground Speed ÷ <strong>Authored Clip Speed</strong> (<code>400</code>), floored at <strong>Min Stride Scale</strong>
-  (<code>1.0</code>), so warping only ever lengthens the stride above the fastest clip.</li>
+<li><strong>Stride Scale</strong> = Ground Speed ÷ <strong>Authored Clip Speed</strong> (<code>600</code> on <code>ABP_XenoCore_Base</code>), floored at
+  <strong>Min Stride Scale</strong> (<code>0.667</code>), so below 600 the stride is shortened, never to less than two-thirds.</li>
 <li><strong>In Battle</strong>, from <code>Status.XenoCore.InBattle</code> on the character's ability system.</li>
 <li><strong>Target Yaw Delta</strong>, the damped, clamped angle to the locked target. It turns the <strong>upper body</strong>
   toward the target while the legs keep running (look traversal), up to <strong>Max Target Twist</strong> (<code>70</code>°).</li>
@@ -4786,7 +4786,7 @@ blend, and through jump states (Jump, Apex, Falling, Land) when airborne. Each s
 function, such as <code>FullBody_Move</code>, which plays a <strong>2D blend space</strong>: direction on one axis, speed on
 the other, with walk clips at 200 and jog at 400, so both walking and running blend continuously.</p>
 <p><strong>Choosing the layer.</strong> The weapon instance Blueprint holds two sets, <strong>Equipped Anim Set</strong> and
-<strong>Uneuipped Anim Set</strong> (Lyra's spelling), each a list of layer classes with the tags that select
+<strong>Uneuipped Anim Set</strong> (that is how the framework spells it), each a list of layer classes with the tags that select
 them. When the weapon is drawn or stowed, the set for that state is searched for the layer whose
 tags best match the character's style tags (so a feminine character gets the feminine unarmed
 layer), that layer is linked, and the change of stance blends over <strong>Anim Layer Blend Time</strong>
@@ -4795,7 +4795,8 @@ instead of popping.</p>
 <p><strong>Masculine and feminine.</strong> A party pawn's <strong>Cosmetic Part</strong> (on <code>B_XenoCore_PartyMember_Base</code>)
 adds a style part carrying <code>Cosmetic.AnimationStyle.Masculine</code> or <code>.Feminine</code>. The same tag picks
 the body mesh through the pawn's <strong>Body Meshes</strong> rules (<code>SKM_Manny</code> or <code>SKM_Quinn</code>) and the unarmed
-layer. The feminine layer uses Lyra's <code>MF_</code> clips (<code>MM_</code> is Lyra's masculine set).</p>
+layer. The feminine layer uses the <code>MF_</code> (feminine) Mannequin clips in <code>Imported/Lyra</code>; <code>MM_</code> is the
+masculine set.</p>
 <p><strong>Idle breaks.</strong> After <strong>Idle Break Delay</strong> (<code>8</code> s) plus a random <strong>Idle Break Jitter</strong> (up to <code>6</code> s)
 of standing still, <strong>Wants Idle Break</strong> turns true for exactly the length of the chosen clip, and the
 idle layer blends to that clip and back. Each character rolls its own timing, so a party does not
@@ -4810,8 +4811,8 @@ fidget in unison.</p>
    <code>AS_Kwang_IdleBreak_Laugh</code> (greatsword). An empty <strong>Idle Break Anim</strong> means that stance never
    fidgets, unless the profile gives it a list.</li>
 </ol>
-<p>Each sample party member has four breaks in its profile, drawn from Lyra's three and nine
-bare-handed clips in <code>Characters/Core/Animations/IdleBreaks</code> (Stretch, Waiting, Sneeze, Greeting and
+<p>Each sample party member has four breaks in its profile, drawn from the three Mannequin idle breaks in
+<code>Imported/Lyra</code> and the nine bare-handed clips in <code>Characters/Core/Animations/IdleBreaks</code> (Stretch, Waiting, Sneeze, Greeting and
 others). Their <strong>Armed Idle Breaks</strong> are empty, so with the sword out they use the stance's own break.
 See <a href="../../recipes/companion-personality/">Give a character its own idle breaks and faces</a>.</p>
 <p><strong>Montages.</strong> Attacks, Arts, hit reactions and the draw and sheathe play as montages on top of the
@@ -4824,8 +4825,8 @@ while drawing or sheathing.</p>
 <p>A <strong>miss</strong> plays a duck or a dodge, picked at random from the evade ability's <strong>Random Montages</strong>
 (<code>GA_XenoCore_Evade</code>), on the <code>Defence</code> slot. In battle the arms are taken back from the stance under
 that slot, so the body ducks while the hands stay on the sword; unarmed, the clip's own arms play.</p>
-<p>While a hit's knockback is pushing the body, the anim instance reads its velocity as zero, so a
-character sliding backwards from a blow does not break into a forward jog.</p>
+<p>While a hit's knockback is pushing the body, the anim instance ignores the push and reads the body's
+own speed, so a standing character stays idle and a running one keeps running while it slides.</p>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a flinch that never shows, or that cancels the swing</p>
 <p>A flinch montage must be on the <code>AdditiveHitReact</code> slot, its clips must be <strong>Additive Anim Type</strong>
@@ -4852,8 +4853,8 @@ mesh that carries the face, and it drives:</p>
 <ul>
 <li>a random blink, timed per character;</li>
 <li>an expression chosen from the character's gameplay tags by <strong>Expression Rules</strong>, first matching
-  rule wins. The default order: downed looks pained, dead closes the eyes, Topple and Break look
-  surprised, Daze sad, a victory celebration laughs, casting an art and being in battle look angry,
+  rule wins. The default order: downed looks pained, dead closes the eyes, Topple looks surprised,
+  Daze sad, Break surprised, a victory celebration laughs, casting an art and being in battle look angry,
   a conversation looks relaxed;</li>
 <li>a mouth flap while <strong>Talking Tag</strong> is held, or lip sync for a voice line;</li>
 <li><strong>Play Expression</strong> for scripted moments, which wins over the rules for its duration.</li>
@@ -4865,8 +4866,8 @@ Thinking and Pained. Each row is a <strong>Curves</strong> map of face curve to
 weight, using VRM-style curve names your face rig must provide (<code>happy</code>, <code>angry</code>, <code>sad</code>, <code>relaxed</code>, <code>surprised</code>, <code>aa</code>, <code>ih</code>, <code>ou</code>,
 <code>ee</code>, <code>oh</code>, <code>blink</code>, <code>blinkLeft</code>, <code>blinkRight</code>). <strong>Suppress Blink</strong> stops the blink while it shows,
 and <strong>Pulse Curve</strong>, <strong>Pulse Weight</strong> and <strong>Pulse Rate</strong> add an oscillating curve on top, such as a
-laugh's opening and closing mouth. A name that is not a row is played as one curve at full weight, so
-a rule that says <code>angry</code> still works.</p>
+laugh's opening and closing mouth. Row names are not case-sensitive, so the default rule <code>angry</code> plays
+the Angry row. A name that is not a row (such as <code>blink</code>) is played as one curve at full weight.</p>
 <p>To play a face from any Blueprint, call <strong>Play Expression On Actor</strong> with the pawn (or its cosmetic
 part), a row name, a weight and a duration. It returns false, and does nothing, on a character
 without a face, such as the sample members or an enemy.</p>
@@ -5017,8 +5018,8 @@ when the stance changes, with no error.</p>
 <p>The C++ parent is <code>UXenoCoreAnimInstance</code>: it captures velocity and rotation on the game thread
 and computes the values above in the thread-safe update. The face is <code>UXenoCoreFaceAnimInstance</code>,
 the profile <code>UXenoCoreCharacterAnimProfile</code>, an expression row <code>FXenoCoreFaceExpressionRow</code>. On a
-draw or stow, the weapon instance's <code>SetDrawn</code> collects the cosmetic tags, calls Lyra's
-<code>PickBestAnimLayer</code>, then <code>LinkAnimClassLayers</code>, then
+draw or stow, the weapon instance's <code>SetDrawn</code> collects the cosmetic tags, calls
+<code>PickBestAnimLayer</code> (on the framework's weapon instance), then <code>LinkAnimClassLayers</code>, then
 <code>RequestSlotGroupInertialization("DefaultGroup", AnimLayerBlendTime)</code>. The flinch ability refuses
 while <code>Status.XenoCore.Arming</code> is held.</p>
 </details>
@@ -5026,18 +5027,17 @@ while <code>Status.XenoCore.Arming</code> is held.</p>
 <details class="note">
 <summary>For programmers</summary>
 <ul>
-<li><strong>Own host, not Lyra's.</strong> Lyra's locomotion enters Start/Stop states on input and commits to them
-  for up to a second, which feels unresponsive for this style of game; its state machine lives in
-  Lyra's own asset and cannot be owned. XenoCore's <code>Idle ↔ Move</code> machine with a 2D blend space is
-  snappier and blends walk and run continuously.</li>
-<li><strong>Lyra's layer mechanism, kept.</strong> Per-state linked layers, <code>PickBestAnimLayer</code> from the weapon on
-  draw, and an inertialization request (Lyra delivers the same request through a transition). Links
-  are made once on an event, never per frame, and never unlink-then-link, which would drop every
-  node to its fallback for an instant.</li>
+<li><strong>A simple host state machine.</strong> XenoCore's <code>Idle ↔ Move</code> machine with a 2D blend space enters
+  Move on speed, with no Start/Stop states that commit to a clip on input, so it is snappy and
+  blends walk and run continuously.</li>
+<li><strong>Linked layers chosen by the weapon.</strong> Per-state linked layers, <code>PickBestAnimLayer</code> from the
+  weapon on draw, and an inertialization request made directly. Links are made once on an event,
+  never per frame, and never unlink-then-link, which would drop every node to its fallback for an
+  instant.</li>
 <li><strong>Not derived from <code>UXenoBaseAnimInstance</code></strong>, because it has no export macro and cannot be derived
   from outside its module, <code>XenoCoreBase</code>; <code>UXenoCoreAnimInstance</code> reproduces the part it needs and pulls the
   ability system itself.</li>
-<li><strong>Idle breaks in the anim stack</strong>, where Lyra keeps its own, because the graph already knows
+<li><strong>Idle breaks in the anim stack</strong>, because the graph already knows
   whether the Idle state is active; an ability polling for it was heavier and less exact.</li>
 </ul>
 </details>

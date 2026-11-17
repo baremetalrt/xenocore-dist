@@ -4849,8 +4849,8 @@ the stat block.</p>
 <td>Which animation layer the character uses with it drawn and sheathed</td>
 </tr>
 <tr>
-<td>Ability set</td>
-<td><code>Weapons/GreatSword/AbilitySet_XenoCore_JunkSword</code></td>
+<td>Ability sets</td>
+<td><code>Weapons/AbilitySet_XenoCore_SwordCommon</code> + <code>Weapons/AmberSword/AbilitySet_XenoCore_AmberSword</code></td>
 <td>Abilities the weapon grants while worn</td>
 </tr>
 </tbody>
@@ -4884,7 +4884,7 @@ the extra section at the end.</p>
 <p class="admonition-title">Why the item definition is copied, not inherited</p>
 <p>An item definition's fragments are instanced objects, and a Blueprint child of an item
 definition cannot be saved once it overrides them ("Illegal reference to private object").
-Lyra's own items are all copies for the same reason. Treat an item definition as data.</p>
+XenoCore's own items are all copies for the same reason. Treat an item definition as data.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: never create an item definition from blank</p>
@@ -4985,7 +4985,7 @@ See <a href="../add-a-gem/">Add a gem</a>.</p>
 <ol>
 <li>Open the leader's pawn Blueprint, for example Kael's,
    <code>Game/B_XenoCore_Player</code>.</li>
-<li>In the <strong>Components</strong> panel, select its equipment component (the <code>XenoCoreEquipmentComponent</code>)
+<li>In the <strong>Components</strong> panel, select <strong>XenoCoreEquipment</strong>
    and find <strong>XenoCore › Equipment › Starting Inventory</strong>.</li>
 <li>Add an entry: <strong>Item Definition</strong> <code>ID_MyGame_StoneBlade</code>, <strong>Count</strong> <code>1</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
@@ -4999,7 +4999,7 @@ weapon in both, or the party gets two.</p>
 <li>Stone Blade is in the list. Its comparison block shows your numbers against the current weapon.</li>
 <li>Equip it. Close the menu and walk into a minion's range: the character draws Stone Blade from
    the back, in your material.</li>
-<li>Fight. Damage rises and falls with the attack range you set.</li>
+<li>Fight. Damage rises and falls between the attack values you set.</li>
 </ol>
 <p>If the weapon is missing from the list, open the console (<code>`</code>) and run <code>XenoCore.Weapon.Describe</code>:
 it prints each character's allowed weapon types, held weapon and how many bag weapons their swap list
@@ -5058,7 +5058,7 @@ swings, exactly like the shipped swords.</p>
 <tr>
 <td><strong>Attack Range</strong></td>
 <td>How far the auto-attack reaches, cm</td>
-<td>420</td>
+<td>The auto-attack's own <strong>Attack Range</strong>: 300 on <code>Battle/GA_XenoCore_AutoAttack</code></td>
 </tr>
 </tbody>
 </table>
@@ -5116,14 +5116,15 @@ anything.</p>
   +X. Then it sits in every character's hand without an offset, and scaling shrinks it toward the
   hand.
 - <strong>Where it sits on a character</strong> is that character's two weapon sockets, not the weapon. On the
-  UE5 Mannequin the drawn weapon sits on <code>weapon_r</code>. A socket places a weapon, and its
+  UE5 Mannequin skeleton they are <code>XC_WeaponGrip_R</code> (drawn) and <code>XC_WeaponStow_Back</code> (sheathed). A
+  socket places a weapon, and its
   <strong>Scale must stay 1.0</strong>: socket scale multiplies every weapon that character ever holds, so one
   character's swords quietly come out a different size from everyone else's.
-- <strong>Materials from a pack</strong> (Paragon) must be moved into XenoCore with the weapon. The
-  packs are not part of the project, so on any other machine the material slot is empty and the
-  weapon renders grey. Use the editor's <strong>Move</strong> on the material, its textures and functions, never
-  <strong>Copy</strong>, so the mesh is repointed; then cap the textures at 1K (right-click › <strong>Texture Source
-  Actions › Reduce Size</strong>). The Gold Sword's <code>Materials/</code> folder is the worked example.</p>
+- <strong>Materials from a pack</strong> (Paragon, for example): keep the material, its textures and functions
+  in the same folder as the weapon. If the pack folder is left out of your project (not in source
+  control, or deleted before packaging), the material slot is empty and the weapon renders grey.
+  Use the editor's <strong>Move</strong>, never <strong>Copy</strong>, so the mesh is repointed; then set the textures'
+  <strong>Maximum Texture Size</strong> to <code>1024</code>. The Gold Sword's <code>Materials/</code> folder is the worked example.</p>
 </li>
 </ul>
 <h2 id="if-it-doesnt-work">If it doesn't work<a class="headerlink" href="#if-it-doesnt-work" title="Permanent link">&para;</a></h2>
@@ -5144,8 +5145,8 @@ anything.</p>
 <td><strong>Equipment Definition</strong> is empty on the item, or <strong>Allowed Slots</strong> does not include <code>Weapon</code>. The Output Log names the reason (<code>NotEquippable</code> or <code>WrongSlot</code>).</td>
 </tr>
 <tr>
-<td>The weapon renders as a grey checker on someone else's machine</td>
-<td>Its material still lives in a pack folder that is not part of the project. Move it in, as described under <em>Size, position and materials</em>.</td>
+<td>The weapon renders as a grey checker on another machine or in a packaged build</td>
+<td>Its material still lives in a pack folder that is not part of the project. Move it, as described under <em>Size, position and materials</em>.</td>
 </tr>
 <tr>
 <td>The stat block shows the name but zeros</td>

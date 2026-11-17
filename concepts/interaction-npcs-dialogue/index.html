@@ -4710,9 +4710,9 @@ whatever the prompt last offered.</p>
 </tr>
 </tbody>
 </table>
-<p>The treasure chest (see <a href="../loot/">Loot</a>) is found the same way. Lyra's own interaction ability,
-<code>Input/Abilities/GA_XenoCore_Interact</code>, is still granted by <code>Game/AbilitySet_XenoCore_Interact</code>, but
-it no longer decides what A does. It still traces for Lyra interactables and, while it finds one,
+<p>The treasure chest (see <a href="../loot/">Loot</a>) is found the same way. An older, trace-based interaction
+ability, <code>Input/Abilities/GA_XenoCore_Interact</code>, is still granted by <code>Game/AbilitySet_XenoCore_Interact</code>, but
+it no longer decides what A does. It still traces for interactables and, while it finds one,
 holds <code>Status.XenoCore.InteractAvailable</code>, which stops <strong>Palette Confirm</strong>; the gameplay event it
 waits on (<code>XenoCore.Event.Interact</code>) is sent by nothing.</p>
 <p>The interaction abilities reach the player through the party, not through the pawn data:
@@ -4764,7 +4764,8 @@ ally offers <strong>Revive</strong> (see <a href="../party-gauge-and-revive/">Pa
   blends back (0.5 s) to exactly where the camera was.</li>
 <li>The player and the NPC turn to face each other (<strong>XenoCore Content › Dialogue Turn Seconds</strong>, 0.3 s).
   After the conversation the NPC turns back to how it was placed; the player stays facing it.</li>
-<li>Arts, the auto-attack and target mode are blocked (by rows in <code>Game/TagRelationships_XenoCore</code>).</li>
+<li>Arts, the auto-attack, target mode, jumping and the menu are blocked (by rows in
+  <code>Game/TagRelationships_XenoCore</code>).</li>
 <li>The interaction prompt and the NPC's own name plate hide.</li>
 </ul>
 <p>Each line appears over the speaker's head. The first A press finishes the typing effect, the next
@@ -4987,8 +4988,8 @@ dropped.</p>
   Anchor</strong>. Keep the parent class, and see
   <a href="../ui-shell-and-hud/#the-two-settings-pages">The two settings pages</a> for the cooking caveat.</li>
 </ul>
-<p>Never edit the chest's Lyra side or Lyra's interaction ability; the chest's behaviour lives in
-XenoCore.</p>
+<p>Never edit <code>GA_XenoCore_Interact</code> to change what A does; the press is handled by the interaction
+system described above.</p>
 <details class="note">
 <summary>For programmers: classes</summary>
 <p><code>UXenoCoreInteractionSubsystem</code> (world subsystem) keeps the registry, picks the nearest actor,
@@ -5000,8 +5001,7 @@ capped by <code>MaxPressableVerbs</code> in <strong>Get Offered Verbs</strong>).
 interface directly must do it itself. The NPC is <code>AXenoCoreNpcCharacter</code> (its <code>Interact</code> calls
 <strong>On Interact</strong>), the label <code>UXenoCoreWorldLabelBase</code>, the prompt <code>UXenoCoreInteractPromptBase</code>,
 dialogue <code>UXenoCoreDialogueSubsystem</code> with <code>AXenoCoreDialogueAnchor</code>. The chest implements both
-<code>IXenoCoreInteractable</code> and <code>IXenoKitInteractableTarget</code> (XenoCore's copy of Lyra's
-<code>IInteractableTarget</code>). While the prompt is up on a gamepad, or a panel covers the world, the
+<code>IXenoCoreInteractable</code> and <code>IXenoKitInteractableTarget</code>. While the prompt is up on a gamepad, or a panel covers the world, the
 player holds <code>Status.XenoCore.Looting</code>; a conversation adds <code>Gameplay.MovementStopped</code>,
 <code>Status.XenoCore.Dialogue</code> and <code>SetIgnoreLookInput</code>.</p>
 </details>
@@ -5009,11 +5009,10 @@ player holds <code>Status.XenoCore.Looting</code>; a conversation adds <code>Gam
 <details class="note">
 <summary>For programmers</summary>
 <ul>
-<li><strong>Proximity, not aim.</strong> Lyra's interaction ability scans with a camera line trace, which answers
-  "what am I looking at". Every prompt here means "what is near me", so XenoCore uses a registry
-  and a distance check instead. Lyra's option list is also protected on an unexported class, so
-  C++ outside Lyra cannot read it.</li>
-<li><strong>One owner for the button.</strong> A is also Jump (Lyra) and Palette Confirm, so the subsystem both
+<li><strong>Proximity, not aim.</strong> The trace-based interaction ability scans with a camera line trace, which
+  answers "what am I looking at". Every prompt here means "what is near me", so XenoCore uses a
+  registry and a distance check instead.</li>
+<li><strong>One owner for the button.</strong> A is also Jump and Palette Confirm, so the subsystem both
   shows the prompt and claims the button. A second system drawing its own prompt would be a second
   owner of the same button.</li>
 <li><strong>A base class for designers, not a Blueprint interface.</strong> Making the interface

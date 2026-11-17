@@ -3904,10 +3904,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#not-in-your-copy" class="md-nav__link">
+  <a href="#reimporting-retargeted-clips" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Not in your copy
+        Reimporting retargeted clips
       
     </span>
   </a>
@@ -4667,10 +4667,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#not-in-your-copy" class="md-nav__link">
+  <a href="#reimporting-retargeted-clips" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Not in your copy
+        Reimporting retargeted clips
       
     </span>
   </a>
@@ -4708,7 +4708,7 @@
 <h1 id="folder-map">Folder map<a class="headerlink" href="#folder-map" title="Permanent link">&para;</a></h1>
 <p>Every folder in the XenoCore plugin's content, what it holds, and whether you can remove it when you
 replace the sample. In the Content Browser this is <strong>Plugins › XenoCore Content</strong> (turn on <strong>Show
-Plugin Content</strong> first). On disk it is <code>Plugins/GameFeatures/XenoCore/Content/</code> in your project.</p>
+Plugin Content</strong> first). On disk it is the <code>Content</code> folder inside the <code>XenoCore</code> plugin folder.</p>
 <p><strong>Kind</strong> tells you what removing a folder costs:</p>
 <ul>
 <li><strong>Framework</strong>: bases, shared effects and screens the systems need. Keep it. Duplicate from it.</li>
@@ -4909,12 +4909,12 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 </tr>
 <tr>
 <td><code>System</code></td>
-<td>The plugin's Game Feature Data <code>XenoCore</code> (found through <code>Config/Settings.ini</code>), the always-cook list <code>DA_XenoCore_AlwaysCookList</code>, and the Lyra playlist entry for the gym (<code>Playlists</code>)</td>
+<td>The plugin's Game Feature Data <code>XenoCore</code> (found through <code>Config/Settings.ini</code>), the always-cook list <code>DA_XenoCore_AlwaysCookList</code>, and the playlist entry for the gym (<code>Playlists</code>)</td>
 <td>Framework (Game Feature Data, cook list) and Sample (playlist)</td>
 </tr>
 <tr>
 <td><code>Imported</code></td>
-<td>Content from other sources, cut down to what XenoCore uses: the Lyra Starter Game content XenoCore is built on (<code>Imported/Lyra</code>: Mannequin bodies and animations, UI, input, sounds, effects), StyleHex grass (<code>Imported/StyleHex_Studio</code>), Niagara and effect samples (<code>Imported/NiagaraExamples</code>, <code>Imported/Effects</code>), cave rocks (<code>Imported/Environment</code>)</td>
+<td>Content from other sources, cut down to what XenoCore uses: the content of XenoCore's game framework (<code>Imported/Lyra</code>: Mannequin bodies and animations, UI, input, sounds, effects), StyleHex grass (<code>Imported/StyleHex_Studio</code>), Niagara and effect samples (<code>Imported/NiagaraExamples</code>, <code>Imported/Effects</code>), cave rocks (<code>Imported/Environment</code>)</td>
 <td>Framework (<code>Imported/Lyra</code>) and Sample (the rest)</td>
 </tr>
 <tr>
@@ -5291,10 +5291,7 @@ editor shows you. See <a href="../../recipes/replace-sample-content/">Replace th
 </table>
 <p>The sample world's rocks and trees are in <code>Environment/Kit</code>: CC0 scans and textures from Poly Haven,
 plus generated trees.</p>
-<h2 id="not-in-your-copy">Not in your copy<a class="headerlink" href="#not-in-your-copy" title="Permanent link">&para;</a></h2>
-<p>The plugin is developed alongside a development-only test folder that is removed before release.
-If you see <code>/XenoCore/Dev</code> under <strong>Directories to Never Cook</strong> in your packaging settings, that
-line is harmless; leave it or delete it.</p>
+<h2 id="reimporting-retargeted-clips">Reimporting retargeted clips<a class="headerlink" href="#reimporting-retargeted-clips" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Reimport is not available on some retargeted clips</p>
 <p>The retargeted clips in <code>Characters/Player/Animations/Mixamo</code> and two get-up clips in
@@ -5314,21 +5311,16 @@ clips fails, because the source files are not included.</p>
 <tbody>
 <tr>
 <td><code>Content/</code></td>
-<td>Your project's own content. In a Lyra project, also Lyra's: mannequins, UI toolkit, shooter sample</td>
-<td>Lyra's: no, reference only</td>
+<td>Your project's own content</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td><code>Plugins/GameFeatures/</code> (other folders)</td>
-<td>In a Lyra project, Lyra's sample game features (shooter modes)</td>
-<td>No</td>
-</tr>
-<tr>
-<td><code>Plugins/GameFeatures/XenoCore/Config/Tags/</code></td>
+<td><code>XenoCore/Config/Tags/</code> (in the plugin folder)</td>
 <td>XenoCore's gameplay tags ini</td>
 <td>No; add your own tag file</td>
 </tr>
 <tr>
-<td><code>Plugins/GameFeatures/XenoCore/Source/</code></td>
+<td><code>XenoCore/Source/</code> (in the plugin folder)</td>
 <td>XenoCore C++</td>
 <td>Subclass, don't edit</td>
 </tr>

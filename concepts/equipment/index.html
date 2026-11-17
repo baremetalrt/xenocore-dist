@@ -4701,8 +4701,8 @@ is pure data: no effect asset or graph of its own.</p>
 </tr>
 <tr>
 <td>Weapon ability sets</td>
-<td><code>Weapons/AbilitySet_XenoCore_SwordCommon</code> (granted by the sword base), plus a Talent set such as <code>GreatSword/AbilitySet_XenoCore_JunkSword</code></td>
-<td>Common: <code>GA_XenoCore_EquipmentStats</code> and <code>GA_XenoCore_WeaponDrawSync</code>. Talent set: the sword's Talent Art, for example <code>GA_XenoCore_TurnStrike</code></td>
+<td><code>Weapons/AbilitySet_XenoCore_SwordCommon</code> (set on the sword base), and a set per sword such as <code>GreatSword/AbilitySet_XenoCore_JunkSword</code></td>
+<td>Common: <code>GA_XenoCore_EquipmentStats</code> and <code>GA_XenoCore_WeaponDrawSync</code>. A sword's own set adds its Talent Art, for example <code>GA_XenoCore_TurnStrike</code></td>
 </tr>
 <tr>
 <td>Armour ability set</td>
@@ -4744,8 +4744,9 @@ is pure data: no effect asset or graph of its own.</p>
 <p>The seven sample swords (Junk in <code>Weapons/GreatSword/</code>, then Green, Red, Amber, Gold, Ivory and
 Violet, each in its own <code>Weapons/&lt;Colour&gt;Sword/</code> folder) are all children of the two sword bases, share <code>B_WeaponInstance_GreatSword</code> and the
 Greatsword type, and differ only in their item, mesh or material, and the Talent Art their ability
-set grants. Junk, Green, Red and Gold share <code>AbilitySet_XenoCore_JunkSword</code> (Turn Strike);
-Amber, Ivory and Violet grant their own. See
+set grants. Junk, Green, Red and Gold grant only <code>AbilitySet_XenoCore_JunkSword</code>, which carries the
+stats and draw abilities as well as Turn Strike. Amber, Ivory and Violet grant <code>AbilitySet_XenoCore_SwordCommon</code>
+plus a set of their own holding only their Talent Art. Either way each ability is granted once. See
 <a href="../../recipes/add-weapon/">Add a weapon</a>.</p>
 <p><strong>Each character wields one weapon type.</strong> An item's type is <strong>Weapon Type</strong> on its
 <code>XenoCoreFragment_EquipSlots</code> fragment; a character's allowed types are its equipment component's
@@ -4815,13 +4816,14 @@ swings and reach. Any of those left empty on the type falls back to the greatswo
 (armour shows Light, Medium or Heavy there instead).</p>
 <p><strong>Unequipping.</strong> <strong>Unequip Slot</strong> takes the item's stats off the character, despawns the weapon
 actor and removes the granted abilities. The item stays in the bag.</p>
-<p><strong>Leaving the field.</strong> When a character's pawn is destroyed (benched, or killed and cleared), every
-slot is unequipped, so its gear sits loose in the shared bag.</p>
+<p><strong>Leaving the field.</strong> When a character's pawn is removed (for example when the character is
+benched), every slot is unequipped, so its gear sits loose in the shared bag until the character
+returns (see <strong>Starting gear</strong> above).</p>
 <p><strong>Drawing the weapon.</strong> When a battle starts or ends, <code>GA_XenoCore_Arm_v2</code> plays the draw or
 sheathe montage, and <code>GA_XenoCore_WeaponDrawSync</code> moves the weapon between its back and hand
 sockets as the montage plays and swaps the character's stance animations (see
-<a href="../animation/">Animation</a>); the character cannot move while drawing, and neither direction can be
-interrupted by a flinch.</p>
+<a href="../animation/">Animation</a>). The character cannot move while drawing (it can while sheathing), and
+neither direction can be interrupted by a flinch.</p>
 <h2 id="gems">Gems<a class="headerlink" href="#gems" title="Permanent link">&para;</a></h2>
 <p>A weapon or armour piece can carry <strong>gems</strong> in its sockets, XC1-style. A gem is an ordinary item
 (<code>Inventory/Gems/ID_XenoCore_Gem_&lt;Type&gt;_&lt;Rank&gt;</code>: Strength Up, Ether Up, Agility Up, Ether Def Up,
@@ -4985,15 +4987,15 @@ are <code>EXenoCoreEquipSlot</code> (<code>XenoCoreEquipmentComponent.h</code>).
 <details class="note">
 <summary>For programmers</summary>
 <ul>
-<li><strong>Subclass, not a sibling component.</strong> Lyra's own code finds the equipment manager with
+<li><strong>Subclass, not a sibling component.</strong> XenoCore's base equipment code finds the equipment manager with
   <code>FindComponentByClass&lt;UXenoBaseEquipmentManagerComponent&gt;</code>, which finds ours. A second component beside
-  Lyra's would have left those lookups finding the wrong one.</li>
+  the base one would have left those lookups finding the wrong one.</li>
 <li><strong>On the pawn.</strong> Equipment spawns the meshes animation depends on, so it stays with the body.
   Inventory is data, so it lives on the controller.</li>
 <li><strong>One SetByCaller effect.</strong> One effect asset per item would be two hand-made assets per item, and
   would make the comparison screen price an item by equipping it. The stats come from the item's own
   <code>XenoKitInventoryFragment_SetStats</code>, which already writes them onto the instance.</li>
-<li><strong>Get Item For Equipment.</strong> Lyra's <code>EquipItem</code> spawns the instance and grants its abilities in one
+<li><strong>Get Item For Equipment.</strong> The base <code>EquipItem</code> spawns the instance and grants its abilities in one
   call, so the stats ability runs before the slot is recorded. The component remembers the item for
   the length of that call, so the ability can find it immediately rather than a frame later, which
   once showed a new weapon's name with zero attack.</li>

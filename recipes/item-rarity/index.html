@@ -4863,7 +4863,7 @@ that shows it. You can also change what each rarity looks like, or add a new rar
 <ol>
 <li>Open the item's Blueprint, for example <code>Inventory/Armour/ID_XenoCore_BattleArmour</code>, and click
    <strong>Class Defaults</strong>.</li>
-<li>Under <strong>Display › Fragments</strong>, expand the <strong>XenoCore Fragment Item Category</strong> entry.</li>
+<li>Under <strong>Display › Fragments</strong>, expand the <strong>Xeno Core Fragment Item Category</strong> entry.</li>
 <li>Set <strong>XenoCore › Item › Rarity</strong> to <code>XenoCore.Item.Rarity.Rare</code> or
    <code>XenoCore.Item.Rarity.Legendary</code>.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
@@ -4907,6 +4907,8 @@ Kael's (<code>Game/B_XenoCore_Player</code>) <strong>Starting Inventory</strong>
 </tr>
 </tbody>
 </table>
+<p>The same list also holds two Common armour pieces (Prototype Helm and Prototype Greaves) and a
+Strength Up I gem.</p>
 <p>They are sample content. Take them out of that list before you ship: open Kael's pawn, select its
 equipment component, and remove the rows from <strong>XenoCore › Equipment › Starting Inventory</strong>.</p>
 <h3 id="make-a-rarer-copy-of-an-item">Make a rarer copy of an item<a class="headerlink" href="#make-a-rarer-copy-of-an-item" title="Permanent link">&para;</a></h3>
@@ -4940,7 +4942,7 @@ equipment component, and remove the rows from <strong>XenoCore › Equipment ›
 </tr>
 <tr>
 <td><strong>Name Colour</strong> / <strong>Tint Name</strong></td>
-<td>The colour of item names. Turn <strong>Tint Name</strong> off to leave names in each screen's own colour. On a Lyra menu button the colour is written into the label's font material for its normal, hovered and pressed states, so a focused row keeps its rarity colour.</td>
+<td>The colour of item names. Turn <strong>Tint Name</strong> off to leave names in each screen's own colour. On a menu button whose label colour comes from its font material, the colour is written into that material for its normal, hovered and pressed states, so a focused row keeps its rarity colour.</td>
 </tr>
 <tr>
 <td><strong>Name Outline</strong> / <strong>Name Outline Colour</strong> / <strong>Name Outline Size</strong></td>
@@ -5051,7 +5053,7 @@ adds it as its own first row.</p>
 <tbody>
 <tr>
 <td>A Rare or Legendary item is drawn white, with one diamond</td>
-<td>Its <strong>Rarity</strong> is empty, which means Common. Set it on the item's <strong>XenoCore Fragment Item Category</strong>.</td>
+<td>Its <strong>Rarity</strong> is empty, which means Common. Set it on the item's <strong>Xeno Core Fragment Item Category</strong>.</td>
 </tr>
 <tr>
 <td>Every item is drawn plain, with no diamonds</td>

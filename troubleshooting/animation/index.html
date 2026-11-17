@@ -4801,8 +4801,8 @@ error; an anim Blueprint swallows it.</p>
 <h3 id="equipping-a-weapon-never-changes-the-characters-stance">Equipping a weapon never changes the character's stance<a class="headerlink" href="#equipping-a-weapon-never-changes-the-characters-stance" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> the stance is an anim layer, chosen by the weapon when it is drawn or sheathed. The weapon
 instance Blueprint (for example <code>Weapons/GreatSword/B_WeaponInstance_GreatSword</code>) has two
-settings: <strong>Equipped Anim Set</strong> (drawn) and <strong>Uneuipped Anim Set</strong> (sheathed; the spelling is
-Lyra's). If both name the same layer, drawing the weapon links the same layer again and nothing
+settings: <strong>Equipped Anim Set</strong> (drawn) and <strong>Uneuipped Anim Set</strong> (sheathed; that is how the
+Details panel spells it). If both name the same layer, drawing the weapon links the same layer again and nothing
 changes.</p>
 <p><strong>Fix:</strong> set <strong>Equipped Anim Set</strong> to your weapon's layer (like
 <code>ABP_XenoCore_GreatSwordAnimLayers</code>) and <strong>Uneuipped Anim Set</strong> to the unarmed layer. To check a

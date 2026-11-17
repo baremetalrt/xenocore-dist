@@ -4775,7 +4775,7 @@ guessing:</p>
 </tr>
 <tr>
 <td>Sparks, hit sound, the damage number over the enemy</td>
-<td>XenoCore's damage cue (a copy of Lyra's), carried by the damage effect</td>
+<td>XenoCore's damage cue, carried by the damage effect</td>
 <td><code>Battle/Attributes/GE_XenoCore_Damage</code> → <code>GameplayCues/GCNL_XenoCore_DamageTaken</code></td>
 </tr>
 <tr>
@@ -4795,10 +4795,9 @@ missed swing fires nothing. Heals never fire the hit cue.</p>
 <p>XenoCore's damage cue draws the number and plays the hit-confirm and kill sounds for <strong>every party
 member's</strong> hits, not only the leader's: an AI-controlled ally's hit on an enemy sounds and reads the
 same as yours. An enemy's hit on a party member plays the damage-taken sound instead, and draws a
-number over whoever was hit. For an AI-controlled ally that number and sound come from XenoCore, not
-Lyra: the sound is <strong>Ally Damage Taken Sound</strong> (and <strong>Ally Damage Taken Critical Sound</strong>) under
+number over whoever was hit. For an AI-controlled ally the sound is <strong>Ally Damage Taken Sound</strong> (and <strong>Ally Damage Taken Critical Sound</strong>) under
 <strong>Project Settings › Game › XenoCore Content › Battle</strong>. Clear it and allies take hits silently.</p>
-<p>On a <strong>critical hit</strong> the same cue switches to Lyra's critical style: the number draws gold and the
+<p>On a <strong>critical hit</strong> the same cue switches to its critical style: the number draws gold and the
 hit-confirm sound is the heavier critical one. At the same moment <strong>CRITICAL HIT!</strong> pops over the
 target, arriving larger and snapping down to its resting size.</p>
 <p>The cue runs on whichever side has a local player controller. When the player hits an enemy, the
@@ -4812,8 +4811,7 @@ settings live in one struct, <strong>Burst Effects</strong>.</p>
 <ol>
 <li>Create a folder <code>MyGame/Feedback</code> under <strong>Content</strong>.</li>
 <li>Find <code>Imported/Lyra/Feedback/CameraShakes/CS_Character_DamageTaken</code> (under <strong>Plugins ›
-   XenoCore Content</strong>, XenoCore's copy of Lyra's shake). This is the shake the hit cue
-   uses today.</li>
+   XenoCore Content</strong>). This is the shake the hit cue uses today.</li>
 <li>Duplicate it into <code>MyGame/Feedback</code> and name it <code>CS_MyGame_Hit</code>.</li>
 <li>Open <code>CS_MyGame_Hit</code> and adjust it. It is a legacy (oscillation) camera shake: under
    <strong>Oscillation</strong>, start with <strong>Oscillation Duration</strong> and <strong>Rot Oscillation</strong> (each axis's
@@ -4842,7 +4840,7 @@ not which cue plays.</p>
 <div class="admonition note">
 <p class="admonition-title">This is an edit to a shipped asset</p>
 <p>It is one reference change. Write it down, because a template update that replaces
-<code>GCN_XenoCore_Hit</code> will point it back at Lyra's shake.</p>
+<code>GCN_XenoCore_Hit</code> will point it back at <code>CS_Character_DamageTaken</code>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a second notify with the same tag</p>
@@ -4852,7 +4850,7 @@ Only one of them will play, and which one is not something you choose.</p>
 <h3 id="4-change-the-swing-whoosh-optional">4. Change the swing whoosh (optional)<a class="headerlink" href="#4-change-the-swing-whoosh-optional" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Open <code>GameplayCues/GCN_XenoCore_Swing</code>, <strong>Class Defaults</strong>, <strong>Burst Effects</strong>.</li>
-<li>Under <strong>Burst Sounds</strong>, replace the sound (Lyra's <code>Lyra_MeleeWhoosh_01</code>) with your own.</li>
+<li>Under <strong>Burst Sounds</strong>, replace the sound (<code>Lyra_MeleeWhoosh_01</code>) with your own.</li>
 <li><strong>Compile</strong> and <strong>Save</strong>.</li>
 </ol>
 <h3 id="5-tune-the-critical-hit-optional">5. Tune the critical hit (optional)<a class="headerlink" href="#5-tune-the-critical-hit-optional" title="Permanent link">&para;</a></h3>
@@ -4935,16 +4933,15 @@ keyboard switches it off until you press a pad button again. Nothing is logged. 
 <p class="admonition-title">Fails silently: a cue added to an effect never shakes the camera</p>
 <p>If you give an Art's own effect a Gameplay Cue in its <strong>Gameplay Cues</strong> list, the cue's sparks
 and sounds play but its camera shake and rumble <strong>never do</strong>. Cues fired by a gameplay effect
-carry no player controller, so there is nothing to shake. This is true in stock Lyra as well.
+carry no player controller, so there is nothing to shake.
 Put shake and rumble only in <code>GCN_XenoCore_Hit</code>, which is fired directly with the controller
 filled in.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: a new cue that never plays</p>
 <p>A cue notify is only found if it sits under a registered cue folder. XenoCore registers
-<code>XenoCore/Content/GameplayCues</code> through its Game Feature. A Lyra project also registers its own
-<code>Content/GameplayCues</code> and <code>Content/GameplayCueNotifies</code> (from Lyra's <code>Config/DefaultGame.ini</code>);
-a Blank project registers none until you add <code>+GameplayCueNotifyPaths="/Game/GameplayCues"</code> under
+<code>GameplayCues</code> in the XenoCore plugin folder through its Game Feature. Your project registers
+no cue folder of its own until you add <code>+GameplayCueNotifyPaths="/Game/GameplayCues"</code> under
 <code>[/Script/GameplayAbilities.AbilitySystemGlobals]</code> in its <code>Config/DefaultGame.ini</code>. Then put your
 own cues under <code>Content/GameplayCues/MyGame/</code>. A notify anywhere else loads fine, shows no
 error, and never plays.</p>
@@ -4953,14 +4950,15 @@ error, and never plays.</p>
 <p class="admonition-title">Numbers or hit sounds on hit are gone</p>
 <p>Those come from XenoCore's own damage cue, <code>GameplayCues/GCNL_XenoCore_DamageTaken</code>, fired by
 the cue tag <code>GameplayCue.XenoCore.DamageTaken</code> on <code>GE_XenoCore_Damage</code>. A damage effect that fires
-Lyra's <code>GameplayCue.Character.DamageTaken</code> instead shows sparks but no number and no hit sound,
+<code>GameplayCue.Character.DamageTaken</code> instead shows sparks but no number and no hit sound,
 and nothing is logged. Duplicate <code>GE_XenoCore_Damage</code> for new damage effects. See
 <a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Troubleshooting: combat and arts</a>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Fails silently: CRITICAL HIT! shows but the number is the normal colour</p>
 <p>The battle line and the gold number both come from XenoCore. If you see the line and a normal
-number, the damage effect is firing Lyra's cue rather than <code>GameplayCue.XenoCore.DamageTaken</code>. See
+number, the damage effect is firing <code>GameplayCue.Character.DamageTaken</code> rather than
+<code>GameplayCue.XenoCore.DamageTaken</code>. See
 <a href="../../troubleshooting/combat-and-arts/#hit-numbers-or-hit-sounds-are-missing">Troubleshooting: combat and arts</a>.</p>
 </div>
 <div class="admonition note">

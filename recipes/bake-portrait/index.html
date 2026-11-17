@@ -4794,8 +4794,8 @@ tools.</p>
    work level, not game content.</li>
 <li>Drag your pawn Blueprint into the level, or drag its skeletal mesh.</li>
 <li>Select its mesh component. Set <strong>Animation Mode</strong> to <strong>Use Animation Asset</strong> and pick an idle,
-   for example <code>MM_Unarmed_Idle_Ready</code> from Lyra's Mannequin animations (or the <code>MF_</code> version for
-   a feminine character), so it is not in a T-pose.</li>
+   for example <code>Imported/Lyra/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Idle_Ready</code>
+   (or <code>MF_Unarmed_Idle_Ready</code> beside it for a feminine character), so it is not in a T-pose.</li>
 <li>Under <strong>Rendering</strong>, tick <strong>Render CustomDepth Pass</strong>. This is what lets the screenshot tool cut
    the character out.</li>
 <li>Place a <strong>Camera Actor</strong> facing the character at head height and pilot it
@@ -4821,6 +4821,7 @@ tools.</p>
 <li><strong>Compression Settings</strong>: <strong>EditorIcon</strong>, as the samples (uncompressed, keeps a clean alpha edge)</li>
 <li><strong>Mip Gen Settings</strong>: <strong>SimpleAverage</strong>, so the portrait scales down without aliasing</li>
 <li><strong>Filter</strong>: <strong>Trilinear</strong></li>
+<li><strong>Never Stream</strong>: ticked, as the samples</li>
 </ul>
 </li>
 <li>Save.</li>

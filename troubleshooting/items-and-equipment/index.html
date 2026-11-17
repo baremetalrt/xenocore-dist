@@ -4794,29 +4794,29 @@ definition.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/add-weapon/">Add a weapon</a>.</p>
 <h3 id="menus-show-old-item-counts-after-my-script-adds-or-removes-items">Menus show old item counts after my script adds or removes items<a class="headerlink" href="#menus-show-old-item-counts-after-my-script-adds-or-removes-items" title="Permanent link">&para;</a></h3>
 <p><strong>Why:</strong> screens refresh when they hear <code>XenoCore.Inventory.Message.Changed</code>. The XenoCore
-inventory nodes (<strong>XenoCore › Inventory</strong>) send it at once. A change made with Lyra's own inventory nodes,
-such as <strong>Add Item Definition</strong>, is noticed by XenoCore's bag watcher and announced one frame later
+inventory nodes (<strong>XenoCore › Inventory</strong>) send it at once. A change made with the inventory
+component's own nodes (<strong>Inventory</strong> category), such as <strong>Add Item Definition</strong>, is noticed by XenoCore's bag watcher and announced one frame later
 (the Output Log shows <code>LogXenoBagWatch: The party bag changed outside the XenoCore inventory
 functions ...</code>). So a stale count now means one of these:</p>
 <ul>
 <li>The screen does not listen for the message at all. Your own screens must, or must re-read the
   bag when they open. See <a href="../../concepts/events/">Events</a>.</li>
-<li>Your graph reads the count in the same frame it changed the bag through a Lyra node, before the
+<li>Your graph reads the count in the same frame it changed the bag through one of those nodes, before the
   watcher has announced it.</li>
 </ul>
 <p><strong>Fix:</strong> add and remove items with <strong>Add Item To Party</strong>, <strong>Add One Item To Party</strong>, <strong>Remove Item
 From Party</strong>, <strong>Remove Item Instance From Party</strong> and <strong>Consume Items From Party</strong> (<strong>XenoCore ›
 Inventory</strong>). They announce the change at once.</p>
-<p>Two more reasons to avoid Lyra's own nodes here:</p>
+<p>Two more reasons to avoid the inventory component's own nodes:</p>
 <ul>
-<li>XenoCore stores <strong>one bag entry per item</strong>: twelve crystals are twelve entries, and Lyra counts
-  entries, not <strong>Stack Count</strong>. An entry added with a stack count above one still counts as one, so
+<li>XenoCore stores <strong>one bag entry per item</strong>: twelve crystals are twelve entries, and the bag
+  counts entries, not <strong>Stack Count</strong>. An entry added with a stack count above one still counts as one, so
   counts and item-priced ability costs come out wrong. Never set <strong>Stack Count</strong> yourself.</li>
-<li>Lyra's removal nodes do not check whether a character is wearing the item. See the next entry.</li>
+<li>The component's removal nodes do not check whether a character is wearing the item. See the next entry.</li>
 </ul>
 <p><strong>Avoid it next time:</strong> <a href="../../recipes/consumable-item/">Add a consumable item</a>.</p>
 <h3 id="an-equipped-item-vanished-from-the-bag-and-the-log-shows-an-error">An equipped item vanished from the bag, and the log shows an error<a class="headerlink" href="#an-equipped-item-vanished-from-the-bag-and-the-log-shows-an-error" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> Lyra's <strong>Remove Item Instance</strong> (or its <strong>Consume Items By Definition</strong>) removed an item a
+<p><strong>Why:</strong> the inventory component's <strong>Remove Item Instance</strong> (or its <strong>Consume Items By Definition</strong>) removed an item a
 character was wearing. The character's slot still shows it, but the bag no longer holds it, so it is
 not saved and menus that list the bag do not show it. XenoCore cannot undo the removal; it logs an
 <strong>Error</strong> to <code>LogXenoBagWatch</code>: <em>"... was removed from the party bag while ... was wearing it, by
@@ -4826,8 +4826,8 @@ returns false (it logs a warning naming the wearer), or <strong>Consume Items Fr
 takes a worn item. To remove a worn item on purpose, unequip it first.</p>
 <p><strong>Avoid it next time:</strong> <a href="../../concepts/items-and-inventory/">Items and inventory</a>.</p>
 <h3 id="the-editor-stops-when-my-graph-calls-add-item-instance">The editor stops when my graph calls Add Item Instance<a class="headerlink" href="#the-editor-stops-when-my-graph-calls-add-item-instance" title="Permanent link">&para;</a></h3>
-<p><strong>Why:</strong> Lyra's <strong>Add Item Instance</strong> is not implemented in stock Lyra; calling it halts the editor
-or the game.</p>
+<p><strong>Why:</strong> the inventory component's <strong>Add Item Instance</strong> is not implemented; calling it halts the
+editor or the game.</p>
 <p><strong>Fix:</strong> add items by definition with <strong>Add Item To Party</strong> or <strong>Add One Item To Party</strong>. There is
 no supported way to put an existing item instance back into the bag.</p>
 <h3 id="an-ability-with-an-item-cost-never-activates">An ability with an item cost never activates<a class="headerlink" href="#an-ability-with-an-item-cost-never-activates" title="Permanent link">&para;</a></h3>
@@ -4835,8 +4835,8 @@ no supported way to put an existing item instance back into the bag.</p>
 <p class="admonition-title">Fails silently</p>
 <p>Nothing is logged; the input simply does nothing.</p>
 </div>
-<p><strong>Why:</strong> the ability's <strong>Additional Costs</strong> uses Lyra's <strong>Inventory Item</strong> cost. In stock Lyra 5.8
-it is switched off inside Lyra and its check always fails, so the ability can never activate. The other
+<p><strong>Why:</strong> the ability's <strong>Additional Costs</strong> uses the <strong>Inventory Item</strong> cost. It is switched off in
+code and its check always fails, so the ability can never activate. The other
 causes: the party has too few copies <strong>that nobody is wearing</strong>, or the cost names a different item
 definition from the one in the bag.</p>
 <p><strong>Fix:</strong> use <strong>Party Item (XenoCore)</strong> instead, with the right <strong>Item Definition</strong> and <strong>Quantity</strong>.
